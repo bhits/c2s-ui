@@ -121,6 +121,10 @@ node
 client/src/app/**/*.js
 client/src/app/**/*.js.map
 
+# e2e
+client/e2e/*.js
+client/e2e/*.map
+
 # SASS #
 ##################################
 
@@ -223,7 +227,6 @@ nbactions.xml
 # Project-level settings
 /.tgitconfig
 
-
 # Miscellaneous #
 ##################################
 build/
@@ -234,3 +237,16 @@ bin
 *.tmp
 *.zip
 *.DS_Store
+Thumbs.db
+testem.log
+client/typings
+client/libpeerconnection.log
+client/connect.lock
+
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
