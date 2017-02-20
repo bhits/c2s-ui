@@ -18,7 +18,7 @@ import {ConsentModule} from "./consent/consent.module";
     FormsModule,
     HttpModule,
     CoreModule,
-    ConsentModule
+    ConsentModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
