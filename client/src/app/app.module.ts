@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {CoreModule} from "./core/core.module";
 import {ConsentModule} from "./consent/consent.module";
+import {ProviderModule} from "./provider/provider.module";
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {ConsentModule} from "./consent/consent.module";
     HttpModule,
     CoreModule,
     ConsentModule,
+    ProviderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
