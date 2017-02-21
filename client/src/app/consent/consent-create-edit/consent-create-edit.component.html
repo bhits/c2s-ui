@@ -1,21 +1,16 @@
-<!--<div>-->
-  <!--<md-toolbar color="primary">-->
-    <!--<span><md-icon>mood</md-icon></span>-->
 
-    <!--<span>C2S Version 3</span>-->
+<form >
+  <md-grid-list cols="1">
+    <c2s-select-provider ></c2s-select-provider>
+    <c2s-medical-information [medicalinformation]="medicalInfo"></c2s-medical-information>
+    <c2s-purpose-of-use></c2s-purpose-of-use>
+    <c2s-consent-terms></c2s-consent-terms>
+    <div class="right-align">
+      <button md-raised-button >Cancel</button>
+      <button md-raised-button color="primary">Create</button>
+    </div>
+  </md-grid-list>
+</form>
 
-    <!--<button md-icon-button [md-menu-trigger-for]="menu">-->
-      <!--<md-icon>more_vert</md-icon>-->
-    <!--</button>-->
-  <!--</md-toolbar>-->
-  <!--<md-menu x-position="before" #menu="mdMenu">-->
-    <!--<button md-menu-item>Option 1</button>-->
-    <!--<button md-menu-item>Option 2</button>-->
-  <!--</md-menu>-->
 
-  <c2s-select-provider></c2s-select-provider>
-  <c2s-medical-information></c2s-medical-information>
-  <c2s-purpose-of-use></c2s-purpose-of-use>
-  <c2s-consent-terms></c2s-consent-terms>
 
-<!--</div>-->
