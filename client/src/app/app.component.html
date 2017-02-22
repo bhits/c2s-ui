@@ -13,13 +13,15 @@
     <button md-menu-item>Option 2</button>
   </md-menu>
 
-  <!--<c2s-consent-create-edit></c2s-consent-create-edit>-->
+
 
   <md-card class="left-align">
     <md-card-content>
       <button md-raised-button (click)="toggleDeleteProviderModal()" >Test Dialog</button>
     </md-card-content>
   </md-card>
+
+  <c2s-consent-create-edit></c2s-consent-create-edit>
 
 
   <c2s-dialog [(visible)]="showDeleteProviderModal">

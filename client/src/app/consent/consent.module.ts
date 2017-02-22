@@ -26,7 +26,6 @@ import {SharedModule} from "../shared/shared.module";
   ],
   exports: [
     ConsentCreateEditComponent,
-    MaterialModule
   ]
 })
 export class ConsentModule { }
