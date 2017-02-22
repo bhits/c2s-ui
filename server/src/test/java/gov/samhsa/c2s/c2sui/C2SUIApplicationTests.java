@@ -1,4 +1,4 @@
-package gov.samhsa.c2s;
+package gov.samhsa.c2s.c2sui;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
