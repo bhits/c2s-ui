@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule  } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { ConsentTermsComponent } from './consent-terms/consent-terms.component';
 import { PurposeOfUseComponent } from './purpose-of-use/purpose-of-use.component';
 import { SelectProviderComponent } from './select-provider/select-provider.component';
@@ -12,7 +12,8 @@ import {MaterialModule} from "@angular/material";
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule // TODO verify while FormModule when inported at root level is not available to every other module
+    FormsModule, // TODO verify while FormModule when inported at root level is not available to every other module
+    ReactiveFormsModule
   ],
   declarations: [
     ConsentTermsComponent,
