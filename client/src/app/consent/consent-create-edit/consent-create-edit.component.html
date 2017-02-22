@@ -1,14 +1,24 @@
 
-<form >
+<form  (ngSubmit)="submitForm()" >
   <md-grid-list cols="1">
+
+    <md-card class="left-align">
+      <h2> I, <span > User name</span>, hereby authorize... </h2>
+    </md-card>
+
     <c2s-select-provider ></c2s-select-provider>
-    <c2s-medical-information [medicalinformation]="medicalInfo"></c2s-medical-information>
+    <c2s-medical-information
+      [medicalInformation]="consent?.medicalInformation"
+      (selectMedicalInformation)="onSelectMedicalInformation($event)">
+    </c2s-medical-information>
+
     <c2s-purpose-of-use></c2s-purpose-of-use>
+
     <c2s-consent-terms></c2s-consent-terms>
-    <div class="right-align">
-      <button md-raised-button >Cancel</button>
-      <button md-raised-button color="primary">Create</button>
-    </div>
+    <md-card class="right-align">
+        <button md-raised-button >Cancel</button>
+        <button md-raised-button color="primary" type="submit">Create</button>
+    </md-card>
   </md-grid-list>
 </form>
 

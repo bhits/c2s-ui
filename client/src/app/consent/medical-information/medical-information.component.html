@@ -2,12 +2,12 @@
   <md-card-title>Medical Information</md-card-title>
   <md-card-content>
     <p>Select how you would like to share your medical information.</p>
-    <md-radio-group [(ngModel)]="medicalinformation">
+    <md-radio-group [ngModel]="medicalInformation">
       <p>
-        <md-radio-button name="medicalInformation" value="A"><strong>SHARE</strong> ALL information in my medical record.</md-radio-button>
+        <md-radio-button name="medicalInformation" #medInfoA value="A" (click)="emitSelection(medInfoA.value)"><strong>SHARE</strong> ALL information in my medical record.</md-radio-button>
       </p>
       <p>
-        <md-radio-button name="medicalInformation" value="B"><strong>SHARE</strong> my medical record <strong>WITH EXCEPTION</strong> of specific information.</md-radio-button>
+        <md-radio-button name="medicalInformation" #medInfoB value="B" (click)="emitSelection(medInfoB.value)"><strong>SHARE</strong> my medical record <strong>WITH EXCEPTION</strong> of specific information.</md-radio-button>
       </p>
     </md-radio-group>
   </md-card-content>
