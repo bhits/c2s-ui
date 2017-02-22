@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { LogoComponent } from './logo/logo.component';
 import { MenuComponent } from './menu/menu.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [UserProfileComponent, LogoComponent, MenuComponent]
+  declarations: [UserProfileComponent, LogoComponent, MenuComponent, HeaderComponent]
 })
 export class LayoutModule { }
