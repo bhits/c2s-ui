@@ -13,6 +13,23 @@
     <button md-menu-item>Option 2</button>
   </md-menu>
 
-  <c2s-consent-create-edit></c2s-consent-create-edit>
+  <!--<c2s-consent-create-edit></c2s-consent-create-edit>-->
+
+  <md-card class="left-align">
+    <md-card-content>
+      <button md-raised-button (click)="toggleDeleteProviderModal()" >Test Dialog</button>
+    </md-card-content>
+  </md-card>
+
+
+  <c2s-dialog [(visible)]="showDeleteProviderModal">
+    <h1>Delete Provider</h1>
+    <div>
+      <strong>Are you sure you want to delete  ?</strong>
+    </div>
+    <br/>
+    <button type="button" class="btn btn-white" (click)="toggleDeleteProviderModal()" class="btn">Cancel</button>
+    <button type="button" class="btn btn-sm btn-primary dark-green" (click)="deleteProvider()" class="btn" >Delete</button>
+  </c2s-dialog>
 
 </div>
