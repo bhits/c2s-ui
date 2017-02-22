@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class UserProfileService {
+export class LayoutService {
 
   constructor() { }
 
