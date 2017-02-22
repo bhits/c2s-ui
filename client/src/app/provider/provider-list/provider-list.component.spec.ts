@@ -1,9 +1,6 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import { ProviderListComponent } from './provider-list.component';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {ProviderListComponent} from "./provider-list.component";
 
 describe('ProviderListComponent', () => {
   let component: ProviderListComponent;
@@ -11,9 +8,9 @@ describe('ProviderListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProviderListComponent ]
+      declarations: [ProviderListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

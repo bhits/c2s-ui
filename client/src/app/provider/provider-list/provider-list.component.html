@@ -2,6 +2,8 @@
   <md-list>
     <md-list-item><h3>List Providers</h3></md-list-item>
     <md-divider></md-divider>
+    <md-list-item><a md-raised-button routerLink="." color="primary">Add a Health Provider</a></md-list-item>
+    <md-divider></md-divider>
     <h3 md-subheader>Current Healthcare Providers</h3>
     <div class="table-head">
       <md-grid-list cols="13" rowHeight="30px">
@@ -29,7 +31,7 @@
             <span>{{provider.npi}}</span>
           </td>
           <td width="186px">
-            <span>{{provider.practiceLocationAddressTelephoneNumber}}</span>
+            <span>{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</span>
           </td>
           <td width="466px">
             <span>{{provider | providerAddress}}</span>

@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from "@angular/core";
+import {CommonModule} from "@angular/common";
+import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: []
+  declarations: [UsPhoneNumberPipe],
+  exports: [UsPhoneNumberPipe]
 })
-export class SharedModule { }
+export class SharedModule {
+}
