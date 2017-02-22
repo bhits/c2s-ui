@@ -1,4 +1,28 @@
-<md-list>
-  <md-list-item><h3>List Providers</h3></md-list-item>
-  <md-divider></md-divider>
-</md-list>
+<md-card>
+  <md-list>
+    <md-list-item><h3>List Providers</h3></md-list-item>
+    <md-divider></md-divider>
+    <h3 md-subheader>Current Healthcare Providers</h3>
+    <div class="table-head">
+      <md-grid-list cols="13" rowHeight="30px">
+        <md-grid-tile
+          *ngFor="let tHead of tHeads"
+          [colspan]="tHead.cols"
+          [rowspan]="tHead.rows"
+          [style.background]="tHead.color">
+          {{tHead.text}}
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+    <div class="table-body">
+      <md-grid-list cols="13" rowHeight="30px">
+        <md-grid-tile
+          *ngFor="let provider of providers"
+          [colspan]="provider.cols"
+          [rowspan]="provider.rows">
+          {{provider.text}}
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+  </md-list>
+</md-card>
