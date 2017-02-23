@@ -1,10 +1,14 @@
 <md-card>
+  <md-card-header>
+    <h2>List Providers</h2>
+  </md-card-header>
+  <md-divider></md-divider>
   <md-list>
-    <md-list-item><h3>List Providers</h3></md-list-item>
-    <md-divider></md-divider>
-    <md-list-item><a md-raised-button routerLink="." color="primary">Add a Health Provider</a></md-list-item>
-    <md-divider></md-divider>
-    <h3 md-subheader>Current Healthcare Providers</h3>
+    <md-list-item>
+      <a md-raised-button routerLink="/providerSearch" routerLinkActive="active" color="primary">Add a Health
+        Provider</a>
+    </md-list-item>
+    <md-list-item><h3>Current Healthcare Providers</h3></md-list-item>
     <div class="table-head">
       <md-grid-list cols="13" rowHeight="30px">
         <md-grid-tile
@@ -42,3 +46,4 @@
     </div>
   </md-list>
 </md-card>
+<router-outlet></router-outlet>
