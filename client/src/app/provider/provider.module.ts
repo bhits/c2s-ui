@@ -5,6 +5,7 @@ import {ProviderListComponent} from "./provider-list/provider-list.component";
 import {ProviderService} from "./shared/provider.service";
 import {ProviderAddressPipe} from "./shared/provider-address.pipe";
 import {SharedModule} from "../shared/shared.module";
+import { ProviderSearchComponent } from './provider-search/provider-search.component';
 
 @NgModule({
   imports: [
@@ -12,10 +13,11 @@ import {SharedModule} from "../shared/shared.module";
     MaterialModule,
     SharedModule
   ],
-  declarations: [ProviderListComponent, ProviderAddressPipe],
+  declarations: [ProviderListComponent, ProviderAddressPipe, ProviderSearchComponent],
   providers: [ProviderService],
   exports: [
-    ProviderListComponent
+    ProviderListComponent,
+    ProviderSearchComponent
   ]
 })
 export class ProviderModule {
