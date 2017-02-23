@@ -5,6 +5,6 @@ export class SensitivityPolicy {
   code: SensitivityPolicyCode;
   description:string;
   displayName:string;
-  displayOrder:string;
+  displayOrder:number;
   federal:boolean;
 }
