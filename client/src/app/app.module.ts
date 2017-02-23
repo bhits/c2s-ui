@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {CoreModule} from "./core/core.module";
 import {ConsentModule} from "./consent/consent.module";
+import {LayoutModule} from "./layout/layout.module";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {ConsentModule} from "./consent/consent.module";
     FormsModule,
     HttpModule,
     CoreModule,
+    LayoutModule,
     ConsentModule,
   ],
   providers: [],
