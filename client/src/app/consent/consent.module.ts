@@ -12,7 +12,7 @@ import {MaterialModule} from "@angular/material";
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule // TODO verify while FormModule when inported at root level is not available to every other module
+    FormsModule // TODO: verify while FormModule when imported at root level is not available to every other module
   ],
   declarations: [
     ConsentTermsComponent,
