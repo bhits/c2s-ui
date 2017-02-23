@@ -10,9 +10,9 @@
   </md-toolbar>
   <md-menu x-position="before" #menu="mdMenu">
     <button md-menu-item>Option 1</button>
-    <button md-menu-item>Option 2</button>
+    <a md-menu-item routerLink="/provider-list" routerLinkActive="active">Providers</a>
   </md-menu>
 
   <!--<c2s-consent-create-edit></c2s-consent-create-edit>-->
-  <c2s-provider-list></c2s-provider-list>
+  <router-outlet></router-outlet>
 </div>

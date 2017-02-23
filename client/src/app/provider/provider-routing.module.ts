@@ -1,9 +1,11 @@
 import {NgModule} from "@angular/core";
+import {ProviderListComponent} from "./provider-list/provider-list.component";
 import {ProviderSearchComponent} from "./provider-search/provider-search.component";
 import {RouterModule, Routes} from "@angular/router";
 
 const routes: Routes = [
-  {path: 'providerSearch', component: ProviderSearchComponent}
+  {path: 'provider-list', component: ProviderListComponent},
+  {path: 'provider-search', component: ProviderSearchComponent}
 ];
 
 @NgModule({
