@@ -1,14 +1,12 @@
+<h2>List Providers</h2>
 <md-card>
-  <md-card-header>
-    <h2>List Providers</h2>
-  </md-card-header>
-  <md-divider></md-divider>
-  <md-list>
-    <md-list-item>
-      <a md-raised-button routerLink="/provider-search" routerLinkActive="active" color="primary">Add a Health
-        Provider</a>
-    </md-list-item>
-    <md-list-item><h3>Current Healthcare Providers</h3></md-list-item>
+  <md-toolbar>Let's get started! You are required to have at least 2 Providers to create a Consent.</md-toolbar>
+  <md-card-actions align="start">
+    <a md-raised-button routerLink="/provider-search" routerLinkActive="active" color="primary">
+      Add a Health Provider</a>
+  </md-card-actions>
+  <md-card-title align="start">Current Healthcare Providers</md-card-title>
+  <md-card-content>
     <div class="table-head">
       <md-grid-list cols="13" rowHeight="30px">
         <md-grid-tile
@@ -24,7 +22,7 @@
         <tbody>
         <tr *ngFor="let provider of listProviders">
           <td width="92px">
-            <button md-mini-fab color="warn">
+            <button md-mini-fab color="warn" [disabled]="!provider.deletable" (click)="confirmDeleteProvider()">
               <md-icon>delete_forever</md-icon>
             </button>
           </td>
@@ -44,6 +42,5 @@
         </tbody>
       </table>
     </div>
-  </md-list>
+  </md-card-content>
 </md-card>
-<router-outlet></router-outlet>
