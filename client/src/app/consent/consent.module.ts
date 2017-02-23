@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule  } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { ConsentTermsComponent } from './consent-terms/consent-terms.component';
 import { PurposeOfUseComponent } from './purpose-of-use/purpose-of-use.component';
 import { SelectProviderComponent } from './select-provider/select-provider.component';
@@ -21,8 +22,7 @@ import {SharedModule} from "../shared/shared.module";
     PurposeOfUseComponent,
     SelectProviderComponent,
     MedicalInformationComponent,
-    ConsentCreateEditComponent,
-
+    ConsentCreateEditComponent
   ],
   exports: [
     ConsentCreateEditComponent,

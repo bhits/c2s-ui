@@ -27,7 +27,7 @@ import {
   ]
 })
 export class DialogComponent implements OnInit {
-  @Input() closable = true;
+  @Input() closable = false;
   @Input() visible: boolean;
 
   constructor() { }

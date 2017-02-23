@@ -9,6 +9,7 @@ export class MedicalInformationComponent implements OnInit {
 
   @Input() medicalInformation:string ;
   @Output() selectMedicalInformation = new EventEmitter();
+  showMedicalInformationDialog = false;
 
   constructor() { }
 
@@ -18,5 +19,19 @@ export class MedicalInformationComponent implements OnInit {
 
   emitSelection(value:string){
     this.selectMedicalInformation.emit(value);
+  }
+
+  setSelectedMedicalInformation(){
+    this.showMedicalInformationDialog = false;
+  }
+
+  hideMedicalInformationDialog(){
+    this.showMedicalInformationDialog = false;
+  }
+
+  showMedialInformationDialog(value:string){
+    this.showMedicalInformationDialog = true;
+    this.emitSelection(value);
+
   }
 }
