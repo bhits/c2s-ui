@@ -1,4 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewContainerRef} from "@angular/core";
+import {ConfirmDialogService} from "../../shared/dialog/confirm-dialog.service";
 import {Provider} from "../shared/provider.model";
 import {ProviderService} from "../shared/provider.service";
 
@@ -9,6 +10,7 @@ import {ProviderService} from "../shared/provider.service";
 
 export class ProviderListComponent implements OnInit {
   listProviders: Provider[] = [];
+  selectedOption: boolean;
 
   tHeads = [
     {text: '', cols: 1, color: 'lightgray'},
@@ -18,11 +20,19 @@ export class ProviderListComponent implements OnInit {
     {text: 'Address', cols: 5, color: 'lightgray'}
   ];
 
-  constructor(private providerService: ProviderService) {
+  constructor(private providerService: ProviderService,
+              private confirmDialogService: ConfirmDialogService,
+              private viewContainerRef: ViewContainerRef) {
   }
 
   ngOnInit() {
     this.providerService.getProviders()
       .then(providers => this.listProviders = providers);
+  }
+
+  confirmDeleteProvider() {
+    this.confirmDialogService
+      .confirm('Confirm Dialog', 'Are you sure you want to do this?', this.viewContainerRef)
+      .subscribe(res => this.selectedOption = res);
   }
 }
