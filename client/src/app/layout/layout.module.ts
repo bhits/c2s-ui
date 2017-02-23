@@ -1,19 +1,27 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MaterialModule } from '@angular/material';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { LogoComponent } from './logo/logo.component';
-import { MenuComponent } from './menu/menu.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { PageContentComponent } from './page-content/page-content.component';
+import {NgModule} from "@angular/core";
+import {CommonModule} from "@angular/common";
+import {MaterialModule} from "@angular/material";
+import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {LogoComponent} from "./logo/logo.component";
+import {MenuComponent} from "./menu/menu.component";
+import {HeaderComponent} from "./header/header.component";
+import {FooterComponent} from "./footer/footer.component";
+import {PageContentComponent} from "./page-content/page-content.component";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule
   ],
-  declarations: [UserProfileComponent, LogoComponent, MenuComponent, HeaderComponent, FooterComponent, PageContentComponent],
+  declarations: [
+    UserProfileComponent,
+    LogoComponent,
+    MenuComponent,
+    HeaderComponent,
+    FooterComponent,
+    PageContentComponent],
   exports: [
     HeaderComponent,
     FooterComponent,
@@ -21,4 +29,5 @@ import { PageContentComponent } from './page-content/page-content.component';
     MaterialModule
   ]
 })
-export class LayoutModule {}
+export class LayoutModule {
+}

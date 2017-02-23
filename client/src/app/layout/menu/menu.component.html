@@ -4,7 +4,7 @@
 <md-menu #menu="mdMenu">
   <md-list>
     <md-list-item *ngFor="let menuItem of menuItems">
-      <button md-menu-item>
+      <button md-menu-item (click)="navigateTo(menuItem.url)">
         <span>{{menuItem.name}}</span>
       </button>
     </md-list-item>

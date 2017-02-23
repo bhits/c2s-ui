@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'c2s-menu',
@@ -7,36 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit() {
-
   }
-  menuItems = [
-    {
-      name: 'Home',
-    },
-    {
-      name: 'Providers',
-    },
-    {
-      name: 'Consents',
-    },
-    {
-      name: 'Medical Documents',
-    },
-    {
-      name: 'Activity History',
-    },
-    {
-      name: 'Health Information',
-    },
-    {
-      name: 'Resources',
-    },
-    {
-      name: 'Logout',
-    }
-  ];
 
+  navigateTo(url: string) {
+    this.router.navigate([url]);
+  }
+
+  menuItems = [
+    {name: 'Home', url: ''},
+    {name: 'Providers', url: 'provider-list'},
+    {name: 'Consents', url: ''},
+    {name: 'Medical Documents', url: ''},
+    {name: 'Activity History', url: ''},
+    {name: 'Health Information', url: ''},
+    {name: 'Resources', url: ''},
+    {name: 'Logout', url: ''}
+  ];
 }

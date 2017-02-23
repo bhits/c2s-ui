@@ -6,8 +6,7 @@ import {HttpModule} from "@angular/http";
 import {CoreModule} from "./core/core.module";
 import {ConsentModule} from "./consent/consent.module";
 import {LayoutModule} from "./layout/layout.module";
-import {RouterModule} from "@angular/router";
-
+import {ProviderModule} from "./provider/provider.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +19,7 @@ import {RouterModule} from "@angular/router";
     FormsModule,
     HttpModule,
     LayoutModule,
-    RouterModule
+    ProviderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
