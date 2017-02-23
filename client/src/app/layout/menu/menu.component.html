@@ -1,3 +1,12 @@
-<p>
-  menu works!
-</p>
+<button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>more_vert</md-icon>
+</button>
+<md-menu #menu="mdMenu">
+  <md-list>
+    <md-list-item *ngFor="let menuItem of menuItems">
+      <button md-menu-item>
+        <span>{{menuItem.name}}</span>
+      </button>
+    </md-list-item>
+  </md-list>
+</md-menu>
