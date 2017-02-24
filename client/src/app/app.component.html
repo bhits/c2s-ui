@@ -15,11 +15,28 @@
 
 
 
+  <!--<md-card class="left-align">-->
+    <!--<md-card-content>-->
+      <!--<button md-raised-button (click)="toggleDeleteProviderModal()" >Test Dialog</button>-->
+    <!--</md-card-content>-->
+  <!--</md-card>-->
   <md-card class="left-align">
+    <md-card-title>Test MD2 Components</md-card-title>
     <md-card-content>
-      <button md-raised-button (click)="toggleDeleteProviderModal()" >Test Dialog</button>
+     <button md-raised-button (click)="confirm.open()" >Test MD2 Dialog</button>
+     <md2-datepicker [(ngModel)]="date"></md2-datepicker>
+
     </md-card-content>
   </md-card>
+
+  <md2-dialog #confirm>
+    <md2-dialog-title>Would you like to delete your debt?</md2-dialog-title>
+    All of the banks have agreed to forgive you your debts.
+    <md2-dialog-footer>
+      <button md-raised-button  (click)="close(confirm)">Ok</button>
+      <button md-raised-button color="primary" (click)="close(confirm)">Cancel</button>
+    </md2-dialog-footer>
+  </md2-dialog>
 
   <c2s-consent-create-edit></c2s-consent-create-edit>
 

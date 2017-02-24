@@ -17,4 +17,9 @@ export class AppComponent {
   toggleDeleteProviderModal(){
     this.showDeleteProviderModal = !this.showDeleteProviderModal;
   }
+  //TODO to be removed
+  close(dialog: any) {
+    dialog.close();
+  }
+
 }
