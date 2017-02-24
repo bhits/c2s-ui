@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from "@angular/core";
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,14 @@ export class AppComponent {
 
   showDeleteProviderModal = false;
 
-  deleteProvider(){
+  deleteProvider() {
     this.toggleDeleteProviderModal();
   }
 
-  toggleDeleteProviderModal(){
+  toggleDeleteProviderModal() {
     this.showDeleteProviderModal = !this.showDeleteProviderModal;
   }
+
   //TODO to be removed
   close(dialog: any) {
     dialog.close();
