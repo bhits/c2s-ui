@@ -1,55 +1,76 @@
 <h2>Search Providers</h2>
 <md-card>
-  <md-card-title align="start">Search</md-card-title>
-  <form name="provider-search-form">
-    <md-card-content>
-      <md-toolbar color="primary">
-        Step 1. Please enter the provider State and City OR Zip Code.
-      </md-toolbar>
-      <div class="table-body">
-        <table>
-          <thead>
-          <tr>
-            <th width="485px">Enter State and City</th>
-            <th width="90px">or</th>
-            <th width="485px">Enter Zip Code</th>
-          </tr>
-          <tr>
-            <th width="485px">State</th>
-            <th width="90px"></th>
-            <th width="485px">Zip Code</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tbody>
-          <tr>
-            <td width="485px">
+  <div class="containerX">
+    <form name="provider-search-form">
+      <md-card-title align="start">Search</md-card-title>
+      <md-card-content>
+        <md-toolbar color="primary">
+          Step 1. Please enter the provider State and City OR Zip Code.
+        </md-toolbar>
+        <div fxLayout="row">
+          <div fxFlex="27">
+            <div fxLayout="column">
+              <h3 fxLayoutAlign="left">Enter State and City</h3>
               <md-select name="state" placeholder="Please Select State" (ngModel)="selectedState">
                 <md-option *ngFor="let state of states" [value]="state.stateCode">
                   {{ state.stateName }}
                 </md-option>
               </md-select>
-            </td>
-            <td width="90px"></td>
-            <td width="485px">
-              <md-input-container>
-                <input mdInput placeholder="Enter Zip Code">
-              </md-input-container>
-            </td>
-          </tr>
-          <tr>
-            <td width="485px">
               <md-input-container>
                 <input mdInput placeholder="City">
               </md-input-container>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+            </div>
+          </div>
+          <div fxFlex><h3>OR</h3></div>
+          <div fxFlex="27">
+            <div fxLayout="column">
+              <h3 fxLayoutAlign="left">Enter Zip Code</h3>
+              <md-input-container>
+                <input mdInput placeholder="Enter Zip Code">
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+        <md-toolbar color="primary">
+          Step 2. Please enter the provider Facility Name OR Provider Name and Other Criteria.
+        </md-toolbar>
+        <div fxLayout="row">
+          <div fxFlex="27">
+            <div fxLayout="column">
+              <h3 fxLayoutAlign="left">Enter Provider Name and Other Criteria</h3>
+              <md-input-container>
+                <input mdInput placeholder="Provider Last Name">
+              </md-input-container>
+              <md-input-container>
+                <input mdInput placeholder="Provider First Name">
+              </md-input-container>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <md-input-container>
+                  <input mdInput placeholder="Provider Gender">
+                </md-input-container>
+                <md-input-container>
+                  <input mdInput placeholder="Provider Telephone">
+                </md-input-container>
+              </div>
+            </div>
+          </div>
+          <div fxFlex><h3>OR</h3></div>
+          <div fxFlex="27">
+            <div fxLayout="column">
+              <h3 fxLayoutAlign="left">Facility Name</h3>
+              <md-input-container>
+                <input mdInput placeholder="Facility Name">
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+      </md-card-content>
+      <div fxLayout="row">
+        <div fxLayoutAlign="left" fxLayoutGap="20px">
+          <button md-raised-button color="primary">Clear All</button>
+          <button md-raised-button color="primary">Search</button>
+        </div>
       </div>
-      <md-toolbar color="primary">
-        Step 2. Please enter the provider Facility Name OR Provider Name and Other Criteria.
-      </md-toolbar>
-    </md-card-content>
-  </form>
+    </form>
+  </div>
 </md-card>
