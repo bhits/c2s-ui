@@ -9,7 +9,7 @@ import {ProviderService} from "../shared/provider.service";
 })
 
 export class ProviderListComponent implements OnInit {
-  listProviders: Provider[] = [];
+  providers: Provider[];
   selectedOption: boolean;
 
   tHeads = [
@@ -27,12 +27,24 @@ export class ProviderListComponent implements OnInit {
 
   ngOnInit() {
     this.providerService.getProviders()
-      .then(providers => this.listProviders = providers);
+      .then(res => this.providers = res);
   }
 
-  confirmDeleteProvider() {
+  confirmDeleteProvider(provider: Provider) {
     this.confirmDialogService
-      .confirm('Confirm Dialog', 'Are you sure you want to do this?', this.viewContainerRef)
-      .subscribe(res => this.selectedOption = res);
+      .confirm('Delete Provider', 'Are you sure you want to delete this provider?', this.viewContainerRef)
+      .subscribe(res => {
+        this.selectedOption = res;
+        this.deleteProvider(res, provider);
+      });
+  }
+
+  deleteProvider(option: boolean, provider: Provider) {
+    if (option) {
+      this.providerService.deleteProvider(provider.npi)
+        .then(() =>
+          this.providers = this.providers.filter(p => p !== provider));
+      console.log("Success in deleting provider:" + provider.npi)
+    }
   }
 }

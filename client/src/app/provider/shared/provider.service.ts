@@ -5,16 +5,23 @@ import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class ProviderService {
-
-  private listProvidersUrl = 'http://localhost/pcm/patients/providers';
+  private baseProvidersUrl = 'http://localhost/pcm/patients/providers';
 
   constructor(private http: Http) {
   }
 
   getProviders(): Promise<Provider[]> {
-    return this.http.get(this.listProvidersUrl)
+    return this.http.get(this.baseProvidersUrl)
       .toPromise()
       .then(response => response.json() as Provider[])
+      .catch(this.handleError);
+  }
+
+  deleteProvider(npi: string): Promise<void> {
+    const deleteProvidersUrl = `${this.baseProvidersUrl}/${npi}`;
+    return this.http.delete(deleteProvidersUrl)
+      .toPromise()
+      .then(() => null)
       .catch(this.handleError);
   }
 
