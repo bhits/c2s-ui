@@ -67,9 +67,6 @@
         </repository>
     </repositories>
 
-    <profiles>
-    </profiles>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -180,7 +177,7 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                           <arguments>install</arguments>
+                            <arguments>install</arguments>
                         </configuration>
                     </execution>
 

@@ -1,0 +1,6 @@
+server:
+  port: 8456
+logging:
+  file: /java/C2S_LOGS/c2s-ui/c2s-ui.log
+info:
+  component: C2S UI
