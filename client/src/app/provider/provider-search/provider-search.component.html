@@ -1,7 +1,7 @@
 <h2>Search Providers</h2>
 <md-card>
   <md-card-title align="start">Search</md-card-title>
-  <form class="provider-search-form">
+  <form name="provider-search-form">
     <md-card-content>
       <md-toolbar color="primary">
         Step 1. Please enter the provider State and City OR Zip Code.
@@ -24,14 +24,23 @@
           <tbody>
           <tr>
             <td width="485px">
-              <button md-mini-fab color="warn">
-                <md-icon>delete_forever</md-icon>
-              </button>
+              <md-select name="state" placeholder="Please Select State" (ngModel)="selectedState">
+                <md-option *ngFor="let state of states" [value]="state.stateCode">
+                  {{ state.stateName }}
+                </md-option>
+              </md-select>
             </td>
             <td width="90px"></td>
             <td width="485px">
               <md-input-container>
                 <input mdInput placeholder="Enter Zip Code">
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+            <td width="485px">
+              <md-input-container>
+                <input mdInput placeholder="City">
               </md-input-container>
             </td>
           </tr>
