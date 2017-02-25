@@ -9,6 +9,7 @@ import {ProviderService} from "./shared/provider.service";
 import {ProviderRoutingModule} from "./provider-routing.module";
 import {ProviderSearchComponent} from "./provider-search/provider-search.component";
 import {SharedModule} from "../shared/shared.module";
+import {ProviderSearchResultComponent} from "./provider-search-result/provider-search-result.component";
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {SharedModule} from "../shared/shared.module";
   declarations: [
     ProviderListComponent,
     ProviderAddressPipe,
-    ProviderSearchComponent
+    ProviderSearchComponent,
+    ProviderSearchResultComponent
   ],
   providers: [ProviderService]
 })

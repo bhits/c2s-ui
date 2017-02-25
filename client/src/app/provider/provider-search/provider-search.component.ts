@@ -41,7 +41,7 @@ export class ProviderSearchComponent implements OnInit {
       formValues.providerTelephone,
       formValues.page,
     );
-    console.log(formValues);
+
     this.providerService.searchProviders(requestParams)
       .then(res => this.providers = res);
   }
