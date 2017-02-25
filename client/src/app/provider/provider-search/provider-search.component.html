@@ -1,7 +1,8 @@
 <h2>Search Providers</h2>
 <md-card>
   <div class="containerX">
-    <form name="provider-search-form">
+    <form #searchProviderFrom="ngForm" (ngSubmit)="searchProviders(searchProviderFrom.value)"
+          name="provider-search-form">
       <md-card-title align="start">Search</md-card-title>
       <md-card-content>
         <md-toolbar color="primary">
@@ -11,13 +12,13 @@
           <div fxFlex="27">
             <div fxLayout="column">
               <h3 fxLayoutAlign="left">Enter State and City</h3>
-              <md-select name="state" placeholder="Please Select State" (ngModel)="selectedState">
+              <md-select name="providerState" placeholder="Please Select State" (ngModel)="providerState">
                 <md-option *ngFor="let state of states" [value]="state.stateCode">
-                  {{ state.stateName }}
+                  {{ state.stateValue }}
                 </md-option>
               </md-select>
               <md-input-container>
-                <input mdInput placeholder="City">
+                <input type="text" name="providerCity" placeholder="City" mdInput (ngModel)="providerCity"/>
               </md-input-container>
             </div>
           </div>
@@ -26,7 +27,7 @@
             <div fxLayout="column">
               <h3 fxLayoutAlign="left">Enter Zip Code</h3>
               <md-input-container>
-                <input mdInput placeholder="Enter Zip Code">
+                <input name="providerZip" placeholder="Enter Zip Code" mdInput (ngModel)="providerZip"/>
               </md-input-container>
             </div>
           </div>
@@ -39,27 +40,36 @@
             <div fxLayout="column">
               <h3 fxLayoutAlign="left">Enter Provider Name and Other Criteria</h3>
               <md-input-container>
-                <input mdInput placeholder="Provider Last Name">
+                <input name="providerLastName" placeholder="Provider Last Name" mdInput (ngModel)="providerLastName"/>
               </md-input-container>
               <md-input-container>
-                <input mdInput placeholder="Provider First Name">
+                <input name="providerFirstName" placeholder="Provider First Name" mdInput (ngModel)="providerFirstName">
               </md-input-container>
               <div fxLayout="row" fxLayoutGap="10px">
-                <md-input-container>
-                  <input mdInput placeholder="Provider Gender">
-                </md-input-container>
-                <md-input-container>
-                  <input mdInput placeholder="Provider Telephone">
-                </md-input-container>
+                <div fxFlex fxLayoutAlign="left">
+                  <md-select name="providerGender" placeholder="Please Select" (ngModel)="providerGender">
+                    <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
+                      {{ gender.genderValue }}
+                    </md-option>
+                  </md-select>
+                </div>
+                <div fxFlex>
+                  <md-input-container>
+                    <input type="tel" name="providerTelephone" placeholder="Provider Telephone" mdInput
+                           (ngModel)="providerTelephone">
+                  </md-input-container>
+                </div>
               </div>
             </div>
           </div>
+
           <div fxFlex><h3>OR</h3></div>
+
           <div fxFlex="27">
             <div fxLayout="column">
               <h3 fxLayoutAlign="left">Facility Name</h3>
               <md-input-container>
-                <input mdInput placeholder="Facility Name">
+                <input name="providerFacilityName" placeholder="Facility Name" mdInput (ngModel)="providerFacilityName">
               </md-input-container>
             </div>
           </div>
@@ -74,3 +84,4 @@
     </form>
   </div>
 </md-card>
+<pre>{{providers | json}}</pre>

@@ -1,22 +1,49 @@
 import {Component, OnInit} from "@angular/core";
+import {ProviderService} from "../shared/provider.service";
+import {ProviderRequestQuery} from "../shared/provider-request-query.model";
+import {Provider} from "../shared/provider.model";
 
 @Component({
+  selector: 'c2s-provider-search',
   templateUrl: './provider-search.component.html',
   styleUrls: ['./provider-search.component.css']
 })
 export class ProviderSearchComponent implements OnInit {
-  selectedState: string;
+  providers: Provider[];
 
   states = [
-    {stateCode: 'AZ', stateName: 'ARIZONA'},
-    {stateCode: 'DC', stateName: 'DISTRICT OF COLUMBIA'},
-    {stateCode: 'MD', stateName: 'MARYLAND'},
-    {stateCode: 'VA', stateName: 'VIRGINIA'}
+    {stateCode: 'AZ', stateValue: 'ARIZONA'},
+    {stateCode: 'DC', stateValue: 'DISTRICT OF COLUMBIA'},
+    {stateCode: 'MD', stateValue: 'MARYLAND'},
+    {stateCode: 'VA', stateValue: 'VIRGINIA'}
   ];
 
-  constructor() {
+  genderGroup = [
+    {genderCode: 'M', genderValue: 'Male'},
+    {genderCode: 'F', genderValue: 'Female'}
+  ];
+
+  constructor(private providerService: ProviderService) {
   }
 
   ngOnInit() {
+  }
+
+  searchProviders(formValues) {
+    let requestParams = new ProviderRequestQuery(
+      formValues.providerState,
+      formValues.providerCity,
+      formValues.providerZip,
+      formValues.providerGender,
+      formValues.providerTelephone,
+      formValues.providerFirstName,
+      formValues.providerLastName,
+      formValues.providerFacilityName,
+      "FlattenSmallProvider",
+      formValues.page,
+    );
+    console.log(formValues);
+    this.providerService.searchProviders(requestParams)
+      .then(res => this.providers = res);
   }
 }

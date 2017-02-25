@@ -19,9 +19,12 @@ import {SharedModule} from "../shared/shared.module";
     ProviderRoutingModule,
     SharedModule
   ],
-  declarations: [ProviderListComponent, ProviderAddressPipe, ProviderSearchComponent],
-  providers: [ProviderService],
-  exports: []
+  declarations: [
+    ProviderListComponent,
+    ProviderAddressPipe,
+    ProviderSearchComponent
+  ],
+  providers: [ProviderService]
 })
 export class ProviderModule {
 }
