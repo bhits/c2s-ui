@@ -34,11 +34,11 @@ export class ProviderSearchComponent implements OnInit {
       formValues.providerState,
       formValues.providerCity,
       formValues.providerZip,
-      formValues.providerGender,
-      formValues.providerTelephone,
       formValues.providerFirstName,
       formValues.providerLastName,
+      formValues.providerGender,
       formValues.providerFacilityName,
+      formValues.providerTelephone,
       formValues.page,
     );
     console.log(formValues);

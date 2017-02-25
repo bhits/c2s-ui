@@ -48,17 +48,24 @@ export class ProviderService {
     const PROJECTION: string = "FlattenSmallProvider";
 
     let params: URLSearchParams = new URLSearchParams();
-    params.set('@state', requestParams.state);
-    params.set('@city', requestParams.city);
-    params.set('@zipcode', requestParams.zipcode);
-    params.set('@gender', requestParams.gender);
-    params.set('@phone', requestParams.phone);
-    params.set('@lastname', requestParams.lastname);
-    params.set('@firstname', requestParams.firstname);
-    params.set('@orgname', requestParams.orgname);
+    params.set('state', this.addLikePatternInQueryParameter(requestParams.state));
+    params.set('city', this.addLikePatternInQueryParameter(requestParams.city));
+    params.set('zipcode', this.addLikePatternInQueryParameter(requestParams.zipcode));
+    params.set('firstname', this.addLikePatternInQueryParameter(requestParams.firstname));
+    params.set('lastname', this.addLikePatternInQueryParameter(requestParams.lastname));
+    params.set('gendercode', this.addLikePatternInQueryParameter(requestParams.gendercode));
+    params.set('orgname', this.addLikePatternInQueryParameter(requestParams.orgname));
+    params.set('phone', this.addLikePatternInQueryParameter(requestParams.phone));
     params.set('page', requestParams.page);
     params.set('projection', PROJECTION);
 
     return params;
+  }
+
+  private addLikePatternInQueryParameter(requestParam: string): string {
+    const LIKEPATTERN = "%";
+    if (requestParam != null && requestParam.length > 0) {
+      return LIKEPATTERN.concat(requestParam, LIKEPATTERN);
+    }
   }
 }
