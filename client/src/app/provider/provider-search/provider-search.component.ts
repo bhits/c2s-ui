@@ -39,7 +39,6 @@ export class ProviderSearchComponent implements OnInit {
       formValues.providerFirstName,
       formValues.providerLastName,
       formValues.providerFacilityName,
-      "FlattenSmallProvider",
       formValues.page,
     );
     console.log(formValues);

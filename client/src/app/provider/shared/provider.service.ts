@@ -45,6 +45,8 @@ export class ProviderService {
   }
 
   private requestParams(requestParams: ProviderRequestQuery): URLSearchParams {
+    const PROJECTION: string = "FlattenSmallProvider";
+
     let params: URLSearchParams = new URLSearchParams();
     params.set('@state', requestParams.state);
     params.set('@city', requestParams.city);
@@ -54,8 +56,8 @@ export class ProviderService {
     params.set('@lastname', requestParams.lastname);
     params.set('@firstname', requestParams.firstname);
     params.set('@orgname', requestParams.orgname);
-    params.set('projection', requestParams.projection);
     params.set('page', requestParams.page);
+    params.set('projection', PROJECTION);
 
     return params;
   }
