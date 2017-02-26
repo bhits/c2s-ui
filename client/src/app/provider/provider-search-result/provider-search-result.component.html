@@ -1,2 +1,10 @@
 <p>provider-search-result works!</p>
-<pre>{{providerResult | json}}</pre>
+
+<ul>
+  <li *ngFor="let provider of providerResult | paginate: paginationConfig">
+    {{ provider.npi }}
+  </li>
+</ul>
+<div>
+  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+</div>
