@@ -20,10 +20,10 @@ export class ProviderService {
       .catch(this.handleError);
   }
 
-  searchProviders(requestParams: ProviderRequestQuery): Promise<ProviderSearchResponse> {
+  searchProviders(requestParams: ProviderRequestQuery, page: number): Promise<ProviderSearchResponse> {
     const SEARCH_PROVIDERS_URL = this.basePlsUrl + "/search/query";
 
-    let params: URLSearchParams = this.requestParams(requestParams);
+    let params: URLSearchParams = this.requestParams(requestParams, page.toString());
 
     return this.http.get(SEARCH_PROVIDERS_URL, {
       search: params
@@ -45,7 +45,7 @@ export class ProviderService {
     return Promise.reject(error.message || error);
   }
 
-  private requestParams(requestParams: ProviderRequestQuery): URLSearchParams {
+  private requestParams(requestParams: ProviderRequestQuery, page: string): URLSearchParams {
     const PROJECTION: string = "FlattenSmallProvider";
 
     let params: URLSearchParams = new URLSearchParams();
@@ -58,6 +58,7 @@ export class ProviderService {
     params.set('orgname', this.addLikePatternInQueryParameter(requestParams.orgname));
     params.set('phone', this.addLikePatternInQueryParameter(requestParams.phone));
     params.set('projection', PROJECTION);
+    params.set('page', page);
 
     return params;
   }
