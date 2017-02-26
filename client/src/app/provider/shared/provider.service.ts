@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import "rxjs/add/operator/toPromise";
 import {Provider} from "./provider.model";
 import {ProviderRequestQuery} from "./provider-request-query.model";
-import {ProviderSearchResult} from "./provider-search-result.model";
+import {ProviderProjection} from "./provider-projection.model";
 
 @Injectable()
 export class ProviderService {
@@ -20,7 +20,7 @@ export class ProviderService {
       .catch(this.handleError);
   }
 
-  searchProviders(requestParams: ProviderRequestQuery): Promise<ProviderSearchResult[]> {
+  searchProviders(requestParams: ProviderRequestQuery): Promise<ProviderProjection[]> {
     const SEARCH_PROVIDERS_URL = this.basePlsUrl + "/search/query";
     const SPRING_DATA_HATEOAS_PROPERTY = '_embedded';
     const KEY_NAME = 'providers';
@@ -30,7 +30,7 @@ export class ProviderService {
     return this.http.get(SEARCH_PROVIDERS_URL, {
       search: params
     }).toPromise()
-      .then(response => response.json()[SPRING_DATA_HATEOAS_PROPERTY][KEY_NAME] as ProviderSearchResult[])
+      .then(response => response.json()[SPRING_DATA_HATEOAS_PROPERTY][KEY_NAME] as ProviderProjection[])
       .catch(this.handleError);
   }
 
