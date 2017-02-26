@@ -6,6 +6,9 @@
       Add a Health Provider</a>
   </md-card-actions>
   <md-card-title align="start">Current Healthcare Providers</md-card-title>
+  <div>
+    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+  </div>
   <md-card-content>
     <div class="table-head">
       <md-grid-list cols="13" rowHeight="30px">
@@ -20,7 +23,7 @@
     <div class="table-body">
       <table>
         <tbody>
-        <tr *ngFor="let provider of providers">
+        <tr *ngFor="let provider of providers | paginate: paginationConfig">
           <td width="92px">
             <button md-icon-button color="warn" [disabled]="!provider.deletable" (click)="confirmDeleteProvider(provider)">
               <md-icon>delete_forever</md-icon>
@@ -41,6 +44,9 @@
         </tr>
         </tbody>
       </table>
+    </div>
+    <div>
+      <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
   </md-card-content>
 </md-card>
