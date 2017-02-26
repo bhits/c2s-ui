@@ -1,10 +1,20 @@
-<p>provider-search-result works!</p>
-
-<ul>
-  <li *ngFor="let provider of providerResult | paginate: paginationConfig">
-    {{ provider.npi }}
-  </li>
-</ul>
 <div>
   <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
 </div>
+
+<md-card class="provider-result-card" *ngFor="let provider of providerResult | paginate: paginationConfig">
+  <div class="mat-card-image">
+    <md-toolbar color="gray">
+      <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+    </md-toolbar>
+  </div>
+  <md-card-content>
+    <p fxLayoutAlign="left">{{provider | providerAddress}}</p>
+    <p fxLayoutAlign="left">{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</p>
+  </md-card-content>
+</md-card>
+
+<div>
+  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+</div>
+

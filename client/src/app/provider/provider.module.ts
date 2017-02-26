@@ -6,6 +6,7 @@ import {ProviderListComponent} from "./provider-list/provider-list.component";
 import {ProviderSearchComponent} from "./provider-search/provider-search.component";
 import {ProviderSearchResultComponent} from "./provider-search-result/provider-search-result.component";
 import {ProviderAddressPipe} from "./shared/provider-address.pipe";
+import { ProviderNamePipe } from './shared/provider-name.pipe';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {ProviderAddressPipe} from "./shared/provider-address.pipe";
     ProviderListComponent,
     ProviderAddressPipe,
     ProviderSearchComponent,
-    ProviderSearchResultComponent
+    ProviderSearchResultComponent,
+    ProviderNamePipe
   ],
   providers: [ProviderService]
 })

@@ -84,6 +84,19 @@
     </form>
   </div>
 </md-card>
+
 <md-card>
-  <c2s-provider-search-result [providerResult]="searchResponse"></c2s-provider-search-result>
+  <div fxLayout="row" fxLayoutGap="20px">
+    <div fxFlex>
+      <md-toolbar color="primary" fxLayoutAlign="center">
+        <h3>Results</h3>
+      </md-toolbar>
+      <c2s-provider-search-result [providerResult]="searchResponse"></c2s-provider-search-result>
+    </div>
+    <div fxFlex>
+      <md-toolbar color="primary" fxLayoutAlign="center">
+        <h3>Selections to Add</h3>
+      </md-toolbar>
+    </div>
+  </div>
 </md-card>
