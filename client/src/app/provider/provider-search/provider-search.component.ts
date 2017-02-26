@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ProviderService} from "../shared/provider.service";
 import {ProviderRequestQuery} from "../shared/provider-request-query.model";
-import {ProviderProjection} from "../shared/provider-projection.model";
+import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 
 @Component({
   selector: 'c2s-provider-search',
@@ -9,7 +9,7 @@ import {ProviderProjection} from "../shared/provider-projection.model";
   styleUrls: ['./provider-search.component.css']
 })
 export class ProviderSearchComponent implements OnInit {
-  searchResponse: ProviderProjection[];
+  searchResponse: ProviderSearchResponse;
 
   states = [
     {stateCode: 'AZ', stateValue: 'ARIZONA'},
@@ -39,7 +39,6 @@ export class ProviderSearchComponent implements OnInit {
       formValues.providerGender,
       formValues.providerFacilityName,
       formValues.providerTelephone,
-      formValues.page,
     );
 
     this.providerService.searchProviders(requestParams)

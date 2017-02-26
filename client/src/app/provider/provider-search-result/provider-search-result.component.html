@@ -2,7 +2,7 @@
   <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
 </div>
 
-<md-card class="provider-result-card" *ngFor="let provider of providerResult | paginate: paginationConfig">
+<md-card class="provider-result-card" *ngFor="let provider of providerResult?._embedded.providers | paginate: paginationConfig">
   <div class="mat-card-image">
     <md-toolbar color="gray">
       <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
@@ -17,4 +17,3 @@
 <div>
   <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
 </div>
-

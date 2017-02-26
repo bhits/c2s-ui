@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import "rxjs/add/operator/toPromise";
 import {Provider} from "./provider.model";
 import {ProviderRequestQuery} from "./provider-request-query.model";
-import {ProviderProjection} from "./provider-projection.model";
+import {ProviderSearchResponse} from "./provider-search-response.model";
 
 @Injectable()
 export class ProviderService {
@@ -20,17 +20,15 @@ export class ProviderService {
       .catch(this.handleError);
   }
 
-  searchProviders(requestParams: ProviderRequestQuery): Promise<ProviderProjection[]> {
+  searchProviders(requestParams: ProviderRequestQuery): Promise<ProviderSearchResponse> {
     const SEARCH_PROVIDERS_URL = this.basePlsUrl + "/search/query";
-    const SPRING_DATA_HATEOAS_PROPERTY = '_embedded';
-    const KEY_NAME = 'providers';
 
     let params: URLSearchParams = this.requestParams(requestParams);
 
     return this.http.get(SEARCH_PROVIDERS_URL, {
       search: params
     }).toPromise()
-      .then(response => response.json()[SPRING_DATA_HATEOAS_PROPERTY][KEY_NAME] as ProviderProjection[])
+      .then(response => response.json() as ProviderSearchResponse)
       .catch(this.handleError);
   }
 
@@ -59,7 +57,6 @@ export class ProviderService {
     params.set('gendercode', this.addLikePatternInQueryParameter(requestParams.gendercode));
     params.set('orgname', this.addLikePatternInQueryParameter(requestParams.orgname));
     params.set('phone', this.addLikePatternInQueryParameter(requestParams.phone));
-    params.set('page', requestParams.page);
     params.set('projection', PROJECTION);
 
     return params;
