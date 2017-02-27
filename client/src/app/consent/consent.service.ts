@@ -41,4 +41,38 @@ export class ConsentService {
     return Promise.reject(error.message || error);
   }
 
+  updatePurposeOfUseStatus(purposeOfUsesCodes:string[], purposeOfUses:PurposeOfUse[]){
+    this.setPurposeOfUSeStatusToUnChecked(purposeOfUses);
+    for(let p1 of purposeOfUsesCodes){
+      for(let p2 of purposeOfUses){
+        if(p1 === p2.code.toString()){
+          p2['checked'] = true;
+          break;
+        }
+      }
+    }
+  }
+
+  setPurposeOfUSeStatusToChecked(purposeOfUses:PurposeOfUse[]){
+    for(let purposeOfUSe of purposeOfUses){
+      purposeOfUSe['checked'] = true;
+    }
+  }
+
+  setPurposeOfUSeStatusToUnChecked(purposeOfUses:PurposeOfUse[]){
+    for(let purposeOfUSe of purposeOfUses){
+      purposeOfUSe['checked'] = false;
+    }
+  }
+
+  getSelectedPurposeOfUseCode(purposeOfUses:PurposeOfUse[]):string[]{
+    let selected:string[] =  new Array();
+    for(let purposeOfUse of purposeOfUses){
+      if( purposeOfUse['checked']){
+        selected.push(purposeOfUse.code.toString());
+      }
+    }
+    return selected;
+  }
+
 }
