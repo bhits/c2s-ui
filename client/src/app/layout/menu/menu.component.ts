@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
   menuItems = [
     {name: 'Home', url: ''},
     {name: 'Providers', url: 'provider-list'},
-    {name: 'Consents', url: ''},
+    {name: 'Consents', url: 'consent-list'},
     {name: 'Medical Documents', url: ''},
     {name: 'Activity History', url: ''},
     {name: 'Health Information', url: ''},
