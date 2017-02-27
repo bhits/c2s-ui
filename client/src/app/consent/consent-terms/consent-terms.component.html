@@ -3,11 +3,15 @@
   <md-card-title>Consent Terms</md-card-title>
   <md-card-content>
     <p>Enter a start and end date during wich your medical records will be shared.</p>
-    <md-input-container>
-      <input mdInput placeholder="Start Date" value="">
-    </md-input-container>
-    <md-input-container>
-      <input mdInput placeholder="End Date" value="">
-    </md-input-container>
-  </md-card-content>
+    <table>
+      <tr>
+        <td>
+          <span>Start Date: <md2-datepicker [(ngModel)]="startDate" (change)="onStartDateChange()"></md2-datepicker></span>
+        </td>
+        <td>
+          <span>End Date: <md2-datepicker [(ngModel)]="endDate" (change)="onEndDateChange()"></md2-datepicker></span>
+        </td>
+      </tr>
+    </table>
+    </md-card-content>
 </md-card>

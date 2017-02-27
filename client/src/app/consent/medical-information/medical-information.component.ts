@@ -9,29 +9,26 @@ export class MedicalInformationComponent implements OnInit {
 
   @Input() medicalInformation:string ;
   @Output() selectMedicalInformation = new EventEmitter();
-  showMedicalInformationDialog = false;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.medicalInformation);
   }
 
   emitSelection(value:string){
     this.selectMedicalInformation.emit(value);
   }
 
-  setSelectedMedicalInformation(){
-    this.showMedicalInformationDialog = false;
+  setSelectedMedicalInformation(dialog: any){
+    dialog.close();
   }
 
-  hideMedicalInformationDialog(){
-    this.showMedicalInformationDialog = false;
+  hideMedicalInformationDialog(dialog: any){
+    dialog.close();
   }
 
-  showMedialInformationDialog(value:string){
-    this.showMedicalInformationDialog = true;
+  showMedialInformationDialog(dialog: any, value:string){
+    dialog.open();
     this.emitSelection(value);
-
   }
 }

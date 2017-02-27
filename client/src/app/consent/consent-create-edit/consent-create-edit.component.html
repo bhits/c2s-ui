@@ -14,7 +14,13 @@
 
     <c2s-purpose-of-use></c2s-purpose-of-use>
 
-    <c2s-consent-terms></c2s-consent-terms>
+    <c2s-consent-terms
+        [startDate]="consent?.startDate"
+        [endDate]="consent?.endDate"
+        (startDateChange)="onStartDateChange($event)"
+        (endDateChange)="onEndDateChange($event)">
+
+    </c2s-consent-terms>
     <md-card class="right-align">
         <button md-raised-button >Cancel</button>
         <button md-raised-button color="primary" type="submit">Create</button>

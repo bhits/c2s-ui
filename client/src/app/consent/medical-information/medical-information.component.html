@@ -9,31 +9,51 @@
       <p>
         <md-radio-button name="medicalInformation"
                          #medInfoB value="B"
-                         (click)="showMedialInformationDialog(medInfoB.value)">
+                         (click)="showMedialInformationDialog(confirm, medInfoB.value)">
           <strong>SHARE</strong> my medical record <strong>WITH EXCEPTION</strong> of specific information.
-          <button type="button" *ngIf="(medicalInformation == 'B')" md-raised-button color="primary" (click)="showMedialInformationDialog(medInfoB.value)">Edit</button>
+          <button type="button" *ngIf="(medicalInformation == 'B')" md-raised-button color="primary" (click)="showMedialInformationDialog(confirm,medInfoB.value)">Edit</button>
         </md-radio-button>
       </p>
     </md-radio-group>
   </md-card-content>
 </md-card>
 
-<c2s-dialog [visible]="showMedicalInformationDialog">
-  <h1><span class="center">Privacy Settings</span></h1>
+<!--<c2s-dialog [visible]="showMedicalInformationDialog">-->
+  <!--<h1><span class="center">Privacy Settings</span></h1>-->
+  <!--<md-card class="left-align">-->
+    <!--<md-card-title>Sensitive Information Categories</md-card-title>-->
+    <!--<md-card-content>-->
+        <!--<h2>Select the medical information that you DO NOT wish to share.</h2>-->
+        <!--<button type="button" md-raised-button color="primary" (click)="selectAll()" >Select All</button>-->
+        <!--<button type="button" md-raised-button color="primary" (click)="deselectAll()" >Deselect All</button>-->
+      <!--<br><br>-->
+      <!--<div><strong>Federal Categories</strong></div>-->
+      <!--<br>-->
+      <!--<div><strong>State Categories </strong></div>-->
+    <!--</md-card-content>-->
+  <!--</md-card>-->
+  <!--<div class="right-align">-->
+    <!--<button type="button" md-raised-button (click)="hideMedicalInformationDialog()">Cancel</button>-->
+    <!--<button type="button" md-raised-button color="primary" (click)="confirm.open()">Save changes</button>-->
+  <!--</div>-->
+<!--</c2s-dialog>-->
+
+<md2-dialog #confirm>
+  <md2-dialog-title>Privacy Settings</md2-dialog-title>
   <md-card class="left-align">
     <md-card-title>Sensitive Information Categories</md-card-title>
     <md-card-content>
-        <h2>Select the medical information that you DO NOT wish to share.</h2>
-        <button type="button" md-raised-button color="primary" (click)="selectAll()" >Select All</button>
-        <button type="button" md-raised-button color="primary" (click)="deselectAll()" >Deselect All</button>
+      <h2>Select the medical information that you DO NOT wish to share.</h2>
+      <button type="button" md-raised-button color="primary" (click)="selectAll()" >Select All</button>
+      <button type="button" md-raised-button color="primary" (click)="deselectAll()" >Deselect All</button>
       <br><br>
       <div><strong>Federal Categories</strong></div>
       <br>
       <div><strong>State Categories </strong></div>
     </md-card-content>
   </md-card>
-  <div class="right-align">
-    <button type="button" md-raised-button (click)="hideMedicalInformationDialog()">Cancel</button>
-    <button type="button" md-raised-button color="primary" (click)="setSelectedMedicalInformation()" >Save changes</button>
-  </div>
-</c2s-dialog>
+  <md2-dialog-footer>
+    <button type="button" md-raised-button (click)="hideMedicalInformationDialog(confirm)">Cancel</button>
+    <button type="button" md-raised-button color="primary" (click)="setSelectedMedicalInformation(confirm)" >Save changes</button>
+  </md2-dialog-footer>
+</md2-dialog>

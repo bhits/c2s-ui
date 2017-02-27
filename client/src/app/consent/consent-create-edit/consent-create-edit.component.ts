@@ -10,7 +10,9 @@ export class ConsentCreateEditComponent implements OnInit {
 
   constructor() {
     this.consent = {
-      'medicalInformation' : 'A',
+      medicalInformation : 'A',
+      startDate:'',
+      endDate:''
     };
   }
 
@@ -20,6 +22,18 @@ export class ConsentCreateEditComponent implements OnInit {
   onSelectMedicalInformation(event: any){
     this.consent['medicalInformation'] = event;
   }
+
+  onStartDateChange(event: any){
+    this.consent['startDate'] = event;
+    console.log(this.consent);
+  }
+
+  onEndDateChange(event: any){
+    this.consent['endDate'] = event;
+    console.log(this.consent);
+  }
+
+
   submitForm(){
     console.log(this.consent);
   }
