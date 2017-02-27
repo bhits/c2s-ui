@@ -9,6 +9,7 @@ import { MedicalInformationComponent } from './medical-information/medical-infor
 import { ConsentCreateEditComponent } from './consent-create-edit/consent-create-edit.component';
 import {MaterialModule} from "@angular/material";
 import {Md2Module} from "md2";
+import {ConsentService} from "./consent.service";
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import {Md2Module} from "md2";
   exports: [
     ConsentCreateEditComponent,
     MaterialModule
-  ]
+  ],
+  providers: [ConsentService]
 })
 export class ConsentModule { }

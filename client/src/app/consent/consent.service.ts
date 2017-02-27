@@ -37,7 +37,7 @@ export class ConsentService {
                         .catch(this.handleError);
   }
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
+    console.error('Error in getting data from the backend', error);
     return Promise.reject(error.message || error);
   }
 
