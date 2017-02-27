@@ -18,7 +18,7 @@ import {ProviderModule} from "./provider/provider.module";
     BrowserModule,
     FormsModule,
     HttpModule,
-    Md2Module.forRoot(),
+    Md2Module,
     CoreModule,
     ConsentModule,
     LayoutModule,
