@@ -22,4 +22,24 @@ export class PurposeOfUseComponent implements OnInit {
   private error(error: any): Promise<any> {
     return Promise.reject(error.message || error);
   }
+
+  hideDialog(dialog: any){
+    dialog.close();
+  }
+
+  openDialog(dialog: any){
+    dialog.open();
+  }
+
+  setSelectedPurposesOfUse(dialog: any){
+    dialog.close();
+  }
+
+  selectAll(){
+
+  }
+
+  deSelectAll(){
+
+  }
 }

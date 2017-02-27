@@ -2,7 +2,8 @@
   <md-card-title>Purpose Of Use</md-card-title>
   <md-card-content>
     <p>Choose for what purposes your medical information may be used.</p>
-    <span><strong>SHARE</strong> my medical record ONLY for the selected purposes of use.</span><button md-raised-button color="primary">Edit</button>
+    <span><strong>SHARE</strong> my medical record ONLY for the selected purposes of use.</span>
+    <button md-raised-button color="primary" (click)="openDialog(purposeOfUseDialog)">Edit</button>
     <div>
       <md-chip-list>
         <md-chip color="primary" selected="true">Healthcare Treatment</md-chip>
@@ -10,3 +11,19 @@
     </div>
   </md-card-content>
 </md-card>
+
+<md2-dialog #purposeOfUseDialog>
+  <md2-dialog-title>Share for selected purpose only</md2-dialog-title>
+  <md-card class="left-align">
+    <md-card-title>Share my information only for specified purposes of use.</md-card-title>
+    <md-card-content>
+      <button type="button" md-raised-button color="primary" (click)="selectAll()" >Select All</button>
+      <button type="button" md-raised-button color="primary" (click)="deSelectAll()" >Deselect All</button>
+
+    </md-card-content>
+  </md-card>
+  <md2-dialog-footer>
+    <button type="button" md-raised-button (click)="hideDialog(purposeOfUseDialog)">Cancel</button>
+    <button type="button" md-raised-button color="primary" (click)="setSelectedPurposesOfUse(purposeOfUseDialog)" >Save changes</button>
+  </md2-dialog-footer>
+</md2-dialog>

@@ -9,16 +9,16 @@
       <p>
         <md-radio-button name="medicalInformation"
                          #medInfoB value="B"
-                         (click)="showMedialInformationDialog(confirm, medInfoB.value)">
+                         (click)="showMedialInformationDialog(medicalInformationDialog, medInfoB.value)">
           <strong>SHARE</strong> my medical record <strong>WITH EXCEPTION</strong> of specific information.
-          <button type="button" *ngIf="(medicalInformation == 'B')" md-raised-button color="primary" (click)="showMedialInformationDialog(confirm,medInfoB.value)">Edit</button>
+          <button type="button" *ngIf="(medicalInformation == 'B')" md-raised-button color="primary" (click)="showMedialInformationDialog(medicalInformationDialog,medInfoB.value)">Edit</button>
         </md-radio-button>
       </p>
     </md-radio-group>
   </md-card-content>
 </md-card>
 
-<md2-dialog #confirm>
+<md2-dialog #medicalInformationDialog>
   <md2-dialog-title>Privacy Settings</md2-dialog-title>
   <md-card class="left-align">
     <md-card-title>Sensitive Information Categories</md-card-title>
@@ -33,7 +33,7 @@
     </md-card-content>
   </md-card>
   <md2-dialog-footer>
-    <button type="button" md-raised-button (click)="hideMedicalInformationDialog(confirm)">Cancel</button>
-    <button type="button" md-raised-button color="primary" (click)="setSelectedMedicalInformation(confirm)" >Save changes</button>
+    <button type="button" md-raised-button (click)="hideMedicalInformationDialog(medicalInformationDialog)">Cancel</button>
+    <button type="button" md-raised-button color="primary" (click)="setSelectedMedicalInformation(medicalInformationDialog)" >Save changes</button>
   </md2-dialog-footer>
 </md2-dialog>
