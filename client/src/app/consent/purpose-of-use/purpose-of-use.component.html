@@ -6,7 +6,9 @@
     <button md-raised-button color="primary" (click)="openDialog(purposeOfUseDialog)">Edit</button>
     <div>
       <md-chip-list>
-        <md-chip color="primary" selected="true">Healthcare Treatment</md-chip>
+        <span *ngFor="let purposeOfuse of purposeOfUSes; let i = index;">
+          <md-chip color="primary" selected="true" *ngIf="purposeOfuse.checked">{{purposeOfuse.displayName}}</md-chip>
+        </span>
       </md-chip-list>
     </div>
   </md-card-content>
@@ -19,11 +21,14 @@
     <md-card-content>
       <button type="button" md-raised-button color="primary" (click)="selectAll()" >Select All</button>
       <button type="button" md-raised-button color="primary" (click)="deSelectAll()" >Deselect All</button>
-
+      <br><br>
+        <div *ngFor="let purposeOfuse of purposeOfUSes; let i = index;">
+          <md-checkbox [(ngModel)]="purposeOfUSes[i].checked">{{purposeOfuse.displayName}}</md-checkbox>
+        </div>
     </md-card-content>
   </md-card>
   <md2-dialog-footer>
-    <button type="button" md-raised-button (click)="hideDialog(purposeOfUseDialog)">Cancel</button>
+    <button type="button" md-raised-button (click)="closeDialog(purposeOfUseDialog)">Cancel</button>
     <button type="button" md-raised-button color="primary" (click)="setSelectedPurposesOfUse(purposeOfUseDialog)" >Save changes</button>
   </md2-dialog-footer>
 </md2-dialog>

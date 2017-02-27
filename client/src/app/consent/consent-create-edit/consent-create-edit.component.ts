@@ -12,7 +12,9 @@ export class ConsentCreateEditComponent implements OnInit {
     this.consent = {
       medicalInformation : 'A',
       startDate:'',
-      endDate:''
+      endDate:'',
+      shareForPurposeOfUseCodes:["TREATMENT", "RESEARCH"],
+      purposeOfUseCodesAndValues:{}
     };
   }
 
@@ -35,6 +37,11 @@ export class ConsentCreateEditComponent implements OnInit {
 
 
   submitForm(){
+    console.log(this.consent);
+  }
+
+  onSelectedPurposeOfUse(event: any){
+    this.consent['shareForPurposeOfUseCodes'] = event;
     console.log(this.consent);
   }
 
