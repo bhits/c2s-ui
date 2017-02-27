@@ -1,0 +1,46 @@
+<h2>List Providers</h2>
+<md-card>
+  <md-toolbar>Let's get started! You are required to have at least 2 Providers to create a Consent.</md-toolbar>
+  <md-card-actions align="start">
+    <a md-raised-button routerLink="/provider-search" routerLinkActive="active" color="primary">
+      Add a Health Provider</a>
+  </md-card-actions>
+  <md-card-title align="start">Current Healthcare Providers</md-card-title>
+  <md-card-content>
+    <div class="table-head">
+      <md-grid-list cols="13" rowHeight="30px">
+        <md-grid-tile
+          *ngFor="let tHead of tHeads"
+          [colspan]="tHead.cols"
+          [style.background]="tHead.color">
+          {{tHead.text}}
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+    <div class="table-body">
+      <table>
+        <tbody>
+        <tr *ngFor="let provider of providers">
+          <td width="92px">
+            <button md-icon-button color="warn" [disabled]="!provider.deletable" (click)="confirmDeleteProvider(provider)">
+              <md-icon>delete_forever</md-icon>
+            </button>
+          </td>
+          <td width="279px">
+            <span>{{provider.orgName}}</span>
+          </td>
+          <td width="186px">
+            <span>{{provider.npi}}</span>
+          </td>
+          <td width="186px">
+            <span>{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</span>
+          </td>
+          <td width="466px">
+            <span>{{provider | providerAddress}}</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </md-card-content>
+</md-card>

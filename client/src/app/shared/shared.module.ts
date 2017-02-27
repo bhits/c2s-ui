@@ -1,12 +1,27 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DialogComponent } from './dialog/dialog.component';
+import {CommonModule} from "@angular/common";
+import {DialogModule} from "./dialog/dialog.module";
+import {FormsModule} from "@angular/forms";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {MaterialModule} from "@angular/material";
+import {Ng2PaginationModule} from "ng2-pagination";
+import {NgModule} from "@angular/core";
+import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    DialogModule
   ],
-  declarations: [DialogComponent],
-  exports:[DialogComponent]
+  declarations: [UsPhoneNumberPipe],
+  exports: [
+    CommonModule,
+    FormsModule,
+    FlexLayoutModule,
+    MaterialModule,
+    Ng2PaginationModule,
+    UsPhoneNumberPipe
+  ]
 })
-export class SharedModule { }
+
+export class SharedModule {
+}
