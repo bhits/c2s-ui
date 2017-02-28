@@ -1,19 +1,45 @@
-<div>
-  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
-</div>
-
-<md-card class="provider-result-card" *ngFor="let provider of providerResult?._embedded.providers | paginate: paginationConfig">
-  <div class="mat-card-image">
-    <md-toolbar color="gray">
-      <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
-    </md-toolbar>
+<md-card>
+  <div fxLayout="row" fxLayoutGap="20px">
+    <div fxFlex>
+      <md-toolbar color="primary" fxLayoutAlign="center">
+        <h3>Results</h3>
+      </md-toolbar>
+      <div>
+        <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+      </div>
+      <md-card class="provider-result-card"
+               *ngFor="let provider of providerResult?._embedded.providers | paginate: paginationConfig">
+        <div class="mat-card-image" [ngStyle]="{'background-color': panelColor, 'height': '90px'}">
+          <md-card-header>
+            <md-card-title fxLayoutAlign="left">
+              <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+            </md-card-title>
+            <md-card-title fxLayoutAlign="left">
+              <div fxLayout="row">
+                <div fxLayoutAlign="left" fxLayoutGap="20px">
+                  <button md-icon-button (click)="addProviders(provider)">
+                    <md-icon color="primary">add_box</md-icon>
+                  </button>
+                  <p>Select this provider</p>
+                </div>
+              </div>
+            </md-card-title>
+          </md-card-header>
+        </div>
+        <md-card-content>
+          <p fxLayoutAlign="left">{{provider | providerAddress}}</p>
+          <p fxLayoutAlign="left">{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</p>
+        </md-card-content>
+      </md-card>
+      <div>
+        <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+      </div>
+    </div>
+    <div fxFlex>
+      <md-toolbar color="primary" fxLayoutAlign="center">
+        <h3>Selections to Add</h3>
+      </md-toolbar>
+      <c2s-provider-multi-add [providers]="selectedProviders"></c2s-provider-multi-add>
+    </div>
   </div>
-  <md-card-content>
-    <p fxLayoutAlign="left">{{provider | providerAddress}}</p>
-    <p fxLayoutAlign="left">{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</p>
-  </md-card-content>
 </md-card>
-
-<div>
-  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
-</div>
