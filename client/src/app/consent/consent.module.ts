@@ -12,6 +12,7 @@ import {ConsentCardComponent} from "./consent-card/consent-card.component";
 import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.component";
 import {ConsentService} from "./consent.service";
 import {SharedModule} from "../shared/shared.module";
+import {ConsentStateTextPipe} from "./shared/consent-state-text.pipe";
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import {SharedModule} from "../shared/shared.module";
     ConsentCreateEditComponent,
     ConsentCardComponent,
     ConsentCardListComponent,
+    ConsentStateTextPipe,
 
   ],
   exports: [

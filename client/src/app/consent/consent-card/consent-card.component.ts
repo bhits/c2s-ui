@@ -29,22 +29,6 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     this.height = this.height ? 0 : el.scrollHeight;
   }
 
-  private getStateText(state: string): string {
-    let stateText: string;
-    switch (state) {
-      case "CONSENT_SAVED":
-        stateText = "IN PROGRESS";
-        break;
-      case "CONSENT_SIGNED":
-        stateText = "SIGNED";
-        break;
-      case "REVOCATION_REVOKED":
-        stateText = "REVOKED";
-        break
-    }
-    return stateText;
-  }
-
   private getHeightPx() {
     return `${this.height}px`;
   }

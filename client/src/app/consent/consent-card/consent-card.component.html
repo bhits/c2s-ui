@@ -50,7 +50,7 @@
     <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
       <div fxFlex>
         <div>
-          <p>Consent State: <strong>{{getStateText(consent.consentStage)}}</strong></p>
+          <p>Consent State: <strong>{{consent.consentStage | consentStateText}}</strong></p>
         </div>
       </div>
       <div fxFlex>
