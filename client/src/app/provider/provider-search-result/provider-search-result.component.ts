@@ -9,6 +9,7 @@ import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 })
 export class ProviderSearchResultComponent implements OnInit {
   @Input() providerResult: ProviderSearchResponse;
+  panelColor: string = '#dff0d8';
   paginationConfig: PaginationInstance = {
     itemsPerPage: 10,
     currentPage: 1

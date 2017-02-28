@@ -2,11 +2,24 @@
   <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
 </div>
 
-<md-card class="provider-result-card" *ngFor="let provider of providerResult?._embedded.providers | paginate: paginationConfig">
-  <div class="mat-card-image">
-    <md-toolbar color="gray">
-      <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
-    </md-toolbar>
+<md-card class="provider-result-card"
+         *ngFor="let provider of providerResult?._embedded.providers | paginate: paginationConfig">
+  <div class="mat-card-image" [ngStyle]="{'background-color': 'panelColor', 'height': '90px'}">
+    <md-card-header>
+      <md-card-title fxLayoutAlign="left">
+        <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+      </md-card-title>
+      <md-card-title fxLayoutAlign="left">
+        <div fxLayout="row">
+          <div fxLayoutAlign="left" fxLayoutGap="20px">
+            <button md-icon-button>
+              <md-icon color="primary">add_box</md-icon>
+            </button>
+            <p>Select this provider</p>
+          </div>
+        </div>
+      </md-card-title>
+    </md-card-header>
   </div>
   <md-card-content>
     <p fxLayoutAlign="left">{{provider | providerAddress}}</p>
