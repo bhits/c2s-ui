@@ -10,10 +10,6 @@ import {ProviderProjection} from "../shared/provider-projection.model";
 export class ProviderMultiAddComponent implements OnInit {
   @Input() providers: ProviderProjection[];
   currentProvider: ProviderProjection = null;
-  tHeads = [
-    {text: '', cols: 1, color: 'lightgray'},
-    {text: 'Name/Facility', cols: 3, color: 'lightgray'}
-  ];
 
   constructor(private confirmDialogService: ConfirmDialogService,
               private viewContainerRef: ViewContainerRef) {

@@ -1,20 +1,17 @@
 <md-card>
 
   <div class="table-head">
-    <md-grid-list cols="4" rowHeight="30px" >
-      <md-grid-tile
-        *ngFor="let tHead of tHeads"
-        [colspan]="tHead.cols"
-        [style.background]="tHead.color">
-        {{tHead.text}}
+    <md-grid-list cols="4" rowHeight="30px">
+      <md-grid-tile [ngStyle]="{'background-color': 'lightgray'}">
+        <md-icon>mode_edit</md-icon>
       </md-grid-tile>
+      <md-grid-tile colspan="3" [ngStyle]="{'background-color': 'lightgray'}">Name/Facility</md-grid-tile>
     </md-grid-list>
   </div>
   <table>
     <tbody>
     <tr [hidden]="!(providers.length == 0)">
-      <td width="92px">
-      </td>
+      <td width="92px"></td>
       <td width="279px">
         <p>No Providers currently selected.</p>
       </td>

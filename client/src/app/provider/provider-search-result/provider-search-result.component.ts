@@ -11,7 +11,6 @@ import {ProviderProjection} from "../shared/provider-projection.model";
 export class ProviderSearchResultComponent implements OnInit {
   @Input() providerResult: ProviderSearchResponse;
   selectedProviders: ProviderProjection[] = [];
-  panelColor: string = '#dff0d8';
   paginationConfig: PaginationInstance = {
     itemsPerPage: 10,
     currentPage: 1
@@ -29,5 +28,15 @@ export class ProviderSearchResultComponent implements OnInit {
 
   addProviders(provider: ProviderProjection) {
     this.selectedProviders.push(provider);
+  }
+
+  isProviderSelected(provider: ProviderProjection): boolean {
+    if (this.selectedProviders != null) {
+      return this.selectedProviders.includes(provider);
+    }
+  }
+
+  canSelectProvider(provider: ProviderProjection): boolean {
+    return !this.isProviderSelected(provider);
   }
 }
