@@ -11,6 +11,7 @@ import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 export class ProviderSearchComponent implements OnInit {
   searchResponse: ProviderSearchResponse;
   accordionTab: boolean = true;
+  hasSearchResult: boolean = false;
 
   states = [
     {stateCode: 'AZ', stateValue: 'ARIZONA'},
@@ -48,7 +49,10 @@ export class ProviderSearchComponent implements OnInit {
     );
 
     this.providerService.searchProviders(requestParams, FIRST_PAGE)
-      .then(res => this.searchResponse = res);
+      .then(res => {
+        this.searchResponse = res;
+        this.hasSearchResult = true;
+      });
     this.accordionTab = false;
   }
 }
