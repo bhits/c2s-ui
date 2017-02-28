@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from "@angular/core";
 import {Consent} from "../shared/consent.model";
 
+
 @Component({
   selector: 'c2s-consent-card',
   templateUrl: './consent-card.component.html',
@@ -26,6 +27,10 @@ export class ConsentCardComponent implements OnInit, OnChanges {
   toggleDetailsVisible(el: any) {
     this.detailsVisible = !this.detailsVisible;
     this.height = this.height ? 0 : el.scrollHeight;
+  }
+
+  onResize(event: any, el: any) {
+    this.height = this.height ? el.scrollHeight : 0;
   }
 
   private getHeightPx() {

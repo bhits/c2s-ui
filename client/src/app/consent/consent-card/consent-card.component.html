@@ -25,6 +25,7 @@
       </div>
 
       <div class="block" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+           (window:resize)="onResize($event, el)"
            [style.height]="getHeightPx()" #el>
         <div fxFlex>
           <h3><strong>Medical Information NOT disclosed:</strong></h3>
