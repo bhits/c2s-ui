@@ -10,6 +10,7 @@ import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 })
 export class ProviderSearchComponent implements OnInit {
   searchResponse: ProviderSearchResponse;
+  accordionTab: boolean = true;
 
   states = [
     {stateCode: 'AZ', stateValue: 'ARIZONA'},
@@ -29,6 +30,10 @@ export class ProviderSearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  resetAccordionTab() {
+    this.accordionTab = true;
+  }
+
   searchProviders(formValues) {
     const FIRST_PAGE: number = 0;
     let requestParams = new ProviderRequestQuery(
@@ -44,5 +49,6 @@ export class ProviderSearchComponent implements OnInit {
 
     this.providerService.searchProviders(requestParams, FIRST_PAGE)
       .then(res => this.searchResponse = res);
+    this.accordionTab = false;
   }
 }

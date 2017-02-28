@@ -16,6 +16,7 @@ export class ProviderListComponent implements OnInit {
     itemsPerPage: 10,
     currentPage: 1
   };
+  accordionTab: boolean = true;
 
   tHeads = [
     {text: '', cols: 1, color: 'lightgray'},
