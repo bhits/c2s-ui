@@ -9,6 +9,7 @@
       </div>
       <md-card class="provider-result-card"
                *ngFor="let provider of providerResult?._embedded.providers | paginate: paginationConfig">
+        <!--case 1: ready to add-->
         <div class="mat-card-image" [ngStyle]="{'background-color': '#dff0d8', 'height': '90px'}"
              *ngIf="canSelectProvider(provider)">
           <md-card-header>
@@ -27,6 +28,24 @@
             </md-card-title>
           </md-card-header>
         </div>
+        <!--case 2: current provider has already been added in patient's provider list-->
+        <div class="mat-card-image" [ngStyle]="{'background-color': '#f5f5f5', 'height': '90px'}"
+             *ngIf="isInProviderList(provider)">
+          <md-card-header>
+            <md-card-title fxLayoutAlign="left">
+              <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+            </md-card-title>
+            <md-card-title fxLayoutAlign="left">
+              <div fxLayout="row">
+                <div fxLayoutAlign="left" fxLayoutGap="20px">
+                  <P><md-icon>check_circle</md-icon></P>
+                  <p>This Provider has already in your provider list.</p>
+                </div>
+              </div>
+            </md-card-title>
+          </md-card-header>
+        </div>
+        <!--case 3: current provider has been added in waiting list-->
         <div class="mat-card-image" [ngStyle]="{'background-color': '#f5f5f5', 'height': '90px'}"
              *ngIf="isProviderSelected(provider)">
           <md-card-header>
@@ -36,10 +55,8 @@
             <md-card-title fxLayoutAlign="left">
               <div fxLayout="row">
                 <div fxLayoutAlign="left" fxLayoutGap="20px">
-                  <button md-icon-button disabled>
-                    <md-icon>add_box</md-icon>
-                  </button>
-                  <p>Provider currently selected.</p>
+                  <md-icon>add_box</md-icon>
+                  <p>Provider currently added.</p>
                 </div>
               </div>
             </md-card-title>

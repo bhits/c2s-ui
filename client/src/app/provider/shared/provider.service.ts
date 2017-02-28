@@ -4,6 +4,7 @@ import "rxjs/add/operator/toPromise";
 import {Provider} from "./provider.model";
 import {ProviderRequestQuery} from "./provider-request-query.model";
 import {ProviderSearchResponse} from "./provider-search-response.model";
+import {ProviderProjection} from "./provider-projection.model";
 
 @Injectable()
 export class ProviderService {
@@ -18,6 +19,10 @@ export class ProviderService {
       .toPromise()
       .then(response => response.json() as Provider[])
       .catch(this.handleError);
+  }
+
+  isSearchResultInProviderList(provider: ProviderProjection, providerList: Provider[]): boolean {
+    return providerList.filter((p) => provider.npi === p.npi).length > 0;
   }
 
   searchProviders(requestParams: ProviderRequestQuery, page: number): Promise<ProviderSearchResponse> {

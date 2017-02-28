@@ -1,7 +1,9 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {PaginationInstance} from "ng2-pagination";
+import {ProviderService} from "../shared/provider.service";
 import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 import {ProviderProjection} from "../shared/provider-projection.model";
+import {Provider} from "../shared/provider.model";
 
 @Component({
   selector: 'c2s-provider-search-result',
@@ -10,16 +12,19 @@ import {ProviderProjection} from "../shared/provider-projection.model";
 })
 export class ProviderSearchResultComponent implements OnInit {
   @Input() providerResult: ProviderSearchResponse;
+  providerList: Provider[];
   selectedProviders: ProviderProjection[] = [];
   paginationConfig: PaginationInstance = {
     itemsPerPage: 10,
     currentPage: 1
   };
 
-  constructor() {
+  constructor(private providerService: ProviderService) {
   }
 
   ngOnInit() {
+    this.providerService.getProviders()
+      .then(res => this.providerList = res);
   }
 
   onPageChange(number: number) {
@@ -30,6 +35,10 @@ export class ProviderSearchResultComponent implements OnInit {
     this.selectedProviders.push(provider);
   }
 
+  isInProviderList(provider: ProviderProjection): boolean {
+    return this.providerService.isSearchResultInProviderList(provider, this.providerList);
+  }
+
   isProviderSelected(provider: ProviderProjection): boolean {
     if (this.selectedProviders != null) {
       return this.selectedProviders.includes(provider);
@@ -37,6 +46,6 @@ export class ProviderSearchResultComponent implements OnInit {
   }
 
   canSelectProvider(provider: ProviderProjection): boolean {
-    return !this.isProviderSelected(provider);
+    return !this.isProviderSelected(provider) && !this.isInProviderList(provider);
   }
 }
