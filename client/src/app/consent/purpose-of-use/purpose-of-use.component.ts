@@ -1,6 +1,7 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {ConsentService} from "../consent.service";
 import {PurposeOfUse} from "../purpose-of-use";
+import {PurposeOfUseService} from "./purpose-of-use.service";
 
 @Component({
   selector: 'c2s-purpose-of-use',
@@ -12,7 +13,7 @@ export class PurposeOfUseComponent implements OnInit {
   @Input() purposeOfUsesCodes:string[];
   private purposeOfUSes: PurposeOfUse[];
 
-  constructor(private consentService: ConsentService) { }
+  constructor(private consentService: ConsentService, private purposeOfUseService: PurposeOfUseService) { }
 
   ngOnInit() {
     this.consentService.getPurposeOfUses()
@@ -24,11 +25,11 @@ export class PurposeOfUseComponent implements OnInit {
   }
 
   private updatePurposeOfUseStatus(){
-    this.consentService.updatePurposeOfUseStatus(this.purposeOfUsesCodes,this.purposeOfUSes);
+    this.purposeOfUseService.updatePurposeOfUseStatus(this.purposeOfUsesCodes,this.purposeOfUSes);
   }
 
   private getSelectedPurposeOfUseCode():string[]{
-    return this.consentService.getSelectedPurposeOfUseCode(this.purposeOfUSes)
+    return this.purposeOfUseService.getSelectedPurposeOfUseCode(this.purposeOfUSes)
   }
 
   private error(error: any): Promise<any> {
@@ -49,10 +50,10 @@ export class PurposeOfUseComponent implements OnInit {
   }
 
   selectAll(){
-    this.consentService.setPurposeOfUseStatusToChecked(this.purposeOfUSes);
+    this.purposeOfUseService.setPurposeOfUseStatusToChecked(this.purposeOfUSes);
   }
 
   deSelectAll(){
-    this.consentService.setPurposeOfUseStatusToUnChecked(this.purposeOfUSes);
+    this.purposeOfUseService.setPurposeOfUseStatusToUnChecked(this.purposeOfUSes);
   }
 }

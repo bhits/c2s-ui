@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import {ConsentService} from "../consent.service";
 import {SensitivityPolicy} from "../sensitivity-policy";
+import {MedicalInformationService} from "./medical-information.service";
 
 @Component({
   selector: 'c2s-medical-information',
@@ -14,7 +15,7 @@ export class MedicalInformationComponent implements OnInit {
   @Input() sensitivityPoliciesCodes: string[];
   private sensitivityPolicies: SensitivityPolicy[];
 
-  constructor(private consentService: ConsentService) {
+  constructor(private consentService: ConsentService, private medicalInformationService:MedicalInformationService) {
 
   }
 
@@ -28,11 +29,11 @@ export class MedicalInformationComponent implements OnInit {
   }
 
   private updateSensitivityPoliciesStatus(){
-    this.consentService.updateSensitivitiesPoliciesStatus(this.sensitivityPoliciesCodes,this.sensitivityPolicies);
+    this.medicalInformationService.updateSensitivitiesPoliciesStatus(this.sensitivityPoliciesCodes,this.sensitivityPolicies);
   }
 
   private getSelectedSensitivityPolicieseCode():string[]{
-    return this.consentService.getSelectedSensitivityPoliciesCode(this.sensitivityPolicies)
+    return this.medicalInformationService.getSelectedSensitivityPoliciesCode(this.sensitivityPolicies)
   }
 
   emitSelection(value:string){
@@ -43,7 +44,7 @@ export class MedicalInformationComponent implements OnInit {
     this.isShareAll = "1";
     this.sensitivityPoliciesCodes = [];
     //Unchecked all checked boxes
-    this.consentService.setSenetivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
+    this.medicalInformationService.setSenetivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
     this.selectedMedicalInformation.emit(this.sensitivityPoliciesCodes);
   }
 
@@ -66,10 +67,10 @@ export class MedicalInformationComponent implements OnInit {
     return Promise.reject(error.message || error);
   }
   selectAll(){
-    this.consentService.setSensitivityPoliciesStatusToChecked(this.sensitivityPolicies);
+    this.medicalInformationService.setSensitivityPoliciesStatusToChecked(this.sensitivityPolicies);
   }
 
   deSelectAll(){
-    this.consentService.setSenetivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
+    this.medicalInformationService.setSenetivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
   }
 }

@@ -8,6 +8,8 @@ import { MedicalInformationComponent } from './medical-information/medical-infor
 import { ConsentCreateEditComponent } from './consent-create-edit/consent-create-edit.component';
 import {ConsentService} from "./consent.service";
 import {SharedModule} from "../shared/shared.module";
+import {PurposeOfUseService} from "./purpose-of-use/purpose-of-use.service";
+import {MedicalInformationService} from "./medical-information/medical-information.service";
 
 @NgModule({
   imports: [
@@ -24,6 +26,6 @@ import {SharedModule} from "../shared/shared.module";
   exports: [
     ConsentCreateEditComponent
   ],
-  providers: [ConsentService]
+  providers: [ConsentService, PurposeOfUseService, MedicalInformationService]
 })
 export class ConsentModule { }
