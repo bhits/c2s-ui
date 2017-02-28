@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ProviderService} from "../shared/provider.service";
 import {ProviderRequestQuery} from "../shared/provider-request-query.model";
-import {ProviderSearchResult} from "../shared/provider-search-result.model";
+import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 
 @Component({
   selector: 'c2s-provider-search',
@@ -9,7 +9,8 @@ import {ProviderSearchResult} from "../shared/provider-search-result.model";
   styleUrls: ['./provider-search.component.css']
 })
 export class ProviderSearchComponent implements OnInit {
-  searchResponse: ProviderSearchResult[];
+  searchResponse: ProviderSearchResponse;
+  accordionTab: boolean = true;
 
   states = [
     {stateCode: 'AZ', stateValue: 'ARIZONA'},
@@ -29,7 +30,12 @@ export class ProviderSearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  resetAccordionTab() {
+    this.accordionTab = true;
+  }
+
   searchProviders(formValues) {
+    const FIRST_PAGE: number = 0;
     let requestParams = new ProviderRequestQuery(
       formValues.providerState,
       formValues.providerCity,
@@ -39,10 +45,10 @@ export class ProviderSearchComponent implements OnInit {
       formValues.providerGender,
       formValues.providerFacilityName,
       formValues.providerTelephone,
-      formValues.page,
     );
 
-    this.providerService.searchProviders(requestParams)
+    this.providerService.searchProviders(requestParams, FIRST_PAGE)
       .then(res => this.searchResponse = res);
+    this.accordionTab = false;
   }
 }

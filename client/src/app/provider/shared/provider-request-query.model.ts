@@ -7,7 +7,6 @@ export class ProviderRequestQuery {
   gendercode: string;
   orgname: string;
   phone: string;
-  page: string;
 
   constructor(state: string,
               city: string,
@@ -16,8 +15,7 @@ export class ProviderRequestQuery {
               lastname: string,
               gendercode: string,
               orgname: string,
-              phone: string,
-              page: string) {
+              phone: string) {
     this.state = state;
     this.city = city;
     this.zipcode = zipcode;
@@ -26,6 +24,5 @@ export class ProviderRequestQuery {
     this.gendercode = gendercode;
     this.orgname = orgname;
     this.phone = phone;
-    this.page = page;
   }
 }

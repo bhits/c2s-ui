@@ -1,4 +1,4 @@
-export class ProviderSearchResult {
+export class ProviderProjection {
   businessPracticeLocationAddressFaxNumber: string;
   organizationName: string;
   enumerationDate: string;

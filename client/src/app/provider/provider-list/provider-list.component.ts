@@ -2,6 +2,7 @@ import {Component, OnInit, ViewContainerRef} from "@angular/core";
 import {ConfirmDialogService} from "../../shared/dialog/confirm-dialog.service";
 import {Provider} from "../shared/provider.model";
 import {ProviderService} from "../shared/provider.service";
+import {PaginationInstance} from "ng2-pagination";
 
 @Component({
   selector: 'c2s-provider-list',
@@ -11,7 +12,11 @@ import {ProviderService} from "../shared/provider.service";
 
 export class ProviderListComponent implements OnInit {
   providers: Provider[];
-  selectedOption: boolean;
+  paginationConfig: PaginationInstance = {
+    itemsPerPage: 10,
+    currentPage: 1
+  };
+  accordionTab: boolean = true;
 
   tHeads = [
     {text: '', cols: 1, color: 'lightgray'},
@@ -31,11 +36,14 @@ export class ProviderListComponent implements OnInit {
       .then(res => this.providers = res);
   }
 
+  onPageChange(number: number) {
+    this.paginationConfig.currentPage = number;
+  }
+
   confirmDeleteProvider(provider: Provider) {
     this.confirmDialogService
       .confirm('Delete Provider', 'Are you sure you want to delete this provider?', this.viewContainerRef)
       .subscribe(res => {
-        this.selectedOption = res;
         this.deleteProvider(res, provider);
       });
   }
