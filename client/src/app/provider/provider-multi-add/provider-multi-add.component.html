@@ -12,14 +12,14 @@
   </div>
   <table>
     <tbody>
-    <tr>
+    <tr *ngFor="let provider of providers">
       <td width="92px">
         <button md-icon-button color="warn">
           <md-icon>delete_forever</md-icon>
         </button>
       </td>
       <td width="279px">
-        <span>No Providers currently selected.</span>
+        <span>{{provider | providerName}}</span>
       </td>
     </tr>
     </tbody>

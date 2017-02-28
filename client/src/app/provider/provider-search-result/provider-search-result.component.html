@@ -17,7 +17,7 @@
             <md-card-title fxLayoutAlign="left">
               <div fxLayout="row">
                 <div fxLayoutAlign="left" fxLayoutGap="20px">
-                  <button md-icon-button>
+                  <button md-icon-button (click)="addProviders(provider)">
                     <md-icon color="primary">add_box</md-icon>
                   </button>
                   <p>Select this provider</p>
@@ -39,7 +39,7 @@
       <md-toolbar color="primary" fxLayoutAlign="center">
         <h3>Selections to Add</h3>
       </md-toolbar>
-      <c2s-provider-multi-add></c2s-provider-multi-add>
+      <c2s-provider-multi-add [providers]="selectedProviders"></c2s-provider-multi-add>
     </div>
   </div>
 </md-card>
