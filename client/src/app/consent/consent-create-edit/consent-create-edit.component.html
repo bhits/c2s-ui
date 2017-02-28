@@ -8,7 +8,8 @@
 
     <c2s-select-provider ></c2s-select-provider>
     <c2s-medical-information
-      [medicalInformation]="consent?.medicalInformation"
+      [isShareAll]="isShareAll"
+      [sensitivityPoliciesCodes]="consent?.doNotShareSensitivityPolicyCodes"
       (selectedMedicalInformation)="onSelectMedicalInformation($event)">
     </c2s-medical-information>
 
@@ -21,8 +22,8 @@
         [endDate]="consent?.endDate"
         (startDateChange)="onStartDateChange($event)"
         (endDateChange)="onEndDateChange($event)">
-
     </c2s-consent-terms>
+
     <md-card class="right-align">
         <button md-raised-button >Cancel</button>
         <button md-raised-button color="primary" type="submit">Create</button>

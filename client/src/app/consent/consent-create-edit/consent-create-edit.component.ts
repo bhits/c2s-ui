@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {MedicalInformation} from "../medical-information.enum";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -7,22 +8,29 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ConsentCreateEditComponent implements OnInit {
   consent : any;
-
+  private isShareAll:string;
   constructor() {
-    this.consent = {
-      medicalInformation : 'A',
-      startDate:'',
-      endDate:'',
-      shareForPurposeOfUseCodes:["TREATMENT", "RESEARCH"],
-      purposeOfUseCodesAndValues:{}
-    };
+
   }
 
   ngOnInit() {
+    this.consent = {
+      startDate:'',
+      endDate:'',
+      shareForPurposeOfUseCodes:["TREATMENT", "RESEARCH"],
+      purposeOfUseCodesAndValues:{},
+      doNotShareSensitivityPolicyCodes:[]
+    };
+    this.isShareAll = this.getMedicalInformationStatus();
   }
 
+  private getMedicalInformationStatus():string {
+    return this.consent.doNotShareSensitivityPolicyCodes.length === 0?
+        MedicalInformation.SHAREALL.toString(): MedicalInformation.DONOTSHAREALL.toString();
+  }
   onSelectMedicalInformation(event: any){
-    this.consent['medicalInformation'] = event;
+    this.consent['doNotShareSensitivityPolicyCodes'] = event;
+    console.log(this.consent);
   }
 
   onStartDateChange(event: any){
@@ -35,7 +43,6 @@ export class ConsentCreateEditComponent implements OnInit {
     console.log(this.consent);
   }
 
-
   submitForm(){
     console.log(this.consent);
   }
@@ -44,5 +51,4 @@ export class ConsentCreateEditComponent implements OnInit {
     this.consent['shareForPurposeOfUseCodes'] = event;
     console.log(this.consent);
   }
-
 }

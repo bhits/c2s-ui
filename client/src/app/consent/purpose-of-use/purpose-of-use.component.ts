@@ -17,7 +17,7 @@ export class PurposeOfUseComponent implements OnInit {
   ngOnInit() {
     this.consentService.getPurposeOfUses()
                         .then(res => {
-                            this.purposeOfUSes = res
+                            this.purposeOfUSes = res;
                             this.updatePurposeOfUseStatus();
                         })
                         .catch(this.error);
@@ -49,10 +49,10 @@ export class PurposeOfUseComponent implements OnInit {
   }
 
   selectAll(){
-    this.consentService.setPurposeOfUSeStatusToChecked(this.purposeOfUSes);
+    this.consentService.setPurposeOfUseStatusToChecked(this.purposeOfUSes);
   }
 
   deSelectAll(){
-    this.consentService.setPurposeOfUSeStatusToUnChecked(this.purposeOfUSes);
+    this.consentService.setPurposeOfUseStatusToUnChecked(this.purposeOfUSes);
   }
 }
