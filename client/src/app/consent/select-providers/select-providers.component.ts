@@ -2,6 +2,7 @@ import {Component, OnInit,Input} from '@angular/core';
 
 import {Provider} from "../shared/Provider";
 import {ConsentService} from "../shared/consent.service";
+import {UtiltityService} from "../../shared/utiltity.service";
 
 @Component({
   selector: 'c2s-select-providers',
@@ -16,7 +17,7 @@ export class SelectProvidersComponent implements OnInit {
   @Input() authorizeProvider: string[];
   @Input() disclosureProvider: string[] ;
 
-  constructor(private consentService: ConsentService) { }
+  constructor(private consentService: ConsentService,private utiltityService:UtiltityService) { }
 
   ngOnInit() {
     this.consentService.getProviders()
@@ -30,13 +31,13 @@ export class SelectProvidersComponent implements OnInit {
 
   onSelectedAuthorizeProvider(provider:Provider){
     //Remove all entry from array
-    this.authorizeProvider.splice(0,this.authorizeProvider.length);
+    this.utiltityService.removeAll(this.authorizeProvider);
     this.authorizeProvider.push(provider.npi);
   }
 
   onSelectedDisclosureProvider(provider:Provider){
     //Remove all entry from array
-    this.disclosureProvider.splice(0,this.disclosureProvider.length);
+    this.utiltityService.removeAll(this.disclosureProvider);
     this.disclosureProvider.push(provider.npi);
   }
 
