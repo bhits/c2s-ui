@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import {ConsentService} from "../consent.service";
-import {SensitivityPolicy} from "../sensitivity-policy";
+
+import {ConsentService} from "../shared/consent.service";
+import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {MedicalInformationService} from "./medical-information.service";
 
 @Component({

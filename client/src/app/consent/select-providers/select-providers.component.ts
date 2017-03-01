@@ -1,6 +1,7 @@
-import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
-import {Provider} from "../Provider";
-import {ConsentService} from "../consent.service";
+import {Component, OnInit,Input} from '@angular/core';
+
+import {Provider} from "../shared/Provider";
+import {ConsentService} from "../shared/consent.service";
 
 @Component({
   selector: 'c2s-select-providers',

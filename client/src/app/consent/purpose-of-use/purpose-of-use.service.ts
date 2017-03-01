@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {PurposeOfUse} from "../purpose-of-use";
+
+import {PurposeOfUse} from "../shared/purpose-of-use";
 
 @Injectable()
 export class PurposeOfUseService {

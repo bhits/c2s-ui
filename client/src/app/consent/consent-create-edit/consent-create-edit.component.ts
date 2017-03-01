@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {MedicalInformation} from "../medical-information.enum";
-import {Provider} from "../Provider";
+
+import {MedicalInformation} from "../shared/medical-information.enum";
 
 @Component({
   selector: 'c2s-consent-create-edit',

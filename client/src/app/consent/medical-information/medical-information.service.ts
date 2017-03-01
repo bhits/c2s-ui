@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {SensitivityPolicy} from "../sensitivity-policy";
+
+import {SensitivityPolicy} from "../shared/sensitivity-policy";
 
 @Injectable()
 export class MedicalInformationService {

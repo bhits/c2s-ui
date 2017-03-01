@@ -1,6 +1,7 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import {ConsentService} from "../consent.service";
-import {PurposeOfUse} from "../purpose-of-use";
+
+import {ConsentService} from "../shared/consent.service";
+import {PurposeOfUse} from "../shared/purpose-of-use";
 import {PurposeOfUseService} from "./purpose-of-use.service";
 
 @Component({

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Http, Response} from "@angular/http";
+import {Http} from "@angular/http";
 import {SensitivityPolicy} from "./sensitivity-policy";
 import 'rxjs/add/operator/toPromise';
-import {PurposeOfUse} from "./purpose-of-use";
 import {Provider} from "./Provider";
+import {PurposeOfUse} from "./purpose-of-use";
 
 @Injectable()
 export class ConsentService {
@@ -17,7 +17,6 @@ export class ConsentService {
   constructor(private http: Http) { }
 
   getProviders(): Promise<Provider[]> {
-
     return this.http.get(this.pcmProvidersUrl)
                       .toPromise()
                       .then(response => response.json() as Provider[])

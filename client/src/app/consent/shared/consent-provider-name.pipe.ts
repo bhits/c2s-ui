@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Provider} from "../Provider";
+import {Provider} from "./Provider";
 
 @Pipe({
   name: 'consentProviderName'
