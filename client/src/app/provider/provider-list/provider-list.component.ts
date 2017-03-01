@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewContainerRef} from "@angular/core";
-import {ConfirmDialogService} from "../../shared/dialog/confirm-dialog.service";
+import {Component, OnInit} from "@angular/core";
 import {Provider} from "../shared/provider.model";
 import {ProviderService} from "../shared/provider.service";
+import {PaginationInstance} from "ng2-pagination";
 
 @Component({
   selector: 'c2s-provider-list',
@@ -11,19 +11,13 @@ import {ProviderService} from "../shared/provider.service";
 
 export class ProviderListComponent implements OnInit {
   providers: Provider[];
-  selectedOption: boolean;
+  paginationConfig: PaginationInstance = {
+    itemsPerPage: 10,
+    currentPage: 1
+  };
+  accordionTab: boolean = true;
 
-  tHeads = [
-    {text: '', cols: 1, color: 'lightgray'},
-    {text: 'Name/Facility', cols: 3, color: 'lightgray'},
-    {text: 'NPI', cols: 2, color: 'lightgray'},
-    {text: 'Contact Number', cols: 2, color: 'lightgray'},
-    {text: 'Address', cols: 5, color: 'lightgray'}
-  ];
-
-  constructor(private providerService: ProviderService,
-              private confirmDialogService: ConfirmDialogService,
-              private viewContainerRef: ViewContainerRef) {
+  constructor(private providerService: ProviderService) {
   }
 
   ngOnInit() {
@@ -31,17 +25,13 @@ export class ProviderListComponent implements OnInit {
       .then(res => this.providers = res);
   }
 
-  confirmDeleteProvider(provider: Provider) {
-    this.confirmDialogService
-      .confirm('Delete Provider', 'Are you sure you want to delete this provider?', this.viewContainerRef)
-      .subscribe(res => {
-        this.selectedOption = res;
-        this.deleteProvider(res, provider);
-      });
+  onPageChange(number: number) {
+    this.paginationConfig.currentPage = number;
   }
 
-  deleteProvider(option: boolean, provider: Provider) {
-    if (option) {
+  confirmDeleteProvider(dialog: any, provider: Provider) {
+    dialog.close();
+    if (provider != name) {
       this.providerService.deleteProvider(provider.npi)
         .then(() =>
           this.providers = this.providers.filter(p => p !== provider));

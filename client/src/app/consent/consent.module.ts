@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import {Md2Module} from "md2";
-
+import { CommonModule  } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ConsentTermsComponent } from './consent-terms/consent-terms.component';
 import { PurposeOfUseComponent } from './purpose-of-use/purpose-of-use.component';
 import { SelectProviderComponent } from './select-provider/select-provider.component';
@@ -12,11 +12,15 @@ import {PurposeOfUseService} from "./purpose-of-use/purpose-of-use.service";
 import {MedicalInformationService} from "./medical-information/medical-information.service";
 import { SelectProvidersComponent } from './select-providers/select-providers.component';
 import { ConsentProviderNamePipe } from './shared/consent-provider-name.pipe';
+import {MaterialModule} from "@angular/material";
+import {ConsentRoutingModule} from "./consent-routing.module";
 
 @NgModule({
   imports: [
-    SharedModule,
-    Md2Module, // TODO verify while MD2 components not working at when module is imported at root modulel
+    CommonModule,
+    MaterialModule,
+    FormsModule, // TODO: verify while FormModule when imported at root level is not available to every other module
+    ConsentRoutingModule
   ],
   declarations: [
     ConsentTermsComponent,

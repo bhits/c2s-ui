@@ -1,14 +1,16 @@
-import {Http, URLSearchParams} from "@angular/http";
+import {Http, URLSearchParams, Headers} from "@angular/http";
 import {Injectable} from "@angular/core";
 import "rxjs/add/operator/toPromise";
 import {Provider} from "./provider.model";
 import {ProviderRequestQuery} from "./provider-request-query.model";
-import {ProviderSearchResult} from "./provider-search-result.model";
+import {ProviderSearchResponse} from "./provider-search-response.model";
+import {ProviderProjection} from "./provider-projection.model";
 
 @Injectable()
 export class ProviderService {
   private basePcmUrl = 'http://localhost/pcm/patients/providers';
   private basePlsUrl = 'http://localhost/pls/providers';
+  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) {
   }
@@ -20,17 +22,15 @@ export class ProviderService {
       .catch(this.handleError);
   }
 
-  searchProviders(requestParams: ProviderRequestQuery): Promise<ProviderSearchResult[]> {
+  searchProviders(requestParams: ProviderRequestQuery, page: number): Promise<ProviderSearchResponse> {
     const SEARCH_PROVIDERS_URL = this.basePlsUrl + "/search/query";
-    const SPRING_DATA_HATEOAS_PROPERTY = '_embedded';
-    const KEY_NAME = 'providers';
 
-    let params: URLSearchParams = this.requestParams(requestParams);
+    let params: URLSearchParams = this.requestParams(requestParams, page.toString());
 
     return this.http.get(SEARCH_PROVIDERS_URL, {
       search: params
     }).toPromise()
-      .then(response => response.json()[SPRING_DATA_HATEOAS_PROPERTY][KEY_NAME] as ProviderSearchResult[])
+      .then(response => response.json() as ProviderSearchResponse)
       .catch(this.handleError);
   }
 
@@ -42,12 +42,28 @@ export class ProviderService {
       .catch(this.handleError);
   }
 
+  addProviders(providers: ProviderProjection[]): Promise<void> {
+    if (providers != null) {
+      let npis: string[] = [];
+      providers.forEach(provider => npis.push(provider.npi));
+      return this.http
+        .post(this.basePcmUrl, JSON.stringify({npiList: npis}), {headers: this.headers})
+        .toPromise()
+        .then(() => null)
+        .catch(this.handleError);
+    }
+  }
+
+  isSearchResultInProviderList(provider: ProviderProjection, providerList: Provider[]): boolean {
+    return providerList.filter((p) => provider.npi === p.npi).length > 0;
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
 
-  private requestParams(requestParams: ProviderRequestQuery): URLSearchParams {
+  private requestParams(requestParams: ProviderRequestQuery, page: string): URLSearchParams {
     const PROJECTION: string = "FlattenSmallProvider";
 
     let params: URLSearchParams = new URLSearchParams();
@@ -59,16 +75,16 @@ export class ProviderService {
     params.set('gendercode', this.addLikePatternInQueryParameter(requestParams.gendercode));
     params.set('orgname', this.addLikePatternInQueryParameter(requestParams.orgname));
     params.set('phone', this.addLikePatternInQueryParameter(requestParams.phone));
-    params.set('page', requestParams.page);
     params.set('projection', PROJECTION);
+    params.set('page', page);
 
     return params;
   }
 
   private addLikePatternInQueryParameter(requestParam: string): string {
-    const LIKEPATTERN = "%";
+    const LIKE_PATTERN = "%";
     if (requestParam != null && requestParam.length > 0) {
-      return LIKEPATTERN.concat(requestParam, LIKEPATTERN);
+      return LIKE_PATTERN.concat(requestParam, LIKE_PATTERN);
     }
   }
 }
