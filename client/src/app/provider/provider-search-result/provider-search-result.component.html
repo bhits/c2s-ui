@@ -1,81 +1,81 @@
-<md-card>
-  <div fxLayout="row" fxLayoutGap="20px">
-    <div fxFlex>
-      <md-toolbar color="primary" fxLayoutAlign="center">
-        <h3>Results</h3>
-      </md-toolbar>
-      <div>
-        <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
-      </div>
-      <md-card class="provider-result-card"
-               *ngFor="let provider of providerResult?._embedded.providers | paginate: paginationConfig">
-        <!--case 1: ready to add-->
-        <div class="mat-card-image" [ngStyle]="{'background-color': '#dff0d8', 'height': '90px'}"
-             *ngIf="canSelectProvider(provider)">
-          <md-card-header>
-            <md-card-title fxLayoutAlign="left">
-              <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
-            </md-card-title>
-            <md-card-title fxLayoutAlign="left">
-              <div fxLayout="row">
-                <div fxLayoutAlign="left" fxLayoutGap="20px">
-                  <button md-icon-button (click)="addProviders(provider)">
-                    <md-icon color="primary">add_box</md-icon>
-                  </button>
-                  <p>Select this provider</p>
-                </div>
-              </div>
-            </md-card-title>
-          </md-card-header>
-        </div>
-        <!--case 2: current provider has already been added in patient's provider list-->
-        <div class="mat-card-image" [ngStyle]="{'background-color': '#f5f5f5', 'height': '90px'}"
-             *ngIf="isInProviderList(provider)">
-          <md-card-header>
-            <md-card-title fxLayoutAlign="left">
-              <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
-            </md-card-title>
-            <md-card-title fxLayoutAlign="left">
-              <div fxLayout="row">
-                <div fxLayoutAlign="left" fxLayoutGap="20px">
-                  <P><md-icon>check_circle</md-icon></P>
-                  <p>This Provider has already in your provider list.</p>
-                </div>
-              </div>
-            </md-card-title>
-          </md-card-header>
-        </div>
-        <!--case 3: current provider has been added in waiting list-->
-        <div class="mat-card-image" [ngStyle]="{'background-color': '#f5f5f5', 'height': '90px'}"
-             *ngIf="isProviderSelected(provider)">
-          <md-card-header>
-            <md-card-title fxLayoutAlign="left">
-              <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
-            </md-card-title>
-            <md-card-title fxLayoutAlign="left">
-              <div fxLayout="row">
-                <div fxLayoutAlign="left" fxLayoutGap="20px">
-                  <md-icon>add_box</md-icon>
-                  <p>Provider currently added.</p>
-                </div>
-              </div>
-            </md-card-title>
-          </md-card-header>
-        </div>
-        <md-card-content>
-          <p fxLayoutAlign="left">{{provider | providerAddress}}</p>
-          <p fxLayoutAlign="left">{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</p>
-        </md-card-content>
-      </md-card>
-      <div>
-        <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
-      </div>
+<div fxLayout="row" fxLayoutGap="20px">
+  <div fxFlex>
+    <md-toolbar color="primary" fxLayoutAlign="center">
+      <h3>Results</h3>
+    </md-toolbar>
+    <div>
+      <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
-    <div fxFlex>
-      <md-toolbar color="primary" fxLayoutAlign="center">
-        <h3>Selections to Add</h3>
-      </md-toolbar>
-      <c2s-provider-multi-add [providers]="selectedProviders"></c2s-provider-multi-add>
+    <md-card class="provider-result-card"
+             *ngFor="let provider of providerResult?._embedded.providers | paginate: paginationConfig">
+      <!--case 1: ready to add-->
+      <div class="mat-card-image" [ngStyle]="{'background-color': '#dff0d8', 'height': '90px'}"
+           *ngIf="canSelectProvider(provider)">
+        <md-card-header>
+          <md-card-title fxLayoutAlign="left">
+            <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+          </md-card-title>
+          <md-card-title fxLayoutAlign="left">
+            <div fxLayout="row">
+              <div fxLayoutAlign="left" fxLayoutGap="20px">
+                <button md-icon-button (click)="addProviders(provider)">
+                  <md-icon color="primary">add_box</md-icon>
+                </button>
+                <p>Select this provider</p>
+              </div>
+            </div>
+          </md-card-title>
+        </md-card-header>
+      </div>
+      <!--case 2: current provider has already been added in patient's provider list-->
+      <div class="mat-card-image" [ngStyle]="{'background-color': '#f5f5f5', 'height': '90px'}"
+           *ngIf="isInProviderList(provider)">
+        <md-card-header>
+          <md-card-title fxLayoutAlign="left">
+            <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+          </md-card-title>
+          <md-card-title fxLayoutAlign="left">
+            <div fxLayout="row">
+              <div fxLayoutAlign="left" fxLayoutGap="20px">
+                <P>
+                  <md-icon>check_circle</md-icon>
+                </P>
+                <p>This Provider has already in your provider list.</p>
+              </div>
+            </div>
+          </md-card-title>
+        </md-card-header>
+      </div>
+      <!--case 3: current provider has been added in waiting list-->
+      <div class="mat-card-image" [ngStyle]="{'background-color': '#f5f5f5', 'height': '90px'}"
+           *ngIf="isProviderSelected(provider)">
+        <md-card-header>
+          <md-card-title fxLayoutAlign="left">
+            <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+          </md-card-title>
+          <md-card-title fxLayoutAlign="left">
+            <div fxLayout="row">
+              <div fxLayoutAlign="left" fxLayoutGap="20px">
+                <md-icon>add_box</md-icon>
+                <p>Provider currently added.</p>
+              </div>
+            </div>
+          </md-card-title>
+        </md-card-header>
+      </div>
+      <md-card-content>
+        <p fxLayoutAlign="left">{{provider | providerAddress}}</p>
+        <p fxLayoutAlign="left">{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</p>
+      </md-card-content>
+    </md-card>
+    <div>
+      <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
   </div>
-</md-card>
+  <div fxFlex>
+    <md-toolbar color="primary" fxLayoutAlign="center">
+      <h3>Selections to Add</h3>
+    </md-toolbar>
+    <c2s-provider-multi-add [providers]="selectedProviders"></c2s-provider-multi-add>
+  </div>
+</div>
