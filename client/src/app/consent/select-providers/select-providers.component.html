@@ -6,6 +6,7 @@
         <c2s-select-provider [providers]="providers"
                              [title]="authorizeTitle"
                              [dialogTitle]="'Authorize'"
+                             [(selectedProviderList)]="disclosureProvider"
                              (selectedAuthorizeProvider) = "onSelectedAuthorizeProvider($event)"
                              >
         </c2s-select-provider>
@@ -14,6 +15,7 @@
         <c2s-select-provider [providers]="providers"
                              [title]="discloseTitle"
                              [dialogTitle]="'Disclosure'"
+                             [(selectedProviderList)]="authorizeProvider"
                              (selectedDisclosureProvider) = "onSelectedDisclosureProvider($event)"
                              >
         </c2s-select-provider>

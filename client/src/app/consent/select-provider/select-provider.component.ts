@@ -13,8 +13,11 @@ export class SelectProviderComponent implements OnInit {
   @Input() providers: Provider[];
   @Input() title:string;
   @Input() dialogTitle:string;
+  @Input() selectedProviderList:string[];
+
   private selectedProviderNpi:string;
   private selectedProvider:Provider;
+
   @Output() selectedAuthorizeProvider= new EventEmitter();
   @Output() selectedDisclosureProvider= new EventEmitter();
 
@@ -40,11 +43,11 @@ export class SelectProviderComponent implements OnInit {
     dialog.close();
   }
 
-  // isSelected(npi:string):boolean {
-  // if (this.dialogTitle === 'Authorize') {
-  //   return (selectProviderModalVm.selectedNpi.discloseNpi === npi);
-  // } else if(this.dialogTitle === 'Disclosure'){
-  //   return (selectProviderModalVm.selectedNpi.authorizeNpi === npi);
-  // }
-// }
+  isSelected(npi:string):boolean {
+  if (this.selectedProviderList.length>0) {
+    return (this.selectedProviderList[0] === npi);
+  } else {
+    return false;
+  }
+}
 }
