@@ -10,6 +10,7 @@ import {ConsentModule} from "./consent/consent.module";
 import {LayoutModule} from "./layout/layout.module";
 import {ProviderModule} from "./provider/provider.module";
 import {AppRoutingModule} from "./app-routing.module";
+import {HomeModule} from "./home/home.module";
 
 @NgModule({
   declarations: [
@@ -19,13 +20,14 @@ import {AppRoutingModule} from "./app-routing.module";
     BrowserModule,
     FormsModule,
     HttpModule,
-    Md2Module.forRoot(),
+    Md2Module,
     CoreModule,
     ConsentModule,
     LayoutModule,
     ProviderModule,
-    MaterialModule, // TODO remove and the end of
-    AppRoutingModule
+    MaterialModule, // TODO: Move to core module - verify why it is not working now.
+    HomeModule,
+    AppRoutingModule, // Must be the last module to be imported
   ],
   providers: [],
   bootstrap: [AppComponent]
