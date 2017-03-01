@@ -82,9 +82,9 @@ export class ProviderService {
   }
 
   private addLikePatternInQueryParameter(requestParam: string): string {
-    const LIKEPATTERN = "%";
+    const LIKE_PATTERN = "%";
     if (requestParam != null && requestParam.length > 0) {
-      return LIKEPATTERN.concat(requestParam, LIKEPATTERN);
+      return LIKE_PATTERN.concat(requestParam, LIKE_PATTERN);
     }
   }
 }
