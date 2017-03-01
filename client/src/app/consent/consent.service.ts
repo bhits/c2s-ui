@@ -13,6 +13,7 @@ export class ConsentService {
   private pcmPurposeOfUseUrl:string = this.pcmBaseUrl + "purposeOfUse";
   private pcmSensitivityPolicyUrl:string = this.pcmBaseUrl + "sensitivityPolicy";
 
+
   constructor(private http: Http) { }
 
   getProviders(): Promise<Provider[]> {
@@ -40,5 +41,15 @@ export class ConsentService {
     console.error('Error in getting data from the backend', error);
     return Promise.reject(error.message || error);
   }
+
+  getProviderByNPI(providers:Provider[], npi:string):Provider{
+    for(let provider of providers){
+        if(provider.npi === npi){
+          return provider;
+        }
+    }
+    return null;
+  }
+
 
 }
