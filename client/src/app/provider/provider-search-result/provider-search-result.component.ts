@@ -41,7 +41,7 @@ export class ProviderSearchResultComponent implements OnInit {
 
   isProviderSelected(provider: ProviderProjection): boolean {
     if (this.selectedProviders != null) {
-      return this.selectedProviders.includes(provider);
+      return this.selectedProviders.filter((p) => provider.npi === p.npi).length > 0;
     }
   }
 

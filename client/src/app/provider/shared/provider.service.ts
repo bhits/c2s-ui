@@ -1,4 +1,4 @@
-import {Http, URLSearchParams} from "@angular/http";
+import {Http, URLSearchParams, Headers} from "@angular/http";
 import {Injectable} from "@angular/core";
 import "rxjs/add/operator/toPromise";
 import {Provider} from "./provider.model";
@@ -10,6 +10,7 @@ import {ProviderProjection} from "./provider-projection.model";
 export class ProviderService {
   private basePcmUrl = 'http://localhost/pcm/patients/providers';
   private basePlsUrl = 'http://localhost/pls/providers';
+  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) {
   }
@@ -19,10 +20,6 @@ export class ProviderService {
       .toPromise()
       .then(response => response.json() as Provider[])
       .catch(this.handleError);
-  }
-
-  isSearchResultInProviderList(provider: ProviderProjection, providerList: Provider[]): boolean {
-    return providerList.filter((p) => provider.npi === p.npi).length > 0;
   }
 
   searchProviders(requestParams: ProviderRequestQuery, page: number): Promise<ProviderSearchResponse> {
@@ -43,6 +40,22 @@ export class ProviderService {
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
+  }
+
+  addProviders(providers: ProviderProjection[]): Promise<void> {
+    if (providers != null) {
+      let npis: string[] = [];
+      providers.forEach(provider => npis.push(provider.npi));
+      return this.http
+        .post(this.basePcmUrl, JSON.stringify({npiList: npis}), {headers: this.headers})
+        .toPromise()
+        .then(() => null)
+        .catch(this.handleError);
+    }
+  }
+
+  isSearchResultInProviderList(provider: ProviderProjection, providerList: Provider[]): boolean {
+    return providerList.filter((p) => provider.npi === p.npi).length > 0;
   }
 
   private handleError(error: any): Promise<any> {
