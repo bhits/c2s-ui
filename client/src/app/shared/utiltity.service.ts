@@ -10,4 +10,7 @@ export class UtiltityService {
     this.router.navigate([url]);
   }
 
+  removeAll(entries:any[]){
+    entries.splice(0,entries.length);
+  }
 }
