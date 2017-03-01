@@ -1,0 +1,74 @@
+<md-card>
+  <md-card-content>
+    <div fxLayout="column">
+
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" class="consent-card-header"
+           (click)="toggleDetailsVisible(el)">
+        <div fxFlex>
+          <h3><strong>Authorized to share:</strong></h3>
+          <md-list fxLayoutAlign="center">
+            <md-list-item *ngFor="let fromProvider of consent.toDiscloseName">{{fromProvider}}</md-list-item>
+          </md-list>
+        </div>
+
+        <div fxFlex>
+          <h3><strong>Sharing with:</strong></h3>
+          <md-list fxLayoutAlign="center">
+            <md-list-item *ngFor="let toProvider of consent.isMadeToName">{{toProvider}}</md-list-item>
+          </md-list>
+        </div>
+
+        <div fxFlex>
+          <h3><strong>Effective Dates:</strong></h3>
+          <md-list fxLayoutAlign="center">
+            <md-list-item>{{consent.consentStart | date}} - {{consent.consentEnd | date}}</md-list-item>
+          </md-list>
+        </div>
+      </div>
+
+      <div class="block" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+           (window:resize)="onResize($event, el)"
+           [style.height]="getHeightPx()" #el>
+        <div fxFlex *ngIf="hasDoNotShareSensitivityPolicyCodes()">
+          <h3><strong>Medical Information NOT disclosed:</strong></h3>
+          <md-chip-list>
+            <md-chip *ngFor="let doNotShareSensitivityPolicyCodes of consent.doNotShareSensitivityPolicyCodes"
+                     color="accent" selected="true">
+              <md-icon>lock</md-icon>
+              <span class="md-chip-icon-text">{{doNotShareSensitivityPolicyCodes}}</span></md-chip>
+          </md-chip-list>
+        </div>
+        <div fxFlex *ngIf="!hasDoNotShareSensitivityPolicyCodes()">
+          <h3><strong>Sharing all medical information:</strong></h3>
+          <md-chip-list>
+            <md-chip color="accent" selected="true">
+              <md-icon>check_circle</md-icon>
+              <span class="md-chip-icon-text">All my medical information can be shared.</span></md-chip>
+          </md-chip-list>
+        </div>
+        <div fxFlex>
+          <h3><strong>Share for following purposes:</strong></h3>
+          <md-chip-list>
+            <md-chip *ngFor="let shareForPurposeOfUseCodes of consent.shareForPurposeOfUseCodes"
+                     color="accent" selected="true"><span>{{shareForPurposeOfUseCodes}}</span></md-chip>
+          </md-chip-list>
+        </div>
+      </div>
+    </div>
+  </md-card-content>
+
+  <md-card-actions>
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+      <div fxFlex>
+        <div>
+          <p>Consent State: <strong>{{consent.consentStage | consentStateText}}</strong></p>
+        </div>
+      </div>
+      <div fxFlex>
+        <div>
+          <button md-raised-button color="primary">Manage Consents</button>
+        </div>
+      </div>
+    </div>
+  </md-card-actions>
+</md-card>
