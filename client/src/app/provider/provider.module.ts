@@ -8,10 +8,12 @@ import {ProviderMultiAddComponent} from "./provider-multi-add/provider-multi-add
 import {ProviderAddressPipe} from "./shared/provider-address.pipe";
 import {ProviderProjectionNamePipe} from "./shared/provider-projection-name.pipe";
 import {ProviderNamePipe} from "./shared/provider-name.pipe";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [
     ProviderListComponent,
