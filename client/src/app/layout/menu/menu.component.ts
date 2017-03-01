@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
+import {UtiltityService} from "../../shared/utiltity.service";
 
 @Component({
   selector: 'c2s-menu',
@@ -8,14 +8,14 @@ import {Router} from "@angular/router";
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(private utiltityService: UtiltityService) {
   }
 
   ngOnInit() {
   }
 
   navigateTo(url: string) {
-    this.router.navigate([url]);
+    this.utiltityService.navigateTo(url);
   }
 
   menuItems = [

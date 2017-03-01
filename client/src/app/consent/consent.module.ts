@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
 import {MaterialModule} from "@angular/material";
 import {ConsentTermsComponent} from "./consent-terms/consent-terms.component";
 import {PurposeOfUseComponent} from "./purpose-of-use/purpose-of-use.component";
@@ -13,14 +14,18 @@ import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.co
 import {ConsentService} from "./consent.service";
 import {SharedModule} from "../shared/shared.module";
 import {ConsentStateTextPipe} from "./shared/consent-state-text.pipe";
+import {ConsentRoutingModule} from "./consent-routing.module";
+
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule, // TODO: verify while FormModule when imported at root level is not available to every other module
+    ConsentRoutingModule,
     SharedModule,
-    Md2Module
+    Md2Module,
+    RouterModule
   ],
   declarations: [
     ConsentTermsComponent,
