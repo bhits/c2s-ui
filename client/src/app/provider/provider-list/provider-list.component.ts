@@ -18,14 +18,6 @@ export class ProviderListComponent implements OnInit {
   };
   accordionTab: boolean = true;
 
-  tHeads = [
-    {text: '', cols: 1, color: 'lightgray'},
-    {text: 'Name/Facility', cols: 3, color: 'lightgray'},
-    {text: 'NPI', cols: 2, color: 'lightgray'},
-    {text: 'Contact Number', cols: 2, color: 'lightgray'},
-    {text: 'Address', cols: 5, color: 'lightgray'}
-  ];
-
   constructor(private providerService: ProviderService,
               private confirmDialogService: ConfirmDialogService,
               private viewContainerRef: ViewContainerRef) {

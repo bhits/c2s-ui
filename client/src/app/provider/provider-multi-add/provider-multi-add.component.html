@@ -1,35 +1,39 @@
 <md-card>
-
-  <div class="table-head">
-    <md-grid-list cols="4" rowHeight="30px" >
-      <md-grid-tile
-        *ngFor="let tHead of tHeads"
-        [colspan]="tHead.cols"
-        [style.background]="tHead.color">
-        {{tHead.text}}
-      </md-grid-tile>
-    </md-grid-list>
-  </div>
-  <table>
-    <tbody>
-    <tr [hidden]="!(providers.length == 0)">
-      <td width="92px">
-      </td>
-      <td width="279px">
-        <p>No Providers currently selected.</p>
-      </td>
-    </tr>
-    <tr *ngFor="let provider of providers">
-      <td width="92px">
-        <button md-icon-button color="warn"
-                (click)="confirmDeleteProvider(provider)">
-          <md-icon>delete_forever</md-icon>
-        </button>
-      </td>
-      <td width="279px">
-        <span>{{provider | providerName}}</span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <md-card-content>
+    <table [md2Data]="providers" [rowsPerPage]="10">
+      <thead>
+      <tr>
+        <th style="width: 5%">
+          <md-icon>mode_edit</md-icon>
+        </th>
+        <th style="width: 70%" md2SortBy="orgName">Name/Facility</th>
+        <th style="width: 25%" md2SortBy="npi">NPI</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr [hidden]="!(providers.length == 0)">
+        <td style="width: 5%"><md-icon>person_add</md-icon></td>
+        <td style="width: 70%">
+          <p>No Providers currently selected.</p>
+        </td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let provider of providers">
+        <td>
+          <button md-icon-button color="warn"
+                  (click)="confirmDeleteProvider(provider)">
+            <md-icon>delete_forever</md-icon>
+          </button>
+        </td>
+        <td>{{provider | providerProjectionName}}</td>
+        <td>{{provider.npi}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </md-card-content>
+  <md-card-actions fxLayoutAlign="left">
+    <button md-raised-button color="primary" [disabled]="(providers.length==0)"
+            (click)="confirmAddProviders(providers)">Add to Provider List
+    </button>
+  </md-card-actions>
 </md-card>

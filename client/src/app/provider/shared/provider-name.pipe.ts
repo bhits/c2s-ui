@@ -1,19 +1,19 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {ProviderProjection} from "./provider-projection.model";
+import {Provider} from "./provider.model";
 
 @Pipe({
   name: 'providerName'
 })
 export class ProviderNamePipe implements PipeTransform {
 
-  transform(value: ProviderProjection, args?: any): any {
+  transform(value: Provider, args?: any): any {
     let providerName: string;
-    switch (value.entityTypeDisplayName) {
+    switch (value.entityType) {
       case "Individual":
         providerName = value.firstName + ' ' + value.lastName;
         break;
       case "Organization":
-        providerName = value.organizationName;
+        providerName = value.orgName;
         break;
     }
     return providerName;

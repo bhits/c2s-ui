@@ -1,14 +1,16 @@
-import {Http, URLSearchParams} from "@angular/http";
+import {Http, URLSearchParams, Headers} from "@angular/http";
 import {Injectable} from "@angular/core";
 import "rxjs/add/operator/toPromise";
 import {Provider} from "./provider.model";
 import {ProviderRequestQuery} from "./provider-request-query.model";
 import {ProviderSearchResponse} from "./provider-search-response.model";
+import {ProviderProjection} from "./provider-projection.model";
 
 @Injectable()
 export class ProviderService {
   private basePcmUrl = 'http://localhost/pcm/patients/providers';
   private basePlsUrl = 'http://localhost/pls/providers';
+  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) {
   }
@@ -40,6 +42,22 @@ export class ProviderService {
       .catch(this.handleError);
   }
 
+  addProviders(providers: ProviderProjection[]): Promise<void> {
+    if (providers != null) {
+      let npis: string[] = [];
+      providers.forEach(provider => npis.push(provider.npi));
+      return this.http
+        .post(this.basePcmUrl, JSON.stringify({npiList: npis}), {headers: this.headers})
+        .toPromise()
+        .then(() => null)
+        .catch(this.handleError);
+    }
+  }
+
+  isSearchResultInProviderList(provider: ProviderProjection, providerList: Provider[]): boolean {
+    return providerList.filter((p) => provider.npi === p.npi).length > 0;
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
@@ -64,9 +82,9 @@ export class ProviderService {
   }
 
   private addLikePatternInQueryParameter(requestParam: string): string {
-    const LIKEPATTERN = "%";
+    const LIKE_PATTERN = "%";
     if (requestParam != null && requestParam.length > 0) {
-      return LIKEPATTERN.concat(requestParam, LIKEPATTERN);
+      return LIKE_PATTERN.concat(requestParam, LIKE_PATTERN);
     }
   }
 }
