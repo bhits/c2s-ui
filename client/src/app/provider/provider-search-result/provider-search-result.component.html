@@ -14,7 +14,7 @@
              *ngIf="canSelectProvider(provider)">
           <md-card-header>
             <md-card-title fxLayoutAlign="left">
-              <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+              <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
             </md-card-title>
             <md-card-title fxLayoutAlign="left">
               <div fxLayout="row">
@@ -33,7 +33,7 @@
              *ngIf="isInProviderList(provider)">
           <md-card-header>
             <md-card-title fxLayoutAlign="left">
-              <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+              <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
             </md-card-title>
             <md-card-title fxLayoutAlign="left">
               <div fxLayout="row">
@@ -50,7 +50,7 @@
              *ngIf="isProviderSelected(provider)">
           <md-card-header>
             <md-card-title fxLayoutAlign="left">
-              <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+              <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
             </md-card-title>
             <md-card-title fxLayoutAlign="left">
               <div fxLayout="row">

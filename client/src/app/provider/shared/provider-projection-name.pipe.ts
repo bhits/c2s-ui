@@ -2,9 +2,9 @@ import {Pipe, PipeTransform} from "@angular/core";
 import {ProviderProjection} from "./provider-projection.model";
 
 @Pipe({
-  name: 'providerName'
+  name: 'providerProjectionName'
 })
-export class ProviderNamePipe implements PipeTransform {
+export class ProviderProjectionNamePipe implements PipeTransform {
 
   transform(value: ProviderProjection, args?: any): any {
     let providerName: string;
