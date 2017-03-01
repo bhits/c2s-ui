@@ -35,16 +35,9 @@ export class ProviderMultiAddComponent implements OnInit {
       });
   }
 
-  confirmDeleteProvider(provider: ProviderProjection) {
-    this.confirmDialogService
-      .confirm('Delete Provider', 'Are you sure you want to delete this provider?', this.viewContainerRef)
-      .subscribe(res => {
-        this.deleteProvider(res, provider);
-      });
-  }
-
-  deleteProvider(option: boolean, provider: ProviderProjection) {
-    if (option) {
+  confirmDeleteProvider(dialog: any, provider: ProviderProjection) {
+    dialog.close();
+    if (provider != name) {
       this.currentProvider = provider;
       this.providers.splice(this.providers.indexOf(this.currentProvider), 1);
     }
