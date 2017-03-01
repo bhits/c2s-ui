@@ -18,9 +18,9 @@ tbody tr:hover {
   background-color: #eee;
 }
 
-table th, table td {
+table th{
   padding: 0 16px;
-  text-align: left;
+  text-align: center;
 }
 
 table td {
@@ -31,4 +31,6 @@ table td {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.87);
+  padding: 0 16px;
+  text-align: left;
 }
