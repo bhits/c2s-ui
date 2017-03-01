@@ -1,20 +1,19 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ChangeDetectionStrategy} from "@angular/core";
 import {Observable} from "rxjs/Observable";
-// import "rxjs/add/operator/mergeMap";
-// import 'rxjs/add/observable/from';
 import {ConsentService} from "../consent.service";
 import {ConsentList} from "../shared/consent-list.model";
 import {Consent} from "../shared/consent.model";
 @Component({
   selector: 'c2s-consent-card-list',
   templateUrl: './consent-card-list.component.html',
-  styleUrls: ['./consent-card-list.component.css']
+  styleUrls: ['./consent-card-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConsentCardListComponent implements OnInit {
   private totalItems: number;
   private totalPages: number;
   private itemsPerPage: number;
-  private currentPage: number;
+  private currentPage: number = 1;
 
   private consents: Observable<Consent[]>;
 
@@ -22,15 +21,18 @@ export class ConsentCardListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.consents = this.consentService.getConsentList(0)
-      .do(this.refreshPaginationProperties)
-      .map(consentList => consentList.consentList);
+    this.getPage(this.currentPage);
   }
 
-  private refreshPaginationProperties(consentList: ConsentList): void {
-    this.totalItems = consentList.totalItems;
-    this.totalPages = consentList.totalPages;
-    this.itemsPerPage = consentList.itemsPerPage;
-    this.currentPage = consentList.currentPage;
+  getPage(page: number) {
+    console.log(`page: ${page}`)
+    this.consents = this.consentService.getConsentList(page - 1)
+      .do((consentList: ConsentList) => {
+        this.totalItems = consentList.totalItems;
+        this.totalPages = consentList.totalPages;
+        this.itemsPerPage = consentList.itemsPerPage;
+        this.currentPage = consentList.currentPage + 1;
+      })
+      .map(consentList => consentList.consentList);
   }
 }

@@ -1,1 +1,8 @@
-<c2s-consent-card *ngFor="let consent of consents | async" [consent]="consent"></c2s-consent-card>
+<div class="margin-bottom-55 margin-top-10" fxLayout="column" fxLayoutAlign="space-around center">
+  <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+  <c2s-consent-card fxFlexFill
+                    *ngFor="let consent of consents | async | paginate: { id: 'server', itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }"
+                    [consent]="consent"></c2s-consent-card>
+  <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+</div>
+

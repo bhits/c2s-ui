@@ -33,7 +33,12 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     this.height = this.height ? el.scrollHeight : 0;
   }
 
-  private getHeightPx() {
+  hasDoNotShareSensitivityPolicyCodes(): boolean {
+    return !!this.consent && !!this.consent.doNotShareSensitivityPolicyCodes &&
+      this.consent.doNotShareSensitivityPolicyCodes.length > 0;
+  }
+
+  getHeightPx() {
     return `${this.height}px`;
   }
 }
