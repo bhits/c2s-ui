@@ -1,97 +1,100 @@
-<h2>Search Providers</h2>
 <md-card>
+  <h2 fxLayoutAlign="start">Search Providers</h2>
   <div class="containerX">
-    <form #searchProviderFrom="ngForm" (ngSubmit)="searchProviders(searchProviderFrom.value)"
-          name="provider-search-form">
-      <md2-accordion multiple="false" (open)="resetAccordionTab()">
-        <md2-accordion-tab [active]="accordionTab">
-          <md2-accordion-header>
-            <md-card-title align="start">Search</md-card-title>
-          </md2-accordion-header>
-          <md-card-content>
-            <md-toolbar color="primary">
-              Step 1. Please enter the provider State and City OR Zip Code.
-            </md-toolbar>
-            <div fxLayout="row">
-              <div fxFlex="27">
-                <div fxLayout="column">
-                  <h3 fxLayoutAlign="left">Enter State and City</h3>
-                  <md-select name="providerState" placeholder="Please Select State" (ngModel)="providerState">
-                    <md-option *ngFor="let state of states" [value]="state.stateCode">
-                      {{ state.stateValue }}
-                    </md-option>
-                  </md-select>
-                  <md-input-container>
-                    <input type="text" name="providerCity" placeholder="City" mdInput (ngModel)="providerCity"/>
-                  </md-input-container>
+    <div fxLayout="column" fxLayoutAlign="start">
+      <form #searchProviderFrom="ngForm" (ngSubmit)="searchProviders(searchProviderFrom.value)"
+            name="provider-search-form">
+        <md2-accordion multiple="false" (open)="resetAccordionTab()">
+          <md2-accordion-tab [active]="accordionTab">
+            <md2-accordion-header>
+              <md-card-title align="start">Search</md-card-title>
+            </md2-accordion-header>
+            <md-card-content>
+              <md-toolbar color="primary">
+                Step 1. Please enter the provider State and City OR Zip Code.
+              </md-toolbar>
+              <div fxLayout="row">
+                <div fxFlex="27">
+                  <div fxLayout="column">
+                    <h3 fxLayoutAlign="left">Enter State and City</h3>
+                    <md-select name="providerState" placeholder="Please Select State" (ngModel)="providerState">
+                      <md-option *ngFor="let state of states" [value]="state.stateCode">
+                        {{ state.stateValue }}
+                      </md-option>
+                    </md-select>
+                    <md-input-container>
+                      <input type="text" name="providerCity" placeholder="City" mdInput (ngModel)="providerCity"/>
+                    </md-input-container>
+                  </div>
                 </div>
-              </div>
-              <div fxFlex><h3>OR</h3></div>
-              <div fxFlex="27">
-                <div fxLayout="column">
-                  <h3 fxLayoutAlign="left">Enter Zip Code</h3>
-                  <md-input-container>
-                    <input name="providerZip" placeholder="Enter Zip Code" mdInput (ngModel)="providerZip"/>
-                  </md-input-container>
-                </div>
-              </div>
-            </div>
-            <md-toolbar color="primary">
-              Step 2. Please enter the provider Facility Name OR Provider Name and Other Criteria.
-            </md-toolbar>
-            <div fxLayout="row">
-              <div fxFlex="27">
-                <div fxLayout="column">
-                  <h3 fxLayoutAlign="left">Enter Provider Name and Other Criteria</h3>
-                  <md-input-container>
-                    <input name="providerLastName" placeholder="Provider Last Name" mdInput
-                           (ngModel)="providerLastName"/>
-                  </md-input-container>
-                  <md-input-container>
-                    <input name="providerFirstName" placeholder="Provider First Name" mdInput
-                           (ngModel)="providerFirstName">
-                  </md-input-container>
-                  <div fxLayout="row" fxLayoutGap="10px">
-                    <div fxFlex fxLayoutAlign="left">
-                      <md-select name="providerGender" placeholder="Please Select" (ngModel)="providerGender">
-                        <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
-                          {{ gender.genderValue }}
-                        </md-option>
-                      </md-select>
-                    </div>
-                    <div fxFlex>
-                      <md-input-container>
-                        <input type="tel" name="providerTelephone" placeholder="Provider Telephone" mdInput
-                               (ngModel)="providerTelephone">
-                      </md-input-container>
-                    </div>
+                <div fxFlex><h3>OR</h3></div>
+                <div fxFlex="27">
+                  <div fxLayout="column">
+                    <h3 fxLayoutAlign="left">Enter Zip Code</h3>
+                    <md-input-container>
+                      <input name="providerZip" placeholder="Enter Zip Code" mdInput (ngModel)="providerZip"/>
+                    </md-input-container>
                   </div>
                 </div>
               </div>
+              <md-toolbar color="primary">
+                Step 2. Please enter the provider Facility Name OR Provider Name and Other Criteria.
+              </md-toolbar>
+              <div fxLayout="row">
+                <div fxFlex="27">
+                  <div fxLayout="column">
+                    <h3 fxLayoutAlign="left">Enter Provider Name and Other Criteria</h3>
+                    <md-input-container>
+                      <input name="providerLastName" placeholder="Provider Last Name" mdInput
+                             (ngModel)="providerLastName"/>
+                    </md-input-container>
+                    <md-input-container>
+                      <input name="providerFirstName" placeholder="Provider First Name" mdInput
+                             (ngModel)="providerFirstName">
+                    </md-input-container>
+                    <div fxLayout="row" fxLayoutGap="10px">
+                      <div fxFlex fxLayoutAlign="left">
+                        <md-select name="providerGender" placeholder="Please Select" (ngModel)="providerGender">
+                          <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
+                            {{ gender.genderValue }}
+                          </md-option>
+                        </md-select>
+                      </div>
+                      <div fxFlex>
+                        <md-input-container>
+                          <input type="tel" name="providerTelephone" placeholder="Provider Telephone" mdInput
+                                 (ngModel)="providerTelephone">
+                        </md-input-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-              <div fxFlex><h3>OR</h3></div>
+                <div fxFlex><h3>OR</h3></div>
 
-              <div fxFlex="27">
-                <div fxLayout="column">
-                  <h3 fxLayoutAlign="left">Facility Name</h3>
-                  <md-input-container>
-                    <input name="providerFacilityName" placeholder="Facility Name" mdInput
-                           (ngModel)="providerFacilityName">
-                  </md-input-container>
+                <div fxFlex="27">
+                  <div fxLayout="column">
+                    <h3 fxLayoutAlign="left">Facility Name</h3>
+                    <md-input-container>
+                      <input name="providerFacilityName" placeholder="Facility Name" mdInput
+                             (ngModel)="providerFacilityName">
+                    </md-input-container>
+                  </div>
                 </div>
               </div>
+            </md-card-content>
+            <div fxLayout="row">
+              <div fxLayoutAlign="left" fxLayoutGap="20px">
+                <button md-raised-button color="primary">Clear All</button>
+                <button md-raised-button color="primary">Search</button>
+              </div>
             </div>
-          </md-card-content>
-          <div fxLayout="row">
-            <div fxLayoutAlign="left" fxLayoutGap="20px">
-              <button md-raised-button color="primary">Clear All</button>
-              <button md-raised-button color="primary">Search</button>
-            </div>
-          </div>
-        </md2-accordion-tab>
-      </md2-accordion>
-    </form>
+          </md2-accordion-tab>
+        </md2-accordion>
+      </form>
+      <div [hidden]="!hasSearchResult" [ngStyle]="{'padding-top': '30px'}">
+        <c2s-provider-search-result [providerResult]="searchResponse"></c2s-provider-search-result>
+      </div>
+    </div>
   </div>
 </md-card>
-<c2s-provider-search-result [providerResult]="searchResponse"></c2s-provider-search-result>
-

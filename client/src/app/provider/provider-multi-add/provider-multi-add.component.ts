@@ -1,6 +1,7 @@
-import {Component, OnInit, Input, ViewContainerRef} from "@angular/core";
-import {ConfirmDialogService} from "../../shared/dialog/confirm-dialog.service";
+import {Component, OnInit, Input} from "@angular/core";
 import {ProviderProjection} from "../shared/provider-projection.model";
+import {ProviderService} from "../shared/provider.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'c2s-provider-multi-add',
@@ -10,31 +11,31 @@ import {ProviderProjection} from "../shared/provider-projection.model";
 export class ProviderMultiAddComponent implements OnInit {
   @Input() providers: ProviderProjection[];
   currentProvider: ProviderProjection = null;
-  tHeads = [
-    {text: '', cols: 1, color: 'lightgray'},
-    {text: 'Name/Facility', cols: 3, color: 'lightgray'}
-  ];
 
-  constructor(private confirmDialogService: ConfirmDialogService,
-              private viewContainerRef: ViewContainerRef) {
+  constructor(private providerService: ProviderService,
+              private router: Router) {
   }
 
   ngOnInit() {
   }
 
-  confirmDeleteProvider(provider: ProviderProjection) {
-    this.confirmDialogService
-      .confirm('Delete Provider', 'Are you sure you want to delete this provider?', this.viewContainerRef)
-      .subscribe(res => {
-        this.deleteProvider(res, provider);
-      });
+  confirmAddProviders(dialog: any, selectedProviders: ProviderProjection[]) {
+    dialog.close();
+    if (selectedProviders != null) {
+      const PROVIDER_LIST_URL = "provider-list";
+      this.providerService.addProviders(selectedProviders)
+        .then(() => {
+          console.log("Success in adding providers");
+          this.router.navigate([PROVIDER_LIST_URL]);
+        });
+    }
   }
 
-  deleteProvider(option: boolean, provider: ProviderProjection) {
-    if (option) {
+  confirmDeleteProvider(dialog: any, provider: ProviderProjection) {
+    dialog.close();
+    if (provider != name) {
       this.currentProvider = provider;
       this.providers.splice(this.providers.indexOf(this.currentProvider), 1);
-      console.log(this.providers);
     }
   }
 }

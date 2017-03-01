@@ -7,12 +7,14 @@ import { SelectProviderComponent } from './select-provider/select-provider.compo
 import { MedicalInformationComponent } from './medical-information/medical-information.component';
 import { ConsentCreateEditComponent } from './consent-create-edit/consent-create-edit.component';
 import {MaterialModule} from "@angular/material";
+import {ConsentRoutingModule} from "./consent-routing.module";
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule // TODO: verify while FormModule when imported at root level is not available to every other module
+    FormsModule, // TODO: verify while FormModule when imported at root level is not available to every other module
+    ConsentRoutingModule
   ],
   declarations: [
     ConsentTermsComponent,
