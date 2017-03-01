@@ -1,5 +1,4 @@
 import {CommonModule} from "@angular/common";
-import {DialogModule} from "./dialog/dialog.module";
 import {FormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MaterialModule} from "@angular/material";
@@ -10,8 +9,7 @@ import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 
 @NgModule({
   imports: [
-    CommonModule,
-    DialogModule
+    CommonModule
   ],
   declarations: [UsPhoneNumberPipe],
   exports: [
