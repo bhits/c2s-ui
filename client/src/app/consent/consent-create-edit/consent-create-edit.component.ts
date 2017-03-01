@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MedicalInformation} from "../medical-information.enum";
+import {Provider} from "../Provider";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -19,7 +20,9 @@ export class ConsentCreateEditComponent implements OnInit {
       endDate:'',
       shareForPurposeOfUseCodes:["TREATMENT", "RESEARCH"],
       purposeOfUseCodesAndValues:{},
-      doNotShareSensitivityPolicyCodes:[]
+      doNotShareSensitivityPolicyCodes:[],
+      organizationalProvidersDisclosureIsMadeToNpi:[],
+      organizationalProvidersPermittedToDiscloseNpi:[]
     };
     this.isShareAll = this.getMedicalInformationStatus();
   }

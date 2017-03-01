@@ -1,24 +1,39 @@
-<md-card class="left-align">
-  <md-card-title>Select Providers</md-card-title>
-  <md-card-content>
-    <md-grid-list cols="2" rowHeight="100px">
-      <md-grid-tile>
-        <md-card class="left-align" >
-          <md-card-header>
-            <md-card-title>The following individual or organization</md-card-title>
-            <md-card-subtitle>Dog Breed</md-card-subtitle>
-          </md-card-header>
-        </md-card>
-      </md-grid-tile>
-      <md-grid-tile>
-        <md-card class="left-align" >
-          <md-card-header>
-            <md-card-title>To disclose my information to</md-card-title>
-            <md-card-subtitle>Dog Breed</md-card-subtitle>
-          </md-card-header>
-        </md-card>
-      </md-grid-tile>
-    </md-grid-list>
 
+<md-card class="left-align" (click)="openDialog(selectProviderDialog)">
+  <md-card-header>
+    <md-card-title>{{title}}</md-card-title>
+  </md-card-header>
+  <md-card-content>
+     <h4>{{selectedProvider | consentProviderName}}</h4>
   </md-card-content>
 </md-card>
+
+
+<md2-dialog #selectProviderDialog>
+  <md2-dialog-title>{{dialogTitle}}</md2-dialog-title>
+  <md-card class="left-align">
+    <md-card-title>Please select one individual or organization authorized to share your information:</md-card-title>
+    <md-card-content>
+      <h3>Individual:</h3>
+      <md-radio-group  [(ngModel)]="selectedProviderNpi">
+          <div *ngFor="let provider of providers">
+            <md-radio-button *ngIf="provider.entityType === 'Individual'"
+                             [value]="provider.npi">
+              {{provider | consentProviderName}}
+            </md-radio-button>
+          </div>
+      <h3>Orgasnizational:</h3>
+        <div *ngFor="let provider of providers">
+          <md-radio-button *ngIf="provider.entityType === 'Organization'"
+                           [value]="provider.npi">
+            {{provider | consentProviderName}}
+          </md-radio-button>
+        </div>
+      </md-radio-group>
+    </md-card-content>
+  </md-card>
+  <md2-dialog-footer>
+    <button type="button" md-raised-button (click)="closeDialog(selectProviderDialog)">Cancel</button>
+    <button type="button" md-raised-button color="primary" (click)="onAddSelectedProviders(selectProviderDialog)" >Add Selected</button>
+  </md2-dialog-footer>
+</md2-dialog>

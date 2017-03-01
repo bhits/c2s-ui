@@ -10,6 +10,8 @@ import {ConsentService} from "./consent.service";
 import {SharedModule} from "../shared/shared.module";
 import {PurposeOfUseService} from "./purpose-of-use/purpose-of-use.service";
 import {MedicalInformationService} from "./medical-information/medical-information.service";
+import { SelectProvidersComponent } from './select-providers/select-providers.component';
+import { ConsentProviderNamePipe } from './shared/consent-provider-name.pipe';
 
 @NgModule({
   imports: [
@@ -21,7 +23,9 @@ import {MedicalInformationService} from "./medical-information/medical-informati
     PurposeOfUseComponent,
     SelectProviderComponent,
     MedicalInformationComponent,
-    ConsentCreateEditComponent
+    ConsentCreateEditComponent,
+    SelectProvidersComponent,
+    ConsentProviderNamePipe,
   ],
   exports: [
     ConsentCreateEditComponent

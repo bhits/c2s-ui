@@ -1,4 +1,4 @@
 export enum EntityType {
-  Organization,
-  Individual
+  Individual,
+  Organization
 }

@@ -6,7 +6,11 @@
       <h2> I, <span > User name</span>, hereby authorize... </h2>
     </md-card>
 
-    <c2s-select-provider ></c2s-select-provider>
+    <c2s-select-providers [(authorizeProvider)]="consent.organizationalProvidersPermittedToDiscloseNpi"
+                          [(disclosureProvider)]="consent.organizationalProvidersDisclosureIsMadeToNpi"
+                          >
+    </c2s-select-providers>
+
     <c2s-medical-information
       [isShareAll]="isShareAll"
       [sensitivityPoliciesCodes]="consent?.doNotShareSensitivityPolicyCodes"

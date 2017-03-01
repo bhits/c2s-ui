@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {ConsentService} from "../consent.service";
 import {Provider} from "../Provider";
 import 'rxjs/add/operator/toPromise';
@@ -10,18 +10,41 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./select-provider.component.css']
 })
 export class SelectProviderComponent implements OnInit {
-  private providers: Provider[];
+  @Input() providers: Provider[];
+  @Input() title:string;
+  @Input() dialogTitle:string;
+  private selectedProviderNpi:string;
+  private selectedProvider:Provider;
+  @Output() selectedAuthorizeProvider= new EventEmitter();
+  @Output() selectedDisclosureProvider= new EventEmitter();
 
   constructor(private consentService: ConsentService) { }
 
   ngOnInit() {
-    this.consentService.getProviders()
-                       .then(res => this.providers = res)
-                       .catch(this.error);
   }
 
-  private error(error: any): Promise<any> {
-    return Promise.reject(error.message || error);
+  openDialog(dialog: any){
+    dialog.open();
+  }
+  closeDialog(dialog: any){
+    dialog.close();
   }
 
+  onAddSelectedProviders(dialog: any){
+    this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.selectedProviderNpi);
+    if(this.dialogTitle === 'Authorize'){
+      this.selectedAuthorizeProvider.emit(this.selectedProvider);
+    }else if(this.dialogTitle === 'Disclosure'){
+      this.selectedDisclosureProvider.emit(this.selectedProvider);
+    }
+    dialog.close();
+  }
+
+  // isSelected(npi:string):boolean {
+  // if (this.dialogTitle === 'Authorize') {
+  //   return (selectProviderModalVm.selectedNpi.discloseNpi === npi);
+  // } else if(this.dialogTitle === 'Disclosure'){
+  //   return (selectProviderModalVm.selectedNpi.authorizeNpi === npi);
+  // }
+// }
 }
