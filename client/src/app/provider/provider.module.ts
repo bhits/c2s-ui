@@ -8,6 +8,7 @@ import {ProviderSearchResultComponent} from "./provider-search-result/provider-s
 import {ProviderMultiAddComponent} from "./provider-multi-add/provider-multi-add.component";
 import {ProviderAddressPipe} from "./shared/provider-address.pipe";
 import {ProviderProjectionNamePipe} from "./shared/provider-projection-name.pipe";
+import {ProviderNamePipe} from "./shared/provider-name.pipe";
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {ProviderProjectionNamePipe} from "./shared/provider-projection-name.pipe
     ProviderSearchComponent,
     ProviderSearchResultComponent,
     ProviderMultiAddComponent,
-    ProviderProjectionNamePipe
+    ProviderProjectionNamePipe,
+    ProviderNamePipe
   ],
   providers: [ProviderService]
 })

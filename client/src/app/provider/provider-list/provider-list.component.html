@@ -18,7 +18,9 @@
           <table [md2Data]="providers" [rowsPerPage]="10">
             <thead>
             <tr>
-              <th style="width: 5%"><md-icon>mode_edit</md-icon></th>
+              <th style="width: 5%">
+                <md-icon>mode_edit</md-icon>
+              </th>
               <th style="width: 25%" md2SortBy="orgName">Name/Facility</th>
               <th style="width: 12%" md2SortBy="npi">NPI</th>
               <th style="width: 13%">Contact Number</th>
@@ -33,7 +35,7 @@
                   <md-icon>delete_forever</md-icon>
                 </button>
               </td>
-              <td>{{provider.orgName}}</td>
+              <td>{{provider | providerName}}</td>
               <td>{{provider.npi}}</td>
               <td>{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</td>
               <td>{{provider | providerAddress}}</td>
