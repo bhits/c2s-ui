@@ -24,8 +24,8 @@
                   <th style="width: 5%">
                     <md-icon>mode_edit</md-icon>
                   </th>
-                  <th style="width: 25%" md2SortBy="orgName">Name/Facility</th>
                   <th style="width: 12%" md2SortBy="npi">NPI</th>
+                  <th style="width: 25%">Name/Facility</th>
                   <th style="width: 13%">Contact Number</th>
                   <th style="width: 45%">Address</th>
                 </tr>
@@ -48,8 +48,8 @@
                       </button>
                     </div>
                   </td>
-                  <td>{{provider | providerName}}</td>
                   <td>{{provider.npi}}</td>
+                  <td>{{provider | providerName}}</td>
                   <td>{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</td>
                   <td>{{provider | providerAddress}}</td>
                 </tr>

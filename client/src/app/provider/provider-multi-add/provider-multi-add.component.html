@@ -6,8 +6,8 @@
         <th style="width: 5%">
           <md-icon>mode_edit</md-icon>
         </th>
-        <th style="width: 70%" md2SortBy="orgName">Name/Facility</th>
         <th style="width: 25%" md2SortBy="npi">NPI</th>
+        <th style="width: 70%">Name/Facility</th>
       </tr>
       </thead>
       <tbody>
@@ -37,8 +37,8 @@
             </button>
           </div>
         </td>
-        <td>{{provider | providerProjectionName}}</td>
         <td>{{provider.npi}}</td>
+        <td>{{provider | providerProjectionName}}</td>
       </tr>
       </tbody>
     </table>
