@@ -9,6 +9,7 @@ import {CoreModule} from "./core/core.module";
 import {ConsentModule} from "./consent/consent.module";
 import {LayoutModule} from "./layout/layout.module";
 import {ProviderModule} from "./provider/provider.module";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {ProviderModule} from "./provider/provider.module";
     ConsentModule,
     LayoutModule,
     ProviderModule,
-    MaterialModule // TODO remove and the end of
+    MaterialModule, // TODO remove and the end of
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
