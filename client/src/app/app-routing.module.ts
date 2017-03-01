@@ -1,19 +1,18 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
 import {Routes, RouterModule} from "@angular/router";
 import {ProviderListComponent} from "./provider/provider-list/provider-list.component";
 import {ProviderSearchComponent} from "./provider/provider-search/provider-search.component";
 import {ConsentCreateEditComponent} from "./consent/consent-create-edit/consent-create-edit.component";
+import {HomeComponent} from "./home/home/home.component";
 
-const routes: Routes = [
-  {path: 'provider-list', component: ProviderListComponent},
-  {path: 'provider-search', component: ProviderSearchComponent},
-  {path: 'consent-create', component: ConsentCreateEditComponent}
+const appRoutes: Routes = [
+  { path: '',   component: HomeComponent, pathMatch: 'full' },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(appRoutes)
   ],
   exports: [RouterModule]
 })

@@ -3,14 +3,14 @@ import {ProviderListComponent} from "./provider-list/provider-list.component";
 import {ProviderSearchComponent} from "./provider-search/provider-search.component";
 import {RouterModule, Routes} from "@angular/router";
 
-const routes: Routes = [
+const providerRoutes: Routes = [
   {path: 'provider-list', component: ProviderListComponent},
   {path: 'provider-search', component: ProviderSearchComponent}
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forChild(providerRoutes)
   ],
   exports: [RouterModule]
 })

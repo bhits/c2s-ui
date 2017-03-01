@@ -7,12 +7,14 @@ import {MenuComponent} from "./menu/menu.component";
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {PageContentComponent} from "./page-content/page-content.component";
+import {SharedModule} from "../shared/shared.module";
 import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
+    SharedModule,
     RouterModule
   ],
   declarations: [

@@ -6,10 +6,13 @@ import {Md2Module} from "md2";
 import {Ng2PaginationModule} from "ng2-pagination";
 import {NgModule} from "@angular/core";
 import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
+import {RouterModule} from "@angular/router";
+import {UtiltityService} from "./utiltity.service";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   declarations: [UsPhoneNumberPipe],
   exports: [
@@ -20,7 +23,8 @@ import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
     Md2Module,
     Ng2PaginationModule,
     UsPhoneNumberPipe
-  ]
+  ],
+  providers:[UtiltityService]
 })
 
 export class SharedModule {
