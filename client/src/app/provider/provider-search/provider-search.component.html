@@ -94,7 +94,8 @@
         </md2-accordion>
       </form>
       <div [hidden]="!hasSearchResult" [ngStyle]="{'padding-top': '30px'}">
-        <c2s-provider-search-result [providerResult]="searchResponse"></c2s-provider-search-result>
+        <c2s-provider-search-result *ngIf="searchResponse"
+                                    [providerResult]="searchResponse"></c2s-provider-search-result>
       </div>
     </div>
   </div>

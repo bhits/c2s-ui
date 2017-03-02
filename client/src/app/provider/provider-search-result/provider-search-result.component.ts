@@ -1,9 +1,9 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {PaginationInstance} from "ng2-pagination";
 import {ProviderService} from "../shared/provider.service";
 import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 import {ProviderProjection} from "../shared/provider-projection.model";
 import {Provider} from "../shared/provider.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'c2s-provider-search-result',
@@ -12,23 +12,38 @@ import {Provider} from "../shared/provider.model";
 })
 export class ProviderSearchResultComponent implements OnInit {
   @Input() providerResult: ProviderSearchResponse;
-  providerList: Provider[];
-  selectedProviders: ProviderProjection[] = [];
-  paginationConfig: PaginationInstance = {
-    itemsPerPage: 10,
-    currentPage: 1
-  };
+
+  private providerList: Provider[];
+  private selectedProviders: ProviderProjection[] = [];
+  private itemsPerPage: number;
+  private currentPage: number = 1;
+  private totalItems: number;
+  private totalPages: number;
+  private asyncProviderResult: Observable<ProviderProjection[]>;
+  private loading: boolean;
 
   constructor(private providerService: ProviderService) {
   }
 
   ngOnInit() {
+    this.getPage(this.currentPage);
     this.providerService.getProviders()
       .then(res => this.providerList = res);
   }
 
-  onPageChange(number: number) {
-    this.paginationConfig.currentPage = number;
+  getPage(page: number) {
+    this.loading = true;
+    if (this.providerResult != null) {
+      this.asyncProviderResult = this.providerService.loadNewSearchProvidersResult(page - 1, this.providerResult)
+        .do((providerSearchResponse: ProviderSearchResponse) => {
+          this.totalItems = providerSearchResponse.page.totalElements;
+          this.totalPages = providerSearchResponse.page.totalPages;
+          this.itemsPerPage = providerSearchResponse.page.size;
+          this.currentPage = providerSearchResponse.page.number + 1;
+          this.loading = false;
+        })
+        .map(providerSearchResponse => providerSearchResponse._embedded.providers);
+    }
   }
 
   addProviders(provider: ProviderProjection) {

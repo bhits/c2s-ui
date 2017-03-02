@@ -1,10 +1,11 @@
-import {Http, URLSearchParams, Headers} from "@angular/http";
+import {Http, URLSearchParams, Headers, Response} from "@angular/http";
 import {Injectable} from "@angular/core";
 import "rxjs/add/operator/toPromise";
 import {Provider} from "./provider.model";
 import {ProviderRequestQuery} from "./provider-request-query.model";
 import {ProviderSearchResponse} from "./provider-search-response.model";
 import {ProviderProjection} from "./provider-projection.model";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class ProviderService {
@@ -32,6 +33,17 @@ export class ProviderService {
     }).toPromise()
       .then(response => response.json() as ProviderSearchResponse)
       .catch(this.handleError);
+  }
+
+  loadNewSearchProvidersResult(page: number, providerResult: ProviderSearchResponse): Observable<ProviderSearchResponse> {
+    if (providerResult != null) {
+      let newPageNumber: string = "page=" + page;
+      const NEW_PAGE_URL: string = providerResult._links.self.href.replace("page=0", newPageNumber);
+
+      return this.http.get(NEW_PAGE_URL)
+        .map((resp: Response) => <ProviderSearchResponse>(resp.json()))
+        .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
   }
 
   deleteProvider(npi: string): Promise<void> {

@@ -4,10 +4,13 @@
       <h3>Results</h3>
     </md-toolbar>
     <div>
-      <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+      <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
+    </div>
+    <div fxLayoutAlign="center" *ngIf="loading">
+      <md-spinner></md-spinner>
     </div>
     <div fxLayout="column" fxLayoutAlign="center" [ngStyle]="{'padding-top': '20px'}"
-         *ngFor="let provider of providerResult?._embedded.providers | paginate: paginationConfig">
+         *ngFor="let provider of asyncProviderResult | async | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems}">
       <!--case 1: ready to add-->
       <div [ngStyle]="{'background-color': '#dff0d8', 'border':'1px solid #d5e2d0'}"
            *ngIf="canSelectProvider(provider)">
@@ -73,7 +76,7 @@
       </div>
     </div>
     <div>
-      <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+      <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
     </div>
   </div>
   <div fxFlex>
