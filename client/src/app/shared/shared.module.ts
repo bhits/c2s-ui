@@ -7,7 +7,8 @@ import {Ng2PaginationModule} from "ng2-pagination";
 import {NgModule} from "@angular/core";
 import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 import {RouterModule} from "@angular/router";
-import {UtiltityService} from "./utiltity.service";
+import {UtilityService} from "./utility.service";
+import {DataService} from "./data.service";
 
 @NgModule({
   imports: [
@@ -24,7 +25,10 @@ import {UtiltityService} from "./utiltity.service";
     Ng2PaginationModule,
     UsPhoneNumberPipe
   ],
-  providers:[UtiltityService]
+  providers: [
+    DataService,
+    UtilityService
+  ]
 })
 
 export class SharedModule {
