@@ -16,9 +16,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getProviders()
-      .subscribe(res => {
-        this.totalProviders = res.length;
-      });
+      .subscribe(
+        res => this.totalProviders = res.length,
+        err => console.log(err)
+      );
   }
 
   navigateTo(url: string) {
