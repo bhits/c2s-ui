@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
+import {DataService} from "../../shared/data.service";
 import {UtilityService} from "../../shared/utility.service";
-import {HomeService} from "../shared/home.service";
 
 @Component({
   selector: 'c2s-home',
@@ -10,13 +10,12 @@ import {HomeService} from "../shared/home.service";
 export class HomeComponent implements OnInit {
   totalProviders: number = 0;
 
-  constructor(private homeService: HomeService,
+  constructor(private dataService: DataService,
               private utilityService: UtilityService) {
   }
 
   ngOnInit() {
-    this.homeService.getProviders()
-      .filter(res => res.length > 0)
+    this.dataService.getProviders()
       .subscribe(res => {
         this.totalProviders = res.length;
       });

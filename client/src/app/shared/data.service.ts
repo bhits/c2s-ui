@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
-import {Provider} from "../../provider/shared/provider.model";
 import {Http, Response} from "@angular/http";
-import {ExceptionService} from "../../core/exception.service";
+import {ExceptionService} from "../core/exception.service";
 import {Observable} from "rxjs";
+import {Provider} from "../provider/shared/provider.model";
 
 @Injectable()
-export class HomeService {
+export class DataService {
   private basePcmUrl = 'http://localhost/pcm/patients/providers';
 
   constructor(private http: Http,
