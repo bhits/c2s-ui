@@ -1,0 +1,12 @@
+<div class="margin-bottom-55 margin-top-10" fxLayout="column" fxLayoutAlign="space-around">
+  <div fxFlexOffset="8.5">
+    <a md-raised-button routerLink="/consent-create-edit" routerLinkActive="active" color="primary">
+      Add a Consent</a>
+  </div>
+  <pagination-controls fxLayoutAlign="center" (pageChange)="getPage($event)"></pagination-controls>
+  <c2s-consent-card fxFlexFill
+                    *ngFor="let consent of consents | async | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }"
+                    [consent]="consent"></c2s-consent-card>
+  <pagination-controls fxLayoutAlign="center" (pageChange)="getPage($event)"></pagination-controls>
+</div>
+

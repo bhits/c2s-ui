@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from "@angular/core";
+import {CommonModule} from "@angular/common";
 import {Routes, RouterModule} from "@angular/router";
 import {ConsentCreateEditComponent} from "./consent-create-edit/consent-create-edit.component";
+import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.component";
 
 
 const consentRoutes: Routes = [
-  {path: 'consent-list', component: ConsentCreateEditComponent },
+  {path: 'consent-list', component: ConsentCardListComponent},
   {path: 'consent-create-edit', component: ConsentCreateEditComponent}
 ];
 
@@ -16,4 +17,5 @@ const consentRoutes: Routes = [
   ],
   declarations: []
 })
-export class ConsentRoutingModule { }
+export class ConsentRoutingModule {
+}
