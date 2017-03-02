@@ -6,6 +6,7 @@ import {ProviderRequestQuery} from "./provider-request-query.model";
 import {ProviderSearchResponse} from "./provider-search-response.model";
 import {ProviderProjection} from "./provider-projection.model";
 import {Observable} from "rxjs";
+import {ExceptionService} from "../../core/exception.service";
 
 @Injectable()
 export class ProviderService {
@@ -13,26 +14,27 @@ export class ProviderService {
   private basePlsUrl = 'http://localhost/pls/providers';
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+              private exceptionService: ExceptionService) {
   }
 
   getProviders(): Promise<Provider[]> {
     return this.http.get(this.basePcmUrl)
       .toPromise()
       .then(response => response.json() as Provider[])
-      .catch(this.handleError);
+      .catch(this.exceptionService.handleError);
   }
 
   searchProviders(requestParams: ProviderRequestQuery): Promise<ProviderSearchResponse> {
     const SEARCH_PROVIDERS_URL = this.basePlsUrl + "/search/query";
 
-    let params: URLSearchParams = this.requestParams(requestParams);
+    let params: URLSearchParams = this.buildRequestParams(requestParams);
 
     return this.http.get(SEARCH_PROVIDERS_URL, {
       search: params
     }).toPromise()
       .then(response => response.json() as ProviderSearchResponse)
-      .catch(this.handleError);
+      .catch(this.exceptionService.handleError);
   }
 
   loadNewSearchProvidersResult(page: number, providerResult: ProviderSearchResponse): Observable<ProviderSearchResponse> {
@@ -42,7 +44,7 @@ export class ProviderService {
 
       return this.http.get(NEW_PAGE_URL)
         .map((resp: Response) => <ProviderSearchResponse>(resp.json()))
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+        .catch(this.exceptionService.handleError);
     }
   }
 
@@ -51,7 +53,7 @@ export class ProviderService {
     return this.http.delete(DELETE_PROVIDERS_URL)
       .toPromise()
       .then(() => null)
-      .catch(this.handleError);
+      .catch(this.exceptionService.handleError);
   }
 
   addProviders(providers: ProviderProjection[]): Promise<void> {
@@ -62,7 +64,7 @@ export class ProviderService {
         .post(this.basePcmUrl, JSON.stringify({npiList: npis}), {headers: this.headers})
         .toPromise()
         .then(() => null)
-        .catch(this.handleError);
+        .catch(this.exceptionService.handleError);
     }
   }
 
@@ -70,12 +72,7 @@ export class ProviderService {
     return providerList.filter((p) => provider.npi === p.npi).length > 0;
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
-
-  private requestParams(requestParams: ProviderRequestQuery): URLSearchParams {
+  private buildRequestParams(requestParams: ProviderRequestQuery): URLSearchParams {
     const PROJECTION: string = "FlattenSmallProvider";
 
     let params: URLSearchParams = new URLSearchParams();
