@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @EnableResourceServer
 public class C2SUIApplication {
 
-    @RequestMapping(value = "/fe/**")
+    @RequestMapping(value = "/{path:[^\\\\.]*}")
     public String redirect() {
         return "forward:/";
     }
