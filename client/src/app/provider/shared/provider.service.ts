@@ -23,10 +23,10 @@ export class ProviderService {
       .catch(this.handleError);
   }
 
-  searchProviders(requestParams: ProviderRequestQuery, page: number): Promise<ProviderSearchResponse> {
+  searchProviders(requestParams: ProviderRequestQuery): Promise<ProviderSearchResponse> {
     const SEARCH_PROVIDERS_URL = this.basePlsUrl + "/search/query";
 
-    let params: URLSearchParams = this.requestParams(requestParams, page.toString());
+    let params: URLSearchParams = this.requestParams(requestParams);
 
     return this.http.get(SEARCH_PROVIDERS_URL, {
       search: params
@@ -37,8 +37,8 @@ export class ProviderService {
 
   loadNewSearchProvidersResult(page: number, providerResult: ProviderSearchResponse): Observable<ProviderSearchResponse> {
     if (providerResult != null) {
-      let newPageNumber: string = "page=" + page;
-      const NEW_PAGE_URL: string = providerResult._links.self.href.replace("page=0", newPageNumber);
+      let pageNumberParam: string = "&page=" + page;
+      const NEW_PAGE_URL: string = providerResult._links.self.href.concat(pageNumberParam);
 
       return this.http.get(NEW_PAGE_URL)
         .map((resp: Response) => <ProviderSearchResponse>(resp.json()))
@@ -75,7 +75,7 @@ export class ProviderService {
     return Promise.reject(error.message || error);
   }
 
-  private requestParams(requestParams: ProviderRequestQuery, page: string): URLSearchParams {
+  private requestParams(requestParams: ProviderRequestQuery): URLSearchParams {
     const PROJECTION: string = "FlattenSmallProvider";
 
     let params: URLSearchParams = new URLSearchParams();
@@ -88,7 +88,6 @@ export class ProviderService {
     params.set('orgname', this.addLikePatternInQueryParameter(requestParams.orgname));
     params.set('phone', this.addLikePatternInQueryParameter(requestParams.phone));
     params.set('projection', PROJECTION);
-    params.set('page', page);
 
     return params;
   }

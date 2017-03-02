@@ -36,7 +36,6 @@ export class ProviderSearchComponent implements OnInit {
   }
 
   searchProviders(formValues) {
-    const FIRST_PAGE: number = 0;
     let requestParams = new ProviderRequestQuery(
       formValues.providerState,
       formValues.providerCity,
@@ -48,7 +47,7 @@ export class ProviderSearchComponent implements OnInit {
       formValues.providerTelephone,
     );
 
-    this.providerService.searchProviders(requestParams, FIRST_PAGE)
+    this.providerService.searchProviders(requestParams)
       .then(res => {
         this.searchResponse = res;
         this.hasSearchResult = true;
