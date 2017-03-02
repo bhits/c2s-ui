@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from "@angular/core";
 import {ProviderService} from "../shared/provider.service";
 import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 import {ProviderProjection} from "../shared/provider-projection.model";
@@ -10,31 +10,40 @@ import {Observable} from "rxjs";
   templateUrl: './provider-search-result.component.html',
   styleUrls: ['./provider-search-result.component.css']
 })
-export class ProviderSearchResultComponent implements OnInit {
+export class ProviderSearchResultComponent implements OnInit, OnChanges {
   @Input() providerResult: ProviderSearchResponse;
 
   private providerList: Provider[];
   private selectedProviders: ProviderProjection[] = [];
+  private asyncProviderResult: Observable<ProviderProjection[]>;
+  private searchResponse: ProviderSearchResponse;
+
   private itemsPerPage: number;
   private currentPage: number = 1;
   private totalItems: number;
   private totalPages: number;
-  private asyncProviderResult: Observable<ProviderProjection[]>;
   private loading: boolean;
 
   constructor(private providerService: ProviderService) {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    // only run when property "providerResult" real data kicks in
+    if (changes['providerResult']) {
+      this.searchResponse = this.providerResult;
+      this.getPage(this.currentPage);
+    }
+  }
+
   ngOnInit() {
-    this.getPage(this.currentPage);
     this.providerService.getProviders()
       .then(res => this.providerList = res);
   }
 
   getPage(page: number) {
     this.loading = true;
-    if (this.providerResult != null) {
-      this.asyncProviderResult = this.providerService.loadNewSearchProvidersResult(page - 1, this.providerResult)
+    if (this.searchResponse != null) {
+      this.asyncProviderResult = this.providerService.loadNewSearchProvidersResult(page - 1, this.searchResponse)
         .do((providerSearchResponse: ProviderSearchResponse) => {
           this.totalItems = providerSearchResponse.page.totalElements;
           this.totalPages = providerSearchResponse.page.totalPages;
