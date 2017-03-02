@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {UtiltityService} from "../../shared/utiltity.service";
+import {Component, OnInit} from "@angular/core";
+import {DataService} from "../../shared/data.service";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-home',
@@ -7,13 +8,20 @@ import {UtiltityService} from "../../shared/utiltity.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  totalProviders: number = 0;
 
-  constructor(private utiltityService:UtiltityService) { }
-
-  ngOnInit() {
+  constructor(private dataService: DataService,
+              private utilityService: UtilityService) {
   }
 
-  navigateTo(url:string){
-    this.utiltityService.navigateTo(url);
+  ngOnInit() {
+    this.dataService.getProviders()
+      .subscribe(res => {
+        this.totalProviders = res.length;
+      });
+  }
+
+  navigateTo(url: string) {
+    this.utilityService.navigateTo(url);
   }
 }

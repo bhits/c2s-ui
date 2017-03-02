@@ -1,9 +1,9 @@
 <md-card>
   <h2 fxLayoutAlign="start">Search Providers</h2>
+  <hr>
   <div class="containerX">
     <div fxLayout="column" fxLayoutAlign="start">
-      <form #searchProviderFrom="ngForm" (ngSubmit)="searchProviders(searchProviderFrom.value)"
-            name="provider-search-form">
+      <form #searchProviderFrom="ngForm" name="provider-search-form">
         <md2-accordion multiple="false" (open)="resetAccordionTab()">
           <md2-accordion-tab [active]="accordionTab">
             <md2-accordion-header>
@@ -86,7 +86,8 @@
             <div fxLayout="row">
               <div fxLayoutAlign="left" fxLayoutGap="20px">
                 <button md-raised-button color="primary">Clear All</button>
-                <button md-raised-button color="primary">Search</button>
+                <button md-raised-button color="primary" (click)="searchProviders(searchProviderFrom.value)">Search
+                </button>
               </div>
             </div>
           </md2-accordion-tab>

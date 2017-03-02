@@ -1,25 +1,38 @@
-import {Component, OnInit, Input} from "@angular/core";
-import {PaginationInstance} from "ng2-pagination";
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from "@angular/core";
 import {ProviderService} from "../shared/provider.service";
 import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 import {ProviderProjection} from "../shared/provider-projection.model";
 import {Provider} from "../shared/provider.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'c2s-provider-search-result',
   templateUrl: './provider-search-result.component.html',
   styleUrls: ['./provider-search-result.component.css']
 })
-export class ProviderSearchResultComponent implements OnInit {
+export class ProviderSearchResultComponent implements OnInit, OnChanges {
   @Input() providerResult: ProviderSearchResponse;
-  providerList: Provider[];
-  selectedProviders: ProviderProjection[] = [];
-  paginationConfig: PaginationInstance = {
-    itemsPerPage: 10,
-    currentPage: 1
-  };
+
+  private providerList: Provider[];
+  private selectedProviders: ProviderProjection[] = [];
+  private asyncProviderResult: Observable<ProviderProjection[]>;
+  private searchResponse: ProviderSearchResponse;
+
+  private itemsPerPage: number;
+  private currentPage: number = 1;
+  private totalItems: number;
+  private totalPages: number;
+  private loading: boolean;
 
   constructor(private providerService: ProviderService) {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // only run when property "providerResult" real data kicks in
+    if (changes['providerResult']) {
+      this.searchResponse = this.providerResult;
+      this.getPage(this.currentPage);
+    }
   }
 
   ngOnInit() {
@@ -27,8 +40,19 @@ export class ProviderSearchResultComponent implements OnInit {
       .then(res => this.providerList = res);
   }
 
-  onPageChange(number: number) {
-    this.paginationConfig.currentPage = number;
+  getPage(page: number) {
+    this.loading = true;
+    if (this.searchResponse != null) {
+      this.asyncProviderResult = this.providerService.loadNewSearchProvidersResult(page - 1, this.searchResponse)
+        .do((providerSearchResponse: ProviderSearchResponse) => {
+          this.totalItems = providerSearchResponse.page.totalElements;
+          this.totalPages = providerSearchResponse.page.totalPages;
+          this.itemsPerPage = providerSearchResponse.page.size;
+          this.currentPage = providerSearchResponse.page.number + 1;
+          this.loading = false;
+        })
+        .map(providerSearchResponse => providerSearchResponse._embedded.providers);
+    }
   }
 
   addProviders(provider: ProviderProjection) {
