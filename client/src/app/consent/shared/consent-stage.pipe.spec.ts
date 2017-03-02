@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { ConsentStateTextPipe } from './consent-state-text.pipe';
+import { ConsentStagePipe } from './consent-stage.pipe';
 
-describe('ConsentStateTextPipe', () => {
+describe('ConsentStagePipe', () => {
   it('create an instance', () => {
-    const pipe = new ConsentStateTextPipe();
+    const pipe = new ConsentStagePipe();
     expect(pipe).toBeTruthy();
   });
 });

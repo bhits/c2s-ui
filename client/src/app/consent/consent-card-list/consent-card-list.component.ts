@@ -25,7 +25,6 @@ export class ConsentCardListComponent implements OnInit {
   }
 
   getPage(page: number) {
-    console.log(`page: ${page}`)
     this.consents = this.consentService.getConsentList(page - 1)
       .do((consentList: ConsentList) => {
         this.totalItems = consentList.totalItems;

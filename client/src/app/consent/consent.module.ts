@@ -13,9 +13,8 @@ import {ConsentCardComponent} from "./consent-card/consent-card.component";
 import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.component";
 import {ConsentService} from "./consent.service";
 import {SharedModule} from "../shared/shared.module";
-import {ConsentStateTextPipe} from "./shared/consent-state-text.pipe";
 import {ConsentRoutingModule} from "./consent-routing.module";
-
+import {ConsentStagePipe} from "./shared/consent-stage.pipe";
 
 @NgModule({
   imports: [
@@ -35,8 +34,7 @@ import {ConsentRoutingModule} from "./consent-routing.module";
     ConsentCreateEditComponent,
     ConsentCardComponent,
     ConsentCardListComponent,
-    ConsentStateTextPipe,
-
+    ConsentStagePipe
   ],
   exports: [
     ConsentCreateEditComponent,

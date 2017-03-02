@@ -35,7 +35,8 @@
             <md-chip *ngFor="let doNotShareSensitivityPolicyCodes of consent.doNotShareSensitivityPolicyCodes"
                      color="accent" selected="true">
               <md-icon>lock</md-icon>
-              <span class="md-chip-icon-text">{{doNotShareSensitivityPolicyCodes}}</span></md-chip>
+              <span class="md-chip-icon-text">{{doNotShareSensitivityPolicyCodes}}</span>
+            </md-chip>
           </md-chip-list>
         </div>
         <div fxFlex *ngIf="!hasDoNotShareSensitivityPolicyCodes()">
@@ -43,14 +44,18 @@
           <md-chip-list>
             <md-chip color="accent" selected="true">
               <md-icon>check_circle</md-icon>
-              <span class="md-chip-icon-text">All my medical information can be shared.</span></md-chip>
+              <span class="md-chip-icon-text">All my medical information can be shared.</span>
+            </md-chip>
           </md-chip-list>
         </div>
         <div fxFlex>
           <h3><strong>Share for following purposes:</strong></h3>
           <md-chip-list>
             <md-chip *ngFor="let shareForPurposeOfUseCodes of consent.shareForPurposeOfUseCodes"
-                     color="accent" selected="true"><span>{{shareForPurposeOfUseCodes}}</span></md-chip>
+                     color="accent" selected="true">
+              <md-icon>check_circle</md-icon>
+              <span class="md-chip-icon-text">{{shareForPurposeOfUseCodes}}</span>
+            </md-chip>
           </md-chip-list>
         </div>
       </div>
@@ -61,7 +66,12 @@
     <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
       <div fxFlex>
         <div>
-          <p>Consent State: <strong>{{consent.consentStage | consentStateText}}</strong></p>
+          <p>Consent State:
+            <md-chip color="{{consent.consentStage | consentStage: 'color'}}" selected="true">
+              <md-icon>{{consent.consentStage | consentStage: 'icon'}}</md-icon>
+              <span class="md-chip-icon-text"><strong>{{consent.consentStage | consentStage: 'text'}}</strong></span>
+            </md-chip>
+          </p>
         </div>
       </div>
       <div fxFlex>
