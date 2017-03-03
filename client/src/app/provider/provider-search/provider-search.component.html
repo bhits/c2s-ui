@@ -3,7 +3,7 @@
   <hr>
   <div class="containerX">
     <div fxLayout="column" fxLayoutAlign="start">
-      <form #searchProviderFrom="ngForm" name="provider-search-form">
+      <form [formGroup]="searchProviderFrom" novalidate>
         <md2-accordion multiple="false" (open)="resetAccordionTab()">
           <md2-accordion-tab [active]="accordionTab">
             <md2-accordion-header>
@@ -17,14 +17,16 @@
                 <div fxFlex="27">
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Enter State and City</h3>
-                    <md-select name="providerState" placeholder="Please Select State" (ngModel)="providerState">
-                      <md-option *ngFor="let state of states" [value]="state.stateCode">
-                        {{ state.stateValue }}
-                      </md-option>
-                    </md-select>
-                    <md-input-container>
-                      <input type="text" name="providerCity" placeholder="City" mdInput (ngModel)="providerCity"/>
-                    </md-input-container>
+                    <div fxLayout="column" formGroupName="stateCity">
+                      <md-select placeholder="Please Select State" formControlName="state">
+                        <md-option *ngFor="let state of states" [value]="state.stateCode">
+                          {{ state.stateValue }}
+                        </md-option>
+                      </md-select>
+                      <md-input-container *ngIf="searchProviderFrom.get('stateCity.state').value">
+                        <input mdInput placeholder="City" formControlName="city"/>
+                      </md-input-container>
+                    </div>
                   </div>
                 </div>
                 <div fxFlex><h3>OR</h3></div>
@@ -32,7 +34,7 @@
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Enter Zip Code</h3>
                     <md-input-container>
-                      <input name="providerZip" placeholder="Enter Zip Code" mdInput (ngModel)="providerZip"/>
+                      <input mdInput placeholder="Enter Zip Code" formControlName="zip"/>
                     </md-input-container>
                   </div>
                 </div>
@@ -44,40 +46,32 @@
                 <div fxFlex="27">
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Enter Provider Name and Other Criteria</h3>
-                    <md-input-container>
-                      <input name="providerLastName" placeholder="Provider Last Name" mdInput
-                             (ngModel)="providerLastName"/>
-                    </md-input-container>
-                    <md-input-container>
-                      <input name="providerFirstName" placeholder="Provider First Name" mdInput
-                             (ngModel)="providerFirstName">
-                    </md-input-container>
-                    <div fxLayout="row" fxLayoutGap="10px">
-                      <div fxFlex fxLayoutAlign="left">
-                        <md-select name="providerGender" placeholder="Please Select" (ngModel)="providerGender">
+                    <div fxLayout="column" formGroupName="individualProvider">
+                      <md-input-container>
+                        <input mdInput placeholder="Last Name" formControlName="lastName"/>
+                      </md-input-container>
+                      <div fxLayout="column" *ngIf="searchProviderFrom.get('individualProvider.lastName').value">
+                        <md-input-container>
+                          <input mdInput placeholder="First Name" formControlName="firstName">
+                        </md-input-container>
+                        <md-input-container>
+                          <input mdInput placeholder="Telephone" formControlName="telephone">
+                        </md-input-container>
+                        <md-select placeholder="Please Select" formControlName="gender">
                           <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
                             {{ gender.genderValue }}
                           </md-option>
                         </md-select>
                       </div>
-                      <div fxFlex>
-                        <md-input-container>
-                          <input type="tel" name="providerTelephone" placeholder="Provider Telephone" mdInput
-                                 (ngModel)="providerTelephone">
-                        </md-input-container>
-                      </div>
                     </div>
                   </div>
                 </div>
-
                 <div fxFlex><h3>OR</h3></div>
-
                 <div fxFlex="27">
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Facility Name</h3>
                     <md-input-container>
-                      <input name="providerFacilityName" placeholder="Facility Name" mdInput
-                             (ngModel)="providerFacilityName">
+                      <input mdInput placeholder="Facility Name" formControlName="facilityName">
                     </md-input-container>
                   </div>
                 </div>
@@ -85,8 +79,8 @@
             </md-card-content>
             <div fxLayout="row">
               <div fxLayoutAlign="left" fxLayoutGap="20px">
-                <button md-raised-button color="primary">Clear All</button>
-                <button md-raised-button color="primary" (click)="searchProviders(searchProviderFrom.value)">Search
+                <button md-raised-button color="primary" (click)="reset()">Clear All</button>
+                <button md-raised-button color="primary" (click)="searchProviders()">Search
                 </button>
               </div>
             </div>

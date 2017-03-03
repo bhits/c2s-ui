@@ -1,5 +1,5 @@
 import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MaterialModule} from "@angular/material";
 import {Md2Module} from "md2";
@@ -23,6 +23,7 @@ import {DataService} from "./data.service";
     MaterialModule,
     Md2Module,
     Ng2PaginationModule,
+    ReactiveFormsModule,
     UsPhoneNumberPipe
   ],
   providers: [
