@@ -61,12 +61,11 @@ export class SelectProviderComponent implements OnInit {
     dialog.close();
   }
 
-  isSelected(npi:string, isAuthorized: boolean):boolean {
-    return false;
-  // if (isAuthorized && this.authorizeProviderNpi.length >0) {
-  //   return (this.authorizeProviderNpi[0] === npi);
-  // } else if(!isAuthorized && this.disclosureProviderNpi.length >0) {
-  //   return (this.disclosureProviderNpi[0] === npi);
-  // }
+  isSelected(npi:string):boolean {
+    if ((this.dialogTitle === 'Authorize') ) {
+      return (this.selectedProvidersNpi.disclosure[0] === npi);
+    } else if((this.dialogTitle === 'Disclosure')) {
+      return (this.selectedProvidersNpi.authorize[0]=== npi);
+    }
   }
 }
