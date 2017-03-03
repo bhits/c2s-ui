@@ -60,16 +60,13 @@ export class ProviderSearchComponent {
   }
 
   searchProviders() {
-    this.providerService.searchProviders(this.setProviderRequestQuery())
+    let requestParams: ProviderRequestQuery = <ProviderRequestQuery>(this.searchProviderFrom.value);
+
+    this.providerService.searchProviders(requestParams)
       .subscribe(res => {
         this.searchResponse = res;
         this.hasSearchResult = true;
       });
     this.accordionTab = false;
-  }
-
-  private setProviderRequestQuery(): ProviderRequestQuery {
-    const formModel = this.searchProviderFrom.value;
-    return <ProviderRequestQuery>(formModel);
   }
 }
