@@ -110,4 +110,8 @@ export class ConsentCreateEditComponent implements OnInit {
     this.consent.shareForPurposeOfUseCodes = event;
   }
 
+  navigateTo(url: string){
+    this.utilityService.navigateTo(url);
+  }
+
 }
