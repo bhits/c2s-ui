@@ -47,6 +47,10 @@ export class ProviderSearchComponent {
     });
   }
 
+  getFormControlValue(formControl: string) {
+    return this.searchProviderFrom.get(formControl).value;
+  }
+
   resetAccordionTab() {
     this.accordionTab = true;
   }

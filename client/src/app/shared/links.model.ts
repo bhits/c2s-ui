@@ -1,22 +1,14 @@
 export class Links {
-  first: First;
-  self: Self;
-  next: Next;
-  last: Last;
-}
-
-interface First {
-  href: string;
-}
-
-interface Self {
-  href: string;
-}
-
-interface Next {
-  href: string;
-}
-
-interface Last {
-  href: string;
+  first: {
+    href: string;
+  };
+  self: {
+    href: string;
+  };
+  next: {
+    href: string;
+  };
+  last: {
+    href: string;
+  };
 }

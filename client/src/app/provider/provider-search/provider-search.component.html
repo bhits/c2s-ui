@@ -22,7 +22,7 @@
                         {{ state.stateValue }}
                       </md-option>
                     </md-select>
-                    <md-input-container *ngIf="searchProviderFrom.get('state').value">
+                    <md-input-container *ngIf="getFormControlValue('state')">
                       <input mdInput placeholder="City" formControlName="city"/>
                     </md-input-container>
                   </div>
@@ -47,7 +47,7 @@
                     <md-input-container>
                       <input mdInput placeholder="Last Name" formControlName="lastName"/>
                     </md-input-container>
-                    <div fxLayout="column" *ngIf="searchProviderFrom.get('lastName').value">
+                    <div fxLayout="column" *ngIf="getFormControlValue('lastName')">
                       <md-input-container>
                         <input mdInput placeholder="First Name" formControlName="firstName">
                       </md-input-container>
@@ -79,7 +79,7 @@
                   Clear All
                 </button>
                 <button md-raised-button color="primary" (click)="searchProviders()"
-                        [disabled]="searchProviderFrom.pristine">Search
+                        [disabled]="searchProviderFrom.invalid">Search
                 </button>
               </div>
             </div>

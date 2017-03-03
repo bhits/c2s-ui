@@ -3,11 +3,9 @@ import {ProviderProjection} from "./provider-projection.model";
 import {Links} from "../../shared/links.model";
 
 export class ProviderSearchResponse {
-  _embedded: EmbeddedResources;
+  _embedded: {
+    providers: ProviderProjection[]
+  };
   _links: Links;
   page: Page;
-}
-
-interface EmbeddedResources {
-  providers: ProviderProjection[];
 }
