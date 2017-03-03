@@ -23,7 +23,13 @@
       <button type="button" md-raised-button color="primary" (click)="deSelectAll()" >Deselect All</button>
       <br><br>
         <div *ngFor="let purposeOfuse of purposeOfUSes; let i = index;">
-          <md-checkbox [(ngModel)]="purposeOfUSes[i].checked">{{purposeOfuse.displayName}}</md-checkbox>
+          <md-checkbox [(ngModel)]="purposeOfUSes[i].checked">
+            {{purposeOfuse.displayName}}
+            <md-icon tooltip="{{purposeOfuse.description}}"
+                     tooltip-positionh="below"
+                     tooltip-delay="100">info</md-icon>
+          </md-checkbox>
+
         </div>
     </md-card-content>
   </md-card>

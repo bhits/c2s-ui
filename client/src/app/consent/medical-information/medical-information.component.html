@@ -40,14 +40,38 @@
       <button type="button" md-raised-button color="primary" (click)="selectAll()" >Select All</button>
       <button type="button" md-raised-button color="primary" (click)="deSelectAll()" >Deselect All</button>
       <br><br>
-      <div><strong>Federal Categories</strong></div>
+      <div>
+        <strong>
+                {{federalInfo.title}}
+                <md-icon tooltip="{{federalInfo.description}}"
+                         tooltip-positionh="below"
+                         tooltip-delay="100">info</md-icon>
+          </strong>
+      </div>
       <div *ngFor="let sensitivityPolicy of sensitivityPolicies; let i = index;">
-        <md-checkbox *ngIf="sensitivityPolicy.federal" [(ngModel)]="sensitivityPolicies[i].checked">{{sensitivityPolicy.displayName}}</md-checkbox>
+        <md-checkbox *ngIf="sensitivityPolicy.federal" [(ngModel)]="sensitivityPolicies[i].checked">
+          {{sensitivityPolicy.displayName}}
+          <md-icon tooltip="{{sensitivityPolicy.description}}"
+                   tooltip-positionh="below"
+                   tooltip-delay="100">info</md-icon>
+        </md-checkbox>
       </div>
       <br>
-      <div><strong>State Categories </strong></div>
+      <div>
+        <strong>
+          {{stateInfo.title}}
+          <md-icon tooltip="{{stateInfo.description}}"
+                   tooltip-positionh="below"
+                   tooltip-delay="100">info</md-icon>
+        </strong>
+      </div>
       <div *ngFor="let sensitivityPolicy of sensitivityPolicies; let i = index;">
-        <md-checkbox *ngIf="!sensitivityPolicy.federal" [(ngModel)]="sensitivityPolicies[i].checked">{{sensitivityPolicy.displayName}}</md-checkbox>
+        <md-checkbox *ngIf="!sensitivityPolicy.federal" [(ngModel)]="sensitivityPolicies[i].checked">
+          {{sensitivityPolicy.displayName}}
+          <md-icon tooltip="{{sensitivityPolicy.description}}"
+                   tooltip-positionh="below"
+                   tooltip-delay="100">info</md-icon>
+        </md-checkbox>
       </div>
     </md-card-content>
   </md-card>

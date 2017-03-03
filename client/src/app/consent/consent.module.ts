@@ -42,6 +42,6 @@ import {ProviderResolveService} from "./shared/provider-resolve.service";
   exports: [
     ConsentCreateEditComponent
   ],
-  providers: [ConsentService, PurposeOfUseService, MedicalInformationService, ConsentResolveService, ProviderResolveService]
+  providers: [ConsentService, PurposeOfUseService, MedicalInformationService, ConsentResolveService, ProviderResolveService],
 })
 export class ConsentModule { }

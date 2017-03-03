@@ -10,7 +10,8 @@ import {MedicalInformationService} from "./medical-information.service";
   styleUrls: ['./medical-information.component.css']
 })
 export class MedicalInformationComponent implements OnInit {
-
+  federalInfo:any;
+  stateInfo:any
   @Input() isShareAll:string ;
   @Output() selectedMedicalInformation = new EventEmitter();
   @Input() sensitivityPoliciesCodes: string[];
@@ -21,6 +22,19 @@ export class MedicalInformationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.federalInfo = {
+      title: 'Federal Categories',
+      description: 'Federal requirements strictly restrict health professionals from disclosing substance abuse treatment information without signed patient consent ' +
+      '(called <a href="http://www.samhsa.gov/about-us/who-we-are/laws/confidentiality-regulations-faqs" target="_blank"> 42 CFR Part 2 <i class="fa fa-external-link"></i></a> ).' +
+      'You have the right to choose the information you wish to share or not share and with whom.'
+    };
+
+    this.stateInfo = {
+      title: 'State Categories',
+      description: 'Most states have laws restricting health professionals from disclosing information related to substance abuse, HIV/AIDS, and mental health. ' +
+      'Some states have restrictions regarding genetic information and communicable diseases. You have the right to choose the information you wish to share or not share and with whom.'
+    };
+
     this.consentService.getSensitivityPolices()
                         .then(res => {
                             this.sensitivityPolicies = res;

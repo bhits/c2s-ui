@@ -14,7 +14,7 @@ export class PurposeOfUseComponent implements OnInit {
   @Input() purposeOfUsesCodes:string[];
   private purposeOfUSes: PurposeOfUse[];
 
-  constructor(private consentService: ConsentService, private purposeOfUseService: PurposeOfUseService) { }
+  constructor(private consentService: ConsentService, private purposeOfUseService: PurposeOfUseService ) { }
 
   ngOnInit() {
     this.consentService.getPurposeOfUses()

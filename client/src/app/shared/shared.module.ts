@@ -6,6 +6,7 @@ import {MaterialModule} from "@angular/material";
 import {Md2Module} from "md2";
 import {Ng2PaginationModule} from "ng2-pagination";
 import {NgModule} from "@angular/core";
+import {Md2Tooltip} from "md2";
 
 import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 import {UtilityService} from "./utility.service";
@@ -13,6 +14,7 @@ import {UtilityService} from "./utility.service";
 @NgModule({
   imports: [
     CommonModule,
+    Md2Module,
     RouterModule
   ],
   declarations: [UsPhoneNumberPipe],
@@ -23,7 +25,8 @@ import {UtilityService} from "./utility.service";
     MaterialModule,
     Md2Module,
     Ng2PaginationModule,
-    UsPhoneNumberPipe
+    UsPhoneNumberPipe,
+    Md2Tooltip
   ],
   providers:[UtilityService, DatePipe]
 })
