@@ -34,23 +34,16 @@ export class ProviderSearchComponent {
     this.createForm();
   }
 
-  createForm() {
-    // search provider parent FormGroup
+  private createForm() {
     this.searchProviderFrom = this.formBuilder.group({
-      // state and city child FormGroup
-      stateCity: this.formBuilder.group({
-        state: '',
-        city: ['', Validators.minLength(2)],
-      }),
+      state: '',
+      city: ['', Validators.minLength(2)],
       zip: ['', Validators.minLength(5)],
-      // individual provider child FormGroup
-      individualProvider: this.formBuilder.group({
-        lastName: ['', Validators.minLength(2)],
-        firstName: ['', Validators.minLength(2)],
-        gender: '',
-        telephone: ['', Validators.minLength(10)],
-      }),
-      facilityName: ['', Validators.minLength(2)],
+      lastName: ['', Validators.minLength(2)],
+      firstName: ['', Validators.minLength(2)],
+      gender: '',
+      telephone: ['', Validators.minLength(10)],
+      facilityName: ['', Validators.minLength(2)]
     });
   }
 
@@ -63,10 +56,8 @@ export class ProviderSearchComponent {
   }
 
   searchProviders() {
-    let requestParams: ProviderRequestQuery = this.setProviderRequestQuery();
-
-    this.providerService.searchProviders(requestParams)
-      .then(res => {
+    this.providerService.searchProviders(this.setProviderRequestQuery())
+      .subscribe(res => {
         this.searchResponse = res;
         this.hasSearchResult = true;
       });
@@ -74,16 +65,17 @@ export class ProviderSearchComponent {
   }
 
   private setProviderRequestQuery(): ProviderRequestQuery {
+    const formModel = this.searchProviderFrom.value;
 
     return new ProviderRequestQuery(
-      this.searchProviderFrom.get('stateCity.state').value,
-      this.searchProviderFrom.get('stateCity.city').value,
-      this.searchProviderFrom.get('zip').value,
-      this.searchProviderFrom.get('individualProvider.lastName').value,
-      this.searchProviderFrom.get('individualProvider.firstName').value,
-      this.searchProviderFrom.get('individualProvider.gender').value,
-      this.searchProviderFrom.get('individualProvider.telephone').value,
-      this.searchProviderFrom.get('facilityName').value
+      formModel.state,
+      formModel.city,
+      formModel.zip,
+      formModel.lastName,
+      formModel.firstName,
+      formModel.gender,
+      formModel.telephone,
+      formModel.facilityName
     );
   }
 }

@@ -18,15 +18,14 @@ export class ProviderService {
               private exceptionService: ExceptionService) {
   }
 
-  searchProviders(requestParams: ProviderRequestQuery): Promise<ProviderSearchResponse> {
+  searchProviders(requestParams: ProviderRequestQuery): Observable<ProviderSearchResponse> {
     const SEARCH_PROVIDERS_URL = this.basePlsUrl + "/search/query";
 
     let params: URLSearchParams = this.buildRequestParams(requestParams);
 
     return this.http.get(SEARCH_PROVIDERS_URL, {
       search: params
-    }).toPromise()
-      .then(response => response.json() as ProviderSearchResponse)
+    }).map((resp: Response) => <ProviderSearchResponse>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 

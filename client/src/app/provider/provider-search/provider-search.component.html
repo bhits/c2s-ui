@@ -17,16 +17,14 @@
                 <div fxFlex="27">
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Enter State and City</h3>
-                    <div fxLayout="column" formGroupName="stateCity">
-                      <md-select placeholder="Please Select State" formControlName="state">
-                        <md-option *ngFor="let state of states" [value]="state.stateCode">
-                          {{ state.stateValue }}
-                        </md-option>
-                      </md-select>
-                      <md-input-container *ngIf="searchProviderFrom.get('stateCity.state').value">
-                        <input mdInput placeholder="City" formControlName="city"/>
-                      </md-input-container>
-                    </div>
+                    <md-select placeholder="Please Select State" formControlName="state">
+                      <md-option *ngFor="let state of states" [value]="state.stateCode">
+                        {{ state.stateValue }}
+                      </md-option>
+                    </md-select>
+                    <md-input-container *ngIf="searchProviderFrom.get('state').value">
+                      <input mdInput placeholder="City" formControlName="city"/>
+                    </md-input-container>
                   </div>
                 </div>
                 <div fxFlex><h3>OR</h3></div>
@@ -46,23 +44,21 @@
                 <div fxFlex="27">
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Enter Provider Name and Other Criteria</h3>
-                    <div fxLayout="column" formGroupName="individualProvider">
+                    <md-input-container>
+                      <input mdInput placeholder="Last Name" formControlName="lastName"/>
+                    </md-input-container>
+                    <div fxLayout="column" *ngIf="searchProviderFrom.get('lastName').value">
                       <md-input-container>
-                        <input mdInput placeholder="Last Name" formControlName="lastName"/>
+                        <input mdInput placeholder="First Name" formControlName="firstName">
                       </md-input-container>
-                      <div fxLayout="column" *ngIf="searchProviderFrom.get('individualProvider.lastName').value">
-                        <md-input-container>
-                          <input mdInput placeholder="First Name" formControlName="firstName">
-                        </md-input-container>
-                        <md-input-container>
-                          <input mdInput placeholder="Telephone" formControlName="telephone">
-                        </md-input-container>
-                        <md-select placeholder="Please Select" formControlName="gender">
-                          <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
-                            {{ gender.genderValue }}
-                          </md-option>
-                        </md-select>
-                      </div>
+                      <md-input-container>
+                        <input mdInput placeholder="Telephone" formControlName="telephone">
+                      </md-input-container>
+                      <md-select placeholder="Please Select" formControlName="gender">
+                        <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
+                          {{ gender.genderValue }}
+                        </md-option>
+                      </md-select>
                     </div>
                   </div>
                 </div>
@@ -79,8 +75,11 @@
             </md-card-content>
             <div fxLayout="row">
               <div fxLayoutAlign="left" fxLayoutGap="20px">
-                <button md-raised-button color="primary" (click)="reset()">Clear All</button>
-                <button md-raised-button color="primary" (click)="searchProviders()">Search
+                <button md-raised-button color="primary" (click)="reset()" [disabled]="searchProviderFrom.pristine">
+                  Clear All
+                </button>
+                <button md-raised-button color="primary" (click)="searchProviders()"
+                        [disabled]="searchProviderFrom.pristine">Search
                 </button>
               </div>
             </div>
