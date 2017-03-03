@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import {Http} from "@angular/http";
-import {SensitivityPolicy} from "./sensitivity-policy";
+import {Http, URLSearchParams} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
+
 import {Provider} from "./Provider";
 import {PurposeOfUse} from "./purpose-of-use";
+import {Consent} from "./consent";
+import {SensitivityPolicy} from "./sensitivity-policy";
 
 @Injectable()
 export class ConsentService {
@@ -12,6 +14,7 @@ export class ConsentService {
   private pcmProvidersUrl:string = this.pcmBaseUrl + "/providers";
   private pcmPurposeOfUseUrl:string = this.pcmBaseUrl + "purposeOfUse";
   private pcmSensitivityPolicyUrl:string = this.pcmBaseUrl + "sensitivityPolicy";
+  private pcmConsentUrl:string = this.pcmBaseUrl + "consents";
 
 
   constructor(private http: Http) { }
@@ -50,5 +53,19 @@ export class ConsentService {
     return null;
   }
 
+  createConsent(consent: Consent){
+    return this.http.post(this.pcmConsentUrl, consent)
+      .toPromise()
+      .then(response => {
+        console.log(response);
+      })
+      .catch(this.handleError);
+  }
 
+  getConsentById(id: string){
+    return this.http.get(this.pcmConsentUrl + "/" +id)
+      .toPromise()
+      .then(response => response.json() as PurposeOfUse[])
+      .catch(this.handleError);
+  }
 }
