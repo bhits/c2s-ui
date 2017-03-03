@@ -71,11 +71,11 @@ export class ProviderService {
     let params: URLSearchParams = new URLSearchParams();
     params.set('state', this.addLikePatternInQueryParameter(requestParams.state));
     params.set('city', this.addLikePatternInQueryParameter(requestParams.city));
-    params.set('zipcode', this.addLikePatternInQueryParameter(requestParams.zipcode));
-    params.set('firstname', this.addLikePatternInQueryParameter(requestParams.firstname));
-    params.set('lastname', this.addLikePatternInQueryParameter(requestParams.lastname));
-    params.set('gendercode', this.addLikePatternInQueryParameter(requestParams.gendercode));
-    params.set('orgname', this.addLikePatternInQueryParameter(requestParams.orgname));
+    params.set('zipcode', this.addLikePatternInQueryParameter(requestParams.zipCode));
+    params.set('firstname', this.addLikePatternInQueryParameter(requestParams.firstName));
+    params.set('lastname', this.addLikePatternInQueryParameter(requestParams.lastName));
+    params.set('gendercode', this.addLikePatternInQueryParameter(requestParams.genderCode));
+    params.set('orgname', this.addLikePatternInQueryParameter(requestParams.orgName));
     params.set('phone', this.addLikePatternInQueryParameter(requestParams.phone));
     params.set('projection', PROJECTION);
 
