@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {Md2Module} from "md2";
 import { MaterialModule} from "@angular/material";
 
+
 import { ConsentTermsComponent } from './consent-terms/consent-terms.component';
 import { PurposeOfUseComponent } from './purpose-of-use/purpose-of-use.component';
 import { SelectProviderComponent } from './select-provider/select-provider.component';
@@ -16,6 +17,8 @@ import { MedicalInformationService} from "./medical-information/medical-informat
 import { SelectProvidersComponent } from './select-providers/select-providers.component';
 import { ConsentProviderNamePipe } from './shared/consent-provider-name.pipe';
 import { ConsentRoutingModule} from "./consent-routing.module";
+import {ConsentResolveService} from "./shared/consent-resolve.service";
+import {ProviderResolveService} from "./shared/provider-resolve.service";
 
 
 @NgModule({
@@ -39,6 +42,6 @@ import { ConsentRoutingModule} from "./consent-routing.module";
   exports: [
     ConsentCreateEditComponent
   ],
-  providers: [ConsentService, PurposeOfUseService, MedicalInformationService]
+  providers: [ConsentService, PurposeOfUseService, MedicalInformationService, ConsentResolveService, ProviderResolveService]
 })
 export class ConsentModule { }
