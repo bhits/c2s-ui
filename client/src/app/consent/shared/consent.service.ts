@@ -68,4 +68,13 @@ export class ConsentService {
       .then(response => response.json() as PurposeOfUse[])
       .catch(this.handleError);
   }
+
+  updateConsent(consent:Consent){
+    return this.http.put(this.pcmConsentUrl, consent)
+      .toPromise()
+      .then(response => {
+        console.log(response);
+      })
+      .catch(this.handleError);
+  }
 }
