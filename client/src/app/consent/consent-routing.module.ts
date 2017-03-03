@@ -9,7 +9,12 @@ import {ProviderResolveService} from "./shared/provider-resolve.service";
 
 const consentRoutes: Routes = [
   { path: 'consent-list', component: ConsentCreateEditComponent },
-  { path: 'consent-create-edit', component: ConsentCreateEditComponent},
+  { path: 'consent-create-edit',
+    component: ConsentCreateEditComponent,
+    resolve: {
+      providers:ProviderResolveService
+    }
+  },
   { path: 'consent-create-edit/:consentId',
     component: ConsentCreateEditComponent,
     resolve: {
