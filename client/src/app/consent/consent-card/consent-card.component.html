@@ -82,7 +82,7 @@
             <md-list>
               <md-list-item *ngFor="let consentOption of getConsentStageOptions()">
                 <div class="margin-20" fxFill>
-                  <a fxLayoutAlign="space-between" md-raised-button routerLink=".">
+                  <a fxLayoutAlign="space-between" md-raised-button [routerLink]="getRouterLink(consentOption)">
                     <md-icon>{{consentOption.icon}}</md-icon>
                     <span class="margin-20">{{consentOption.text}}</span>
                   </a>

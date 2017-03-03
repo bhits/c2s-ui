@@ -1,30 +1,37 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {RouterModule} from "@angular/router";
 import {MaterialModule} from "@angular/material";
-import {ConsentTermsComponent} from "./consent-terms/consent-terms.component";
-import {PurposeOfUseComponent} from "./purpose-of-use/purpose-of-use.component";
+import { NgModule } from '@angular/core';
+import { CommonModule  } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { SharedModule} from "../shared/shared.module";
+import { PurposeOfUseService} from "./purpose-of-use/purpose-of-use.service";
+import { ConsentTermsComponent } from './consent-terms/consent-terms.component';
+import { PurposeOfUseComponent } from './purpose-of-use/purpose-of-use.component';
+import { SelectProviderComponent } from './select-provider/select-provider.component';
+import { MedicalInformationComponent } from './medical-information/medical-information.component';
+import {ConsentRoutingModule} from "./consent-routing.module";
+import {ConsentResolveService} from "./shared/consent-resolve.service";
+import {ProviderResolveService} from "./shared/provider-resolve.service";
+import { ConsentService} from "./shared/consent.service";
+import { ConsentProviderNamePipe } from './shared/consent-provider-name.pipe';
+import { ConsentCreateEditComponent } from './consent-create-edit/consent-create-edit.component';
+import { MedicalInformationService} from "./medical-information/medical-information.service";
 import {Md2Module} from "md2";
-import {SelectProviderComponent} from "./select-provider/select-provider.component";
-import {MedicalInformationComponent} from "./medical-information/medical-information.component";
-import {ConsentCreateEditComponent} from "./consent-create-edit/consent-create-edit.component";
+import {RouterModule} from "@angular/router";
 import {ConsentCardComponent} from "./consent-card/consent-card.component";
 import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.component";
-import {ConsentService} from "./consent.service";
-import {SharedModule} from "../shared/shared.module";
-import {ConsentRoutingModule} from "./consent-routing.module";
 import {ConsentStagePipe} from "./shared/consent-stage.pipe";
+import {SelectProvidersComponent} from "./select-providers/select-providers.component";
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule, // TODO: verify while FormModule when imported at root level is not available to every other module
-    ConsentRoutingModule,
     SharedModule,
     Md2Module,
-    RouterModule
+    RouterModule,
+    ConsentRoutingModule
   ],
   declarations: [
     ConsentTermsComponent,
@@ -34,13 +41,14 @@ import {ConsentStagePipe} from "./shared/consent-stage.pipe";
     ConsentCreateEditComponent,
     ConsentCardComponent,
     ConsentCardListComponent,
-    ConsentStagePipe
+    ConsentStagePipe,
+    SelectProvidersComponent,
+    ConsentProviderNamePipe,
   ],
   exports: [
-    ConsentCreateEditComponent,
-    MaterialModule
+    ConsentCreateEditComponent
   ],
-  providers: [ConsentService]
+  providers: [ConsentService, PurposeOfUseService, MedicalInformationService, ConsentResolveService, ProviderResolveService],
 })
 export class ConsentModule {
 }

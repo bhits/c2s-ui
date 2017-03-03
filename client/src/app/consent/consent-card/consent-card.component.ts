@@ -40,7 +40,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
       this.consent.doNotShareSensitivityPolicyCodes.length > 0;
   }
 
-  getHeightPx() {
+  getHeightPx(): string {
     return `${this.height}px`;
   }
 
@@ -49,5 +49,9 @@ export class ConsentCardComponent implements OnInit, OnChanges {
       .filter(consentStage => consentStage.consentStage === this.consent.consentStage)
       .map(consentStage => consentStage.options)
       .pop();
+  }
+
+  getRouterLink(consentOption: ConsentStageOption): any {
+    return consentOption.routerLink ? [consentOption.routerLink, this.consent.id] : '.'
   }
 }
