@@ -18,13 +18,6 @@ export class ProviderService {
               private exceptionService: ExceptionService) {
   }
 
-  getProviders(): Promise<Provider[]> {
-    return this.http.get(this.basePcmUrl)
-      .toPromise()
-      .then(response => response.json() as Provider[])
-      .catch(this.exceptionService.handleError);
-  }
-
   searchProviders(requestParams: ProviderRequestQuery): Promise<ProviderSearchResponse> {
     const SEARCH_PROVIDERS_URL = this.basePlsUrl + "/search/query";
 
