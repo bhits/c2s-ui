@@ -7,7 +7,7 @@ export const CONSENT_STAGES: ConsentStage[] = [
     icon: "edit",
     color: "accent",
     options: [
-      {icon: "edit", text: "Edit This Consent"},
+      {icon: "edit", text: "Edit This Consent", routerLink: '/consent-create-edit'},
       {icon: "search", text: "Preview This Consent"},
       {icon: "assignment_turned_in", text: "Provide eSignature"},
       {icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
