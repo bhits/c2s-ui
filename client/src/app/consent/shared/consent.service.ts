@@ -6,6 +6,7 @@ import {Provider} from "./Provider";
 import {PurposeOfUse} from "./purpose-of-use";
 import {Consent} from "./consent";
 import {SensitivityPolicy} from "./sensitivity-policy";
+import {EditConsent} from "./EditConsent";
 
 @Injectable()
 export class ConsentService {
@@ -69,8 +70,8 @@ export class ConsentService {
       .catch(this.handleError);
   }
 
-  updateConsent(consent:Consent){
-    return this.http.put(this.pcmConsentUrl, consent)
+  updateConsent(editconsent:EditConsent){
+    return this.http.put(this.pcmConsentUrl + "/" + editconsent.id, editconsent)
       .toPromise()
       .then(response => {
         console.log(response);

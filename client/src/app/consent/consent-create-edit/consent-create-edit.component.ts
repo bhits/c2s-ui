@@ -7,6 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import {UtilityService} from "../../shared/utility.service";
 import {Consent} from "../shared/consent";
 import {Provider} from "../shared/Provider";
+import {EditConsent} from "../shared/EditConsent";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -77,8 +78,20 @@ export class ConsentCreateEditComponent implements OnInit {
 
   submitForm(){
     if(this.consentId){
-      this.consent['id']= this.consentId;
-      this.consentService.updateConsent(this.consent)
+
+       let editConsent = new EditConsent();
+       editConsent.id= this.consentId;
+       editConsent.consentStart = this.consent.consentStart;
+       editConsent.consentEnd = this.consent.consentEnd;
+       editConsent.shareForPurposeOfUseCodes = this.consent.shareForPurposeOfUseCodes;
+       editConsent.doNotShareSensitivityPolicyCodes = this.consent.doNotShareSensitivityPolicyCodes;
+       editConsent.organizationalProvidersDisclosureIsMadeToNpi = this.consent.organizationalProvidersDisclosureIsMadeToNpi;
+       editConsent.organizationalProvidersPermittedToDiscloseNpi = this.consent.organizationalProvidersPermittedToDiscloseNpi;
+       editConsent.providersDisclosureIsMadeToNpi = this.consent.providersDisclosureIsMadeToNpi;
+       editConsent.providersPermittedToDiscloseNpi = this.consent.providersPermittedToDiscloseNpi;
+
+
+       this.consentService.updateConsent(editConsent)
                           .then(res => {
                             this.toast.show("Success in Updating consent.", 2000);
                             console.log(res);
@@ -88,7 +101,7 @@ export class ConsentCreateEditComponent implements OnInit {
                             console.log(error);
                           });
     }else {
-      this.consentService.createConsent(this.consent)
+       this.consentService.createConsent(this.consent)
                         .then(res => {
                           this.toast.show("Success in creating consent.", 2000);
                           console.log(res);
