@@ -1,4 +1,4 @@
-import {CommonModule} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {FlexLayoutModule} from "@angular/flex-layout";
@@ -8,7 +8,7 @@ import {Ng2PaginationModule} from "ng2-pagination";
 import {NgModule} from "@angular/core";
 
 import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
-import {UtiltityService} from "./utiltity.service";
+import {UtilityService} from "./utility.service";
 
 @NgModule({
   imports: [
@@ -25,7 +25,7 @@ import {UtiltityService} from "./utiltity.service";
     Ng2PaginationModule,
     UsPhoneNumberPipe
   ],
-  providers:[UtiltityService]
+  providers:[UtilityService, DatePipe]
 })
 
 export class SharedModule {

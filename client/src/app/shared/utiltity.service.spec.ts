@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { UtiltityService } from './utiltity.service';
+import { UtiltityService } from './utility.service';
 
 describe('UtiltityService', () => {
   beforeEach(() => {
