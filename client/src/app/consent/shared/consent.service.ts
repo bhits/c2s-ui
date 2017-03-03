@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, URLSearchParams} from "@angular/http";
+import {Http, Response} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 
 import {Provider} from "./Provider";
@@ -7,6 +7,9 @@ import {PurposeOfUse} from "./purpose-of-use";
 import {Consent} from "./consent";
 import {SensitivityPolicy} from "./sensitivity-policy";
 import {EditConsent} from "./EditConsent";
+import {ExceptionService} from "../../core/exception.service";
+import {Observable} from "rxjs";
+import {ConsentList} from "./consent-list.model";
 
 @Injectable()
 export class ConsentService {
@@ -16,9 +19,9 @@ export class ConsentService {
   private pcmPurposeOfUseUrl:string = this.pcmBaseUrl + "purposeOfUse";
   private pcmSensitivityPolicyUrl:string = this.pcmBaseUrl + "sensitivityPolicy";
   private pcmConsentUrl:string = this.pcmBaseUrl + "consents";
+  private consentListUri: string = "http://localhost/pcm/patients/consents/pageNumber";
 
-
-  constructor(private http: Http) { }
+  constructor(private http: Http, private exceptionService: ExceptionService) { }
 
   getProviders(): Promise<Provider[]> {
     return this.http.get(this.pcmProvidersUrl)
@@ -77,5 +80,12 @@ export class ConsentService {
         console.log(response);
       })
       .catch(this.handleError);
+  }
+
+  getConsentList(page: number): Observable<ConsentList> {
+    const pageUri: string = `${this.consentListUri}/${page || 0}`;
+    return this.http.get(pageUri)
+      .map((resp: Response) => <ConsentList>(resp.json()))
+      .catch(this.exceptionService.handleError);
   }
 }

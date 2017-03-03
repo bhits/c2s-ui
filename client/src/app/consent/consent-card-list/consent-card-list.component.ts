@@ -1,8 +1,8 @@
 import {Component, OnInit, ChangeDetectionStrategy} from "@angular/core";
 import {Observable} from "rxjs/Observable";
-import {ConsentService} from "../consent.service";
 import {ConsentList} from "../shared/consent-list.model";
 import {Consent} from "../shared/consent.model";
+import {ConsentService} from "../shared/consent.service";
 @Component({
   selector: 'c2s-consent-card-list',
   templateUrl: './consent-card-list.component.html',

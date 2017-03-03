@@ -9,7 +9,6 @@ import { ConsentTermsComponent } from './consent-terms/consent-terms.component';
 import { PurposeOfUseComponent } from './purpose-of-use/purpose-of-use.component';
 import { SelectProviderComponent } from './select-provider/select-provider.component';
 import { MedicalInformationComponent } from './medical-information/medical-information.component';
-import { ConsentCreateEditComponent } from './consent-create-edit/consent-create-edit.component';
 import {ConsentRoutingModule} from "./consent-routing.module";
 import {ConsentResolveService} from "./shared/consent-resolve.service";
 import {ProviderResolveService} from "./shared/provider-resolve.service";
@@ -17,6 +16,12 @@ import { ConsentService} from "./shared/consent.service";
 import { ConsentProviderNamePipe } from './shared/consent-provider-name.pipe';
 import { ConsentCreateEditComponent } from './consent-create-edit/consent-create-edit.component';
 import { MedicalInformationService} from "./medical-information/medical-information.service";
+import {Md2Module} from "md2";
+import {RouterModule} from "@angular/router";
+import {ConsentCardComponent} from "./consent-card/consent-card.component";
+import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.component";
+import {ConsentStagePipe} from "./shared/consent-stage.pipe";
+import {SelectProvidersComponent} from "./select-providers/select-providers.component";
 
 @NgModule({
   imports: [
@@ -36,7 +41,7 @@ import { MedicalInformationService} from "./medical-information/medical-informat
     ConsentCreateEditComponent,
     ConsentCardComponent,
     ConsentCardListComponent,
-    ConsentStagePipe
+    ConsentStagePipe,
     SelectProvidersComponent,
     ConsentProviderNamePipe,
   ],

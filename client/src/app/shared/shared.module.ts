@@ -1,6 +1,5 @@
 import {CommonModule, DatePipe} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {RouterModule} from "@angular/router";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MaterialModule} from "@angular/material";
 import {Md2Module} from "md2";
@@ -32,9 +31,9 @@ import {DataService} from "./data.service";
   ],
   providers: [
     DataService,
-    UtilityService
+    UtilityService,
+    DatePipe
   ]
-  providers:[UtilityService, DatePipe]
 })
 
 export class SharedModule {

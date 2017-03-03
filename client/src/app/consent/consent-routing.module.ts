@@ -16,12 +16,14 @@ const consentRoutes: Routes = [
       providers:ProviderResolveService
     }
   },
-  { path: 'consent-create-edit/:consentId',
+  {
+    path: 'consent-create-edit/:consentId',
     component: ConsentCreateEditComponent,
     resolve: {
       consent: ConsentResolveService,
-      providers:ProviderResolveService
+      providers: ProviderResolveService
     }
+  }
 ];
 
 @NgModule({
