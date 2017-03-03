@@ -38,12 +38,12 @@ export class ProviderSearchComponent {
     this.searchProviderFrom = this.formBuilder.group({
       state: '',
       city: ['', Validators.minLength(2)],
-      zip: ['', Validators.minLength(5)],
+      zipCode: ['', Validators.minLength(5)],
       lastName: ['', Validators.minLength(2)],
       firstName: ['', Validators.minLength(2)],
-      gender: '',
-      telephone: ['', Validators.minLength(10)],
-      facilityName: ['', Validators.minLength(2)]
+      genderCode: '',
+      phone: ['', Validators.minLength(10)],
+      orgName: ['', Validators.minLength(2)]
     });
   }
 
@@ -70,16 +70,6 @@ export class ProviderSearchComponent {
 
   private setProviderRequestQuery(): ProviderRequestQuery {
     const formModel = this.searchProviderFrom.value;
-
-    return new ProviderRequestQuery(
-      formModel.state,
-      formModel.city,
-      formModel.zip,
-      formModel.lastName,
-      formModel.firstName,
-      formModel.gender,
-      formModel.telephone,
-      formModel.facilityName
-    );
+    return <ProviderRequestQuery>(formModel);
   }
 }

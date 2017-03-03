@@ -32,7 +32,7 @@
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Enter Zip Code</h3>
                     <md-input-container>
-                      <input mdInput placeholder="Enter Zip Code" formControlName="zip"/>
+                      <input mdInput placeholder="Enter Zip Code" formControlName="zipCode"/>
                     </md-input-container>
                   </div>
                 </div>
@@ -52,9 +52,9 @@
                         <input mdInput placeholder="First Name" formControlName="firstName">
                       </md-input-container>
                       <md-input-container>
-                        <input mdInput placeholder="Telephone" formControlName="telephone">
+                        <input mdInput placeholder="Telephone" formControlName="phone">
                       </md-input-container>
-                      <md-select placeholder="Please Select" formControlName="gender">
+                      <md-select placeholder="Please Select" formControlName="genderCode">
                         <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
                           {{ gender.genderValue }}
                         </md-option>
@@ -67,7 +67,7 @@
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Facility Name</h3>
                     <md-input-container>
-                      <input mdInput placeholder="Facility Name" formControlName="facilityName">
+                      <input mdInput placeholder="Facility Name" formControlName="orgName">
                     </md-input-container>
                   </div>
                 </div>
