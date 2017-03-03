@@ -22,18 +22,32 @@
                         {{ state.stateValue }}
                       </md-option>
                     </md-select>
-                    <md-input-container *ngIf="getFormControlValue('state')">
-                      <input mdInput placeholder="City" formControlName="city"/>
-                    </md-input-container>
+                    <div fxLayout="column">
+                      <md-input-container *ngIf="getFormControl('state').value">
+                        <input mdInput placeholder="City" formControlName="city"/>
+                      </md-input-container>
+                      <div fxLayoutAlign="left"
+                           *ngIf="getFormControl('city').invalid && (getFormControl('city').dirty || getFormControl('city').touched)"
+                           class="form-invalid">
+                        Must be at least 2 characters long.
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div fxFlex><h3>OR</h3></div>
                 <div fxFlex="27">
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Enter Zip Code</h3>
-                    <md-input-container>
-                      <input mdInput placeholder="Enter Zip Code" formControlName="zipCode"/>
-                    </md-input-container>
+                    <div fxLayout="column">
+                      <md-input-container>
+                        <input mdInput placeholder="Enter Zip Code" formControlName="zipCode"/>
+                      </md-input-container>
+                      <div fxLayoutAlign="left"
+                           *ngIf="getFormControl('zipCode').invalid && (getFormControl('zipCode').dirty || getFormControl('zipCode').touched)"
+                           class="form-invalid">
+                        Must be with formats: 12345 or 12345-6789.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -44,16 +58,37 @@
                 <div fxFlex="27">
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Enter Provider Name and Other Criteria</h3>
-                    <md-input-container>
-                      <input mdInput placeholder="Last Name" formControlName="lastName"/>
-                    </md-input-container>
-                    <div fxLayout="column" *ngIf="getFormControlValue('lastName')">
+                    <div fxLayout="column">
                       <md-input-container>
-                        <input mdInput placeholder="First Name" formControlName="firstName">
+                        <input mdInput placeholder="Last Name" formControlName="lastName"/>
                       </md-input-container>
-                      <md-input-container>
-                        <input mdInput placeholder="Telephone" formControlName="phone">
-                      </md-input-container>
+                      <div fxLayoutAlign="left"
+                           *ngIf="getFormControl('lastName').invalid && (getFormControl('lastName').dirty || getFormControl('lastName').touched)"
+                           class="form-invalid">
+                        Must be at least 2 characters long.
+                      </div>
+                    </div>
+                    <div fxLayout="column" *ngIf="getFormControl('lastName').value">
+                      <div fxLayout="column">
+                        <md-input-container>
+                          <input mdInput placeholder="First Name" formControlName="firstName">
+                        </md-input-container>
+                        <div fxLayoutAlign="left"
+                             *ngIf="getFormControl('firstName').invalid && (getFormControl('firstName').dirty || getFormControl('firstName').touched)"
+                             class="form-invalid">
+                          Must be at least 2 characters long.
+                        </div>
+                      </div>
+                      <div fxLayout="column">
+                        <md-input-container>
+                          <input mdInput placeholder="Telephone" formControlName="phone">
+                        </md-input-container>
+                        <div fxLayoutAlign="left" fxLayout="row"
+                             *ngIf="getFormControl('phone').invalid && (getFormControl('phone').dirty || getFormControl('phone').touched)"
+                             class="form-invalid">
+                          Must be with formats: 123-456-7890 (123)456-7890 1234567890 123.456.7890.
+                        </div>
+                      </div>
                       <md-select placeholder="Please Select" formControlName="genderCode">
                         <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
                           {{ gender.genderValue }}
@@ -66,9 +101,16 @@
                 <div fxFlex="27">
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Facility Name</h3>
-                    <md-input-container>
-                      <input mdInput placeholder="Facility Name" formControlName="orgName">
-                    </md-input-container>
+                    <div fxLayout="column">
+                      <md-input-container>
+                        <input mdInput placeholder="Facility Name" formControlName="orgName">
+                      </md-input-container>
+                      <div fxLayoutAlign="left"
+                           *ngIf="getFormControl('orgName').invalid && (getFormControl('orgName').dirty || getFormControl('orgName').touched)"
+                           class="form-invalid">
+                        Must be at least 2 characters long.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

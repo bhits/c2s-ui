@@ -35,20 +35,22 @@ export class ProviderSearchComponent {
   }
 
   private createForm() {
+    const ZIP_PATTERN = '^[0-9]{5}(?:-[0-9]{4})?$';
+    const PHONE_PATTERN = '^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$';
     this.searchProviderFrom = this.formBuilder.group({
       state: '',
       city: ['', Validators.minLength(2)],
-      zipCode: ['', Validators.minLength(5)],
+      zipCode: ['', Validators.pattern(ZIP_PATTERN)],
       lastName: ['', Validators.minLength(2)],
       firstName: ['', Validators.minLength(2)],
       genderCode: '',
-      phone: ['', Validators.minLength(10)],
+      phone: ['', Validators.pattern(PHONE_PATTERN)],
       orgName: ['', Validators.minLength(2)]
     });
   }
 
-  getFormControlValue(formControl: string) {
-    return this.searchProviderFrom.get(formControl).value;
+  getFormControl(formControl: string) {
+    return this.searchProviderFrom.get(formControl);
   }
 
   resetAccordionTab() {
