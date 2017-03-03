@@ -10,8 +10,8 @@ import {ExceptionService} from "../../core/exception.service";
 
 @Injectable()
 export class ProviderService {
-  private basePcmUrl = 'http://localhost/pcm/patients/providers';
-  private basePlsUrl = 'http://localhost/pls/providers';
+  private basePcmUrl = '/pcm/patients/providers';
+  private basePlsUrl = '/pls/providers';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http,

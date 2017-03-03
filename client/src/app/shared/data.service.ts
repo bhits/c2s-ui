@@ -6,7 +6,7 @@ import {Provider} from "../provider/shared/provider.model";
 
 @Injectable()
 export class DataService {
-  private basePcmUrl = 'http://localhost/pcm/patients/providers';
+  private basePcmUrl = '/pcm/patients/providers';
 
   constructor(private http: Http,
               private exceptionService: ExceptionService) {
