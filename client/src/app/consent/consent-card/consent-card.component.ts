@@ -1,5 +1,7 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from "@angular/core";
 import {Consent} from "../shared/consent.model";
+import {CONSENT_STAGES} from "../shared/consent-stages.model";
+import {ConsentStageOption} from "../shared/consent-stage-option.model";
 
 
 @Component({
@@ -40,5 +42,12 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   getHeightPx() {
     return `${this.height}px`;
+  }
+
+  getConsentStageOptions(): ConsentStageOption[] {
+    return CONSENT_STAGES
+      .filter(consentStage => consentStage.consentStage === this.consent.consentStage)
+      .map(consentStage => consentStage.options)
+      .pop();
   }
 }
