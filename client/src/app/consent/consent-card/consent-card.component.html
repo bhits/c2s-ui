@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <div class="block" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+      <div class="transition" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
            (window:resize)="onResize($event, el)"
            [style.height]="getHeightPx()" #el>
         <div fxFlex *ngIf="hasDoNotShareSensitivityPolicyCodes()">
@@ -76,7 +76,20 @@
       </div>
       <div fxFlex>
         <div>
-          <button md-raised-button color="primary">Manage Consents</button>
+          <button md-raised-button color="primary" (click)="consentOptions.open()">Manage Consents</button>
+          <md2-dialog #consentOptions>
+            <md2-dialog-title fxLayoutAlign="center">Consent Options</md2-dialog-title>
+            <md-list>
+              <md-list-item *ngFor="let consentOption of getConsentStageOptions()">
+                <div class="margin-20" fxFill>
+                  <a fxLayoutAlign="space-between" md-raised-button routerLink=".">
+                    <md-icon>{{consentOption.icon}}</md-icon>
+                    <span class="margin-20">{{consentOption.text}}</span>
+                  </a>
+                </div>
+              </md-list-item>
+            </md-list>
+          </md2-dialog>
         </div>
       </div>
     </div>
