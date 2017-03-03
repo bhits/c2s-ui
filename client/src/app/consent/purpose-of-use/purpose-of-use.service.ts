@@ -41,4 +41,14 @@ export class PurposeOfUseService {
     return selected;
   }
 
+  getSelectedPurposeOfUse(purposeOfUses:PurposeOfUse[]):PurposeOfUse[]{
+    let selected:PurposeOfUse[] =  new Array();
+    for(let purposeOfUse of purposeOfUses){
+      if( purposeOfUse['checked']){
+        selected.push(purposeOfUse);
+      }
+    }
+    return selected;
+  }
+
 }

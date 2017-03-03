@@ -3,6 +3,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {ConsentService} from "../shared/consent.service";
 import {Provider} from "../shared/Provider";
 import 'rxjs/add/operator/toPromise';
+import {UtilityService} from "../../shared/utility.service";
 
 
 @Component({
@@ -14,17 +15,33 @@ export class SelectProviderComponent implements OnInit {
   @Input() providers: Provider[];
   @Input() title:string;
   @Input() dialogTitle:string;
-  @Input() selectedProviderList:string[];
+  @Input() selectedProvidersNpi:any ;
 
   private selectedProviderNpi:string;
-  private selectedProvider:Provider;
+  private selectedProvider: Provider;
+
+  private authorizeProviderNpi:string[];
+  private disclosureProviderNpi:string[];
 
   @Output() selectedAuthorizeProvider= new EventEmitter();
   @Output() selectedDisclosureProvider= new EventEmitter();
 
-  constructor(private consentService: ConsentService) { }
+  constructor(private consentService: ConsentService, private utilityService:UtilityService) {
+
+  }
 
   ngOnInit() {
+    if(this.dialogTitle === 'Authorize' &&
+      (this.utilityService.isDefined(this.selectedProvidersNpi.authorize)) &&
+      (this.selectedProvidersNpi.authorize.length>0)){
+      this.authorizeProviderNpi = this.selectedProvidersNpi.authorize;
+      this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.authorizeProviderNpi[0]);
+    }else if(this.dialogTitle === 'Disclosure'&&
+      (this.utilityService.isDefined(this.selectedProvidersNpi.disclosure)) &&
+      (this.selectedProvidersNpi.disclosure.length>0)){
+      this.disclosureProviderNpi = this.selectedProvidersNpi.disclosure;
+      this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.disclosureProviderNpi[0]);
+    }
   }
 
   openDialog(dialog: any){
@@ -44,11 +61,12 @@ export class SelectProviderComponent implements OnInit {
     dialog.close();
   }
 
-  isSelected(npi:string):boolean {
-  if (this.selectedProviderList.length>0) {
-    return (this.selectedProviderList[0] === npi);
-  } else {
+  isSelected(npi:string, isAuthorized: boolean):boolean {
     return false;
+  // if (isAuthorized && this.authorizeProviderNpi.length >0) {
+  //   return (this.authorizeProviderNpi[0] === npi);
+  // } else if(!isAuthorized && this.disclosureProviderNpi.length >0) {
+  //   return (this.disclosureProviderNpi[0] === npi);
+  // }
   }
-}
 }

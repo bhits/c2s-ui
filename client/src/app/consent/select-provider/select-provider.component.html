@@ -4,7 +4,7 @@
     <md-card-title>{{title}}</md-card-title>
   </md-card-header>
   <md-card-content>
-     <h4>{{selectedProvider | consentProviderName}}</h4>
+     <h4>{{ selectedProvider | consentProviderName}}</h4>
   </md-card-content>
 </md-card>
 
@@ -19,7 +19,7 @@
           <div *ngFor="let provider of providers">
             <md-radio-button *ngIf="provider.entityType === 'Individual'"
                              [value]="provider.npi"
-                             [disabled]="isSelected(provider.npi)">
+                             [disabled]="isSelected(provider.npi, true)">
               {{provider | consentProviderName}}
             </md-radio-button>
           </div>
@@ -27,7 +27,7 @@
         <div *ngFor="let provider of providers">
           <md-radio-button *ngIf="provider.entityType === 'Organization'"
                            [value]="provider.npi"
-                           [disabled]="isSelected(provider.npi)">
+                           [disabled]="isSelected(provider.npi, false)">
             {{provider | consentProviderName}}
           </md-radio-button>
         </div>

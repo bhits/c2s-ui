@@ -1,36 +1,35 @@
 
-<form  (ngSubmit)="submitForm()" >
+<form >
   <md-grid-list cols="1">
 
     <md-card class="left-align">
       <h2> I, <span > User name</span>, hereby authorize... </h2>
     </md-card>
 
-    <c2s-select-providers [(authorizeProvider)]="consent.organizationalProvidersPermittedToDiscloseNpi"
-                          [(disclosureProvider)]="consent.organizationalProvidersDisclosureIsMadeToNpi"
+    <c2s-select-providers [providers]="providers"
+                          [(authorizeProviderNpi)]="consent.organizationalProvidersPermittedToDiscloseNpi"
+                          [(disclosureProviderNpi)]="consent.organizationalProvidersDisclosureIsMadeToNpi"
                           >
     </c2s-select-providers>
 
     <c2s-medical-information
       [isShareAll]="isShareAll"
-      [sensitivityPoliciesCodes]="consent?.doNotShareSensitivityPolicyCodes"
+      [sensitivityPoliciesCodes]="consent.doNotShareSensitivityPolicyCodes"
       (selectedMedicalInformation)="onSelectMedicalInformation($event)">
     </c2s-medical-information>
 
-    <c2s-purpose-of-use [purposeOfUsesCodes]="consent?.shareForPurposeOfUseCodes"
+    <c2s-purpose-of-use [purposeOfUsesCodes]="consent.shareForPurposeOfUseCodes"
                         (selectedPurposeOfUse)="onSelectedPurposeOfUse($event)">
     </c2s-purpose-of-use>
 
     <c2s-consent-terms
-        [startDate]="consent?.startDate"
-        [endDate]="consent?.endDate"
-        (startDateChange)="onStartDateChange($event)"
-        (endDateChange)="onEndDateChange($event)">
+        [(startDate)]="consent.consentStart"
+        [(endDate)]="consent.consentEnd">
     </c2s-consent-terms>
 
     <md-card class="right-align">
         <button md-raised-button >Cancel</button>
-        <button md-raised-button color="primary" type="submit">Create</button>
+        <button md-raised-button color="primary" type="submit" (click)="submitForm()">Create</button>
     </md-card>
   </md-grid-list>
 </form>
