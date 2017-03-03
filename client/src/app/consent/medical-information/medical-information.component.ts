@@ -12,7 +12,8 @@ import {MedicalInformationService} from "./medical-information.service";
 export class MedicalInformationComponent implements OnInit {
   federalInfo:any;
   stateInfo:any
-  @Input() isShareAll:string ;
+  isShareAll:string ;
+  checkedSensitityPolicies: SensitivityPolicy[];
   @Output() selectedMedicalInformation = new EventEmitter();
   @Input() sensitivityPoliciesCodes: string[];
   private sensitivityPolicies: SensitivityPolicy[];
@@ -39,10 +40,17 @@ export class MedicalInformationComponent implements OnInit {
                         .then(res => {
                             this.sensitivityPolicies = res;
                             this.updateSensitivityPoliciesStatus();
+                            this.updateSelectedSensitityPolicy();
                         })
                         .catch(this.error);
-  }
 
+  }
+  private updateSelectedSensitityPolicy(){
+    if(this.sensitivityPoliciesCodes.length > 0 ){
+      this.isShareAll = '0';
+      this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
+    }
+  }
   private updateSensitivityPoliciesStatus(){
     this.medicalInformationService.updateSensitivitiesPoliciesStatus(this.sensitivityPoliciesCodes,this.sensitivityPolicies);
   }
@@ -55,16 +63,18 @@ export class MedicalInformationComponent implements OnInit {
     this.selectedMedicalInformation.emit(value);
   }
 
-  onSelectShareAll(value:string){
-    this.isShareAll = "1";
+  onSelectShareAll(dialog: any, value:string){
+    this.isShareAll = value;
+    this.checkedSensitityPolicies = [];
     this.sensitivityPoliciesCodes = [];
     //Unchecked all checked boxes
-    this.medicalInformationService.setSenetivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
-    this.selectedMedicalInformation.emit(this.sensitivityPoliciesCodes);
+    this.medicalInformationService.setSensitivityPoliciesStatusToChecked(this.sensitivityPolicies);
+    dialog.open();
   }
 
   setSelectedMedicalInformation(dialog: any){
     dialog.close();
+    this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
     this.selectedMedicalInformation.emit(this.getSelectedSensitivityPolicieseCode());
   }
 
@@ -73,8 +83,16 @@ export class MedicalInformationComponent implements OnInit {
   }
 
   onSelectDonotShareAll(dialog: any, value:string){
+    this.isShareAll = value;
+    this.medicalInformationService.setSenetivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
+    this.checkedSensitityPolicies = [];
     dialog.open();
-    this.isShareAll = "0";
+    this.selectedMedicalInformation.emit(this.sensitivityPoliciesCodes);
+  }
+
+  confirmSelectAll(dialog: any){
+    dialog.close();
+    this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
     this.selectedMedicalInformation.emit(this.sensitivityPoliciesCodes);
   }
 

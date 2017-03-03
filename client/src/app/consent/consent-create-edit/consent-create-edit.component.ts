@@ -17,7 +17,6 @@ import {EditConsent} from "../shared/EditConsent";
 export class ConsentCreateEditComponent implements OnInit {
   consent : Consent;
   providers: Provider[];
-  private isShareAll:string;
   private consentId:string;
   constructor(private consentService: ConsentService, private toast: Md2Toast, private route: ActivatedRoute, private utilityService:UtilityService) {
 
@@ -36,8 +35,6 @@ export class ConsentCreateEditComponent implements OnInit {
       shareForPurposeOfUseCodes:['TREATMENT']
     };
 
-    this.isShareAll = this.getMedicalInformationStatus();
-
     this.providers = this.route.snapshot.data['providers'];
 
     this.route.params.subscribe(params => {
@@ -54,15 +51,9 @@ export class ConsentCreateEditComponent implements OnInit {
         this.consent.providersDisclosureIsMadeToNpi = tempConsent.providersDisclosureIsMadeToNpi;
         this.consent.providersPermittedToDiscloseNpi = tempConsent.providersPermittedToDiscloseNpi;
 
-        this.isShareAll = this.getMedicalInformationStatus();
+        // this.isShareAll = this.getMedicalInformationStatus();
       }
     });
-  }
-
-  private getMedicalInformationStatus():string {
-    return this.consent.doNotShareSensitivityPolicyCodes.length === 0?
-      MedicalInformation.SHAREALL.toString(): MedicalInformation.DONOTSHAREALL.toString();
-
   }
   onSelectMedicalInformation(event: any){
     this.consent.doNotShareSensitivityPolicyCodes = event;

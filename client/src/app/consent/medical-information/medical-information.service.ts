@@ -45,4 +45,14 @@ export class MedicalInformationService {
     }
     return selected;
   }
+
+  getSelectedSensitivityPolicies(sensitivityPolicies:SensitivityPolicy[]):SensitivityPolicy[]{
+    let selected:SensitivityPolicy[] =  new Array();
+    for(let sp of sensitivityPolicies){
+      if( sp['checked']){
+        selected.push(sp);
+      }
+    }
+    return selected;
+  }
 }
