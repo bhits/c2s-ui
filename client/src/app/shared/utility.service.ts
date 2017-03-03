@@ -7,8 +7,12 @@ export class UtilityService {
 
   constructor(private router: Router, private datePipe:DatePipe) { }
 
-  navigateTo(url: string, params:any) {
+  navigateToWithParameters(url: string, params:any) {
     this.router.navigate([url, params]);
+  }
+
+  navigateTo(url: string) {
+    this.router.navigate([url]);
   }
 
   removeAll(entries:any[]){

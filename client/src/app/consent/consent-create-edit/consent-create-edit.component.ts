@@ -54,12 +54,8 @@ export class ConsentCreateEditComponent implements OnInit {
         this.consent.providersPermittedToDiscloseNpi = tempConsent.providersPermittedToDiscloseNpi;
 
         this.isShareAll = this.getMedicalInformationStatus();
-
       }
     });
-
-
-
   }
 
   private getMedicalInformationStatus():string {

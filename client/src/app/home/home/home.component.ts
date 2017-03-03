@@ -15,6 +15,6 @@ export class HomeComponent implements OnInit {
   }
 
   navigateTo(url:string, id){
-    this.utilityService.navigateTo(url, id);
+    this.utilityService.navigateToWithParameters(url, id);
   }
 }

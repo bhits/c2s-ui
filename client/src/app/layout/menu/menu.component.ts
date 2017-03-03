@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   }
 
   navigateTo(url: string) {
-    this.utilityService.navigateTo(url, {});
+    this.utilityService.navigateTo(url);
   }
 
   menuItems = [
