@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {UtiltityService} from "../../shared/utiltity.service";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-home',
@@ -9,12 +9,12 @@ import {UtiltityService} from "../../shared/utiltity.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private utiltityService:UtiltityService) { }
+  constructor(private utilityService:UtilityService) { }
 
   ngOnInit() {
   }
 
-  navigateTo(url:string){
-    this.utiltityService.navigateTo(url);
+  navigateTo(url:string, id){
+    this.utilityService.navigateTo(url, id);
   }
 }
