@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 
 import {DataService} from "../../shared/data.service";
 import {UtilityService} from "../../shared/utility.service";
-import {ConsentService} from "../../consent/consent.service";
+import {ConsentService} from "../../consent/shared/consent.service";
 
 @Component({
   selector: 'c2s-home',
