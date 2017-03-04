@@ -18,7 +18,6 @@ export class ProviderSearchComponent implements OnInit {
   private hasSearchResult: boolean = false;
 
   public states = [
-    {stateCode: '', stateValue: 'Please Select'},
     {stateCode: 'AZ', stateValue: 'ARIZONA'},
     {stateCode: 'DC', stateValue: 'DISTRICT OF COLUMBIA'},
     {stateCode: 'MD', stateValue: 'MARYLAND'},
