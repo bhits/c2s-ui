@@ -1,4 +1,4 @@
-<md-card>
+<md-card xmlns="http://www.w3.org/1999/html">
   <h2 fxLayoutAlign="start">Search Providers</h2>
   <hr>
   <div class="containerX">
@@ -14,7 +14,7 @@
                 Step 1. Please enter the provider State and City OR Zip Code.
               </md-toolbar>
               <div fxLayout="row">
-                <div fxFlex="27">
+                <div fxFlex="45">
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Enter State and City</h3>
                     <md-select placeholder="Please Select State" formControlName="state">
@@ -23,11 +23,11 @@
                       </md-option>
                     </md-select>
                     <div fxLayout="column">
-                      <md-input-container *ngIf="getFormControl('state').value">
+                      <md-input-container *ngIf="searchProviderFrom.get('state').value">
                         <input mdInput placeholder="City" formControlName="city"/>
                       </md-input-container>
                       <div fxLayoutAlign="left"
-                           *ngIf="getFormControl('city').invalid && (getFormControl('city').dirty || getFormControl('city').touched)"
+                           *ngIf="showErrorMessage('city')"
                            class="form-invalid">
                         Must be at least 2 characters long.
                       </div>
@@ -35,7 +35,7 @@
                   </div>
                 </div>
                 <div fxFlex><h3>OR</h3></div>
-                <div fxFlex="27">
+                <div fxFlex="45">
                   <div fxLayout="column">
                     <h3 fxLayoutAlign="left">Enter Zip Code</h3>
                     <div fxLayout="column">
@@ -43,7 +43,7 @@
                         <input mdInput placeholder="Enter Zip Code" formControlName="zipCode"/>
                       </md-input-container>
                       <div fxLayoutAlign="left"
-                           *ngIf="getFormControl('zipCode').invalid && (getFormControl('zipCode').dirty || getFormControl('zipCode').touched)"
+                           *ngIf="showErrorMessage('zipCode')"
                            class="form-invalid">
                         Must be with formats: 12345 or 12345-6789.
                       </div>
@@ -54,61 +54,95 @@
               <md-toolbar color="primary">
                 Step 2. Please enter the provider Facility Name OR Provider Name and Other Criteria.
               </md-toolbar>
-              <div fxLayout="row">
-                <div fxFlex="27">
-                  <div fxLayout="column">
-                    <h3 fxLayoutAlign="left">Enter Provider Name and Other Criteria</h3>
-                    <div fxLayout="column">
-                      <md-input-container>
-                        <input mdInput placeholder="Last Name" formControlName="lastName"/>
-                      </md-input-container>
-                      <div fxLayoutAlign="left"
-                           *ngIf="getFormControl('lastName').invalid && (getFormControl('lastName').dirty || getFormControl('lastName').touched)"
-                           class="form-invalid">
-                        Must be at least 2 characters long.
-                      </div>
-                    </div>
-                    <div fxLayout="column" *ngIf="getFormControl('lastName').value">
-                      <div fxLayout="column">
-                        <md-input-container>
-                          <input mdInput placeholder="First Name" formControlName="firstName">
+              <div formGroupName="providerType" [ngStyle]="{'padding-top': '20px', 'padding-bottom': '20px'}">
+                <div fxLayout="row">
+                  <div fxFlex="45">
+                    <button fxLayoutAlign="center" class="toggle toggle-block"
+                         (click)="setProviderType(PROVIDER_TYPE.INDIVIDUAL)"
+                         [class.toggle-default]="!isIndividualProviderType()"
+                         [class.toggle-primary]="isIndividualProviderType()">
+                      Enter Provider Name and Other Criteria
+                    </button>
+                  </div>
+                  <div fxFlex><h3>OR</h3></div>
+                  <div fxFlex="45">
+                    <button fxLayoutAlign="center" class="toggle toggle-block"
+                            (click)="setProviderType(PROVIDER_TYPE.ORGANIZATION)"
+                            [class.toggle-default]="isIndividualProviderType()"
+                            [class.toggle-primary]="!isIndividualProviderType()">
+                      Facility Name
+                    </button>
+                  </div>
+                </div>
+                <div class="panel margin-20"
+                     *ngIf="isIndividualProviderType()">
+                  <div class="panel-body">
+                    <div fxLayout="row" fxLayoutGap="20px">
+                      <div fxLayout="column" fxFlex="45" formGroupName="individual">
+                        <md-input-container class="margin-left-15">
+                          <input mdInput placeholder="Last Name" formControlName="lastName"/>
                         </md-input-container>
                         <div fxLayoutAlign="left"
-                             *ngIf="getFormControl('firstName').invalid && (getFormControl('firstName').dirty || getFormControl('firstName').touched)"
+                             *ngIf="showProviderTypeErrorMessage('lastName')"
                              class="form-invalid">
                           Must be at least 2 characters long.
                         </div>
                       </div>
-                      <div fxLayout="column">
-                        <md-input-container>
-                          <input mdInput placeholder="Telephone" formControlName="phone">
+                      <div fxFlex></div>
+                      <div fxLayout="column" fxFlex="45" formGroupName="individual">
+                        <md-input-container class="margin-right-15">
+                          <input mdInput placeholder="First Name (Optional)" formControlName="firstName">
+                        </md-input-container>
+                        <div fxLayoutAlign="left"
+                             *ngIf="showProviderTypeErrorMessage('firstName')"
+                             class="form-invalid">
+                          Must be at least 2 characters long.
+                        </div>
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="20px">
+                      <div fxLayout="column" fxFlex="45" formGroupName="individual">
+                        <md-input-container class="margin-left-15">
+                          <input mdInput placeholder="Telephone (Optional)" formControlName="phone">
                         </md-input-container>
                         <div fxLayoutAlign="left" fxLayout="row"
-                             *ngIf="getFormControl('phone').invalid && (getFormControl('phone').dirty || getFormControl('phone').touched)"
+                             *ngIf="showProviderTypeErrorMessage('phone')"
                              class="form-invalid">
                           Must be with formats: 123-456-7890 (123)456-7890 1234567890 123.456.7890.
                         </div>
                       </div>
-                      <md-select placeholder="Please Select" formControlName="genderCode">
-                        <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
-                          {{ gender.genderValue }}
-                        </md-option>
-                      </md-select>
+                      <div fxFlex></div>
+                      <div fxLayout="column" fxFlex="45" formGroupName="individual">
+                        <md-select placeholder="Gender (Optional)" formControlName="genderCode" class="margin-right-15">
+                          <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
+                            {{ gender.genderValue }}
+                          </md-option>
+                        </md-select>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div fxFlex><h3>OR</h3></div>
-                <div fxFlex="27">
-                  <div fxLayout="column">
-                    <h3 fxLayoutAlign="left">Facility Name</h3>
-                    <div fxLayout="column">
-                      <md-input-container>
-                        <input mdInput placeholder="Facility Name" formControlName="orgName">
+                <div class="panel margin-20"
+                     *ngIf="!isIndividualProviderType()">
+                  <div class="panel-body">
+                    <div fxLayout="column" formGroupName="organization">
+                      <md-input-container class="margin-left-15 margin-right-15">
+                        <input mdInput placeholder="Facility Name" formControlName="orgName"/>
                       </md-input-container>
                       <div fxLayoutAlign="left"
-                           *ngIf="getFormControl('orgName').invalid && (getFormControl('orgName').dirty || getFormControl('orgName').touched)"
+                           *ngIf="showProviderTypeErrorMessage('orgName')"
                            class="form-invalid">
                         Must be at least 2 characters long.
+                      </div>
+                    </div>
+                    <div fxLayout="column" formGroupName="organization">
+                      <md-input-container class="margin-left-15 margin-right-15">
+                        <input mdInput placeholder="Telephone (Optional)" formControlName="phone">
+                      </md-input-container>
+                      <div fxLayoutAlign="left"
+                           *ngIf="showProviderTypeErrorMessage('phone')"
+                           class="form-invalid">
+                        Must be with formats: 123-456-7890 (123)456-7890 1234567890 123.456.7890.
                       </div>
                     </div>
                   </div>
@@ -117,7 +151,7 @@
             </md-card-content>
             <div fxLayout="row">
               <div fxLayoutAlign="left" fxLayoutGap="20px">
-                <button md-raised-button color="primary" (click)="reset()" [disabled]="searchProviderFrom.pristine">
+                <button md-raised-button color="primary" (click)="clearForm()" [disabled]="searchProviderFrom.pristine">
                   Clear All
                 </button>
                 <button md-raised-button color="primary" (click)="searchProviders()"
