@@ -171,14 +171,12 @@
               </div>
             </md-card-content>
             <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
-              <div>
-                <button md-raised-button color="primary" (click)="clearForm()" [disabled]="searchProviderFrom.pristine">
-                  Clear All
-                </button>
-                <button md-raised-button color="primary" (click)="searchProviders()"
-                        [disabled]="searchProviderFrom.invalid">Search
-                </button>
-              </div>
+              <button md-raised-button color="primary" (click)="clearForm()" [disabled]="searchProviderFrom.pristine">
+                <strong>Clear All</strong>
+              </button>
+              <button md-raised-button color="primary" (click)="searchProviders()"
+                      [disabled]="searchProviderFrom.invalid"><strong>Search</strong>
+              </button>
             </div>
           </md2-accordion-tab>
         </md2-accordion>
