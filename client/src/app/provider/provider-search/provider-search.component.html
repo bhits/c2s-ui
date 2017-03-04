@@ -13,37 +13,58 @@
               <md-toolbar color="primary">
                 Step 1. Please enter the provider State and City OR Zip Code.
               </md-toolbar>
-              <div fxLayout="row">
-                <div fxFlex="45">
-                  <div fxLayout="column">
-                    <h3 fxLayoutAlign="left">Enter State and City</h3>
-                    <md-select placeholder="Please Select State" formControlName="state">
-                      <md-option *ngFor="let state of states" [value]="state.stateCode">
-                        {{ state.stateValue }}
-                      </md-option>
-                    </md-select>
+              <div formGroupName="locatingType" [ngStyle]="{'padding-top': '20px'}">
+                <div fxLayout="row">
+                  <div fxFlex="45">
+                    <button fxLayoutAlign="center" class="toggle toggle-block"
+                            (click)="setLocatingType(LOCATING_TYPE.STATE_CITY)"
+                            [class.toggle-default]="!isStateCityType()"
+                            [class.toggle-primary]="isStateCityType()">
+                      <strong>Enter State and City</strong>
+                    </button>
+                  </div>
+                  <div fxFlex><h3>OR</h3></div>
+                  <div fxFlex="45">
+                    <button fxLayoutAlign="center" class="toggle toggle-block"
+                            (click)="setLocatingType(LOCATING_TYPE.ZIP)"
+                            [class.toggle-default]="isStateCityType()"
+                            [class.toggle-primary]="!isStateCityType()">
+                      <strong>Enter Zip Code</strong>
+                    </button>
+                  </div>
+                </div>
+                <div class="panel margin-20" *ngIf="isStateCityType()">
+                  <div class="panel-body" [ngStyle]="{'padding-top': '20px', 'padding-bottom': '10px'}">
                     <div fxLayout="column">
-                      <md-input-container *ngIf="searchProviderFrom.get('state').value">
-                        <input mdInput placeholder="City" formControlName="city"/>
-                      </md-input-container>
-                      <div fxLayoutAlign="left"
-                           *ngIf="showErrorMessage('city')"
-                           class="form-invalid">
-                        Must be at least 2 characters long.
+                      <div fxLayout="column" formGroupName="stateCity">
+                        <md-select placeholder="Please Select State" formControlName="state"
+                                   class="margin-left-15 margin-right-15">
+                          <md-option *ngFor="let state of states" [value]="state.stateCode" fxLayoutAlign="left">
+                            {{ state.stateValue }}
+                          </md-option>
+                        </md-select>
+                      </div>
+                      <div fxLayout="column" formGroupName="stateCity">
+                        <md-input-container class="margin-left-15 margin-right-15">
+                          <input mdInput placeholder="City" formControlName="city">
+                        </md-input-container>
+                        <div fxLayoutAlign="left"
+                             *ngIf="showLocatingTypeErrorMessage('city')"
+                             class="form-invalid">
+                          Must be at least 2 characters long.
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div fxFlex><h3>OR</h3></div>
-                <div fxFlex="45">
-                  <div fxLayout="column">
-                    <h3 fxLayoutAlign="left">Enter Zip Code</h3>
-                    <div fxLayout="column">
-                      <md-input-container>
-                        <input mdInput placeholder="Enter Zip Code" formControlName="zipCode"/>
+                <div class="panel margin-20" *ngIf="!isStateCityType()">
+                  <div class="panel-body" [ngStyle]="{'padding-top': '20px', 'padding-bottom': '10px'}">
+                    <div fxLayout="column" formGroupName="zip">
+                      <md-input-container class="margin-left-15 margin-right-15">
+                        <input mdInput placeholder="Zip Code" formControlName="zipCode">
                       </md-input-container>
                       <div fxLayoutAlign="left"
-                           *ngIf="showErrorMessage('zipCode')"
+                           *ngIf="showLocatingTypeErrorMessage('zipCode')"
                            class="form-invalid">
                         Must be with formats: 12345 or 12345-6789.
                       </div>
@@ -58,10 +79,10 @@
                 <div fxLayout="row">
                   <div fxFlex="45">
                     <button fxLayoutAlign="center" class="toggle toggle-block"
-                         (click)="setProviderType(PROVIDER_TYPE.INDIVIDUAL)"
-                         [class.toggle-default]="!isIndividualProviderType()"
-                         [class.toggle-primary]="isIndividualProviderType()">
-                      Enter Provider Name and Other Criteria
+                            (click)="setProviderType(PROVIDER_TYPE.INDIVIDUAL)"
+                            [class.toggle-default]="!isIndividualProviderType()"
+                            [class.toggle-primary]="isIndividualProviderType()">
+                      <strong>Enter Provider Name and Other Criteria</strong>
                     </button>
                   </div>
                   <div fxFlex><h3>OR</h3></div>
@@ -70,12 +91,11 @@
                             (click)="setProviderType(PROVIDER_TYPE.ORGANIZATION)"
                             [class.toggle-default]="isIndividualProviderType()"
                             [class.toggle-primary]="!isIndividualProviderType()">
-                      Facility Name
+                      <strong>Facility Name</strong>
                     </button>
                   </div>
                 </div>
-                <div class="panel margin-20"
-                     *ngIf="isIndividualProviderType()">
+                <div class="panel margin-20" *ngIf="isIndividualProviderType()">
                   <div class="panel-body">
                     <div fxLayout="row" fxLayoutGap="20px">
                       <div fxLayout="column" fxFlex="45" formGroupName="individual">
@@ -113,7 +133,8 @@
                       </div>
                       <div fxFlex></div>
                       <div fxLayout="column" fxFlex="45" formGroupName="individual">
-                        <md-select placeholder="Gender (Optional)" formControlName="genderCode" class="margin-right-15">
+                        <md-select placeholder="Gender (Optional)" formControlName="genderCode"
+                                   class="margin-right-15">
                           <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
                             {{ gender.genderValue }}
                           </md-option>

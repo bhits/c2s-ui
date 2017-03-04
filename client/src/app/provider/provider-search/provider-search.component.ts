@@ -17,7 +17,7 @@ export class ProviderSearchComponent implements OnInit {
   private accordionTab: boolean = true;
   private hasSearchResult: boolean = false;
 
-  states = [
+  public states = [
     {stateCode: '', stateValue: 'Please Select'},
     {stateCode: 'AZ', stateValue: 'ARIZONA'},
     {stateCode: 'DC', stateValue: 'DISTRICT OF COLUMBIA'},
@@ -25,7 +25,7 @@ export class ProviderSearchComponent implements OnInit {
     {stateCode: 'VA', stateValue: 'VIRGINIA'}
   ];
 
-  genderGroup = [
+  public genderGroup = [
     {genderCode: 'M', genderValue: 'Male'},
     {genderCode: 'F', genderValue: 'Female'}
   ];
@@ -35,22 +35,51 @@ export class ProviderSearchComponent implements OnInit {
     ORGANIZATION: 'organization'
   };
 
+  public LOCATING_TYPE = {
+    STATE_CITY: 'stateCity',
+    ZIP: 'zip'
+  };
+
   constructor(private formBuilder: FormBuilder,
               private providerService: ProviderService) {
   }
 
   ngOnInit(): void {
-    const ZIP_PATTERN = '^[0-9]{5}(?:-[0-9]{4})?$';
+    // build search form parent group
     this.searchProviderFrom = this.formBuilder.group({
-      state: '',
-      city: ['', Validators.minLength(2)],
-      zipCode: ['', Validators.pattern(ZIP_PATTERN)],
+      locatingType: this.initLocatingTypeFormGroup(),
       providerType: this.initProviderTypeFormGroup()
     });
 
+    this.subscribeLocatingTypeChanges();
     this.subscribeProviderTypeChanges();
-
+    this.setLocatingType(this.LOCATING_TYPE.STATE_CITY);
     this.setProviderType(this.PROVIDER_TYPE.INDIVIDUAL);
+  }
+
+  private initLocatingTypeFormGroup() {
+    // initialize locating type form group
+    return this.formBuilder.group({
+      type: [''],
+      stateCity: this.formBuilder.group(this.initStateCityModel()),
+      zip: this.formBuilder.group(this.initZipModel())
+    });
+  }
+
+  private initStateCityModel() {
+    // initialize state city model
+    return {
+      state: [''],
+      city: ['', Validators.minLength(2)]
+    };
+  }
+
+  private initZipModel() {
+    // initialize zip model
+    const ZIP_PATTERN = '^[0-9]{5}(?:-[0-9]{4})?$';
+    return {
+      zipCode: ['', Validators.pattern(ZIP_PATTERN)]
+    };
   }
 
   private initProviderTypeFormGroup() {
@@ -80,8 +109,47 @@ export class ProviderSearchComponent implements OnInit {
     };
   }
 
+  private subscribeLocatingTypeChanges() {
+    // controls
+    const ltCtrl = (<any>this.searchProviderFrom).controls.locatingType;
+    const stateCityCtrl = ltCtrl.controls.stateCity;
+    const zipCtrl = ltCtrl.controls.zip;
+
+    // initialize value changes stream
+    const typeChanges = ltCtrl.controls.type.valueChanges;
+
+    // subscribe to the stream
+    typeChanges.subscribe(locatingType => {
+      if (locatingType === this.LOCATING_TYPE.STATE_CITY) {
+        Object.keys(stateCityCtrl.controls).forEach(key => {
+          stateCityCtrl.controls[key].setValidators(this.initStateCityModel()[key][1]);
+          stateCityCtrl.controls[key].updateValueAndValidity();
+        });
+
+        Object.keys(zipCtrl.controls).forEach(key => {
+          zipCtrl.controls[key].setValue(null);
+          zipCtrl.controls[key].setValidators(null);
+          zipCtrl.controls[key].updateValueAndValidity();
+        });
+      }
+
+      if (locatingType === this.LOCATING_TYPE.ZIP) {
+        Object.keys(stateCityCtrl.controls).forEach(key => {
+          stateCityCtrl.controls[key].setValue(null);
+          stateCityCtrl.controls[key].setValidators(null);
+          stateCityCtrl.controls[key].updateValueAndValidity();
+        });
+
+        Object.keys(zipCtrl.controls).forEach(key => {
+          zipCtrl.controls[key].setValidators(this.initZipModel()[key][1]);
+          zipCtrl.controls[key].updateValueAndValidity();
+        });
+      }
+    });
+  }
+
   private subscribeProviderTypeChanges() {
-// controls
+    // controls
     const ptCtrl = (<any>this.searchProviderFrom).controls.providerType;
     const individualCtrl = ptCtrl.controls.individual;
     const organizationCtrl = ptCtrl.controls.organization;
@@ -119,19 +187,34 @@ export class ProviderSearchComponent implements OnInit {
     });
   }
 
+  private setLocatingType(type: string) {
+    // update payment method type value
+    const ctrl: FormControl = (<any>this.searchProviderFrom).controls.locatingType.controls.type;
+    ctrl.setValue(type);
+  }
+
   private setProviderType(type: string) {
     // update payment method type value
     const ctrl: FormControl = (<any>this.searchProviderFrom).controls.providerType.controls.type;
     ctrl.setValue(type);
   }
 
+  isStateCityType() {
+    return this.searchProviderFrom.value.locatingType.type === this.LOCATING_TYPE.STATE_CITY;
+  }
+
   isIndividualProviderType() {
     return this.searchProviderFrom.value.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL;
   }
 
-  showErrorMessage(formControlName: string) {
-    const formControl = this.searchProviderFrom.get(formControlName);
-    return formControl.invalid && (formControl.dirty || formControl.touched);
+  showLocatingTypeErrorMessage(formControlName: string) {
+    if (this.searchProviderFrom.value.locatingType.type === this.LOCATING_TYPE.STATE_CITY) {
+      const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.stateCity.controls[formControlName];
+      return formControl.invalid && (formControl.dirty || formControl.touched);
+    } else {
+      const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.zip.controls[formControlName];
+      return formControl.invalid && (formControl.dirty || formControl.touched);
+    }
   }
 
   showProviderTypeErrorMessage(formControlName: string) {
@@ -150,16 +233,34 @@ export class ProviderSearchComponent implements OnInit {
 
   clearForm() {
     this.searchProviderFrom.reset();
+    this.setLocatingType(this.LOCATING_TYPE.STATE_CITY);
     this.setProviderType(this.PROVIDER_TYPE.INDIVIDUAL);
   }
 
   prepareSearchProviders(): ProviderRequestQuery {
     const formModel = this.searchProviderFrom.value;
-    if (formModel.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
+    if (formModel.locatingType.type === this.LOCATING_TYPE.STATE_CITY
+      && formModel.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
       return {
-        state: formModel.state,
-        city: formModel.city,
-        zipCode: formModel.zipCode,
+        state: formModel.locatingType.stateCity.state,
+        city: formModel.locatingType.stateCity.city,
+        lastName: formModel.providerType.individual.lastName,
+        firstName: formModel.providerType.individual.firstName,
+        genderCode: formModel.providerType.individual.genderCode,
+        phone: formModel.providerType.individual.phone
+      };
+    } else if (formModel.locatingType.type === this.LOCATING_TYPE.STATE_CITY
+      && formModel.providerType.type === this.PROVIDER_TYPE.ORGANIZATION) {
+      return {
+        state: formModel.locatingType.stateCity.state,
+        city: formModel.locatingType.stateCity.city,
+        orgName: formModel.providerType.organization.orgName,
+        phone: formModel.providerType.organization.phone
+      };
+    } else if (formModel.locatingType.type === this.LOCATING_TYPE.ZIP
+      && formModel.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
+      return {
+        zipCode: formModel.locatingType.zip.zipCode,
         lastName: formModel.providerType.individual.lastName,
         firstName: formModel.providerType.individual.firstName,
         genderCode: formModel.providerType.individual.genderCode,
@@ -167,9 +268,7 @@ export class ProviderSearchComponent implements OnInit {
       };
     } else {
       return {
-        state: formModel.state,
-        city: formModel.city,
-        zipCode: formModel.zipCode,
+        zipCode: formModel.locatingType.zip.zipCode,
         orgName: formModel.providerType.organization.orgName,
         phone: formModel.providerType.organization.phone
       };
