@@ -68,8 +68,8 @@ export class ProviderSearchComponent implements OnInit {
   private initStateCityModel() {
     // initialize state city model
     return {
-      state: [''],
-      city: ['', Validators.minLength(2)]
+      state: ['', Validators.required],
+      city: ['', [Validators.minLength(2), Validators.required]]
     };
   }
 
@@ -77,7 +77,7 @@ export class ProviderSearchComponent implements OnInit {
     // initialize zip model
     const ZIP_PATTERN = '^[0-9]{5}(?:-[0-9]{4})?$';
     return {
-      zipCode: ['', Validators.pattern(ZIP_PATTERN)]
+      zipCode: ['', [Validators.pattern(ZIP_PATTERN), Validators.required]]
     };
   }
 
@@ -93,7 +93,7 @@ export class ProviderSearchComponent implements OnInit {
   private initProviderIndividualModel() {
     // initialize individual model
     return {
-      lastName: ['', Validators.minLength(2)],
+      lastName: ['', [Validators.minLength(2), Validators.required]],
       firstName: ['', Validators.minLength(2)],
       genderCode: '',
       phone: ['', Validators.pattern(this.PHONE_PATTERN)]
@@ -103,7 +103,7 @@ export class ProviderSearchComponent implements OnInit {
   private initProviderOrganizationModel() {
     // initialize organization model
     return {
-      orgName: ['', Validators.minLength(2)],
+      orgName: ['', [Validators.minLength(2), Validators.required]],
       phone: ['', Validators.pattern(this.PHONE_PATTERN)]
     };
   }
@@ -209,20 +209,20 @@ export class ProviderSearchComponent implements OnInit {
   showLocatingTypeErrorMessage(formControlName: string) {
     if (this.searchProviderFrom.value.locatingType.type === this.LOCATING_TYPE.STATE_CITY) {
       const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.stateCity.controls[formControlName];
-      return formControl.invalid && (formControl.dirty || formControl.touched);
+      return formControl.errors && (formControl.dirty || formControl.touched);
     } else {
       const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.zip.controls[formControlName];
-      return formControl.invalid && (formControl.dirty || formControl.touched);
+      return formControl.errors && (formControl.dirty || formControl.touched);
     }
   }
 
   showProviderTypeErrorMessage(formControlName: string) {
     if (this.searchProviderFrom.value.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
       const formControl = (<any>this.searchProviderFrom).controls.providerType.controls.individual.controls[formControlName];
-      return formControl.invalid && (formControl.dirty || formControl.touched);
+      return formControl.errors && (formControl.dirty || formControl.touched);
     } else {
       const formControl = (<any>this.searchProviderFrom).controls.providerType.controls.organization.controls[formControlName];
-      return formControl.invalid && (formControl.dirty || formControl.touched);
+      return formControl.errors && (formControl.dirty || formControl.touched);
     }
   }
 
