@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ProviderService} from "../shared/provider.service";
 import {ProviderRequestQuery} from "../shared/provider-request-query.model";
 import {ProviderSearchResponse} from "../shared/provider-search-response.model";
-import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
+import {FormGroup, FormBuilder, Validators, FormControl, AbstractControl} from "@angular/forms";
 
 @Component({
   selector: 'c2s-provider-search',
@@ -206,23 +206,71 @@ export class ProviderSearchComponent implements OnInit {
     return this.searchProviderFrom.value.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL;
   }
 
-  showLocatingTypeErrorMessage(formControlName: string) {
+  showLocatingTypeRequiredError(formControlName: string) {
     if (this.searchProviderFrom.value.locatingType.type === this.LOCATING_TYPE.STATE_CITY) {
       const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.stateCity.controls[formControlName];
-      return formControl.errors && (formControl.dirty || formControl.touched);
+      return this.formControlHasError(formControl, 'required') && (formControl.dirty || formControl.touched);
     } else {
       const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.zip.controls[formControlName];
-      return formControl.errors && (formControl.dirty || formControl.touched);
+      return this.formControlHasError(formControl, 'required') && (formControl.dirty || formControl.touched);
     }
   }
 
-  showProviderTypeErrorMessage(formControlName: string) {
+  showLocatingTypeLimitLengthError(formControlName: string) {
+    if (this.searchProviderFrom.value.locatingType.type === this.LOCATING_TYPE.STATE_CITY) {
+      const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.stateCity.controls[formControlName];
+      return this.formControlHasError(formControl, 'minLength') && (formControl.dirty || formControl.touched);
+    } else {
+      const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.zip.controls[formControlName];
+      return this.formControlHasError(formControl, 'minLength') && (formControl.dirty || formControl.touched);
+    }
+  }
+
+  showLocatingTypePatternError(formControlName: string) {
+    if (this.searchProviderFrom.value.locatingType.type === this.LOCATING_TYPE.STATE_CITY) {
+      const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.stateCity.controls[formControlName];
+      return this.formControlHasError(formControl, 'pattern') && (formControl.dirty || formControl.touched);
+    } else {
+      const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.zip.controls[formControlName];
+      return this.formControlHasError(formControl, 'pattern') && (formControl.dirty || formControl.touched);
+    }
+  }
+
+  showProviderTypeRequiredError(formControlName: string) {
     if (this.searchProviderFrom.value.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
       const formControl = (<any>this.searchProviderFrom).controls.providerType.controls.individual.controls[formControlName];
-      return formControl.errors && (formControl.dirty || formControl.touched);
+      return this.formControlHasError(formControl, 'required') && (formControl.dirty || formControl.touched);
     } else {
       const formControl = (<any>this.searchProviderFrom).controls.providerType.controls.organization.controls[formControlName];
-      return formControl.errors && (formControl.dirty || formControl.touched);
+      return this.formControlHasError(formControl, 'required') && (formControl.dirty || formControl.touched);
+    }
+  }
+
+  showProviderTypeLimitLengthError(formControlName: string) {
+    if (this.searchProviderFrom.value.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
+      const formControl = (<any>this.searchProviderFrom).controls.providerType.controls.individual.controls[formControlName];
+      return this.formControlHasError(formControl, 'minLength') && (formControl.dirty || formControl.touched);
+    } else {
+      const formControl = (<any>this.searchProviderFrom).controls.providerType.controls.organization.controls[formControlName];
+      return this.formControlHasError(formControl, 'minLength') && (formControl.dirty || formControl.touched);
+    }
+  }
+
+  showProviderTypePatternError(formControlName: string) {
+    if (this.searchProviderFrom.value.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
+      const formControl = (<any>this.searchProviderFrom).controls.providerType.controls.individual.controls[formControlName];
+      return this.formControlHasError(formControl, 'pattern') && (formControl.dirty || formControl.touched);
+    } else {
+      const formControl = (<any>this.searchProviderFrom).controls.providerType.controls.organization.controls[formControlName];
+      return this.formControlHasError(formControl, 'pattern') && (formControl.dirty || formControl.touched);
+    }
+  }
+
+  private formControlHasError(formControl: AbstractControl, errorCode: string): boolean {
+    if (formControl.hasError(errorCode) != null) {
+      return formControl.hasError(errorCode);
+    } else {
+      return false;
     }
   }
 
