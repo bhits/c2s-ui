@@ -8,14 +8,14 @@
                          #medInfoA
                          [value]="1"
                          (click)="onSelectShareAll(medicalInformationDialog, medInfoA.value)">
-          <strong>SHARE</strong> ALL information in my medical record.</md-radio-button>
+          <strong>SHARE</strong> my medical record <strong>WITHOUT ANY EXCEPTION</strong> of medical information categories.</md-radio-button>
       </div>
       <div>
         <md-radio-button name="medicalInformation"
                          #medInfoB
                          [value]="0"
                          (click)="onSelectDonotShareAll(medicalInformationDialog, medInfoB.value)">
-          <strong>SHARE</strong> my medical record <strong>WITH EXCEPTION</strong> of specific information.
+          <strong>SHARE</strong> my medical record <strong>WITH EXCEPTION</strong> of specific medical information categories.
           <button type="button" *ngIf="(isShareAll === 0)"
                                 md-raised-button
                                 color="primary"

@@ -22,6 +22,8 @@ import {ConsentCardComponent} from "./consent-card/consent-card.component";
 import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.component";
 import {ConsentStagePipe} from "./shared/consent-stage.pipe";
 import {SelectProvidersComponent} from "./select-providers/select-providers.component";
+import {SensitivityPoliciesResolveService} from "./shared/sensitivity-policies-resolve.service";
+import {PurposeOfUsesResolveService} from "./shared/purpose-of-uses-resolve.service";
 
 @NgModule({
   imports: [
@@ -48,7 +50,14 @@ import {SelectProvidersComponent} from "./select-providers/select-providers.comp
   exports: [
     ConsentCreateEditComponent
   ],
-  providers: [ConsentService, PurposeOfUseService, MedicalInformationService, ConsentResolveService, ProviderResolveService],
+  providers: [
+    ConsentService,
+    PurposeOfUseService,
+    MedicalInformationService,
+    ConsentResolveService,
+    ProviderResolveService,
+    SensitivityPoliciesResolveService,
+    PurposeOfUsesResolveService],
 })
 export class ConsentModule {
 }

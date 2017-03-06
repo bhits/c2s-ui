@@ -8,6 +8,8 @@ import {UtilityService} from "../../shared/utility.service";
 import {Consent} from "../shared/consent";
 import {Provider} from "../shared/Provider";
 import {EditConsent} from "../shared/EditConsent";
+import {SensitivityPolicy} from "../shared/sensitivity-policy";
+import {PurposeOfUse} from "../shared/purpose-of-use";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -17,12 +19,19 @@ import {EditConsent} from "../shared/EditConsent";
 export class ConsentCreateEditComponent implements OnInit {
   consent : Consent;
   providers: Provider[];
-  private consentId:string;
-  constructor(private consentService: ConsentService, private toast: Md2Toast, private route: ActivatedRoute, private utilityService:UtilityService) {
+  sensitivityPolicies: SensitivityPolicy[];
+  purposeOfUses: PurposeOfUse[];
 
+  private consentId:string;
+
+  constructor(private consentService: ConsentService, private toast: Md2Toast, private route: ActivatedRoute, private utilityService:UtilityService) {
   }
 
   ngOnInit() {
+
+    this.providers = this.route.snapshot.data['providers'];
+    this.sensitivityPolicies = this.route.snapshot.data['sensitivityPolicies'];
+    this.purposeOfUses = this.route.snapshot.data['purposeOfUses'];
 
     this.consent = {
       consentEnd:"",
@@ -35,7 +44,6 @@ export class ConsentCreateEditComponent implements OnInit {
       shareForPurposeOfUseCodes:['TREATMENT']
     };
 
-    this.providers = this.route.snapshot.data['providers'];
 
     this.route.params.subscribe(params => {
 
@@ -50,8 +58,6 @@ export class ConsentCreateEditComponent implements OnInit {
         this.consent.organizationalProvidersPermittedToDiscloseNpi = tempConsent.organizationalProvidersPermittedToDiscloseNpi;
         this.consent.providersDisclosureIsMadeToNpi = tempConsent.providersDisclosureIsMadeToNpi;
         this.consent.providersPermittedToDiscloseNpi = tempConsent.providersPermittedToDiscloseNpi;
-
-        // this.isShareAll = this.getMedicalInformationStatus();
       }
     });
   }
@@ -85,7 +91,7 @@ export class ConsentCreateEditComponent implements OnInit {
        this.consentService.updateConsent(editConsent)
                           .then(res => {
                             this.toast.show("Success in Updating consent.", 2000);
-                            console.log(res);
+                            this.utilityService.navigateTo('consent-list');
                           })
                           .catch(error => {
                             this.toast.show("Error in Updating consent.", 2000);
@@ -95,7 +101,7 @@ export class ConsentCreateEditComponent implements OnInit {
        this.consentService.createConsent(this.consent)
                         .then(res => {
                           this.toast.show("Success in creating consent.", 2000);
-                          console.log(res);
+                          this.utilityService.navigateTo('consent-list');
                         })
                         .catch(error => {
                           this.toast.show("Error in creating consent.", 2000);
@@ -108,6 +114,10 @@ export class ConsentCreateEditComponent implements OnInit {
 
   onSelectedPurposeOfUse(event: any){
     this.consent.shareForPurposeOfUseCodes = event;
+  }
+
+  navigateTo(url: string){
+    this.utilityService.navigateTo(url);
   }
 
 }

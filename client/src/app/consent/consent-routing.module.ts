@@ -6,14 +6,20 @@ import {ConsentCreateEditComponent} from "./consent-create-edit/consent-create-e
 import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.component";
 import {ConsentResolveService} from "./shared/consent-resolve.service";
 import {ProviderResolveService} from "./shared/provider-resolve.service";
+import {SensitivityPoliciesResolveService} from "./shared/sensitivity-policies-resolve.service";
+import {PurposeOfUsesResolveService} from "./shared/purpose-of-uses-resolve.service";
 
 
 const consentRoutes: Routes = [
-  {path: 'consent-list', component: ConsentCardListComponent},
+  { path: 'consent-list',
+    component: ConsentCardListComponent
+  },
   { path: 'consent-create-edit',
     component: ConsentCreateEditComponent,
     resolve: {
-      providers:ProviderResolveService
+      providers:ProviderResolveService,
+      sensitivityPolicies: SensitivityPoliciesResolveService,
+      purposeOfUses:PurposeOfUsesResolveService
     }
   },
   {
@@ -21,7 +27,9 @@ const consentRoutes: Routes = [
     component: ConsentCreateEditComponent,
     resolve: {
       consent: ConsentResolveService,
-      providers: ProviderResolveService
+      providers: ProviderResolveService,
+      sensitivityPolicies: SensitivityPoliciesResolveService,
+      purposeOfUses:PurposeOfUsesResolveService
     }
   }
 ];
