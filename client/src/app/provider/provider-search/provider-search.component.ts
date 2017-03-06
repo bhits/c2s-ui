@@ -219,10 +219,10 @@ export class ProviderSearchComponent implements OnInit {
   showLocatingTypeLimitLengthError(formControlName: string) {
     if (this.searchProviderFrom.value.locatingType.type === this.LOCATING_TYPE.STATE_CITY) {
       const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.stateCity.controls[formControlName];
-      return this.formControlHasError(formControl, 'minLength') && (formControl.dirty || formControl.touched);
+      return this.formControlHasError(formControl, 'minlength') && (formControl.dirty || formControl.touched);
     } else {
       const formControl = (<any>this.searchProviderFrom).controls.locatingType.controls.zip.controls[formControlName];
-      return this.formControlHasError(formControl, 'minLength') && (formControl.dirty || formControl.touched);
+      return this.formControlHasError(formControl, 'minlength') && (formControl.dirty || formControl.touched);
     }
   }
 
@@ -249,10 +249,10 @@ export class ProviderSearchComponent implements OnInit {
   showProviderTypeLimitLengthError(formControlName: string) {
     if (this.searchProviderFrom.value.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
       const formControl = (<any>this.searchProviderFrom).controls.providerType.controls.individual.controls[formControlName];
-      return this.formControlHasError(formControl, 'minLength') && (formControl.dirty || formControl.touched);
+      return this.formControlHasError(formControl, 'minlength') && (formControl.dirty || formControl.touched);
     } else {
       const formControl = (<any>this.searchProviderFrom).controls.providerType.controls.organization.controls[formControlName];
-      return this.formControlHasError(formControl, 'minLength') && (formControl.dirty || formControl.touched);
+      return this.formControlHasError(formControl, 'minlength') && (formControl.dirty || formControl.touched);
     }
   }
 
