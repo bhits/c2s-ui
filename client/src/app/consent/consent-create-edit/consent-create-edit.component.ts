@@ -91,7 +91,7 @@ export class ConsentCreateEditComponent implements OnInit {
        this.consentService.updateConsent(editConsent)
                           .then(res => {
                             this.toast.show("Success in Updating consent.", 2000);
-                            console.log(res);
+                            this.utilityService.navigateTo('consent-list');
                           })
                           .catch(error => {
                             this.toast.show("Error in Updating consent.", 2000);
@@ -101,7 +101,7 @@ export class ConsentCreateEditComponent implements OnInit {
        this.consentService.createConsent(this.consent)
                         .then(res => {
                           this.toast.show("Success in creating consent.", 2000);
-                          console.log(res);
+                          this.utilityService.navigateTo('consent-list');
                         })
                         .catch(error => {
                           this.toast.show("Error in creating consent.", 2000);
