@@ -16,7 +16,6 @@ export class PurposeOfUseComponent implements OnInit {
   constructor(private purposeOfUseService: PurposeOfUseService ) { }
 
   ngOnInit() {
-    console.log('this.purposeOfUSes'+ this.purposeOfUSes);
     this.updatePurposeOfUseStatus();
   }
 

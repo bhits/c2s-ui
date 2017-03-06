@@ -11,7 +11,7 @@ import {MedicalInformationCategory} from "../shared/medical-information-category
 })
 export class MedicalInformationComponent implements OnInit {
 
-  isShareAll:string ;
+  isShareAll:number ;
   federalInfo:MedicalInformationCategory;
   stateInfo:MedicalInformationCategory
   checkedSensitityPolicies: SensitivityPolicy[];
@@ -40,7 +40,7 @@ export class MedicalInformationComponent implements OnInit {
   }
   private updateSelectedSensitityPolicy(){
     if(this.sensitivityPoliciesCodes.length > 0 ){
-      this.isShareAll = '0';
+      this.isShareAll = 0;
       this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
     }
   }
@@ -56,7 +56,7 @@ export class MedicalInformationComponent implements OnInit {
     this.selectedMedicalInformation.emit(value);
   }
 
-  onSelectShareAll(dialog: any, value:string){
+  onSelectShareAll(dialog: any, value:number){
     this.isShareAll = value;
     this.checkedSensitityPolicies = [];
     this.sensitivityPoliciesCodes = [];
@@ -75,7 +75,7 @@ export class MedicalInformationComponent implements OnInit {
     dialog.close();
   }
 
-  onSelectDonotShareAll(dialog: any, value:string){
+  onSelectDonotShareAll(dialog: any, value:number){
     this.isShareAll = value;
     this.medicalInformationService.setSenetivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
     this.checkedSensitityPolicies = [];
