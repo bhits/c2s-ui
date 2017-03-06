@@ -212,12 +212,7 @@ export class ProviderSearchComponent implements OnInit {
     return this.searchProviderFrom.value.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL;
   }
 
-  hasErrorOnLocatingTypeFormControl(path: string, errorCode: string): boolean {
-    const formControl = this.searchProviderFrom.get(path);
-    return formControl.hasError(errorCode) && (formControl.dirty || formControl.touched);
-  }
-
-  hasErrorOnProviderTypeFormControl(path: string, errorCode: string): boolean {
+  hasErrorOnCurrentFormControl(path: string, errorCode: string): boolean {
     const formControl = this.searchProviderFrom.get(path);
     return formControl.hasError(errorCode) && (formControl.dirty || formControl.touched);
   }
