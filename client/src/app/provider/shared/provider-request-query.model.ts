@@ -1,12 +1,12 @@
 export class ProviderRequestQuery {
-  state: string;
-  city: string;
-  zipCode: string;
-  lastName: string;
-  firstName: string;
-  genderCode: string;
-  phone: string;
-  orgName: string;
+  state?: string;
+  city?: string;
+  zipCode?: string;
+  lastName?: string;
+  firstName?: string;
+  genderCode?: string;
+  phone?: string;
+  orgName?: string;
 
   constructor(state: string,
               city: string,
