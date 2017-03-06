@@ -7,8 +7,10 @@
     </md-card>
 
     <c2s-select-providers [providers]="providers"
-                          [(authorizeProviderNpi)]="consent.organizationalProvidersPermittedToDiscloseNpi"
-                          [(disclosureProviderNpi)]="consent.organizationalProvidersDisclosureIsMadeToNpi"
+                          [(authorizeOrgProviderNpi)]="consent.organizationalProvidersPermittedToDiscloseNpi"
+                          [(authorizeIndProviderNpi)]="consent.providersPermittedToDiscloseNpi"
+                          [(disclosureOrgProviderNpi)]="consent.organizationalProvidersDisclosureIsMadeToNpi"
+                          [(disclosureIndProviderNpi)]="consent.providersDisclosureIsMadeToNpi"
                           >
     </c2s-select-providers>
 

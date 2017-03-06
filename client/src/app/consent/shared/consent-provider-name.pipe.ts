@@ -10,7 +10,7 @@ export class ConsentProviderNamePipe implements PipeTransform {
     let providerName: string;
 
     if (typeof provider !== 'undefined') {
-      switch (provider.entityType.toString()) {
+      switch (provider.entityType) {
         case "Individual":
           providerName = provider.firstName + ' ' + provider.lastName;
           break;
