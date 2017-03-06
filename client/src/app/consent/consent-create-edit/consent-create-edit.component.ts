@@ -8,6 +8,8 @@ import {UtilityService} from "../../shared/utility.service";
 import {Consent} from "../shared/consent";
 import {Provider} from "../shared/Provider";
 import {EditConsent} from "../shared/EditConsent";
+import {SensitivityPolicy} from "../shared/sensitivity-policy";
+import {PurposeOfUse} from "../shared/purpose-of-use";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -17,12 +19,19 @@ import {EditConsent} from "../shared/EditConsent";
 export class ConsentCreateEditComponent implements OnInit {
   consent : Consent;
   providers: Provider[];
-  private consentId:string;
-  constructor(private consentService: ConsentService, private toast: Md2Toast, private route: ActivatedRoute, private utilityService:UtilityService) {
+  sensitivityPolicies: SensitivityPolicy[];
+  purposeOfUses: PurposeOfUse[];
 
+  private consentId:string;
+
+  constructor(private consentService: ConsentService, private toast: Md2Toast, private route: ActivatedRoute, private utilityService:UtilityService) {
   }
 
   ngOnInit() {
+
+    this.providers = this.route.snapshot.data['providers'];
+    this.sensitivityPolicies = this.route.snapshot.data['sensitivityPolicies'];
+    this.purposeOfUses = this.route.snapshot.data['purposeOfUses'];
 
     this.consent = {
       consentEnd:"",
@@ -35,7 +44,6 @@ export class ConsentCreateEditComponent implements OnInit {
       shareForPurposeOfUseCodes:['TREATMENT']
     };
 
-    this.providers = this.route.snapshot.data['providers'];
 
     this.route.params.subscribe(params => {
 
@@ -50,8 +58,6 @@ export class ConsentCreateEditComponent implements OnInit {
         this.consent.organizationalProvidersPermittedToDiscloseNpi = tempConsent.organizationalProvidersPermittedToDiscloseNpi;
         this.consent.providersDisclosureIsMadeToNpi = tempConsent.providersDisclosureIsMadeToNpi;
         this.consent.providersPermittedToDiscloseNpi = tempConsent.providersPermittedToDiscloseNpi;
-
-        // this.isShareAll = this.getMedicalInformationStatus();
       }
     });
   }

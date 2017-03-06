@@ -13,12 +13,15 @@
     </c2s-select-providers>
 
     <c2s-medical-information
+      [sensitivityPolicies] ="sensitivityPolicies"
       [sensitivityPoliciesCodes]="consent.doNotShareSensitivityPolicyCodes"
       (selectedMedicalInformation)="onSelectMedicalInformation($event)">
     </c2s-medical-information>
 
-    <c2s-purpose-of-use [purposeOfUsesCodes]="consent.shareForPurposeOfUseCodes"
-                        (selectedPurposeOfUse)="onSelectedPurposeOfUse($event)">
+    <c2s-purpose-of-use
+        [purposeOfUSes] ="purposeOfUses"
+        [purposeOfUsesCodes]="consent.shareForPurposeOfUseCodes"
+        (selectedPurposeOfUse)="onSelectedPurposeOfUse($event)">
     </c2s-purpose-of-use>
 
     <c2s-consent-terms
