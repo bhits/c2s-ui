@@ -229,39 +229,24 @@ export class ProviderSearchComponent implements OnInit {
 
   prepareSearchProviders(): ProviderRequestQuery {
     const formModel = this.searchProviderFrom.value;
-    if (formModel.locatingType.type === this.LOCATING_TYPE.STATE_CITY
-      && formModel.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
-      return {
-        state: formModel.locatingType.stateCity.state,
-        city: formModel.locatingType.stateCity.city,
-        lastName: formModel.providerType.individual.lastName,
-        firstName: formModel.providerType.individual.firstName,
-        genderCode: formModel.providerType.individual.genderCode,
-        phone: formModel.providerType.individual.phone
-      };
-    } else if (formModel.locatingType.type === this.LOCATING_TYPE.STATE_CITY
-      && formModel.providerType.type === this.PROVIDER_TYPE.ORGANIZATION) {
-      return {
-        state: formModel.locatingType.stateCity.state,
-        city: formModel.locatingType.stateCity.city,
-        orgName: formModel.providerType.organization.orgName,
-        phone: formModel.providerType.organization.phone
-      };
-    } else if (formModel.locatingType.type === this.LOCATING_TYPE.ZIP
-      && formModel.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
-      return {
-        zipCode: formModel.locatingType.zip.zipCode,
-        lastName: formModel.providerType.individual.lastName,
-        firstName: formModel.providerType.individual.firstName,
-        genderCode: formModel.providerType.individual.genderCode,
-        phone: formModel.providerType.individual.phone
-      };
+    const individualRequestParams: ProviderRequestQuery = {
+      state: formModel.locatingType.stateCity.state,
+      city: formModel.locatingType.stateCity.city,
+      zipCode: formModel.locatingType.zip.zipCode,
+      lastName: formModel.providerType.individual.lastName,
+      firstName: formModel.providerType.individual.firstName,
+      genderCode: formModel.providerType.individual.genderCode,
+      phone: formModel.providerType.individual.phone
+    };
+
+    if (formModel.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL) {
+      return individualRequestParams;
     } else {
-      return {
-        zipCode: formModel.locatingType.zip.zipCode,
+      let organizationRequestParams: ProviderRequestQuery = {
         orgName: formModel.providerType.organization.orgName,
         phone: formModel.providerType.organization.phone
       };
+      return Object.assign(individualRequestParams, organizationRequestParams);
     }
   }
 
