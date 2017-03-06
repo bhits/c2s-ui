@@ -17,7 +17,9 @@ const consentRoutes: Routes = [
   { path: 'consent-create-edit',
     component: ConsentCreateEditComponent,
     resolve: {
-      providers:ProviderResolveService
+      providers:ProviderResolveService,
+      sensitivityPolicies: SensitivityPoliciesResolveService,
+      purposeOfUses:PurposeOfUsesResolveService
     }
   },
   {
