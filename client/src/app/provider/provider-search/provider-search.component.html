@@ -37,14 +37,14 @@
                   <div class="panel-body" [ngStyle]="{'padding-top': '20px', 'padding-bottom': '10px'}">
                     <div fxLayout="column">
                       <div fxLayout="column" formGroupName="stateCity">
-                        <md-select placeholder="Please Select State" formControlName="state"
+                        <md-select placeholder="Please Select State (Required)" formControlName="state"
                                    class="margin-left-15 margin-right-15">
                           <md-option *ngFor="let state of states" [value]="state.stateCode" fxLayoutAlign="left">
                             {{ state.stateValue }}
                           </md-option>
                         </md-select>
                         <div fxLayoutAlign="left"
-                             *ngIf="showLocatingTypeRequiredError('state')"
+                             *ngIf="hasErrorOnLocatingTypeFormControl('locatingType.stateCity.state', ERROR_CODE.REQUIRED)"
                              class="form-invalid">
                           State is required.
                         </div>
@@ -54,12 +54,12 @@
                           <input mdInput placeholder="City (Required)" formControlName="city">
                         </md-input-container>
                         <div fxLayoutAlign="left"
-                             *ngIf="showLocatingTypeLimitLengthError('city')"
+                             *ngIf="hasErrorOnLocatingTypeFormControl('locatingType.stateCity.city', ERROR_CODE.MIN_LENGTH)"
                              class="form-invalid">
                           Must be at least 2 characters long.
                         </div>
                         <div fxLayoutAlign="left"
-                             *ngIf="showLocatingTypeRequiredError('city')"
+                             *ngIf="hasErrorOnLocatingTypeFormControl('locatingType.stateCity.city', ERROR_CODE.REQUIRED)"
                              class="form-invalid">
                           City is required.
                         </div>
@@ -74,12 +74,12 @@
                         <input mdInput placeholder="Zip Code (Required)" formControlName="zipCode">
                       </md-input-container>
                       <div fxLayoutAlign="left"
-                           *ngIf="showLocatingTypePatternError('zipCode')"
+                           *ngIf="hasErrorOnLocatingTypeFormControl('locatingType.zip.zipCode', ERROR_CODE.PATTERN)"
                            class="form-invalid">
                         Must be with formats: 12345 or 12345-6789.
                       </div>
                       <div fxLayoutAlign="left"
-                           *ngIf="showLocatingTypeRequiredError('zipCode')"
+                           *ngIf="hasErrorOnLocatingTypeFormControl('locatingType.zip.zipCode', ERROR_CODE.REQUIRED)"
                            class="form-invalid">
                         Zip code is required.
                       </div>
@@ -118,12 +118,12 @@
                           <input mdInput placeholder="Last Name (Required)" formControlName="lastName"/>
                         </md-input-container>
                         <div fxLayoutAlign="left"
-                             *ngIf="showProviderTypeLimitLengthError('lastName')"
+                             *ngIf="hasErrorOnProviderTypeFormControl('providerType.individual.lastName', ERROR_CODE.MIN_LENGTH)"
                              class="form-invalid">
                           Must be at least 2 characters long.
                         </div>
                         <div fxLayoutAlign="left"
-                             *ngIf="showProviderTypeRequiredError('lastName')"
+                             *ngIf="hasErrorOnProviderTypeFormControl('providerType.individual.lastName', ERROR_CODE.REQUIRED)"
                              class="form-invalid">
                           Last Name is required.
                         </div>
@@ -134,7 +134,7 @@
                           <input mdInput placeholder="First Name (Optional)" formControlName="firstName">
                         </md-input-container>
                         <div fxLayoutAlign="left"
-                             *ngIf="showProviderTypeLimitLengthError('firstName')"
+                             *ngIf="hasErrorOnProviderTypeFormControl('providerType.individual.firstName', ERROR_CODE.MIN_LENGTH)"
                              class="form-invalid">
                           Must be at least 2 characters long.
                         </div>
@@ -146,7 +146,7 @@
                           <input mdInput placeholder="Telephone (Optional)" formControlName="phone">
                         </md-input-container>
                         <div fxLayoutAlign="left" fxLayout="row"
-                             *ngIf="showProviderTypePatternError('phone')"
+                             *ngIf="hasErrorOnProviderTypeFormControl('providerType.individual.phone', ERROR_CODE.PATTERN)"
                              class="form-invalid">
                           Must be with formats: 123-456-7890 (123)456-7890 1234567890 123.456.7890.
                         </div>
@@ -171,12 +171,12 @@
                         <input mdInput placeholder="Facility Name (Required)" formControlName="orgName"/>
                       </md-input-container>
                       <div fxLayoutAlign="left"
-                           *ngIf="showProviderTypeLimitLengthError('orgName')"
+                           *ngIf="hasErrorOnProviderTypeFormControl('providerType.organization.orgName', ERROR_CODE.MIN_LENGTH)"
                            class="form-invalid">
                         Must be at least 2 characters long.
                       </div>
                       <div fxLayoutAlign="left"
-                           *ngIf="showProviderTypeRequiredError('orgName')"
+                           *ngIf="hasErrorOnProviderTypeFormControl('providerType.organization.orgName', ERROR_CODE.REQUIRED)"
                            class="form-invalid">
                         Facility Name is required.
                       </div>
@@ -186,7 +186,7 @@
                         <input mdInput placeholder="Telephone (Optional)" formControlName="phone">
                       </md-input-container>
                       <div fxLayoutAlign="left"
-                           *ngIf="showProviderTypePatternError('phone')"
+                           *ngIf="hasErrorOnProviderTypeFormControl('providerType.organization.phone', ERROR_CODE.PATTERN)"
                            class="form-invalid">
                         Must be with formats: 123-456-7890 (123)456-7890 1234567890 123.456.7890.
                       </div>
