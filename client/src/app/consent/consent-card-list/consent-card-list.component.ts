@@ -27,8 +27,8 @@ export class ConsentCardListComponent implements OnInit {
   }
 
   getPage(page: number) {
+    this.loading = true;
     this.consents = this.consentService.getConsentList(page - 1)
-      .do(() => this.loading = true)
       .do((consentList: ConsentList) => {
         this.totalItems = consentList.totalItems;
         this.totalPages = consentList.totalPages;
