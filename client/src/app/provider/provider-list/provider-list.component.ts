@@ -25,8 +25,7 @@ export class ProviderListComponent implements OnInit {
   ngOnInit() {
     this.dataService.getProviders()
       .subscribe(
-        res => this.providers = res,
-        err => console.log(err)
+        res => this.providers = res
       );
   }
 
@@ -38,9 +37,9 @@ export class ProviderListComponent implements OnInit {
     dialog.close();
     if (provider != name) {
       this.providerService.deleteProvider(provider.npi)
-        .then(() =>
+        .subscribe(() =>
           this.providers = this.providers.filter(p => p !== provider));
-      console.log("Success in deleting provider:" + provider.npi)
+      //Todo: Add notification to handle result
     }
   }
 }

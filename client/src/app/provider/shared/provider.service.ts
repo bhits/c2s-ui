@@ -40,22 +40,20 @@ export class ProviderService {
     }
   }
 
-  deleteProvider(npi: string): Promise<void> {
+  deleteProvider(npi: string): Observable<void> {
     const DELETE_PROVIDERS_URL = `${this.basePcmUrl}/${npi}`;
     return this.http.delete(DELETE_PROVIDERS_URL)
-      .toPromise()
-      .then(() => null)
+      .map(() => null)
       .catch(this.exceptionService.handleError);
   }
 
-  addProviders(providers: ProviderProjection[]): Promise<void> {
+  addProviders(providers: ProviderProjection[]): Observable<void> {
     if (providers != null) {
       let npis: string[] = [];
       providers.forEach(provider => npis.push(provider.npi));
       return this.http
         .post(this.basePcmUrl, JSON.stringify({npiList: npis}), {headers: this.headers})
-        .toPromise()
-        .then(() => null)
+        .map(() => null)
         .catch(this.exceptionService.handleError);
     }
   }
