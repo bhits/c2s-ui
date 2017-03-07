@@ -1,10 +1,8 @@
 
 
-import {EntityType} from "./entity-type.enum";
-
 export class Provider {
   deletable: boolean;
-  entityType:EntityType;
+  entityType:String;
   firstLinePracticeLocationAddress:string;
   firstName:string;
   lastName:string;
