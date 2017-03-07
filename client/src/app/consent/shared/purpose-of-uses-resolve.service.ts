@@ -15,10 +15,4 @@ export class PurposeOfUsesResolveService {
                                   return purposeOfUses;
                                 });
   }
-
-  private handleError(error: any): Promise<any> {
-    this.toast.show("Error in getting Purpose of uses.", 2000);
-    return Promise.reject(error.message || error);
-  }
-
 }

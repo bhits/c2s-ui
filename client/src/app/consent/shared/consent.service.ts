@@ -34,12 +34,18 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getSensitivityPolices(): Promise<SensitivityPolicy[]> {
+  getSensitivityPolices(): Observable<SensitivityPolicy[]> {
     return this.http.get(this.pcmSensitivityPolicyUrl)
-      .toPromise()
-      .then(response => response.json() as SensitivityPolicy[])
-      .catch(this.handleError);
+                    .map((resp: Response) => <PurposeOfUseBase[]>(resp.json()))
+                    .catch(this.exceptionService.handleError);
   }
+
+  // getSensitivityPolices(): Promise<SensitivityPolicy[]> {
+  //   return this.http.get(this.pcmSensitivityPolicyUrl)
+  //     .toPromise()
+  //     .then(response => response.json() as SensitivityPolicy[])
+  //     .catch(this.handleError);
+  // }
 
   private handleError(error: any): Promise<any> {
     console.error('Error in getting data from the backend', error);
