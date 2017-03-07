@@ -6,9 +6,7 @@ import {ConsentCardListComponent} from "../consent/consent-card-list/consent-car
 
 const providerRoutes: Routes = [
   {path: 'provider-list', component: ProviderListComponent},
-  {path: 'provider-search', component: ProviderSearchComponent},
-  // TODO: separate consent routing to consent module
-  {path: 'consent-list', component: ConsentCardListComponent}
+  {path: 'provider-search', component: ProviderSearchComponent}
 ];
 
 @NgModule({
