@@ -13,7 +13,7 @@
               <md-toolbar color="primary">
                 Step 1. Please enter the provider State and City OR Zip Code.
               </md-toolbar>
-              <div formGroupName="locatingType" [ngStyle]="{'padding-top': '20px'}">
+              <div formGroupName="locatingType" [ngStyle]="{'padding-top': '40px'}">
                 <div fxLayout="row">
                   <div fxFlex="45">
                     <button fxLayoutAlign="center" class="toggle toggle-block"
@@ -39,7 +39,7 @@
                       <div fxLayout="column" formGroupName="stateCity">
                         <md-select placeholder="Please Select State (Required)" formControlName="state"
                                    class="margin-left-15 margin-right-15">
-                          <md-option *ngFor="let state of states" [value]="state.stateCode" fxLayoutAlign="left">
+                          <md-option *ngFor="let state of states" [value]="state.stateCode">
                             {{ state.stateValue }}
                           </md-option>
                         </md-select>
@@ -90,7 +90,7 @@
               <md-toolbar color="primary">
                 Step 2. Please enter the provider Facility Name OR Provider Name and Other Criteria.
               </md-toolbar>
-              <div formGroupName="providerType" [ngStyle]="{'padding-top': '20px', 'padding-bottom': '20px'}">
+              <div formGroupName="providerType" [ngStyle]="{'padding-top': '40px', 'padding-bottom': '20px'}">
                 <div fxLayout="row">
                   <div fxFlex="45">
                     <button fxLayoutAlign="center" class="toggle toggle-block"
@@ -106,15 +106,14 @@
                             (click)="setProviderType(PROVIDER_TYPE.ORGANIZATION)"
                             [class.toggle-default]="isIndividualProviderType()"
                             [class.toggle-primary]="!isIndividualProviderType()">
-                      <strong>Facility Name</strong>
+                      <strong>Enter Facility Name</strong>
                     </button>
                   </div>
                 </div>
                 <div class="panel margin-20" *ngIf="isIndividualProviderType()">
                   <div class="panel-body">
-                    <div fxLayout="row" fxLayoutGap="20px">
-                      <div fxLayout="column" fxFlex="45" formGroupName="individual">
-                        <md-input-container class="margin-left-15">
+                      <div fxLayout="column" formGroupName="individual">
+                        <md-input-container class="margin-left-15 margin-right-15">
                           <input mdInput placeholder="Last Name (Required)" formControlName="lastName"/>
                         </md-input-container>
                         <div fxLayoutAlign="left"
@@ -128,9 +127,8 @@
                           Last Name is required.
                         </div>
                       </div>
-                      <div fxFlex></div>
-                      <div fxLayout="column" fxFlex="45" formGroupName="individual">
-                        <md-input-container class="margin-right-15">
+                      <div fxLayout="column" formGroupName="individual">
+                        <md-input-container class="margin-left-15 margin-right-15">
                           <input mdInput placeholder="First Name (Optional)" formControlName="firstName">
                         </md-input-container>
                         <div fxLayoutAlign="left"
@@ -161,7 +159,6 @@
                         </md-select>
                       </div>
                     </div>
-                  </div>
                 </div>
                 <div class="panel margin-20"
                      *ngIf="!isIndividualProviderType()">
