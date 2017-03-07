@@ -3,9 +3,9 @@ import {Http, Response} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {Provider} from "./Provider";
 import {PurposeOfUse} from "./purpose-of-use";
-import {Consent} from "./consent";
+import {ConsentCreate} from "./consent-create.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
-import {EditConsent} from "./EditConsent";
+import {ConsentEdit} from "./consent-edit.model";
 import {ExceptionService} from "../../core/exception.service";
 import {Observable} from "rxjs";
 import {ConsentList} from "./consent-list.model";
@@ -57,7 +57,7 @@ export class ConsentService {
     return null;
   }
 
-  createConsent(consent: Consent) {
+  createConsent(consent: ConsentCreate) {
     return this.http.post(this.pcmConsentUrl, consent)
       .toPromise()
       .then(response => {
@@ -73,7 +73,7 @@ export class ConsentService {
       .catch(this.handleError);
   }
 
-  updateConsent(editconsent: EditConsent) {
+  updateConsent(editconsent: ConsentEdit) {
     return this.http.put(this.pcmConsentUrl + "/" + editconsent.id, editconsent)
       .toPromise()
       .then(response => {

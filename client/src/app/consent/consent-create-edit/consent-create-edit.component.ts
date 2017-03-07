@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 
-import {MedicalInformation} from "../shared/medical-information.enum";
 import {ConsentService} from "../shared/consent.service";
 import {Md2Toast} from "md2";
 import {ActivatedRoute} from "@angular/router";
 import {UtilityService} from "../../shared/utility.service";
-import {Consent} from "../shared/consent";
+import {ConsentCreate} from "../shared/consent-create.model";
 import {Provider} from "../shared/Provider";
-import {EditConsent} from "../shared/EditConsent";
+import {ConsentEdit} from "../shared/consent-edit.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {PurposeOfUse} from "../shared/purpose-of-use";
 
@@ -17,7 +16,7 @@ import {PurposeOfUse} from "../shared/purpose-of-use";
   styleUrls: ['./consent-create-edit.component.css']
 })
 export class ConsentCreateEditComponent implements OnInit {
-  consent : Consent;
+  consent : ConsentCreate;
   providers: Provider[];
   sensitivityPolicies: SensitivityPolicy[];
   purposeOfUses: PurposeOfUse[];
@@ -33,23 +32,24 @@ export class ConsentCreateEditComponent implements OnInit {
     this.sensitivityPolicies = this.route.snapshot.data['sensitivityPolicies'];
     this.purposeOfUses = this.route.snapshot.data['purposeOfUses'];
 
-    this.consent = {
-      consentEnd:"",
-      consentStart:"",
-      doNotShareSensitivityPolicyCodes:[],
-      organizationalProvidersDisclosureIsMadeToNpi:[],
-      organizationalProvidersPermittedToDiscloseNpi:[],
-      providersDisclosureIsMadeToNpi:[],
-      providersPermittedToDiscloseNpi:[],
-      shareForPurposeOfUseCodes:['TREATMENT']
-    };
-
+    this.consent = new ConsentCreate();
+    this.consent.consentStart = "";
+    this.consent.consentEnd = "";
+    this.consent.shareForPurposeOfUseCodes = ['TREATMENT'];
+    this.consent.doNotShareSensitivityPolicyCodes = [];
+    this.consent.organizationalProvidersDisclosureIsMadeToNpi = [];
+    this.consent.organizationalProvidersPermittedToDiscloseNpi = [];
+    this.consent.providersDisclosureIsMadeToNpi = [];
+    this.consent.providersPermittedToDiscloseNpi = [];
 
     this.route.params.subscribe(params => {
 
       if (params['consentId']) { // Edit mode
         let tempConsent = this.route.snapshot.data['consent'];
         this.consentId = params['consentId'];
+
+        this.consent = new ConsentCreate();
+
         this.consent.consentStart = tempConsent.consentStart;
         this.consent.consentEnd = tempConsent.consentEnd;
         this.consent.shareForPurposeOfUseCodes = tempConsent.shareForPurposeOfUseCodes;
@@ -76,7 +76,7 @@ export class ConsentCreateEditComponent implements OnInit {
   submitForm(){
     if(this.consentId){
 
-       let editConsent = new EditConsent();
+       let editConsent = new ConsentEdit();
        editConsent.id= this.consentId;
        editConsent.consentStart = this.consent.consentStart;
        editConsent.consentEnd = this.consent.consentEnd;
@@ -119,5 +119,4 @@ export class ConsentCreateEditComponent implements OnInit {
   navigateTo(url: string){
     this.utilityService.navigateTo(url);
   }
-
 }
