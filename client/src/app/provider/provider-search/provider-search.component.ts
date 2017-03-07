@@ -11,11 +11,11 @@ import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
 })
 export class ProviderSearchComponent implements OnInit {
   private searchProviderFrom: FormGroup;
-  private PHONE_PATTERN = '^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$';
 
   private searchResponse: ProviderSearchResponse;
   private accordionTab: boolean = true;
   private hasSearchResult: boolean = false;
+  private PHONE_PATTERN = '^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$';
 
   public states = [
     {stateCode: 'AZ', stateValue: 'ARIZONA'},
@@ -192,23 +192,23 @@ export class ProviderSearchComponent implements OnInit {
     });
   }
 
-  private setLocatingType(type: string) {
+  private setLocatingType(type: string): void {
     // update payment method type value
     const ctrl: FormControl = (<any>this.searchProviderFrom).controls.locatingType.controls.type;
     ctrl.setValue(type);
   }
 
-  private setProviderType(type: string) {
+  private setProviderType(type: string): void {
     // update payment method type value
     const ctrl: FormControl = (<any>this.searchProviderFrom).controls.providerType.controls.type;
     ctrl.setValue(type);
   }
 
-  isStateCityType() {
+  isStateCityType(): boolean {
     return this.searchProviderFrom.value.locatingType.type === this.LOCATING_TYPE.STATE_CITY;
   }
 
-  isIndividualProviderType() {
+  isIndividualProviderType(): boolean {
     return this.searchProviderFrom.value.providerType.type === this.PROVIDER_TYPE.INDIVIDUAL;
   }
 
@@ -217,17 +217,17 @@ export class ProviderSearchComponent implements OnInit {
     return formControl.hasError(errorCode) && (formControl.dirty || formControl.touched);
   }
 
-  resetAccordionTab() {
+  resetAccordionTab(): void {
     this.accordionTab = true;
   }
 
-  clearForm() {
+  clearForm(): void {
     this.searchProviderFrom.reset();
     this.setLocatingType(this.LOCATING_TYPE.STATE_CITY);
     this.setProviderType(this.PROVIDER_TYPE.INDIVIDUAL);
   }
 
-  prepareSearchProviders(): ProviderRequestQuery {
+  private prepareSearchProviders(): ProviderRequestQuery {
     const formModel = this.searchProviderFrom.value;
     const individualRequestParams: ProviderRequestQuery = {
       state: formModel.locatingType.stateCity.state,
@@ -250,7 +250,7 @@ export class ProviderSearchComponent implements OnInit {
     }
   }
 
-  searchProviders() {
+  searchProviders(): void {
     let requestParams: ProviderRequestQuery = this.prepareSearchProviders();
 
     this.providerService.searchProviders(requestParams)
