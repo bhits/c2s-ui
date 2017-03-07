@@ -27,7 +27,7 @@ import {HomeModule} from "./home/home.module";
     ProviderModule,
     MaterialModule, // TODO: Move to core module - verify why it is not working now.
     HomeModule,
-    AppRoutingModule, // Must be the last module to be imported
+    AppRoutingModule // Must be the last module to be imported
   ],
   providers: [],
   bootstrap: [AppComponent]
