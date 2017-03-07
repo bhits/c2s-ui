@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 import {ConsentService} from "../shared/consent.service";
-import {Provider} from "../shared/Provider";
+import {Provider} from "../shared/Provider.model";
 import 'rxjs/add/operator/toPromise';
 import {UtilityService} from "../../shared/utility.service";
 

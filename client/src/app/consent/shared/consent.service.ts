@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
 import "rxjs/add/operator/toPromise";
-import {Provider} from "./Provider";
-import {PurposeOfUse} from "./purpose-of-use";
+import {Provider} from "./Provider.model";
+import {PurposeOfUseBase} from "./purpose-of-use-base.model";
 import {ConsentCreate} from "./consent-create.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
 import {ConsentEdit} from "./consent-edit.model";
@@ -22,18 +22,16 @@ export class ConsentService {
   constructor(private http: Http, private exceptionService: ExceptionService) {
   }
 
-  getProviders(): Promise<Provider[]> {
+  getProviders(): Observable<Provider[]> {
     return this.http.get(this.pcmProvidersUrl)
-      .toPromise()
-      .then(response => response.json() as Provider[])
-      .catch(this.handleError);
+      .map((resp: Response) => <Provider[]>(resp.json()))
+      .catch(this.exceptionService.handleError);
   }
 
-  getPurposeOfUses(): Promise<PurposeOfUse[]> {
+  getPurposeOfUses(): Observable<PurposeOfUseBase[]> {
     return this.http.get(this.pcmPurposeOfUseUrl)
-      .toPromise()
-      .then(response => response.json() as PurposeOfUse[])
-      .catch(this.handleError);
+      .map((resp: Response) => <PurposeOfUseBase[]>(resp.json()))
+      .catch(this.exceptionService.handleError);
   }
 
   getSensitivityPolices(): Promise<SensitivityPolicy[]> {
@@ -69,7 +67,7 @@ export class ConsentService {
   getConsentById(id: string) {
     return this.http.get(this.pcmConsentUrl + "/" + id)
       .toPromise()
-      .then(response => response.json() as PurposeOfUse[])
+      .then(response => response.json() as PurposeOfUseBase[])
       .catch(this.handleError);
   }
 

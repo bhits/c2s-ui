@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 
-import {PurposeOfUse} from "../shared/purpose-of-use";
+import {PurposeOfUseBase} from "../shared/purpose-of-use-base.model";
 import {PurposeOfUseService} from "./purpose-of-use.service";
 
 @Component({
@@ -11,7 +11,7 @@ import {PurposeOfUseService} from "./purpose-of-use.service";
 export class PurposeOfUseComponent implements OnInit {
   @Output() selectedPurposeOfUse = new EventEmitter();
   @Input() purposeOfUsesCodes:string[];
-  @Input() purposeOfUSes: PurposeOfUse[];
+  @Input() purposeOfUSes: PurposeOfUseBase[];
 
   constructor(private purposeOfUseService: PurposeOfUseService ) { }
 

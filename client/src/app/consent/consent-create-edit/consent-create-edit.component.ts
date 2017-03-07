@@ -5,10 +5,10 @@ import {Md2Toast} from "md2";
 import {ActivatedRoute} from "@angular/router";
 import {UtilityService} from "../../shared/utility.service";
 import {ConsentCreate} from "../shared/consent-create.model";
-import {Provider} from "../shared/Provider";
+import {Provider} from "../shared/Provider.model";
 import {ConsentEdit} from "../shared/consent-edit.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
-import {PurposeOfUse} from "../shared/purpose-of-use";
+import {PurposeOfUseBase} from "../shared/purpose-of-use-base.model";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -19,7 +19,7 @@ export class ConsentCreateEditComponent implements OnInit {
   consent : ConsentCreate;
   providers: Provider[];
   sensitivityPolicies: SensitivityPolicy[];
-  purposeOfUses: PurposeOfUse[];
+  purposeOfUses: PurposeOfUseBase[];
 
   private consentId:string;
 

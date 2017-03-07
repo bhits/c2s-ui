@@ -1,6 +1,6 @@
 import {Component, OnInit,Input} from '@angular/core';
 
-import {Provider} from "../shared/Provider";
+import {Provider} from "../shared/Provider.model";
 import {ConsentService} from "../shared/consent.service";
 import {UtilityService} from "../../shared/utility.service";
 

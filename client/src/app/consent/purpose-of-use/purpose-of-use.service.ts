@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 
-import {PurposeOfUse} from "../shared/purpose-of-use";
+import {PurposeOfUseBase} from "../shared/purpose-of-use-base.model";
 
 @Injectable()
 export class PurposeOfUseService {
 
   constructor() { }
 
-  setPurposeOfUseStatusToChecked(purposeOfUses:PurposeOfUse[]){
+  setPurposeOfUseStatusToChecked(purposeOfUses:PurposeOfUseBase[]){
     for(let purposeOfUSe of purposeOfUses){
       purposeOfUSe['checked'] = true;
     }
   }
 
-  updatePurposeOfUseStatus(purposeOfUsesCodes:string[], purposeOfUses:PurposeOfUse[]){
+  updatePurposeOfUseStatus(purposeOfUsesCodes:string[], purposeOfUses:PurposeOfUseBase[]){
     this.setPurposeOfUseStatusToUnChecked(purposeOfUses);
     for(let p1 of purposeOfUsesCodes){
       for(let p2 of purposeOfUses){
@@ -25,13 +25,13 @@ export class PurposeOfUseService {
     }
   }
 
-  setPurposeOfUseStatusToUnChecked(purposeOfUses:PurposeOfUse[]){
+  setPurposeOfUseStatusToUnChecked(purposeOfUses:PurposeOfUseBase[]){
     for(let purposeOfUSe of purposeOfUses){
       purposeOfUSe['checked'] = false;
     }
   }
 
-  getSelectedPurposeOfUseCode(purposeOfUses:PurposeOfUse[]):string[]{
+  getSelectedPurposeOfUseCode(purposeOfUses:PurposeOfUseBase[]):string[]{
     let selected:string[] =  new Array();
     for(let purposeOfUse of purposeOfUses){
       if( purposeOfUse['checked']){
@@ -41,8 +41,8 @@ export class PurposeOfUseService {
     return selected;
   }
 
-  getSelectedPurposeOfUse(purposeOfUses:PurposeOfUse[]):PurposeOfUse[]{
-    let selected:PurposeOfUse[] =  new Array();
+  getSelectedPurposeOfUse(purposeOfUses:PurposeOfUseBase[]):PurposeOfUseBase[]{
+    let selected:PurposeOfUseBase[] =  new Array();
     for(let purposeOfUse of purposeOfUses){
       if( purposeOfUse['checked']){
         selected.push(purposeOfUse);
