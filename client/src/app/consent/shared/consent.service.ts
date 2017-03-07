@@ -61,7 +61,7 @@ export class ConsentService {
     return this.http.post(this.pcmConsentUrl, consent)
       .toPromise()
       .then(response => {
-        console.log(response);
+        return response;
       })
       .catch(this.handleError);
   }
@@ -77,7 +77,7 @@ export class ConsentService {
     return this.http.put(this.pcmConsentUrl + "/" + editconsent.id, editconsent)
       .toPromise()
       .then(response => {
-        console.log(response);
+        return response;
       })
       .catch(this.handleError);
   }
