@@ -23,7 +23,7 @@
               {{provider | consentProviderName}}
             </md-radio-button>
           </div>
-      <h3>Orgasnizational:</h3>
+      <h3>Organizational:</h3>
         <div *ngFor="let provider of providers">
           <md-radio-button *ngIf="provider.entityType === 'Organization'"
                            [value]="provider.npi"
