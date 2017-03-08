@@ -24,8 +24,8 @@ export class ProviderMultiAddComponent implements OnInit {
     if (selectedProviders != null) {
       const PROVIDER_LIST_URL = "provider-list";
       this.providerService.addProviders(selectedProviders)
-        .then(() => {
-          console.log("Success in adding providers");
+        .subscribe(() => {
+          //Todo: Add notification to handle result
           this.router.navigate([PROVIDER_LIST_URL]);
         });
     }

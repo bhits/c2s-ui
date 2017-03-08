@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Provider} from "../shared/provider.model";
 import {ProviderService} from "../shared/provider.service";
 import {PaginationInstance} from "ng2-pagination";
-import {DataService} from "../../shared/data.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'c2s-provider-list',
@@ -18,16 +18,12 @@ export class ProviderListComponent implements OnInit {
   };
   accordionTab: boolean = true;
 
-  constructor(private dataService: DataService,
+  constructor(private route: ActivatedRoute,
               private providerService: ProviderService) {
   }
 
   ngOnInit() {
-    this.dataService.getProviders()
-      .subscribe(
-        res => this.providers = res,
-        err => console.log(err)
-      );
+    this.providers = this.route.snapshot.data['providers'];
   }
 
   onPageChange(number: number) {
@@ -38,9 +34,9 @@ export class ProviderListComponent implements OnInit {
     dialog.close();
     if (provider != name) {
       this.providerService.deleteProvider(provider.npi)
-        .then(() =>
+        .subscribe(() =>
           this.providers = this.providers.filter(p => p !== provider));
-      console.log("Success in deleting provider:" + provider.npi)
+      //Todo: Add notification to handle result
     }
   }
 }
