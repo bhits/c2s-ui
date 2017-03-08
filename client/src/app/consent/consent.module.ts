@@ -24,6 +24,7 @@ import {ConsentStagePipe} from "./shared/consent-stage.pipe";
 import {SelectProvidersComponent} from "./select-providers/select-providers.component";
 import {SensitivityPoliciesResolveService} from "./shared/sensitivity-policies-resolve.service";
 import {PurposeOfUsesResolveService} from "./shared/purpose-of-uses-resolve.service";
+import {NotificationService} from "../core/notification.service";
 
 @NgModule({
   imports: [
@@ -57,7 +58,9 @@ import {PurposeOfUsesResolveService} from "./shared/purpose-of-uses-resolve.serv
     ConsentResolveService,
     ProviderResolveService,
     SensitivityPoliciesResolveService,
-    PurposeOfUsesResolveService],
+    PurposeOfUsesResolveService,
+    NotificationService
+  ],
 })
 export class ConsentModule {
 }

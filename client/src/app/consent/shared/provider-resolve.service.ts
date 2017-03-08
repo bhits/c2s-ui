@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import {ConsentService} from "./consent.service";
-import {Md2Toast} from "md2";
 import {Resolve, ActivatedRouteSnapshot} from "@angular/router";
 import {Provider} from "./Provider.model";
+import {DataService} from "../../shared/data.service";
 
 @Injectable()
 export class ProviderResolveService implements Resolve<any> {
 
-  constructor(private consentService: ConsentService,private toast: Md2Toast) { }
+  constructor(private dataService: DataService) { }
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.consentService.getProviders()
-                              .do((providers: Provider[]) => {
-                                  return providers;
-                                });
+    return this.dataService.getProviders()
+              .do((providers: Provider[]) => {
+                  return providers;
+                });
   }
 }

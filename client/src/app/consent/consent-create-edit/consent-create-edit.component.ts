@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 
 import {ConsentService} from "../shared/consent.service";
-import {Md2Toast} from "md2";
 import {ActivatedRoute} from "@angular/router";
 import {UtilityService} from "../../shared/utility.service";
-import {ConsentCreate} from "../shared/consent-create.model";
+import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {Provider} from "../shared/Provider.model";
-import {ConsentEdit} from "../shared/consent-edit.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {PurposeOfUseBase} from "../shared/purpose-of-use-base.model";
+import {NotificationService} from "../../core/notification.service";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -16,14 +15,14 @@ import {PurposeOfUseBase} from "../shared/purpose-of-use-base.model";
   styleUrls: ['./consent-create-edit.component.css']
 })
 export class ConsentCreateEditComponent implements OnInit {
-  consent : ConsentCreate;
+  consent : ConsentCreateEdit;
   providers: Provider[];
   sensitivityPolicies: SensitivityPolicy[];
   purposeOfUses: PurposeOfUseBase[];
 
   private consentId:string;
 
-  constructor(private consentService: ConsentService, private toast: Md2Toast, private route: ActivatedRoute, private utilityService:UtilityService) {
+  constructor(private consentService: ConsentService, private notificationService: NotificationService, private route: ActivatedRoute, private utilityService:UtilityService) {
   }
 
   ngOnInit() {
@@ -32,7 +31,7 @@ export class ConsentCreateEditComponent implements OnInit {
     this.sensitivityPolicies = this.route.snapshot.data['sensitivityPolicies'];
     this.purposeOfUses = this.route.snapshot.data['purposeOfUses'];
 
-    this.consent = new ConsentCreate();
+    this.consent = new ConsentCreateEdit();
     this.consent.consentStart = "";
     this.consent.consentEnd = "";
     this.consent.shareForPurposeOfUseCodes = ['TREATMENT'];
@@ -45,19 +44,7 @@ export class ConsentCreateEditComponent implements OnInit {
     this.route.params.subscribe(params => {
 
       if (params['consentId']) { // Edit mode
-        let tempConsent = this.route.snapshot.data['consent'];
-        this.consentId = params['consentId'];
-
-        this.consent = new ConsentCreate();
-
-        this.consent.consentStart = tempConsent.consentStart;
-        this.consent.consentEnd = tempConsent.consentEnd;
-        this.consent.shareForPurposeOfUseCodes = tempConsent.shareForPurposeOfUseCodes;
-        this.consent.doNotShareSensitivityPolicyCodes = tempConsent.doNotShareSensitivityPolicyCodes;
-        this.consent.organizationalProvidersDisclosureIsMadeToNpi = tempConsent.organizationalProvidersDisclosureIsMadeToNpi;
-        this.consent.organizationalProvidersPermittedToDiscloseNpi = tempConsent.organizationalProvidersPermittedToDiscloseNpi;
-        this.consent.providersDisclosureIsMadeToNpi = tempConsent.providersDisclosureIsMadeToNpi;
-        this.consent.providersPermittedToDiscloseNpi = tempConsent.providersPermittedToDiscloseNpi;
+        this.consent = this.route.snapshot.data['consent'];
       }
     });
   }
@@ -76,35 +63,23 @@ export class ConsentCreateEditComponent implements OnInit {
   submitForm(){
     if(this.consentId){
 
-       let editConsent = new ConsentEdit();
-       editConsent.id= this.consentId;
-       editConsent.consentStart = this.consent.consentStart;
-       editConsent.consentEnd = this.consent.consentEnd;
-       editConsent.shareForPurposeOfUseCodes = this.consent.shareForPurposeOfUseCodes;
-       editConsent.doNotShareSensitivityPolicyCodes = this.consent.doNotShareSensitivityPolicyCodes;
-       editConsent.organizationalProvidersDisclosureIsMadeToNpi = this.consent.organizationalProvidersDisclosureIsMadeToNpi;
-       editConsent.organizationalProvidersPermittedToDiscloseNpi = this.consent.organizationalProvidersPermittedToDiscloseNpi;
-       editConsent.providersDisclosureIsMadeToNpi = this.consent.providersDisclosureIsMadeToNpi;
-       editConsent.providersPermittedToDiscloseNpi = this.consent.providersPermittedToDiscloseNpi;
-
-
-       this.consentService.updateConsent(editConsent)
+       this.consentService.updateConsent(this.consent)
                           .then(res => {
-                            this.toast.show("Success in Updating consent.", 2000);
+                            this.notificationService.show("Success in Updating consent.");
                             this.utilityService.navigateTo('consent-list');
                           })
                           .catch(error => {
-                            this.toast.show("Error in Updating consent.", 2000);
+                            this.notificationService.show("Error in Updating consent.");
                             console.log(error);
                           });
     }else {
        this.consentService.createConsent(this.consent)
                         .then(res => {
-                          this.toast.show("Success in creating consent.", 2000);
+                          this.notificationService.show("Success in creating consent.");
                           this.utilityService.navigateTo('consent-list');
                         })
                         .catch(error => {
-                          this.toast.show("Error in creating consent.", 2000);
+                          this.notificationService.show("Error in creating consent.");
                           console.log(error);
                         });
     }
