@@ -4,7 +4,7 @@ import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 import {ProviderProjection} from "../shared/provider-projection.model";
 import {Provider} from "../shared/provider.model";
 import {Observable} from "rxjs";
-import {DataService} from "../../shared/data.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'c2s-provider-search-result',
@@ -25,7 +25,7 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
   private totalPages: number;
   private loading: boolean;
 
-  constructor(private dataService: DataService,
+  constructor(private route: ActivatedRoute,
               private providerService: ProviderService) {
   }
 
@@ -38,10 +38,7 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.dataService.getProviders()
-      .subscribe(
-        res => this.providerList = res,
-        err => console.log(err));
+    this.providerList = this.route.snapshot.data['providers'];
   }
 
   getPage(page: number) {

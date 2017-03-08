@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Provider} from "../shared/provider.model";
 import {ProviderService} from "../shared/provider.service";
 import {PaginationInstance} from "ng2-pagination";
-import {DataService} from "../../shared/data.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'c2s-provider-list',
@@ -18,15 +18,12 @@ export class ProviderListComponent implements OnInit {
   };
   accordionTab: boolean = true;
 
-  constructor(private dataService: DataService,
+  constructor(private route: ActivatedRoute,
               private providerService: ProviderService) {
   }
 
   ngOnInit() {
-    this.dataService.getProviders()
-      .subscribe(
-        res => this.providers = res
-      );
+    this.providers = this.route.snapshot.data['providers'];
   }
 
   onPageChange(number: number) {
