@@ -1,14 +1,10 @@
 export class Links {
-  first: {
-    href: string;
-  };
-  self: {
-    href: string;
-  };
-  next: {
-    href: string;
-  };
-  last: {
-    href: string;
-  };
+  first: Href;
+  self: Href;
+  next: Href;
+  last: Href
+}
+
+export class Href {
+  href: string;
 }
