@@ -21,7 +21,7 @@ import {NotificationService} from "./notification.service";
       deps: [XHRBackend, RequestOptions, SlimLoadingBarService]
     }
   ],
-  exports: [SlimLoadingBarModule, NotificationService]
+  exports: [SlimLoadingBarModule]
 })
 export class CoreModule {
 }
