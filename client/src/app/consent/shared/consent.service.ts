@@ -21,12 +21,6 @@ export class ConsentService {
   constructor(private http: Http, private exceptionService: ExceptionService) {
   }
 
-  getProviders(): Observable<Provider[]> {
-    return this.http.get(this.pcmProvidersUrl)
-      .map((resp: Response) => <Provider[]>(resp.json()))
-      .catch(this.exceptionService.handleError);
-  }
-
   getPurposeOfUses(): Observable<PurposeOfUseBase[]> {
     return this.http.get(this.pcmPurposeOfUseUrl)
       .map((resp: Response) => <PurposeOfUseBase[]>(resp.json()))
