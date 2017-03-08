@@ -1,5 +1,6 @@
 
-export class ConsentCreate {
+export class ConsentCreateEdit {
+  id?:string;
   consentEnd:string;
   consentStart:string;
   doNotShareSensitivityPolicyCodes:string[];

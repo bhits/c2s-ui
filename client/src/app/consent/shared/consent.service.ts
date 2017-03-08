@@ -3,12 +3,11 @@ import {Http, Response} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {Provider} from "./Provider.model";
 import {PurposeOfUseBase} from "./purpose-of-use-base.model";
-import {ConsentCreate} from "./consent-create.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
-import {ConsentEdit} from "./consent-edit.model";
 import {ExceptionService} from "../../core/exception.service";
 import {Observable} from "rxjs";
 import {ConsentList} from "./consent-list.model";
+import {ConsentCreateEdit} from "./consent-create-edit.model";
 
 @Injectable()
 export class ConsentService {
@@ -40,18 +39,6 @@ export class ConsentService {
                     .catch(this.exceptionService.handleError);
   }
 
-  // getSensitivityPolices(): Promise<SensitivityPolicy[]> {
-  //   return this.http.get(this.pcmSensitivityPolicyUrl)
-  //     .toPromise()
-  //     .then(response => response.json() as SensitivityPolicy[])
-  //     .catch(this.handleError);
-  // }
-
-  private handleError(error: any): Promise<any> {
-    console.error('Error in getting data from the backend', error);
-    return Promise.reject(error.message || error);
-  }
-
   getProviderByNPI(providers: Provider[], npi: string): Provider {
     for (let provider of providers) {
       if (provider.npi === npi) {
@@ -61,29 +48,28 @@ export class ConsentService {
     return null;
   }
 
-  createConsent(consent: ConsentCreate) {
+  createConsent(consent: ConsentCreateEdit) {
     return this.http.post(this.pcmConsentUrl, consent)
       .toPromise()
       .then(response => {
         return response;
       })
-      .catch(this.handleError);
+      .catch(this.exceptionService.handleError);
   }
 
-  getConsentById(id: string) {
+  getConsentById(id: string):Observable<ConsentCreateEdit> {
     return this.http.get(this.pcmConsentUrl + "/" + id)
-      .toPromise()
-      .then(response => response.json() as PurposeOfUseBase[])
-      .catch(this.handleError);
+      .map((resp: Response) => <ConsentCreateEdit>(resp.json()))
+      .catch(this.exceptionService.handleError);
   }
 
-  updateConsent(editconsent: ConsentEdit) {
-    return this.http.put(this.pcmConsentUrl + "/" + editconsent.id, editconsent)
+  updateConsent(consent: ConsentCreateEdit) {
+    return this.http.put(this.pcmConsentUrl + "/" + consent.id, consent)
       .toPromise()
       .then(response => {
         return response;
       })
-      .catch(this.handleError);
+      .catch(this.exceptionService.handleError);
   }
 
   getConsentList(page: number): Observable<ConsentList> {
