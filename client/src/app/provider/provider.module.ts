@@ -9,11 +9,14 @@ import {ProviderAddressPipe} from "./shared/provider-address.pipe";
 import {ProviderProjectionNamePipe} from "./shared/provider-projection-name.pipe";
 import {ProviderNamePipe} from "./shared/provider-name.pipe";
 import {ProviderRoutingModule} from "./provider-routing.module";
+import {ProviderListResolveService} from "./shared/provider-list-resolve.service";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
     SharedModule,
-    ProviderRoutingModule
+    ProviderRoutingModule,
+    RouterModule
   ],
   declarations: [
     ProviderListComponent,
@@ -24,7 +27,10 @@ import {ProviderRoutingModule} from "./provider-routing.module";
     ProviderProjectionNamePipe,
     ProviderNamePipe
   ],
-  providers: [ProviderService]
+  providers: [
+    ProviderService,
+    ProviderListResolveService
+  ]
 })
 export class ProviderModule {
 }
