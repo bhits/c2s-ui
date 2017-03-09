@@ -8,9 +8,14 @@ import {Component, OnInit, Input} from '@angular/core';
 export class PageTitleComponent implements OnInit {
 
   @Input() title;
+  @Input() isHidden:boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  back(){
+    window.history.back();
   }
 }
