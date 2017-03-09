@@ -19,7 +19,7 @@ export class ConsentCreateEditComponent implements OnInit {
   providers: Provider[];
   sensitivityPolicies: SensitivityPolicy[];
   purposeOfUses: PurposeOfUseBase[];
-
+  title: string = "Create Consent";
   private consentId:string;
 
   constructor(private consentService: ConsentService, private notificationService: NotificationService, private route: ActivatedRoute, private utilityService:UtilityService) {
@@ -44,6 +44,7 @@ export class ConsentCreateEditComponent implements OnInit {
     this.route.params.subscribe(params => {
 
       if (params['consentId']) { // Edit mode
+        this.title = "Edit Consent";
         this.consent = this.route.snapshot.data['consent'];
       }
     });

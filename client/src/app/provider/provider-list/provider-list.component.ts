@@ -12,6 +12,8 @@ import {DataService} from "../../shared/data.service";
 
 export class ProviderListComponent implements OnInit {
   providers: Provider[];
+  title:string = "Providers";
+
   paginationConfig: PaginationInstance = {
     itemsPerPage: 10,
     currentPage: 1

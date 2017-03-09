@@ -17,6 +17,8 @@ export class ProviderSearchComponent implements OnInit {
   private accordionTab: boolean = true;
   private hasSearchResult: boolean = false;
 
+  title:string = "Add Providers";
+
   public states = [
     {stateCode: 'AZ', stateValue: 'ARIZONA'},
     {stateCode: 'DC', stateValue: 'DISTRICT OF COLUMBIA'},

@@ -11,6 +11,7 @@ import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 import {RouterModule} from "@angular/router";
 import {UtilityService} from "./utility.service";
 import {DataService} from "./data.service";
+import {PageTitleComponent} from "./page-title/page-title.component";
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import {DataService} from "./data.service";
     Md2Module,
     RouterModule
   ],
-  declarations: [UsPhoneNumberPipe],
+  declarations: [UsPhoneNumberPipe, PageTitleComponent],
   exports: [
     CommonModule,
     FormsModule,
@@ -28,7 +29,8 @@ import {DataService} from "./data.service";
     Ng2PaginationModule,
     ReactiveFormsModule,
     UsPhoneNumberPipe,
-    Md2Tooltip
+    Md2Tooltip,
+    PageTitleComponent
   ],
   providers: [
     DataService,
