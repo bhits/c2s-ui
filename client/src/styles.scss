@@ -2,11 +2,18 @@
 
 /*Angular Material pre-buil theme*/
 
-@import '~https://fonts.googleapis.com/icon?family=Material+Icons';
-@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
+//@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import '~@angular/material/core/theming/prebuilt/indigo-pink.scss';
+
+/// Custom
+@import 'assets/scss/core.scss';
 
 .demo-grey{
   color:#9E9E9E;
+}
+
+.demo-test {
+  background-color: #3f51b5;
 }
 
 body {
@@ -67,3 +74,4 @@ md-toolbar-row {
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
+
