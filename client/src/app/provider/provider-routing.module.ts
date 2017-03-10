@@ -16,3 +16,8 @@ const providerRoutes: Routes = [
 })
 export class ProviderRoutingModule {
 }
+
+export const providerRoutableComponents = [
+  ProviderListComponent,
+  ProviderSearchComponent
+]
