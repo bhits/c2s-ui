@@ -43,3 +43,17 @@ const consentRoutes: Routes = [
 })
 export class ConsentRoutingModule {
 }
+
+
+export const consentRoutableComponents = [
+  ConsentCardListComponent,
+  ConsentCreateEditComponent
+]
+
+
+export const consentRoutableResolves = [
+  ConsentResolveService,
+  ProviderResolveService,
+  SensitivityPoliciesResolveService,
+  PurposeOfUsesResolveService
+]
