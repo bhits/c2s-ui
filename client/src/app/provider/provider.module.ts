@@ -7,6 +7,7 @@ import {ProviderAddressPipe} from "./shared/provider-address.pipe";
 import {ProviderProjectionNamePipe} from "./shared/provider-projection-name.pipe";
 import {ProviderNamePipe} from "./shared/provider-name.pipe";
 import {ProviderRoutingModule, providerRoutableComponents} from "./provider-routing.module";
+import {ProviderListResolveService} from "./shared/provider-list-resolve.service";
 
 @NgModule({
   imports: [
@@ -22,8 +23,10 @@ import {ProviderRoutingModule, providerRoutableComponents} from "./provider-rout
     ProviderNamePipe,
     providerRoutableComponents
   ],
-  providers: [ProviderService]
+  providers: [
+    ProviderService,
+    ProviderListResolveService
+  ]
 })
 export class ProviderModule {
 }
-
