@@ -32,4 +32,8 @@ export class ProviderRoutingModule {
 export const providerRoutableComponents = [
   ProviderListComponent,
   ProviderSearchComponent
-]
+];
+
+export const providerRoutableResolves = [
+  ProviderListResolveService
+];
