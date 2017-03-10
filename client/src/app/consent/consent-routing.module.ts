@@ -1,25 +1,27 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {Routes, RouterModule} from "@angular/router";
-
 import {ConsentCreateEditComponent} from "./consent-create-edit/consent-create-edit.component";
 import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.component";
 import {ConsentResolveService} from "./shared/consent-resolve.service";
 import {ProviderResolveService} from "./shared/provider-resolve.service";
 import {SensitivityPoliciesResolveService} from "./shared/sensitivity-policies-resolve.service";
 import {PurposeOfUsesResolveService} from "./shared/purpose-of-uses-resolve.service";
+import {ConsentSignComponent} from "./consent-sign/consent-sign.component";
 
 
 const consentRoutes: Routes = [
-  { path: 'consent-list',
+  {
+    path: 'consent-list',
     component: ConsentCardListComponent
   },
-  { path: 'consent-create-edit',
+  {
+    path: 'consent-create-edit',
     component: ConsentCreateEditComponent,
     resolve: {
-      providers:ProviderResolveService,
+      providers: ProviderResolveService,
       sensitivityPolicies: SensitivityPoliciesResolveService,
-      purposeOfUses:PurposeOfUsesResolveService
+      purposeOfUses: PurposeOfUsesResolveService
     }
   },
   {
@@ -29,8 +31,12 @@ const consentRoutes: Routes = [
       consent: ConsentResolveService,
       providers: ProviderResolveService,
       sensitivityPolicies: SensitivityPoliciesResolveService,
-      purposeOfUses:PurposeOfUsesResolveService
+      purposeOfUses: PurposeOfUsesResolveService
     }
+  },
+  {
+    path: 'consent-sign/:consentId',
+    component: ConsentSignComponent
   }
 ];
 
@@ -47,8 +53,9 @@ export class ConsentRoutingModule {
 
 export const consentRoutableComponents = [
   ConsentCardListComponent,
-  ConsentCreateEditComponent
-]
+  ConsentCreateEditComponent,
+  ConsentSignComponent
+];
 
 
 export const consentRoutableResolves = [
@@ -56,4 +63,4 @@ export const consentRoutableResolves = [
   ProviderResolveService,
   SensitivityPoliciesResolveService,
   PurposeOfUsesResolveService
-]
+];
