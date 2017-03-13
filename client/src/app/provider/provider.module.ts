@@ -10,8 +10,9 @@ import {ProviderRoutingModule, providerRoutableComponents} from "./provider-rout
 
 @NgModule({
   imports: [
-    SharedModule,
-    ProviderRoutingModule
+    ProviderRoutingModule,
+    RouterModule,
+    SharedModule
   ],
   declarations: [
     ProviderAddressPipe,
@@ -21,7 +22,10 @@ import {ProviderRoutingModule, providerRoutableComponents} from "./provider-rout
     ProviderNamePipe,
     providerRoutableComponents
   ],
-  providers: [ProviderService]
+  providers: [
+    ProviderService,
+    providerRoutableResolves
+  ]
 })
 export class ProviderModule {
 }

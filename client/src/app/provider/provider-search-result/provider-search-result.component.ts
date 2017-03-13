@@ -4,7 +4,8 @@ import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 import {ProviderProjection} from "../shared/provider-projection.model";
 import {Provider} from "../shared/provider.model";
 import {Observable} from "rxjs";
-import {DataService} from "../../shared/data.service";
+import {ActivatedRoute} from "@angular/router";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-provider-search-result',
@@ -25,8 +26,9 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
   private totalPages: number;
   private loading: boolean;
 
-  constructor(private dataService: DataService,
-              private providerService: ProviderService) {
+  constructor(private route: ActivatedRoute,
+              private providerService: ProviderService,
+              private utilityService: UtilityService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -38,13 +40,12 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.dataService.getProviders()
-      .subscribe(
-        res => this.providerList = res,
-        err => console.log(err));
+    this.providerList = this.route.snapshot.data['providers'];
   }
 
   getPage(page: number) {
+    const SEARCH_RESPONSE_KEY: string = "providers";
+
     this.loading = true;
     if (this.searchResponse != null) {
       this.asyncProviderResult = this.providerService.loadNewSearchProvidersResult(page - 1, this.searchResponse)
@@ -55,7 +56,8 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
           this.currentPage = providerSearchResponse.page.number + 1;
           this.loading = false;
         })
-        .map(providerSearchResponse => providerSearchResponse._embedded.providers);
+        .map(providerSearchResponse =>
+          this.utilityService.convertJsonObjToStrMap(providerSearchResponse._embedded).get(SEARCH_RESPONSE_KEY));
     }
   }
 

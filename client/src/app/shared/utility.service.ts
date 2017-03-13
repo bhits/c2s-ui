@@ -34,4 +34,12 @@ export class UtilityService {
     }
     return zipCode;
   }
+
+  convertJsonObjToStrMap(jsonStr) {
+    const strMap = new Map();
+    for (let k of Object.keys(jsonStr)) {
+      strMap.set(k, jsonStr[k]);
+    }
+    return strMap;
+  }
 }
