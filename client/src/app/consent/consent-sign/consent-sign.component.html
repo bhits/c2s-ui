@@ -1,3 +1,91 @@
-<p>
-  consent-sign works!
-</p>
+<c2s-page-title [title]="title"></c2s-page-title>
+
+<md-card>
+  <h2 fxLayoutAlign="start">Consent to Share My Medical Information</h2>
+  <div fxLayout="column">
+    <div fxLayoutAlign="start">Consent Reference Number:</div>
+    <div fxLayoutAlign="start">
+      <strong>C2S-DEV.UC6AIB:&1.3.6.1.4.1.21367.13.20.200&ISO:1023091915:1962766899:U8YSUI</strong>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex fxLayoutAlign="start">
+      <span>Patient Name:</span>
+      <span><strong>Sally Share</strong></span>
+    </div>
+    <div fxFlex>
+      <span>Patient DOB:</span>
+      <span><strong>01/01/2017</strong></span>
+    </div>
+  </div>
+  <md-toolbar color="primary">
+    AUTHORIZATION TO DISCLOSE
+  </md-toolbar>
+  <div fxLayout="column">
+    <div fxLayoutAlign="start"><strong>Authorizes:</strong></div>
+    <div fxLayout="row">
+      <div fxFlex="35" fxLayoutAlign="start">Provider Name</div>
+      <div fxFlex="15" fxLayoutAlign="start">NPI Number</div>
+      <div fxFlex="35" fxLayoutAlign="start">Address</div>
+      <div fxFlex="15" fxLayoutAlign="start">Phone</div>
+    </div>
+    <div fxLayout="row">
+      <div fxFlex="35" fxLayoutAlign="start">PRECISION ORTHPEDICS AND SPORTS</div>
+      <div fxFlex="15" fxLayoutAlign="start">1962766899</div>
+      <div fxFlex="35" fxLayoutAlign="start">14201 PARK CENTER DR, LAUREL, MD,</div>
+      <div fxFlex="15" fxLayoutAlign="start">301-524-3390</div>
+    </div>
+    <div fxLayoutAlign="start"><strong>To disclose to:</strong></div>
+    <div fxLayout="column">
+      <div fxLayoutAlign="start"><strong>Authorizes:</strong></div>
+      <div fxLayout="row">
+        <div fxFlex="35" fxLayoutAlign="start">Provider Name</div>
+        <div fxFlex="15" fxLayoutAlign="start">NPI Number</div>
+        <div fxFlex="35" fxLayoutAlign="start">Address</div>
+        <div fxFlex="15" fxLayoutAlign="start">Phone</div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="35" fxLayoutAlign="start">PRINCE GEORGE'S COUNTY HEALTH</div>
+        <div fxFlex="15" fxLayoutAlign="start">1023091915</div>
+        <div fxFlex="35" fxLayoutAlign="start">1701 MCCORMICK DR, LARGO, MD,</div>
+        <div fxFlex="15" fxLayoutAlign="start">301-883-7819</div>
+      </div>
+    </div>
+  </div>
+  <md-toolbar color="primary">
+    HEALTH INFORMATION TO BE DISCLOSED
+  </md-toolbar>
+  <div fxLayout="row">
+    <div fxFlex fxLayout="column">
+      <div fxLayoutAlign="start"><strong>To SHARE the following medical information:</strong></div>
+      <div fxLayoutAlign="start">Sensitivity Categories:</div>
+    </div>
+    <div fxFlex fxLayout="column">
+      <div fxLayoutAlign="start"><strong>To SHARE for the following purpose(s):</strong></div>
+      <div fxLayoutAlign="start">Healthcare Treatment</div>
+    </div>
+  </div>
+  <md-toolbar color="primary">
+    CONSENT TERMS
+  </md-toolbar>
+  <div fxLayout="column">
+    <p fxLayout="row">I, Sally Share, understand that my records are protected under the federal regulations governing
+      Confidentiality of Alcohol and Drug Abuse Patient Records, 42 CFR part 2, and cannot be disclosed without my
+      written permission or as otherwise permitted by 42 CFR part 2. I also understand that I may revoke this consent at
+      any time except to the extent that action has been taken in reliance on it, and that any event this consent
+      expires automatically as follows:
+    </p>
+    <div fxLayoutAlign="start" fxLayout="row">
+      <div fxFlex fxLayoutAlign="start"><strong>Effective Date: 03/02/2017</strong></div>
+      <div fxFlex fxLayoutAlign="start"><strong>Expiration Date: 03/02/2018</strong></div>
+    </div>
+    <md-checkbox fxLayoutAlign="start">I, Sally Share, hereby accept, and understand the terms of this consent.</md-checkbox>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+    <button md-raised-button color="primary">
+      <strong>Cancel</strong>
+    </button>
+    <button md-raised-button color="primary"><strong>Complete</strong>
+    </button>
+  </div>
+</md-card>

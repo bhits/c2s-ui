@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'c2s-consent-sign',
@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./consent-sign.component.css']
 })
 export class ConsentSignComponent implements OnInit {
+  public title: string = "eSignature";
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
