@@ -6,12 +6,11 @@ import {ProviderMultiAddComponent} from "./provider-multi-add/provider-multi-add
 import {ProviderAddressPipe} from "./shared/provider-address.pipe";
 import {ProviderProjectionNamePipe} from "./shared/provider-projection-name.pipe";
 import {ProviderNamePipe} from "./shared/provider-name.pipe";
-import {ProviderRoutingModule, providerRoutableComponents} from "./provider-routing.module";
+import {ProviderRoutingModule, providerRoutableComponents, providerRoutableResolves} from "./provider-routing.module";
 
 @NgModule({
   imports: [
     ProviderRoutingModule,
-    RouterModule,
     SharedModule
   ],
   declarations: [

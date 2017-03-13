@@ -28,9 +28,10 @@ export class MenuComponent implements OnInit {
   }
 
   navigateTo(url: string, name:string) {
-    if(name==='Logout'){
+    if (name === 'Logout') {
       this.authenticationService.logout();
-    }else{
+    } else {
       this.utilityService.navigateTo(url);
     }
+  }
 }
