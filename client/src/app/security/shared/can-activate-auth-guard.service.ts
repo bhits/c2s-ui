@@ -12,7 +12,7 @@ export class CanActivateAuthGuardService implements CanActivate, CanActivateChil
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authenticationService.isLoggedIn) {
+    if (this.authenticationService.isLogin()) {
       return true;
     }
     this.router.navigate(['login']);
