@@ -11,7 +11,6 @@ import {ProviderRoutingModule, providerRoutableComponents} from "./provider-rout
 @NgModule({
   imports: [
     SharedModule,
-    providerRoutableComponents,
     ProviderRoutingModule
   ],
   declarations: [
