@@ -8,14 +8,19 @@ import {ConsentResolveService} from "./shared/consent-resolve.service";
 import {ProviderResolveService} from "./shared/provider-resolve.service";
 import {SensitivityPoliciesResolveService} from "./shared/sensitivity-policies-resolve.service";
 import {PurposeOfUsesResolveService} from "./shared/purpose-of-uses-resolve.service";
+import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-guard.service";
 
 
 const consentRoutes: Routes = [
   { path: 'consent-list',
-    component: ConsentCardListComponent
+    component: ConsentCardListComponent,
+    canActivate: [CanActivateAuthGuardService],
+    canActivateChild: [CanActivateAuthGuardService],
   },
   { path: 'consent-create-edit',
     component: ConsentCreateEditComponent,
+    canActivate: [CanActivateAuthGuardService],
+    canActivateChild: [CanActivateAuthGuardService],
     resolve: {
       providers:ProviderResolveService,
       sensitivityPolicies: SensitivityPoliciesResolveService,
@@ -25,6 +30,8 @@ const consentRoutes: Routes = [
   {
     path: 'consent-create-edit/:consentId',
     component: ConsentCreateEditComponent,
+    canActivate: [CanActivateAuthGuardService],
+    canActivateChild: [CanActivateAuthGuardService],
     resolve: {
       consent: ConsentResolveService,
       providers: ProviderResolveService,
