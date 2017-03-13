@@ -7,10 +7,12 @@ import {ProviderAddressPipe} from "./shared/provider-address.pipe";
 import {ProviderProjectionNamePipe} from "./shared/provider-projection-name.pipe";
 import {ProviderNamePipe} from "./shared/provider-name.pipe";
 import {ProviderRoutingModule, providerRoutableComponents, providerRoutableResolves} from "./provider-routing.module";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   imports: [
     ProviderRoutingModule,
+    RouterModule,
     SharedModule
   ],
   declarations: [

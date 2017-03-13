@@ -44,7 +44,7 @@ export class ProviderSearchComponent implements OnInit {
   public ERROR_CODE = {
     REQUIRED: 'required',
     MIN_LENGTH: 'minlength',
-    PATTERN: 'pattern',
+    PATTERN: 'pattern'
   };
 
   constructor(private formBuilder: FormBuilder,

@@ -11,12 +11,18 @@ const providerRoutes: Routes = [
     component: ProviderListComponent,
     canActivate: [CanActivateAuthGuardService],
     canActivateChild: [CanActivateAuthGuardService],
+    resolve: {
+      providers: ProviderListResolveService
+    }
   },
   {
     path: 'provider-search',
     component: ProviderSearchComponent,
     canActivate: [CanActivateAuthGuardService],
     canActivateChild: [CanActivateAuthGuardService],
+    resolve: {
+      providers: ProviderListResolveService
+    }
   }
 ];
 
