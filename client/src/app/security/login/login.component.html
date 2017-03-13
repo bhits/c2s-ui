@@ -1,4 +1,14 @@
-<h1>login works!</h1>
-<button type="button" (click)="login()">Login</button>
 
-
+<form class="login-form">
+  <h1 class="center">C2S-UI</h1>
+  <h3>Log in with your account</h3>
+  <md-input-container class="full-width" >
+    <input mdInput placeholder="User name">
+  </md-input-container>
+  <md-input-container class="full-width" >
+    <input mdInput placeholder="Password">
+  </md-input-container>
+  <div>
+    <button type="button" md-raised-button color="primary" (click)="login()">Login</button>
+  </div>
+</form>

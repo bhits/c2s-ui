@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MaterialModule} from "@angular/material";
 
 import {GlobalEventManagerService} from "./shared/global-event-manager.service";
 import {SecurityRoutingModule, securityRoutableComponents} from "./security-routing.module";
@@ -10,6 +11,7 @@ import {SharedModule} from "../shared/shared.module";
 @NgModule({
   imports: [
     CommonModule,
+    MaterialModule,
     SharedModule,
     SecurityRoutingModule
   ],
