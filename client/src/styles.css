@@ -71,3 +71,7 @@ md-toolbar-row {
 .center{
   text-align: center;
 }
+
+.has-error {
+  color:red;
+}
