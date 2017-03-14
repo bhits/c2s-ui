@@ -1,0 +1,8 @@
+.dialog-text {
+  font-size: small;
+  font-weight: bold
+}
+
+.authenticate-invalid {
+  color: brown;
+}
