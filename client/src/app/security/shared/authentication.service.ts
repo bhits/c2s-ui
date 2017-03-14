@@ -7,27 +7,28 @@ import {GlobalEventManagerService} from "./global-event-manager.service";
 export class AuthenticationService {
   isLoggedIn: boolean = false;
 
-  constructor(private router: Router, private globalEventManagerService: GlobalEventManagerService) {
+  constructor(private router: Router,
+              private globalEventManagerService: GlobalEventManagerService) {
   }
 
   login(username:string, password:string) {
 
     this.isLoggedIn = true;
-    sessionStorage.setItem('c2s-isLoggedIn',JSON.stringify(this.isLoggedIn) );
+    this.setItemInSessionStorage('c2s-isLoggedIn', this.isLoggedIn);
 
     this.globalEventManagerService.setShowHeaderAndFooter(this.isLoggedIn);
     this.router.navigate(['home']);
   }
 
   logout() {
-    sessionStorage.removeItem('c2s-isLoggedIn');
+    this.removeItemFromSessionStorage('c2s-isLoggedIn');
     this.isLoggedIn = false;
     this.globalEventManagerService.setShowHeaderAndFooter(this.isLoggedIn);
     this.router.navigate(['login']);
   }
 
   isLogin(){
-    let login: boolean = JSON.parse(sessionStorage.getItem('c2s-isLoggedIn'));
+    let login: boolean = this.getItemFromSessionStorage('c2s-isLoggedIn');
     if(login){
         this.globalEventManagerService.setShowHeaderAndFooter(login);
         return true;
@@ -35,4 +36,15 @@ export class AuthenticationService {
     return false;
   }
 
+  setItemInSessionStorage(key:string, value:any){
+    sessionStorage.setItem(key,JSON.stringify(value) );
+  }
+
+  getItemFromSessionStorage(key:string):any{
+    return JSON.parse(sessionStorage.getItem(key));
+  }
+
+  removeItemFromSessionStorage(key:string):void{
+    sessionStorage.removeItem(key);
+  }
 }
