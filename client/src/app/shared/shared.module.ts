@@ -12,6 +12,7 @@ import {RouterModule} from "@angular/router";
 import {UtilityService} from "./utility.service";
 import {DataService} from "./data.service";
 import {PageTitleComponent} from "./page-title/page-title.component";
+import {ValidationService} from "./validation.service";
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import {PageTitleComponent} from "./page-title/page-title.component";
   providers: [
     DataService,
     UtilityService,
-    DatePipe
+    DatePipe,
+    ValidationService
   ]
 })
 
