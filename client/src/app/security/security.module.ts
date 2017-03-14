@@ -16,7 +16,7 @@ import {SharedModule} from "../shared/shared.module";
     SecurityRoutingModule
   ],
   declarations: [
-    securityRoutableComponents
+    securityRoutableComponents,
   ],
   providers: [
     CanActivateAuthGuardService,
