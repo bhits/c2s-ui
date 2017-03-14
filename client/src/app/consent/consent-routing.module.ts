@@ -8,6 +8,7 @@ import {ProviderResolveService} from "./shared/provider-resolve.service";
 import {SensitivityPoliciesResolveService} from "./shared/sensitivity-policies-resolve.service";
 import {PurposeOfUsesResolveService} from "./shared/purpose-of-uses-resolve.service";
 import {ConsentSignComponent} from "./consent-sign/consent-sign.component";
+import {ConsentRevokeComponent} from "./consent-revoke/consent-revoke.component";
 
 
 const consentRoutes: Routes = [
@@ -37,6 +38,10 @@ const consentRoutes: Routes = [
   {
     path: 'consent-sign/:consentId',
     component: ConsentSignComponent
+  },
+  {
+    path: 'consent-revoke/:consentId',
+    component: ConsentRevokeComponent
   }
 ];
 
@@ -54,7 +59,8 @@ export class ConsentRoutingModule {
 export const consentRoutableComponents = [
   ConsentCardListComponent,
   ConsentCreateEditComponent,
-  ConsentSignComponent
+  ConsentSignComponent,
+  ConsentRevokeComponent
 ];
 
 
