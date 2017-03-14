@@ -79,13 +79,31 @@
       <div fxFlex fxLayoutAlign="start"><strong>Effective Date: 03/02/2017</strong></div>
       <div fxFlex fxLayoutAlign="start"><strong>Expiration Date: 03/02/2018</strong></div>
     </div>
-    <md-checkbox fxLayoutAlign="start">I, Sally Share, hereby accept, and understand the terms of this consent.</md-checkbox>
+    <div>
+      <md2-dialog #confirmConsentTerms (onClose)="clearCheckbox()">
+        <md2-dialog-title>Please Authenticate</md2-dialog-title>
+        <div fxLayout="column">
+          <p class="dialog-text">Please provide your account password to authenticate, and complete e-signature</p>
+          <md-input-container>
+            <input mdInput placeholder="Password" [(ngModel)]="password">
+          </md-input-container>
+          <div *ngIf="inValid" class="authenticate-invalid">Failed to authenticate, please try again...</div>
+        </div>
+        <md2-dialog-footer>
+          <button md-raised-button (click)="confirmConsentTerms.close()">Cancel</button>
+          <button md-raised-button color="primary" (click)="toAuthenticate(confirmConsentTerms)">Continue</button>
+        </md2-dialog-footer>
+      </md2-dialog>
+      <md-checkbox fxLayoutAlign="start" (click)="confirmConsentTerms.open()" [(ngModel)]="checked">
+        I, Sally Share, hereby accept, and understand the terms of this consent.
+      </md-checkbox>
+    </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
-    <button md-raised-button color="primary">
+    <button md-raised-button color="primary" routerLink="/consent-list">
       <strong>Cancel</strong>
     </button>
-    <button md-raised-button color="primary"><strong>Complete</strong>
+    <button md-raised-button color="primary" [disabled]="!isAuthenticated"><strong>Complete</strong>
     </button>
   </div>
 </md-card>

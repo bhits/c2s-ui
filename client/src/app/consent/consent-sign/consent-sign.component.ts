@@ -7,6 +7,10 @@ import {Component, OnInit} from "@angular/core";
 })
 export class ConsentSignComponent implements OnInit {
   public title: string = "eSignature";
+  public checked: boolean = false;
+  public isAuthenticated: boolean = false;
+  public password: string;
+  public inValid: boolean;
 
   constructor() {
   }
@@ -14,4 +18,19 @@ export class ConsentSignComponent implements OnInit {
   ngOnInit() {
   }
 
+  clearCheckbox() {
+    if (this.isAuthenticated != true) {
+      this.checked = false;
+    }
+  }
+
+  toAuthenticate(dialog: any) {
+    if (this.password === '123456') {
+      this.inValid = false;
+      this.isAuthenticated = true;
+      dialog.close();
+    } else {
+      this.inValid = true;
+    }
+  }
 }
