@@ -13,6 +13,7 @@ import {UtilityService} from "./utility.service";
 import {DataService} from "./data.service";
 import {PageTitleComponent} from "./page-title/page-title.component";
 import {ValidationService} from "./validation.service";
+import { ControlMessagesComponent } from './control-messages/control-messages.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import {ValidationService} from "./validation.service";
     Md2Module,
     RouterModule
   ],
-  declarations: [UsPhoneNumberPipe, PageTitleComponent],
+  declarations: [UsPhoneNumberPipe, PageTitleComponent, ControlMessagesComponent],
   exports: [
     CommonModule,
     FormsModule,
@@ -31,7 +32,8 @@ import {ValidationService} from "./validation.service";
     ReactiveFormsModule,
     UsPhoneNumberPipe,
     Md2Tooltip,
-    PageTitleComponent
+    PageTitleComponent,
+    ControlMessagesComponent
   ],
   providers: [
     DataService,

@@ -20,13 +20,15 @@ export class LoginComponent implements OnInit {
     this.loginForm = formBuilder.group({
           'username' : [null, Validators.compose([
                                         Validators.required,
-                                        Validators.minLength(5),
-                                        Validators.maxLength(10)])
+                                        Validators.minLength(this.validationService.EMAIL_MIN_LENGHT),
+                                        Validators.maxLength(this.validationService.EMAIL_MAX_LENGHT),
+                                        this.validationService.emailValidator])
                        ],
           'password':  [null, Validators.compose([
                                         Validators.required,
-                                        Validators.minLength(5),
-                                        Validators.maxLength(10)])
+                                        Validators.minLength(this.validationService.PASSWORD_MIN_LENGHT),
+                                        Validators.maxLength(this.validationService.PAASOWRD_MAX_LENGHT),
+                                        this.validationService.passwordValidator])
                         ],
     });
   }
@@ -35,22 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(value: any):void{
-    console.log('Reactive Form Data: ')
-    console.log(value)
     this.authenticationService.login(this.credentials.username,this.credentials.password);
-  }
-
-  isValid(formgroup: FormGroup, elementName:string):boolean{
-    return this.validationService.isValid(formgroup, elementName);
-  }
-
-
-  hasError(formgroup: FormGroup, elementName:string, validationKey:string):boolean{
-    return this.validationService.hasError(formgroup, elementName, validationKey);
-  }
-
-  isTouch(formgroup: FormGroup, elementName:string):boolean{
-    return this.validationService.isTouch(formgroup, elementName);
   }
 
   isValidForm(formgroup: FormGroup){
