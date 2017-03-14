@@ -10,7 +10,7 @@ export class AuthenticationService {
   constructor(private router: Router, private globalEventManagerService: GlobalEventManagerService) {
   }
 
-  login() {
+  login(username:string, password:string) {
 
     this.isLoggedIn = true;
     sessionStorage.setItem('c2s-isLoggedIn',JSON.stringify(this.isLoggedIn) );

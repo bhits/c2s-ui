@@ -1,14 +1,38 @@
 
-<form class="login-form">
+<form [formGroup]="loginForm" class="login-form"  novalidate (ngSubmit)="login(loginForm.value)">
   <h1 class="center">C2S-UI</h1>
   <h2>Log in with your account</h2>
+
   <md-input-container class="full-width" >
-    <input mdInput placeholder="User name">
+    <input mdInput placeholder="User name"
+           name="username"
+           required
+           [formControl]="loginForm.controls['username']"
+    >
+    <md-hint align="left"
+             [ngClass]="{'has-error':!isValid(loginForm,'username') && isTouch(loginForm,'username')}"
+             *ngIf="hasError(loginForm,'username', 'required' ) && isTouch(loginForm,'username')">User name is required</md-hint>
+
   </md-input-container>
+
   <md-input-container class="full-width" >
-    <input mdInput placeholder="Password">
+      <input mdInput placeholder="Password"
+             name="password"
+             required
+             [formControl]="loginForm.controls['password']"
+      >
+    <md-hint align="left"
+             [ngClass]="{'has-error':!isValid(loginForm,'password') && isTouch(loginForm,'password')}"
+             *ngIf="hasError(loginForm,'password', 'required' ) && isTouch(loginForm,'password')">User name is required</md-hint>
   </md-input-container>
+  <br><br>
   <div>
-    <button type="button" md-raised-button color="primary" (click)="login()">Login</button>
+    <button type="button"
+            type="submit"
+            [disabled]="!isValidForm(loginForm)"
+            md-raised-button color="primary"
+            (click)="login(loginForm.value)">Login</button>
   </div>
 </form>
+
+
