@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   credentials:Credentials;
   loginForm : FormGroup;
+  showLoginBackendError: boolean =  false;
 
   constructor(private authenticationService:AuthenticationService, private formBuilder: FormBuilder, private validationService: ValidationService) {
     this.credentials = new Credentials();
@@ -37,7 +38,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(value: any):void{
-    this.authenticationService.login(this.credentials.username,this.credentials.password);
+    this.authenticationService.login(value.username,value.password)
+                              .toPromise()
+                              .then(response => {
+                                this.showLoginBackendError = false;
+                                this.authenticationService.handleLoginSuccess(response);
+                              }).catch(error =>{
+                                console.log(error);
+                                this.showLoginBackendError = true;
+                              })
   }
 
   isValidForm(formgroup: FormGroup){

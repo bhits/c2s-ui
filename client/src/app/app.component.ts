@@ -8,13 +8,11 @@ import {AuthenticationService} from "./security/shared/authentication.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  isLogin:boolean = false;
 
-  constructor(private authenticationService:AuthenticationService){
+  constructor(){
   }
 
   ngOnInit() {
-    this.isLogin = this.authenticationService.isLoggedIn;
   }
 }
 
