@@ -12,6 +12,7 @@ import {MedicalInformationCategory} from "../shared/medical-information-category
 export class MedicalInformationComponent implements OnInit {
 
   isShareAll:number ;
+  isSelectAllCategories: boolean = false;
   federalInfo:MedicalInformationCategory;
   stateInfo:MedicalInformationCategory
   checkedSensitityPolicies: SensitivityPolicy[];
@@ -89,11 +90,9 @@ export class MedicalInformationComponent implements OnInit {
     this.selectedMedicalInformation.emit(this.sensitivityPoliciesCodes);
   }
 
-  selectAll(){
-    this.medicalInformationService.setSensitivityPoliciesStatusToChecked(this.sensitivityPolicies);
-  }
-
-  deSelectAll(){
-    this.medicalInformationService.setSenetivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
+  isCheckedAll(){
+    if(this.isShareAll === 0){
+      this.isSelectAllCategories =  this.medicalInformationService.isCheckedAll(this.sensitivityPolicies);
+    }
   }
 }

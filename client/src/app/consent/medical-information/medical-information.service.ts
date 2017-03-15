@@ -55,4 +55,13 @@ export class MedicalInformationService {
     }
     return selected;
   }
+
+  isCheckedAll(sensitivityPolicies:SensitivityPolicy[]){
+    for(let sp of sensitivityPolicies){
+      if(!sp['checked']){
+        return false;
+      }
+    }
+    return true;
+  }
 }
