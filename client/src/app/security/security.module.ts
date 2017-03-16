@@ -7,6 +7,8 @@ import {SecurityRoutingModule, securityRoutableComponents} from "./security-rout
 import {AuthenticationService} from "../security/shared/authentication.service";
 import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-guard.service";
 import {SharedModule} from "../shared/shared.module";
+import {SessionStorageService} from "./shared/session-storage.service";
+import {TokenService} from "./shared/token.service";
 
 @NgModule({
   imports: [
@@ -21,7 +23,9 @@ import {SharedModule} from "../shared/shared.module";
   providers: [
     CanActivateAuthGuardService,
     AuthenticationService,
-    GlobalEventManagerService
+    GlobalEventManagerService,
+    SessionStorageService,
+    TokenService
   ]
 })
 export class SecurityModule { }
