@@ -6,6 +6,7 @@ import {httpInterceptorServiceFactory} from "./http-interceptor.service";
 import {NotificationService} from "./notification.service";
 import {ExceptionService} from "./exception.service";
 import {SecurityModule} from "../security/security.module";
+import {TokenService} from "../security/shared/token.service";
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import {SecurityModule} from "../security/security.module";
     {
       provide: Http,
       useFactory: httpInterceptorServiceFactory,
-      deps: [XHRBackend, RequestOptions, SlimLoadingBarService]
+      deps: [XHRBackend, RequestOptions, SlimLoadingBarService, TokenService]
     }
   ],
   exports: [SlimLoadingBarModule]
