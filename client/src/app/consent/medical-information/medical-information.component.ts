@@ -15,13 +15,13 @@ export class MedicalInformationComponent implements OnInit {
   isSelectAllCategories: boolean = false;
   federalInfo:MedicalInformationCategory;
   stateInfo:MedicalInformationCategory
-  checkedSensitityPolicies: SensitivityPolicy[];
+  checkedSensitityPolicies: string[];
 
   @Input() sensitivityPoliciesCodes: string[];
   @Input() sensitivityPolicies: SensitivityPolicy[];
   @Output() selectedMedicalInformation = new EventEmitter();
 
-  constructor(private medicalInformationService:MedicalInformationService) {
+  constructor(private medicalInformationService:MedicalInformationService ) {
   }
 
   ngOnInit() {
@@ -73,15 +73,19 @@ export class MedicalInformationComponent implements OnInit {
   }
 
   closeDialog(dialog: any){
+    this.medicalInformationService.updateSelectedCategories(this.sensitivityPolicies, this.checkedSensitityPolicies)
     dialog.close();
   }
 
   onSelectDonotShareAll(dialog: any, value:number){
     this.isShareAll = value;
-    this.medicalInformationService.setSenetivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
-    this.checkedSensitityPolicies = [];
     dialog.open();
     this.selectedMedicalInformation.emit(this.sensitivityPoliciesCodes);
+  }
+
+  onSelectEditDonotShareAll(dialog: any, value:number){
+    this.isShareAll = value;
+    dialog.open();
   }
 
   confirmSelectAll(dialog: any){
