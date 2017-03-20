@@ -1,52 +1,248 @@
-<h1>Home</h1>
-<hr>
+<div class="m-t-75">
+  <div class="p-t-sm p-l-lg p-b-md p-r-lg">
+    <h1 class="m-n">Let's get started.</h1>
+    <h2 class="m-t-sm">Before you’re able to share your health data and information, we need to gather a few more
+      details.</h2>
 
-<md-grid-list cols="1">
-  <md-card class="left-align" (click)="navigateTo('provider-list')">
-    <md-card-title>Providers</md-card-title>
-    <md-card-subtitle>Start by adding to you list of Providers!</md-card-subtitle>
-    <br>
-    <span>{{totalProviders}} Provider{{totalProviders !== 1 ? 's' : ''}}</span>
-    <md-card-content>
 
-    </md-card-content>
-  </md-card>
-  <md-card class="left-align" (click)="navigateTo('consent-list')">
-    <md-card-title>Consents</md-card-title>
-    <md-card-subtitle>Click here to view and manage your Consents.</md-card-subtitle>
-    <br>
-    <span>{{totalConsents}} Consent{{totalProviders !== 1 ? 's' : ''}}</span>
-    <md-card-content>
+    <!--<div fxLayout="row" fxLayout.xs="column" style="fxlayout:row; flexwrap: wrap; display:flex">-->
+    <!--<div class="home-square p-t-lg p-b" style="background-color: #ffeb3b;">First item in row</div>-->
+    <!--<div class="home-square" style="font-size:10px; color:deeppink; text-align: left; background-color: lightblue;"-->
+    <!--[style.sm]="{'font-size':'16px', 'color': '#a63db8', 'text-align': 'center'}"-->
+    <!--[style.md]="{'font-size':'24px', 'color':'red', 'text-align':'right'}">Second item in row-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div fxlayout="column">-->
+    <!--<div [style.lg]="{'font-weight': bold}"-->
+    <!--fxflex>First item in column-->
+    <!--</div>-->
+    <!--<div fxflex>Second item in column</div>-->
+    <!--</div>-->
+    <!--<div [ngStyle]="{'color': 'blue', 'font-size': '24px', 'font-weight': 'bold'}">-->
+    <!--style using ngStyle-->
+    <!--</div>-->
+    <!--<div [ngClass]="['color-test']">array of classes</div>-->
+    <!--<div [ngClass]="'italic-text blue'">string of classes</div>-->
+    <!--<div [ngClass]="{'small-text': true, 'red': true}">object of classes</div>-->
 
-    </md-card-content>
-  </md-card>
-  <md-card class="left-align">
-    <md-card-title>Medical Documents</md-card-title>
-    <md-card-subtitle>Upload or Enter your Medical Documents.</md-card-subtitle>
-    <md-card-content>
+    <!--<div class="flexDemoContainer">-->
+    <!--<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>-->
+    <!--<div fxFlex> I'm above on mobile, and left on larger devices.</div>-->
+    <!--<div fxFlex> I'm below on mobile, and right on larger devices.</div>-->
+    <!--</div>-->
+    <!--</div>-->
 
-    </md-card-content>
-  </md-card>
-  <md-card class="left-align">
-    <md-card-title>Activity History</md-card-title>
-    <md-card-subtitle>Click here yo view your Activity History.</md-card-subtitle>
-    <md-card-content>
+    <!--<md-toolbar color="primary">-->
+    <!--<span>Flex Layout Example</span>-->
+    <!--</md-toolbar>-->
 
-    </md-card-content>
-  </md-card>
-  <md-card class="left-align">
-    <md-card-title>Health Information</md-card-title>
-    <md-card-subtitle>Currently there is NO Health Information available</md-card-subtitle>
-    <md-card-content>
+    <!--<div class="coloredContainerX">-->
+    <!--<div fxLayout="row" fxLayoutAlign="start center" class="content">-->
+    <!--<div class="blocks" fxFlex="20%">1</div>-->
+    <!--<div class="blocks" fxFlex="60%">2</div>-->
+    <!--<div class="blocks" fxFlex>3</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="container">-->
+    <!--<div fxLayout="row" fxLayoutAlign="space-around center" class="content">-->
+    <!--<div class="blocks">1</div>-->
+    <!--<div class="blocks">2</div>-->
+    <!--<div class="blocks">3</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="container">-->
+    <!--<div fxLayout="row" fxLayoutAlign="begin center" class="content">-->
+    <!--<div class="blocks">1</div>-->
+    <!--<div class="blocks">2</div>-->
+    <!--<div class="blocks">3</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="container">-->
+    <!--<div fxLayout="row"-->
+    <!--fxLayout.xs="column"-->
+    <!--fxLayout.sm="column"-->
+    <!--fxFlex class="contentResp">-->
+    <!--<div class="blocks" fxFlex> I'm above on mobile, and to the left on larger devices.</div>-->
+    <!--<div class="blocks" fxFlex> I'm below on mobile, and to the right on larger devices.</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div [ngClass]="['md-body-1 color-test']">Testing MD-Body-1</div>-->
 
-    </md-card-content>
-  </md-card>
+    <!--<md-grid-list cols="3" rowHeight="4:1">-->
+    <!--<md-grid-tile>1</md-grid-tile>-->
+    <!--<md-grid-tile>2</md-grid-tile>-->
+    <!--<md-grid-tile>3</md-grid-tile>-->
+    <!--<md-grid-tile>4</md-grid-tile>-->
+    <!--</md-grid-list>-->
 
-  <md-card class="left-align">
-    <md-card-title>Resources</md-card-title>
-    <md-card-subtitle>Visit here for Additional Help and Information.</md-card-subtitle>
-    <md-card-content>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px" fxLayoutAlign="space-around">
 
-    </md-card-content>
-  </md-card>
-</md-grid-list>
+      <md-card class="card contacts">
+
+        <md-card-header class="middle">
+          <md-card-title>
+            <div class="m-n">My <span class="font-weight700">Contacts</span></div>
+          </md-card-title>
+        </md-card-header>
+        <md-card-content class="p-md">
+
+          <button md-fab (click)="navigateTo('contacts')">
+            <md-icon class="md-24 font-weight500">add</md-icon>
+          </button>
+          <md-chip-list class="p-15">
+            <md-chip color="primary" selected="true" class="font-size16">Step 1.</md-chip>
+          </md-chip-list>
+          <h2 class="m-t-xs">
+            Begin by adding the people with whom you trust to share your health information.
+          </h2>
+          <div class="center middle">
+            <img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}">
+          </div>
+          <div>{{totalProviders}} Contact{{totalProviders !== 1 ? 's' : ''}}</div>
+        </md-card-content>
+
+      </md-card>
+
+      <md-card class="card consents">
+
+        <md-card-header class="middle">
+          <md-card-title>
+            <div class="m-n">My <span class="font-weight700">Consents</span></div>
+          </md-card-title>
+        </md-card-header>
+        <md-card-content class="p-md">
+
+          <button md-fab (click)="navigateTo('consent-list')">
+            <md-icon class="md-24 font-weight500">add</md-icon>
+          </button>
+          <md-chip-list class="p-15">
+            <md-chip color="primary" selected="true" class="font-size16">Step 3.</md-chip>
+          </md-chip-list>
+          <h2 class="m-t-xs">
+            Next, create a consent to allow your providers and/or contacts to share health information.
+          </h2>
+          <div class="center middle">
+            <img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}">
+          </div>
+          <div>{{totalProviders}} Contact{{totalProviders !== 1 ? 's' : ''}}</div>
+        </md-card-content>
+
+      </md-card>
+
+
+      <md-card class="left-align" (click)="navigateTo('provider-list')">
+        <md-card-header color="primary">
+          <md-card-title>Providers</md-card-title>
+
+          <md-card-subtitle></md-card-subtitle>
+        </md-card-header>
+
+        <md-card-content>
+          Start by adding to you list of Providers!
+          <br>
+          <span>{{totalProviders}} Provider{{totalProviders !== 1 ? 's' : ''}}</span>
+        </md-card-content>
+      </md-card>
+
+      <!--<md-card class="test-pattern-warn left-align" (click)="navigateTo('consent-list')">-->
+        <!--<md-card-title>Consents</md-card-title>-->
+        <!--<md-icon></md-icon>-->
+        <!--<md-card-subtitle>Click here to view and manage your Consents.</md-card-subtitle>-->
+        <!--<br>-->
+        <!--<span>{{totalConsents}} Consent{{totalProviders !== 1 ? 's' : ''}}</span>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+
+
+      <!--<md-card md-colors="{background: '{c2s-app}-primary-700-1'}" class="left-align">-->
+
+        <!--<md-card-title>Medical Documents</md-card-title>-->
+        <!--<md-card-subtitle>Upload or Enter your Medical Documents.</md-card-subtitle>-->
+        <!--<md-card-content>-->
+          <!--<a href="../contacts/contacts.component.html" md-button (click)="navigateTo('../../contacts/contacts')" >Button</a>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+
+      <!--<md-card class="left-align">-->
+        <!--<md-card-title>Activity History</md-card-title>-->
+        <!--<md-card-subtitle>Click here yo view your Activity History.</md-card-subtitle>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+      <!--<md-card class="left-align">-->
+        <!--<md-card-title>Health Information</md-card-title>-->
+        <!--<md-card-subtitle>Currently there is NO Health Information available</md-card-subtitle>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+
+      <!--<md-card class="left-align">-->
+        <!--<md-card-title>Resources</md-card-title>-->
+        <!--<md-card-subtitle>Visit here for Additional Help and Information.</md-card-subtitle>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+    </div>
+
+
+    <!--<div fxLayout="row" fxLayout.sm="column" fxLayoutWrap="wrap" fxLayoutAlign="start center">-->
+      <!--<md-card fxFlex="1 0 250px" class="left-align" style="background-color: lightpink; margin: 10px;"-->
+               <!--(click)="navigateTo('provider-list')">-->
+        <!--<md-card-title class="color-test">Providers</md-card-title>-->
+        <!--<md-card-subtitle style="font-size: 24px;}">Start by adding to you list of Providers!</md-card-subtitle>-->
+        <!--<br>-->
+        <!--<span>{{totalProviders}} Provider{{totalProviders !== 1 ? 's' : ''}}</span>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+      <!--<md-card class="test-pattern-warn left-align" (click)="navigateTo('consent-list')">-->
+        <!--<md-card-title>Consents</md-card-title>-->
+        <!--<md-icon></md-icon>-->
+        <!--<md-card-subtitle>Click here to view and manage your Consents.</md-card-subtitle>-->
+        <!--<br>-->
+        <!--<span>{{totalConsents}} Consent{{totalProviders !== 1 ? 's' : ''}}</span>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+      <!--<md-card md-colors="{background: '{c2s-app}-primary-700-1'}" class="left-align">-->
+
+        <!--<md-card-title>Medical Documents</md-card-title>-->
+        <!--<md-card-subtitle>Upload or Enter your Medical Documents.</md-card-subtitle>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+      <!--<md-card class="left-align">-->
+        <!--<md-card-title>Activity History</md-card-title>-->
+        <!--<md-card-subtitle>Click here yo view your Activity History.</md-card-subtitle>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+      <!--<md-card class="left-align">-->
+        <!--<md-card-title>Health Information</md-card-title>-->
+        <!--<md-card-subtitle>Currently there is NO Health Information available</md-card-subtitle>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+
+      <!--<md-card class="left-align">-->
+        <!--<md-card-title>Resources</md-card-title>-->
+        <!--<md-card-subtitle>Visit here for Additional Help and Information.</md-card-subtitle>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+      <!--</md-card>-->
+    <!--</div>-->
+
+  </div>
+</div>
