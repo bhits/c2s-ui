@@ -1,25 +1,24 @@
 import {Http, URLSearchParams, Headers, Response} from "@angular/http";
 import {Injectable} from "@angular/core";
 import "rxjs/add/operator/toPromise";
-import {Provider} from "./provider.model";
 import {ProviderRequestQuery} from "./provider-request-query.model";
 import {ProviderSearchResponse} from "./provider-search-response.model";
-import {ProviderProjection} from "./provider-projection.model";
 import {Observable} from "rxjs";
 import {ExceptionService} from "../../core/exception.service";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 
 @Injectable()
 export class ProviderService {
-  private basePcmUrl = '/pcm/patients/providers';
-  private basePlsUrl = '/pls/providers';
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http,
+  constructor(private c2sUiApiUrlService: C2sUiApiUrlService,
+              private http: Http,
               private exceptionService: ExceptionService) {
   }
 
   searchProviders(requestParams: ProviderRequestQuery): Observable<ProviderSearchResponse> {
-    const SEARCH_PROVIDERS_URL = this.basePlsUrl + "/search/query";
+    const SEARCH_PROVIDERS_URL = this.c2sUiApiUrlService.getPlsBaseUrl().concat("/search/query");
 
     let params: URLSearchParams = this.buildRequestParams(requestParams);
 
@@ -41,24 +40,24 @@ export class ProviderService {
   }
 
   deleteProvider(npi: string): Observable<void> {
-    const DELETE_PROVIDERS_URL = `${this.basePcmUrl}/${npi}`;
+    const DELETE_PROVIDERS_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers")}/${npi}`;
     return this.http.delete(DELETE_PROVIDERS_URL)
       .map(() => null)
       .catch(this.exceptionService.handleError);
   }
 
-  addProviders(providers: ProviderProjection[]): Observable<void> {
+  addProviders(providers: FlattenedSmallProvider[]): Observable<void> {
     if (providers != null) {
       let npis: string[] = [];
       providers.forEach(provider => npis.push(provider.npi));
       return this.http
-        .post(this.basePcmUrl, JSON.stringify({npiList: npis}), {headers: this.headers})
+        .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers"), JSON.stringify({npiList: npis}), {headers: this.headers})
         .map(() => null)
         .catch(this.exceptionService.handleError);
     }
   }
 
-  isSearchResultInProviderList(provider: ProviderProjection, providerList: Provider[]): boolean {
+  isSearchResultInProviderList(provider: FlattenedSmallProvider, providerList: FlattenedSmallProvider[]): boolean {
     return providerList.filter((p) => provider.npi === p.npi).length > 0;
   }
 

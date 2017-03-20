@@ -7,7 +7,7 @@ export class C2sUiApiUrlService {
   urls: Map<string, string> = new Map(
     [
       ["PcmBaseUrl", "/c2s-ui-api/pcm/patients"],
-      ["PlsBaseUrl", "/c2s-ui-api/pls"],
+      ["PlsBaseUrl", "/c2s-ui-api/pls/providers"],
       ["VssBaseUrl", "/c2s-ui-api/vss"]
     ]
   );
