@@ -1,0 +1,17 @@
+//@mixin left-padding($paddingAmount) {
+//  padding-left: $paddingAmount;
+//}
+//
+//.header-test {
+//  color: white;
+//  background-color: mat-color($mat-pink, A500);
+//@include left-padding(25px);
+//}
+//
+
+.sticky-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}

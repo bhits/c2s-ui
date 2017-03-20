@@ -1,12 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
 
-/*Angular Material pre-buil theme*/
+/*Angular Material pre-built theme*/
 
-//@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-@import '~@angular/material/core/theming/prebuilt/indigo-pink.scss';
+//@import '~@angular/material/core/theming/prebuilt/indigo-pink.scss';
 
-/// Custom
-@import 'assets/scss/core.scss';
+@import 'assets/themes/c2s/c2s-app-theme';
+@import 'assets/scss/core';
+@import 'assets/scss/c2s-flex-styles';
+@import 'assets/scss/font-styles';
+
+// Define a mixin that accepts a theme and outputs the color styles for the component.
+@mixin test-pattern-theme($theme-value) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme-value, primary);
+  $accent: map-get($theme-value, accent);
+
+  // Use md-color to extract individual colors from a palette as necessary.
+  .test-pattern {
+    background-color: mat-color($primary, 800);
+    border-color: mat-color($accent, A100);
+    border-style: solid;
+    border-width: 0 0 12px;
+  }
+  .test-pattern-warn {
+    background-color: mat-color($warn, 50);
+    border-color: mat-color($warn, A100);
+    border-style: solid;
+    border-width: 0 0 12px;
+  }
+
+}
+
+// Using the $theme variable from the pre-built theme you can call the theming function
+@include test-pattern-theme($theme);
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
 
 .demo-grey{
   color:#9E9E9E;
@@ -21,11 +73,11 @@ body {
   font-family: Roboto, sans-serif;
 }
 
-md-card {
-  max-width: 80%;
-  margin: 2em auto;
-  text-align: center;
-}
+//md-card {
+//  max-width: 80%;
+//  margin: 2em auto;
+//  text-align: center;
+//}
 
 md-toolbar-row {
   justify-content: space-between;
@@ -74,4 +126,5 @@ md-toolbar-row {
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
+
 
