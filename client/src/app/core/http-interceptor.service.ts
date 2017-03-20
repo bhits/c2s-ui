@@ -28,19 +28,19 @@ export class HttpInterceptorService extends Http {
   }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.get(url, options));
+    return this.intercept(super.get(url, this.setHeaders(options)));
   }
 
   post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.post(url, body, options));
+    return this.intercept(super.post(url, body, this.setHeaders(options)));
   }
 
   put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.put(url, body, options));
+    return this.intercept(super.put(url, body, this.setHeaders(options)));
   }
 
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.delete(url, options));
+    return this.intercept(super.delete(url, this.setHeaders(options)));
   }
 
   intercept(observable: Observable<Response>): Observable<Response> {
