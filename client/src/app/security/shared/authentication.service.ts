@@ -5,11 +5,13 @@ import {Http, Response, RequestOptions, Headers, URLSearchParams} from "@angular
 import {GlobalEventManagerService} from "./global-event-manager.service";
 import {UaaToken} from "./uaa-token";
 import {TokenService} from "./token.service";
+import {ExceptionService} from "../../core/exception.service";
 
 
 @Injectable()
 export class AuthenticationService {
   uaaTokenUrl: string = "/uaa/oauth/token/";
+  uaaAccessTokenUrl: string = "/uaa/userinfo";
   CLIENT_ID:string = 'YzJzLXVpOmNoYW5nZWl0';
   HOME:string ='home';
   LOGIN:string ='login';
@@ -17,6 +19,7 @@ export class AuthenticationService {
   constructor(private router: Router,
               private http: Http,
               private tokenService: TokenService,
+              private exceptionService: ExceptionService,
               private globalEventManagerService: GlobalEventManagerService) {
   }
 
@@ -27,6 +30,7 @@ export class AuthenticationService {
   handleLoginSuccess(response: Response){
     this.tokenService.setToken(response);
     this.globalEventManagerService.setShowHeaderAndFooter(true);
+    // this.getAccessToken();
     this.router.navigate([this.HOME]);
   }
 
@@ -43,6 +47,14 @@ export class AuthenticationService {
         return true;
     }
     return false;
+  }
+
+  getAccessToken() {
+    return this.http.get(this.uaaAccessTokenUrl)
+                      .map((resp: Response) => {
+                          console.log(<any>(resp.json()));
+                      })
+                      .catch(this.exceptionService.handleError);;
   }
 
 
