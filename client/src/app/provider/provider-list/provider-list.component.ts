@@ -37,7 +37,7 @@ export class ProviderListComponent implements OnInit {
   confirmDeleteProvider(dialog: any, provider: FlattenedSmallProvider) {
     dialog.close();
     if (provider != name) {
-      this.providerService.deleteProvider(provider.npi)
+      this.providerService.deleteProvider(provider.id)
         .subscribe(
           () => {
             this.providers = this.providers.filter(p => p !== provider);

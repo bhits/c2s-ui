@@ -40,8 +40,8 @@ export class ProviderService {
     }
   }
 
-  deleteProvider(npi: string): Observable<void> {
-    const DELETE_PROVIDERS_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers")}/${npi}`;
+  deleteProvider(id: number): Observable<void> {
+    const DELETE_PROVIDERS_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers")}/${id}`;
     return this.http.delete(DELETE_PROVIDERS_URL)
       .map(() => null)
       .catch(this.exceptionService.handleError);
@@ -50,14 +50,9 @@ export class ProviderService {
   addProviders(providers: FlattenedSmallProvider[]): Observable<void> {
     const SYSTEM = "http://hl7.org/fhir/sid/us-npi";
     if (providers != null) {
-      let identifier: Identifier = new Identifier();
       let identifiers: Identifier[] = [];
       providers.forEach(
-        provider => {
-          identifier.value = provider.npi;
-          identifier.system = SYSTEM;
-          identifiers.push(identifier)
-        }
+        provider => identifiers.push(new Identifier(SYSTEM, provider.npi))
       );
       return this.http
         .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers"), JSON.stringify({identifiers: identifiers}), {headers: this.headers})
