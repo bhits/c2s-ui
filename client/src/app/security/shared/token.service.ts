@@ -1,29 +1,56 @@
 import { Injectable } from '@angular/core';
 import {Response} from "@angular/http";
 import {SessionStorageService} from "./session-storage.service";
-import {UaaToken} from "./uaa-token";
+import {AccessToken} from "./access-token.model";
+import {Profile} from "../../core/profile.model";
 
 
 @Injectable()
 export class TokenService {
-  private UAA_TOKEN_KEY:string = 'c2s-uaa-token';
+  private ACCESS_TOKEN_KEY:string = 'c2s-access-token';
+  private USER_PROFILE_KEY:string = 'c2s-userprofile-token';
 
   constructor(private sessionStorageService : SessionStorageService) { }
 
-  getToken(): UaaToken{
-    return this.sessionStorageService.getItemFromSessionStorage(this.UAA_TOKEN_KEY);
+  getAccessToken(): AccessToken{
+    return this.sessionStorageService.getItemFromSessionStorage(this.ACCESS_TOKEN_KEY);
   }
 
-  setToken(response: Response){
-    this.sessionStorageService.setItemInSessionStorage(this.UAA_TOKEN_KEY, this.createTokenObject(response.json()));
+  setAccessToken(response: Response){
+    this.sessionStorageService.setItemInSessionStorage(this.ACCESS_TOKEN_KEY, this.createTokenObject(response.json()));
   }
 
-  deleteToken(){
-    this.sessionStorageService.removeItemFromSessionStorage(this.UAA_TOKEN_KEY);
+  deleteAccessToken(){
+    this.sessionStorageService.removeItemFromSessionStorage(this.ACCESS_TOKEN_KEY);
   }
 
-  private createTokenObject(token:any): UaaToken{
-    let uaaToken = new UaaToken();
+
+  deleteProfileToken(){
+    this.sessionStorageService.removeItemFromSessionStorage(this.USER_PROFILE_KEY);
+  }
+
+  getProfileToken(): Profile{
+    return this.sessionStorageService.getItemFromSessionStorage(this.USER_PROFILE_KEY);
+  }
+
+  storeUserProfile(userProfile:any){
+    this.sessionStorageService.setItemInSessionStorage(this.USER_PROFILE_KEY, userProfile);
+  }
+
+  createProfileObject(uaaProfile:any): Profile{
+    let profile = new Profile();
+    profile.email = uaaProfile.email;
+    profile.userName = uaaProfile.user_name;
+    profile.givenName = uaaProfile.given_name;
+    profile.familyName = uaaProfile.family_name;
+    profile.name = uaaProfile.name;
+    profile.userId = uaaProfile.user_id;
+
+    return profile;
+  }
+
+  private createTokenObject(token:any): AccessToken{
+    let uaaToken = new AccessToken();
     uaaToken.accessToken = token.access_token;
     uaaToken.exspiresIn = token.expires_in;
     uaaToken.jti = token.jti;

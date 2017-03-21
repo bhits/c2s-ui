@@ -1,4 +1,4 @@
-export class UaaToken {
+export class AccessToken {
   accessToken: string;
   exspiresIn: number;
   refreshToken: string;
