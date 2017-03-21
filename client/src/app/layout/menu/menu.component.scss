@@ -13,4 +13,12 @@
   }
 }
 
+md-list-item {
+    button.mat-menu-item {
+      &:hover {
+        background-color: #3FA3BA;
+        color: white;
+      }
+    }
+}
 

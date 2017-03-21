@@ -4,77 +4,6 @@
     <h2 class="m-t-sm">Before you’re able to share your health data and information, we need to gather a few more
       details.</h2>
 
-
-    <!--<div fxLayout="row" fxLayout.xs="column" style="fxlayout:row; flexwrap: wrap; display:flex">-->
-    <!--<div class="home-square p-t-lg p-b" style="background-color: #ffeb3b;">First item in row</div>-->
-    <!--<div class="home-square" style="font-size:10px; color:deeppink; text-align: left; background-color: lightblue;"-->
-    <!--[style.sm]="{'font-size':'16px', 'color': '#a63db8', 'text-align': 'center'}"-->
-    <!--[style.md]="{'font-size':'24px', 'color':'red', 'text-align':'right'}">Second item in row-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div fxlayout="column">-->
-    <!--<div [style.lg]="{'font-weight': bold}"-->
-    <!--fxflex>First item in column-->
-    <!--</div>-->
-    <!--<div fxflex>Second item in column</div>-->
-    <!--</div>-->
-    <!--<div [ngStyle]="{'color': 'blue', 'font-size': '24px', 'font-weight': 'bold'}">-->
-    <!--style using ngStyle-->
-    <!--</div>-->
-    <!--<div [ngClass]="['color-test']">array of classes</div>-->
-    <!--<div [ngClass]="'italic-text blue'">string of classes</div>-->
-    <!--<div [ngClass]="{'small-text': true, 'red': true}">object of classes</div>-->
-
-    <!--<div class="flexDemoContainer">-->
-    <!--<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>-->
-    <!--<div fxFlex> I'm above on mobile, and left on larger devices.</div>-->
-    <!--<div fxFlex> I'm below on mobile, and right on larger devices.</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--<md-toolbar color="primary">-->
-    <!--<span>Flex Layout Example</span>-->
-    <!--</md-toolbar>-->
-
-    <!--<div class="coloredContainerX">-->
-    <!--<div fxLayout="row" fxLayoutAlign="start center" class="content">-->
-    <!--<div class="blocks" fxFlex="20%">1</div>-->
-    <!--<div class="blocks" fxFlex="60%">2</div>-->
-    <!--<div class="blocks" fxFlex>3</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="container">-->
-    <!--<div fxLayout="row" fxLayoutAlign="space-around center" class="content">-->
-    <!--<div class="blocks">1</div>-->
-    <!--<div class="blocks">2</div>-->
-    <!--<div class="blocks">3</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="container">-->
-    <!--<div fxLayout="row" fxLayoutAlign="begin center" class="content">-->
-    <!--<div class="blocks">1</div>-->
-    <!--<div class="blocks">2</div>-->
-    <!--<div class="blocks">3</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="container">-->
-    <!--<div fxLayout="row"-->
-    <!--fxLayout.xs="column"-->
-    <!--fxLayout.sm="column"-->
-    <!--fxFlex class="contentResp">-->
-    <!--<div class="blocks" fxFlex> I'm above on mobile, and to the left on larger devices.</div>-->
-    <!--<div class="blocks" fxFlex> I'm below on mobile, and to the right on larger devices.</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div [ngClass]="['md-body-1 color-test']">Testing MD-Body-1</div>-->
-
-    <!--<md-grid-list cols="3" rowHeight="4:1">-->
-    <!--<md-grid-tile>1</md-grid-tile>-->
-    <!--<md-grid-tile>2</md-grid-tile>-->
-    <!--<md-grid-tile>3</md-grid-tile>-->
-    <!--<md-grid-tile>4</md-grid-tile>-->
-    <!--</md-grid-list>-->
-
     <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px" fxLayoutAlign="space-around">
 
       <md-card class="card contacts">
@@ -86,7 +15,7 @@
         </md-card-header>
         <md-card-content class="p-md">
 
-          <button md-fab (click)="navigateTo('contacts')">
+          <button md-fab (click)="navigateTo('provider-list')">
             <md-icon class="md-24 font-weight500">add</md-icon>
           </button>
           <md-chip-list class="p-15">
@@ -98,7 +27,7 @@
           <div class="center middle">
             <img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}">
           </div>
-          <div>{{totalProviders}} Contact{{totalProviders !== 1 ? 's' : ''}}</div>
+          <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalProviders}}</span> Contact{{totalProviders !== 1 ? 's' : ''}}</div>
         </md-card-content>
 
       </md-card>
@@ -116,33 +45,33 @@
             <md-icon class="md-24 font-weight500">add</md-icon>
           </button>
           <md-chip-list class="p-15">
-            <md-chip color="primary" selected="true" class="font-size16">Step 3.</md-chip>
+            <md-chip color="primary" selected="true" class="font-size16">Step 2.</md-chip>
           </md-chip-list>
           <h2 class="m-t-xs">
             Next, create a consent to allow your providers and/or contacts to share health information.
           </h2>
           <div class="center middle">
-            <img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}">
+            <img md-card-image src="assets/img/consents.svg" [ngStyle]="{'width': '75%'}">
           </div>
-          <div>{{totalProviders}} Contact{{totalProviders !== 1 ? 's' : ''}}</div>
+          <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalProviders}}</span> Consent{{totalProviders !== 1 ? 's' : ''}}</div>
         </md-card-content>
 
       </md-card>
 
 
-      <md-card class="left-align" (click)="navigateTo('provider-list')">
-        <md-card-header color="primary">
-          <md-card-title>Providers</md-card-title>
+      <!--<md-card class="left-align" (click)="navigateTo('provider-list')">-->
+        <!--<md-card-header color="primary">-->
+          <!--<md-card-title>Providers</md-card-title>-->
 
-          <md-card-subtitle></md-card-subtitle>
-        </md-card-header>
+          <!--<md-card-subtitle></md-card-subtitle>-->
+        <!--</md-card-header>-->
 
-        <md-card-content>
-          Start by adding to you list of Providers!
-          <br>
-          <span>{{totalProviders}} Provider{{totalProviders !== 1 ? 's' : ''}}</span>
-        </md-card-content>
-      </md-card>
+        <!--<md-card-content>-->
+          <!--Start by adding to you list of Providers!-->
+          <!--<br>-->
+          <!--<span>{{totalProviders}} Provider{{totalProviders !== 1 ? 's' : ''}}</span>-->
+        <!--</md-card-content>-->
+      <!--</md-card>-->
 
       <!--<md-card class="test-pattern-warn left-align" (click)="navigateTo('consent-list')">-->
         <!--<md-card-title>Consents</md-card-title>-->
