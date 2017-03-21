@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GlobalEventManagerService} from "../../security/shared/global-event-manager.service";
+import {GlobalEventManagerService} from "../../core/global-event-manager.service";
 
 @Component({
   selector: 'c2s-footer',
