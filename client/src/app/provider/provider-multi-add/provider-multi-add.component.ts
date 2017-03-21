@@ -1,8 +1,8 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {ProviderProjection} from "../shared/provider-projection.model";
 import {ProviderService} from "../shared/provider.service";
 import {Router} from "@angular/router";
 import {NotificationService} from "../../core/notification.service";
+import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 
 @Component({
   selector: 'c2s-provider-multi-add',
@@ -10,8 +10,8 @@ import {NotificationService} from "../../core/notification.service";
   styleUrls: ['./provider-multi-add.component.css']
 })
 export class ProviderMultiAddComponent implements OnInit {
-  @Input() providers: ProviderProjection[];
-  currentProvider: ProviderProjection = null;
+  @Input() providers: FlattenedSmallProvider[];
+  currentProvider: FlattenedSmallProvider = null;
 
   constructor(private notificationService: NotificationService,
               private providerService: ProviderService,
@@ -21,7 +21,7 @@ export class ProviderMultiAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  confirmAddProviders(dialog: any, selectedProviders: ProviderProjection[]) {
+  confirmAddProviders(dialog: any, selectedProviders: FlattenedSmallProvider[]) {
     dialog.close();
     if (selectedProviders != null) {
       const PROVIDER_LIST_URL = "provider-list";
@@ -38,7 +38,7 @@ export class ProviderMultiAddComponent implements OnInit {
     }
   }
 
-  confirmDeleteProvider(dialog: any, provider: ProviderProjection) {
+  confirmDeleteProvider(dialog: any, provider: FlattenedSmallProvider) {
     dialog.close();
     if (provider != name) {
       this.currentProvider = provider;
