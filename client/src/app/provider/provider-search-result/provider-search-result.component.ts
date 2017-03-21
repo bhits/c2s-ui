@@ -43,7 +43,7 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
   }
 
   getPage(page: number) {
-    const SEARCH_RESPONSE_KEY: string = "flattenedSmallProviderDtoList";
+    const SEARCH_RESPONSE_KEY: string = "providers";
 
     this.loading = true;
     if (this.searchResponse != null) {

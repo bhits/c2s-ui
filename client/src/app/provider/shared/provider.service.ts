@@ -7,6 +7,7 @@ import {Observable} from "rxjs";
 import {ExceptionService} from "../../core/exception.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {Identifier} from "../../shared/identifier.model";
 
 @Injectable()
 export class ProviderService {
@@ -47,11 +48,19 @@ export class ProviderService {
   }
 
   addProviders(providers: FlattenedSmallProvider[]): Observable<void> {
+    const SYSTEM = "http://hl7.org/fhir/sid/us-npi";
     if (providers != null) {
-      let npis: string[] = [];
-      providers.forEach(provider => npis.push(provider.npi));
+      let identifier: Identifier = new Identifier();
+      let identifiers: Identifier[] = [];
+      providers.forEach(
+        provider => {
+          identifier.value = provider.npi;
+          identifier.system = SYSTEM;
+          identifiers.push(identifier)
+        }
+      );
       return this.http
-        .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers"), JSON.stringify({npiList: npis}), {headers: this.headers})
+        .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers"), JSON.stringify({identifiers: identifiers}), {headers: this.headers})
         .map(() => null)
         .catch(this.exceptionService.handleError);
     }
