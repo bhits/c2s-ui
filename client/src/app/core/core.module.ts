@@ -7,6 +7,7 @@ import {NotificationService} from "./notification.service";
 import {ExceptionService} from "./exception.service";
 import {SecurityModule} from "../security/security.module";
 import {TokenService} from "../security/shared/token.service";
+import {GlobalEventManagerService} from "./global-event-manager.service";
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {TokenService} from "../security/shared/token.service";
   providers: [
     ExceptionService,
     NotificationService,
+    GlobalEventManagerService,
     {
       provide: Http,
       useFactory: httpInterceptorServiceFactory,
