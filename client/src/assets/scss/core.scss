@@ -1,12 +1,22 @@
 html {height: 100%;}
 body {
-  background-color: #F0F9F8;
+  font-size: 62.5%;
   min-height: 100%;
+  background-color: #F0F9F8;
+}
+.wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
 }
-
+.flex-height-max {
+  flex: 1;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
 
 .img-test {
   background-image:url('assets/img/C2S-logo-color.svg');
