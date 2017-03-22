@@ -14,7 +14,7 @@ export class DataService {
   }
 
   getProviders(): Observable<FlattenedSmallProvider[]> {
-    const url = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers");
+    const url = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers");
     return this.http.get(url)
       .map((resp: Response) => <FlattenedSmallProvider>(resp.json()))
       .catch(this.exceptionService.handleError);

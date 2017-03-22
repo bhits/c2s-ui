@@ -19,7 +19,7 @@ export class ProviderService {
   }
 
   searchProviders(requestParams: ProviderRequestQuery): Observable<ProviderSearchResponse> {
-    const SEARCH_PROVIDERS_URL = this.c2sUiApiUrlService.getPlsBaseUrl().concat("/search/query");
+    const SEARCH_PROVIDERS_URL = this.c2sUiApiUrlService.getPlsBaseUrl().concat("/providers/search/query");
 
     let params: URLSearchParams = this.buildRequestParams(requestParams);
 
@@ -41,7 +41,7 @@ export class ProviderService {
   }
 
   deleteProvider(id: number): Observable<void> {
-    const DELETE_PROVIDERS_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers")}/${id}`;
+    const DELETE_PROVIDERS_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers")}/${id}`;
     return this.http.delete(DELETE_PROVIDERS_URL)
       .map(() => null)
       .catch(this.exceptionService.handleError);
@@ -55,7 +55,7 @@ export class ProviderService {
         provider => identifiers.push(new Identifier(SYSTEM, provider.npi))
       );
       return this.http
-        .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers"), JSON.stringify({identifiers: identifiers}), {headers: this.headers})
+        .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers"), JSON.stringify({identifiers: identifiers}), {headers: this.headers})
         .map(() => null)
         .catch(this.exceptionService.handleError);
     }
