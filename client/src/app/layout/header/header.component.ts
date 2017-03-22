@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {GlobalEventManagerService} from "../../security/shared/global-event-manager.service";
+import {GlobalEventManagerService} from "../../core/global-event-manager.service";
+
 
 @Component({
   selector: 'c2s-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit {
   showHeader: boolean = false;
 
   constructor(private globalEventManagerService: GlobalEventManagerService) {
-    this.globalEventManagerService.showHeaderAndFooterEmitter.subscribe((showHeader)=>{
+    this.globalEventManagerService.getShowHEaderAndFooterEmitter().subscribe((showHeader)=>{
       if (showHeader !== null) {
         this.showHeader = showHeader;
       }

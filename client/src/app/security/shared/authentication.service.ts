@@ -2,24 +2,22 @@ import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import {Http, Response, RequestOptions, Headers, URLSearchParams} from "@angular/http";
 
-import {GlobalEventManagerService} from "./global-event-manager.service";
-import {UaaToken} from "./uaa-token";
+import {GlobalEventManagerService} from "../../core/global-event-manager.service";
+import {AccessToken} from "./access-token.model";
 import {TokenService} from "./token.service";
-import {ExceptionService} from "../../core/exception.service";
+import {Profile} from "../../core/profile.model";
 
 
 @Injectable()
 export class AuthenticationService {
   uaaTokenUrl: string = "/uaa/oauth/token/";
-  uaaAccessTokenUrl: string = "/uaa/userinfo";
+  uaaUserInfoUrl: string = "/uaa/userinfo";
   CLIENT_ID:string = 'YzJzLXVpOmNoYW5nZWl0';
   HOME:string ='home';
-  LOGIN:string ='login';
-
+  LOGIN:string ='login';storeUserProfile
   constructor(private router: Router,
               private http: Http,
               private tokenService: TokenService,
-              private exceptionService: ExceptionService,
               private globalEventManagerService: GlobalEventManagerService) {
   }
 
@@ -27,36 +25,42 @@ export class AuthenticationService {
     return this.http.post(this.uaaTokenUrl, this.composeParameters(username, password), this.setHeaders());
   }
 
-  handleLoginSuccess(response: Response){
-    this.tokenService.setToken(response);
-    this.globalEventManagerService.setShowHeaderAndFooter(true);
-    // this.getAccessToken();
-    this.router.navigate([this.HOME]);
+  onLoginSuccess(response: Response){
+    this.tokenService.setAccessToken(response);
   }
 
   logout() {
-    this.tokenService.deleteToken();
+    this.tokenService.deleteAccessToken();
+    this.tokenService.deleteProfileToken();
     this.globalEventManagerService.setShowHeaderAndFooter(false);
     this.router.navigate([this.LOGIN]);
   }
 
   isLogin(){
-    let uaaToken:UaaToken =  this.tokenService.getToken();
-    if(uaaToken){
+    let uaaToken:AccessToken =  this.tokenService.getAccessToken();
+    let profile:Profile =  this.tokenService.getProfileToken();
+    if(uaaToken && profile){
         this.globalEventManagerService.setShowHeaderAndFooter(true);
+        this.globalEventManagerService.setProfile(profile);
         return true;
     }
     return false;
   }
 
-  getAccessToken() {
-    return this.http.get(this.uaaAccessTokenUrl)
-                      .map((resp: Response) => {
-                          console.log(<any>(resp.json()));
-                      })
-                      .catch(this.exceptionService.handleError);;
+  getUserProfile(){
+    return this.http.get(this.uaaUserInfoUrl)
+                      .map((resp: Response) => <any>(resp.json()));
   }
 
+  onGetUserProfileSuccess(profile:Profile){
+    this.globalEventManagerService.setShowHeaderAndFooter(true);
+    this.globalEventManagerService.setProfile(profile);
+    this.router.navigate([this.HOME]);
+  }
+
+  onGetUserProfileError(){
+    this.tokenService.deleteAccessToken();
+  }
 
   private setHeaders():RequestOptions {
     let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded',

@@ -13,7 +13,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HomeModule} from "./home/home.module";
 import {CanActivateAuthGuardService} from "./security/shared/can-activate-auth-guard.service";
 import {AuthenticationService} from "./security/shared/authentication.service";
-import {GlobalEventManagerService} from "./security/shared/global-event-manager.service";
+import {GlobalEventManagerService} from "./core/global-event-manager.service";
 import {LayoutModule} from "./layout/layout.module";
 
 
