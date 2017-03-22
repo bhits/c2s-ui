@@ -46,13 +46,32 @@ export class MedicalInformationService {
     return selected;
   }
 
-  getSelectedSensitivityPolicies(sensitivityPolicies:SensitivityPolicy[]):SensitivityPolicy[]{
-    let selected:SensitivityPolicy[] =  new Array();
+  getSelectedSensitivityPolicies(sensitivityPolicies:SensitivityPolicy[]):string[]{
+    let selected:string[] =  new Array();
     for(let sp of sensitivityPolicies){
       if( sp['checked']){
-        selected.push(sp);
+        selected.push(sp.displayName);
       }
     }
     return selected;
+  }
+
+  updateSelectedCategories(sensitivityPolicies:SensitivityPolicy[], checkedSensitityPolicies:string[]){
+    for(let sp1 of checkedSensitityPolicies){
+      for(let sp2 of sensitivityPolicies){
+        if( sp1 === sp2.displayName){
+          sp2["checked"] = true;
+        }
+      }
+    }
+  }
+
+  isCheckedAll(sensitivityPolicies:SensitivityPolicy[]){
+    for(let sp of sensitivityPolicies){
+      if(!sp['checked']){
+        return false;
+      }
+    }
+    return true;
   }
 }

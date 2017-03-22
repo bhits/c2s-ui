@@ -17,6 +17,8 @@ export class ConsentCardListComponent implements OnInit {
   private currentPage: number = 1;
   private loading: boolean = false;
 
+  title:string = "Consents";
+
   private consents: Observable<Consent[]>;
 
   constructor(private consentService: ConsentService) {

@@ -9,6 +9,7 @@ import {FooterComponent} from "./footer/footer.component";
 import {PageContentComponent} from "./page-content/page-content.component";
 import {SharedModule} from "../shared/shared.module";
 import {RouterModule} from "@angular/router";
+import {AuthenticationService} from "../security/shared/authentication.service";
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {RouterModule} from "@angular/router";
     FooterComponent,
     PageContentComponent,
     MaterialModule
-  ]
+  ],
+  providers: [AuthenticationService]
 })
 export class LayoutModule {
 }

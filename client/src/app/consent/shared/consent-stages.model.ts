@@ -9,7 +9,7 @@ export const CONSENT_STAGES: ConsentStage[] = [
     options: [
       {icon: "edit", text: "Edit This Consent", routerLink: '/consent-create-edit'},
       {icon: "search", text: "Preview This Consent"},
-      {icon: "assignment_turned_in", text: "Provide eSignature"},
+      {icon: "assignment_turned_in", text: "Provide eSignature", routerLink: '/consent-sign'},
       {icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
       {icon: "delete_forever", text: "Delete This Consent"}]
   },
@@ -22,7 +22,7 @@ export const CONSENT_STAGES: ConsentStage[] = [
       {icon: "file_download", text: "View Signed Consent"},
       {icon: "insert_drive_file", text: "Export Consent Directive"},
       {icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
-      {icon: "cancel", text: "Revocation"}
+      {icon: "cancel", text: "Revocation", routerLink: '/consent-revoke'}
     ]
   },
   {

@@ -9,7 +9,7 @@
     <div fxLayoutAlign="center" *ngIf="loading">
       <md-spinner></md-spinner>
     </div>
-    <div *ngIf="providerResult?._embedded.providers.length===0">
+    <div *ngIf="providerResult?._embedded.flattenedSmallProviderDtoList.length===0">
       <md-toolbar fxLayoutAlign="center" color="warn">Sorry, There is no provider found!</md-toolbar>
     </div>
     <div fxLayout="column" fxLayoutAlign="center" [ngStyle]="{'padding-top': '20px'}"
@@ -19,7 +19,7 @@
            *ngIf="canSelectProvider(provider)">
         <div fxLayout="column" fxFlexOffset="10px">
           <div fxLayout="row" fxLayoutAlign="start">
-            <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+            <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
           </div>
           <div>
             <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="20px">
@@ -38,7 +38,7 @@
            *ngIf="isInProviderList(provider)">
         <div fxLayout="column" fxFlexOffset="10px">
           <div fxLayout="row" fxLayoutAlign="start">
-            <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+            <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
           </div>
           <div>
             <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="20px">
@@ -57,7 +57,7 @@
            *ngIf="isProviderSelected(provider)">
         <div fxLayout="column" fxFlexOffset="10px">
           <div fxLayout="row" fxLayoutAlign="start">
-            <p>{{provider | providerProjectionName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+            <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
           </div>
           <div>
             <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="20px">
