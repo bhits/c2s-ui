@@ -15,6 +15,7 @@ import {TokenService} from "../security/shared/token.service";
 
 @Injectable()
 export class HttpInterceptorService extends Http {
+  private UAA: string = "uaa";
 
   constructor(backend: ConnectionBackend, defaultOptions: RequestOptions,
               private slimLoadingBarService: SlimLoadingBarService,
@@ -32,7 +33,11 @@ export class HttpInterceptorService extends Http {
   }
 
   post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-    return this.intercept(super.post(url, body, this.setHeaders(options)));
+    if (url.indexOf(this.UAA) >= 0) {
+      return this.intercept(super.post(url, body, options));
+    } else {
+      return this.intercept(super.post(url, body, this.setHeaders(options)));
+    }
   }
 
   put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
@@ -47,22 +52,22 @@ export class HttpInterceptorService extends Http {
     return observable.do(() => this.slimLoadingBarService.complete());
   }
 
-  private setHeaders(options: RequestOptionsArgs):RequestOptionsArgs{
+  private setHeaders(options: RequestOptionsArgs): RequestOptionsArgs {
 
-    if(!options) {
+    if (!options) {
       options = new RequestOptions({});
     }
 
     let token = this.tokenService.getAccessToken();
 
-    if(token && token['access_token']){
+    if (token && token['access_token']) {
 
       if (!options.headers) {
         options.headers = new Headers();
       }
-      let access_token =  token['access_token'];
-      options.headers.set('Authorization','Bearer ' + access_token);
-      options.headers.set('Content-Type','application/json');
+      let access_token = token['access_token'];
+      options.headers.set('Authorization', 'Bearer ' + access_token);
+      options.headers.set('Content-Type', 'application/json');
     }
     return options;
   }
