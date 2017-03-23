@@ -4,9 +4,9 @@ import {ShareSensitivityCategory} from "./share-sensitivity-category.model";
 type ArgType = "display" | "description" | "system" | "value";
 
 @Pipe({
-  name: 'shareSensitivityCategory'
+  name: 'sensitivityCategory'
 })
-export class ShareSensitivityCategoryPipe implements PipeTransform {
+export class SensitivityCategoryPipe implements PipeTransform {
 
   transform(value: ShareSensitivityCategory, args?: ArgType): any {
     switch (args) {

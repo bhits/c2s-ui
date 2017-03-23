@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { ShareSensitivityCategoryPipe } from './share-sensitivity-category.pipe';
+import { ShareSensitivityCategoryPipe } from './sensitivity-category.pipe';
 
 describe('ShareSensitivityCategoryPipe', () => {
   it('create an instance', () => {
