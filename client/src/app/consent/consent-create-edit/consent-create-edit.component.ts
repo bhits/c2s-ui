@@ -4,10 +4,12 @@ import {ConsentService} from "../shared/consent.service";
 import {ActivatedRoute} from "@angular/router";
 import {UtilityService} from "../../shared/utility.service";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
-import {Provider} from "../shared/Provider.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {PurposeOfUseBase} from "../shared/purpose-of-use-base.model";
 import {NotificationService} from "../../core/notification.service";
+import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {GlobalEventManagerService} from "../../core/global-event-manager.service";
+import {Profile} from "../../core/profile.model";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -15,31 +17,40 @@ import {NotificationService} from "../../core/notification.service";
   styleUrls: ['./consent-create-edit.component.css']
 })
 export class ConsentCreateEditComponent implements OnInit {
-  consent : ConsentCreateEdit;
-  providers: Provider[];
-  sensitivityPolicies: SensitivityPolicy[];
-  purposeOfUses: PurposeOfUseBase[];
-  title: string = "Create Consent";
-  private consentId:string;
+  private consent : ConsentCreateEdit;
+  private providers: FlattenedSmallProvider[];
+  private sensitivityPolicies: SensitivityPolicy[];
+  private purposeOfUses: PurposeOfUseBase[];
 
-  constructor(private consentService: ConsentService, private notificationService: NotificationService, private route: ActivatedRoute, private utilityService:UtilityService) {
+  private title: string = "Create Consent";
+  private consentId:string;
+  private profile: Profile;
+
+  constructor(private consentService: ConsentService,
+              private notificationService: NotificationService,
+              private route: ActivatedRoute,
+              private utilityService:UtilityService,
+              private globalEventManagerService: GlobalEventManagerService) {
+
+    this.consentService.getConsentEmitter().subscribe((consent)=>{
+      if (consent) {
+        this.consent = consent;
+      }
+    });
+
+    this.globalEventManagerService.getUserProfileEmitter().subscribe((profile)=>{
+      if (profile) {
+        this.profile = profile;
+      }
+    });
   }
 
   ngOnInit() {
-
     this.providers = this.route.snapshot.data['providers'];
     this.sensitivityPolicies = this.route.snapshot.data['sensitivityPolicies'];
     this.purposeOfUses = this.route.snapshot.data['purposeOfUses'];
 
     this.consent = new ConsentCreateEdit();
-    this.consent.consentStart = "";
-    this.consent.consentEnd = "";
-    this.consent.shareForPurposeOfUseCodes = ['TREATMENT'];
-    this.consent.doNotShareSensitivityPolicyCodes = [];
-    this.consent.organizationalProvidersDisclosureIsMadeToNpi = [];
-    this.consent.organizationalProvidersPermittedToDiscloseNpi = [];
-    this.consent.providersDisclosureIsMadeToNpi = [];
-    this.consent.providersPermittedToDiscloseNpi = [];
 
     this.route.params.subscribe(params => {
 
@@ -47,23 +58,18 @@ export class ConsentCreateEditComponent implements OnInit {
         this.title = "Edit Consent";
         this.consent = this.route.snapshot.data['consent'];
       }
+      this.consentService.setConsent(this.consent);
     });
-  }
-  onSelectMedicalInformation(event: any){
-    this.consent.doNotShareSensitivityPolicyCodes = event;
-  }
 
-  onStartDateChange(event: any){
-    this.consent.consentStart = event;
-  }
 
-  onEndDateChange(event: any){
-    this.consent.consentEnd = event;
+  }
+  onSelectMedicalInformation(shareSensitivityCategories: any){
+    this.consent.shareSensitivityCategories = shareSensitivityCategories;
+    console.log(this.consent);
   }
 
   submitForm(){
     if(this.consentId){
-
        this.consentService.updateConsent(this.consent)
                           .then(res => {
                             this.notificationService.show("Success in Updating consent.");
@@ -74,6 +80,7 @@ export class ConsentCreateEditComponent implements OnInit {
                             console.log(error);
                           });
     }else {
+      console.log(this.consent);
        this.consentService.createConsent(this.consent)
                         .then(res => {
                           this.notificationService.show("Success in creating consent.");
@@ -86,10 +93,6 @@ export class ConsentCreateEditComponent implements OnInit {
     }
 
 
-  }
-
-  onSelectedPurposeOfUse(event: any){
-    this.consent.shareForPurposeOfUseCodes = event;
   }
 
   navigateTo(url: string){

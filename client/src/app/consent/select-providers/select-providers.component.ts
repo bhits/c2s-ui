@@ -1,8 +1,10 @@
-import {Component, OnInit,Input} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
-import {Provider} from "../shared/Provider.model";
 import {ConsentService} from "../shared/consent.service";
 import {UtilityService} from "../../shared/utility.service";
+import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
+import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 
 @Component({
   selector: 'c2s-select-providers',
@@ -11,60 +13,56 @@ import {UtilityService} from "../../shared/utility.service";
 })
 export class SelectProvidersComponent implements OnInit {
 
-  @Input() providers: Provider[];
   authorizeTitle:string = "The following individual or organization";
   discloseTitle:string = "To disclose my information to";
-  @Input() authorizeOrgProviderNpi: string[];
-  @Input() authorizeIndProviderNpi: string[];
-  @Input() disclosureOrgProviderNpi: string[] ;
-  @Input() disclosureIndProviderNpi: string[] ;
-
+  @Input() providers: FlattenedSmallProvider[];
+  fromProviders: ListOfIdentifiers;
+  toProviders: ListOfIdentifiers;
+  consent: ConsentCreateEdit;
+  @Input() completeSelectedProviders: FlattenedSmallProvider[] = [];
   selectedProvidersNpi:any = {authorize:[], disclosure:[]};
 
-  constructor(private consentService: ConsentService,private utilityService:UtilityService) { }
+  constructor(private consentService: ConsentService,private utilityService:UtilityService) {
+    this.consentService.getConsentEmitter().subscribe((consent)=>{
+      if (consent) {
+        this.consent = consent;
+        this.fromProviders = this.consent.fromProviders;
+        this.toProviders = this.consent.toProviders;
+      }
+    });
+  }
 
   ngOnInit() {
-    if(this.authorizeOrgProviderNpi.length >0){
-      this.selectedProvidersNpi.authorize = this.authorizeOrgProviderNpi;
-    }else if(this.authorizeIndProviderNpi.length >0){
-      this.selectedProvidersNpi.authorize = this.authorizeIndProviderNpi;
-    }
+    this.getAllSelectedProvidersProperties();
 
-    if(this.disclosureOrgProviderNpi.length >0){
-      this.selectedProvidersNpi.disclosure = this.disclosureOrgProviderNpi;
-    }else if(this.disclosureIndProviderNpi.length >0){
-      this.selectedProvidersNpi.disclosure = this.disclosureIndProviderNpi;
-    }
+    // this.fromProviders =
+    // if(this.authorizeOrgProviderNpi.length >0){
+    //   this.selectedProvidersNpi.authorize = this.authorizeOrgProviderNpi;
+    // }else if(this.authorizeIndProviderNpi.length >0){
+    //   this.selectedProvidersNpi.authorize = this.authorizeIndProviderNpi;
+    // }
+
+    // if(this.disclosureOrgProviderNpi.length >0){
+    //   this.selectedProvidersNpi.disclosure = this.disclosureOrgProviderNpi;
+    // }else if(this.disclosureIndProviderNpi.length >0){
+    //   this.selectedProvidersNpi.disclosure = this.disclosureIndProviderNpi;
+    // }
+  }
+
+  getAllSelectedProvidersProperties(){
+
+    this.providers.forEach(p1 =>{
+      if(this.fromProviders && this.fromProviders.identifiers){
+        this.fromProviders.identifiers.forEach(identifier =>{
+          if(p1.npi === identifier.value){
+            this.completeSelectedProviders.push(p1);
+          }
+        });
+      }
+    });
   }
 
   private error(error: any): Promise<any> {
     return Promise.reject(error.message || error);
   }
-
-  onSelectedAuthorizeProvider(provider:Provider){
-    //Remove all entry from array
-    this.utilityService.removeAll(this.authorizeOrgProviderNpi);
-    this.utilityService.removeAll(this.authorizeIndProviderNpi);
-
-
-    if((provider) && provider.entityType === "Individual"){
-      this.authorizeIndProviderNpi.push(provider.npi);
-    }else if((provider) && provider.entityType === "Organization"){
-      this.authorizeOrgProviderNpi.push(provider.npi);
-    }
-  }
-
-  onSelectedDisclosureProvider(provider:Provider){
-    //Remove all entry from array
-    this.utilityService.removeAll(this.disclosureOrgProviderNpi);
-    this.utilityService.removeAll(this.disclosureIndProviderNpi);
-
-    if((provider) && provider.entityType === "Individual"){
-      this.disclosureIndProviderNpi.push(provider.npi);
-    }else if((provider) && provider.entityType === "Organization"){
-      this.disclosureOrgProviderNpi.push(provider.npi);
-    }
-
-  }
-
 }

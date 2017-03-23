@@ -1,5 +1,7 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UtilityService} from "../../shared/utility.service";
+import {ConsentService} from "../shared/consent.service";
+import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 
 
 @Component({
@@ -9,26 +11,37 @@ import {UtilityService} from "../../shared/utility.service";
 })
 export class ConsentTermsComponent implements OnInit {
 
-  @Input() startDate: any;
-  @Input() endDate: any;
-  @Output() startDateChange = new EventEmitter();
-  @Output() endDateChange = new EventEmitter();
+  startDate: any;
+  endDate: any;
+  DATE_FORMAT:string = "MM/dd/yyyy"
+  private consent: ConsentCreateEdit;
 
-  constructor(private utilityService:UtilityService) { }
+  constructor(private utilityService:UtilityService, private consentService: ConsentService) {
+    this.consentService.getConsentEmitter().subscribe((consent)=>{
+      if (consent) {
+        this.consent = consent;
+      }
+    });
+  }
 
   ngOnInit() {
-    this.startDate = this.utilityService.localDateToDateStr(this.startDate);
-    this.endDate = this.utilityService.localDateToDateStr(this.endDate);
+    // if(this.consent){
+    //   this.startDate = this.utilityService.formatDate(this.consent.startDate, this.DATE_FORMAT) ;
+    //   this.endDate = this.utilityService.formatDate(this.consent.endDate, this.DATE_FORMAT) ;
+    // }
+
+    //
+    // this.startDate = this.utilityService.localDateToDateStr(this.startDate);
+    // this.endDate = this.utilityService.localDateToDateStr(this.endDate);
   }
 
-  onStartDateChange(){
-      let localDate  = this.utilityService.dateStrToLocalDate(this.startDate);
-      console.log(localDate)
-      this.startDateChange.emit(localDate);
-
+  onStateDateChanged(startDate){
+    this.consent.startDate = new Date(startDate);
+    this.consentService.setConsent(this.consent);
   }
 
-  onEndDateChange(){
-      this.endDateChange.emit(this.utilityService.dateStrToLocalDate(this.endDate));
+  onEndDateChanged(endDate){
+    this.consent.endDate = new Date(endDate);
+    this.consentService.setConsent(this.consent);
   }
 }
