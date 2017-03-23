@@ -9,10 +9,6 @@ export class UtilityService {
   constructor(private router: Router, private datePipe: DatePipe) {
   }
 
-  navigateToWithParameters(url: string, params: any) {
-    this.router.navigate([url, params]);
-  }
-
   navigateTo(url: string) {
     this.router.navigate([url]);
   }
@@ -21,8 +17,8 @@ export class UtilityService {
     entries.splice(0, entries.length);
   }
 
-  formatDate(dateStr: string, dateFormat: string) {
-    return this.datePipe.transform(dateStr, dateFormat);
+  formatDate(aDate: Date, dateFormat: string) {
+    return this.datePipe.transform(aDate, dateFormat);
   }
 
   isDefined(entity: any): boolean {
@@ -42,26 +38,6 @@ export class UtilityService {
       strMap.set(k, jsonStr[k]);
     }
     return strMap;
-  }
-
-  dateStrToLocalDate(dateStr:string):string[]{
-    if(dateStr){
-      let dateArray = (this.formatDate(dateStr, 'MM/dd/yyyy')).split('/');
-      if(!isNaN(parseInt(dateArray[0])) && !isNaN(parseInt(dateArray[1])) && !isNaN(parseInt(dateArray[2]))){
-        return [dateArray[2], dateArray[0], dateArray[1] ];
-      }
-    }
-    return [];
-  }
-
-  localDateToDateStr(localDate:string):string{
-    if(localDate && localDate.length >0){
-      let dateStr = this.formatDate(localDate,"MM/dd/yyyy");
-      if(!isNaN(parseInt(localDate[0])) && !isNaN(parseInt(localDate[1])) && !isNaN(parseInt(localDate[2]))){
-        return localDate[0].concat("/").concat(localDate[1]).concat(localDate[2]);
-      }
-    }
-    return "";
   }
 
   createIdentifiers(entities:any):Identifier[]{
