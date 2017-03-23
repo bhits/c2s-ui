@@ -13,18 +13,22 @@ export class ConsentTermsComponent implements OnInit {
   @Input() endDate: any;
   @Output() startDateChange = new EventEmitter();
   @Output() endDateChange = new EventEmitter();
-  private dateFormat:string = 'MM/dd/yyyy';
 
   constructor(private utilityService:UtilityService) { }
 
   ngOnInit() {
+    this.startDate = this.utilityService.localDateToDateStr(this.startDate);
+    this.endDate = this.utilityService.localDateToDateStr(this.endDate);
   }
 
   onStartDateChange(){
-    this.startDateChange.emit(this.utilityService.formatDate(this.startDate, this.dateFormat));
+      let localDate  = this.utilityService.dateStrToLocalDate(this.startDate);
+      console.log(localDate)
+      this.startDateChange.emit(localDate);
+
   }
 
   onEndDateChange(){
-    this.endDateChange.emit(this.utilityService.formatDate(this.endDate, this.dateFormat));
+      this.endDateChange.emit(this.utilityService.dateStrToLocalDate(this.endDate));
   }
 }
