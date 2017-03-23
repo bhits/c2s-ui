@@ -1,6 +1,6 @@
 import {Identifier} from "./identifier.model";
 import {Address} from "./address.model";
-export class AbstractProvider {
+export class ConsentProvider {
   id: number;
   identifiers: Identifier[];
   address: Address;
