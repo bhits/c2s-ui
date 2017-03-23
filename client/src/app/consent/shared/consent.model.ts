@@ -4,6 +4,7 @@ import {AbstractProvider} from "../../shared/abstract-provider.model";
 
 export class Consent {
   id: number;
+  consentStage: string;
   fromProviders: AbstractProvider[];
   toProviders: AbstractProvider[];
   shareSensitivityCategories: ShareSensitivityCategories;
