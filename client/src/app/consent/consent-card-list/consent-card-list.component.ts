@@ -37,7 +37,7 @@ export class ConsentCardListComponent implements OnInit {
         this.itemsPerPage = consentList.size;
         this.currentPage = consentList.number + 1;
       })
-      .map(consentList => consentList.consentList)
+      .map(consentList => consentList.content)
       .do(() => this.loading = false);
   }
 }
