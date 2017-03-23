@@ -2,7 +2,7 @@ import {Component, OnInit, ChangeDetectionStrategy} from "@angular/core";
 import {Observable} from "rxjs";
 import {ConsentList} from "../shared/consent-list.model";
 import {Consent} from "../shared/consent.model";
-import {ConsentService} from "../shared/consent.service";
+import {DataService} from "../../shared/data.service";
 
 @Component({
   selector: 'c2s-consent-card-list',
@@ -17,11 +17,11 @@ export class ConsentCardListComponent implements OnInit {
   private currentPage: number = 1;
   private loading: boolean = false;
 
-  title:string = "Consents";
+  title: string = "Consents";
 
   private consents: Observable<Consent[]>;
 
-  constructor(private consentService: ConsentService) {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit() {
@@ -30,12 +30,12 @@ export class ConsentCardListComponent implements OnInit {
 
   getPage(page: number) {
     this.loading = true;
-    this.consents = this.consentService.getConsentList(page - 1)
+    this.consents = this.dataService.getConsents(page - 1)
       .do((consentList: ConsentList) => {
-        this.totalItems = consentList.totalItems;
-        this.totalPages = consentList.totalPages;
-        this.itemsPerPage = consentList.itemsPerPage;
-        this.currentPage = consentList.currentPage + 1;
+        this.totalItems = consentList.page.totalElements;
+        this.totalPages = consentList.page.totalPages;
+        this.itemsPerPage = consentList.page.size;
+        this.currentPage = consentList.page.number + 1;
       })
       .map(consentList => consentList.consentList)
       .do(() => this.loading = false);
