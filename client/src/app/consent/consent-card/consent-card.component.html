@@ -6,7 +6,7 @@
            (click)="toggleDetailsVisible(el)">
         <div fxFlex>
           <h3><strong>Authorized to share:</strong></h3>
-          <md-list fxLayoutAlign="center">
+          <md-list fxLayoutAlign="center" fxLayout="column">
             <md-list-item *ngFor="let fromProvider of consent.fromProviders">{{fromProvider | abstractProviderName}}
             </md-list-item>
           </md-list>
@@ -14,7 +14,7 @@
 
         <div fxFlex>
           <h3><strong>Sharing with:</strong></h3>
-          <md-list fxLayoutAlign="center">
+          <md-list fxLayoutAlign="center" fxLayout="column">
             <md-list-item *ngFor="let toProvider of consent.toProviders">{{toProvider | abstractProviderName}}
             </md-list-item>
           </md-list>
@@ -23,7 +23,7 @@
         <div fxFlex>
           <h3><strong>Effective Dates:</strong></h3>
           <md-list fxLayoutAlign="center">
-            <md-list-item>{{consent.startDate}} - {{consent.endDate}}</md-list-item>
+            <md-list-item>{{consent.startDate | date}} - {{consent.endDate | date}}</md-list-item>
           </md-list>
         </div>
       </div>
@@ -65,36 +65,36 @@
     </div>
   </md-card-content>
 
-<!--  <md-card-actions>
-    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
-      <div fxFlex>
-        <div>
-           <p>Consent State:
-             <md-chip color="{{consent.consentStage | consentStage: 'color'}}" selected="true">
-               <md-icon>{{consent.consentStage | consentStage: 'icon'}}</md-icon>
-               <span class="md-chip-icon-text"><strong>{{consent | consentStage: 'text'}}</strong></span>
-             </md-chip>
-           </p>
+  <!--  <md-card-actions>
+      <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+        <div fxFlex>
+          <div>
+             <p>Consent State:
+               <md-chip color="{{consent.consentStage | consentStage: 'color'}}" selected="true">
+                 <md-icon>{{consent.consentStage | consentStage: 'icon'}}</md-icon>
+                 <span class="md-chip-icon-text"><strong>{{consent | consentStage: 'text'}}</strong></span>
+               </md-chip>
+             </p>
+          </div>
+        </div>
+        <div fxFlex>
+          <div>
+            <button md-raised-button color="primary" (click)="consentOptions.open()">Manage Consents</button>
+            <md2-dialog #consentOptions>
+              <md2-dialog-title fxLayoutAlign="center">Consent Options</md2-dialog-title>
+              <md-list>
+                <md-list-item *ngFor="let consentOption of getConsentStageOptions()">
+                  <div class="margin-20" fxFill>
+                    <a fxLayoutAlign="space-between" md-raised-button [routerLink]="getRouterLink(consentOption)">
+                      <md-icon>{{consentOption.icon}}</md-icon>
+                      <span class="margin-20">{{consentOption.text}}</span>
+                    </a>
+                  </div>
+                </md-list-item>
+              </md-list>
+            </md2-dialog>
+          </div>
         </div>
       </div>
-      <div fxFlex>
-        <div>
-          <button md-raised-button color="primary" (click)="consentOptions.open()">Manage Consents</button>
-          <md2-dialog #consentOptions>
-            <md2-dialog-title fxLayoutAlign="center">Consent Options</md2-dialog-title>
-            <md-list>
-              <md-list-item *ngFor="let consentOption of getConsentStageOptions()">
-                <div class="margin-20" fxFill>
-                  <a fxLayoutAlign="space-between" md-raised-button [routerLink]="getRouterLink(consentOption)">
-                    <md-icon>{{consentOption.icon}}</md-icon>
-                    <span class="margin-20">{{consentOption.text}}</span>
-                  </a>
-                </div>
-              </md-list-item>
-            </md-list>
-          </md2-dialog>
-        </div>
-      </div>
-    </div>
-  </md-card-actions>-->
+    </md-card-actions>-->
 </md-card>

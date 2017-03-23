@@ -8,6 +8,6 @@ export class Consent {
   toProviders: AbstractProvider[];
   shareSensitivityCategories: ShareSensitivityCategories;
   sharePurposes: SharePurposes;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
 }
