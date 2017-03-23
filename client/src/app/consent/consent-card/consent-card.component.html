@@ -53,10 +53,10 @@
         <div fxFlex>
           <h3><strong>Share for following purposes:</strong></h3>
           <md-chip-list>
-            <md-chip *ngFor="let shareForPurposeOfUseCodes of consent.sharePurposes"
+            <md-chip *ngFor="let sharePurpose of consent.sharePurposes"
                      color="accent" selected="true">
               <md-icon>check_circle</md-icon>
-              <span class="md-chip-icon-text">{{shareForPurposeOfUseCodes}}</span>
+              <span class="md-chip-icon-text">{{sharePurpose | sharePurpose: 'display'}}</span>
             </md-chip>
           </md-chip-list>
         </div>

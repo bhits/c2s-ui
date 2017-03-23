@@ -36,8 +36,8 @@ export class ConsentCardComponent implements OnInit, OnChanges {
   }
 
   hasDoNotShareSensitivityPolicyCodes(): boolean {
-    return !!this.consent && !!this.consent.shareSensitivityCategories.identifiers &&
-      this.consent.shareSensitivityCategories.identifiers.length > 0;
+    return !!this.consent && !!this.consent.shareSensitivityCategories &&
+      this.consent.shareSensitivityCategories.length > 0;
   }
 
   getHeightPx(): string {
