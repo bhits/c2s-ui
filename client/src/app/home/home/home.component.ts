@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
       );
     this.dataService.getConsents(0)
       .subscribe(
-        consentList => this.totalConsents = consentList.page.totalElements,
+        consentList => this.totalConsents = consentList.totalElements,
         err => console.log(err))
     ;
   }

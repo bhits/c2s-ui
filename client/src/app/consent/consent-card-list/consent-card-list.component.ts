@@ -32,10 +32,10 @@ export class ConsentCardListComponent implements OnInit {
     this.loading = true;
     this.consents = this.dataService.getConsents(page - 1)
       .do((consentList: ConsentList) => {
-        this.totalItems = consentList.page.totalElements;
-        this.totalPages = consentList.page.totalPages;
-        this.itemsPerPage = consentList.page.size;
-        this.currentPage = consentList.page.number + 1;
+        this.totalItems = consentList.totalElements;
+        this.totalPages = consentList.totalPages;
+        this.itemsPerPage = consentList.size;
+        this.currentPage = consentList.number + 1;
       })
       .map(consentList => consentList.consentList)
       .do(() => this.loading = false);

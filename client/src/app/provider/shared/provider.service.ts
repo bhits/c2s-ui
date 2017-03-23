@@ -24,9 +24,8 @@ export class ProviderService {
 
     let params: URLSearchParams = this.buildRequestParams(requestParams);
 
-    return this.http.get(SEARCH_PROVIDERS_URL, {
-      search: params
-    }).map((resp: Response) => <ProviderSearchResponse>(resp.json()))
+    return this.http.get(SEARCH_PROVIDERS_URL, {search: params})
+      .map((resp: Response) => <ProviderSearchResponse>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 

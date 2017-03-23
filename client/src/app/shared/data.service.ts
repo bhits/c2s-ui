@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Http, Response, URLSearchParams} from "@angular/http";
 import {ExceptionService} from "../core/exception.service";
 import {Observable} from "rxjs";
 import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
@@ -22,8 +22,10 @@ export class DataService {
   }
 
   getConsents(page: number): Observable<ConsentList> {
-    const resourceUrl = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents")}/${page || 0}`;
-    return this.http.get(resourceUrl)
+    const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents");
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('page', page.toString());
+    return this.http.get(resourceUrl, {search: params})
       .map((resp: Response) => <ConsentList>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
