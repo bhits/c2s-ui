@@ -20,6 +20,7 @@ import {ConsentStagePipe} from "./shared/consent-stage.pipe";
 import {SelectProvidersComponent} from "./select-providers/select-providers.component";
 import {NotificationService} from "../core/notification.service";
 import {AbstractProviderNamePipe} from "./shared/abstract-provider-name.pipe";
+import { SharePurposePipe } from './shared/share-purpose.pipe';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import {AbstractProviderNamePipe} from "./shared/abstract-provider-name.pipe";
     SelectProvidersComponent,
     ConsentProviderNamePipe,
     consentRoutableComponents,
-    AbstractProviderNamePipe
+    AbstractProviderNamePipe,
+    SharePurposePipe
   ],
   exports: [
     ConsentCreateEditComponent
