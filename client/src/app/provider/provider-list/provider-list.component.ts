@@ -3,7 +3,7 @@ import {ProviderService} from "../shared/provider.service";
 import {PaginationInstance} from "ng2-pagination";
 import {ActivatedRoute} from "@angular/router";
 import {NotificationService} from "../../core/notification.service";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {ConsentProvider} from "../../shared/consent-provider.model";
 
 @Component({
   selector: 'c2s-provider-list',
@@ -12,7 +12,7 @@ import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.mode
 })
 
 export class ProviderListComponent implements OnInit {
-  providers: FlattenedSmallProvider[];
+  providers: ConsentProvider[];
   title: string = "Providers";
 
   paginationConfig: PaginationInstance = {
@@ -34,7 +34,7 @@ export class ProviderListComponent implements OnInit {
     this.paginationConfig.currentPage = number;
   }
 
-  confirmDeleteProvider(dialog: any, provider: FlattenedSmallProvider) {
+  confirmDeleteProvider(dialog: any, provider: ConsentProvider) {
     dialog.close();
     if (provider != name) {
       this.providerService.deleteProvider(provider.id)
