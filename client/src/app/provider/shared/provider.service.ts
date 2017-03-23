@@ -12,6 +12,7 @@ import {Identifier} from "../../shared/identifier.model";
 @Injectable()
 export class ProviderService {
   private headers = new Headers({'Content-Type': 'application/json'});
+  private SYSTEM: string = "http://hl7.org/fhir/sid/us-npi";
 
   constructor(private c2sUiApiUrlService: C2sUiApiUrlService,
               private http: Http,
@@ -23,9 +24,8 @@ export class ProviderService {
 
     let params: URLSearchParams = this.buildRequestParams(requestParams);
 
-    return this.http.get(SEARCH_PROVIDERS_URL, {
-      search: params
-    }).map((resp: Response) => <ProviderSearchResponse>(resp.json()))
+    return this.http.get(SEARCH_PROVIDERS_URL, {search: params})
+      .map((resp: Response) => <ProviderSearchResponse>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
@@ -48,11 +48,10 @@ export class ProviderService {
   }
 
   addProviders(providers: FlattenedSmallProvider[]): Observable<void> {
-    const SYSTEM = "http://hl7.org/fhir/sid/us-npi";
     if (providers != null) {
       let identifiers: Identifier[] = [];
       providers.forEach(
-        provider => identifiers.push(new Identifier(SYSTEM, provider.npi))
+        provider => identifiers.push(new Identifier(this.SYSTEM, provider.npi))
       );
       return this.http
         .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers"), JSON.stringify({identifiers: identifiers}), {headers: this.headers})

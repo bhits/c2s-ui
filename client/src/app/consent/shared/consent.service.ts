@@ -6,7 +6,6 @@ import {PurposeOfUseBase} from "./purpose-of-use-base.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
 import {ExceptionService} from "../../core/exception.service";
 import {Observable} from "rxjs";
-import {ConsentList} from "./consent-list.model";
 import {ConsentCreateEdit} from "./consent-create-edit.model";
 
 @Injectable()
@@ -29,8 +28,8 @@ export class ConsentService {
 
   getSensitivityPolices(): Observable<SensitivityPolicy[]> {
     return this.http.get(this.pcmSensitivityPolicyUrl)
-                    .map((resp: Response) => <PurposeOfUseBase[]>(resp.json()))
-                    .catch(this.exceptionService.handleError);
+      .map((resp: Response) => <PurposeOfUseBase[]>(resp.json()))
+      .catch(this.exceptionService.handleError);
   }
 
   getProviderByNPI(providers: Provider[], npi: string): Provider {
@@ -51,7 +50,7 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getConsentById(id: string):Observable<ConsentCreateEdit> {
+  getConsentById(id: string): Observable<ConsentCreateEdit> {
     return this.http.get(this.pcmConsentUrl + "/" + id)
       .map((resp: Response) => <ConsentCreateEdit>(resp.json()))
       .catch(this.exceptionService.handleError);
@@ -63,13 +62,6 @@ export class ConsentService {
       .then(response => {
         return response;
       })
-      .catch(this.exceptionService.handleError);
-  }
-
-  getConsentList(page: number): Observable<ConsentList> {
-    const pageUri: string = `${this.consentListUri}/${page || 0}`;
-    return this.http.get(pageUri)
-      .map((resp: Response) => <ConsentList>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 }

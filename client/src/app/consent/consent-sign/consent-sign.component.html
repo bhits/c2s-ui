@@ -85,7 +85,7 @@
         <div fxLayout="column">
           <p class="dialog-text">Please provide your account password to authenticate, and complete e-signature</p>
           <md-input-container>
-            <input mdInput placeholder="Password" [(ngModel)]="password">
+            <input mdInput type="password" placeholder="Password" [(ngModel)]="password">
           </md-input-container>
           <div *ngIf="inValid" class="authenticate-invalid">Failed to authenticate, please try again...</div>
         </div>
