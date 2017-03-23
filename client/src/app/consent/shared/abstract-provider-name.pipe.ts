@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {AbstractProvider} from "./abstract-provider.model";
+import {AbstractProvider} from "../../shared/abstract-provider.model";
 
 @Pipe({
   name: 'abstractProviderName'

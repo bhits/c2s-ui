@@ -1,6 +1,6 @@
-import {AbstractProvider} from "./abstract-provider.model";
 import {ShareSensitivityCategories} from "./share-sensitivity-categories.model";
 import {SharePurposes} from "./share-purposes.model";
+import {AbstractProvider} from "../../shared/abstract-provider.model";
 
 export class Consent {
   id: number;

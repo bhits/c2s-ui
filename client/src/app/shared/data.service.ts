@@ -3,8 +3,8 @@ import {Http, Response, URLSearchParams} from "@angular/http";
 import {ExceptionService} from "../core/exception.service";
 import {Observable} from "rxjs";
 import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
-import {FlattenedSmallProvider} from "./flattened-small-provider.model";
 import {ConsentList} from "../consent/shared/consent-list.model";
+import {AbstractProvider} from "./abstract-provider.model";
 
 @Injectable()
 export class DataService {
@@ -14,10 +14,10 @@ export class DataService {
               private exceptionService: ExceptionService) {
   }
 
-  getProviders(): Observable<FlattenedSmallProvider[]> {
+  getProviders(): Observable<AbstractProvider[]> {
     const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers");
     return this.http.get(resourceUrl)
-      .map((resp: Response) => <FlattenedSmallProvider>(resp.json()))
+      .map((resp: Response) => <AbstractProvider>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
