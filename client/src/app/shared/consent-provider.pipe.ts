@@ -25,7 +25,7 @@ export class ConsentProviderPipe implements PipeTransform {
             case "ORGANIZATION":
               return value.name;
             case "PRACTITIONER":
-              return `${value.firstName}${' ' + value.middleName} ${value.lastName}`;
+              return   this.getName(value, 'firstName').concat(' ').concat( this.getName(value, 'middleName')).concat(' ').concat(this.getName(value, 'lastName'));
             default:
               throw new TypeError("Invalid providerType");
           }
@@ -43,6 +43,13 @@ export class ConsentProviderPipe implements PipeTransform {
       }
     }
     return null;
+  }
+
+  private getName(consentProvider: ConsentProvider, key: string):string{
+    if(consentProvider !== null && consentProvider[key]){
+      return consentProvider[key];
+    }
+    return ''
   }
 
 }
