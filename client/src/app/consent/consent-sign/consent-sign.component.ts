@@ -60,7 +60,7 @@ export class ConsentSignComponent implements OnInit {
 
   private getConsentAttestationTerm(consentTerms: ConsentTerms): string {
     const terms: string = consentTerms.text;
-    const userNameKey: string = "ATTESTER_FULL_NAME";
+    const userNameKey: string = "${ATTESTER_FULL_NAME}";
     return terms.replace(userNameKey, this.profile.name);
   }
 }
