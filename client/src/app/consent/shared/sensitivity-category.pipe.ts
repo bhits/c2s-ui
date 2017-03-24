@@ -1,14 +1,14 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {SharePurpose} from "./share-purpose.model";
+import {ShareSensitivityCategory} from "./share-sensitivity-category.model";
 
 type ArgType = "display" | "description" | "system" | "value";
 
 @Pipe({
-  name: 'sharePurpose'
+  name: 'sensitivityCategory'
 })
-export class SharePurposePipe implements PipeTransform {
+export class SensitivityCategoryPipe implements PipeTransform {
 
-  transform(value: SharePurpose, args?: ArgType): any {
+  transform(value: ShareSensitivityCategory, args?: ArgType): any {
     switch (args) {
       case "display":
         return value.display;
