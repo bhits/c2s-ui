@@ -7,12 +7,25 @@
 .flexcontainer {
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  //-webkit-align-items: flex-start;
-  //align-items: flex-start;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
+  &.row {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
+  &.column {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+.space-between {
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+.flex-start {
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+   }
+.flex10auto {
+  flex: 1 0 auto;
 }
 
 .parent {

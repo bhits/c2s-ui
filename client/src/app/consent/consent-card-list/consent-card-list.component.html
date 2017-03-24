@@ -1,5 +1,6 @@
-<c2s-page-title [title]="title"></c2s-page-title>
-<div class="m-t-75">
+<!--<c2s-page-title [title]="title"></c2s-page-title>-->
+<!--<div class="flex-height-max">-->
+<div class="flexcontainer column m-t-75">
   <div class="p-t margin-bottom-55 margin-top-10" fxLayout="column" fxLayoutAlign="space-around">
     <div fxFlexOffset="8.5">
       <a md-raised-button routerLink="/consent-create-edit" routerLinkActive="active" color="primary">
@@ -15,5 +16,6 @@
     </c2s-consent-card>
     <pagination-controls fxLayoutAlign="center" (pageChange)="getPage($event)" *ngIf="totalItems"></pagination-controls>
   </div>
+
 </div>
 
