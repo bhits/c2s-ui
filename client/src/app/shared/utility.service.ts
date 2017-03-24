@@ -64,4 +64,10 @@ export class UtilityService {
   isPastDate(dateStr: string){
     return (new Date(dateStr) < new Date())
   }
+
+  isStarteAfterEndDate(startDate:string, endDate:string){
+    if(this.isDefined(startDate) && this.isDefined(endDate)){
+      return (new Date(startDate) > new Date(endDate));
+    }
+  }
 }
