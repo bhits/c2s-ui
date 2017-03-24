@@ -29,11 +29,11 @@ export class ConsentService {
               private utilityService: UtilityService,) {
   }
 
-  getConsentEmitter():Observable<ConsentCreateEdit>{
+  getConsentEmitter(): Observable<ConsentCreateEdit> {
     return this.consentEmitter;
   }
 
-  setConsent(consentCreateEdit: ConsentCreateEdit){
+  setConsent(consentCreateEdit: ConsentCreateEdit) {
     this.consentSudject.next(consentCreateEdit);
   }
 
@@ -68,7 +68,14 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getConsentById(id: string):Observable<ConsentCreateEdit> {
+  deleteConsent(id: number): Observable<void> {
+    const DELETE_CONSENT_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents")}/${id}`;
+    return this.http.delete(DELETE_CONSENT_URL)
+      .map(() => null)
+      .catch(this.exceptionService.handleError);
+  }
+
+  getConsentById(id: string): Observable<ConsentCreateEdit> {
     return this.http.get(this.pcmConsentUrl + "/" + id)
       .map((resp: Response) => <ConsentCreateEdit>(resp.json()))
       .catch(this.exceptionService.handleError);

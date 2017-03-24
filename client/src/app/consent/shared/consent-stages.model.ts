@@ -2,7 +2,7 @@ import {ConsentStage} from "./consent-stage.model";
 
 export const CONSENT_STAGES: ConsentStage[] = [
   {
-    consentStage: "CONSENT_SAVED",
+    consentStage: "SAVED",
     text: "IN PROGRESS",
     icon: "edit",
     color: "accent",
@@ -11,10 +11,10 @@ export const CONSENT_STAGES: ConsentStage[] = [
       {icon: "search", text: "Preview This Consent"},
       {icon: "assignment_turned_in", text: "Provide eSignature", routerLink: '/consent-sign'},
       {icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
-      {icon: "delete_forever", text: "Delete This Consent"}]
+      {icon: "delete_forever", text: "Delete This Consent", isMethod: true}]
   },
   {
-    consentStage: "CONSENT_SIGNED",
+    consentStage: "SIGNED",
     text: "SIGNED",
     icon: "check_circle",
     color: "primary",
@@ -26,7 +26,7 @@ export const CONSENT_STAGES: ConsentStage[] = [
     ]
   },
   {
-    consentStage: "REVOCATION_REVOKED",
+    consentStage: "REVOKED",
     text: "REVOKED",
     icon: "cancel",
     color: "warn",

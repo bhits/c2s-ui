@@ -38,6 +38,8 @@ export class ConsentProviderPipe implements PipeTransform {
           address.push(this.utilityService.formatZipCode(value.address.postalCode || ""));
           address.push(value.address.country || "");
           return address.filter(field => field !== "").join(", ");
+        case "phone":
+          return value.phoneNumber;
       }
     }
     return null;
