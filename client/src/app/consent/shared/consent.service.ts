@@ -25,11 +25,11 @@ export class ConsentService {
               private c2sUiApiUrlService: C2sUiApiUrlService) {
   }
 
-  getConsentEmitter():Observable<ConsentCreateEdit>{
+  getConsentEmitter(): Observable<ConsentCreateEdit> {
     return this.consentEmitter;
   }
 
-  setConsent(consentCreateEdit: ConsentCreateEdit){
+  setConsent(consentCreateEdit: ConsentCreateEdit) {
     this.consentSudject.next(consentCreateEdit);
   }
 
@@ -47,7 +47,7 @@ export class ConsentService {
 
   getProviderByNPI(providers: FlattenedSmallProvider[], npi: string): FlattenedSmallProvider {
 
-    for(let provider of providers){
+    for (let provider of providers) {
       if (provider.npi === npi) {
         return provider;
       }
@@ -64,7 +64,14 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getConsentById(id: string):Observable<ConsentCreateEdit> {
+  deleteConsent(id: number): Observable<void> {
+    const DELETE_CONSENT_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents")}/${id}`;
+    return this.http.delete(DELETE_CONSENT_URL)
+      .map(() => null)
+      .catch(this.exceptionService.handleError);
+  }
+
+  getConsentById(id: string): Observable<ConsentCreateEdit> {
     return this.http.get(this.pcmConsentUrl + "/" + id)
       .map((resp: Response) => <ConsentCreateEdit>(resp.json()))
       .catch(this.exceptionService.handleError);

@@ -2,6 +2,9 @@ import {Component, OnInit, Input, OnChanges, SimpleChanges} from "@angular/core"
 import {Consent} from "../shared/consent.model";
 import {ConsentStageOption} from "../shared/consent-stage-option.model";
 import {CONSENT_STAGES} from "../shared/consent-stages.model";
+import {ConsentService} from "../shared/consent.service";
+import {NotificationService} from "../../core/notification.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -16,7 +19,9 @@ export class ConsentCardComponent implements OnInit, OnChanges {
   private detailsVisible: boolean = false;
   private height: number = 0;
 
-  constructor() {
+  constructor(private consentService: ConsentService,
+              private notificationService: NotificationService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -55,5 +60,23 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   getRouterLink(consentOption: ConsentStageOption): any {
     return consentOption.routerLink ? [consentOption.routerLink, this.consent.id] : '.'
+  }
+
+  selectConsentMethodOption(consentOption: ConsentStageOption): boolean {
+    return consentOption.isMethod;
+  }
+
+  confirmDeleteConsent(dialog: any) {
+    dialog.close();
+    this.consentService.deleteConsent(this.consent.id)
+      .subscribe(
+        () => {
+          this.router.navigate(["home"]);
+          this.notificationService.show("Success in deleting consent.");
+        },
+        err => {
+          this.notificationService.show("Failed to delete the consent, please try again later...");
+          console.log(err);
+        });
   }
 }
