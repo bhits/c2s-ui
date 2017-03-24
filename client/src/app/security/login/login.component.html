@@ -1,19 +1,19 @@
-<div class="wrapper">
-<div class="bg-white p-xs border-bottom">
-
-  <div fxFlex="1 0 auto" class="center">
-    <img src="assets/img/C2S-logo-color.svg"    style="height: 38px;" />
+<div class="flex-min-height-max" style="background-color: #BCDEDB;">
+<div class="bg-white p-sm border-bottom">
+  <div class="center">
+    <img src="assets/img/C2S-logo-color.svg"    style="height: 46px;" />
   </div>
 </div>
+  <div class="p-t-md p-b-md p-l-lg p-r-lg">
+    <div class="font-size20 font-weight500 center" style="color: #266357;">Take control of your health and well-being with Consent2Share.</div>
+  </div>
 
 <form fxFlex [formGroup]="loginForm" class="login-form"  novalidate >
 
-  <h1 class="center">C2S-UI</h1>
-
-  <h2>Log in with your account</h2>
+  <h2 class="m-t-none">Log in with your account</h2>
 
   <md-input-container class="full-width" >
-    <input mdInput placeholder="User name" type="email"
+    <input class="font-size15" mdInput placeholder="User name" type="email"
            name="username"
            required
            [formControl]="loginForm.controls['username']"

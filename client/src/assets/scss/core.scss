@@ -4,14 +4,15 @@ body {
   min-height: 100%;
   background-color: #F0F9F8;
 }
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: stretch;
-  align-content: stretch;
-}
+//.wrapper {
+//  display: flex;
+//  flex-direction: column;
+//  flex-wrap: nowrap;
+//  justify-content: space-between;
+//  align-items: stretch;
+//  align-content: stretch;
+//}
+
 .flex-min-height-max {
   min-height: calc(100vh - 0px);
 }
