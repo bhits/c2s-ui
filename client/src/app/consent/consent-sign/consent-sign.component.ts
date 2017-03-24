@@ -5,6 +5,8 @@ import {ActivatedRoute} from "@angular/router";
 import {Consent} from "../shared/consent.model";
 import {Profile} from "../../core/profile.model";
 import {ConsentTerms} from "../shared/consent-terms.model";
+import {ConsentService} from "../shared/consent.service";
+import {NotificationService} from "../../core/notification.service";
 
 @Component({
   selector: 'c2s-consent-sign',
@@ -22,6 +24,8 @@ export class ConsentSignComponent implements OnInit {
   public inValid: boolean;
 
   constructor(private authenticationService: AuthenticationService,
+              private consentService: ConsentService,
+              private notificationService: NotificationService,
               private tokenService: TokenService,
               private route: ActivatedRoute,) {
   }
@@ -56,6 +60,19 @@ export class ConsentSignComponent implements OnInit {
       this.inValid = true;
       this.password = null;
     });
+  }
+
+  attestConsent(dialog: any) {
+    this.consentService.attestConsent(this.consent.id)
+      .subscribe(
+        () => {
+          dialog.open();
+        },
+        err => {
+          this.notificationService.show("Error in attest consent.");
+          console.log(err);
+        }
+      );
   }
 
   private getConsentAttestationTerm(consentTerms: ConsentTerms): string {

@@ -127,7 +127,7 @@
         <button md-raised-button color="primary" routerLink="/consent-list">Continue</button>
       </md2-dialog-footer>
     </md2-dialog>
-    <button md-raised-button color="primary" [disabled]="!isAuthenticated" (click)="completeAttestation.open()"><strong>Complete</strong>
+    <button md-raised-button color="primary" [disabled]="!isAuthenticated" (click)="attestConsent(completeAttestation)"><strong>Complete</strong>
     </button>
   </div>
 </md-card>
