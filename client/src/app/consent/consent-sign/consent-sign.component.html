@@ -23,33 +23,46 @@
   </md-toolbar>
   <div fxLayout="column">
     <div fxLayoutAlign="start"><strong>Authorizes:</strong></div>
-    <div fxLayout="row">
-      <div fxFlex="35" fxLayoutAlign="start">Provider Name</div>
-      <div fxFlex="15" fxLayoutAlign="start">NPI Number</div>
-      <div fxFlex="35" fxLayoutAlign="start">Address</div>
-      <div fxFlex="15" fxLayoutAlign="start">Phone</div>
-    </div>
-    <div fxLayout="row">
-      <div fxFlex="35" fxLayoutAlign="start">PRECISION ORTHPEDICS AND SPORTS</div>
-      <div fxFlex="15" fxLayoutAlign="start">1962766899</div>
-      <div fxFlex="35" fxLayoutAlign="start">14201 PARK CENTER DR, LAUREL, MD,</div>
-      <div fxFlex="15" fxLayoutAlign="start">301-524-3390</div>
+    <div fxLayoutAlign="start">
+      <table [md2Data]="providers" [rowsPerPage]="10">
+        <thead>
+        <tr>
+          <th style="width: 30%">Provider Name</th>
+          <th style="width: 10%">NPI Number</th>
+          <th style="width: 13%">Phone</th>
+          <th style="width: 47%">Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let provider of consent.fromProviders">
+          <td>{{provider | consentProvider: 'name'}}</td>
+          <td>{{provider | consentProvider: 'npi'}}</td>
+          <td>{{provider | consentProvider: 'phone'}}</td>
+          <td>{{provider | consentProvider: 'address' | usPhoneNumber}}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
     <div fxLayoutAlign="start"><strong>To disclose to:</strong></div>
-    <div fxLayout="column">
-      <div fxLayoutAlign="start"><strong>Authorizes:</strong></div>
-      <div fxLayout="row">
-        <div fxFlex="35" fxLayoutAlign="start">Provider Name</div>
-        <div fxFlex="15" fxLayoutAlign="start">NPI Number</div>
-        <div fxFlex="35" fxLayoutAlign="start">Address</div>
-        <div fxFlex="15" fxLayoutAlign="start">Phone</div>
-      </div>
-      <div fxLayout="row">
-        <div fxFlex="35" fxLayoutAlign="start">PRINCE GEORGE'S COUNTY HEALTH</div>
-        <div fxFlex="15" fxLayoutAlign="start">1023091915</div>
-        <div fxFlex="35" fxLayoutAlign="start">1701 MCCORMICK DR, LARGO, MD,</div>
-        <div fxFlex="15" fxLayoutAlign="start">301-883-7819</div>
-      </div>
+    <div fxLayoutAlign="start">
+      <table [md2Data]="providers" [rowsPerPage]="10">
+        <thead>
+        <tr>
+          <th style="width: 30%">Provider Name</th>
+          <th style="width: 10%">NPI Number</th>
+          <th style="width: 13%">Phone</th>
+          <th style="width: 47%">Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let provider of consent.toProviders">
+          <td>{{provider | consentProvider: 'name'}}</td>
+          <td>{{provider | consentProvider: 'npi'}}</td>
+          <td>{{provider | consentProvider: 'phone'}}</td>
+          <td>{{provider | consentProvider: 'address' | usPhoneNumber}}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <md-toolbar color="primary">
