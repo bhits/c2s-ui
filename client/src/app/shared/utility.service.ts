@@ -60,4 +60,8 @@ export class UtilityService {
     });
     return identifiers;
   }
+
+  isPastDate(dateStr: string){
+    return (new Date(dateStr) < new Date())
+  }
 }
