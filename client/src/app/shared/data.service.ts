@@ -4,7 +4,7 @@ import {ExceptionService} from "../core/exception.service";
 import {Observable} from "rxjs";
 import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
 import {ConsentList} from "../consent/shared/consent-list.model";
-import {AbstractProvider} from "./abstract-provider.model";
+import {ConsentProvider} from "./consent-provider.model";
 
 @Injectable()
 export class DataService {
@@ -14,10 +14,10 @@ export class DataService {
               private exceptionService: ExceptionService) {
   }
 
-  getProviders(): Observable<AbstractProvider[]> {
+  getProviders(): Observable<ConsentProvider[]> {
     const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers");
     return this.http.get(resourceUrl)
-      .map((resp: Response) => <AbstractProvider>(resp.json()))
+      .map((resp: Response) => <ConsentProvider>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 

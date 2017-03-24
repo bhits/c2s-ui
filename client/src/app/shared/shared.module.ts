@@ -13,6 +13,7 @@ import {PageTitleComponent} from "./page-title/page-title.component";
 import {ValidationService} from "./validation.service";
 import {ControlMessagesComponent} from "./control-messages/control-messages.component";
 import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
+import {ConsentProviderPipe} from "./consent-provider.pipe";
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
     Md2Module,
     RouterModule
   ],
-  declarations: [UsPhoneNumberPipe, PageTitleComponent, ControlMessagesComponent],
+  declarations: [UsPhoneNumberPipe, PageTitleComponent, ControlMessagesComponent, ConsentProviderPipe],
   exports: [
     CommonModule,
     FormsModule,
@@ -30,6 +31,7 @@ import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
     Ng2PaginationModule,
     ReactiveFormsModule,
     UsPhoneNumberPipe,
+    ConsentProviderPipe,
     Md2Tooltip,
     PageTitleComponent,
     ControlMessagesComponent

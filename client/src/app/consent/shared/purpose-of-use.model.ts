@@ -1,9 +1,7 @@
 export class PurposeOfUse {
-  code: string;
-  codeSystem: string;
-  displayName: string;
-  codeSystemName: string;
-  originalText: string;
+  value: string;
+  system: string;
+  display: string;
+  description: string;
   id: number;
-  version: any;
 }

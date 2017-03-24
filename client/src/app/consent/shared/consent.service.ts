@@ -1,23 +1,36 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
 import "rxjs/add/operator/toPromise";
-import {Provider} from "./Provider.model";
 import {PurposeOfUseBase} from "./purpose-of-use-base.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
 import {ExceptionService} from "../../core/exception.service";
-import {Observable} from "rxjs";
+import {Observable, BehaviorSubject} from "rxjs";
 import {ConsentCreateEdit} from "./consent-create-edit.model";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 
 @Injectable()
 export class ConsentService {
-  private pcmBaseUrl: string = "/pcm/patients/";
-  private pcmProvidersUrl: string = this.pcmBaseUrl + "/providers";
-  private pcmPurposeOfUseUrl: string = this.pcmBaseUrl + "purposeOfUse";
-  private pcmSensitivityPolicyUrl: string = this.pcmBaseUrl + "sensitivityPolicy";
-  private pcmConsentUrl: string = this.pcmBaseUrl + "consents";
-  private consentListUri: string = "/pcm/patients/consents/pageNumber";
+  private pcmPurposeOfUseUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/purposes");
+  private pcmSensitivityPolicyUrl: string = this.c2sUiApiUrlService.getVssBaseUrl().concat("/valueSetCategories");
+  private pcmConsentUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents");
+  private consentListUri: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents/pageNumber");
 
-  constructor(private http: Http, private exceptionService: ExceptionService) {
+
+  private consentSudject: BehaviorSubject<ConsentCreateEdit> = new BehaviorSubject<ConsentCreateEdit>(null);
+  public consentEmitter: Observable<ConsentCreateEdit> = this.consentSudject.asObservable();
+
+  constructor(private http: Http,
+              private exceptionService: ExceptionService,
+              private c2sUiApiUrlService: C2sUiApiUrlService) {
+  }
+
+  getConsentEmitter():Observable<ConsentCreateEdit>{
+    return this.consentEmitter;
+  }
+
+  setConsent(consentCreateEdit: ConsentCreateEdit){
+    this.consentSudject.next(consentCreateEdit);
   }
 
   getPurposeOfUses(): Observable<PurposeOfUseBase[]> {
@@ -32,8 +45,9 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getProviderByNPI(providers: Provider[], npi: string): Provider {
-    for (let provider of providers) {
+  getProviderByNPI(providers: FlattenedSmallProvider[], npi: string): FlattenedSmallProvider {
+
+    for(let provider of providers){
       if (provider.npi === npi) {
         return provider;
       }
@@ -50,7 +64,7 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getConsentById(id: string): Observable<ConsentCreateEdit> {
+  getConsentById(id: string):Observable<ConsentCreateEdit> {
     return this.http.get(this.pcmConsentUrl + "/" + id)
       .map((resp: Response) => <ConsentCreateEdit>(resp.json()))
       .catch(this.exceptionService.handleError);

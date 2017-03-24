@@ -1,4 +1,3 @@
-
 <c2s-page-title [title]="title"></c2s-page-title>
 
 <md-card>
@@ -52,10 +51,10 @@
                       </button>
                     </div>
                   </td>
-                  <td>{{provider}}</td>
-                  <td>{{provider | providerName}}</td>
-                  <td>{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</td>
-                  <td>{{provider | providerAddress}}</td>
+                  <td>{{provider | consentProvider: 'npi'}}</td>
+                  <td>{{provider | consentProvider: 'name'}}</td>
+                  <td>{{provider | consentProvider: 'phone'}}</td>
+                  <td>{{provider | consentProvider: 'address'}}</td>
                 </tr>
                 </tbody>
               </table>

@@ -1,9 +1,12 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 import {ConsentService} from "../shared/consent.service";
-import {Provider} from "../shared/Provider.model";
 import 'rxjs/add/operator/toPromise';
 import {UtilityService} from "../../shared/utility.service";
+import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
+import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {Identifier} from "../../shared/identifier.model";
+import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 
 
 @Component({
@@ -12,37 +15,42 @@ import {UtilityService} from "../../shared/utility.service";
   styleUrls: ['./select-provider.component.css']
 })
 export class SelectProviderComponent implements OnInit {
-  @Input() providers: Provider[];
+  @Input() providers: FlattenedSmallProvider[];
   @Input() title:string;
   @Input() dialogTitle:string;
-  @Input() selectedProvidersNpi:any ;
+  @Input() selectedProviders: FlattenedSmallProvider[] ;
 
+  consent: ConsentCreateEdit;
   private selectedProviderNpi:string;
-  private selectedProvider: Provider;
+  private selectedProvider: FlattenedSmallProvider;
 
   private authorizeProviderNpi:string[];
   private disclosureProviderNpi:string[];
 
-  @Output() selectedAuthorizeProvider= new EventEmitter();
-  @Output() selectedDisclosureProvider= new EventEmitter();
-
   constructor(private consentService: ConsentService, private utilityService:UtilityService) {
-
+    this.consentService.getConsentEmitter().subscribe((consent)=>{
+      if (consent) {
+        this.consent = consent;
+      }
+    });
   }
 
   ngOnInit() {
-    if(this.dialogTitle === 'Authorize' &&
-      (this.utilityService.isDefined(this.selectedProvidersNpi.authorize)) &&
-      (this.selectedProvidersNpi.authorize.length>0)){
-      this.authorizeProviderNpi = this.selectedProvidersNpi.authorize;
-      this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.authorizeProviderNpi[0]);
-    }else if(this.dialogTitle === 'Disclosure'&&
-      (this.utilityService.isDefined(this.selectedProvidersNpi.disclosure)) &&
-      (this.selectedProvidersNpi.disclosure.length>0)){
-      this.disclosureProviderNpi = this.selectedProvidersNpi.disclosure;
-      this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.disclosureProviderNpi[0]);
-    }
+
+    // if(this.dialogTitle === 'Authorize' &&
+    //   (this.utilityService.isDefined(this.selectedProvidersNpi.authorize)) &&
+    //   (this.selectedProvidersNpi.authorize.length>0)){
+    //   this.authorizeProviderNpi = this.selectedProvidersNpi.authorize;
+    //   this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.authorizeProviderNpi[0]);
+    // }else if(this.dialogTitle === 'Disclosure'&&
+    //   (this.utilityService.isDefined(this.selectedProvidersNpi.disclosure)) &&
+    //   (this.selectedProvidersNpi.disclosure.length>0)){
+    //   this.disclosureProviderNpi = this.selectedProvidersNpi.disclosure;
+    //   this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.disclosureProviderNpi[0]);
+    // }
   }
+
+
 
   openDialog(dialog: any){
     dialog.open();
@@ -54,18 +62,31 @@ export class SelectProviderComponent implements OnInit {
   onAddSelectedProviders(dialog: any){
     this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.selectedProviderNpi);
     if(this.dialogTitle === 'Authorize'){
-      this.selectedAuthorizeProvider.emit(this.selectedProvider);
+      this.consent.fromProviders = this.createListOfIdentifiers(this.selectedProvider);
+      this.consentService.setConsent(this.consent);
     }else if(this.dialogTitle === 'Disclosure'){
-      this.selectedDisclosureProvider.emit(this.selectedProvider);
+      this.consent.toProviders = this.createListOfIdentifiers(this.selectedProvider);
+      this.consentService.setConsent(this.consent);
     }
     dialog.close();
   }
 
   isSelected(npi:string):boolean {
-    if ((this.dialogTitle === 'Authorize') ) {
-      return (this.selectedProvidersNpi.disclosure[0] === npi);
-    } else if((this.dialogTitle === 'Disclosure')) {
-      return (this.selectedProvidersNpi.authorize[0]=== npi);
+    if ((this.dialogTitle === 'Authorize') && this.consent.toProviders
+      && this.consent.toProviders.identifiers && this.consent.toProviders.identifiers[0] ) {
+          return (this.consent.toProviders.identifiers[0].value === npi);
+    } else if((this.dialogTitle === 'Disclosure') && this.consent.fromProviders &&
+      this.consent.fromProviders.identifiers && this.consent.fromProviders.identifiers[0]) {
+          return  (this.consent.fromProviders.identifiers[0].value === npi);
     }
+    return false;
+  }
+
+  private createListOfIdentifiers(selctedProvider: FlattenedSmallProvider){
+    let provider = new ListOfIdentifiers();
+    if(selctedProvider){
+      provider.identifiers = [new Identifier(selctedProvider.system, selctedProvider.npi)];
+    }
+    return provider;
   }
 }

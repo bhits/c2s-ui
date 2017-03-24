@@ -6,10 +6,10 @@
     <table>
       <tr>
         <td>
-          <span>Start Date: <md2-datepicker [(ngModel)]="startDate" [format]="MM/DD/YYYY" (change)="onStartDateChange()"></md2-datepicker></span>
+          <span>Start Date: <md2-datepicker [(ngModel)]="startDate" [format]="MM/DD/YYYY" (change)="onStateDateChanged(startDate)"></md2-datepicker></span>
         </td>
         <td>
-          <span>End Date: <md2-datepicker [(ngModel)]="endDate" [format]="MM/DD/YYYY"  (change)="onEndDateChange()"></md2-datepicker></span>
+          <span>End Date: <md2-datepicker [(ngModel)]="endDate" [format]="MM/DD/YYYY"  (change)="onEndDateChanged(endDate)"></md2-datepicker></span>
         </td>
       </tr>
     </table>

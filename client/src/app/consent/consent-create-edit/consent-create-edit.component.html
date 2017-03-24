@@ -4,38 +4,22 @@
   <md-grid-list cols="1">
 
     <md-card class="left-align">
-      <h2> I, <span > User name</span>, hereby authorize... </h2>
+      <h2> I, <span > {{profile.name}}</span>, hereby authorize... </h2>
     </md-card>
 
-    <c2s-select-providers [providers]="providers"
-                          [(authorizeOrgProviderNpi)]="consent.organizationalProvidersPermittedToDiscloseNpi"
-                          [(authorizeIndProviderNpi)]="consent.providersPermittedToDiscloseNpi"
-                          [(disclosureOrgProviderNpi)]="consent.organizationalProvidersDisclosureIsMadeToNpi"
-                          [(disclosureIndProviderNpi)]="consent.providersDisclosureIsMadeToNpi"
-                          >
-    </c2s-select-providers>
+    <c2s-select-providers [providers]="providers"></c2s-select-providers>
 
-    <c2s-medical-information
-      [sensitivityPolicies] ="sensitivityPolicies"
-      [sensitivityPoliciesCodes]="consent.doNotShareSensitivityPolicyCodes"
-      (selectedMedicalInformation)="onSelectMedicalInformation($event)">
-    </c2s-medical-information>
+    <c2s-medical-information [sensitivityPolicies] ="sensitivityPolicies"></c2s-medical-information>
 
-    <c2s-purpose-of-use
-        [purposeOfUSes] ="purposeOfUses"
-        [purposeOfUsesCodes]="consent.shareForPurposeOfUseCodes"
-        (selectedPurposeOfUse)="onSelectedPurposeOfUse($event)">
-    </c2s-purpose-of-use>
+    <c2s-purpose-of-use [purposeOfUSes] ="purposeOfUses"></c2s-purpose-of-use>
 
-    <c2s-consent-terms
-        [(startDate)]="consent.consentStart"
-        [(endDate)]="consent.consentEnd">
-    </c2s-consent-terms>
+    <c2s-consent-terms></c2s-consent-terms>
 
     <md-card class="right-align">
         <button md-raised-button (click)="navigateTo('consent-list')">Cancel</button>
         <button md-raised-button color="primary" type="submit" (click)="submitForm()">Save</button>
     </md-card>
+
   </md-grid-list>
   <br>
 </form>

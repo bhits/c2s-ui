@@ -1,12 +1,12 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {AbstractProvider} from "../../shared/abstract-provider.model";
+import {ConsentProvider} from "../../shared/consent-provider.model";
 
 @Pipe({
   name: 'abstractProviderName'
 })
 export class AbstractProviderNamePipe implements PipeTransform {
 
-  transform(value: AbstractProvider, args?: any): any {
+  transform(value: ConsentProvider, args?: any): any {
     let providerName: string;
     switch (value.providerType) {
       case "PRACTITIONER":

@@ -1,15 +1,12 @@
 import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
+import {Identifier} from "./identifier.model";
 
 @Injectable()
 export class UtilityService {
 
   constructor(private router: Router, private datePipe: DatePipe) {
-  }
-
-  navigateToWithParameters(url: string, params: any) {
-    this.router.navigate([url, params]);
   }
 
   navigateTo(url: string) {
@@ -20,8 +17,8 @@ export class UtilityService {
     entries.splice(0, entries.length);
   }
 
-  formatDate(dateStr: string, dateFormat: string) {
-    return this.datePipe.transform(dateStr, dateFormat);
+  formatDate(aDate: Date, dateFormat: string) {
+    return this.datePipe.transform(aDate, dateFormat);
   }
 
   isDefined(entity: any): boolean {
@@ -41,5 +38,15 @@ export class UtilityService {
       strMap.set(k, jsonStr[k]);
     }
     return strMap;
+  }
+
+  createIdentifiers(entities:any):Identifier[]{
+    let identifiers: Identifier[] = [];
+    entities.forEach(entity => {
+      if(entity['value'] && entity['system']){
+        identifiers.push(new Identifier(entity['value'], entity['system']))
+      }
+    });
+    return identifiers;
   }
 }

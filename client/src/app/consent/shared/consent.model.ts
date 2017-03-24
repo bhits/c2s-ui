@@ -1,12 +1,12 @@
-import {AbstractProvider} from "../../shared/abstract-provider.model";
 import {ShareSensitivityCategory} from "./share-sensitivity-category.model";
 import {SharePurpose} from "./share-purpose.model";
+import {ConsentProvider} from "../../shared/consent-provider.model";
 
 export class Consent {
   id: number;
   consentStage: string;
-  fromProviders: AbstractProvider[];
-  toProviders: AbstractProvider[];
+  fromProviders: ConsentProvider[];
+  toProviders: ConsentProvider[];
   shareSensitivityCategories: ShareSensitivityCategory[];
   sharePurposes: SharePurpose[];
   startDate: Date;

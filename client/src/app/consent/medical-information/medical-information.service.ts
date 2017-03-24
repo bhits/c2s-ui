@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
+import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
+import {Identifier} from "../../shared/identifier.model";
 
 @Injectable()
 export class MedicalInformationService {
@@ -14,12 +16,14 @@ export class MedicalInformationService {
   }
 
   updateSensitivitiesPoliciesStatus(sensitivityPoliciesCodes:string[], sensitivityPolicies:SensitivityPolicy[]){
-    this.sensitivityPoliciesStatusToUnChecked(sensitivityPolicies);
-    for(let spc of sensitivityPoliciesCodes){
-      for(let sp of sensitivityPolicies){
-        if(spc === sp.code.toString()){
-          sp['checked'] = true;
-          break;
+    if(sensitivityPoliciesCodes && sensitivityPoliciesCodes.length > 0){
+      this.sensitivityPoliciesStatusToUnChecked(sensitivityPolicies);
+      for(let spc of sensitivityPoliciesCodes){
+        for(let sp of sensitivityPolicies){
+          if(spc === sp.code.toString()){
+            sp['checked'] = true;
+            break;
+          }
         }
       }
     }
@@ -36,14 +40,16 @@ export class MedicalInformationService {
       sp['checked'] = true;
     }
   }
-  getSelectedSensitivityPoliciesCode(sensitivityPolicies:SensitivityPolicy[]):string[]{
-    let selected:string[] =  new Array();
-    for(let sp of sensitivityPolicies){
-      if( sp['checked']){
-        selected.push(sp.code.toString());
+  getSelectedSensitivityPolicyIdentifiers(sensitivityPolicies:SensitivityPolicy[]):ListOfIdentifiers{
+    let selected:Identifier[] =  [];
+    let listOfIdentifiers = new ListOfIdentifiers();
+    sensitivityPolicies.forEach(sensitivityPolicy =>{
+      if( sensitivityPolicy['checked']){
+        selected.push( new Identifier(sensitivityPolicy.system, sensitivityPolicy.code.toString()));
       }
-    }
-    return selected;
+    });
+    listOfIdentifiers.identifiers = selected;
+    return listOfIdentifiers;
   }
 
   getSelectedSensitivityPolicies(sensitivityPolicies:SensitivityPolicy[]):string[]{

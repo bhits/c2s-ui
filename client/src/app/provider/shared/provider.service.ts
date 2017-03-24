@@ -8,11 +8,11 @@ import {ExceptionService} from "../../core/exception.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 import {Identifier} from "../../shared/identifier.model";
+import {FHIR_US_NPI_SYSTEM} from "../../shared/consent-provider.model";
 
 @Injectable()
 export class ProviderService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private SYSTEM: string = "http://hl7.org/fhir/sid/us-npi";
 
   constructor(private c2sUiApiUrlService: C2sUiApiUrlService,
               private http: Http,
@@ -51,7 +51,7 @@ export class ProviderService {
     if (providers != null) {
       let identifiers: Identifier[] = [];
       providers.forEach(
-        provider => identifiers.push(new Identifier(this.SYSTEM, provider.npi))
+        provider => identifiers.push(new Identifier(FHIR_US_NPI_SYSTEM, provider.npi))
       );
       return this.http
         .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers"), JSON.stringify({identifiers: identifiers}), {headers: this.headers})
