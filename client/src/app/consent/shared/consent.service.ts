@@ -56,13 +56,9 @@ export class ConsentService {
     return null;
   }
 
-  createConsent(consent: ConsentCreateEdit) {
-
+  createConsent(consent: ConsentCreateEdit): Observable<void> {
     return this.http.post(this.pcmConsentUrl, this.createConsentDto(consent))
-      .toPromise()
-      .then(response => {
-        return response;
-      })
+      .map(() => null)
       .catch(this.exceptionService.handleError);
   }
 
@@ -89,12 +85,9 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  updateConsent(consent: ConsentCreateEdit) {
+  updateConsent(consent: ConsentCreateEdit): Observable<void> {
     return this.http.put(this.pcmConsentUrl + "/" + consent.id, this.createConsentDto(consent))
-      .toPromise()
-      .then(response => {
-        return response;
-      })
+      .map(() => null)
       .catch(this.exceptionService.handleError);
   }
 
