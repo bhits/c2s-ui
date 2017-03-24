@@ -11,6 +11,7 @@ import {SharePurpose} from "./share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {UtilityService} from "../../shared/utility.service";
 import {Consent} from "./consent.model";
+import {ConsentTerms} from "./consent-terms.model";
 
 @Injectable()
 export class ConsentService {
@@ -88,6 +89,13 @@ export class ConsentService {
   updateConsent(consent: ConsentCreateEdit): Observable<void> {
     return this.http.put(this.pcmConsentUrl + "/" + consent.id, this.createConsentDto(consent))
       .map(() => null)
+      .catch(this.exceptionService.handleError);
+  }
+
+  getConsentAttestationTerm(): Observable<ConsentTerms> {
+    const url = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/consentAttestationTerm");
+    return this.http.get(url)
+      .map((resp: Response) => <ConsentTerms>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 

@@ -3,6 +3,8 @@ import {TokenService} from "../../security/shared/token.service";
 import {AuthenticationService} from "../../security/shared/authentication.service";
 import {ActivatedRoute} from "@angular/router";
 import {Consent} from "../shared/consent.model";
+import {Profile} from "../../core/profile.model";
+import {ConsentTerms} from "../shared/consent-terms.model";
 
 @Component({
   selector: 'c2s-consent-sign',
@@ -11,7 +13,9 @@ import {Consent} from "../shared/consent.model";
 })
 export class ConsentSignComponent implements OnInit {
   public title: string = "eSignature";
-  private consent: Consent;
+  public consent: Consent;
+  public profile: Profile;
+  public termsWithUserName: string;
   public checked: boolean = false;
   public isAuthenticated: boolean = false;
   public password: string;
@@ -28,6 +32,10 @@ export class ConsentSignComponent implements OnInit {
         this.consent = this.route.snapshot.data['consent'];
       }
     });
+    this.profile = this.tokenService.getProfileToken();
+    this.termsWithUserName = this.getConsentAttestationTerm(this.route.snapshot.data['consentTerms']);
+    //Todo: patient birth of date should get from backend
+    this.profile.birthDate = new Date("1980-01-01");
   }
 
   clearCheckbox() {
@@ -38,7 +46,7 @@ export class ConsentSignComponent implements OnInit {
   }
 
   toAuthenticate(dialog: any) {
-    const username: string = this.tokenService.getProfileToken().userName;
+    const username: string = this.profile.userName;
     this.authenticationService.login(username, this.password).toPromise()
       .then(() => {
         this.inValid = false;
@@ -48,5 +56,11 @@ export class ConsentSignComponent implements OnInit {
       this.inValid = true;
       this.password = null;
     });
+  }
+
+  private getConsentAttestationTerm(consentTerms: ConsentTerms): string {
+    const terms: string = consentTerms.text;
+    const userNameKey: string = "ATTESTER_FULL_NAME";
+    return terms.replace(userNameKey, this.profile.name);
   }
 }

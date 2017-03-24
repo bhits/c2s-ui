@@ -5,17 +5,17 @@
   <div fxLayout="column">
     <div fxLayoutAlign="start">Consent Reference Number:</div>
     <div fxLayoutAlign="start">
-      <strong>C2S-DEV.UC6AIB:&1.3.6.1.4.1.21367.13.20.200&ISO:1023091915:1962766899:U8YSUI</strong>
+      <strong>{{consent.id}}</strong>
     </div>
   </div>
   <div fxLayout="row">
     <div fxFlex fxLayoutAlign="start">
       <span>Patient Name:</span>
-      <span><strong>Sally Share</strong></span>
+      <span><strong>{{profile.name}}</strong></span>
     </div>
     <div fxFlex>
       <span>Patient DOB:</span>
-      <span><strong>01/01/2017</strong></span>
+      <span><strong>{{profile.birthDate | date}}</strong></span>
     </div>
   </div>
   <md-toolbar color="primary">
@@ -69,11 +69,7 @@
     CONSENT TERMS
   </md-toolbar>
   <div fxLayout="column">
-    <p fxLayout="row">I, Sally Share, understand that my records are protected under the federal regulations governing
-      Confidentiality of Alcohol and Drug Abuse Patient Records, 42 CFR part 2, and cannot be disclosed without my
-      written permission or as otherwise permitted by 42 CFR part 2. I also understand that I may revoke this consent at
-      any time except to the extent that action has been taken in reliance on it, and that any event this consent
-      expires automatically as follows:
+    <p fxLayout="row">{{termsWithUserName}}
     </p>
     <div fxLayoutAlign="start" fxLayout="row">
       <div fxFlex fxLayoutAlign="start"><strong>Effective Date: 03/02/2017</strong></div>

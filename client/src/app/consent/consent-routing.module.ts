@@ -11,6 +11,7 @@ import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-
 import {ConsentSignComponent} from "./consent-sign/consent-sign.component";
 import {ConsentRevokeComponent} from "./consent-revoke/consent-revoke.component";
 import {DetailedConsentResolveService} from "./shared/detailed-consent-resolve.service";
+import {ConsentTermsResolveService} from "./shared/consent-terms-resolve.service";
 
 
 const consentRoutes: Routes = [
@@ -47,7 +48,8 @@ const consentRoutes: Routes = [
     path: 'consent-sign/:consentId',
     component: ConsentSignComponent,
     resolve: {
-      consent: DetailedConsentResolveService
+      consent: DetailedConsentResolveService,
+      consentTerms: ConsentTermsResolveService
     }
   },
   {
@@ -77,6 +79,7 @@ export const consentRoutableComponents = [
 
 export const consentRoutableResolves = [
   ConsentResolveService,
+  ConsentTermsResolveService,
   DetailedConsentResolveService,
   ProviderResolveService,
   SensitivityPoliciesResolveService,
