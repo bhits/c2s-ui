@@ -5,13 +5,13 @@
   <div fxLayout="column">
     <div fxLayoutAlign="start">Consent Reference Number:</div>
     <div fxLayoutAlign="start">
-      <strong>C2S-DEV.UC6AIB:&1.3.6.1.4.1.21367.13.20.200&ISO:1316052640:1023091915:EKKXWW</strong>
+      <strong>{{consentId}}</strong>
     </div>
   </div>
   <div fxLayout="row">
     <div fxFlex fxLayoutAlign="start">
       <span>Patient Name:</span>
-      <span><strong>Sally Share</strong></span>
+      <span><strong>{{fullName}}</strong></span>
     </div>
     <div fxFlex>
       <span>Patient DOB:</span>
@@ -20,27 +20,7 @@
   </div>
 
   <div fxLayout="column">
-    <p fxLayout="row">I have previously signed a patient consent form allowing my providers to access my electronic
-      health records through the Consent2Share system and now want to revoke that consent. If I sign this form as the
-      Patient's Legal Representative, I understand that all references in this form to "me" or "my" refer to the
-      Patient.
-    </p>
-    <p>
-      By revoking my Consent, I understand that:
-
-      1. I Deny Consent for all Participants to access my electronic health information through Consent2Share for any
-      purpose, EXCEPT in a medical emergency.
-      2. Health care provider and health insurers that I am enrolled with will no longer be able to access health
-      information about me through Consent2Share, except in an emergency.
-      3. The Revocation of Consent will not affect the exchange of my health information while my Consent was in effect.
-      4. No Consent2Share participating provider will deny me medical care and my insurance eligibility will not be
-      affected based on my Revocation of Consent.
-      5. If I wish to reinstate Consent, I may do so by signing and completing a new Patient Consent form and returning
-      it to a participating provider or payer.
-      6. Revoking my consent does not prevent my health care provider from submitting claims to my health insurer for
-      reimbursement for services rendered to me.
-      7. I understand that I will get a copy of this form after I sign it.
-    </p>
+    <p fxLayout="row">{{consentRevocationTerms.text}}</p>
     <div>
       <md2-dialog #confirmRevokeConsentTerms (onClose)="clearCheckbox()">
         <md2-dialog-title>Please Authenticate</md2-dialog-title>

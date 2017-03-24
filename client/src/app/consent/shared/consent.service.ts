@@ -12,12 +12,14 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
 import {UtilityService} from "../../shared/utility.service";
 import {Consent} from "./consent.model";
 import {ConsentTerms} from "./consent-terms.model";
+import {ConsentRevocation} from "./consent-revocation.model";
 
 @Injectable()
 export class ConsentService {
   private pcmPurposeOfUseUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/purposes");
   private pcmSensitivityPolicyUrl: string = this.c2sUiApiUrlService.getVssBaseUrl().concat("/valueSetCategories");
   private pcmConsentUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents");
+  private pcmConsentTermUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/consentRevocationTerm");
 
   private consentSudject: BehaviorSubject<ConsentCreateEdit> = new BehaviorSubject<ConsentCreateEdit>(null);
   public consentEmitter: Observable<ConsentCreateEdit> = this.consentSudject.asObservable();
@@ -119,5 +121,20 @@ export class ConsentService {
     temp['endDate'] = this.utilityService.dateToLocalDate(consent.endDate);
 
     return temp;
+  }
+
+  getConsentRevocationTerms(){
+    return this.http.get(this.pcmConsentTermUrl)
+      .map((resp: Response) => <SharePurpose[]>(resp.json()))
+      .catch(this.exceptionService.handleError);
+  }
+
+  revokeConsent(consentRevocation: ConsentRevocation, consentId:string):Observable<void>{
+    let revocationUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents/")
+                            .concat(consentId).concat("/revocation");
+
+    return this.http.put(revocationUrl,consentRevocation)
+      .map(() => null)
+      .catch(this.exceptionService.handleError);
   }
 }
