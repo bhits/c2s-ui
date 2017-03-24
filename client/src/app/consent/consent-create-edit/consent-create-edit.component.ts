@@ -91,8 +91,6 @@ export class ConsentCreateEditComponent implements OnInit {
                           console.log(error);
                         });
     }
-
-
   }
 
   navigateTo(url: string){
