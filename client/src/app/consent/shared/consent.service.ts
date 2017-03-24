@@ -101,6 +101,15 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
+  attestConsent(consentId: number): Observable<void> {
+    const acceptTerms: boolean = true;
+    const url = `${this.pcmConsentUrl}/${consentId}/attestation`;
+
+    return this.http.put(url, JSON.stringify({acceptTerms: acceptTerms}))
+      .map(() => null)
+      .catch(this.exceptionService.handleError);
+  }
+
   private createConsentDto(consent: ConsentCreateEdit): any {
     let temp = {};
     Object.keys(consent).forEach(function (key) {
