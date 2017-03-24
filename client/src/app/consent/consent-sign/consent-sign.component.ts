@@ -1,6 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {TokenService} from "../../security/shared/token.service";
 import {AuthenticationService} from "../../security/shared/authentication.service";
+import {ActivatedRoute} from "@angular/router";
+import {Consent} from "../shared/consent.model";
 
 @Component({
   selector: 'c2s-consent-sign',
@@ -9,16 +11,23 @@ import {AuthenticationService} from "../../security/shared/authentication.servic
 })
 export class ConsentSignComponent implements OnInit {
   public title: string = "eSignature";
+  private consent: Consent;
   public checked: boolean = false;
   public isAuthenticated: boolean = false;
   public password: string;
   public inValid: boolean;
 
   constructor(private authenticationService: AuthenticationService,
-              private tokenService: TokenService) {
+              private tokenService: TokenService,
+              private route: ActivatedRoute,) {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['consentId']) {
+        this.consent = this.route.snapshot.data['consent'];
+      }
+    });
   }
 
   clearCheckbox() {

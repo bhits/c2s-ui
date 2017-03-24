@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Http, Response, URLSearchParams} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {PurposeOfUseBase} from "./purpose-of-use-base.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
@@ -7,18 +7,16 @@ import {ExceptionService} from "../../core/exception.service";
 import {Observable, BehaviorSubject} from "rxjs";
 import {ConsentCreateEdit} from "./consent-create-edit.model";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 import {SharePurpose} from "./share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {UtilityService} from "../../shared/utility.service";
+import {Consent} from "./consent.model";
 
 @Injectable()
 export class ConsentService {
   private pcmPurposeOfUseUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/purposes");
   private pcmSensitivityPolicyUrl: string = this.c2sUiApiUrlService.getVssBaseUrl().concat("/valueSetCategories");
   private pcmConsentUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents");
-  private consentListUri: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents/pageNumber");
-
 
   private consentSudject: BehaviorSubject<ConsentCreateEdit> = new BehaviorSubject<ConsentCreateEdit>(null);
   public consentEmitter: Observable<ConsentCreateEdit> = this.consentSudject.asObservable();
@@ -50,7 +48,7 @@ export class ConsentService {
   }
 
   getProviderByNPI(providers: ConsentProvider[], npi: string): ConsentProvider {
-    for(let provider of providers){
+    for (let provider of providers) {
       if (provider.identifiers[0].value === npi) {
         return provider;
       }
@@ -69,7 +67,7 @@ export class ConsentService {
   }
 
   deleteConsent(id: number): Observable<void> {
-    const DELETE_CONSENT_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents")}/${id}`;
+    const DELETE_CONSENT_URL = `${this.pcmConsentUrl}/${id}`;
     return this.http.delete(DELETE_CONSENT_URL)
       .map(() => null)
       .catch(this.exceptionService.handleError);
@@ -78,6 +76,16 @@ export class ConsentService {
   getConsentById(id: string): Observable<ConsentCreateEdit> {
     return this.http.get(this.pcmConsentUrl + "/" + id)
       .map((resp: Response) => <ConsentCreateEdit>(resp.json()))
+      .catch(this.exceptionService.handleError);
+  }
+
+  getConsent(id: number): Observable<Consent> {
+    const url = `${this.pcmConsentUrl}/${id}`;
+    const jsonFormat: string = "detailedConsent";
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('format', jsonFormat);
+    return this.http.get(url, {search: params})
+      .map((resp: Response) => <Consent>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
@@ -90,10 +98,10 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  private createConsentDto(consent: ConsentCreateEdit):any{
+  private createConsentDto(consent: ConsentCreateEdit): any {
     let temp = {};
-    Object.keys(consent).forEach(function(key) {
-      if(key !=='startDate' && key !=='endDate'){
+    Object.keys(consent).forEach(function (key) {
+      if (key !== 'startDate' && key !== 'endDate') {
         temp[key] = consent[key];
       }
     });
