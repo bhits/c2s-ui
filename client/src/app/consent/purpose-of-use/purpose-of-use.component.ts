@@ -5,6 +5,7 @@ import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
 import {PurposeOfUse} from "../shared/purpose-of-use.model";
 import {ConsentService} from "../shared/consent.service";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
+import {SharePurpose} from "../shared/share-purpose.model";
 
 @Component({
   selector: 'c2s-purpose-of-use',
@@ -12,8 +13,7 @@ import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
   styleUrls: ['./purpose-of-use.component.css']
 })
 export class PurposeOfUseComponent implements OnInit {
-  @Output() selectedPurposeOfUse = new EventEmitter();
-  @Input() purposeOfUSes: PurposeOfUse[];
+  @Input() purposeOfUSes: SharePurpose[];
   checkedPurposeOfUses: string[] ;
   consent: ConsentCreateEdit;
 
@@ -30,11 +30,6 @@ export class PurposeOfUseComponent implements OnInit {
     this.checkedPurposeOfUses = this.purposeOfUseService.getCheckedPurposeOfUse(this.purposeOfUSes);
   }
 
-
-  private getSelectedPurposeOfUse():ListOfIdentifiers{
-    return this.purposeOfUseService.getSelectedPurposeOfUse(this.purposeOfUSes)
-  }
-
   closeDialog(dialog: any){
     this.purposeOfUseService.updateSelectedPurposeOfUse( this.checkedPurposeOfUses,this.purposeOfUSes);
     dialog.close();
@@ -47,7 +42,7 @@ export class PurposeOfUseComponent implements OnInit {
   setSelectedPurposesOfUse(dialog: any){
     dialog.close();
     this.checkedPurposeOfUses = this.purposeOfUseService.getCheckedPurposeOfUse(this.purposeOfUSes);
-    this.consent.sharePurposes = this.getSelectedPurposeOfUse();
+    this.consent.sharePurposes = this.purposeOfUseService.getSelectedPurposeOfUse(this.purposeOfUSes);
     this.consentService.setConsent(this.consent);
   }
 

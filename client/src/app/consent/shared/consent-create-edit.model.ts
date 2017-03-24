@@ -1,5 +1,6 @@
 
 import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
+import {Identifier} from "../../shared/identifier.model";
 
 export class ConsentCreateEdit {
   id?: string;
@@ -12,14 +13,14 @@ export class ConsentCreateEdit {
 
   constructor(){
     let defaultPurposeOfUse = new ListOfIdentifiers();
-    defaultPurposeOfUse.identifiers = [{"value":"TREATMENT", "system":"http://hl7.org/fhir/v3/ActReason"}];
+    defaultPurposeOfUse.identifiers = [new Identifier("http://hl7.org/fhir/v3/ActReason", "TREAT") ];
     this.sharePurposes = defaultPurposeOfUse;
 
     this.shareSensitivityCategories = new ListOfIdentifiers();
     this.toProviders = new ListOfIdentifiers();
     this.fromProviders = new ListOfIdentifiers();
-    this.startDate = new Date();
-    this.endDate = new Date();
+    this.startDate = null;
+    this.endDate = null;
   }
 }
 

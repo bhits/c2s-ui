@@ -3,8 +3,8 @@ import {Component, OnInit, Input} from '@angular/core';
 import {ConsentService} from "../shared/consent.service";
 import {UtilityService} from "../../shared/utility.service";
 import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
+import {ConsentProvider} from "../../shared/consent-provider.model";
 
 @Component({
   selector: 'c2s-select-providers',
@@ -15,11 +15,11 @@ export class SelectProvidersComponent implements OnInit {
 
   authorizeTitle:string = "The following individual or organization";
   discloseTitle:string = "To disclose my information to";
-  @Input() providers: FlattenedSmallProvider[];
+  @Input() providers: ConsentProvider[];
   fromProviders: ListOfIdentifiers;
   toProviders: ListOfIdentifiers;
   consent: ConsentCreateEdit;
-  @Input() completeSelectedProviders: FlattenedSmallProvider[] = [];
+  @Input() completeSelectedProviders: ConsentProvider[] = [];
   selectedProvidersNpi:any = {authorize:[], disclosure:[]};
 
   constructor(private consentService: ConsentService,private utilityService:UtilityService) {
@@ -60,9 +60,5 @@ export class SelectProvidersComponent implements OnInit {
         });
       }
     });
-  }
-
-  private error(error: any): Promise<any> {
-    return Promise.reject(error.message || error);
   }
 }

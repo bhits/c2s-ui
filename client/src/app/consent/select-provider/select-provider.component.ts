@@ -4,9 +4,9 @@ import {ConsentService} from "../shared/consent.service";
 import 'rxjs/add/operator/toPromise';
 import {UtilityService} from "../../shared/utility.service";
 import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 import {Identifier} from "../../shared/identifier.model";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
+import {ConsentProvider} from "../../shared/consent-provider.model";
 
 
 @Component({
@@ -15,17 +15,14 @@ import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
   styleUrls: ['./select-provider.component.css']
 })
 export class SelectProviderComponent implements OnInit {
-  @Input() providers: FlattenedSmallProvider[];
+  @Input() providers: ConsentProvider[];
   @Input() title:string;
   @Input() dialogTitle:string;
-  @Input() selectedProviders: FlattenedSmallProvider[] ;
+  @Input() selectedProviders: ConsentProvider[] = null ;
 
   consent: ConsentCreateEdit;
   private selectedProviderNpi:string;
-  private selectedProvider: FlattenedSmallProvider;
-
-  private authorizeProviderNpi:string[];
-  private disclosureProviderNpi:string[];
+  private selectedProvider: ConsentProvider;
 
   constructor(private consentService: ConsentService, private utilityService:UtilityService) {
     this.consentService.getConsentEmitter().subscribe((consent)=>{
@@ -36,21 +33,20 @@ export class SelectProviderComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // if(this.dialogTitle === 'Authorize' &&
-    //   (this.utilityService.isDefined(this.selectedProvidersNpi.authorize)) &&
-    //   (this.selectedProvidersNpi.authorize.length>0)){
-    //   this.authorizeProviderNpi = this.selectedProvidersNpi.authorize;
-    //   this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.authorizeProviderNpi[0]);
-    // }else if(this.dialogTitle === 'Disclosure'&&
-    //   (this.utilityService.isDefined(this.selectedProvidersNpi.disclosure)) &&
-    //   (this.selectedProvidersNpi.disclosure.length>0)){
-    //   this.disclosureProviderNpi = this.selectedProvidersNpi.disclosure;
-    //   this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.disclosureProviderNpi[0]);
-    // }
+    this.setSelectedProvider();
   }
 
-
+  setSelectedProvider(){
+    if(this.dialogTitle === 'Authorize' &&
+      (this.consent.fromProviders.identifiers) &&
+      (this.consent.fromProviders.identifiers.length>0)){
+      this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.consent.fromProviders.identifiers[0].value);
+    }else if(this.dialogTitle === 'Disclosure'&&
+      (this.consent.toProviders.identifiers) &&
+      (this.consent.toProviders.identifiers.length>0)){
+      this.selectedProvider = this.consentService.getProviderByNPI(this.providers,this.consent.toProviders.identifiers[0].value);
+    }
+  }
 
   openDialog(dialog: any){
     dialog.open();
@@ -82,10 +78,10 @@ export class SelectProviderComponent implements OnInit {
     return false;
   }
 
-  private createListOfIdentifiers(selctedProvider: FlattenedSmallProvider){
+  private createListOfIdentifiers(selctedProvider: ConsentProvider){
     let provider = new ListOfIdentifiers();
     if(selctedProvider){
-      provider.identifiers = [new Identifier(selctedProvider.system, selctedProvider.npi)];
+      provider.identifiers = [new Identifier(selctedProvider.identifiers[0].system, selctedProvider.identifiers[0].value)];
     }
     return provider;
   }

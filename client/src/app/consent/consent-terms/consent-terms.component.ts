@@ -25,14 +25,10 @@ export class ConsentTermsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // if(this.consent){
-    //   this.startDate = this.utilityService.formatDate(this.consent.startDate, this.DATE_FORMAT) ;
-    //   this.endDate = this.utilityService.formatDate(this.consent.endDate, this.DATE_FORMAT) ;
-    // }
-
-    //
-    // this.startDate = this.utilityService.localDateToDateStr(this.startDate);
-    // this.endDate = this.utilityService.localDateToDateStr(this.endDate);
+    if(this.consent && this.consent.startDate && this.consent.endDate){
+      this.startDate = this.utilityService.formatDate(this.consent.startDate, this.DATE_FORMAT) ;
+      this.endDate = this.utilityService.formatDate(this.consent.endDate, this.DATE_FORMAT) ;
+    }
   }
 
   onStateDateChanged(startDate){

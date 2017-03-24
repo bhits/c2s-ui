@@ -40,6 +40,17 @@ export class UtilityService {
     return strMap;
   }
 
+  dateToLocalDate(aDate:Date):number[]{
+    if(aDate){
+      let dateArray = (this.formatDate(aDate, 'MM/dd/yyyy')).split('/');
+      if(!isNaN(parseInt(dateArray[0])) && !isNaN(parseInt(dateArray[1])) && !isNaN(parseInt(dateArray[2]))){
+        return [parseInt(dateArray[2]),parseInt( dateArray[0]), parseInt(dateArray[1]) ];
+      }
+    }
+    return [];
+  }
+
+
   createIdentifiers(entities:any):Identifier[]{
     let identifiers: Identifier[] = [];
     entities.forEach(entity => {

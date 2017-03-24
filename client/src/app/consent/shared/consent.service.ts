@@ -8,6 +8,9 @@ import {Observable, BehaviorSubject} from "rxjs";
 import {ConsentCreateEdit} from "./consent-create-edit.model";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {SharePurpose} from "./share-purpose.model";
+import {ConsentProvider} from "../../shared/consent-provider.model";
+import {UtilityService} from "../../shared/utility.service";
 
 @Injectable()
 export class ConsentService {
@@ -22,7 +25,8 @@ export class ConsentService {
 
   constructor(private http: Http,
               private exceptionService: ExceptionService,
-              private c2sUiApiUrlService: C2sUiApiUrlService) {
+              private c2sUiApiUrlService: C2sUiApiUrlService,
+              private utilityService: UtilityService,) {
   }
 
   getConsentEmitter():Observable<ConsentCreateEdit>{
@@ -33,9 +37,9 @@ export class ConsentService {
     this.consentSudject.next(consentCreateEdit);
   }
 
-  getPurposeOfUses(): Observable<PurposeOfUseBase[]> {
+  getPurposeOfUses(): Observable<SharePurpose[]> {
     return this.http.get(this.pcmPurposeOfUseUrl)
-      .map((resp: Response) => <PurposeOfUseBase[]>(resp.json()))
+      .map((resp: Response) => <SharePurpose[]>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
@@ -45,10 +49,9 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getProviderByNPI(providers: FlattenedSmallProvider[], npi: string): FlattenedSmallProvider {
-
+  getProviderByNPI(providers: ConsentProvider[], npi: string): ConsentProvider {
     for(let provider of providers){
-      if (provider.npi === npi) {
+      if (provider.identifiers[0].value === npi) {
         return provider;
       }
     }
@@ -56,7 +59,8 @@ export class ConsentService {
   }
 
   createConsent(consent: ConsentCreateEdit) {
-    return this.http.post(this.pcmConsentUrl, consent)
+
+    return this.http.post(this.pcmConsentUrl, this.createConsentDto(consent))
       .toPromise()
       .then(response => {
         return response;
@@ -71,11 +75,24 @@ export class ConsentService {
   }
 
   updateConsent(consent: ConsentCreateEdit) {
-    return this.http.put(this.pcmConsentUrl + "/" + consent.id, consent)
+    return this.http.put(this.pcmConsentUrl + "/" + consent.id, this.createConsentDto(consent))
       .toPromise()
       .then(response => {
         return response;
       })
       .catch(this.exceptionService.handleError);
+  }
+
+  private createConsentDto(consent: ConsentCreateEdit):any{
+    let temp = {};
+    Object.keys(consent).forEach(function(key) {
+      if(key !=='startDate' && key !=='endDate'){
+        temp[key] = consent[key];
+      }
+    });
+    temp['startDate'] = this.utilityService.dateToLocalDate(consent.startDate);
+    temp['endDate'] = this.utilityService.dateToLocalDate(consent.endDate);
+
+    return temp;
   }
 }

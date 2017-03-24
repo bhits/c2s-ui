@@ -10,6 +10,8 @@ import {NotificationService} from "../../core/notification.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";
 import {Profile} from "../../core/profile.model";
+import {SharePurpose} from "../shared/share-purpose.model";
+import {ConsentProvider} from "../../shared/consent-provider.model";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -18,9 +20,9 @@ import {Profile} from "../../core/profile.model";
 })
 export class ConsentCreateEditComponent implements OnInit {
   private consent : ConsentCreateEdit;
-  private providers: FlattenedSmallProvider[];
+  private providers: ConsentProvider[];
   private sensitivityPolicies: SensitivityPolicy[];
-  private purposeOfUses: PurposeOfUseBase[];
+  private purposeOfUses: SharePurpose[];
 
   private title: string = "Create Consent";
   private consentId:string;
@@ -51,6 +53,7 @@ export class ConsentCreateEditComponent implements OnInit {
     this.purposeOfUses = this.route.snapshot.data['purposeOfUses'];
 
     this.consent = new ConsentCreateEdit();
+    this.consentService.setConsent(this.consent);
 
     this.route.params.subscribe(params => {
 
@@ -70,6 +73,7 @@ export class ConsentCreateEditComponent implements OnInit {
 
   submitForm(){
     if(this.consentId){
+      console.log(this.consent);
        this.consentService.updateConsent(this.consent)
                           .then(res => {
                             this.notificationService.show("Success in Updating consent.");
