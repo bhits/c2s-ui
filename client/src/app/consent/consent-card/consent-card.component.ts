@@ -50,8 +50,6 @@ export class ConsentCardComponent implements OnInit, OnChanges {
   }
 
   getConsentStageOptions(): ConsentStageOption[] {
-    //Todo: temporarily mock consent stage
-    this.consent.consentStage = "CONSENT_SAVED";
     return CONSENT_STAGES
       .filter(consentStage => consentStage.consentStage === this.consent.consentStage)
       .map(consentStage => consentStage.options)
