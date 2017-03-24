@@ -40,4 +40,8 @@ export class ConsentCardListComponent implements OnInit {
       .map(consentList => consentList.content)
       .do(() => this.loading = false);
   }
+
+  onDeleteConsent(consentId:number){
+    this.consents = this.consents.filter(consent => consent['id'] !==consentId)
+  }
 }

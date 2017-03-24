@@ -11,7 +11,8 @@
   </div>
   <c2s-consent-card fxFlexFill
                     *ngFor="let consent of consents | async | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }"
-                    [consent]="consent">
+                    [consent]="consent"
+                    (deleteConsent)="onDeleteConsent($event)" >
   </c2s-consent-card>
   <pagination-controls fxLayoutAlign="center" (pageChange)="getPage($event)" *ngIf="totalItems"></pagination-controls>
 </div>

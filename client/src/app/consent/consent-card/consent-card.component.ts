@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges} from "@angular/core";
+import {Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from "@angular/core";
 import {Consent} from "../shared/consent.model";
 import {ConsentStageOption} from "../shared/consent-stage-option.model";
 import {CONSENT_STAGES} from "../shared/consent-stages.model";
@@ -15,6 +15,7 @@ import {Router} from "@angular/router";
 export class ConsentCardComponent implements OnInit, OnChanges {
 
   @Input() private consent: Consent;
+  @Output() private deleteConsent =  new EventEmitter<number>();
 
   private detailsVisible: boolean = false;
   private height: number = 0;
@@ -69,7 +70,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     this.consentService.deleteConsent(this.consent.id)
       .subscribe(
         () => {
-          this.router.navigate(["home"]);
+          this.deleteConsent.emit(this.consent.id);
           this.notificationService.show("Success in deleting consent.");
         },
         err => {

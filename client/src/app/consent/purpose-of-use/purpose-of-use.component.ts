@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 import {PurposeOfUseService} from "./purpose-of-use.service";
 import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";

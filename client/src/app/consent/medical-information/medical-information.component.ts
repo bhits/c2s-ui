@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {MedicalInformationService} from "./medical-information.service";
@@ -17,11 +17,10 @@ export class MedicalInformationComponent implements OnInit {
   isSelectAllCategories: boolean = false;
   federalInfo:MedicalInformationCategory;
   stateInfo:MedicalInformationCategory;
-  checkedSensitityPolicies: string[];
+  checkedSensitityPolicies: string[] = [];
 
   @Input() sensitivityPoliciesCodes: string[] = [];
   @Input() sensitivityPolicies: SensitivityPolicy[];
-  @Output() selectedMedicalInformation = new EventEmitter();
   private consent: ConsentCreateEdit;
 
   constructor(private medicalInformationService:MedicalInformationService, private consentService: ConsentService ) {
