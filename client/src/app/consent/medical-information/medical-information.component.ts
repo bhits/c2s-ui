@@ -19,7 +19,7 @@ export class MedicalInformationComponent implements OnInit {
   stateInfo:MedicalInformationCategory;
   checkedSensitityPolicies: string[] = [];
 
-  @Input() sensitivityPoliciesCodes: string[] = [];
+  sensitivityPoliciesCodes: string[] = [];
   @Input() sensitivityPolicies: SensitivityPolicy[];
   private consent: ConsentCreateEdit;
 
@@ -27,12 +27,6 @@ export class MedicalInformationComponent implements OnInit {
     this.consentService.getConsentEmitter().subscribe((consent)=>{
       if (consent) {
         this.consent = consent;
-
-        if(this.consent.shareSensitivityCategories.identifiers){
-          this.consent.shareSensitivityCategories.identifiers.forEach( sp =>{
-            this.sensitivityPoliciesCodes.push(sp.value);
-          })
-        }
       }
     });
   }
@@ -51,16 +45,16 @@ export class MedicalInformationComponent implements OnInit {
     this.stateInfo.description = 'Most states have laws restricting health professionals from disclosing information related to substance abuse, HIV/AIDS, and mental health. ' +
       'Some states have restrictions regarding genetic information and communicable diseases. You have the right to choose the information you wish to share or not share and with whom.'
 
+    if(this.consent.shareSensitivityCategories.identifiers){
+      this.consent.shareSensitivityCategories.identifiers.forEach( sp =>{
+        this.sensitivityPoliciesCodes.push(sp.value);
+      })
+    }
+
     this.updateSensitivityPoliciesStatus();
     this.updateSelectedSensitityPolicy();
   }
   private updateSelectedSensitityPolicy(){
-
-    if(this.sensitivityPoliciesCodes.length > 0 ){
-      this.isShareAll = 0;
-      this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
-    }
-
     if(this.sensitivityPoliciesCodes.length > 0 ){
       this.isShareAll = 0;
       this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);

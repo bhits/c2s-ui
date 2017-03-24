@@ -66,13 +66,9 @@ export class ConsentCreateEditComponent implements OnInit {
 
 
   }
-  onSelectMedicalInformation(shareSensitivityCategories: any){
-    this.consent.shareSensitivityCategories = shareSensitivityCategories;
-    console.log(this.consent);
-  }
 
   submitForm(){
-    if(this.consentId){
+    if(this.consent.id){
       console.log(this.consent);
        this.consentService.updateConsent(this.consent)
                           .then(res => {
