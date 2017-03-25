@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ConsentService} from "../shared/consent.service";
 import {ConsentRevocation} from "../shared/consent-revocation.model";
 import {NotificationService} from "../../core/notification.service";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-consent-revoke',
@@ -26,7 +27,8 @@ export class ConsentRevokeComponent implements OnInit {
               private route: ActivatedRoute,
               private tokenService: TokenService,
               private consentService: ConsentService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
@@ -51,26 +53,29 @@ export class ConsentRevokeComponent implements OnInit {
   toAuthenticate(dialog: any) {
     this.authenticationService.login(this.userName, this.password)
       .subscribe(
-                  (success)=>{
-                    this.inValid = false;
-                    this.isAuthenticated = true;
+        (success) => {
+          this.inValid = false;
+          this.isAuthenticated = true;
 
-                    let consentRevocation = new ConsentRevocation(true);
-                    this.consentService.revokeConsent(consentRevocation,this.consentId).subscribe(
-                      (success)=>{
-                        dialog.close();
-                      },
-                      (error)=>{
-                        dialog.close();
-                        this.notificationService.show("Error in revoking concent.");
-                      }
-                    )
-                  },
-                  (error)=>{
-                    this.inValid = true;
-                    this.password = null;
-                  }
+          let consentRevocation = new ConsentRevocation(true);
+          this.consentService.revokeConsent(consentRevocation, this.consentId).subscribe(
+            (success) => {
+              dialog.close();
+            },
+            (error) => {
+              dialog.close();
+              this.notificationService.show("Error in revoking concent.");
+            }
+          )
+        },
+        (error) => {
+          this.inValid = true;
+          this.password = null;
+        }
       );
+  }
 
-    }
+  navigateTo() {
+    this.utilityService.navigateTo('/consent-list');
+  }
 }

@@ -93,6 +93,10 @@ export class ConsentSignComponent implements OnInit {
       );
   }
 
+  navigateTo(){
+    this.utilityService.navigateTo('/consent-list');
+  }
+
   private
   getConsentAttestationTerm(consentTerms: ConsentTerms): string {
     const terms: string = consentTerms.text;

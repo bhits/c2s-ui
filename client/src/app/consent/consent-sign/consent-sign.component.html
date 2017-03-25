@@ -120,7 +120,7 @@
     <button md-raised-button color="primary" routerLink="/consent-list">
       <strong>Cancel</strong>
     </button>
-    <md2-dialog #completeAttestation>
+    <md2-dialog #completeAttestation (onClose)="navigateTo()">
       <md2-dialog-title>Success in created Signed Consent</md2-dialog-title>
       <md2-dialog-footer>
         <button md-raised-button color="primary" (click)="getSignedConsentPdf()">Download Signed Consent</button>
