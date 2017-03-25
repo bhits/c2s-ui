@@ -32,7 +32,7 @@ export const CONSENT_STAGES: ConsentStage[] = [
     icon: "cancel",
     color: "warn",
     options: [
-      {key: ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF, icon: "file_download", text: "View Signed Consent"},
+      {key: ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF, icon: "file_download", text: "View Signed Consent", isMethod: true},
       {key: ConsentStageOptionKey.EXPORT_CONSENT_DIRECTIVE, icon: "insert_drive_file", text: "Export Consent Directive"},
       {key: ConsentStageOptionKey.TRY_MY_POLICY, icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
       {key: ConsentStageOptionKey.DOWNLOAD_REVOKED_PDF, icon: "file_download", text: "View Signed Revocation"}
