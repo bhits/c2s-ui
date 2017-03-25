@@ -54,46 +54,47 @@ export class ConsentRevokeComponent implements OnInit {
   toAuthenticate(dialog: any) {
     this.authenticationService.login(this.userName, this.password)
       .subscribe(
-        (success) => {
+        () => {
           this.inValid = false;
           this.isAuthenticated = true;
-
-          let consentRevocation = new ConsentRevocation(true);
-          this.consentService.revokeConsent(consentRevocation, this.consentId).subscribe(
-            (success) => {
-              dialog.close();
-            },
-            (error) => {
-              dialog.close();
-              this.notificationService.show("Error in revoking concent.");
-            }
-          )
+          dialog.close();
         },
-        (error) => {
+        error => {
           this.inValid = true;
           this.password = null;
         }
       );
   }
 
+  revokeConsent(dialog: any) {
+    let consentRevocation = new ConsentRevocation(true);
+    this.consentService.revokeConsent(consentRevocation, this.consentId).subscribe(
+      () => {
+        dialog.open();
+      },
+      err => {
+        this.notificationService.show("Error in revoking concent.");
+      }
+    )
+  }
+
   navigateTo() {
     this.utilityService.navigateTo('/consent-list');
   }
 
-  downloadRevokedConsent(dialog: any){
+  downloadRevokedConsent() {
     this.consentService.getRevokedConsentPdf(parseInt(this.consentId))
       .subscribe(
-        (revokedPdf: BinaryFile) => this.onSuccess(revokedPdf, dialog, "Revoked_consent"),
-        (error:any)=>this.onError);
+        (revokedPdf: BinaryFile) => this.onSuccess(revokedPdf, "Revoked_consent"),
+        (error: any) => this.onError);
   }
 
-  onSuccess(revokedPdf: BinaryFile,dialog: any, prefix:string ){
-    dialog.close();
+  onSuccess(revokedPdf: BinaryFile, prefix: string) {
     this.utilityService.downloadFile(revokedPdf.content, `${prefix}_${this.consentId}.pdf`, revokedPdf.contentType);
     this.notificationService.show("Success in downloadig revoked consent pdf ...");
   }
 
-  onError(error:any){
+  onError(error: any) {
     this.notificationService.show("Error in downloadig revoked consent pdf ...");
   }
 }
