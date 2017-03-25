@@ -14,6 +14,7 @@ import {Consent} from "./consent.model";
 import {ConsentTerms} from "./consent-terms.model";
 import {ConsentRevocation} from "./consent-revocation.model";
 import {BinaryFile} from "./binary-file.model";
+import {NotificationService} from "../../core/notification.service";
 
 @Injectable()
 export class ConsentService {
@@ -28,7 +29,8 @@ export class ConsentService {
   constructor(private http: Http,
               private exceptionService: ExceptionService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
-              private utilityService: UtilityService,) {
+              private utilityService: UtilityService,
+              private notificationService: NotificationService) {
   }
 
   getConsentEmitter(): Observable<ConsentCreateEdit> {
@@ -156,6 +158,17 @@ export class ConsentService {
     return this.http.put(revocationUrl, consentRevocation)
       .map(() => null)
       .catch(this.exceptionService.handleError);
+  }
+
+  handleDownloadSuccess(pdf: BinaryFile, consentId: number, consentOptionsDialog: any, namePrefix: string) {
+    consentOptionsDialog.close();
+    this.utilityService.downloadFile(pdf.content, `${namePrefix}_${consentId}.pdf`, pdf.contentType);
+    this.notificationService.show("Success in downloading consent.");
+  }
+
+  handleDownloadError(err: string) {
+    this.notificationService.show("Failed to download the consent, please try again later...");
+    console.log(err);
   }
 
   private getConsentAsBinaryFile(url: string, format: string): Observable<BinaryFile> {
