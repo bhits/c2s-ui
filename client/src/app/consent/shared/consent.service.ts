@@ -12,6 +12,7 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
 import {UtilityService} from "../../shared/utility.service";
 import {Consent} from "./consent.model";
 import {ConsentTerms} from "./consent-terms.model";
+import {BinaryFile} from "./binary-file.model";
 
 @Injectable()
 export class ConsentService {
@@ -83,6 +84,16 @@ export class ConsentService {
     params.set('format', jsonFormat);
     return this.http.get(url, {search: params})
       .map((resp: Response) => <Consent>(resp.json()))
+      .catch(this.exceptionService.handleError);
+  }
+
+  getConsentPdf(id: number): Observable<BinaryFile> {
+    const url = `${this.pcmConsentUrl}/${id}`;
+    const jsonFormat: string = "pdf";
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('format', jsonFormat);
+    return this.http.get(url, {search: params})
+      .map((resp: Response) => <BinaryFile>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 

@@ -2,11 +2,12 @@ import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import {Identifier} from "./identifier.model";
+import {BrowserService} from "../core/browser.service";
 
 @Injectable()
 export class UtilityService {
 
-  constructor(private router: Router, private datePipe: DatePipe) {
+  constructor(private router: Router, private datePipe: DatePipe, private browserService: BrowserService) {
   }
 
   navigateTo(url: string) {
@@ -32,6 +33,57 @@ export class UtilityService {
     return zipCode;
   }
 
+  downloadFile(content, filename, fileFormat): void {
+    const file = this.base64StringtoBlob(content, fileFormat);
+    if (this.browserService.isIE()) {
+      filename = filename + '.pdf';
+      window.navigator.msSaveBlob(file, filename);
+    } else if (this.browserService.isFireFox()) {
+      filename = filename + '.pdf';
+      this.saveFileToDiskInChromeAndFF(file, filename);
+    } else if (this.browserService.isChrome() || this.browserService.isSafari()) {
+      this.saveFileToDiskInChromeAndFF(file, filename);
+    }
+  }
+
+  base64StringtoBlob(b64Data, contentType, sliceSize?): Blob {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+
+      byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, {type: contentType});
+    return blob;
+  }
+
+  saveFileToDiskInChromeAndFF(blobFile, filename): void {
+    const blobURL = (window.URL || (<any>window).webkitURL).createObjectURL(blobFile);
+    const anchor = <any>document.createElement("a");
+    anchor.style = "display: none";
+    anchor.download = filename;
+    anchor.href = blobURL;
+    document.body.appendChild(anchor);
+    anchor.click();
+    setTimeout(function () {
+      document.body.removeChild(anchor);
+      window.URL.revokeObjectURL(blobURL);
+    }, 100);
+  }
+
   convertJsonObjToStrMap(jsonStr) {
     const strMap = new Map();
     for (let k of Object.keys(jsonStr)) {
@@ -40,21 +92,20 @@ export class UtilityService {
     return strMap;
   }
 
-  dateToLocalDate(aDate:Date):number[]{
-    if(aDate){
+  dateToLocalDate(aDate: Date): number[] {
+    if (aDate) {
       let dateArray = (this.formatDate(aDate, 'MM/dd/yyyy')).split('/');
-      if(!isNaN(parseInt(dateArray[0])) && !isNaN(parseInt(dateArray[1])) && !isNaN(parseInt(dateArray[2]))){
-        return [parseInt(dateArray[2]),parseInt( dateArray[0]), parseInt(dateArray[1]) ];
+      if (!isNaN(parseInt(dateArray[0])) && !isNaN(parseInt(dateArray[1])) && !isNaN(parseInt(dateArray[2]))) {
+        return [parseInt(dateArray[2]), parseInt(dateArray[0]), parseInt(dateArray[1])];
       }
     }
     return [];
   }
 
-
-  createIdentifiers(entities:any):Identifier[]{
+  createIdentifiers(entities: any): Identifier[] {
     let identifiers: Identifier[] = [];
     entities.forEach(entity => {
-      if(entity['value'] && entity['system']){
+      if (entity['value'] && entity['system']) {
         identifiers.push(new Identifier(entity['value'], entity['system']))
       }
     });

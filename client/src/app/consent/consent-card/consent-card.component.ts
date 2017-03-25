@@ -5,6 +5,9 @@ import {CONSENT_STAGES} from "../shared/consent-stages.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
 import {Router} from "@angular/router";
+import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
+import {BinaryFile} from "../shared/binary-file.model";
+import {UtilityService} from "../../shared/utility.service";
 
 
 @Component({
@@ -15,14 +18,15 @@ import {Router} from "@angular/router";
 export class ConsentCardComponent implements OnInit, OnChanges {
 
   @Input() private consent: Consent;
-  @Output() private deleteConsent =  new EventEmitter<number>();
+  @Output() private deleteConsent = new EventEmitter<number>();
 
   private detailsVisible: boolean = false;
   private height: number = 0;
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,
-              private router: Router) {
+              private router: Router,
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
@@ -63,6 +67,26 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   selectConsentMethodOption(consentOption: ConsentStageOption): boolean {
     return consentOption.isMethod;
+  }
+
+  invokeAction(consentOption: ConsentStageOption, dialog: any) {
+    switch (consentOption.key) {
+      case ConsentStageOptionKey.DELETE:
+        dialog.open();
+        break;
+      case ConsentStageOptionKey.DOWNLOAD_SAVED_PDF:
+        this.consentService.getConsentPdf(this.consent.id)
+          .subscribe(
+            (savedPdf: BinaryFile) => {
+              this.utilityService.downloadFile(savedPdf.content, `SavedConsent_${this.consent.id}.pdf`, savedPdf.contentType)
+              this.notificationService.show("Success in downloading consent.");
+            },
+            err => {
+              this.notificationService.show("Failed to download the consent, please try again later...");
+              console.log(err);
+            });
+        break;
+    }
   }
 
   confirmDeleteConsent(dialog: any) {
