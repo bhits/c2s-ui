@@ -109,6 +109,16 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
+  getRevokedConsentPdf(id: number): Observable<BinaryFile> {
+    const url = `${this.pcmConsentUrl}/${id}/revocation`;
+    const jsonFormat: string = "pdf";
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('format', jsonFormat);
+    return this.http.get(url, {search: params})
+      .map((resp: Response) => <BinaryFile>(resp.json()))
+      .catch(this.exceptionService.handleError);
+  }
+
   updateConsent(consent: ConsentCreateEdit): Observable<void> {
     return this.http.put(this.pcmConsentUrl + "/" + consent.id, this.createConsentDto(consent))
       .map(() => null)
