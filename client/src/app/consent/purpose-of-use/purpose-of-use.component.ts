@@ -1,7 +1,11 @@
-import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
-import {PurposeOfUseBase} from "../shared/purpose-of-use-base.model";
 import {PurposeOfUseService} from "./purpose-of-use.service";
+import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
+import {PurposeOfUse} from "../shared/purpose-of-use.model";
+import {ConsentService} from "../shared/consent.service";
+import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
+import {SharePurpose} from "../shared/share-purpose.model";
 
 @Component({
   selector: 'c2s-purpose-of-use',
@@ -9,25 +13,25 @@ import {PurposeOfUseService} from "./purpose-of-use.service";
   styleUrls: ['./purpose-of-use.component.css']
 })
 export class PurposeOfUseComponent implements OnInit {
-  @Output() selectedPurposeOfUse = new EventEmitter();
-  @Input() purposeOfUsesCodes:string[];
-  @Input() purposeOfUSes: PurposeOfUseBase[];
+  @Input() purposeOfUSes: SharePurpose[];
+  checkedPurposeOfUses: string[] ;
+  consent: ConsentCreateEdit;
 
-  constructor(private purposeOfUseService: PurposeOfUseService ) { }
+  constructor(private purposeOfUseService: PurposeOfUseService, private consentService: ConsentService ) {
+    this.consentService.getConsentEmitter().subscribe((consent)=>{
+      if (consent) {
+        this.consent = consent;
+      }
+    });
+  }
 
   ngOnInit() {
-    this.updatePurposeOfUseStatus();
-  }
-
-  private updatePurposeOfUseStatus(){
-    this.purposeOfUseService.updatePurposeOfUseStatus(this.purposeOfUsesCodes,this.purposeOfUSes);
-  }
-
-  private getSelectedPurposeOfUseCode():string[]{
-    return this.purposeOfUseService.getSelectedPurposeOfUseCode(this.purposeOfUSes)
+    this.purposeOfUseService.updatePurposeOfUseStatus(this.consent.sharePurposes,this.purposeOfUSes);
+    this.checkedPurposeOfUses = this.purposeOfUseService.getCheckedPurposeOfUse(this.purposeOfUSes);
   }
 
   closeDialog(dialog: any){
+    this.purposeOfUseService.updateSelectedPurposeOfUse( this.checkedPurposeOfUses,this.purposeOfUSes);
     dialog.close();
   }
 
@@ -37,7 +41,9 @@ export class PurposeOfUseComponent implements OnInit {
 
   setSelectedPurposesOfUse(dialog: any){
     dialog.close();
-    this.selectedPurposeOfUse.emit(this.getSelectedPurposeOfUseCode());
+    this.checkedPurposeOfUses = this.purposeOfUseService.getCheckedPurposeOfUse(this.purposeOfUSes);
+    this.consent.sharePurposes = this.purposeOfUseService.getSelectedPurposeOfUse(this.purposeOfUSes);
+    this.consentService.setConsent(this.consent);
   }
 
   selectAll(){

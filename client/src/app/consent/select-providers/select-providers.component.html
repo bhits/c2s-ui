@@ -6,18 +6,15 @@
         <c2s-select-provider [providers]="providers"
                              [title]="authorizeTitle"
                              [dialogTitle]="'Authorize'"
-                             [(selectedProvidersNpi)]="selectedProvidersNpi"
-                             (selectedAuthorizeProvider) = "onSelectedAuthorizeProvider($event)"
-                             >
+                             [selectedProviders]="completeSelectedProviders"
+          >
         </c2s-select-provider>
       </md-grid-tile>
       <md-grid-tile>
         <c2s-select-provider [providers]="providers"
                              [title]="discloseTitle"
                              [dialogTitle]="'Disclosure'"
-                             [(selectedProvidersNpi)]="selectedProvidersNpi"
-                             (selectedDisclosureProvider) = "onSelectedDisclosureProvider($event)"
-                             >
+                             [selectedProviders]="completeSelectedProviders">
         </c2s-select-provider>
       </md-grid-tile>
     </md-grid-list>

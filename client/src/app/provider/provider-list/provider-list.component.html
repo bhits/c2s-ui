@@ -1,9 +1,8 @@
-
 <c2s-page-title [title]="title"></c2s-page-title>
 
 <div style="margin-top: 85px;">
   <!--<md-card>-->
-  <div>
+
     <div color="primary">
       <md-card>Let's get started! You are required to have at least 2 Providers to create a Consent.</md-card>
     </div>
@@ -11,78 +10,66 @@
     <hr>
 
 
-    <div fxLayout="column" [ngStyle]="{'padding-top': '20px'}">
-      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-        <div class="button-row">
-          <button md-button color="accent">Flat button</button>
-          <button md-raised-button color="primary">Raised button</button>
-          <button md-fab><md-icon>check</md-icon></button>
-          <button md-mini-fab><md-icon>check</md-icon></button>
-        </div>
-
-      </section>
-      <div fxLayoutAlign="start">
-
-        <a md-raised-button routerLink="/provider-search" routerLinkActive="active" color="$pink">
-          Add a Health Provider</a>
-      </div>
-      <div>
-        <md2-accordion>
-          <md2-accordion-tab [active]="accordionTab">
-            <md2-accordion-header>
-              <md-card-title align="start">Current Healthcare Providers</md-card-title>
-            </md2-accordion-header>
+  <div fxLayout="column" [ngStyle]="{'padding-top': '20px'}">
+    <div fxLayoutAlign="start">
+      <a md-raised-button routerLink="/provider-search" color="primary">
+        Add a Health Provider</a>
+    </div>
+    <div>
+      <md2-accordion>
+        <md2-accordion-tab [active]="accordionTab">
+          <md2-accordion-header>
+            <md-card-title align="start">Current Healthcare Providers</md-card-title>
+          </md2-accordion-header>
+          <div>
+            <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+          </div>
+          <md-card-content>
+            <div>
+              <table [md2Data]="providers" [rowsPerPage]="10">
+                <thead>
+                <tr>
+                  <th style="width: 5%">
+                    <md-icon>mode_edit</md-icon>
+                  </th>
+                  <th style="width: 12%" md2SortBy="npi">NPI</th>
+                  <th style="width: 25%">Name/Facility</th>
+                  <th style="width: 13%">Contact Number</th>
+                  <th style="width: 45%">Address</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let provider of providers | paginate: paginationConfig">
+                  <td>
+                    <div>
+                      <md2-dialog #confirm>
+                        <md2-dialog-title>Delete Provider</md2-dialog-title>
+                        Are you sure you want to delete this provider?
+                        <md2-dialog-footer>
+                          <button md-raised-button color="primary" (click)="confirmDeleteProvider(confirm, provider)">Ok
+                          </button>
+                          <button md-raised-button (click)="confirm.close()">Cancel</button>
+                        </md2-dialog-footer>
+                      </md2-dialog>
+                      <button md-icon-button color="warn" [disabled]="!provider.deletable" (click)="confirm.open()">
+                        <md-icon>delete_forever</md-icon>
+                      </button>
+                    </div>
+                  </td>
+                  <td>{{provider.npi}}</td>
+                  <td>{{provider | providerName}}</td>
+                  <td>{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</td>
+                  <td>{{provider | providerAddress}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
             <div>
               <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
             </div>
-            <md-card-content>
-              <div>
-                <table [md2Data]="providers" [rowsPerPage]="10">
-                  <thead>
-                  <tr>
-                    <th style="width: 5%">
-                      <md-icon>mode_edit</md-icon>
-                    </th>
-                    <th style="width: 12%" md2SortBy="npi">NPI</th>
-                    <th style="width: 25%">Name/Facility</th>
-                    <th style="width: 13%">Contact Number</th>
-                    <th style="width: 45%">Address</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr *ngFor="let provider of providers | paginate: paginationConfig">
-                    <td>
-                      <div>
-                        <md2-dialog #confirm>
-                          <md2-dialog-title>Delete Provider</md2-dialog-title>
-                          Are you sure you want to delete this provider?
-                          <md2-dialog-footer>
-                            <button md-raised-button color="primary" (click)="confirmDeleteProvider(confirm, provider)">
-                              Ok
-                            </button>
-                            <button md-raised-button (click)="confirm.close()">Cancel</button>
-                          </md2-dialog-footer>
-                        </md2-dialog>
-                        <button md-icon-button color="warn" [disabled]="!provider.deletable" (click)="confirm.open()">
-                          <md-icon>delete_forever</md-icon>
-                        </button>
-                      </div>
-                    </td>
-                    <td>{{provider.npi}}</td>
-                    <td>{{provider | providerName}}</td>
-                    <td>{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</td>
-                    <td>{{provider | providerAddress}}</td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div>
-                <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
-              </div>
-            </md-card-content>
-          </md2-accordion-tab>
-        </md2-accordion>
-      </div>
+          </md-card-content>
+        </md2-accordion-tab>
+      </md2-accordion>
     </div>
     <!--</md-card>-->
   </div>

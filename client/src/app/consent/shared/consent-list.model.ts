@@ -1,9 +1,6 @@
 import {Consent} from "./consent.model";
+import {Page} from "../../shared/page.model";
 
-export class ConsentList {
-  consentList: Consent[];
-  totalItems: number;
-  totalPages: number;
-  itemsPerPage: number;
-  currentPage: number;
+export class ConsentList extends Page {
+  content: Consent[];
 }

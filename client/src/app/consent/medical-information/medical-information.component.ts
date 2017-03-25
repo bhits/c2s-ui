@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {MedicalInformationService} from "./medical-information.service";
 import {MedicalInformationCategory} from "../shared/medical-information-category";
+import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
+import {ConsentService} from "../shared/consent.service";
 
 @Component({
   selector: 'c2s-medical-information',
@@ -14,17 +16,24 @@ export class MedicalInformationComponent implements OnInit {
   isShareAll:number ;
   isSelectAllCategories: boolean = false;
   federalInfo:MedicalInformationCategory;
-  stateInfo:MedicalInformationCategory
-  checkedSensitityPolicies: string[];
+  stateInfo:MedicalInformationCategory;
+  checkedSensitityPolicies: string[] = [];
 
-  @Input() sensitivityPoliciesCodes: string[];
+  sensitivityPoliciesCodes: string[] = [];
   @Input() sensitivityPolicies: SensitivityPolicy[];
-  @Output() selectedMedicalInformation = new EventEmitter();
+  private consent: ConsentCreateEdit;
 
-  constructor(private medicalInformationService:MedicalInformationService ) {
+  constructor(private medicalInformationService:MedicalInformationService, private consentService: ConsentService ) {
+    this.consentService.getConsentEmitter().subscribe((consent)=>{
+      if (consent) {
+        this.consent = consent;
+      }
+    });
   }
 
   ngOnInit() {
+
+    //TODO put in a constant service
     this.federalInfo = new MedicalInformationCategory();
     this.federalInfo.title = 'Federal Categories';
     this.federalInfo.description = 'Federal requirements strictly restrict health professionals from disclosing substance abuse treatment information without signed patient consent ' +
@@ -35,6 +44,12 @@ export class MedicalInformationComponent implements OnInit {
     this.stateInfo.title = 'State Categories';
     this.stateInfo.description = 'Most states have laws restricting health professionals from disclosing information related to substance abuse, HIV/AIDS, and mental health. ' +
       'Some states have restrictions regarding genetic information and communicable diseases. You have the right to choose the information you wish to share or not share and with whom.'
+
+    if(this.consent.shareSensitivityCategories.identifiers){
+      this.consent.shareSensitivityCategories.identifiers.forEach( sp =>{
+        this.sensitivityPoliciesCodes.push(sp.value);
+      })
+    }
 
     this.updateSensitivityPoliciesStatus();
     this.updateSelectedSensitityPolicy();
@@ -49,14 +64,6 @@ export class MedicalInformationComponent implements OnInit {
     this.medicalInformationService.updateSensitivitiesPoliciesStatus(this.sensitivityPoliciesCodes,this.sensitivityPolicies);
   }
 
-  private getSelectedSensitivityPolicieseCode():string[]{
-    return this.medicalInformationService.getSelectedSensitivityPoliciesCode(this.sensitivityPolicies)
-  }
-
-  emitSelection(value:string){
-    this.selectedMedicalInformation.emit(value);
-  }
-
   onSelectShareAll(dialog: any, value:number){
     this.isShareAll = value;
     this.checkedSensitityPolicies = [];
@@ -69,7 +76,8 @@ export class MedicalInformationComponent implements OnInit {
   setSelectedMedicalInformation(dialog: any){
     dialog.close();
     this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
-    this.selectedMedicalInformation.emit(this.getSelectedSensitivityPolicieseCode());
+    this.consent.shareSensitivityCategories = this.medicalInformationService.getSelectedSensitivityPolicyIdentifiers(this.sensitivityPolicies);
+    this.consentService.setConsent(this.consent);
   }
 
   closeDialog(dialog: any){
@@ -80,7 +88,8 @@ export class MedicalInformationComponent implements OnInit {
   onSelectDonotShareAll(dialog: any, value:number){
     this.isShareAll = value;
     dialog.open();
-    this.selectedMedicalInformation.emit(this.sensitivityPoliciesCodes);
+    this.consent.shareSensitivityCategories = this.medicalInformationService.getSelectedSensitivityPolicyIdentifiers(this.sensitivityPolicies);
+    this.consentService.setConsent(this.consent);
   }
 
   onSelectEditDonotShareAll(dialog: any, value:number){
@@ -91,7 +100,8 @@ export class MedicalInformationComponent implements OnInit {
   confirmSelectAll(dialog: any){
     dialog.close();
     this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
-    this.selectedMedicalInformation.emit(this.sensitivityPoliciesCodes);
+    this.consent.shareSensitivityCategories = this.medicalInformationService.getSelectedSensitivityPolicyIdentifiers(this.sensitivityPolicies);
+    this.consentService.setConsent(this.consent);
   }
 
   isCheckedAll(){
@@ -99,4 +109,5 @@ export class MedicalInformationComponent implements OnInit {
       this.isSelectAllCategories =  this.medicalInformationService.isCheckedAll(this.sensitivityPolicies);
     }
   }
+
 }

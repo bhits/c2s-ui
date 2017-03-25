@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Resolve, ActivatedRouteSnapshot} from "@angular/router";
 import {DataService} from "../../shared/data.service";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {ConsentProvider} from "../../shared/consent-provider.model";
 
 @Injectable()
 export class ProviderResolveService implements Resolve<any> {
@@ -11,7 +11,7 @@ export class ProviderResolveService implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot) {
     return this.dataService.getProviders()
-      .do((providers: FlattenedSmallProvider[]) => {
+      .do((providers: ConsentProvider[]) => {
         return providers;
       });
   }

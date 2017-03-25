@@ -10,7 +10,6 @@ import {SelectProviderComponent} from "./select-provider/select-provider.compone
 import {MedicalInformationComponent} from "./medical-information/medical-information.component";
 import {ConsentRoutingModule, consentRoutableComponents, consentRoutableResolves} from "./consent-routing.module";
 import {ConsentService} from "./shared/consent.service";
-import {ConsentProviderNamePipe} from "./shared/consent-provider-name.pipe";
 import {ConsentCreateEditComponent} from "./consent-create-edit/consent-create-edit.component";
 import {MedicalInformationService} from "./medical-information/medical-information.service";
 import {Md2Module} from "md2";
@@ -19,6 +18,8 @@ import {ConsentCardComponent} from "./consent-card/consent-card.component";
 import {ConsentStagePipe} from "./shared/consent-stage.pipe";
 import {SelectProvidersComponent} from "./select-providers/select-providers.component";
 import {NotificationService} from "../core/notification.service";
+import {SharePurposePipe} from "./shared/share-purpose.pipe";
+import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
 
 @NgModule({
   imports: [
@@ -38,8 +39,9 @@ import {NotificationService} from "../core/notification.service";
     ConsentCardComponent,
     ConsentStagePipe,
     SelectProvidersComponent,
-    ConsentProviderNamePipe,
-    consentRoutableComponents
+    consentRoutableComponents,
+    SharePurposePipe,
+    SensitivityCategoryPipe
   ],
   exports: [
     ConsentCreateEditComponent

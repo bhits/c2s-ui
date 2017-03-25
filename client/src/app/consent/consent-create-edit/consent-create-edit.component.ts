@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-
+import {Component, OnInit} from "@angular/core";
 import {ConsentService} from "../shared/consent.service";
 import {ActivatedRoute} from "@angular/router";
 import {UtilityService} from "../../shared/utility.service";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
-import {Provider} from "../shared/Provider.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
-import {PurposeOfUseBase} from "../shared/purpose-of-use-base.model";
 import {NotificationService} from "../../core/notification.service";
+import {GlobalEventManagerService} from "../../core/global-event-manager.service";
+import {Profile} from "../../core/profile.model";
+import {SharePurpose} from "../shared/share-purpose.model";
+import {ConsentProvider} from "../../shared/consent-provider.model";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -15,31 +16,41 @@ import {NotificationService} from "../../core/notification.service";
   styleUrls: ['./consent-create-edit.component.css']
 })
 export class ConsentCreateEditComponent implements OnInit {
-  consent : ConsentCreateEdit;
-  providers: Provider[];
-  sensitivityPolicies: SensitivityPolicy[];
-  purposeOfUses: PurposeOfUseBase[];
-  title: string = "Create Consent";
-  private consentId:string;
+  private consent: ConsentCreateEdit;
+  private providers: ConsentProvider[];
+  private sensitivityPolicies: SensitivityPolicy[];
+  private purposeOfUses: SharePurpose[];
 
-  constructor(private consentService: ConsentService, private notificationService: NotificationService, private route: ActivatedRoute, private utilityService:UtilityService) {
+  private title: string = "Create Consent";
+  private consentId: string;
+  private profile: Profile;
+
+  constructor(private consentService: ConsentService,
+              private notificationService: NotificationService,
+              private route: ActivatedRoute,
+              private utilityService: UtilityService,
+              private globalEventManagerService: GlobalEventManagerService) {
+
+    this.consentService.getConsentEmitter().subscribe((consent) => {
+      if (consent) {
+        this.consent = consent;
+      }
+    });
+
+    this.globalEventManagerService.getUserProfileEmitter().subscribe((profile) => {
+      if (profile) {
+        this.profile = profile;
+      }
+    });
   }
 
   ngOnInit() {
-
     this.providers = this.route.snapshot.data['providers'];
     this.sensitivityPolicies = this.route.snapshot.data['sensitivityPolicies'];
     this.purposeOfUses = this.route.snapshot.data['purposeOfUses'];
 
     this.consent = new ConsentCreateEdit();
-    this.consent.consentStart = "";
-    this.consent.consentEnd = "";
-    this.consent.shareForPurposeOfUseCodes = ['TREATMENT'];
-    this.consent.doNotShareSensitivityPolicyCodes = [];
-    this.consent.organizationalProvidersDisclosureIsMadeToNpi = [];
-    this.consent.organizationalProvidersPermittedToDiscloseNpi = [];
-    this.consent.providersDisclosureIsMadeToNpi = [];
-    this.consent.providersPermittedToDiscloseNpi = [];
+    this.consentService.setConsent(this.consent);
 
     this.route.params.subscribe(params => {
 
@@ -47,52 +58,69 @@ export class ConsentCreateEditComponent implements OnInit {
         this.title = "Edit Consent";
         this.consent = this.route.snapshot.data['consent'];
       }
+      this.consentService.setConsent(this.consent);
     });
-  }
-  onSelectMedicalInformation(event: any){
-    this.consent.doNotShareSensitivityPolicyCodes = event;
-  }
 
-  onStartDateChange(event: any){
-    this.consent.consentStart = event;
+
   }
 
-  onEndDateChange(event: any){
-    this.consent.consentEnd = event;
+  submitForm() {
+    if (this.consent.id) {
+      console.log(this.consent);
+      this.consentService.updateConsent(this.consent)
+        .subscribe(
+          () => {
+            this.notificationService.show("Success in Updating consent.");
+            this.utilityService.navigateTo('consent-list');
+          },
+          err => {
+            this.notificationService.show("Error in Updating consent.");
+            console.log(err);
+          }
+        );
+    } else {
+      this.consentService.createConsent(this.consent)
+        .subscribe(
+          () => {
+            this.notificationService.show("Success in creating consent.");
+            this.utilityService.navigateTo('consent-list');
+          },
+          err => {
+            this.notificationService.show("Error in creating consent.");
+            console.log(err);
+          }
+        );
+    }
   }
 
-  submitForm(){
-    if(this.consentId){
+  navigateTo(url: string) {
+    this.utilityService.navigateTo(url);
+  }
 
-       this.consentService.updateConsent(this.consent)
-                          .then(res => {
-                            this.notificationService.show("Success in Updating consent.");
-                            this.utilityService.navigateTo('consent-list');
-                          })
-                          .catch(error => {
-                            this.notificationService.show("Error in Updating consent.");
-                            console.log(error);
-                          });
-    }else {
-       this.consentService.createConsent(this.consent)
-                        .then(res => {
-                          this.notificationService.show("Success in creating consent.");
-                          this.utilityService.navigateTo('consent-list');
-                        })
-                        .catch(error => {
-                          this.notificationService.show("Error in creating consent.");
-                          console.log(error);
-                        });
+  canSave(): boolean{
+    let result = false;
+    if(!this.utilityService.isDefined(this.consent.fromProviders.identifiers) ||
+      this.consent.fromProviders.identifiers.length == 0){
+      result =  true;
+    }
+    else if(!this.utilityService.isDefined(this.consent.toProviders.identifiers) ||
+              this.consent.toProviders.identifiers.length == 0){
+      result =  true;
+    }
+    else if(!this.utilityService.isDefined(this.consent.shareSensitivityCategories.identifiers) ||
+              this.consent.shareSensitivityCategories.identifiers.length == 0){
+      return true;
+    }
+    else if(!this.utilityService.isDefined(this.consent.sharePurposes.identifiers) ||
+              this.consent.sharePurposes.identifiers.length == 0){
+      return true;
+    }
+    else if((this.consent.startDate === null) ||  !this.utilityService.isDefined(this.consent.startDate)){
+      return true;
+    } else if((this.consent.endDate === null) || !this.utilityService.isDefined(this.consent.endDate)){
+      return true;
     }
 
-
-  }
-
-  onSelectedPurposeOfUse(event: any){
-    this.consent.shareForPurposeOfUseCodes = event;
-  }
-
-  navigateTo(url: string){
-    this.utilityService.navigateTo(url);
+    return result
   }
 }

@@ -8,6 +8,7 @@ import {ExceptionService} from "../../core/exception.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 import {Identifier} from "../../shared/identifier.model";
+import {FHIR_US_NPI_SYSTEM} from "../../shared/consent-provider.model";
 
 @Injectable()
 export class ProviderService {
@@ -19,13 +20,12 @@ export class ProviderService {
   }
 
   searchProviders(requestParams: ProviderRequestQuery): Observable<ProviderSearchResponse> {
-    const SEARCH_PROVIDERS_URL = this.c2sUiApiUrlService.getPlsBaseUrl().concat("/search/query");
+    const SEARCH_PROVIDERS_URL = this.c2sUiApiUrlService.getPlsBaseUrl().concat("/providers/search/query");
 
     let params: URLSearchParams = this.buildRequestParams(requestParams);
 
-    return this.http.get(SEARCH_PROVIDERS_URL, {
-      search: params
-    }).map((resp: Response) => <ProviderSearchResponse>(resp.json()))
+    return this.http.get(SEARCH_PROVIDERS_URL, {search: params})
+      .map((resp: Response) => <ProviderSearchResponse>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
@@ -41,21 +41,20 @@ export class ProviderService {
   }
 
   deleteProvider(id: number): Observable<void> {
-    const DELETE_PROVIDERS_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers")}/${id}`;
+    const DELETE_PROVIDERS_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers")}/${id}`;
     return this.http.delete(DELETE_PROVIDERS_URL)
       .map(() => null)
       .catch(this.exceptionService.handleError);
   }
 
   addProviders(providers: FlattenedSmallProvider[]): Observable<void> {
-    const SYSTEM = "http://hl7.org/fhir/sid/us-npi";
     if (providers != null) {
       let identifiers: Identifier[] = [];
       providers.forEach(
-        provider => identifiers.push(new Identifier(SYSTEM, provider.npi))
+        provider => identifiers.push(new Identifier(FHIR_US_NPI_SYSTEM, provider.npi))
       );
       return this.http
-        .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/providers"), JSON.stringify({identifiers: identifiers}), {headers: this.headers})
+        .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers"), JSON.stringify({identifiers: identifiers}), {headers: this.headers})
         .map(() => null)
         .catch(this.exceptionService.handleError);
     }
