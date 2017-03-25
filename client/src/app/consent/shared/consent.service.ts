@@ -74,7 +74,8 @@ export class ConsentService {
   }
 
   getConsentById(id: string): Observable<ConsentCreateEdit> {
-    return this.http.get(this.pcmConsentUrl + "/" + id)
+    const url = `${this.pcmConsentUrl}/${id}`;
+    return this.http.get(url)
       .map((resp: Response) => <ConsentCreateEdit>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
@@ -90,33 +91,21 @@ export class ConsentService {
   }
 
   getSavedConsentPdf(id: number): Observable<BinaryFile> {
-    const url = `${this.pcmConsentUrl}/${id}`;
-    const jsonFormat: string = "pdf";
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('format', jsonFormat);
-    return this.http.get(url, {search: params})
-      .map((resp: Response) => <BinaryFile>(resp.json()))
-      .catch(this.exceptionService.handleError);
+    const url: string = `${this.pcmConsentUrl}/${id}`;
+    const format: string = "pdf";
+    return this.getConsentAsBinaryFile(url, format);
   }
 
   getSignedConsentPdf(id: number): Observable<BinaryFile> {
     const url = `${this.pcmConsentUrl}/${id}/attestation`;
-    const jsonFormat: string = "pdf";
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('format', jsonFormat);
-    return this.http.get(url, {search: params})
-      .map((resp: Response) => <BinaryFile>(resp.json()))
-      .catch(this.exceptionService.handleError);
+    const format: string = "pdf";
+    return this.getConsentAsBinaryFile(url, format);
   }
 
   getRevokedConsentPdf(id: number): Observable<BinaryFile> {
     const url = `${this.pcmConsentUrl}/${id}/revocation`;
-    const jsonFormat: string = "pdf";
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('format', jsonFormat);
-    return this.http.get(url, {search: params})
-      .map((resp: Response) => <BinaryFile>(resp.json()))
-      .catch(this.exceptionService.handleError);
+    const format: string = "pdf";
+    return this.getConsentAsBinaryFile(url, format);
   }
 
   updateConsent(consent: ConsentCreateEdit): Observable<void> {
@@ -154,18 +143,26 @@ export class ConsentService {
     return temp;
   }
 
-  getConsentRevocationTerms(){
+  getConsentRevocationTerms() {
     return this.http.get(this.pcmConsentTermUrl)
       .map((resp: Response) => <SharePurpose[]>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
-  revokeConsent(consentRevocation: ConsentRevocation, consentId:string):Observable<void>{
+  revokeConsent(consentRevocation: ConsentRevocation, consentId: string): Observable<void> {
     let revocationUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents/")
-                            .concat(consentId).concat("/revocation");
+      .concat(consentId).concat("/revocation");
 
-    return this.http.put(revocationUrl,consentRevocation)
+    return this.http.put(revocationUrl, consentRevocation)
       .map(() => null)
+      .catch(this.exceptionService.handleError);
+  }
+
+  private getConsentAsBinaryFile(url: string, format: string): Observable<BinaryFile> {
+    const params: URLSearchParams = new URLSearchParams();
+    params.set('format', format);
+    return this.http.get(url, {search: params})
+      .map((resp: Response) => <BinaryFile>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 }
