@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ConsentService} from "../shared/consent.service";
 import {ConsentRevocation} from "../shared/consent-revocation.model";
 import {NotificationService} from "../../core/notification.service";
+import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
 
 @Component({
@@ -27,8 +28,8 @@ export class ConsentRevokeComponent implements OnInit {
               private route: ActivatedRoute,
               private tokenService: TokenService,
               private consentService: ConsentService,
-              private notificationService: NotificationService,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -77,5 +78,22 @@ export class ConsentRevokeComponent implements OnInit {
 
   navigateTo() {
     this.utilityService.navigateTo('/consent-list');
+  }
+
+  downloadRevokedConsent(dialog: any){
+    this.consentService.getRevokedConsentPdf(parseInt(this.consentId))
+      .subscribe(
+        (revokedPdf: BinaryFile) => this.onSuccess(revokedPdf, dialog, "Revoked_consent"),
+        (error:any)=>this.onError);
+  }
+
+  onSuccess(revokedPdf: BinaryFile,dialog: any, prefix:string ){
+    dialog.close();
+    this.utilityService.downloadFile(revokedPdf.content, `${prefix}_${this.consentId}.pdf`, revokedPdf.contentType);
+    this.notificationService.show("Success in downloadig revoked consent pdf ...");
+  }
+
+  onError(error:any){
+    this.notificationService.show("Error in downloadig revoked consent pdf ...");
   }
 }

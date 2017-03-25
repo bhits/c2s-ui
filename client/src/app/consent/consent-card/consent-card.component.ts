@@ -74,18 +74,18 @@ export class ConsentCardComponent implements OnInit, OnChanges {
         break;
       case ConsentStageOptionKey.DOWNLOAD_SAVED_PDF:
         this.consentService.getSavedConsentPdf(this.consent.id)
-          .subscribe((savedPdf: BinaryFile) => this.handleDownloadSuccess(savedPdf, consentOptionsDialog, "Saved_Consent"),
-            this.handleDownloadError);
+          .subscribe((savedPdf: BinaryFile) => this.consentService.handleDownloadSuccess(savedPdf, this.consent.id, consentOptionsDialog, "Saved_Consent"),
+            this.consentService.handleDownloadError);
         break;
       case ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF:
         this.consentService.getSignedConsentPdf(this.consent.id)
-          .subscribe((signedPdf: BinaryFile) => this.handleDownloadSuccess(signedPdf, consentOptionsDialog, "Signed_Consent"),
-            this.handleDownloadError);
+          .subscribe((signedPdf: BinaryFile) => this.consentService.handleDownloadSuccess(signedPdf, this.consent.id, consentOptionsDialog, "Signed_Consent"),
+            this.consentService.handleDownloadError);
         break;
       case ConsentStageOptionKey.DOWNLOAD_REVOKED_PDF:
         this.consentService.getRevokedConsentPdf(this.consent.id)
-          .subscribe((revokedPdf: BinaryFile) => this.handleDownloadSuccess(revokedPdf, consentOptionsDialog, "Revoked_Consent"),
-            this.handleDownloadError);
+          .subscribe((revokedPdf: BinaryFile) => this.consentService.handleDownloadSuccess(revokedPdf, this.consent.id, consentOptionsDialog, "Revoked_Consent"),
+            this.consentService.handleDownloadError);
         break;
     }
   }
@@ -102,16 +102,5 @@ export class ConsentCardComponent implements OnInit, OnChanges {
           this.notificationService.show("Failed to delete the consent, please try again later...");
           console.log(err);
         });
-  }
-
-  private handleDownloadSuccess(pdf: BinaryFile, consentOptionsDialog: any, namePrefix: string) {
-    consentOptionsDialog.close();
-    this.utilityService.downloadFile(pdf.content, `${namePrefix}_${this.consent.id}.pdf`, pdf.contentType);
-    this.notificationService.show("Success in downloading consent.");
-  }
-
-  private handleDownloadError(err: string) {
-    this.notificationService.show("Failed to download the consent, please try again later...");
-    console.log(err);
   }
 }
