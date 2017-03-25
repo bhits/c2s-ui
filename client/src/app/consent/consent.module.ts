@@ -10,7 +10,6 @@ import {SelectProviderComponent} from "./select-provider/select-provider.compone
 import {MedicalInformationComponent} from "./medical-information/medical-information.component";
 import {ConsentRoutingModule, consentRoutableComponents, consentRoutableResolves} from "./consent-routing.module";
 import {ConsentService} from "./shared/consent.service";
-import {ConsentProviderNamePipe} from "./shared/consent-provider-name.pipe";
 import {ConsentCreateEditComponent} from "./consent-create-edit/consent-create-edit.component";
 import {MedicalInformationService} from "./medical-information/medical-information.service";
 import {Md2Module} from "md2";
@@ -40,7 +39,6 @@ import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
     ConsentCardComponent,
     ConsentStagePipe,
     SelectProvidersComponent,
-    ConsentProviderNamePipe,
     consentRoutableComponents,
     SharePurposePipe,
     SensitivityCategoryPipe
