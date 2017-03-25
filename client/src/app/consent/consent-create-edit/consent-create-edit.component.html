@@ -17,8 +17,8 @@
 
     <md-card class="right-align">
         <button md-raised-button (click)="navigateTo('consent-list')">Cancel</button>
-      <button md-raised-button color="primary" type="submit" (click)="submitForm()" >Save</button>
-        <!--<button md-raised-button color="primary" type="submit" (click)="submitForm()" [disabled]="canSave()">Save</button>-->
+      <!--<button md-raised-button color="primary" type="submit" (click)="submitForm()" >Save</button>-->
+        <button md-raised-button color="primary" type="submit" (click)="submitForm()" [disabled]="canSave()">Save</button>
     </md-card>
 
   </md-grid-list>
