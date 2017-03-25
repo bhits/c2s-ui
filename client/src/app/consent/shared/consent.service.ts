@@ -89,8 +89,28 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getConsentPdf(id: number): Observable<BinaryFile> {
+  getSavedConsentPdf(id: number): Observable<BinaryFile> {
     const url = `${this.pcmConsentUrl}/${id}`;
+    const jsonFormat: string = "pdf";
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('format', jsonFormat);
+    return this.http.get(url, {search: params})
+      .map((resp: Response) => <BinaryFile>(resp.json()))
+      .catch(this.exceptionService.handleError);
+  }
+
+  getSignedConsentPdf(id: number): Observable<BinaryFile> {
+    const url = `${this.pcmConsentUrl}/${id}/attestation`;
+    const jsonFormat: string = "pdf";
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('format', jsonFormat);
+    return this.http.get(url, {search: params})
+      .map((resp: Response) => <BinaryFile>(resp.json()))
+      .catch(this.exceptionService.handleError);
+  }
+
+  getRevokedConsentPdf(id: number): Observable<BinaryFile> {
+    const url = `${this.pcmConsentUrl}/${id}/revocation`;
     const jsonFormat: string = "pdf";
     let params: URLSearchParams = new URLSearchParams();
     params.set('format', jsonFormat);

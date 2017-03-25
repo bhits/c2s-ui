@@ -69,16 +69,43 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     return consentOption.isMethod;
   }
 
-  invokeAction(consentOption: ConsentStageOption, dialog: any) {
+  invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any) {
     switch (consentOption.key) {
       case ConsentStageOptionKey.DELETE:
-        dialog.open();
+        deleteConfirmationDialog.open();
         break;
       case ConsentStageOptionKey.DOWNLOAD_SAVED_PDF:
-        this.consentService.getConsentPdf(this.consent.id)
+        this.consentService.getSavedConsentPdf(this.consent.id)
           .subscribe(
             (savedPdf: BinaryFile) => {
-              this.utilityService.downloadFile(savedPdf.content, `SavedConsent_${this.consent.id}.pdf`, savedPdf.contentType)
+              consentOptionsDialog.close();
+              this.utilityService.downloadFile(savedPdf.content, `Saved_Consent_${this.consent.id}.pdf`, savedPdf.contentType)
+              this.notificationService.show("Success in downloading consent.");
+            },
+            err => {
+              this.notificationService.show("Failed to download the consent, please try again later...");
+              console.log(err);
+            });
+        break;
+      case ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF:
+        this.consentService.getSignedConsentPdf(this.consent.id)
+          .subscribe(
+            (signedPdf: BinaryFile) => {
+              consentOptionsDialog.close();
+              this.utilityService.downloadFile(signedPdf.content, `Signed_Consent_${this.consent.id}.pdf`, signedPdf.contentType)
+              this.notificationService.show("Success in downloading consent.");
+            },
+            err => {
+              this.notificationService.show("Failed to download the consent, please try again later...");
+              console.log(err);
+            });
+        break;
+      case ConsentStageOptionKey.DOWNLOAD_REVOKED_PDF:
+        this.consentService.getRevokedConsentPdf(this.consent.id)
+          .subscribe(
+            (revokedPdf: BinaryFile) => {
+              consentOptionsDialog.close();
+              this.utilityService.downloadFile(revokedPdf.content, `Revoked_Consent_${this.consent.id}.pdf`, revokedPdf.contentType)
               this.notificationService.show("Success in downloading consent.");
             },
             err => {
