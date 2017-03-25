@@ -19,7 +19,6 @@ import {ConsentCardComponent} from "./consent-card/consent-card.component";
 import {ConsentStagePipe} from "./shared/consent-stage.pipe";
 import {SelectProvidersComponent} from "./select-providers/select-providers.component";
 import {NotificationService} from "../core/notification.service";
-import {AbstractProviderNamePipe} from "./shared/abstract-provider-name.pipe";
 import {SharePurposePipe} from "./shared/share-purpose.pipe";
 import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
 
@@ -43,7 +42,6 @@ import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
     SelectProvidersComponent,
     ConsentProviderNamePipe,
     consentRoutableComponents,
-    AbstractProviderNamePipe,
     SharePurposePipe,
     SensitivityCategoryPipe
   ],
