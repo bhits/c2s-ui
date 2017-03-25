@@ -78,22 +78,22 @@
       </div>
       <div fxFlex>
         <div>
-          <button md-raised-button color="primary" (click)="consentOptions.open()">Manage Consents</button>
-          <md2-dialog #consentOptions>
+          <button md-raised-button color="primary" (click)="consentOptionsDialog.open()">Manage Consents</button>
+          <md2-dialog #consentOptionsDialog>
             <md2-dialog-title fxLayoutAlign="center">Consent Options</md2-dialog-title>
             <md-list>
               <md-list-item *ngFor="let consentOption of getConsentStageOptions()">
                 <div class="margin-20" fxFill>
-                  <md2-dialog #confirm (onOpen)="consentOptions.close()">
+                  <md2-dialog #deleteConfirmationDialog (onOpen)="consentOptionsDialog.close()">
                     <md2-dialog-title>Delete Consent</md2-dialog-title>
                     Are you sure you want to delete this consent?
                     <md2-dialog-footer>
-                      <button md-raised-button color="primary" (click)="confirmDeleteConsent(confirm)">Ok
+                      <button md-raised-button color="primary" (click)="confirmDeleteConsent(deleteConfirmationDialog)">Ok
                       </button>
-                      <button md-raised-button (click)="confirm.close()">Cancel</button>
+                      <button md-raised-button (click)="deleteConfirmationDialog.close()">Cancel</button>
                     </md2-dialog-footer>
                   </md2-dialog>
-                  <a fxLayoutAlign="space-between" md-raised-button (click)="confirm.open()"
+                  <a fxLayoutAlign="space-between" md-raised-button (click)="invokeAction(consentOption, consentOptionsDialog, deleteConfirmationDialog)"
                      *ngIf="selectConsentMethodOption(consentOption)">
                     <md-icon>{{consentOption.icon}}</md-icon>
                     <span class="margin-20">{{consentOption.text}}</span>

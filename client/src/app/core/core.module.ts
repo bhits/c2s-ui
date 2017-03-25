@@ -8,6 +8,7 @@ import {ExceptionService} from "./exception.service";
 import {SecurityModule} from "../security/security.module";
 import {TokenService} from "../security/shared/token.service";
 import {GlobalEventManagerService} from "./global-event-manager.service";
+import {BrowserService} from "./browser.service";
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import {GlobalEventManagerService} from "./global-event-manager.service";
   ],
   declarations: [],
   providers: [
+    BrowserService,
     ExceptionService,
     NotificationService,
     GlobalEventManagerService,

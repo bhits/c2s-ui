@@ -38,8 +38,11 @@ export class ConsentTermsComponent implements OnInit {
     this.hasStartDatePast = this.utilityService.isPastDate(this.startDate);
     this.compareDate = this.utilityService.isStarteAfterEndDate(this.startDate, this.endDate);
 
-    if(!this.hasStartDatePast && this.compareDate ){
+    if(!this.hasStartDatePast && !this.compareDate ){
       this.consent.startDate = new Date(startDate);
+      this.consentService.setConsent(this.consent);
+    }else{
+      this.consent.startDate = null;
       this.consentService.setConsent(this.consent);
     }
   }
@@ -48,10 +51,12 @@ export class ConsentTermsComponent implements OnInit {
     this.hasEndDatePast = this.utilityService.isPastDate(this.endDate);
     this.compareDate = this.utilityService.isStarteAfterEndDate(this.startDate, this.endDate);
 
-    if(!this.hasEndDatePast && this.compareDate){
+    if(!this.hasEndDatePast && !this.compareDate){
       this.consent.endDate = new Date(endDate);
+      this.consentService.setConsent(this.consent);
+    }else  {
+      this.consent.endDate = null;
       this.consentService.setConsent(this.consent);
     }
   }
-
 }

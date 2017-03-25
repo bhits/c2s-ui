@@ -4,6 +4,9 @@ import {ConsentStageOption} from "../shared/consent-stage-option.model";
 import {CONSENT_STAGES} from "../shared/consent-stages.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
+import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
+import {BinaryFile} from "../shared/binary-file.model";
+import {UtilityService} from "../../shared/utility.service";
 
 
 @Component({
@@ -20,7 +23,8 @@ export class ConsentCardComponent implements OnInit, OnChanges {
   private height: number = 0;
 
   constructor(private consentService: ConsentService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
@@ -61,6 +65,53 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   selectConsentMethodOption(consentOption: ConsentStageOption): boolean {
     return consentOption.isMethod;
+  }
+
+  invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any) {
+    switch (consentOption.key) {
+      case ConsentStageOptionKey.DELETE:
+        deleteConfirmationDialog.open();
+        break;
+      case ConsentStageOptionKey.DOWNLOAD_SAVED_PDF:
+        this.consentService.getSavedConsentPdf(this.consent.id)
+          .subscribe(
+            (savedPdf: BinaryFile) => {
+              consentOptionsDialog.close();
+              this.utilityService.downloadFile(savedPdf.content, `Saved_Consent_${this.consent.id}.pdf`, savedPdf.contentType);
+              this.notificationService.show("Success in downloading consent.");
+            },
+            err => {
+              this.notificationService.show("Failed to download the consent, please try again later...");
+              console.log(err);
+            });
+        break;
+      case ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF:
+        this.consentService.getSignedConsentPdf(this.consent.id)
+          .subscribe(
+            (signedPdf: BinaryFile) => {
+              consentOptionsDialog.close();
+              this.utilityService.downloadFile(signedPdf.content, `Signed_Consent_${this.consent.id}.pdf`, signedPdf.contentType)
+              this.notificationService.show("Success in downloading consent.");
+            },
+            err => {
+              this.notificationService.show("Failed to download the consent, please try again later...");
+              console.log(err);
+            });
+        break;
+      case ConsentStageOptionKey.DOWNLOAD_REVOKED_PDF:
+        this.consentService.getRevokedConsentPdf(this.consent.id)
+          .subscribe(
+            (revokedPdf: BinaryFile) => {
+              consentOptionsDialog.close();
+              this.utilityService.downloadFile(revokedPdf.content, `Revoked_Consent_${this.consent.id}.pdf`, revokedPdf.contentType)
+              this.notificationService.show("Success in downloading consent.");
+            },
+            err => {
+              this.notificationService.show("Failed to download the consent, please try again later...");
+              console.log(err);
+            });
+        break;
+    }
   }
 
   confirmDeleteConsent(dialog: any) {
