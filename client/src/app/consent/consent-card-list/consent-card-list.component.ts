@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {ConsentList} from "../shared/consent-list.model";
 import {Consent} from "../shared/consent.model";
 import {DataService} from "../../shared/data.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'c2s-consent-card-list',
@@ -11,6 +12,7 @@ import {DataService} from "../../shared/data.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConsentCardListComponent implements OnInit {
+  public consentList: ConsentList;
   private totalItems: number = 0;
   private totalPages: number = 0;
   private itemsPerPage: number = 0;
@@ -21,10 +23,12 @@ export class ConsentCardListComponent implements OnInit {
 
   private consents: Observable<Consent[]>;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.consentList = this.route.snapshot.data['consentList'];
     this.getPage(this.currentPage);
   }
 
@@ -41,7 +45,7 @@ export class ConsentCardListComponent implements OnInit {
       .do(() => this.loading = false);
   }
 
-  onDeleteConsent(consentId:number){
-    this.consents = this.consents.filter(consent => consent['id'] !==consentId)
+  onDeleteConsent(consentId: number) {
+    this.consents = this.consents.filter(consent => consent['id'] !== consentId)
   }
 }

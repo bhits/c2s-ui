@@ -13,6 +13,7 @@ import {ConsentRevokeComponent} from "./consent-revoke/consent-revoke.component"
 import {DetailedConsentResolveService} from "./shared/detailed-consent-resolve.service";
 import {ConsentTermsResolveService} from "./shared/consent-terms-resolve.service";
 import {ConsentRevocationTermsResolveService} from "./shared/consent-revocation-terms-resolve.service";
+import {ConsentListResolveService} from "./shared/consent-list-resolve.service";
 
 
 const consentRoutes: Routes = [
@@ -21,6 +22,9 @@ const consentRoutes: Routes = [
     component: ConsentCardListComponent,
     canActivate: [CanActivateAuthGuardService],
     canActivateChild: [CanActivateAuthGuardService],
+    resolve: {
+      consentList: ConsentListResolveService,
+    }
   },
   {
     path: 'consent-create-edit',
@@ -83,6 +87,7 @@ export const consentRoutableComponents = [
 
 export const consentRoutableResolves = [
   ConsentResolveService,
+  ConsentListResolveService,
   ConsentTermsResolveService,
   ConsentRevocationTermsResolveService,
   DetailedConsentResolveService,

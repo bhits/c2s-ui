@@ -4,7 +4,6 @@ import {ConsentStageOption} from "../shared/consent-stage-option.model";
 import {CONSENT_STAGES} from "../shared/consent-stages.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
-import {Router} from "@angular/router";
 import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
@@ -25,7 +24,6 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,
-              private router: Router,
               private utilityService: UtilityService) {
   }
 
