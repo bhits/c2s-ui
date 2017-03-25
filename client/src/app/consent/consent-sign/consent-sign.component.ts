@@ -7,6 +7,8 @@ import {Profile} from "../../core/profile.model";
 import {ConsentTerms} from "../shared/consent-terms.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
+import {BinaryFile} from "../shared/binary-file.model";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-consent-sign',
@@ -27,7 +29,8 @@ export class ConsentSignComponent implements OnInit {
               private consentService: ConsentService,
               private notificationService: NotificationService,
               private tokenService: TokenService,
-              private route: ActivatedRoute,) {
+              private route: ActivatedRoute,
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
@@ -75,7 +78,23 @@ export class ConsentSignComponent implements OnInit {
       );
   }
 
-  private getConsentAttestationTerm(consentTerms: ConsentTerms): string {
+  getSignedConsentPdf() {
+    const namePrefix: string = "Signed_Consent";
+    this.consentService.getSignedConsentPdf(this.consent.id)
+      .subscribe(
+        (signedPdf: BinaryFile) => {
+          this.utilityService.downloadFile(signedPdf.content, `${namePrefix}_${this.consent.id}.pdf`, signedPdf.contentType);
+          this.notificationService.show("Success in downloading consent.");
+        },
+        err => {
+          this.notificationService.show("Failed to download the consent, please try again later...");
+          console.log(err);
+        }
+      );
+  }
+
+  private
+  getConsentAttestationTerm(consentTerms: ConsentTerms): string {
     const terms: string = consentTerms.text;
     const userNameKey: string = "${ATTESTER_FULL_NAME}";
     return terms.replace(userNameKey, this.profile.name);

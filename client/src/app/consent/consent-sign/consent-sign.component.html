@@ -123,7 +123,7 @@
     <md2-dialog #completeAttestation>
       <md2-dialog-title>Success in created Signed Consent</md2-dialog-title>
       <md2-dialog-footer>
-        <button md-raised-button color="primary">Download Signed Consent</button>
+        <button md-raised-button color="primary" (click)="getSignedConsentPdf()">Download Signed Consent</button>
         <button md-raised-button color="primary" routerLink="/consent-list">Continue</button>
       </md2-dialog-footer>
     </md2-dialog>
