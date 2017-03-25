@@ -1,4 +1,5 @@
 import {ConsentStage} from "./consent-stage.model";
+import {ConsentStageOptionKey} from "./consent-stage-option-key.enum";
 
 export const CONSENT_STAGES: ConsentStage[] = [
   {
@@ -7,11 +8,11 @@ export const CONSENT_STAGES: ConsentStage[] = [
     icon: "edit",
     color: "accent",
     options: [
-      {icon: "edit", text: "Edit This Consent", routerLink: '/consent-create-edit'},
-      {icon: "search", text: "Preview This Consent"},
-      {icon: "assignment_turned_in", text: "Provide eSignature", routerLink: '/consent-sign'},
-      {icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
-      {icon: "delete_forever", text: "Delete This Consent", isMethod: true}]
+      {key: ConsentStageOptionKey.EDIT, icon: "edit", text: "Edit This Consent", routerLink: '/consent-create-edit'},
+      {key: ConsentStageOptionKey.DOWNLOAD_SAVED_PDF, icon: "search", text: "Preview This Consent", isMethod: true},
+      {key: ConsentStageOptionKey.SIGN, icon: "assignment_turned_in", text: "Provide eSignature", routerLink: '/consent-sign'},
+      {key: ConsentStageOptionKey.TRY_MY_POLICY, icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
+      {key: ConsentStageOptionKey.DELETE, icon: "delete_forever", text: "Delete This Consent", isMethod: true}]
   },
   {
     consentStage: "SIGNED",
@@ -19,10 +20,10 @@ export const CONSENT_STAGES: ConsentStage[] = [
     icon: "check_circle",
     color: "primary",
     options: [
-      {icon: "file_download", text: "View Signed Consent"},
-      {icon: "insert_drive_file", text: "Export Consent Directive"},
-      {icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
-      {icon: "cancel", text: "Revocation", routerLink: '/consent-revoke'}
+      {key: ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF, icon: "file_download", text: "View Signed Consent"},
+      {key: ConsentStageOptionKey.EXPORT_CONSENT_DIRECTIVE, icon: "insert_drive_file", text: "Export Consent Directive"},
+      {key: ConsentStageOptionKey.TRY_MY_POLICY, icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
+      {key: ConsentStageOptionKey.REVOKE, icon: "cancel", text: "Revocation", routerLink: '/consent-revoke'}
     ]
   },
   {
@@ -31,9 +32,9 @@ export const CONSENT_STAGES: ConsentStage[] = [
     icon: "cancel",
     color: "warn",
     options: [
-      {icon: "file_download", text: "View Signed Consent"},
-      {icon: "insert_drive_file", text: "Export Consent Directive"},
-      {icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
-      {icon: "file_download", text: "View Signed Revocation"}
+      {key: ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF, icon: "file_download", text: "View Signed Consent"},
+      {key: ConsentStageOptionKey.EXPORT_CONSENT_DIRECTIVE, icon: "insert_drive_file", text: "Export Consent Directive"},
+      {key: ConsentStageOptionKey.TRY_MY_POLICY, icon: "pageview", text: "Try My Consent Settings against My Medical Record before Sharing"},
+      {key: ConsentStageOptionKey.DOWNLOAD_REVOKED_PDF, icon: "file_download", text: "View Signed Revocation"}
     ]
   }];

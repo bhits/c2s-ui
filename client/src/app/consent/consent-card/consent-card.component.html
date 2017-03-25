@@ -93,7 +93,7 @@
                       <button md-raised-button (click)="confirm.close()">Cancel</button>
                     </md2-dialog-footer>
                   </md2-dialog>
-                  <a fxLayoutAlign="space-between" md-raised-button (click)="confirm.open()"
+                  <a fxLayoutAlign="space-between" md-raised-button (click)="invokeAction(consentOption, confirm)"
                      *ngIf="selectConsentMethodOption(consentOption)">
                     <md-icon>{{consentOption.icon}}</md-icon>
                     <span class="margin-20">{{consentOption.text}}</span>
