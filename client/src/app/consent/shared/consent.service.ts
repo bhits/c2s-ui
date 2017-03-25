@@ -89,7 +89,7 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getConsentPdf(id: number): Observable<BinaryFile> {
+  getSavedConsentPdf(id: number): Observable<BinaryFile> {
     const url = `${this.pcmConsentUrl}/${id}`;
     const jsonFormat: string = "pdf";
     let params: URLSearchParams = new URLSearchParams();

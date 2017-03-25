@@ -69,15 +69,16 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     return consentOption.isMethod;
   }
 
-  invokeAction(consentOption: ConsentStageOption, dialog: any) {
+  invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any) {
     switch (consentOption.key) {
       case ConsentStageOptionKey.DELETE:
-        dialog.open();
+        deleteConfirmationDialog.open();
         break;
       case ConsentStageOptionKey.DOWNLOAD_SAVED_PDF:
-        this.consentService.getConsentPdf(this.consent.id)
+        this.consentService.getSavedConsentPdf(this.consent.id)
           .subscribe(
             (savedPdf: BinaryFile) => {
+              consentOptionsDialog.close();
               this.utilityService.downloadFile(savedPdf.content, `SavedConsent_${this.consent.id}.pdf`, savedPdf.contentType)
               this.notificationService.show("Success in downloading consent.");
             },
