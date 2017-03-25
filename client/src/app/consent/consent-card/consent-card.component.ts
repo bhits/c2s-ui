@@ -4,7 +4,6 @@ import {ConsentStageOption} from "../shared/consent-stage-option.model";
 import {CONSENT_STAGES} from "../shared/consent-stages.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
-import {Router} from "@angular/router";
 
 
 @Component({
@@ -15,14 +14,13 @@ import {Router} from "@angular/router";
 export class ConsentCardComponent implements OnInit, OnChanges {
 
   @Input() private consent: Consent;
-  @Output() private deleteConsent =  new EventEmitter<number>();
+  @Output() private deleteConsent = new EventEmitter<number>();
 
   private detailsVisible: boolean = false;
   private height: number = 0;
 
   constructor(private consentService: ConsentService,
-              private notificationService: NotificationService,
-              private router: Router) {
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
