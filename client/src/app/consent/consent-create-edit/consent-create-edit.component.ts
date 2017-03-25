@@ -99,25 +99,23 @@ export class ConsentCreateEditComponent implements OnInit {
 
   canSave(): boolean{
     let result = false;
-    // if(!this.utilityService.isDefined(this.consent.fromProviders.identifiers) ||
-    //   this.consent.fromProviders.identifiers.length == 0){
-    //   result =  true;
-    // }
-    // else if(!this.utilityService.isDefined(this.consent.toProviders.identifiers) ||
-    //           this.consent.toProviders.identifiers.length == 0){
-    //   result =  true;
-    // }
-    // else if(!this.utilityService.isDefined(this.consent.shareSensitivityCategories.identifiers) ||
-    //           this.consent.shareSensitivityCategories.identifiers.length == 0){
-    //   return true;
-    // }
-    // else if(!this.utilityService.isDefined(this.consent.sharePurposes.identifiers) ||
-    //           this.consent.sharePurposes.identifiers.length == 0){
-    //   return true;
-    // }
-    // else
-
-    if((this.consent.startDate === null) ||  !this.utilityService.isDefined(this.consent.startDate)){
+    if(!this.utilityService.isDefined(this.consent.fromProviders.identifiers) ||
+      this.consent.fromProviders.identifiers.length == 0){
+      result =  true;
+    }
+    else if(!this.utilityService.isDefined(this.consent.toProviders.identifiers) ||
+              this.consent.toProviders.identifiers.length == 0){
+      result =  true;
+    }
+    else if(!this.utilityService.isDefined(this.consent.shareSensitivityCategories.identifiers) ||
+              this.consent.shareSensitivityCategories.identifiers.length == 0){
+      return true;
+    }
+    else if(!this.utilityService.isDefined(this.consent.sharePurposes.identifiers) ||
+              this.consent.sharePurposes.identifiers.length == 0){
+      return true;
+    }
+    else if((this.consent.startDate === null) ||  !this.utilityService.isDefined(this.consent.startDate)){
       return true;
     } else if((this.consent.endDate === null) || !this.utilityService.isDefined(this.consent.endDate)){
       return true;

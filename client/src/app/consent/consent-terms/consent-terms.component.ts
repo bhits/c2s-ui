@@ -41,6 +41,9 @@ export class ConsentTermsComponent implements OnInit {
     if(!this.hasStartDatePast && !this.compareDate ){
       this.consent.startDate = new Date(startDate);
       this.consentService.setConsent(this.consent);
+    }else{
+      this.consent.startDate = null;
+      this.consentService.setConsent(this.consent);
     }
   }
 
@@ -50,6 +53,9 @@ export class ConsentTermsComponent implements OnInit {
 
     if(!this.hasEndDatePast && !this.compareDate){
       this.consent.endDate = new Date(endDate);
+      this.consentService.setConsent(this.consent);
+    }else  {
+      this.consent.endDate = null;
       this.consentService.setConsent(this.consent);
     }
   }
