@@ -79,7 +79,21 @@ export class ConsentCardComponent implements OnInit, OnChanges {
           .subscribe(
             (savedPdf: BinaryFile) => {
               consentOptionsDialog.close();
-              this.utilityService.downloadFile(savedPdf.content, `SavedConsent_${this.consent.id}.pdf`, savedPdf.contentType)
+              this.utilityService.downloadFile(savedPdf.content, `Saved_Consent_${this.consent.id}.pdf`, savedPdf.contentType)
+              this.notificationService.show("Success in downloading consent.");
+            },
+            err => {
+              this.notificationService.show("Failed to download the consent, please try again later...");
+              console.log(err);
+            });
+        break;
+      case ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF:
+        this.consentService.getSignedConsentPdf(this.consent.id)
+          .subscribe(
+            (signedPdf: BinaryFile) => {
+              console.log(signedPdf);
+              consentOptionsDialog.close();
+              this.utilityService.downloadFile(signedPdf.content, `Signed_Consent_${this.consent.id}.pdf`, signedPdf.contentType)
               this.notificationService.show("Success in downloading consent.");
             },
             err => {
