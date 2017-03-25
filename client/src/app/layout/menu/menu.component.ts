@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {UtilityService} from "../../shared/utility.service";
+import {AuthenticationService} from "../../security/shared/authentication.service";
 import {MenuItems} from "../shared/menu-items.model";
 
 @Component({
@@ -10,7 +11,7 @@ import {MenuItems} from "../shared/menu-items.model";
 export class MenuComponent implements OnInit {
   private menuItems: MenuItems[];
 
-  constructor(private utilityService: UtilityService) {
+  constructor(private utilityService: UtilityService, private authenticationService:AuthenticationService) {
   }
 
   ngOnInit() {
@@ -26,9 +27,11 @@ export class MenuComponent implements OnInit {
     ];
   }
 
-  navigateTo(url: string) {
-    this.utilityService.navigateTo(url);
+  navigateTo(url: string, name:string) {
+    if (name === 'Logout') {
+      this.authenticationService.logout();
+    } else {
+      this.utilityService.navigateTo(url);
+    }
   }
-
-
 }

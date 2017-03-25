@@ -17,6 +17,8 @@ export class ProviderSearchComponent implements OnInit {
   private hasSearchResult: boolean = false;
   private PHONE_PATTERN = '^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$';
 
+  title:string = "Add Providers";
+
   public states = [
     {stateCode: 'AZ', stateValue: 'ARIZONA'},
     {stateCode: 'DC', stateValue: 'DISTRICT OF COLUMBIA'},
@@ -42,7 +44,7 @@ export class ProviderSearchComponent implements OnInit {
   public ERROR_CODE = {
     REQUIRED: 'required',
     MIN_LENGTH: 'minlength',
-    PATTERN: 'pattern',
+    PATTERN: 'pattern'
   };
 
   constructor(private formBuilder: FormBuilder,

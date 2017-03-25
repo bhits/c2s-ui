@@ -6,8 +6,8 @@
     <button md-raised-button color="primary" (click)="openDialog(purposeOfUseDialog)">Edit</button>
     <div>
       <md-chip-list>
-        <span *ngFor="let purposeOfuse of purposeOfUSes; let i = index;">
-          <md-chip color="primary" selected="true" *ngIf="purposeOfuse.checked">{{purposeOfuse.displayName}}</md-chip>
+        <span *ngFor="let purposeOfuse of checkedPurposeOfUses; let i = index;">
+          <md-chip color="primary" selected="true" *ngIf="purposeOfuse">{{purposeOfuse}}</md-chip>
         </span>
       </md-chip-list>
     </div>
@@ -24,12 +24,11 @@
       <br><br>
         <div *ngFor="let purposeOfuse of purposeOfUSes; let i = index;">
           <md-checkbox [(ngModel)]="purposeOfUSes[i].checked">
-            {{purposeOfuse.displayName}}
+            {{purposeOfuse.display}}
             <md-icon tooltip="{{purposeOfuse.description}}"
                      tooltip-positionh="below"
                      tooltip-delay="100">info</md-icon>
           </md-checkbox>
-
         </div>
     </md-card-content>
   </md-card>

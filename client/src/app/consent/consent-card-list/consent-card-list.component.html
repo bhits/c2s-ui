@@ -1,7 +1,16 @@
+<c2s-page-title [title]="title"></c2s-page-title>
+
 <div class="margin-bottom-55 margin-top-10" fxLayout="column" fxLayoutAlign="space-around">
-  <div fxFlexOffset="8.5">
-    <a md-raised-button routerLink="/consent-create-edit" color="primary">
-      Add a Consent</a>
+  <div fxLayout="column">
+    <div fxLayoutAlign="center" *ngIf="consentList.totalElements===0">
+      <md-toolbar color="warn" class="tool-bar">
+        There are currently no Consents available. Please click the Add a Consent button to create a new consent.
+      </md-toolbar>
+    </div>
+    <div fxFlexOffset="8.5">
+      <a md-raised-button routerLink="/consent-create-edit" color="primary">
+        Add a Consent</a>
+    </div>
   </div>
   <pagination-controls fxLayoutAlign="center" (pageChange)="getPage($event)" *ngIf="totalItems"></pagination-controls>
   <div fxLayoutAlign="center">
@@ -9,7 +18,8 @@
   </div>
   <c2s-consent-card fxFlexFill
                     *ngFor="let consent of consents | async | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }"
-                    [consent]="consent">
+                    [consent]="consent"
+                    (deleteConsent)="onDeleteConsent($event)">
   </c2s-consent-card>
   <pagination-controls fxLayoutAlign="center" (pageChange)="getPage($event)" *ngIf="totalItems"></pagination-controls>
 </div>

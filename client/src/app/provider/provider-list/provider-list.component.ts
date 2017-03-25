@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
-import {Provider} from "../shared/provider.model";
 import {ProviderService} from "../shared/provider.service";
 import {PaginationInstance} from "ng2-pagination";
 import {ActivatedRoute} from "@angular/router";
 import {NotificationService} from "../../core/notification.service";
+import {ConsentProvider} from "../../shared/consent-provider.model";
 
 @Component({
   selector: 'c2s-provider-list',
@@ -12,7 +12,9 @@ import {NotificationService} from "../../core/notification.service";
 })
 
 export class ProviderListComponent implements OnInit {
-  providers: Provider[];
+  providers: ConsentProvider[];
+  title: string = "Providers";
+
   paginationConfig: PaginationInstance = {
     itemsPerPage: 10,
     currentPage: 1
@@ -32,10 +34,10 @@ export class ProviderListComponent implements OnInit {
     this.paginationConfig.currentPage = number;
   }
 
-  confirmDeleteProvider(dialog: any, provider: Provider) {
+  confirmDeleteProvider(dialog: any, provider: ConsentProvider) {
     dialog.close();
     if (provider != name) {
-      this.providerService.deleteProvider(provider.npi)
+      this.providerService.deleteProvider(provider.id)
         .subscribe(
           () => {
             this.providers = this.providers.filter(p => p !== provider);

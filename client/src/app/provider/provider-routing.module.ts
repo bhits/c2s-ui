@@ -3,11 +3,14 @@ import {RouterModule, Routes} from "@angular/router";
 import {ProviderListComponent} from "./provider-list/provider-list.component";
 import {ProviderSearchComponent} from "./provider-search/provider-search.component";
 import {ProviderListResolveService} from "./shared/provider-list-resolve.service";
+import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-guard.service";
 
 const providerRoutes: Routes = [
   {
     path: 'provider-list',
     component: ProviderListComponent,
+    canActivate: [CanActivateAuthGuardService],
+    canActivateChild: [CanActivateAuthGuardService],
     resolve: {
       providers: ProviderListResolveService
     }
@@ -15,6 +18,8 @@ const providerRoutes: Routes = [
   {
     path: 'provider-search',
     component: ProviderSearchComponent,
+    canActivate: [CanActivateAuthGuardService],
+    canActivateChild: [CanActivateAuthGuardService],
     resolve: {
       providers: ProviderListResolveService
     }
@@ -28,3 +33,12 @@ const providerRoutes: Routes = [
 })
 export class ProviderRoutingModule {
 }
+
+export const providerRoutableComponents = [
+  ProviderListComponent,
+  ProviderSearchComponent
+];
+
+export const providerRoutableResolves = [
+  ProviderListResolveService
+];

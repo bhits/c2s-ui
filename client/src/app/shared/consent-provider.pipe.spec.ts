@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { ConsentProviderNamePipe } from './consent-provider-name.pipe';
+import { ConsentProviderPipe } from './consent-provider.pipe';
 
-describe('ConsentProviderNamePipe', () => {
+describe('ConsentProviderPipe', () => {
   it('create an instance', () => {
-    const pipe = new ConsentProviderNamePipe();
+    const pipe = new ConsentProviderPipe();
     expect(pipe).toBeTruthy();
   });
 });

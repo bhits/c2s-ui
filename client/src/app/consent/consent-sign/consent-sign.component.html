@@ -1,0 +1,133 @@
+<c2s-page-title [title]="title"></c2s-page-title>
+
+<md-card>
+  <h2 fxLayoutAlign="start">Consent to Share My Medical Information</h2>
+  <div fxLayout="column">
+    <div fxLayoutAlign="start">Consent Reference Number:</div>
+    <div fxLayoutAlign="start">
+      <strong>{{consent.id}}</strong>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex fxLayoutAlign="start">
+      <span>Patient Name:</span>
+      <span><strong>{{profile.name}}</strong></span>
+    </div>
+    <div fxFlex>
+      <span>Patient DOB:</span>
+      <span><strong>{{profile.birthDate | date}}</strong></span>
+    </div>
+  </div>
+  <md-toolbar color="primary">
+    AUTHORIZATION TO DISCLOSE
+  </md-toolbar>
+  <div fxLayout="column">
+    <div fxLayoutAlign="start"><strong>Authorizes:</strong></div>
+    <div fxLayoutAlign="start">
+      <table [md2Data]="providers" [rowsPerPage]="10">
+        <thead>
+        <tr>
+          <th style="width: 30%">Provider Name</th>
+          <th style="width: 10%">NPI Number</th>
+          <th style="width: 13%">Phone</th>
+          <th style="width: 47%">Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let provider of consent.fromProviders">
+          <td>{{provider | consentProvider: 'name'}}</td>
+          <td>{{provider | consentProvider: 'npi'}}</td>
+          <td>{{provider | consentProvider: 'phone'}}</td>
+          <td>{{provider | consentProvider: 'address' | usPhoneNumber}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div fxLayoutAlign="start"><strong>To disclose to:</strong></div>
+    <div fxLayoutAlign="start">
+      <table [md2Data]="providers" [rowsPerPage]="10">
+        <thead>
+        <tr>
+          <th style="width: 30%">Provider Name</th>
+          <th style="width: 10%">NPI Number</th>
+          <th style="width: 13%">Phone</th>
+          <th style="width: 47%">Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let provider of consent.toProviders">
+          <td>{{provider | consentProvider: 'name'}}</td>
+          <td>{{provider | consentProvider: 'npi'}}</td>
+          <td>{{provider | consentProvider: 'phone'}}</td>
+          <td>{{provider | consentProvider: 'address' | usPhoneNumber}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <md-toolbar color="primary">
+    HEALTH INFORMATION TO BE DISCLOSED
+  </md-toolbar>
+  <div fxLayout="row">
+    <div fxFlex fxLayout="column">
+      <div fxLayoutAlign="start"><strong>To SHARE the following medical information:</strong></div>
+      <div fxLayoutAlign="start" fxLayout="column">
+        <md-list *ngFor="let shareSensitivityCategory of consent.shareSensitivityCategories">
+          <md-list-item>{{shareSensitivityCategory | sensitivityCategory: 'display'}}</md-list-item>
+        </md-list>
+      </div>
+    </div>
+    <div fxFlex fxLayout="column">
+      <div fxLayoutAlign="start"><strong>To SHARE for the following purpose(s):</strong></div>
+      <div fxLayoutAlign="start" fxLayout="column">
+        <md-list *ngFor="let sharePurpose of consent.sharePurposes">
+          <md-list-item>{{sharePurpose | sharePurpose: 'display'}}</md-list-item>
+        </md-list>
+      </div>
+    </div>
+  </div>
+  <md-toolbar color="primary">
+    CONSENT TERMS
+  </md-toolbar>
+  <div fxLayout="column">
+    <p fxLayout="row">{{termsWithUserName}}
+    </p>
+    <div fxLayoutAlign="start" fxLayout="row">
+      <div fxFlex fxLayoutAlign="start"><strong>Effective Date: {{consent.startDate | date}}</strong></div>
+      <div fxFlex fxLayoutAlign="start"><strong>Expiration Date: {{consent.endDate | date}}</strong></div>
+    </div>
+    <div>
+      <md2-dialog #confirmConsentTerms (onClose)="clearCheckbox()">
+        <md2-dialog-title>Please Authenticate</md2-dialog-title>
+        <div fxLayout="column">
+          <p class="dialog-text">Please provide your account password to authenticate, and complete e-signature</p>
+          <md-input-container>
+            <input mdInput type="password" placeholder="Password" [(ngModel)]="password">
+          </md-input-container>
+          <div *ngIf="inValid" class="authenticate-invalid">Failed to authenticate, please try again...</div>
+        </div>
+        <md2-dialog-footer>
+          <button md-raised-button (click)="confirmConsentTerms.close()">Cancel</button>
+          <button md-raised-button color="primary" (click)="toAuthenticate(confirmConsentTerms)">Continue</button>
+        </md2-dialog-footer>
+      </md2-dialog>
+      <md-checkbox fxLayoutAlign="start" (click)="confirmConsentTerms.open()" [(ngModel)]="checked">
+        I, <strong>{{profile.name}}</strong>, hereby accept, and understand the terms of this consent.
+      </md-checkbox>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+    <button md-raised-button color="primary" routerLink="/consent-list">
+      <strong>Cancel</strong>
+    </button>
+    <md2-dialog #completeAttestation (onClose)="navigateTo()">
+      <md2-dialog-title>Success in created Signed Consent</md2-dialog-title>
+      <md2-dialog-footer>
+        <button md-raised-button color="primary" (click)="getSignedConsentPdf()">Download Signed Consent</button>
+        <button md-raised-button color="primary" routerLink="/consent-list">Continue</button>
+      </md2-dialog-footer>
+    </md2-dialog>
+    <button md-raised-button color="primary" [disabled]="!isAuthenticated" (click)="attestConsent(completeAttestation)"><strong>Complete</strong>
+    </button>
+  </div>
+</md-card>

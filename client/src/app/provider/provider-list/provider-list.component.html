@@ -1,3 +1,5 @@
+<c2s-page-title [title]="title"></c2s-page-title>
+
 <md-card>
   <h2 fxLayoutAlign="start">List Providers</h2>
   <hr>
@@ -49,10 +51,10 @@
                       </button>
                     </div>
                   </td>
-                  <td>{{provider.npi}}</td>
-                  <td>{{provider | providerName}}</td>
-                  <td>{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</td>
-                  <td>{{provider | providerAddress}}</td>
+                  <td>{{provider | consentProvider: 'npi'}}</td>
+                  <td>{{provider | consentProvider: 'name'}}</td>
+                  <td>{{provider | consentProvider: 'phone' | usPhoneNumber}}</td>
+                  <td>{{provider | consentProvider: 'address'}}</td>
                 </tr>
                 </tbody>
               </table>
