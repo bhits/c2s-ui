@@ -1,10 +1,10 @@
-.card {
+.home-card {
   flex: 1 1 300px;
   padding: 0;
   //margin: 0;
   max-width: 350px;
   text-align: left;
-  &:hover {border: 1px solid #FF7BAC;}
+  //&:hover {border: 1px solid #FF7BAC;}
   @media (max-width: 599px){
     flex: 1 1 0;
     }
@@ -36,7 +36,7 @@
     md-card-header {background-color: #644F63; color: white;}
   }
   &.consents {
-    md-card-header {background-color: #644F63; color: white;}
+    md-card-header {background-color: #243852; color: white;}
   }
 
 }

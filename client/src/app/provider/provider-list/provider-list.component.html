@@ -1,20 +1,140 @@
-<c2s-page-title [title]="title"></c2s-page-title>
+<!--<c2s-page-title [title]="title"></c2s-page-title>-->
 
-<div style="margin-top: 85px;">
+<div class="p-t-75 p-l-md p-r-md p-b">
   <!--<md-card>-->
-
-    <div color="primary">
-      <md-card>Let's get started! You are required to have at least 2 Providers to create a Consent.</md-card>
+  <h1 class="">My Contacts</h1>
+  <div>
+    <div style="background-color: #BCDEDB;" class="p-md font-size18 font-weight center-sm-left">OK! You must add at
+      least two contacts before sharing your health information.
     </div>
-    <h1 class="p-l-lg p-r-lg">List Providers</h1>
-    <hr>
+  </div>
 
 
   <div fxLayout="column" [ngStyle]="{'padding-top': '20px'}">
-    <div fxLayoutAlign="start">
-      <a md-raised-button routerLink="/provider-search" color="primary">
+    <div fxLayoutAlign="center">
+      <a md-raised-button fxFlex="0 1 500px" routerLink="/provider-search" color="primary">
+        <md-icon class="font-weight700">add</md-icon>
         Add a Health Provider</a>
     </div>
+    <div fxLayoutAlign="center">
+      <div class="m-t-lg p-b-sm border-bottom-purple" fxFlex="0 1 500px" fxLayoutAlign="flex-start center"
+           fxLayoutGap="10px">
+        <div fxFlex="0 1 100px" class="font-size18 font-weight500 right">
+          Show List by
+        </div>
+        <md-card class="filter-card center" md-raised-button fxFlex="0 0 60px">
+          <span class="fa fa-user-md fa-4x"></span>
+        </md-card>
+        <md-card class="filter-card center" md-raised-button fxFlex="0 0 60px">
+          <span class="fa fa-hospital-o fa-4x"></span>
+        </md-card>
+        <md-card class="filter-card center disabled" md-raised-button fxFlex="0 0 60px">
+          <span class="fa fa-user fa-4x"></span>
+        </md-card>
+
+      </div>
+    </div>
+
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px" fxLayoutAlign="center">
+
+      <md-card class="provider-card">
+        <md-card-header class="middle">
+          <md-card-title class="flexcontainer row">
+            <div class="m-n" fxLayoutAlign="center center"><span class="fa fa-2x fa-address-book"></span><span
+              class="m-l-xs font-weight700">Contacts</span></div>
+          </md-card-title>
+        </md-card-header>
+        <md-card-content class="p-t p-b p-l-md p-r-md">
+
+          <button md-fab (click)="navigateTo('provider-list')">
+            <md-icon class="md-24 font-weight500">add</md-icon>
+          </button>
+          <div class="flexcontainer row" fxLayoutWrap="wrap">
+            <div fxFlex="0 1 120px">
+              <div class="m-t-xs flexcontainer column">
+                <div>
+                  <div class="font-size12 p-b-xxs">Contact Number</div>
+                  <div class="font-size14 font-weight500 p-b-sm">1234567</div>
+                  <div class="font-size12 p-b-xxs">NPI</div>
+                  <div class="font-size14 font-weight600">1184281123</div>
+                </div>
+              </div>
+            </div>
+            <div fxFlex="1 0 120px">
+              <div class="m-t-xs flexcontainer column">
+                <div fxLayout="column">
+                  <div class="font-size12 p-b-xxs">Address</div>
+                  <div class="font-size14 font-weight700">123 Main Street, my Baltimore MD 21210</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalProviders}}</span>-->
+          <!--Contact{{totalProviders !== 1 ? 's' : ''}}-->
+          <!--</div>-->
+        </md-card-content>
+
+      </md-card>
+
+      <md-card class="provider-card">
+        <md-card-header class="middle">
+          <md-card-title>
+            <div class="m-n">My <span class="font-weight700">Suburban Hospital</span></div>
+          </md-card-title>
+        </md-card-header>
+        <md-card-content class="p-md">
+
+          <button md-fab (click)="navigateTo('provider-list')">
+            <md-icon class="md-24 font-weight500">add</md-icon>
+          </button>
+          <md-chip-list class="p-15">
+            <md-chip color="primary" selected="true" class="font-size16">Step 1.</md-chip>
+          </md-chip-list>
+          <div class="m-t-xs">
+            Contact Number
+          </div>
+          <!--<div class="center middle">-->
+          <!--<img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}">-->
+          <!--</div>-->
+          <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalProviders}}</span>
+            Contact{{totalProviders !== 1 ? 's' : ''}}
+          </div>
+        </md-card-content>
+
+      </md-card>
+
+      <md-card class="provider-card">
+        <md-card-header class="middle">
+          <md-card-title>
+            <div class="m-n">My <span class="font-weight700">Contacts</span></div>
+          </md-card-title>
+        </md-card-header>
+        <md-card-content class="p-md">
+
+          <button md-fab (click)="navigateTo('provider-list')">
+            <md-icon class="font-weight500">add</md-icon>
+          </button>
+          <md-chip-list class="p-15">
+            <md-chip color="primary" selected="true" class="font-size16">Step 1.</md-chip>
+          </md-chip-list>
+          <div class="m-t-xs">
+            Contact Number
+          </div>
+          <!--<div class="center middle">-->
+          <!--<img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}">-->
+          <!--</div>-->
+          <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalProviders}}</span>
+            Contact{{totalProviders !== 1 ? 's' : ''}}
+          </div>
+        </md-card-content>
+
+      </md-card>
+
+    </div>
+
+
     <div>
       <md2-accordion>
         <md2-accordion-tab [active]="accordionTab">

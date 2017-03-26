@@ -10,7 +10,7 @@
 
 <form fxFlex [formGroup]="loginForm" class="login-form"  novalidate >
 
-  <h2 class="m-t-none">Log in with your account</h2>
+  <h2 class="m-t-none">Log in with your account.</h2>
 
   <md-input-container class="full-width" >
     <input class="font-size15" mdInput placeholder="User name" type="email"
@@ -34,8 +34,9 @@
     </md-hint>
   </md-input-container>
   <br><br>
-  <div>
-    <button type="button"
+  <div class="flexcontainer row">
+    <button class="flex10auto"
+            type="button"
             type="submit"
             [disabled]="!isValidForm(loginForm)"
             md-raised-button color="primary"
