@@ -19,7 +19,6 @@ For more information and related downloads for Consent2Share, please visit [Cons
 
 # How to use this image
 
-
 ## Start a c2s-ui instance
 
 Be sure to familiarize yourself with the repository's [README.md](https://github.com/bhits/c2s-ui) file before starting the instance.

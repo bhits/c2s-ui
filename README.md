@@ -36,10 +36,12 @@ To build the project, navigate to the folder that contains `pom.xml` file using 
     + For *nix systems, run `mvnw clean package docker:build`
 
 Note: Frontend developers can build `client` and `server` modules separately and save build time by using Angular CLI. This option requires [Angular CLI](http://gruntjs.com/) to be installed globally.
+
  **TOMSON Start**
 1. Build the `client` module: *run `npm install` in the client folder*
 2. Manually repackage the `jar` file from the `server` module 
 **TOMSON End**
+
 ## Run
 
 ### Commands
@@ -96,6 +98,7 @@ services:
 ```
 
 *NOTE:*
+
 **TOMSON Start**
 + Please note that these additional arguments will be appended to the default `ENTRYPOINT` specified in the `Dockerfile` unless the `ENTRYPOINT` is overridden.
 + The Consent2Share UI uses [HTML5 mode](https://docs.angularjs.org/guide/$location#html5-mode) for the URL format in the browser address bar and it also uses `/fe` as the base for all Angular routes. Therefore, the `server` component forwards all paths that starts with `/fe` to root.
@@ -111,6 +114,7 @@ In the `PPUIApplication.java`:
 ...
 ```
 **TOMSON End**
+
 ### Enable SSL
 
 For simplicity in development and testing environments, SSL is **NOT** enabled by default configuration. SSL can easily be enabled following the examples below:
