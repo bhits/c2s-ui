@@ -32,7 +32,7 @@
            (window:resize)="onResize($event, el)"
            [style.height]="getHeightPx()" #el>
         <div fxFlex *ngIf="hasDoNotShareSensitivityPolicyCodes()">
-          <h3><strong>Medical Information NOT disclosed:</strong></h3>
+          <h3><strong>Medical Information disclosed:</strong></h3>
           <md-chip-list>
             <md-chip *ngFor="let shareSensitivityCategory of consent.shareSensitivityCategories"
                      color="accent" selected="true">
