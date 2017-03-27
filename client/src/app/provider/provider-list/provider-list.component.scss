@@ -26,15 +26,21 @@
 
   img {margin: 0;}
   md-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     background-color: #E2DCE2;
     border-radius: 3px 3px 0 0;
     color:#644F63;
     padding: 5px 10px;
     margin: 5px;
     line-height: 4em;
+    div {display: flex !important; align-items: center;}
     md-card-title {
       text-transform: uppercase;
       font-size: 1.6em;
+      line-height:normal;
       margin: 0;
     }
   }
@@ -49,6 +55,11 @@
     background-color:#FF7BAC;
     color: white;
     md-icon {font-weight: 700; font-size: 2em; padding: 8px 3px 0 0;}
+    span {font-weight: 300; font-size: 1.8em; padding: 10px 0 0 0;}
+    &:hover {
+      background-color: #f72b76;
+      span {font-weight: 500;}
+    }
   }
   &.contacts {
     md-card-header {background-color: #644F63; color: white;}

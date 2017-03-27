@@ -39,16 +39,17 @@
     <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px" fxLayoutAlign="center">
 
       <md-card class="provider-card">
-        <md-card-header class="middle">
-          <md-card-title class="flexcontainer row">
-            <div class="m-n" fxLayoutAlign="center center"><span class="fa fa-2x fa-address-book"></span><span
+        <md-card-header>
+          <md-card-title class="flexcontainer row" fxLayoutAlign="center center">
+            <div class="m-n"><span class="fa fa-2x fa-address-book"></span><span
               class="m-l-xs font-weight700">Contacts</span></div>
           </md-card-title>
         </md-card-header>
         <md-card-content class="p-t p-b p-l-md p-r-md">
 
           <button md-fab (click)="navigateTo('provider-list')">
-            <md-icon class="md-24 font-weight500">add</md-icon>
+            <span class="fa fa-trash fa-lg font-weight500" aria-hidden="true"></span>
+            <!--<md-icon class="md-24 font-weight500">add</md-icon>-->
           </button>
           <div class="flexcontainer row" fxLayoutWrap="wrap">
             <div fxFlex="0 1 120px">
@@ -81,7 +82,7 @@
       <md-card class="provider-card">
         <md-card-header class="middle">
           <md-card-title>
-            <div class="m-n">My <span class="font-weight700">Suburban Hospital</span></div>
+            <div class="m-n"><span class="font-weight700">Suburban Hospital</span></div>
           </md-card-title>
         </md-card-header>
         <md-card-content class="p-md">
@@ -108,7 +109,7 @@
       <md-card class="provider-card">
         <md-card-header class="middle">
           <md-card-title>
-            <div class="m-n">My <span class="font-weight700">Contacts</span></div>
+            <div class="m-n"><span class="font-weight700">KING FARM PRESBYTERIAN RETIREMENT COMMUNITY, INC.</span></div>
           </md-card-title>
         </md-card-header>
         <md-card-content class="p-md">
