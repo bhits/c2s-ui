@@ -1,47 +1,50 @@
-<div class="flex-min-height-max" style="background-color: #BCDEDB;">
-<div class="bg-white p-sm border-bottom">
-  <div class="center">
-    <img src="assets/img/C2S-logo-color.svg"    style="height: 46px;" />
+<div class="flex-min-height-max login-background">
+  <div class="bg-white p-sm border-bottom">
+    <div class="center">
+      <img src="assets/img/C2S-logo-color.svg" style="height: 46px;"/>
+    </div>
   </div>
-</div>
   <div class="p-t-md p-b-md p-l-lg p-r-lg">
-    <div class="font-size20 font-weight500 center" style="color: #266357;">Take control of your health and well-being with Consent2Share.</div>
+    <div class="font-size20 font-weight500 center" style="color: #266357;">Take control of your health and well-being
+      with Consent2Share.
+    </div>
   </div>
 
-<form fxFlex [formGroup]="loginForm" class="login-form"  novalidate >
+  <form fxFlex [formGroup]="loginForm" class="login-form" novalidate>
 
-  <h2 class="m-t-none">Log in with your account.</h2>
+    <h2 class="m-t-none">Log in with your account.</h2>
 
-  <md-input-container class="full-width" >
-    <input class="font-size15" mdInput placeholder="User name" type="email"
-           name="username"
-           required
-           [formControl]="loginForm.controls['username']"
-    >
-    <c2s-control-messages [control]="loginForm.controls.username"></c2s-control-messages>
+    <md-input-container class="full-width">
+      <input class="font-size15" mdInput placeholder="User name" type="email"
+             name="username"
+             required
+             [formControl]="loginForm.controls['username']"
+      >
+      <c2s-control-messages [control]="loginForm.controls.username"></c2s-control-messages>
 
-  </md-input-container>
+    </md-input-container>
 
-  <md-input-container class="full-width" >
+    <md-input-container class="full-width">
       <input mdInput placeholder="Password"
              name="password"
              required
              [formControl]="loginForm.controls['password']"
       >
-    <c2s-control-messages [control]="loginForm.controls.password"></c2s-control-messages>
-    <md-hint class="has-error" *ngIf="showLoginBackendError">
-      Sorry, you do not have permission to access this site.
-    </md-hint>
-  </md-input-container>
-  <br><br>
-  <div class="flexcontainer row">
-    <button class="flex10auto"
-            type="button"
-            type="submit"
-            [disabled]="!isValidForm(loginForm)"
-            md-raised-button color="primary"
-            (click)="login(loginForm.value)">Login</button>
-  </div>
-</form>
+      <c2s-control-messages [control]="loginForm.controls.password"></c2s-control-messages>
+      <md-hint class="has-error" *ngIf="showLoginBackendError">
+        Sorry, you do not have permission to access this site.
+      </md-hint>
+    </md-input-container>
+    <br><br>
+    <div class="flexcontainer row">
+      <button class="flex10auto"
+              type="button"
+              type="submit"
+              [disabled]="!isValidForm(loginForm)"
+              md-raised-button color="primary"
+              (click)="login(loginForm.value)">Login
+      </button>
+    </div>
+  </form>
 
 </div>
