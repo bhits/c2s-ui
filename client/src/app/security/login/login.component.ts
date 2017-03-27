@@ -9,7 +9,7 @@ import {TokenService} from "../shared/token.service";
 @Component({
   selector: 'c2s-login',
   templateUrl: 'login.component.html',
-  styleUrls: ['login.component.css']
+  styleUrls: ['login.component.scss']
 })
 export class LoginComponent implements OnInit {
 

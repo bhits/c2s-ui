@@ -1,52 +1,184 @@
+<!--<c2s-page-title title="Home" [isHidden]="true"></c2s-page-title>-->
 
-<c2s-page-title title="Home" [isHidden]="true"></c2s-page-title>
+<div class="p-t-75 p-l-lg p-b-md p-r-lg">
+  <div class="center-sm-left">
+    <h1 class="m-n p-t-sm">Let's get started.</h1>
+    <h2 class="m-t-sm m-t-sm">Before you’re able to share your health data and information, we need to gather a few more
+      details.</h2>
+  </div>
 
-<md-grid-list cols="1">
-  <md-card class="left-align" (click)="navigateTo('provider-list')">
-    <md-card-title>Providers</md-card-title>
-    <md-card-subtitle>Start by adding to you list of Providers!</md-card-subtitle>
-    <br>
-    <span>{{totalProviders}} Provider{{totalProviders !== 1 ? 's' : ''}}</span>
-    <md-card-content>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px" fxLayoutAlign="center">
 
-    </md-card-content>
-  </md-card>
-  <md-card class="left-align" (click)="navigateTo('consent-list')">
-    <md-card-title>Consents</md-card-title>
-    <md-card-subtitle>Click here to view and manage your Consents.</md-card-subtitle>
-    <br>
-    <span>{{totalConsents}} Consent{{totalProviders !== 1 ? 's' : ''}}</span>
-    <md-card-content>
+    <md-card class="home-card contacts">
 
-    </md-card-content>
-  </md-card>
-  <md-card class="left-align">
-    <md-card-title>Medical Documents</md-card-title>
-    <md-card-subtitle>Upload or Enter your Medical Documents.</md-card-subtitle>
-    <md-card-content>
+      <md-card-header class="middle">
+        <md-card-title>
+          <div class="m-n">My <span class="font-weight700">Contacts</span></div>
+        </md-card-title>
+      </md-card-header>
+      <md-card-content class="p-md">
 
-    </md-card-content>
-  </md-card>
-  <md-card class="left-align">
-    <md-card-title>Activity History</md-card-title>
-    <md-card-subtitle>Click here yo view your Activity History.</md-card-subtitle>
-    <md-card-content>
+        <button md-fab (click)="navigateTo('provider-list')">
+          <md-icon class="md-24 font-weight500">add</md-icon>
+        </button>
+        <md-chip-list class="p-15">
+          <md-chip color="primary" selected="true" class="font-size16">Step 1.</md-chip>
+        </md-chip-list>
+        <h2 class="m-t-xs">
+          Begin by adding the people with whom you trust to share your health information.
+        </h2>
+        <div class="center middle">
+          <img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}">
+        </div>
+        <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalProviders}}</span>
+          Contact{{totalProviders !== 1 ? 's' : ''}}
+        </div>
+      </md-card-content>
 
-    </md-card-content>
-  </md-card>
-  <md-card class="left-align">
-    <md-card-title>Health Information</md-card-title>
-    <md-card-subtitle>Currently there is NO Health Information available</md-card-subtitle>
-    <md-card-content>
+    </md-card>
 
-    </md-card-content>
-  </md-card>
+    <md-card class="home-card consents">
 
-  <md-card class="left-align">
-    <md-card-title>Resources</md-card-title>
-    <md-card-subtitle>Visit here for Additional Help and Information.</md-card-subtitle>
-    <md-card-content>
+      <md-card-header class="middle">
+        <md-card-title>
+          <div class="m-n">My <span class="font-weight700">Consents</span></div>
+        </md-card-title>
+      </md-card-header>
+      <md-card-content class="p-md">
 
-    </md-card-content>
-  </md-card>
-</md-grid-list>
+        <button md-fab (click)="navigateTo('consent-list')">
+          <md-icon class="md-24 font-weight500">add</md-icon>
+        </button>
+        <md-chip-list class="p-15">
+          <md-chip color="primary" selected="true" class="font-size16">Step 2.</md-chip>
+        </md-chip-list>
+        <h2 class="m-t-xs">
+          Next, create a consent to allow your providers and/or contacts to share health information.
+        </h2>
+        <div class="center middle">
+          <img md-card-image src="assets/img/consents.svg" [ngStyle]="{'width': '75%'}">
+        </div>
+        <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalConsents}}</span>
+          Consent{{totalProviders !== 1 ? 's' : ''}}
+        </div>
+      </md-card-content>
+
+    </md-card>
+
+
+    <!--<md-card class="left-align" (click)="navigateTo('provider-list')">-->
+    <!--<md-card-header color="primary">-->
+    <!--<md-card-title>Providers</md-card-title>-->
+
+    <!--<md-card-subtitle></md-card-subtitle>-->
+    <!--</md-card-header>-->
+
+    <!--<md-card-content>-->
+    <!--Start by adding to you list of Providers!-->
+    <!--<br>-->
+    <!--<span>{{totalProviders}} Provider{{totalProviders !== 1 ? 's' : ''}}</span>-->
+    <!--</md-card-content>-->
+    <!--</md-card>-->
+
+    <!--<md-card class="test-pattern-warn left-align" (click)="navigateTo('consent-list')">-->
+    <!--<md-card-title>Consents</md-card-title>-->
+    <!--<md-icon></md-icon>-->
+    <!--<md-card-subtitle>Click here to view and manage your Consents.</md-card-subtitle>-->
+    <!--<br>-->
+    <!--<span>{{totalConsents}} Consent{{totalProviders !== 1 ? 's' : ''}}</span>-->
+    <!--<md-card-content>-->
+
+    <!--</md-card-content>-->
+    <!--</md-card>-->
+
+
+    <!--<md-card md-colors="{background: '{c2s-app}-primary-700-1'}" class="left-align">-->
+
+    <!--<md-card-title>Medical Documents</md-card-title>-->
+    <!--<md-card-subtitle>Upload or Enter your Medical Documents.</md-card-subtitle>-->
+    <!--<md-card-content>-->
+    <!--<a href="../contacts/contacts.component.html" md-button (click)="navigateTo('../../contacts/contacts')" >Button</a>-->
+
+    <!--</md-card-content>-->
+    <!--</md-card>-->
+
+    <!--<md-card class="left-align">-->
+    <!--<md-card-title>Activity History</md-card-title>-->
+    <!--<md-card-subtitle>Click here yo view your Activity History.</md-card-subtitle>-->
+    <!--<md-card-content>-->
+
+    <!--</md-card-content>-->
+    <!--</md-card>-->
+    <!--<md-card class="left-align">-->
+    <!--<md-card-title>Health Information</md-card-title>-->
+    <!--<md-card-subtitle>Currently there is NO Health Information available</md-card-subtitle>-->
+    <!--<md-card-content>-->
+
+    <!--</md-card-content>-->
+    <!--</md-card>-->
+
+    <!--<md-card class="left-align">-->
+    <!--<md-card-title>Resources</md-card-title>-->
+    <!--<md-card-subtitle>Visit here for Additional Help and Information.</md-card-subtitle>-->
+    <!--<md-card-content>-->
+
+    <!--</md-card-content>-->
+    <!--</md-card>-->
+  </div>
+
+
+  <!--<div fxLayout="row" fxLayout.sm="column" fxLayoutWrap="wrap" fxLayoutAlign="start center">-->
+  <!--<md-card fxFlex="1 0 250px" class="left-align" style="background-color: lightpink; margin: 10px;"-->
+  <!--(click)="navigateTo('provider-list')">-->
+  <!--<md-card-title class="color-test">Providers</md-card-title>-->
+  <!--<md-card-subtitle style="font-size: 24px;}">Start by adding to you list of Providers!</md-card-subtitle>-->
+  <!--<br>-->
+  <!--<span>{{totalProviders}} Provider{{totalProviders !== 1 ? 's' : ''}}</span>-->
+  <!--<md-card-content>-->
+
+  <!--</md-card-content>-->
+  <!--</md-card>-->
+  <!--<md-card class="test-pattern-warn left-align" (click)="navigateTo('consent-list')">-->
+  <!--<md-card-title>Consents</md-card-title>-->
+  <!--<md-icon></md-icon>-->
+  <!--<md-card-subtitle>Click here to view and manage your Consents.</md-card-subtitle>-->
+  <!--<br>-->
+  <!--<span>{{totalConsents}} Consent{{totalProviders !== 1 ? 's' : ''}}</span>-->
+  <!--<md-card-content>-->
+
+  <!--</md-card-content>-->
+  <!--</md-card>-->
+  <!--<md-card md-colors="{background: '{c2s-app}-primary-700-1'}" class="left-align">-->
+
+  <!--<md-card-title>Medical Documents</md-card-title>-->
+  <!--<md-card-subtitle>Upload or Enter your Medical Documents.</md-card-subtitle>-->
+  <!--<md-card-content>-->
+
+  <!--</md-card-content>-->
+  <!--</md-card>-->
+  <!--<md-card class="left-align">-->
+  <!--<md-card-title>Activity History</md-card-title>-->
+  <!--<md-card-subtitle>Click here yo view your Activity History.</md-card-subtitle>-->
+  <!--<md-card-content>-->
+
+  <!--</md-card-content>-->
+  <!--</md-card>-->
+  <!--<md-card class="left-align">-->
+  <!--<md-card-title>Health Information</md-card-title>-->
+  <!--<md-card-subtitle>Currently there is NO Health Information available</md-card-subtitle>-->
+  <!--<md-card-content>-->
+
+  <!--</md-card-content>-->
+  <!--</md-card>-->
+
+  <!--<md-card class="left-align">-->
+  <!--<md-card-title>Resources</md-card-title>-->
+  <!--<md-card-subtitle>Visit here for Additional Help and Information.</md-card-subtitle>-->
+  <!--<md-card-content>-->
+
+  <!--</md-card-content>-->
+  <!--</md-card>-->
+  <!--</div>-->
+
+</div>
+

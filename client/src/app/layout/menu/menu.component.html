@@ -1,6 +1,10 @@
-<button md-icon-button [mdMenuTriggerFor]="menu">
-    <md-icon>more_vert</md-icon>
-</button>
+<!--<button md-icon-button [mdMenuTriggerFor]="menu">-->
+    <!--<md-icon>more_vert</md-icon>-->
+<!--</button>-->
+<script src="../../app-routing.module.ts"></script>
+
+<button md-button [mdMenuTriggerFor]="menu" class="menu-button menu-border-left">menu</button>
+
 <md-menu #menu="mdMenu">
   <md-list>
     <md-list-item *ngFor="let menuItem of menuItems">
@@ -10,3 +14,4 @@
     </md-list-item>
   </md-list>
 </md-menu>
+

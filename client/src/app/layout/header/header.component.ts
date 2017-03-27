@@ -5,7 +5,7 @@ import {GlobalEventManagerService} from "../../core/global-event-manager.service
 @Component({
   selector: 'c2s-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   showHeader: boolean = false;

@@ -1,0 +1,67 @@
+//// Import all the tools needed to customize the theme and extract parts of it
+//@import '~@angular/material/core/theming/all-theme';
+//@import 'c2s-palette';
+//
+//
+//// Define a mixin that accepts a theme and outputs the color styles for the component.
+//@mixin c2s-theme($theme) {
+//  // Extract whichever individual palettes you need from the theme.
+//  $primary: map-get($theme, primary);
+//  $accent: map-get($theme, accent);
+//
+//  // Use md-color to extract individual colors from a palette as necessary.
+//  .candy-carousel {
+//    background-color: mat-color($primary);
+//    border-color: mat-color($accent, A400);
+//  }
+//}
+
+//@import '~@angular/material/core/theming/all-theme';
+//// Plus imports for other components in your app.
+//@import 'c2s-palette';
+//
+//// Include the base styles for Angular Material core. We include this here so that you only
+//// have to load a single css file for Angular Material in your app.
+//@include mat-core();
+//
+//// Define the palettes for your theme using the Material Design palettes available in palette.scss
+//// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+//// hue.
+//$c2s-app-primary: mat-palette($mat-deep-orange);
+//$c2s-app-accent:  mat-palette($mat-amber);
+//
+//// The warn palette is optional (defaults to red).
+//$c2s-app-warn:    mat-palette($mat-red);
+//
+//// Create the theme object (a Sass map containing all of the palettes).
+//$c2s-app-theme: mat-light-theme($c2s-app-primary, $c2s-app-accent, $c2s-app-warn);
+//
+//// Include theme styles for core and each component used in your app.
+//// Alternatively, you can import and @include the theme mixins for each component
+//// that you are using.
+//@mixin c2s-app-theme($theme){
+//  // Extract whichever individual palettes you need from the theme.
+//  $primary: map-get($c2s-app-theme, $mat-deep-orange);
+//  $accent: map-get($c2s-app-theme, $mat-amber);
+//
+//}
+
+//@import '../all-theme';
+
+
+
+@import '~@angular/material/core/theming/all-theme';
+@import 'c2s-palette';
+// Include non-theme styles for core.
+@include mat-core();
+
+// Define a theme.
+$primary: mat-palette($mat-deep-plumb);
+$accent:  mat-palette($mat-deep-sea-foam, A200, A100, A400);
+$warn: (mat-palette($mat-deep-orange, A200, A100, A400));
+$theme: mat-light-theme($primary, $accent);
+
+// Include all theme styles for the components.
+@include angular-material-theme($theme);
+
+

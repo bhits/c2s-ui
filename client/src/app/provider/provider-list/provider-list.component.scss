@@ -1,0 +1,116 @@
+.filter-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6C4E70;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+  color: #cccccc;
+  padding: 0;
+  font-size: 1em;
+  &.disabled {opacity: .35;}
+}
+
+.provider-card {
+  flex: 1 1 340px;
+  margin-top: 20px;
+  padding: 0;
+  max-width: 400px;
+  text-align: left;
+  //&:hover {border: 1px solid #FF7BAC;}
+  @media (max-width: 599px){
+    flex: 1 1 0;
+  }
+
+  img {margin: 0;}
+  md-card-header {
+    background-color: #E2DCE2;
+    border-radius: 3px 3px 0 0;
+    color:#644F63;
+    padding: 5px 10px;
+    margin: 5px;
+    line-height: 4em;
+
+    .md-card-title {
+      text-transform: uppercase;
+      font-size: 1.4em;
+      line-height:normal;
+      margin: 0 0 0 -10px;
+    }
+  }
+  md-card-content {font-size: 1em; position: relative;}
+  md-chip {font-weight: 500; font-size: 16px !important;}
+  button {
+    height: 40px;
+    width:40px;
+    position: absolute;
+    top: -25px;
+    right: 25px;
+    background-color:#FF7BAC;
+    color: white;
+    md-icon {font-weight: 700; font-size: 2em; padding: 8px 3px 0 0;}
+    span {font-weight: 300; font-size: 1.8em; padding: 10px 0 0 0;}
+    &:hover {
+      background-color: #f72b76;
+      span {font-weight: 500;}
+    }
+    &.disabled {
+      background-color: #aaaaaa;
+      color: #331D32;
+    }
+    @media (max-width: 599px){
+      top: -20px;
+    }
+
+  }
+  &.contacts {
+    md-card-header {background-color: #644F63; color: white;}
+  }
+  &.consents {
+    md-card-header {background-color: #243852; color: white;}
+  }
+}
+
+
+
+
+
+
+
+table {
+  display: table;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-spacing: 0;
+  border-collapse: collapse;
+  font-size: 14px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+table tr {
+  position: relative;
+  height: 36px;
+  vertical-align: middle;
+}
+
+tbody tr:hover {
+  background-color: #eee;
+}
+
+table th{
+  padding: 0 16px;
+  text-align: center;
+}
+
+table td {
+  position: relative;
+  vertical-align: middle;
+  height: 36px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 0 16px;
+  text-align: left;
+}

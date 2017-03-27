@@ -6,7 +6,7 @@ import {MenuItems} from "../shared/menu-items.model";
 @Component({
   selector: 'c2s-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['menu.component.scss']
 })
 export class MenuComponent implements OnInit {
   private menuItems: MenuItems[];

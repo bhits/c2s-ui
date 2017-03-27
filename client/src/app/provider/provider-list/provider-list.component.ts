@@ -8,7 +8,7 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
 @Component({
   selector: 'c2s-provider-list',
   templateUrl: './provider-list.component.html',
-  styleUrls: ['./provider-list.component.css']
+  styleUrls: ['provider-list.component.scss']
 })
 
 export class ProviderListComponent implements OnInit {
@@ -16,7 +16,7 @@ export class ProviderListComponent implements OnInit {
   title: string = "Providers";
 
   paginationConfig: PaginationInstance = {
-    itemsPerPage: 10,
+    itemsPerPage: 6,
     currentPage: 1
   };
   accordionTab: boolean = true;

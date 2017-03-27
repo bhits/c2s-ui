@@ -5,7 +5,7 @@ import {Profile} from "../../core/profile.model";
 @Component({
   selector: 'c2s-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
 

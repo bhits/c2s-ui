@@ -5,7 +5,7 @@ import {UtilityService} from "../../shared/utility.service";
 @Component({
   selector: 'c2s-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit {
   private totalProviders: number = 0;
