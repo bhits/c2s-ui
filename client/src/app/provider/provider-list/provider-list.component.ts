@@ -16,7 +16,7 @@ export class ProviderListComponent implements OnInit {
   title: string = "Providers";
 
   paginationConfig: PaginationInstance = {
-    itemsPerPage: 5,
+    itemsPerPage: 6,
     currentPage: 1
   };
   accordionTab: boolean = true;
