@@ -1,8 +1,7 @@
 <!--<c2s-page-title [title]="title"></c2s-page-title>-->
 
 <div class="p-t-75 p-l-md p-r-md p-b">
-  <!--<md-card>-->
-  <h1 class="">My Contacts</h1>
+  <h1 class="">My Consents</h1>
   <div>
     <div style="background-color: #FEB652;font-weight: 500; color: black; font-size: 2em;" class="p-md font-size18 font-weight center-sm-left" *ngIf="consentList.totalElements===0">There are currently no Consents available. Please click the Add a Consent button to create a new consent.
     </div>
@@ -10,11 +9,6 @@
 
 <div class="margin-bottom-55 margin-top-10" fxLayout="column" fxLayoutAlign="space-around">
   <div fxLayout="column">
-    <!--<div fxLayoutAlign="center" *ngIf="consentList.totalElements===0">-->
-      <!--<md-toolbar color="warn" class="tool-bar">-->
-        <!--There are currently no Consents available. Please click the Add a Consent button to create a new consent.-->
-      <!--</md-toolbar>-->
-    <!--</div>-->
     <div fxFlexOffset="8.5">
       <a md-raised-button routerLink="/consent-create-edit" color="primary">
         Add a Consent</a>
