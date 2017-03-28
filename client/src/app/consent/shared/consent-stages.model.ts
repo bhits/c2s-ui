@@ -20,7 +20,6 @@ export const CONSENT_STAGES: ConsentStage[] = [
     color: "primary",
     options: [
       {key: ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF, icon: "file_download", text: "View Signed Consent", isMethod: true},
-      {key: ConsentStageOptionKey.EXPORT_CONSENT_DIRECTIVE, icon: "insert_drive_file", text: "Export Consent Directive"},
       {key: ConsentStageOptionKey.REVOKE, icon: "cancel", text: "Revocation", routerLink: '/consent-revoke'}
     ]
   },
@@ -31,7 +30,6 @@ export const CONSENT_STAGES: ConsentStage[] = [
     color: "warn",
     options: [
       {key: ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF, icon: "file_download", text: "View Signed Consent", isMethod: true},
-      {key: ConsentStageOptionKey.EXPORT_CONSENT_DIRECTIVE, icon: "insert_drive_file", text: "Export Consent Directive"},
       {key: ConsentStageOptionKey.DOWNLOAD_REVOKED_PDF, icon: "file_download", text: "View Signed Revocation", isMethod: true}
     ]
   }];
