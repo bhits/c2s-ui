@@ -55,7 +55,7 @@
       background-color: #f72b76;
       span {font-weight: 500;}
     }
-    &.disabled {
+    &:disabled {
       background-color: #aaaaaa;
       color: #331D32;
     }
@@ -71,12 +71,6 @@
     md-card-header {background-color: #243852; color: white;}
   }
 }
-
-
-
-
-
-
 
 table {
   display: table;
