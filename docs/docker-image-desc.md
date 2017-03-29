@@ -1,5 +1,5 @@
 # Short Description
-The Consent2Share User Interface (c2s-ui) is a generic user interface component of Consent2share (C2S). Patients can use this application to manage his or her electronic consents and providers.
+The Consent2Share User Interface (c2s-ui) is a generic user interface component of the Consent2share (C2S) application. Patients can use this application to manage his or her electronic consents and providers.
 
 # Full Description
 
@@ -13,12 +13,11 @@ For more information about this image, the source code, and its history, please 
 
 # What is Consent2Share UI?
 
-The Consent2Share User Interface (c2s-ui) is a generic user interface component of Consent2share (C2S). Patients can use this application to manage his or her electronic consents and providers.
+The Consent2Share User Interface (c2s-ui) is a generic user interface component of the Consent2share (C2S)application. Patients can use this application to manage his or her electronic consents and providers.
 
 For more information and related downloads for Consent2Share, please visit [Consent2Share](https://bhits.github.io/consent2share/).
 
 # How to use this image
-
 
 ## Start a c2s-ui instance
 
