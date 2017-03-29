@@ -1,6 +1,6 @@
 # Consent2Share User Interface
 
-The Consent2Share User Interface (c2s-ui) is a generic user interface component of Consent2share (C2S). Patients can use this application to manage his or her electronic consents and providers.
+The Consent2Share User Interface (c2s-ui) is a generic user interface component of the Consent2share (C2S) application. Patients can use this application to manage his or her consents and providers electronically.
 
 ## Build
 
@@ -17,7 +17,7 @@ The Consent2Share User Interface (c2s-ui) is a generic user interface component 
 There are two main modules in this project:
 
 + `client`: This folder contains all frontend user interface code, which is written using [Angular](https://angular.io/) v2.4.
-+ `server`: This folder contains a [Spring Boot](http://projects.spring.io/spring-boot/) project, which is primarily responsible for packaging and serving the static resources that are built from the `client` module. This is also an [Apache Maven](https://maven.apache.org/) project and utilizes [Frontend Maven Plugin](https://github.com/eirslett/frontend-maven-plugin) to: 
++ `server`: This folder contains a [Spring Boot](http://projects.spring.io/spring-boot/) project, which is primarily responsible for packaging and serving the static resources that are built from the `client` module. This is also an [Apache Maven](https://maven.apache.org/) project which utilizes [Frontend Maven Plugin](https://github.com/eirslett/frontend-maven-plugin) to: 
     1. locally install [Node.js](https://nodejs.org/en/) and the `client` module Node.js dependencies; 
     2. Build the `client` module using Node Package Manager [NPM](https://www.npmjs.com/) Node.js package. Finally, it uses [Apache Maven Resources Plugin](https://maven.apache.org/plugins/maven-resources-plugin/) to copy the resources that are built from the `client` module into the `server` module that will be eventually packaged as a build artifact in `jar` format. Therefore, there is no need to install Node.js globally if `server` module is built with Maven.
 + Angular CLI and MD2 are required only during development. It is not required to install them if you're only running the application out of the box.
@@ -37,10 +37,10 @@ To build the project, navigate to the folder that contains `pom.xml` file using 
 
 Note: Frontend developers can build `client` and `server` modules separately and save build time by using Angular CLI. This option requires [Angular CLI](http://gruntjs.com/) to be installed globally.
 
- **TOMSON Start**
-1. Build the `client` module: *run `npm install` in the client folder*
+
+1. Build the `client` module: *run `npm run prod` in the client folder*
 2. Manually repackage the `jar` file from the `server` module 
-**TOMSON End**
+
 
 ## Run
 
@@ -55,15 +55,10 @@ This is a [Spring Boot](https://projects.spring.io/spring-boot/) project and ser
 
 ## Debug TypeScript
 
-[TypeScript](https://www.typescriptlang.org/index.html) is used to write code in Angular 2. The default build task in the `client` module only generates JavaScript files without source maps when transpiling TypeScript. 
 
-In order to debug TypeScript, we need source maps to be generated as well:
- **TOMSON Start**
-1. Run Grunt build debug task in the `client` module to generate source maps along with transpiled JavaScript: *run `grunt build:debug` in the client folder*
-2. Run the application and use browser development tools to set breakpoints in related TypeScript files to start debugging.
- **TOMSON End**
-*NOTE: The [source maps](https://code.tutsplus.com/tutorials/source-maps-101--net-29173) file is also generated when TypeScript translate into JavaScript, it sets correspondence between lines in the TypeScript code and in the generated JavaScript code.*
-
+During build, [Angular-Cli](https://github.com/angular/angular-cli) uses [Webpack](https://webpack.github.io/) to create bundles (Javascript files) which will be referenced in the browser.
+Run the application and use browser development tools to set breakpoints in related Javascript files to start debugging.
+ 
 ## Configure
 
 The `server` module runs with some default configuration that is primarily targeted for development environment. It utilizes [`Configuration Server`](https://github.com/bhits/config-server) which is based on [Spring Cloud Config](https://github.com/spring-cloud/spring-cloud-config) to manage externalized configuration, which is stored in a `Configuration Data Git Repository`. We provide a [`Default Configuration Data Git Repository`]( https://github.com/bhits/c2s-config-data).
@@ -96,24 +91,6 @@ services:
     command: ["--c2s.c2s-ui.oauth2.client.secret=strongpassword"]
 ...
 ```
-
-*NOTE:*
-
-**TOMSON Start**
-+ Please note that these additional arguments will be appended to the default `ENTRYPOINT` specified in the `Dockerfile` unless the `ENTRYPOINT` is overridden.
-+ The Consent2Share UI uses [HTML5 mode](https://docs.angularjs.org/guide/$location#html5-mode) for the URL format in the browser address bar and it also uses `/fe` as the base for all Angular routes. Therefore, the `server` component forwards all paths that starts with `/fe` to root.
-In the `PPUIApplication.java`:
-
-```java
-
-...
-  @RequestMapping(value = "/fe/**")
-      public String redirect() {
-          return "forward:/";
-      }
-...
-```
-**TOMSON End**
 
 ### Enable SSL
 
