@@ -2,8 +2,6 @@ import {Pipe, PipeTransform} from "@angular/core";
 import {ConsentProvider, FHIR_US_NPI_SYSTEM} from "./consent-provider.model";
 import {UtilityService} from "./utility.service";
 
-type ArgType = "npi" | "name" | "phone" | "address";
-
 @Pipe({
   name: 'consentProvider'
 })
@@ -12,7 +10,7 @@ export class ConsentProviderPipe implements PipeTransform {
   constructor(private utilityService: UtilityService) {
   }
 
-  transform(value: ConsentProvider, args?: ArgType): any {
+  transform(value: ConsentProvider, args?: any): any {
     if(value){
       switch (args) {
         case "npi":
