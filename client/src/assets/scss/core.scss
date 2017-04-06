@@ -2,7 +2,8 @@ html {height: 100%;}
 body {
   font-size: 62.5%;
   min-height: 100%;
-  background-color: #F0F9F8;
+  //background-color: #F0F9F8;
+  background-color: #BCDEDB;
 }
 //.wrapper {
 //  display: flex;
@@ -23,6 +24,16 @@ body {
   background-size:cover;
 }
 
+.page-background {
+    background-color: #BCDEDB;
+    background-image: url("assets/img/c2s-3.0-page-background.svg");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+  background-repeat: repeat;
+
+}
+
 @mixin border-radius ($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
@@ -36,6 +47,10 @@ body {
 
 .img-circle {
   border-radius: 50%;
+}
+
+a:link {
+  text-decoration: none;
 }
 
 /***** MARGINS & PADDINGS *****/
@@ -392,6 +407,10 @@ body {
   }
   .border-bottom-purple {
     border-bottom: 2px solid #644f63;
+  }
+
+  .border-top-purple {
+    border-top: 2px solid #644f63;
   }
 
 
