@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {AuthenticationService} from "./security/shared/authentication.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -8,8 +8,12 @@ import {AuthenticationService} from "./security/shared/authentication.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  private lang:string[] = ["en", "es"];
 
-  constructor(){
+  constructor(private translate: TranslateService){
+    this.translate.addLangs(this.lang);
+    // TODO Get default langauge from user profile
+    this.translate.setDefaultLang(this.lang[0]);
   }
 
   ngOnInit() {

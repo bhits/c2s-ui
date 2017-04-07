@@ -1,0 +1,6 @@
+<label>
+  <select #langSelect (change)="setLocale(langSelect.value)">
+    <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+            [selected]="lang === translate.currentLang">{{ lang }}</option>
+  </select>
+</label>
