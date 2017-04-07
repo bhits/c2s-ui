@@ -1,0 +1,31 @@
+{
+  "APP":{
+    "MENU": "Menu"
+  },
+  "HOME":{
+    "SELECT_LANG": "Change language",
+    "WELCOME":{
+      "TITLE":"Let's get started.",
+      "DESCRIPTION":"Before you’re able to share your health data and information, we need to gather a few more details."
+
+    },
+    "PROVIDERS": {
+      "TITLE":"My <span class='font-weight700'>Providers</span>",
+      "STEP_1":{
+        "ACTION":"add",
+        "TITLE":"Step 1.",
+        "DESCRIPTION":"Begin by adding the people with whom you trust to share your health information."
+      },
+      "FOOTER_NOTES":"Provider{{value}}"
+    },
+    "CONSENTS": {
+      "TITLE":"My <span class='font-weight700'>Consents</span>",
+      "STEP_2":{
+        "ACTION":"add",
+        "TITLE":"Step 2.",
+        "DESCRIPTION": "Begin by adding the people with whom you trust to share your health information."
+      },
+      "FOOTER_NOTES":"Consent{{value}}"
+    }
+  }
+}
