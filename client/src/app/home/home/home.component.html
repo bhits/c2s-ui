@@ -9,6 +9,20 @@
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px" fxLayoutAlign="center">
 
+    <div  *ngFor="let homeCard of homeCards; let i = index; ">
+      <c2s-home-card
+        [routeUrl]="homeCard.routeUrl"
+        [imageUrl]="homeCard.imageUrl"
+        [title]="homeCard.title"
+        [step]="homeCard.step"
+        [description]="homeCard.description"
+        [entityCount]="homeCard.entityCount"
+        [headerClass]="homeCard.headerClass"
+      ></c2s-home-card>
+    </div>
+
+
+
     <md-card class="home-card contacts">
 
       <md-card-header class="middle">
