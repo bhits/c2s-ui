@@ -4,7 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule, Http} from "@angular/http";
 import {Md2Module} from "md2";
 import {MaterialModule} from "@angular/material";
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 import {AppComponent} from "./app.component";

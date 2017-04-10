@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import {ValidationService} from "../../shared/validation.service";
 import {TokenService} from "../shared/token.service";
 import {TranslateService} from "@ngx-translate/core";
+import {CustomTranslateService} from "../../core/custom-translate.service";
 
 @Component({
   selector: 'c2s-login',
@@ -17,17 +18,12 @@ export class LoginComponent implements OnInit {
   credentials:Credentials;
   loginForm : FormGroup;
   showLoginBackendError: boolean =  false;
-  private lang:string[] = ["en", "es"];
 
   constructor(private authenticationService:AuthenticationService,
               private formBuilder: FormBuilder,
               private validationService: ValidationService,
               private tokenService: TokenService,
-              private translate: TranslateService) {
-
-    this.translate.addLangs(this.lang);
-    // TODO Get default langauge from user profile
-    this.translate.setDefaultLang(this.lang[0]);
+              private customTranslateService: CustomTranslateService) {
 
     this.credentials = new Credentials();
     this.loginForm = formBuilder.group({
@@ -60,7 +56,8 @@ export class LoginComponent implements OnInit {
                                                               (uaaProfile)=>{
                                                                 let profile = this.tokenService.createProfileObject(uaaProfile);
                                                                 this.tokenService.storeUserProfile(profile);
-                                                                this.authenticationService.onGetUserProfileSuccess(profile)
+                                                                this.authenticationService.onGetUserProfileSuccess(profile);
+                                                                this.customTranslateService.enableDefaultLanguage();
                                                               }
                                                               ,
                                                                (error)=> {

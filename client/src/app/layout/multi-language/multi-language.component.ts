@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
+import {CustomTranslateService} from "../../core/custom-translate.service";
 
 @Component({
   selector: 'c2s-multi-language',
@@ -8,12 +8,20 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class MultiLanguageComponent implements OnInit {
 
-  constructor(private translate: TranslateService) { }
+  constructor(private customTranslateService: CustomTranslateService) { }
 
   ngOnInit() {
   }
 
   setLocale(locale:string){
-    this.translate.use(locale);
+    this.customTranslateService.setDefaultLanguage(locale);
+  }
+
+  getSupportedLanguage():string[]{
+    return this.customTranslateService.getSupportedLanguages();
+  }
+
+  getCurrentLanguage(){
+    return this.customTranslateService.getCurrentLanguage();
   }
 }
