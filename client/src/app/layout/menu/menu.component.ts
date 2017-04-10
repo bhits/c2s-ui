@@ -16,10 +16,10 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = [
-      new MenuItems('Home', ''),
-      new MenuItems('Providers', 'provider-list'),
-      new MenuItems('Consents', 'consent-list'),
-      new MenuItems('Logout', '')
+      new MenuItems('Home', '', 'HOME.MENU.MENU_ITEM.HOME'),
+      new MenuItems('Providers', 'provider-list','HOME.MENU.MENU_ITEM.PROVIDERS'),
+      new MenuItems('Consents', 'consent-list','HOME.MENU.MENU_ITEM.CONSENTS'),
+      new MenuItems('Logout', '','HOME.MENU.MENU_ITEM.LOGOUT')
     ];
   }
 
