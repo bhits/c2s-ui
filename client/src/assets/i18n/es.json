@@ -24,6 +24,16 @@
         "DESCRIPTION": "Comience agregando a las personas con las que confía para compartir su información de salud."
       },
       "FOOTER_NOTES":"Consentimiento{{value}}"
+    },
+    "MENU":{
+      "TITLE":"Menú",
+      "MENU_ITEM":{
+        "HOME":"Casa",
+        "PROVIDERS":"Proveedores",
+        "CONSENTS":"Consentimientos",
+        "LOGOUT":"Cerrar sesión"
+      }
     }
+
   }
 }

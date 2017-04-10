@@ -26,6 +26,15 @@
         "DESCRIPTION": "Begin by adding the people with whom you trust to share your health information."
       },
       "FOOTER_NOTES":"Consent{{value}}"
+    },
+    "MENU":{
+      "TITLE":"Menu",
+      "MENU_ITEM":{
+        "HOME":"Home",
+        "PROVIDERS":"Providers",
+        "CONSENTS":"Consents",
+        "LOGOUT":"Logout"
+      }
     }
   }
 }
