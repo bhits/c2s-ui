@@ -14,7 +14,8 @@ export class AuthenticationService {
   uaaUserInfoUrl: string = "/uaa/userinfo";
   CLIENT_ID:string = 'YzJzLXVpOmNoYW5nZWl0';
   HOME:string ='home';
-  LOGIN:string ='login';storeUserProfile
+  LOGIN:string ='login';
+
   constructor(private router: Router,
               private http: Http,
               private tokenService: TokenService,
