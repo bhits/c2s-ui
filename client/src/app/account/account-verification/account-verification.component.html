@@ -20,7 +20,7 @@
       <button md-raised-button color="primary" [disabled]="accountVerificationFrom.pristine" (click)="clear()">
         <strong>Clear</strong>
       </button>
-      <button md-raised-button color="primary" [disabled]="accountVerificationFrom.invalid">
+      <button md-raised-button color="primary" [disabled]="accountVerificationFrom.invalid" (click)="verify()">
         <strong>Continue</strong>
       </button>
     </div>

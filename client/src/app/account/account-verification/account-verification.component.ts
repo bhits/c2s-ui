@@ -23,4 +23,8 @@ export class AccountVerificationComponent implements OnInit {
   public clear() {
     this.accountVerificationFrom.reset();
   }
+
+  public verify(){
+
+  }
 }
