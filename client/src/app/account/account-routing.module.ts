@@ -9,7 +9,7 @@ const accountRoutes: Routes = [
     component: AccountComponent,
     children: [
       {
-        path: '',
+        path: 'verification',
         component: AccountVerificationComponent
       }
     ]
