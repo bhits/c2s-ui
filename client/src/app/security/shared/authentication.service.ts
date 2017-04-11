@@ -6,6 +6,9 @@ import {GlobalEventManagerService} from "../../core/global-event-manager.service
 import {AccessToken} from "./access-token.model";
 import {TokenService} from "./token.service";
 import {Profile} from "../../core/profile.model";
+import {ProfileService} from "./profile.service";
+import {UmsProfile} from "./ums-profile.model";
+import {CustomTranslateService} from "../../core/custom-translate.service";
 
 
 @Injectable()
@@ -19,7 +22,9 @@ export class AuthenticationService {
   constructor(private router: Router,
               private http: Http,
               private tokenService: TokenService,
-              private globalEventManagerService: GlobalEventManagerService) {
+              private globalEventManagerService: GlobalEventManagerService,
+              private profileService: ProfileService,
+              private customTranslateService: CustomTranslateService) {
   }
 
   login(username:string, password:string) {
@@ -33,6 +38,7 @@ export class AuthenticationService {
   logout() {
     this.tokenService.deleteAccessToken();
     this.tokenService.deleteProfileToken();
+    this.profileService.deleteProfileFromSessionStorage();
     this.globalEventManagerService.setShowHeaderAndFooter(false);
     this.router.navigate([this.LOGIN]);
   }
@@ -40,9 +46,17 @@ export class AuthenticationService {
   isLogin(){
     let uaaToken:AccessToken =  this.tokenService.getAccessToken();
     let profile:Profile =  this.tokenService.getProfileToken();
+
     if(uaaToken && profile){
+        let usmProfile:UmsProfile =  this.profileService.getProfileFromSessionStorage();
+        if(usmProfile){
+          this.customTranslateService.addSupportedLanguages(usmProfile.locales);
+          this.customTranslateService.setDefaultLanguage(usmProfile.defaultLocale);
+        }
+
         this.globalEventManagerService.setShowHeaderAndFooter(true);
         this.globalEventManagerService.setProfile(profile);
+
         return true;
     }
     return false;
