@@ -34,7 +34,9 @@
     <div fxLayoutAlign="center">
       <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px" fxLayoutAlign="center">
+
+    <div class="bg-forest-green p-md" fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px"
+         fxLayoutAlign="center">
       <md-card class="provider-card" *ngFor="let provider of providers | paginate: paginationConfig">
         <md-card-header>
           <div class="md-card-title flexcontainer row" fxLayoutAlign="center center">

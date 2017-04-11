@@ -3,7 +3,8 @@ body {
   font-size: 62.5%;
   min-height: 100%;
   //background-color: #F0F9F8;
-  background-color: #BCDEDB;
+  //background-color: #BCDEDB;
+  background-color: rgba(188, 222, 219, .2);
 }
 //.wrapper {
 //  display: flex;
@@ -13,6 +14,46 @@ body {
 //  align-items: stretch;
 //  align-content: stretch;
 //}
+
+// provider-search styles -------------------------------------- //
+
+.provider-search-card {
+  &.mat-card {padding: 0;}
+  md2-accordion-tab .md2-accordion-header {
+    color: white !important;
+    background-color: #243852;
+    padding: 10px;
+    max-height: inherit;
+  }
+  .mat-card-title {margin: 0; padding-left: 15px;}
+  .md2-accordion-header-icon {border-color: white !important; top: 23px !important;}
+  .md2-accordion-tab-active .md2-accordion-header-icon {border-color: white !important; top: 27px !important;}
+
+}
+.toolbar-base {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  //background-color: #BCDEDB;
+  background-color: #eaeaea;
+  flex-wrap: nowrap;
+  md-toolbar-row {
+    min-height: auto !important;
+    height: auto !important;
+    white-space: inherit !important;
+    color: #243852;
+    font-size: 1em;
+  }
+  .mat-mini-fab {
+    color: white;
+    font-size: 1.2em;
+    background-color: #644f63;
+  }
+}
+
+
+// end provider-search styles ---------------------------------- //
 
 .flex-min-height-max {
   min-height: calc(100vh - 0px);
