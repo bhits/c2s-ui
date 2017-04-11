@@ -10,6 +10,7 @@ import {PageContentComponent} from "./page-content/page-content.component";
 import {SharedModule} from "../shared/shared.module";
 import {RouterModule} from "@angular/router";
 import {AuthenticationService} from "../security/shared/authentication.service";
+import {UnsecuredHeaderComponent} from "./unsecured-header/unsecured-header.component";
 
 @NgModule({
   imports: [
@@ -24,9 +25,11 @@ import {AuthenticationService} from "../security/shared/authentication.service";
     MenuComponent,
     HeaderComponent,
     FooterComponent,
-    PageContentComponent],
+    PageContentComponent,
+    UnsecuredHeaderComponent],
   exports: [
     HeaderComponent,
+    UnsecuredHeaderComponent,
     FooterComponent,
     PageContentComponent,
     MaterialModule
