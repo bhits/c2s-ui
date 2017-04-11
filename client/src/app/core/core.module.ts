@@ -10,6 +10,7 @@ import {TokenService} from "../security/shared/token.service";
 import {GlobalEventManagerService} from "./global-event-manager.service";
 import {BrowserService} from "./browser.service";
 import {CustomTranslateService} from "./custom-translate.service";
+import {SessionStorageService} from "../security/shared/session-storage.service";
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import {CustomTranslateService} from "./custom-translate.service";
     {
       provide: Http,
       useFactory: httpInterceptorServiceFactory,
-      deps: [XHRBackend, RequestOptions, SlimLoadingBarService, TokenService]
+      deps: [XHRBackend, RequestOptions, SlimLoadingBarService, TokenService, SessionStorageService]
     }
   ],
   exports: [SlimLoadingBarModule]

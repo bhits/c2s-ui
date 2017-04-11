@@ -79,6 +79,7 @@ export class LoginComponent implements OnInit {
       (profile: UmsProfile)=>{
         this.customTranslateService.addSupportedLanguages(profile.locales);
         this.customTranslateService.setDefaultLanguage(profile.defaultLocale);
+        this.profileService.setProfileInSessionStorage(profile);
       },
       this.handleLoginError
     )
