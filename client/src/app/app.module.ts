@@ -17,6 +17,7 @@ import {CanActivateAuthGuardService} from "./security/shared/can-activate-auth-g
 import {AuthenticationService} from "./security/shared/authentication.service";
 import {GlobalEventManagerService} from "./core/global-event-manager.service";
 import {LayoutModule} from "./layout/layout.module";
+import {CustomTranslateService} from "./core/custom-translate.service";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -53,7 +54,9 @@ export function createTranslateLoader(http: Http) {
   providers: [
     CanActivateAuthGuardService,
     AuthenticationService,
-    GlobalEventManagerService
+    GlobalEventManagerService,
+    TranslateService,
+    CustomTranslateService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,32 +1,28 @@
 import { Injectable } from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {Locale} from "./shared/locale.model";
+import {UmsProfile} from "../security/shared/ums-profile.model";
 
 @Injectable()
 export class CustomTranslateService {
 
-  constructor( private translate: TranslateService) {
-
+  constructor( private translateService: TranslateService) {
   }
 
   getCurrentLanguage():string{
-     return this.translate.currentLang;
+     return this.translateService.currentLang;
   }
 
-  enableDefaultLanguage(){
-    let languages:string [] = [Locale.ENGLISH, Locale.SPANISH];
-    this.translate.addLangs(languages);
-    // // TODO Get default langauge from user profile
-    this.translate.use(languages[0]);
-
+  addSupportedLanguages(locales: string[]){
+    this.translateService.addLangs(locales);
   }
 
   setDefaultLanguage(locale:string){
-    this.translate.use(locale);
+    this.translateService.use(locale);
   }
 
   getSupportedLanguages(): string[]{
-    return this.translate.getLangs();
+    return this.translateService.getLangs();
   }
 
 }

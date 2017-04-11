@@ -5,8 +5,9 @@ import {Credentials} from "../shared/credentials.model";
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import {ValidationService} from "../../shared/validation.service";
 import {TokenService} from "../shared/token.service";
-import {TranslateService} from "@ngx-translate/core";
 import {CustomTranslateService} from "../../core/custom-translate.service";
+import {ProfileService} from "../shared/profile.service";
+import {UmsProfile} from "../shared/ums-profile.model";
 
 @Component({
   selector: 'c2s-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private validationService: ValidationService,
               private tokenService: TokenService,
-              private customTranslateService: CustomTranslateService) {
+              private customTranslateService: CustomTranslateService,
+              private profileService: ProfileService) {
 
     this.credentials = new Credentials();
     this.loginForm = formBuilder.group({
@@ -57,14 +59,10 @@ export class LoginComponent implements OnInit {
                                                                 let profile = this.tokenService.createProfileObject(uaaProfile);
                                                                 this.tokenService.storeUserProfile(profile);
                                                                 this.authenticationService.onGetUserProfileSuccess(profile);
-                                                                this.customTranslateService.enableDefaultLanguage();
+                                                                this.getUMSProfileAndSetDefaultLanguage();
                                                               }
                                                               ,
-                                                               (error)=> {
-                                                                 this.tokenService.deleteAccessToken()
-                                                                 this.showLoginBackendError = true;
-                                                                 console.log(error)
-                                                              }
+                                                               (error)=>this.handleLoginError
                                                           );
                               }).catch(error =>{
                                 console.log(error);
@@ -74,5 +72,21 @@ export class LoginComponent implements OnInit {
 
   isValidForm(formgroup: FormGroup){
     return this.validationService.isValidForm(formgroup);
+  }
+
+  getUMSProfileAndSetDefaultLanguage(){
+    this.profileService.getUMSProfile().subscribe(
+      (profile: UmsProfile)=>{
+        this.customTranslateService.addSupportedLanguages(profile.locales);
+        this.customTranslateService.setDefaultLanguage(profile.defaultLocale);
+      },
+      this.handleLoginError
+    )
+  }
+
+  handleLoginError(error:any){
+    this.tokenService.deleteAccessToken()
+    this.showLoginBackendError = true;
+    console.log(error)
   }
 }
