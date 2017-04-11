@@ -15,6 +15,7 @@ import {CanActivateAuthGuardService} from "./security/shared/can-activate-auth-g
 import {AuthenticationService} from "./security/shared/authentication.service";
 import {GlobalEventManagerService} from "./core/global-event-manager.service";
 import {LayoutModule} from "./layout/layout.module";
+import {AccountModule} from "./account/account.module";
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {LayoutModule} from "./layout/layout.module";
     MaterialModule, // TODO: Move to core module - verify why it is not working now.
 
     // C2S Modules
+    AccountModule,
     CoreModule,
     LayoutModule,
     HomeModule,
