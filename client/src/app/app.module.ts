@@ -6,6 +6,7 @@ import {Md2Module} from "md2";
 import {MaterialModule} from "@angular/material";
 import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from "./app.component";
 import {CoreModule} from "./core/core.module";
@@ -31,6 +32,7 @@ export function createTranslateLoader(http: Http) {
   imports: [
 
     //3rd Party modules
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
