@@ -4,8 +4,8 @@ import {UtilityService} from "app/shared/utility.service";
 import {AccountService} from "app/account/shared/account.service";
 import {C2sUiApiUrlService} from "app/shared/c2s-ui-api-url.service";
 import {NotificationService} from "app/core/notification.service";
-import {EmailTokenService} from "../shared/email-token.service";
 import {AccountVerificationRequest} from "app/account/shared/account-verification-request.model";
+import {AccountVerificationService} from "app/account/shared/account-verification.service";
 
 @Component({
   selector: 'c2s-account-verification',
@@ -15,12 +15,13 @@ import {AccountVerificationRequest} from "app/account/shared/account-verificatio
 export class AccountVerificationComponent implements OnInit {
   public accountVerificationFrom: FormGroup;
   public FORMAT: string = "MM/DD/YYYY";
+  private emailToken: string;
 
   constructor(private accountService: AccountService,
+              private accountVerificationService: AccountVerificationService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private emailTokenService: EmailTokenService,
               private utilityService: UtilityService) {
   }
 
@@ -29,7 +30,7 @@ export class AccountVerificationComponent implements OnInit {
       birthDate: ['', Validators.required],
       verificationCode: ['', [Validators.minLength(2), Validators.required]]
     });
-    this.emailTokenService.setEmailToken(this.utilityService.getCurrentNormalizedPath());
+    this.emailToken = this.accountVerificationService.retrieveEmailToken(this.utilityService.getCurrentNormalizedPath());
   }
 
   public clear() {
@@ -40,6 +41,8 @@ export class AccountVerificationComponent implements OnInit {
     this.accountService.verifyUserCreation(this.prepareCreateEditUser())
       .subscribe(
         (verificationResponse) => {
+          this.accountVerificationService.setVerificationInfo(this.prepareCreateEditUser());
+          this.accountVerificationService.setUsername(verificationResponse.username);
           this.utilityService.navigateTo(this.c2sUiApiUrlService.getCreateAccountPasswordUrl())
         },
         err => {
@@ -51,10 +54,12 @@ export class AccountVerificationComponent implements OnInit {
 
   private prepareCreateEditUser(): AccountVerificationRequest {
     const formModel = this.accountVerificationFrom.value;
-    return {
-      birthDate: formModel.birthDate,
-      verificationCode: formModel.verificationCode,
-      emailToken: this.emailTokenService.getEmailToken()
-    };
+    if (this.emailToken != null) {
+      return {
+        birthDate: new Date(formModel.birthDate),
+        verificationCode: formModel.verificationCode,
+        emailToken: this.emailToken
+      };
+    }
   }
 }

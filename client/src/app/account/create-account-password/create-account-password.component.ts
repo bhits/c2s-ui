@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AccountVerificationService} from "app/account/shared/account-verification.service";
 
 @Component({
   selector: 'c2s-create-account-password',
@@ -10,7 +11,8 @@ export class CreateAccountPasswordComponent implements OnInit {
   public createAccountPasswordFrom: FormGroup;
   public username: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private accountVerificationService: AccountVerificationService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -18,6 +20,7 @@ export class CreateAccountPasswordComponent implements OnInit {
       password: ['', [Validators.minLength(2), Validators.required]],
       confirmPassword: ['', [Validators.minLength(2), Validators.required]]
     });
+    this.username = this.accountVerificationService.getUsername();
   }
 
   public clear() {
