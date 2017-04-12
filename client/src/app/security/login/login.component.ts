@@ -16,11 +16,11 @@ import {UmsProfile} from "../shared/ums-profile.model";
 })
 export class LoginComponent implements OnInit {
 
-  credentials:Credentials;
-  loginForm : FormGroup;
-  showLoginBackendError: boolean =  false;
+  credentials: Credentials;
+  loginForm: FormGroup;
+  showLoginBackendError: boolean = false;
 
-  constructor(private authenticationService:AuthenticationService,
+  constructor(private authenticationService: AuthenticationService,
               private formBuilder: FormBuilder,
               private validationService: ValidationService,
               private tokenService: TokenService,
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
                               })
   }
 
-  isValidForm(formgroup: FormGroup){
+  isValidForm(formgroup: FormGroup) {
     return this.validationService.isValidForm(formgroup);
   }
 
