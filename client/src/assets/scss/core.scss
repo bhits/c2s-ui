@@ -39,7 +39,7 @@ body {
   background-color: #eaeaea;
   flex-wrap: nowrap;
   md-toolbar-row {
-    min-height: auto !important;
+    min-height: inherit !important;
     height: auto !important;
     white-space: inherit !important;
     color: #243852;
