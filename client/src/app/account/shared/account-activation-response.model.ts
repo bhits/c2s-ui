@@ -1,4 +1,4 @@
-export class UserActivationResponse {
+export class AccountActivationResponse {
   id: number;
   firstName: string;
   middleName?: string;

@@ -1,28 +1,26 @@
-<div class="p-t-75 p-l-md p-r-md p-b">
-  <div class="p-t-md p-b-md p-l-lg p-r-lg">
-    <div class="font-size20" style="color: #266357;"><strong>Account Setup Verification</strong></div>
-  </div>
-  <div style="background-color: #BCDEDB;" class="p-md font-size18 font-weight center-sm-left">
-    To begin setting up your personal account, please enter your <strong>Date of Birth</strong> and the <strong>Verification
-    Code</strong> that was provided to you. All fields are required in order to proceed.
-  </div>
-
-  <form fxFlex [formGroup]="accountVerificationFrom" class="account-verification-form" novalidate>
-    <md2-datepicker class="full-width font-size20" placeholder="Date of Birth"
-                    [format]="FORMAT"
-                    formControlName="birthDate"></md2-datepicker>
-    <br><br>
-    <md-input-container class="full-width font-size20">
-      <input class="font-size15" mdInput placeholder="Verification Code (Verification Code is case sensitive)"
-             formControlName="verificationCode">
-    </md-input-container>
-    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
-      <button md-raised-button color="primary" [disabled]="accountVerificationFrom.pristine" (click)="clear()">
-        <strong>Clear</strong>
-      </button>
-      <button md-raised-button color="primary" [disabled]="accountVerificationFrom.invalid" (click)="verify()">
-        <strong>Continue</strong>
-      </button>
-    </div>
-  </form>
+<div class="p-t-md p-b-md p-l-lg p-r-lg">
+  <div class="font-size20" style="color: #266357;"><strong>Account Setup Verification</strong></div>
 </div>
+<div style="background-color: #BCDEDB;" class="p-md font-size18 font-weight center-sm-left">
+  To begin setting up your personal account, please enter your <strong>Date of Birth</strong> and the <strong>Verification
+  Code</strong> that was provided to you. All fields are required in order to proceed.
+</div>
+
+<form fxFlex [formGroup]="accountVerificationFrom" class="account-verification-form" novalidate>
+  <md2-datepicker class="full-width font-size20" placeholder="Date of Birth"
+                  [format]="FORMAT"
+                  formControlName="birthDate"></md2-datepicker>
+  <br><br>
+  <md-input-container class="full-width font-size20">
+    <input class="font-size15" mdInput placeholder="Verification Code (Verification Code is case sensitive)"
+           formControlName="verificationCode">
+  </md-input-container>
+  <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
+    <button md-raised-button color="primary" [disabled]="accountVerificationFrom.pristine" (click)="clear()">
+      <strong>Clear</strong>
+    </button>
+    <button md-raised-button color="primary" [disabled]="accountVerificationFrom.invalid" (click)="verify()">
+      <strong>Continue</strong>
+    </button>
+  </div>
+</form>

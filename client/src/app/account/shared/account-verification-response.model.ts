@@ -1,4 +1,4 @@
-export class VerificationResponse {
+export class AccountVerificationResponse {
   verified: boolean;
   username: string;
 }
