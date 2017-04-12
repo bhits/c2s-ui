@@ -43,7 +43,7 @@ export class AccountActivationComponent implements OnInit {
         (activationResponse: AccountActivationResponse) => {
           this.accountService.setUserFullName(activationResponse);
           this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationSuccessUrl());
-          console.log(this.accountService.getUserFullName());
+          this.accountVerificationService.deleteVerificationInfo();
         },
         err => {
           this.notificationService.show("Error in activating user.");

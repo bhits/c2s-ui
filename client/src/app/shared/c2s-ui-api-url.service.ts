@@ -7,6 +7,7 @@ export class C2sUiApiUrlService {
   urls: Map<string, string> = new Map(
     [
       // Internal routes maps
+      ["loginUrl", "/login"],
       ["accountActivationUrl", "/account/activation"],
       ["accountActivationSuccessUrl", "/account/activation-success"],
       // External api Url maps
@@ -19,6 +20,10 @@ export class C2sUiApiUrlService {
   );
 
   constructor() {
+  }
+
+  getLoginUrl(): string {
+    return this.urls.get('loginUrl');
   }
 
   getAccountActivationUrl(): string {
