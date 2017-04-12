@@ -42,4 +42,15 @@ export class HomeComponent implements OnInit {
   navigateTo(url: string) {
     this.utilityService.navigateTo(url);
   }
+  consentMapping: any = {
+    '=0': 'HOME.CONSENTS.ZERO',
+    'other': 'HOME.CONSENTS.MORE'
+  };
+
+  providerMapping: any = {
+    '=0': 'HOME.PROVIDERS.ZERO',
+    'other': 'HOME.PROVIDERS.MORE'
+  }
+
+
 }

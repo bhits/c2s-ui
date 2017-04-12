@@ -31,7 +31,7 @@
         </div>
         <div class="p-t-xs font-size12">
           <span class="font-weight700 font-size16" >{{totalProviders}}</span>
-          {{ 'HOME.PROVIDERS.FOOTER_NOTES' | translate: providerTranslateParam }}
+          {{ totalProviders | i18nPlural: providerMapping | translate :{count: totalProviders} }}
         </div>
       </md-card-content>
 
@@ -59,7 +59,7 @@
           <img md-card-image src="assets/img/consents.svg" [ngStyle]="{'width': '75%'}">
         </div>
         <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalConsents}}</span>
-          {{ 'HOME.CONSENTS.FOOTER_NOTES' | translate: consentTransalteParam}}
+            {{ totalConsents | i18nPlural: consentMapping | translate :{count: totalConsents} }}
         </div>
       </md-card-content>
 

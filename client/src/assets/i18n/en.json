@@ -16,7 +16,8 @@
         "TITLE":"Step 1.",
         "DESCRIPTION":"Begin by adding the people with whom you trust to share your health information."
       },
-      "FOOTER_NOTES":"Provider{{value}}"
+      "ZERO":"Provider",
+      "MORE":"Providers"
     },
     "CONSENTS": {
       "TITLE":"My <span class='font-weight700'>Consents</span>",
@@ -25,7 +26,8 @@
         "TITLE":"Step 2.",
         "DESCRIPTION": "Begin by adding the people with whom you trust to share your health information."
       },
-      "FOOTER_NOTES":"Consent{{value}}"
+      "ZERO":"Consent",
+      "MORE":"Consents"
     },
     "MENU":{
       "TITLE":"Menu",

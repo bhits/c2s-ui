@@ -15,7 +15,8 @@
         "TITLE":"Paso 1.",
         "DESCRIPTION":"Comience agregando a las personas con las que confía para compartir su información de salud."
       },
-      "FOOTER_NOTES":"Proveedore{{value}}"
+      "ZERO":"Proveedore",
+      "MORE":"Proveedores"
     },
     "CONSENTS": {
       "TITLE":"Mis <span class='font-weight700'>Consentimientos</span>",
@@ -23,7 +24,8 @@
         "TITLE":"Paso 2.",
         "DESCRIPTION": "Comience agregando a las personas con las que confía para compartir su información de salud."
       },
-      "FOOTER_NOTES":"Consentimiento{{value}}"
+      "ZERO":"Consentimiento",
+      "MORE":"Consentimientos"
     },
     "MENU":{
       "TITLE":"Menú",
