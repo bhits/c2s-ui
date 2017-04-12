@@ -38,10 +38,10 @@ export class AccountVerificationComponent implements OnInit {
   }
 
   public verify() {
-    this.accountService.verifyUserCreation(this.prepareCreateEditUser())
+    this.accountService.verifyAccount(this.prepareVerificationAccount())
       .subscribe(
         (verificationResponse) => {
-          this.accountVerificationService.setVerificationInfo(this.prepareCreateEditUser());
+          this.accountVerificationService.setVerificationInfo(this.prepareVerificationAccount());
           this.accountVerificationService.setUsername(verificationResponse.username);
           this.utilityService.navigateTo(this.c2sUiApiUrlService.getCreateAccountPasswordUrl())
         },
@@ -52,7 +52,7 @@ export class AccountVerificationComponent implements OnInit {
       );
   }
 
-  private prepareCreateEditUser(): AccountVerificationRequest {
+  private prepareVerificationAccount(): AccountVerificationRequest {
     const formModel = this.accountVerificationFrom.value;
     if (this.emailToken != null) {
       return {

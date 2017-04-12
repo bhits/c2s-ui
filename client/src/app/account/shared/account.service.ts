@@ -11,6 +11,7 @@ import {AccountActivationResponse} from "app/account/shared/account-activation-r
 @Injectable()
 export class AccountService {
   private umsUserUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl().concat("/users");
+  private userFullName: string;
 
   constructor(private c2sUiApiUrlService: C2sUiApiUrlService,
               private exceptionService: ExceptionService,
@@ -29,5 +30,20 @@ export class AccountService {
     return this.http.post(ACTIVATE_ACCOUNT_URL, activationRequest)
       .map((resp: Response) => <AccountActivationResponse>(resp.json()))
       .catch(this.exceptionService.handleError);
+  }
+
+  public setUserFullName(activationResponse: AccountActivationResponse): void {
+    this.userFullName = AccountService.getName(activationResponse, 'firstName').concat(' ').concat(AccountService.getName(activationResponse, 'middleName')).concat(' ').concat(AccountService.getName(activationResponse, 'lastName'));
+  }
+
+  public getUserFullName(): string {
+    return this.userFullName;
+  }
+
+  private static getName(activationResponse: AccountActivationResponse, key: string): string {
+    if (activationResponse !== null && activationResponse[key]) {
+      return activationResponse[key];
+    }
+    return ''
   }
 }
