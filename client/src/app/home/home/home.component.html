@@ -7,37 +7,37 @@
       details.</h2>
   </div>
 
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px" fxLayoutAlign="center">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="center">
 
-    <md-card class="home-card contacts">
+    <md-card (click)="navigateTo('provider-list')" class="home-card contacts">
 
-      <md-card-header class="middle">
-        <md-card-title>
-          <div class="m-n">My <span class="font-weight700">Providers</span></div>
-        </md-card-title>
-      </md-card-header>
-      <md-card-content class="p-md">
+        <md-card-header class="middle">
+          <md-card-title>
+            <div class="m-n">My <span class="font-weight700">Providers</span></div>
+          </md-card-title>
+        </md-card-header>
+        <md-card-content class="p-md">
 
-        <button md-fab (click)="navigateTo('provider-list')">
-          <md-icon class="md-24 font-weight500">add</md-icon>
-        </button>
-        <md-chip-list class="p-15">
-          <md-chip color="primary" selected="true" class="font-size16">Step 1.</md-chip>
-        </md-chip-list>
-        <h2 class="m-t-xs">
-          Begin by adding the people with whom you trust to share your health information.
-        </h2>
-        <div class="center middle">
-          <img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}">
-        </div>
-        <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalProviders}}</span>
-          Provider{{totalProviders !== 1 ? 's' : ''}}
-        </div>
-      </md-card-content>
+          <button class="plus" md-fab>
+            <md-icon class="md-24 font-weight500">add</md-icon>
+          </button>
+          <md-chip-list class="p-15">
+            <md-chip color="primary" selected="true" class="font-size16">Step 1.</md-chip>
+          </md-chip-list>
+          <h2 class="m-t-xs">
+            Begin by adding the people with whom you trust to share your health information.
+          </h2>
+          <div class="center middle">
+            <img md-card-image src="assets/img/addProviders.svg" [ngStyle]="{'width': '75%'}">
+          </div>
+          <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalProviders}}</span>
+            Provider{{totalProviders !== 1 ? 's' : ''}}
+          </div>
+        </md-card-content>
 
     </md-card>
 
-    <md-card class="home-card consents">
+    <md-card class="home-card consents disabled">
 
       <md-card-header class="middle">
         <md-card-title>
@@ -46,7 +46,7 @@
       </md-card-header>
       <md-card-content class="p-md">
 
-        <button md-fab (click)="navigateTo('consent-list')">
+        <button class="plus" md-fab (click)="navigateTo('consent-list')">
           <md-icon class="md-24 font-weight500">add</md-icon>
         </button>
         <md-chip-list class="p-15">
@@ -63,6 +63,23 @@
         </div>
       </md-card-content>
 
+    </md-card>
+
+    <md-card class="home-card no-consent">
+      <md-card-header fxLayoutAlign="end" class="middle">
+        <md-card-title class="">
+          <button md-icon-button>
+            <md-icon class="white-text p-r-xs">clear</md-icon>
+          </button>
+        </md-card-title>
+      </md-card-header>
+      <md-card-content class="p-lg m-t-lg">
+        <div class="border-top-white p-b-lg"></div>
+        <div class="m-t-xs m-b center font-size24 font-weight400">
+          To create consents, you must first add the people with whom you trust to share health information
+        </div>
+        <div class="border-bottom-white p-t-lg"></div>
+      </md-card-content>
     </md-card>
 
 
