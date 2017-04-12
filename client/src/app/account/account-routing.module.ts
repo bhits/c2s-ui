@@ -2,7 +2,8 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {AccountComponent} from "app/account/account/account.component";
 import {AccountVerificationComponent} from "app/account/account-verification/account-verification.component";
-import {CreateAccountPasswordComponent} from "app/account/create-account-password/create-account-password.component";
+import {AccountActivationSuccessComponent} from "app/account/account-activation-success/account-activation-success.component";
+import {AccountActivationComponent} from "app/account/account-activation/account-activation.component";
 
 const accountRoutes: Routes = [
   {
@@ -14,8 +15,12 @@ const accountRoutes: Routes = [
         component: AccountVerificationComponent
       },
       {
-        path: 'create-account-password',
-        component: CreateAccountPasswordComponent
+        path: 'activation',
+        component: AccountActivationComponent
+      },
+      {
+        path: 'activation-success',
+        component: AccountActivationSuccessComponent
       }
     ]
   }
@@ -31,6 +36,7 @@ export class AccountRoutingModule {
 
 export const routedComponents = [
   AccountComponent,
-  AccountVerificationComponent,
-  CreateAccountPasswordComponent
+  AccountActivationComponent,
+  AccountActivationSuccessComponent,
+  AccountVerificationComponent
 ];

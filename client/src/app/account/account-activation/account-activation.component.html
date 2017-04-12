@@ -7,7 +7,7 @@
   Remember your Username and Password. You will need them to log in to your account.
 </div>
 
-<form fxFlex [formGroup]="createAccountPasswordFrom" class="create-account-password-from" novalidate>
+<form fxFlex [formGroup]="accountActivationFrom" class="account-activation-from" novalidate>
   <md-input-container class="full-width font-size20">
     <input class="font-size15" mdInput placeholder="Username" [value]="username" disabled>
   </md-input-container>
@@ -20,11 +20,12 @@
            formControlName="confirmPassword">
   </md-input-container>
   <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
-    <button md-raised-button color="primary" [disabled]="createAccountPasswordFrom.pristine" (click)="clear()">
+    <button md-raised-button color="primary" [disabled]="accountActivationFrom.pristine" (click)="clear()">
       <strong>Clear</strong>
     </button>
-    <button md-raised-button color="primary" [disabled]="createAccountPasswordFrom.invalid" (click)="activate()">
+    <button md-raised-button color="primary" [disabled]="accountActivationFrom.invalid" (click)="activate()">
       <strong>Submit</strong>
     </button>
   </div>
 </form>
+

@@ -43,7 +43,7 @@ export class AccountVerificationComponent implements OnInit {
         (verificationResponse) => {
           this.accountVerificationService.setVerificationInfo(this.prepareVerificationAccount());
           this.accountVerificationService.setUsername(verificationResponse.username);
-          this.utilityService.navigateTo(this.c2sUiApiUrlService.getCreateAccountPasswordUrl())
+          this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationUrl())
         },
         err => {
           this.notificationService.show("Error in verifying user.");

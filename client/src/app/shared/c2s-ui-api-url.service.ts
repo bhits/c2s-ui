@@ -7,7 +7,8 @@ export class C2sUiApiUrlService {
   urls: Map<string, string> = new Map(
     [
       // Internal routes maps
-      ["createAccountPasswordUrl", "/account/create-account-password"],
+      ["accountActivationUrl", "/account/activation"],
+      ["accountActivationSuccessUrl", "/account/activation-success"],
       // External api Url maps
       //Todo: Change to correct url
       ["UmsBaseUrl", "http://localhost:9999/ums"],
@@ -20,8 +21,12 @@ export class C2sUiApiUrlService {
   constructor() {
   }
 
-  getCreateAccountPasswordUrl(): string {
-    return this.urls.get('createAccountPasswordUrl');
+  getAccountActivationUrl(): string {
+    return this.urls.get('accountActivationUrl');
+  }
+
+  getAccountActivationSuccessUrl(): string {
+    return this.urls.get('accountActivationSuccessUrl');
   }
 
   getUmsBaseUrl(): string {
