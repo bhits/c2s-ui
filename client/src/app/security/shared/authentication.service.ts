@@ -13,8 +13,8 @@ import {CustomTranslateService} from "../../core/custom-translate.service";
 
 @Injectable()
 export class AuthenticationService {
-  uaaTokenUrl: string = "/uaa/oauth/token/";
-  uaaUserInfoUrl: string = "/uaa/userinfo";
+  oauth2TokenUrl: string = "/uaa/oauth/token/";
+  oauth2UserInfoUrl: string = "/uaa/userinfo";
   CLIENT_ID:string = 'YzJzLXVpOmNoYW5nZWl0';
   HOME:string ='home';
   LOGIN:string ='login';
@@ -28,7 +28,7 @@ export class AuthenticationService {
   }
 
   login(username:string, password:string) {
-    return this.http.post(this.uaaTokenUrl, this.composeParameters(username, password), this.setHeaders());
+    return this.http.post(this.oauth2TokenUrl, this.composeParameters(username, password), this.setHeaders());
   }
 
   onLoginSuccess(response: Response){
@@ -44,10 +44,10 @@ export class AuthenticationService {
   }
 
   isLogin(){
-    let uaaToken:AccessToken =  this.tokenService.getAccessToken();
+    let oauth2Token:AccessToken =  this.tokenService.getAccessToken();
     let profile:Profile =  this.tokenService.getProfileToken();
 
-    if(uaaToken && profile){
+    if(oauth2Token && profile){
         let usmProfile:UmsProfile =  this.profileService.getProfileFromSessionStorage();
         if(usmProfile){
           this.customTranslateService.addSupportedLanguages(usmProfile.locales);
@@ -63,7 +63,7 @@ export class AuthenticationService {
   }
 
   getUserProfile(){
-    return this.http.get(this.uaaUserInfoUrl)
+    return this.http.get(this.oauth2UserInfoUrl)
                       .map((resp: Response) => <any>(resp.json()));
   }
 
