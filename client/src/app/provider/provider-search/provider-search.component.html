@@ -16,7 +16,7 @@
             </md2-accordion-header>
 
             <md-card-content>
-              <div style="border: 1px red solid; padding: 5px;">
+              <div class="section-border">
                 <md-toolbar class="toolbar-base">
                   <button md-mini-fab aria-label="Step 1">
                     <span>1</span>
@@ -26,7 +26,7 @@
 
                 <div formGroupName="locatingType">
                   <!--<div fxLayout="column" fxLayoutAlign="center center">-->
-                  <div class="p-sm m-t-xs highlight">
+                  <div class="p-sm m-t-xs bg-lite-blue">
                     <div class="font-size14 font-weight400 text-purple p-t-sm p-b center">Please choose one.</div>
 
                     <div class="bob">
@@ -51,7 +51,7 @@
 
                   <!--</div>-->
 
-                  <div class="p-sm m-t-xs highlight" *ngIf="isStateCityType()">
+                  <div class="p-sm m-t-xs" *ngIf="isStateCityType()">
                     <div class="p-b-sm">
                       <!--<div fxLayout="column">-->
 
@@ -65,7 +65,7 @@
                             </md-option>
                           </md-select>
                         </div>
-                        <div fxLayout="row" fxLayoutAlign="center" class="p-t-sm">
+                        <div fxLayout="row" fxLayoutAlign="center" class="p-t-xs">
                           <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                                *ngIf="hasErrorOnCurrentFormControl('locatingType.stateCity.state', ERROR_CODE.REQUIRED)"
                                class="form-invalid">
@@ -100,7 +100,7 @@
                     </div>
                   </div>
 
-                  <div class="p-sm m-t-xs highlight" *ngIf="!isStateCityType()">
+                  <div class="p-sm m-t-xs" *ngIf="!isStateCityType()">
                     <div class="p-t-md p-b-sm">
                       <div fxLayout="column" formGroupName="zip">
                         <div fxLayout="row" fxLayoutAlign="center">
@@ -128,7 +128,7 @@
                 </div>
               </div>
 
-              <div class="m-t" style="border: 1px red solid; padding: 5px;">
+              <div class="m-t section-border">
                 <md-toolbar class="toolbar-base">
                   <button md-mini-fab aria-label="Step 2">
                     <span>2</span>
@@ -137,7 +137,7 @@
                 </md-toolbar>
 
                 <div formGroupName="providerType">
-                  <div class="p-sm m-t-xs highlight">
+                  <div class="p-sm m-t-xs bg-lite-blue">
                     <div class="bob">
                       <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
                               (click)="setProviderType(PROVIDER_TYPE.INDIVIDUAL)"
@@ -158,7 +158,7 @@
                     </div>
                   </div>
 
-                  <div class="p-sm m-t-xs highlight" *ngIf="isIndividualProviderType()">
+                  <div class="p-sm m-t-xs" *ngIf="isIndividualProviderType()">
                     <div class="p-b-sm">
 
                       <div fxLayout="column" formGroupName="individual">
@@ -228,7 +228,7 @@
                     </div>
                   </div>
 
-                  <div class="p-sm m-t-xs highlight" *ngIf="!isIndividualProviderType()">
+                  <div class="p-sm m-t-xs" *ngIf="!isIndividualProviderType()">
                     <div class="p-b-sm">
 
                       <div fxLayout="column" formGroupName="organization">
@@ -252,7 +252,7 @@
                         </div>
                         </div>
                       </div>
-                      <div fxLayout="column" formGroupName="organization">
+                      <div fxLayout="column" formGroupName="organization" class="p-t-xs">
                         <div fxLayout="row" fxLayoutAlign="center">
                         <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
                           <input mdInput placeholder="Telephone (Optional)" formControlName="phone">
