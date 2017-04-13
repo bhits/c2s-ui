@@ -24,6 +24,11 @@ export class HomeCardComponent implements OnInit {
   }
 
   navigateTo(url: string) {
-    this.utilityService.navigateTo(url);
+    if(this.headerClass && this.headerClass === 'disabled'){
+      console.log("Cannot create consent.!!");
+    }else{
+      this.utilityService.navigateTo(url);
+    }
+
   }
 }
