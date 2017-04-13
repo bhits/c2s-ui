@@ -16,14 +16,14 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
   styleUrls: ['./consent-create-edit.component.css']
 })
 export class ConsentCreateEditComponent implements OnInit {
-  private consent: ConsentCreateEdit;
-  private providers: ConsentProvider[];
-  private sensitivityPolicies: SensitivityPolicy[];
-  private purposeOfUses: SharePurpose[];
+  consent: ConsentCreateEdit;
+  providers: ConsentProvider[];
+  sensitivityPolicies: SensitivityPolicy[];
+  purposeOfUses: SharePurpose[];
 
-  private title: string = "Create Consent";
-  private consentId: string;
-  private profile: Profile;
+  title: string = "Create Consent";
+  consentId: string;
+  profile: Profile;
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,

@@ -9,17 +9,17 @@ import {MenuItems} from "../shared/menu-items.model";
   styleUrls: ['menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  private menuItems: MenuItems[];
+  menuItems: MenuItems[];
 
   constructor(private utilityService: UtilityService, private authenticationService:AuthenticationService) {
   }
 
   ngOnInit() {
     this.menuItems = [
-      new MenuItems('Home', ''),
-      new MenuItems('Providers', 'provider-list'),
-      new MenuItems('Consents', 'consent-list'),
-      new MenuItems('Logout', '')
+      new MenuItems('Home', '', 'HOME.MENU.MENU_ITEM.HOME'),
+      new MenuItems('Providers', 'provider-list','HOME.MENU.MENU_ITEM.PROVIDERS'),
+      new MenuItems('Consents', 'consent-list','HOME.MENU.MENU_ITEM.CONSENTS'),
+      new MenuItems('Logout', '','HOME.MENU.MENU_ITEM.LOGOUT')
     ];
   }
 

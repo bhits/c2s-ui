@@ -2,9 +2,8 @@
 
 <div class="p-t-75 p-l-lg p-b-md p-r-lg">
   <div class="center-sm-left">
-    <h1 class="m-n p-t-sm">Let's get started.</h1>
-    <h2 class="m-t-sm m-t-sm">Before you’re able to share your health data and information, we need to gather a few more
-      details.</h2>
+    <h1 class="m-n p-t-sm">{{ 'HOME.WELCOME.TITLE' | translate }}</h1>
+    <h2 class="m-t-sm m-t-sm">{{ 'HOME.WELCOME.DESCRIPTION' | translate }}</h2>
   </div>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px" fxLayoutAlign="center">
@@ -13,7 +12,7 @@
 
       <md-card-header class="middle">
         <md-card-title>
-          <div class="m-n">My <span class="font-weight700">Providers</span></div>
+          <div class="m-n" [innerHTML]="'HOME.PROVIDERS.TITLE' | translate"></div>
         </md-card-title>
       </md-card-header>
       <md-card-content class="p-md">
@@ -22,16 +21,17 @@
           <md-icon class="md-24 font-weight500">add</md-icon>
         </button>
         <md-chip-list class="p-15">
-          <md-chip color="primary" selected="true" class="font-size16">Step 1.</md-chip>
+          <md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.PROVIDERS.STEP_1.TITLE' | translate }}</md-chip>
         </md-chip-list>
         <h2 class="m-t-xs">
-          Begin by adding the people with whom you trust to share your health information.
+          {{ 'HOME.PROVIDERS.STEP_1.DESCRIPTION' | translate }}
         </h2>
         <div class="center middle">
           <img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}">
         </div>
-        <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalProviders}}</span>
-          Provider{{totalProviders !== 1 ? 's' : ''}}
+        <div class="p-t-xs font-size12">
+          <span class="font-weight700 font-size16" >{{totalProviders}}</span>
+          {{ totalProviders | i18nPlural: providerMapping | translate :{count: totalProviders} }}
         </div>
       </md-card-content>
 
@@ -41,7 +41,7 @@
 
       <md-card-header class="middle">
         <md-card-title>
-          <div class="m-n">My <span class="font-weight700">Consents</span></div>
+          <div class="m-n" [innerHTML]="'HOME.CONSENTS.TITLE' | translate"></div>
         </md-card-title>
       </md-card-header>
       <md-card-content class="p-md">
@@ -50,16 +50,16 @@
           <md-icon class="md-24 font-weight500">add</md-icon>
         </button>
         <md-chip-list class="p-15">
-          <md-chip color="primary" selected="true" class="font-size16">Step 2.</md-chip>
+          <md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.CONSENTS.STEP_2.TITLE' | translate }}</md-chip>
         </md-chip-list>
         <h2 class="m-t-xs">
-          Next, create a consent to allow your providers and/or contacts to share health information.
+          {{ 'HOME.CONSENTS.STEP_2.DESCRIPTION' | translate }}
         </h2>
         <div class="center middle">
           <img md-card-image src="assets/img/consents.svg" [ngStyle]="{'width': '75%'}">
         </div>
         <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalConsents}}</span>
-          Consent{{totalConsents !== 1 ? 's' : ''}}
+            {{ totalConsents | i18nPlural: consentMapping | translate :{count: totalConsents} }}
         </div>
       </md-card-content>
 

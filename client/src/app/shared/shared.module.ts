@@ -5,8 +5,10 @@ import {MaterialModule} from "@angular/material";
 import {Md2Module, Md2Tooltip} from "md2";
 import {Ng2PaginationModule} from "ng2-pagination";
 import {NgModule} from "@angular/core";
-import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 import {RouterModule} from "@angular/router";
+
+
+import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 import {UtilityService} from "./utility.service";
 import {DataService} from "./data.service";
 import {PageTitleComponent} from "./page-title/page-title.component";

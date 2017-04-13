@@ -9,7 +9,7 @@
     <div fxLayoutAlign="center" *ngIf="loading">
       <md-spinner></md-spinner>
     </div>
-    <div *ngIf="providerResult?._embedded.flattenedSmallProviderDtoList.length===0">
+    <div *ngIf="providerResult?._embedded['flattenedSmallProviderDtoList'].length===0">
       <md-toolbar fxLayoutAlign="center" color="warn">Sorry, There is no provider found!</md-toolbar>
     </div>
     <div fxLayout="column" fxLayoutAlign="center" [ngStyle]="{'padding-top': '20px'}"

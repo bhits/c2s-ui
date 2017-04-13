@@ -1,0 +1,41 @@
+{
+  "APP":{
+    "MENU": "Menú"
+  },
+  "HOME":{
+    "SELECT_LANG": "Change language",
+    "WELCOME":{
+      "TITLE":"Empecemos.",
+      "DESCRIPTION":"Antes de poder compartir sus datos e información de salud, necesitamos reunir algunos detalles más."
+
+    },
+    "PROVIDERS": {
+      "TITLE":"Mis <span class='font-weight700'>Proveedores</span>",
+      "STEP_1":{
+        "TITLE":"Paso 1.",
+        "DESCRIPTION":"Comience agregando a las personas con las que confía para compartir su información de salud."
+      },
+      "ZERO":"Proveedore",
+      "MORE":"Proveedores"
+    },
+    "CONSENTS": {
+      "TITLE":"Mis <span class='font-weight700'>Consentimientos</span>",
+      "STEP_2":{
+        "TITLE":"Paso 2.",
+        "DESCRIPTION": "Comience agregando a las personas con las que confía para compartir su información de salud."
+      },
+      "ZERO":"Consentimiento",
+      "MORE":"Consentimientos"
+    },
+    "MENU":{
+      "TITLE":"Menú",
+      "MENU_ITEM":{
+        "HOME":"Casa",
+        "PROVIDERS":"Proveedores",
+        "CONSENTS":"Consentimientos",
+        "LOGOUT":"Cerrar sesión"
+      }
+    }
+
+  }
+}
