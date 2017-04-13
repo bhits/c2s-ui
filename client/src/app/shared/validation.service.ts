@@ -42,13 +42,16 @@ export class ValidationService {
     }
   }
 
-  passwordValidator(control) {
-    // {8,100}           - Assert password is between 6 and 100 characters
-    // (?=.*[0-9])       - Assert a string has at least one number
-    if (control.value && control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{8,100}$/)) {
-      return null;
-    } else {
-      return {'invalidPassword': true};
+  matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
+    return (group: FormGroup): { [key: string]: any } => {
+      let password = group.controls[passwordKey];
+      let confirmPassword = group.controls[confirmPasswordKey];
+
+      if (password.value !== confirmPassword.value) {
+        return {
+          mismatchedPasswords: true
+        };
+      }
     }
   }
 }

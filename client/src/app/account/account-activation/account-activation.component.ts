@@ -7,6 +7,8 @@ import {NotificationService} from "../../core/notification.service";
 import {UtilityService} from "../../shared/utility.service";
 import {AccountActivationResponse} from "app/account/shared/account-activation-response.model";
 import {AccountActivationRequest} from "../shared/account-activation-request.model";
+import {ValidationRules} from "../../shared/validation-rules.model";
+import {ValidationService} from "app/shared/validation.service";
 
 @Component({
   selector: 'c2s-account-activation',
@@ -16,20 +18,23 @@ import {AccountActivationRequest} from "../shared/account-activation-request.mod
 export class AccountActivationComponent implements OnInit {
   public accountActivationFrom: FormGroup;
   public username: string;
+  public passwordErrorMessage: string = ValidationRules.PASSWORD_MESSAGE;
+  public mismatchedPasswordsMessage: string = ValidationRules.MISMATCHED_PASSWORDS_MESSAGE;
 
   constructor(private accountService: AccountService,
               private accountVerificationService: AccountVerificationService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private formBuilder: FormBuilder,
               private notificationService: NotificationService,
+              private validationService: ValidationService,
               private utilityService: UtilityService) {
   }
 
   ngOnInit() {
     this.accountActivationFrom = this.formBuilder.group({
-      password: ['', [Validators.minLength(2), Validators.required]],
-      confirmPassword: ['', [Validators.minLength(2), Validators.required]]
-    });
+      password: ['', [Validators.pattern(ValidationRules.PASSWORD_PATTERN), Validators.required]],
+      confirmPassword: ['', Validators.required]
+    }, {validator: this.validationService.matchingPasswords('password', 'confirmPassword')});
     this.username = this.accountVerificationService.getUsername();
   }
 

@@ -23,4 +23,5 @@ export class ValidationRules {
   public static REQUIRED_MESSAGE: string = "This field is required.";
   public static REQUIRED_TRUE_MESSAGE: string = "This field value must be true.";
   public static PASSWORD_MESSAGE: string = "Password must be at least 8 characters long, and contain a number.";
+  public static MISMATCHED_PASSWORDS_MESSAGE: string = "Passwords do not match.";
 }
