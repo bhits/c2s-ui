@@ -10,6 +10,7 @@ export class C2sUiApiUrlService {
       ["loginUrl", "/login"],
       ["accountActivationUrl", "/account/activation"],
       ["accountActivationSuccessUrl", "/account/activation-success"],
+      ["accountActivationErrorUrl", "/account/activation-error"],
       // External api Url maps
       //Todo: Change to correct url
       ["UmsBaseUrl", "http://localhost:9999/ums"],
@@ -32,6 +33,10 @@ export class C2sUiApiUrlService {
 
   getAccountActivationSuccessUrl(): string {
     return this.urls.get('accountActivationSuccessUrl');
+  }
+
+  getAccountActivationErrorUrl(): string {
+    return this.urls.get('accountActivationErrorUrl');
   }
 
   getUmsBaseUrl(): string {

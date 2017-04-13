@@ -47,7 +47,7 @@ export class AccountVerificationComponent implements OnInit {
           this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationUrl())
         },
         err => {
-          this.notificationService.show("Error in verifying user.");
+          this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationErrorUrl());
           console.log(err);
         }
       );

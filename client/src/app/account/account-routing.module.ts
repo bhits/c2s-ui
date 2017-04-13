@@ -4,6 +4,7 @@ import {AccountComponent} from "app/account/account/account.component";
 import {AccountVerificationComponent} from "app/account/account-verification/account-verification.component";
 import {AccountActivationSuccessComponent} from "app/account/account-activation-success/account-activation-success.component";
 import {AccountActivationComponent} from "app/account/account-activation/account-activation.component";
+import {AccountActivationErrorComponent} from "./account-activation-error/account-activation-error.component";
 
 const accountRoutes: Routes = [
   {
@@ -21,6 +22,10 @@ const accountRoutes: Routes = [
       {
         path: 'activation-success',
         component: AccountActivationSuccessComponent
+      },
+      {
+        path: 'activation-error',
+        component: AccountActivationErrorComponent
       }
     ]
   }
@@ -37,6 +42,7 @@ export class AccountRoutingModule {
 export const routedComponents = [
   AccountComponent,
   AccountActivationComponent,
+  AccountActivationErrorComponent,
   AccountActivationSuccessComponent,
   AccountVerificationComponent
 ];

@@ -23,6 +23,5 @@ export class AccountActivationSuccessComponent implements OnInit {
 
   public navigateTo() {
     this.utilityService.navigateTo(this.c2sUiApiUrlService.getLoginUrl());
-
   }
 }

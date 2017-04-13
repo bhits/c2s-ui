@@ -51,7 +51,7 @@ export class AccountActivationComponent implements OnInit {
           this.accountVerificationService.deleteVerificationInfo();
         },
         err => {
-          this.notificationService.show("Error in activating user.");
+          this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationErrorUrl());
           console.log(err);
         }
       );
