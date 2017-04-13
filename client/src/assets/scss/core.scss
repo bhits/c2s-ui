@@ -28,8 +28,17 @@ body {
   .mat-card-title {margin: 0; padding-left: 15px;}
   .md2-accordion-header-icon {border-color: white !important; top: 23px !important;}
   .md2-accordion-tab-active .md2-accordion-header-icon {border-color: white !important; top: 27px !important;}
+  .bob {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (min-width: 960px){
+      flex-direction: row;
+    }
+  }
 
 }
+
 .toolbar-base {
   display: flex;
   flex-direction: row;
@@ -51,9 +60,21 @@ body {
     background-color: #644f63;
   }
 }
-
+.mat-input-wrapper {padding-bottom: 0 !important;}
 
 // end provider-search styles ---------------------------------- //
+.toolbar-header {
+  padding-left: 10px;
+  @media (max-width: 959px) {
+    padding: 10px;
+    font-size: .8em;
+  }
+}
+
+.highlight {
+  &:hover {background-color: cornsilk;}
+}
+
 
 .flex-min-height-max {
   min-height: calc(100vh - 0px);
