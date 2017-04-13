@@ -63,4 +63,11 @@ export class HomeComponent implements OnInit {
 
     this.homeCards = [providersCard,consentsCard];
   }
+
+  onClick(cardState: string, dialog:any ){
+    if(cardState === 'disabled'){
+      dialog.open();
+    }
+  }
+
 }
