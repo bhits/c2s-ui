@@ -48,10 +48,10 @@ export class AuthenticationService {
     let profile:Profile =  this.tokenService.getProfileToken();
 
     if(oauth2Token && profile){
-        let usmProfile:UmsProfile =  this.profileService.getProfileFromSessionStorage();
-        if(usmProfile){
-          this.customTranslateService.addSupportedLanguages(usmProfile.locales);
-          this.customTranslateService.setDefaultLanguage(usmProfile.defaultLocale);
+        let umsProfile:UmsProfile =  this.profileService.getProfileFromSessionStorage();
+        if(umsProfile){
+          this.customTranslateService.addSupportedLanguages(umsProfile.locales);
+          this.customTranslateService.setDefaultLanguage(umsProfile.defaultLocale);
         }
 
         this.globalEventManagerService.setShowHeaderAndFooter(true);
