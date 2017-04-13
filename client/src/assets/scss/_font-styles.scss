@@ -14,7 +14,7 @@ h2 {
 
 h3, h4, h5
 
-//flow
+  //flow
 .pre-wrap {white-space: pre-wrap;}
 .nowrap {white-space: nowrap;}
 
@@ -70,12 +70,29 @@ h3, h4, h5
   font-size: 1.6em;
 }
 
+.font-size17 {
+  font-size: 1.7em;
+}
+
 .font-size18 {
   font-size: 1.8em;
 }
 
+.font-size19 {
+  font-size: 1.9em;
+}
+
 .font-size20 {
   font-size: 2em;
+}
+.font-size21 {
+  font-size: 2.1em;
+}
+.font-size22 {
+  font-size: 2.2em;
+}
+.font-size24 {
+  font-size: 2.4em;
 }
 
 //weight
@@ -97,3 +114,10 @@ h3, h4, h5
 .font-weight100 {
   font-weight: 100;
 }
+
+.text-black {color: black;}
+.text-dark-green {color: #266357;}
+.text-forest-green {color: #00796B;}
+.text-purple {color: #6C4E70;}
+.text-med-teal {color: #8CBEC7;}
+.text-teal {color: #3FA3BA;}
