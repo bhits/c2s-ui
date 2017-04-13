@@ -10,8 +10,8 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private totalProviders: number = 0;
-  private totalConsents: number = 0;
+  totalProviders: number = 0;
+  totalConsents: number = 0;
 
   constructor(private dataService: DataService,
               private utilityService: UtilityService,

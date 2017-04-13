@@ -9,7 +9,7 @@ import {MenuItems} from "../shared/menu-items.model";
   styleUrls: ['menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  private menuItems: MenuItems[];
+  menuItems: MenuItems[];
 
   constructor(private utilityService: UtilityService, private authenticationService:AuthenticationService) {
   }
