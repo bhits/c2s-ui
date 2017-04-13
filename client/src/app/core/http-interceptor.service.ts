@@ -79,7 +79,7 @@ export class HttpInterceptorService extends Http {
         options.headers = new Headers();
       }
       let profile:UmsProfile = this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
-      options.headers.set('Locale',profile.defaultLocale);
+      options.headers.set('Accept-Language',profile.defaultLocale);
     }
 
     return options;
