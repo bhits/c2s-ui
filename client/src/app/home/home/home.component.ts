@@ -10,8 +10,6 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private providerTranslateParam: any = {value:''} ;
-  private consentTransalteParam: any = {value:''};
   private totalProviders: number = 0;
   private totalConsents: number = 0;
 
@@ -25,7 +23,6 @@ export class HomeComponent implements OnInit {
       .subscribe(
         res => {
           this.totalProviders = res.length;
-          this.providerTranslateParam.value = res.length > 1 ? 's' : ''
         },
         err => console.log(err)
       );
@@ -33,7 +30,6 @@ export class HomeComponent implements OnInit {
       .subscribe(
         consentList => {
           this.totalConsents = consentList.totalElements;
-          this.consentTransalteParam.value = consentList.totalElements > 1 ? 's' : ''
         },
         err => console.log(err))
     ;
