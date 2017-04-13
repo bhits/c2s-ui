@@ -14,18 +14,15 @@
       <input class="font-size15" mdInput placeholder="User name" type="email"
              name="username"
              required
-             [formControl]="loginForm.controls['username']"
-      >
+             [formControl]="loginForm.controls['username']">
       <c2s-control-messages [control]="loginForm.controls.username"></c2s-control-messages>
-
     </md-input-container>
 
     <md-input-container class="full-width">
       <input type="password" mdInput placeholder="Password"
              name="password"
              required
-             [formControl]="loginForm.controls['password']"
-      >
+             [formControl]="loginForm.controls['password']">
       <c2s-control-messages [control]="loginForm.controls.password"></c2s-control-messages>
       <md-hint class="has-error" *ngIf="showLoginBackendError">
         Sorry, you do not have permission to access this site.
@@ -42,5 +39,4 @@
       </button>
     </div>
   </form>
-
 </div>

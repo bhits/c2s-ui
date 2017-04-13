@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
             }
             ,
             (error) => {
-              this.tokenService.deleteAccessToken()
+              this.tokenService.deleteAccessToken();
               this.showLoginBackendError = true;
               console.log(error)
             }

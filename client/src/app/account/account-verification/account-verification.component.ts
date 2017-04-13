@@ -15,6 +15,7 @@ import {AccountVerificationService} from "app/account/shared/account-verificatio
 export class AccountVerificationComponent implements OnInit {
   public accountVerificationFrom: FormGroup;
   public FORMAT: string = "MM/DD/YYYY";
+  public today: Date = new Date();
   private emailToken: string;
 
   constructor(private accountService: AccountService,
@@ -28,7 +29,7 @@ export class AccountVerificationComponent implements OnInit {
   ngOnInit() {
     this.accountVerificationFrom = this.formBuilder.group({
       birthDate: ['', Validators.required],
-      verificationCode: ['', [Validators.minLength(2), Validators.required]]
+      verificationCode: ['', Validators.required]
     });
     this.emailToken = this.accountVerificationService.retrieveEmailToken(this.utilityService.getCurrentNormalizedPath());
   }
