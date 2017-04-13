@@ -1,7 +1,11 @@
-<md-card class="home-card " [ngClass]="{contacts: headerClass=='contacts', consents: headerClass=='consents'}" (click)="navigateTo(routeUrl)">
+<md-card class="home-card "
+         [ngClass]="{ contacts: headerClass=='contacts',
+                      consents: (headerClass=='consents' || headerClass=='disabled'),
+                      disabled: headerClass=='disabled'}"
+                      (click)="navigateTo(routeUrl)">
   <md-card-header class="middle">
     <md-card-title>
-      <div class="m-n">My <span class="font-weight700">{{title}}--{{headerClass}}</span></div>
+      <div class="m-n">My <span class="font-weight700">{{title}}</span></div>
     </md-card-title>
   </md-card-header>
   <md-card-content class="p-md">

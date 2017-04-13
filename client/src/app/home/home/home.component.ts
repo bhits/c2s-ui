@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit {
           .subscribe(
             res => {
               this.totalProviders = res.length;
+              this.homeCards[0]['imageUrl'] = (res.length === 0)? "assets/img/addProviders.svg" : "assets/img/contacts.svg";
               this.homeCards[0]['entityCount']= res.length;
               this.homeCards[0]['headerClass']= 'contacts';
             },
@@ -56,25 +57,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // let providers = this.route.snapshot.data['providers'];
-    // let consents = this.route.snapshot.data['consentList'];
-    //
-    // if(providers){
-    //   this.homeCards[0]['entityCount']= providers.length;
-    //   this.homeCards[0]['headerClass']= 'contacts';
-    // }
-    //
-    // if(consents){
-    //   this.homeCards[1]['entityCount']= consents.totalElements;
-    //   if(providers.length > 0){
-    //     this.homeCards[1]['headerClass']= 'consents';
-    //   }else {
-    //     this.homeCards[1]['headerClass']=  'disabled';
-    //   }
-    //   this.homeCards[1]['headerClass']= this.totalProviders > 0 ? 'consents': 'disabled';
-    // }
-    //
 
   }
 
