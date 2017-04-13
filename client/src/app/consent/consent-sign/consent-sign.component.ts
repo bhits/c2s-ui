@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+ import {Component, OnInit} from "@angular/core";
 import {TokenService} from "../../security/shared/token.service";
 import {AuthenticationService} from "../../security/shared/authentication.service";
 import {ActivatedRoute} from "@angular/router";

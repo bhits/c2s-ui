@@ -24,7 +24,7 @@
   <div fxLayout="column">
     <div fxLayoutAlign="start"><strong>Authorizes:</strong></div>
     <div fxLayoutAlign="start">
-      <table [md2Data]="providers" [rowsPerPage]="10">
+      <table [md2Data]="consent.fromProviders" [rowsPerPage]="10">
         <thead>
         <tr>
           <th style="width: 30%">Provider Name</th>
@@ -45,7 +45,7 @@
     </div>
     <div fxLayoutAlign="start"><strong>To disclose to:</strong></div>
     <div fxLayoutAlign="start">
-      <table [md2Data]="providers" [rowsPerPage]="10">
+      <table [md2Data]="consent.toProviders" [rowsPerPage]="10">
         <thead>
         <tr>
           <th style="width: 30%">Provider Name</th>

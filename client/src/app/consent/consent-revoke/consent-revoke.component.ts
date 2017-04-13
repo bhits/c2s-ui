@@ -19,10 +19,10 @@ export class ConsentRevokeComponent implements OnInit {
   public isAuthenticated: boolean = false;
   public password: string;
   public inValid: boolean;
-  private consentRevocationTerms: string;
+  consentRevocationTerms: string;
   private userName: string;
-  private fullName: string;
-  private consentId: string;
+  fullName: string;
+  consentId: string;
 
   constructor(private authenticationService: AuthenticationService,
               private route: ActivatedRoute,
