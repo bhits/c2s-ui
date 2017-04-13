@@ -14,6 +14,7 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
 export class ProviderListComponent implements OnInit {
   providers: ConsentProvider[];
   title: string = "Providers";
+  private selectedProvider: ConsentProvider;
 
   paginationConfig: PaginationInstance = {
     itemsPerPage: 6,
@@ -34,13 +35,18 @@ export class ProviderListComponent implements OnInit {
     this.paginationConfig.currentPage = number;
   }
 
-  confirmDeleteProvider(dialog: any, provider: ConsentProvider) {
+  openConfirmDialog(dialog: any, provider: ConsentProvider) {
+    dialog.open();
+    this.selectedProvider = provider;
+  }
+
+  confirmDeleteProvider(dialog: any) {
     dialog.close();
-    if (provider != name) {
-      this.providerService.deleteProvider(provider.id)
+    if (this.selectedProvider != null) {
+      this.providerService.deleteProvider(this.selectedProvider.id)
         .subscribe(
           () => {
-            this.providers = this.providers.filter(p => p !== provider);
+            this.providers = this.providers.filter(p => p !== this.selectedProvider);
             this.notificationService.show("Success in deleting provider.");
           },
           err => {
