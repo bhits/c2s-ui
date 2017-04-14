@@ -15,8 +15,8 @@ export class ConsentTermsComponent implements OnInit {
   endDate: any;
   DATE_FORMAT:string = "MM/dd/yyyy"
   private consent: ConsentCreateEdit;
-  hasStartDatePast: boolean;
-  hasEndDatePast: boolean;
+  startDateHasPast: boolean;
+  endDateHasPast: boolean;
   compareDate: boolean;
   today:Date = new Date();
 
@@ -36,11 +36,14 @@ export class ConsentTermsComponent implements OnInit {
   }
 
   onStateDateChanged(){
-    this.hasStartDatePast = this.utilityService.isPastDate(this.startDate);
+    this.startDateHasPast = this.utilityService.isPastDate(this.startDate);
     this.compareDate = this.utilityService.isStarteAfterEndDate(this.startDate, this.endDate);
 
-    if(!this.hasStartDatePast && !this.compareDate ){
+    if(!this.startDateHasPast && !this.compareDate ){
       this.consent.startDate = new Date(this.startDate);
+      if(!this.utilityService.isPastDate(this.endDate)){
+        this.consent.endDate = new Date(this.endDate);
+      }
       this.consentService.setConsent(this.consent);
     }else{
       this.consent.startDate = null;
@@ -49,11 +52,14 @@ export class ConsentTermsComponent implements OnInit {
   }
 
   onEndDateChanged(){
-    this.hasEndDatePast = this.utilityService.isPastDate(this.endDate);
+    this.endDateHasPast = this.utilityService.isPastDate(this.endDate);
     this.compareDate = this.utilityService.isStarteAfterEndDate(this.startDate, this.endDate);
 
-    if(!this.hasEndDatePast && !this.compareDate){
+    if(!this.endDateHasPast && !this.compareDate){
       this.consent.endDate = new Date(this.endDate);
+      if(!this.utilityService.isPastDate(this.startDate)){
+        this.consent.startDate = new Date(this.startDate);
+      }
       this.consentService.setConsent(this.consent);
     }else  {
       this.consent.endDate = null;

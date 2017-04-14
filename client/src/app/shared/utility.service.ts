@@ -113,14 +113,16 @@ export class UtilityService {
   }
 
   isPastDate(dateStr: Date){
-    let today = new Date();
-    today.setHours(0,0,0,0); // Reset Time
-    return ((dateStr).valueOf() < today.valueOf());
+    if(this.isDefined(dateStr) ){
+      let today = new Date();
+      today.setHours(0,0,0,0); // Reset Time
+      return ((dateStr).valueOf() < today.valueOf());
+    }
   }
 
-  isStarteAfterEndDate(startDate:string, endDate:string){
+  isStarteAfterEndDate(startDate:Date, endDate:Date){
     if(this.isDefined(startDate) && this.isDefined(endDate)){
-      return (new Date(startDate) > new Date(endDate));
+      return (startDate.valueOf() >= endDate.valueOf());
     }
   }
 }

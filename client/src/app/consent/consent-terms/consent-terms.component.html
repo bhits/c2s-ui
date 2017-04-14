@@ -13,8 +13,8 @@
         </td>
       </tr>
       <tr>
-        <div *ngIf="hasStartDatePast" class="has-error"> Start date should be in the present.</div>
-        <div *ngIf="hasEndDatePast" class="has-error"> End date should be in the present.</div>
+        <div *ngIf="startDateHasPast" class="has-error"> Start date should be in the present.</div>
+        <div *ngIf="endDateHasPast" class="has-error"> End date should be in the present.</div>
         <div *ngIf="compareDate === true " class="has-error"> Start date should proceed end date.</div>
       </tr>
     </table>
