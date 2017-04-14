@@ -112,8 +112,10 @@ export class UtilityService {
     return identifiers;
   }
 
-  isPastDate(dateStr: string){
-    return (new Date(dateStr) < new Date())
+  isPastDate(dateStr: Date){
+    let today = new Date();
+    today.setHours(0,0,0,0); // Reset Time
+    return ((dateStr).valueOf() < today.valueOf());
   }
 
   isStarteAfterEndDate(startDate:string, endDate:string){
