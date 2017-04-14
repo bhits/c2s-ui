@@ -51,7 +51,7 @@ import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
     PurposeOfUseService,
     MedicalInformationService,
     consentRoutableResolves,
-    NotificationService
+    NotificationService,
   ],
 })
 export class ConsentModule {

@@ -2,6 +2,8 @@ import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
 import {HomeComponent} from "./home/home.component";
 import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-guard.service";
+import {ProviderResolveService} from "../consent/shared/provider-resolve.service";
+import {ConsentListResolveService} from "../consent/shared/consent-list-resolve.service";
 
 const homeRoutes: Routes = [
   {
@@ -9,6 +11,10 @@ const homeRoutes: Routes = [
     component: HomeComponent,
     canActivate: [CanActivateAuthGuardService],
     canActivateChild: [CanActivateAuthGuardService],
+    resolve: {
+      providers: ProviderResolveService,
+      consentList: ConsentListResolveService,
+    }
   }
 ];
 
