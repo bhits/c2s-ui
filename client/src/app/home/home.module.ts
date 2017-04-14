@@ -4,7 +4,6 @@ import {TranslateModule} from '@ngx-translate/core';
 import { HomeComponent } from './home/home.component';
 import {SharedModule} from "../shared/shared.module";
 import {HomeRoutingModule} from "./home-routing.module";
-import { HomeCardComponent } from './home-card/home-card.component';
 
 @NgModule({
   imports: [
@@ -13,7 +12,7 @@ import { HomeCardComponent } from './home-card/home-card.component';
     HomeRoutingModule,
     TranslateModule
   ],
-  declarations: [HomeComponent, HomeCardComponent],
+  declarations: [HomeComponent],
   exports: [HomeComponent],
 })
 export class HomeModule { }

@@ -1,10 +1,12 @@
+
+//TODO refactore style. Thesame styles are being used in home component
 .home-card {
   flex: 1 1 300px;
   padding: 0;
+  //margin: 0;
   max-width: 350px;
   text-align: left;
-  margin: 10px;
-  &:hover{cursor: pointer;}
+  //&:hover {border: 1px solid #FF7BAC;}
   @media (max-width: 599px){
     flex: 1 1 0;
   }
@@ -24,7 +26,7 @@
   }
   md-card-content {font-size: 1em; position: relative;}
   md-chip {font-weight: 500; font-size: 16px !important;}
-  button.plus {
+  button {
     position: absolute;
     top: -25px;
     right: 25px;
@@ -38,14 +40,8 @@
   &.consents {
     md-card-header {background-color: #243852; color: white;}
   }
-  &.no-consent {
-    background-color: #644F63;
-    color: white;
-    opacity: .9;
-    md-card-header {background-color: #644F63; color: white;}
-    md-icon {font-weight: 700; font-size: 2.2em;}
-  }
   &.disabled {opacity: .38;}
 
 }
 
+//.width100 {width: 100%;}
