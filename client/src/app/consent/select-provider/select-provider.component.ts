@@ -21,8 +21,8 @@ export class SelectProviderComponent implements OnInit {
   @Input() selectedProviders: ConsentProvider[] = null ;
 
   consent: ConsentCreateEdit;
-  private selectedProviderNpi:string;
-  private selectedProvider: ConsentProvider;
+  selectedProviderNpi:string;
+  selectedProvider: ConsentProvider;
 
   constructor(private consentService: ConsentService, private utilityService:UtilityService) {
     this.consentService.getConsentEmitter().subscribe((consent)=>{

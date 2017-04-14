@@ -1,15 +1,14 @@
 <!--<button md-icon-button [mdMenuTriggerFor]="menu">-->
     <!--<md-icon>more_vert</md-icon>-->
 <!--</button>-->
-<script src="../../app-routing.module.ts"></script>
 
-<button md-button [mdMenuTriggerFor]="menu" class="menu-button menu-border-left">menu</button>
+<button md-button [mdMenuTriggerFor]="menu" class="menu-button menu-border-left">{{'HOME.MENU.TITLE' | translate}}</button>
 
 <md-menu #menu="mdMenu">
   <md-list>
     <md-list-item *ngFor="let menuItem of menuItems">
       <button md-menu-item (click)="navigateTo(menuItem.url, menuItem.name)">
-        <span>{{menuItem.name}}</span>
+        <span >{{menuItem.key | translate}}</span>
       </button>
     </md-list-item>
   </md-list>

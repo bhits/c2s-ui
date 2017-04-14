@@ -1,9 +1,12 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
+import {HttpModule, Http} from "@angular/http";
 import {Md2Module} from "md2";
 import {MaterialModule} from "@angular/material";
+import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from "./app.component";
 import {CoreModule} from "./core/core.module";
@@ -16,6 +19,11 @@ import {AuthenticationService} from "./security/shared/authentication.service";
 import {GlobalEventManagerService} from "./core/global-event-manager.service";
 import {LayoutModule} from "./layout/layout.module";
 import {AccountModule} from "./account/account.module";
+import {CustomTranslateService} from "./core/custom-translate.service";
+
+export function createTranslateLoader(http: Http) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 
 @NgModule({
@@ -25,12 +33,19 @@ import {AccountModule} from "./account/account.module";
   imports: [
 
     //3rd Party modules
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
     Md2Module,
     MaterialModule, // TODO: Move to core module - verify why it is not working now.
-
+    TranslateModule.forRoot({
+                      loader: {
+                        provide: TranslateLoader,
+                        useFactory:  (createTranslateLoader),
+                        deps: [Http]
+                      }
+    }),
     // C2S Modules
     AccountModule,
     CoreModule,
@@ -43,7 +58,9 @@ import {AccountModule} from "./account/account.module";
   providers: [
     CanActivateAuthGuardService,
     AuthenticationService,
-    GlobalEventManagerService
+    GlobalEventManagerService,
+    TranslateService,
+    CustomTranslateService
   ],
   bootstrap: [AppComponent]
 })

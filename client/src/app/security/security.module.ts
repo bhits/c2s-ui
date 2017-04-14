@@ -8,6 +8,8 @@ import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-
 import {SharedModule} from "../shared/shared.module";
 import {SessionStorageService} from "./shared/session-storage.service";
 import {TokenService} from "./shared/token.service";
+import {TranslateModule} from "@ngx-translate/core";
+import {ProfileService} from "./shared/profile.service";
 import {LayoutModule} from "../layout/layout.module";
 
 @NgModule({
@@ -16,6 +18,7 @@ import {LayoutModule} from "../layout/layout.module";
     LayoutModule,
     MaterialModule,
     SharedModule,
+    TranslateModule,
     SecurityRoutingModule
   ],
   declarations: [
@@ -25,7 +28,8 @@ import {LayoutModule} from "../layout/layout.module";
     CanActivateAuthGuardService,
     AuthenticationService,
     SessionStorageService,
-    TokenService
+    TokenService,
+    ProfileService
   ]
 })
 export class SecurityModule {

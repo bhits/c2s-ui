@@ -5,6 +5,10 @@ import {Credentials} from "../shared/credentials.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../../shared/validation.service";
 import {TokenService} from "../shared/token.service";
+import {CustomTranslateService} from "../../core/custom-translate.service";
+import {ProfileService} from "../shared/profile.service";
+import {UmsProfile} from "../shared/ums-profile.model";
+import {Profile} from "../../core/profile.model";
 
 @Component({
   selector: 'c2s-login',
@@ -20,7 +24,10 @@ export class LoginComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,
               private formBuilder: FormBuilder,
               private validationService: ValidationService,
-              private tokenService: TokenService,) {
+              private tokenService: TokenService,
+              private customTranslateService: CustomTranslateService,
+              private profileService: ProfileService) {
+
     this.credentials = new Credentials();
     this.loginForm = formBuilder.group({
       'username': [null, Validators.required],
@@ -31,33 +38,47 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(value: any): void {
-    this.authenticationService.login(value.username, value.password)
-      .toPromise()
-      .then(response => {
-        this.showLoginBackendError = false;
-        this.authenticationService.onLoginSuccess(response);
-        this.authenticationService.getUserProfile()
-          .subscribe(
-            (uaaProfile) => {
-              let profile = this.tokenService.createProfileObject(uaaProfile);
-              this.tokenService.storeUserProfile(profile);
-              this.authenticationService.onGetUserProfileSuccess(profile)
-            }
-            ,
-            (error) => {
-              this.tokenService.deleteAccessToken();
-              this.showLoginBackendError = true;
-              console.log(error)
-            }
-          );
-      }).catch(error => {
-      console.log(error);
-      this.showLoginBackendError = true;
-    })
+  login(value: any):void{
+    this.authenticationService.login(value.username,value.password)
+                              .toPromise()
+                              .then(response => {
+                                this.showLoginBackendError = false;
+                                this.authenticationService.onLoginSuccess(response);
+                                this.authenticationService.getUserProfile()
+                                                            .subscribe(
+                                                              (uaaProfile)=>{
+                                                                let profile = this.tokenService.createProfileObject(uaaProfile);
+                                                                this.tokenService.storeUserProfile(profile);
+                                                                this.getUMSProfileAndSetDefaultLanguage(profile);
+                                                              }
+                                                              ,
+                                                               (error)=>this.handleLoginError
+                                                          );
+                              }).catch(error =>{
+                                console.log(error);
+                                this.showLoginBackendError = true;
+                              })
   }
 
   isValidForm(formgroup: FormGroup) {
     return this.validationService.isValidForm(formgroup);
+  }
+
+  getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile){
+    this.profileService.getUMSProfile().subscribe(
+      (profile: UmsProfile)=>{
+        this.customTranslateService.addSupportedLanguages(profile.locales);
+        this.customTranslateService.setDefaultLanguage(profile.defaultLocale);
+        this.profileService.setProfileInSessionStorage(profile);
+        this.authenticationService.onGetUserProfileSuccess(uaaProfile);
+      },
+      this.handleLoginError
+    )
+  }
+
+  handleLoginError(error:any){
+    this.tokenService.deleteAccessToken()
+    this.showLoginBackendError = true;
+    console.log(error)
   }
 }

@@ -11,13 +11,16 @@ import {SharedModule} from "../shared/shared.module";
 import {RouterModule} from "@angular/router";
 import {AuthenticationService} from "../security/shared/authentication.service";
 import {UnsecuredHeaderComponent} from "./unsecured-header/unsecured-header.component";
+import { MultiLanguageComponent } from './multi-language/multi-language.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ],
   declarations: [
     UserProfileComponent,
@@ -26,7 +29,8 @@ import {UnsecuredHeaderComponent} from "./unsecured-header/unsecured-header.comp
     HeaderComponent,
     FooterComponent,
     PageContentComponent,
-    UnsecuredHeaderComponent],
+    UnsecuredHeaderComponent,
+    MultiLanguageComponent],
   exports: [
     HeaderComponent,
     UnsecuredHeaderComponent,
