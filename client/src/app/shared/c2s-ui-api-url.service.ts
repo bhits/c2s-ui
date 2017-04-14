@@ -12,8 +12,6 @@ export class C2sUiApiUrlService {
       ["accountActivationSuccessUrl", "/account/activation-success"],
       ["accountActivationErrorUrl", "/account/activation-error"],
       // External api Url maps
-      //Todo: Change to correct url
-      ["UmsBaseUrl", "http://localhost:9999/ums"],
       ["PcmBaseUrl", "/c2s-ui-api/pcm"],
       ["PlsBaseUrl", "/c2s-ui-api/pls"],
       ["VssBaseUrl", "/c2s-ui-api/vss"],
@@ -54,9 +52,5 @@ export class C2sUiApiUrlService {
 
   getVssBaseUrl(): string {
     return this.urls.get('VssBaseUrl');
-  }
-
-  getUmsBaseUrl(): string {
-    return this.urls.get('UmsBaseUrl');
   }
 }

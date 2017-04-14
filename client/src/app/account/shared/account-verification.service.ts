@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {SessionStorageService} from "../../security/shared/session-storage.service";
-import {AccountVerificationRequest} from "app/account/shared/account-verification-request.model";
+import {AccountVerificationRequest} from "./account-verification-request.model";
 
 @Injectable()
 export class AccountVerificationService {

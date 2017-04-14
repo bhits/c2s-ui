@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {AccountService} from "app/account/shared/account.service";
-import {C2sUiApiUrlService} from "app/shared/c2s-ui-api-url.service";
-import {UtilityService} from "app/shared/utility.service";
+import {AccountService} from "../shared/account.service";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-account-activation-success',

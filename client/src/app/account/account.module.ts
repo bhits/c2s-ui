@@ -1,9 +1,9 @@
 import {NgModule} from "@angular/core";
 import {AccountRoutingModule, routedComponents} from "./account-routing.module";
-import {SharedModule} from "app/shared/shared.module";
-import {LayoutModule} from "app/layout/layout.module";
-import {AccountService} from "app/account/shared/account.service";
-import {AccountVerificationService} from "app/account/shared/account-verification.service";
+import {SharedModule} from "../shared/shared.module";
+import {LayoutModule} from "../layout/layout.module";
+import {AccountService} from "./shared/account.service";
+import {AccountVerificationService} from "./shared/account-verification.service";
 
 @NgModule({
   imports: [

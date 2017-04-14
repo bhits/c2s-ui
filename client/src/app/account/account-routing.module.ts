@@ -1,10 +1,10 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {AccountComponent} from "app/account/account/account.component";
-import {AccountVerificationComponent} from "app/account/account-verification/account-verification.component";
-import {AccountActivationSuccessComponent} from "app/account/account-activation-success/account-activation-success.component";
-import {AccountActivationComponent} from "app/account/account-activation/account-activation.component";
 import {AccountActivationErrorComponent} from "./account-activation-error/account-activation-error.component";
+import {AccountComponent} from "./account/account.component";
+import {AccountVerificationComponent} from "./account-verification/account-verification.component";
+import {AccountActivationComponent} from "./account-activation/account-activation.component";
+import {AccountActivationSuccessComponent} from "./account-activation-success/account-activation-success.component";
 
 const accountRoutes: Routes = [
   {

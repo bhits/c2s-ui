@@ -1,7 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {MaterialModule} from "@angular/material";
-
 import {securityRoutableComponents, SecurityRoutingModule} from "./security-routing.module";
 import {AuthenticationService} from "../security/shared/authentication.service";
 import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-guard.service";

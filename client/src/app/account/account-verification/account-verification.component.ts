@@ -1,11 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UtilityService} from "app/shared/utility.service";
-import {AccountService} from "app/account/shared/account.service";
-import {C2sUiApiUrlService} from "app/shared/c2s-ui-api-url.service";
-import {NotificationService} from "app/core/notification.service";
-import {AccountVerificationRequest} from "app/account/shared/account-verification-request.model";
-import {AccountVerificationService} from "app/account/shared/account-verification.service";
+import {AccountService} from "../shared/account.service";
+import {AccountVerificationService} from "../shared/account-verification.service";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {UtilityService} from "../../shared/utility.service";
+import {AccountVerificationRequest} from "../shared/account-verification-request.model";
 
 @Component({
   selector: 'c2s-account-verification',
@@ -22,7 +21,6 @@ export class AccountVerificationComponent implements OnInit {
               private accountVerificationService: AccountVerificationService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private formBuilder: FormBuilder,
-              private notificationService: NotificationService,
               private utilityService: UtilityService) {
   }
 

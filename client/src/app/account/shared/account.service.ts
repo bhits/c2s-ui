@@ -5,8 +5,8 @@ import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {Observable} from "rxjs/Observable";
 import {AccountVerificationRequest} from "./account-verification-request.model";
 import {AccountVerificationResponse} from "./account-verification-response.model";
-import {AccountActivationRequest} from "app/account/shared/account-activation-request.model";
-import {AccountActivationResponse} from "app/account/shared/account-activation-response.model";
+import {AccountActivationRequest} from "src/app/account/shared/account-activation-request.model";
+import {AccountActivationResponse} from "./account-activation-response.model";
 
 @Injectable()
 export class AccountService {

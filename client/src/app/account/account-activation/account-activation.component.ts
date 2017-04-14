@@ -1,14 +1,13 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AccountService} from "app/account/shared/account.service";
 import {AccountVerificationService} from "../shared/account-verification.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {NotificationService} from "../../core/notification.service";
 import {UtilityService} from "../../shared/utility.service";
-import {AccountActivationResponse} from "app/account/shared/account-activation-response.model";
 import {AccountActivationRequest} from "../shared/account-activation-request.model";
 import {ValidationRules} from "../../shared/validation-rules.model";
-import {ValidationService} from "app/shared/validation.service";
+import {AccountService} from "../shared/account.service";
+import {ValidationService} from "../../shared/validation.service";
+import {AccountActivationResponse} from "../shared/account-activation-response.model";
 
 @Component({
   selector: 'c2s-account-activation',
@@ -25,7 +24,6 @@ export class AccountActivationComponent implements OnInit {
               private accountVerificationService: AccountVerificationService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private formBuilder: FormBuilder,
-              private notificationService: NotificationService,
               private validationService: ValidationService,
               private utilityService: UtilityService) {
   }
