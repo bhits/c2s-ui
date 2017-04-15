@@ -55,11 +55,15 @@ export class MedicalInformationComponent implements OnInit {
     this.updateSelectedSensitityPolicy();
   }
   private updateSelectedSensitityPolicy(){
-    if(this.sensitivityPoliciesCodes.length > 0 ){
+    if(this.sensitivityPoliciesCodes.length === this.sensitivityPolicies.length){
+      this.isShareAll = 1;
+    }else if(this.sensitivityPoliciesCodes.length <= this.sensitivityPolicies.length ){
       this.isShareAll = 0;
       this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
     }
   }
+
+
   private updateSensitivityPoliciesStatus(){
     this.medicalInformationService.updateSensitivitiesPoliciesStatus(this.sensitivityPoliciesCodes,this.sensitivityPolicies);
   }
