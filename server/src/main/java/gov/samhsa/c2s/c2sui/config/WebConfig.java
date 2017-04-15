@@ -1,4 +1,4 @@
-package gov.samhsa.c2s.c2sui;
+package gov.samhsa.c2s.c2sui.config;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
