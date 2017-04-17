@@ -15,25 +15,86 @@ body {
 //  align-content: stretch;
 //}
 
+// pagination -------------------------------------------------- pagination //
+$dark-blue: #2f526d;
+
+ul.ng2-pagination {
+  padding: 0 !important;
+  .disabled {color: #9bb5ce !important;}
+}
+.ng2-pagination li:not(.pagination-previous):not(.pagination-next):not(.current) {
+  a {
+    color:$dark-blue !important;
+    &:hover {font-size: 2em; background-color: transparent; cursor: pointer;}
+  }
+}
+.ng2-pagination li {
+  font-size: 1.7em;
+  font-weight: 500;
+  //color: #3FA3BA;
+
+  padding: 0!important;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+  border-radius:50% !important;
+  font-size: 1.5em;
+  font-weight: 500;
+  vertical-align: middle;
+
+  &.current {
+  height: 40px;
+  width:40px;
+  padding: 0!important;
+  //-webkit-border-radius:50%;
+  //-moz-border-radius:50%;
+  //border-radius:50%;
+  vertical-align: middle;
+  background-color: $dark-blue !important;
+  }
+  div {
+    padding-top: 10px;
+    text-align: center;
+  }
+  &.pagination-previous.disabled {margin-right: 5px;}
+  &.pagination-next.disabled {margin-left: 5px;}
+}
+
 // provider-multi-add styles ----------------------------------- //
 
-// dialog styles ----------------------------------------------- //
-
-div.md2-dialog-header {
-  background-color: #3fa3ba !important;
-}
-div.md2-dialog-body {
-  font-size: 1.8em;
-  font-weight: 500;
+// dialog styles ----------------------------------------------- modal - dialog //
+.my-providers {
+  div.md2-dialog-header {
+    background-color: #711414 !important;
+  }
 }
 
-// provider-search styles -------------------------------------- //
+  div.md2-dialog-header {
+    //background-color: #3fa3ba !important;
+    background-color: #6C4E70 !important;
+  }
+  div.md2-dialog-body {
+    font-size: 1.8em;
+    font-weight: 500;
+    md-card {
+      padding: 0 !important;
+      md-card-title {
+        background-color: #34638c !important;
+        color: white;
+        padding: 10px 15px;
+        font-size: 22px;
+        font-weight: 200;
+      }
+    }
+  }
+
+  // provider-search styles -------------------------------------- provider search //
 
   .provider-search-card {
     &.mat-card {padding: 0;}
     md2-accordion-tab .md2-accordion-header {
       color: white !important;
-      background-color: #243852;
+      //background-color: #243852;
+      background-color: #2f526d;
       padding: 10px;
       max-height: inherit;
     }
@@ -91,11 +152,19 @@ div.md2-dialog-body {
   }
 
   // ------------------------------------------//
+
+  .plus-button {
+    background-color: #24a69a !important;
+    color: white !important;
+    font-weight: 700 !important;
+  }
   .section-border{
-    border: 1px solid #243852;
-    padding: 5px;
-    &:hover {
-      border: 2px solid #f46b1d;
+    //border: 1px solid #243852;
+    border: thin solid #bdcdd4;
+    border-radius: 2px;
+    //padding: 5px;
+    &.hover:hover {
+      border: 2px solid #f4c426;
     }
   }
 
@@ -248,6 +317,7 @@ div.md2-dialog-body {
     padding-bottom: 40px;
   }
   //padding-left
+
   .p-l-none {
     padding-left: 0 !important;
   }
@@ -271,6 +341,12 @@ div.md2-dialog-body {
   }
   .p-l-xl {
     padding-left: 40px;
+  }
+  .p-l-n-15 {
+    padding-left: -15px;
+  }
+  .p-r-n-15 {
+    padding-right: -15px;
   }
 
   //margin
@@ -502,6 +578,7 @@ div.md2-dialog-body {
   .border-top-white {
     border-top: 2px solid white;
   }
+
 
 
 

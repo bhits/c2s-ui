@@ -1,15 +1,15 @@
 <!--<c2s-page-title [title]="title"></c2s-page-title>-->
 <div class="p-t-75 p-l-md p-r-md p-b">
-  <h1 class="">My Providers</h1>
+  <h1>My Providers</h1>
   <div>
-    <div style="background-color: #BCDEDB;" class="p-md font-size18 font-weight center-sm-left">OK! You must add at
+    <div style="background-color: #2f526d;" class="p-md white font-size20 font-weight500 center-sm-left">OK! You must add at
       least two contacts before sharing your health information.
     </div>
   </div>
 
   <div fxLayout="column" [ngStyle]="{'padding-top': '20px'}">
     <div fxLayoutAlign="center">
-      <a md-raised-button fxFlex="0 1 500px" routerLink="/provider-search" color="primary">
+      <a md-raised-button class="plus-button" fxFlex="0 1 370px" routerLink="/provider-search">
         <md-icon class="font-weight700">add</md-icon>
         Add a Health Provider</a>
     </div>
@@ -34,8 +34,8 @@
     <div fxLayoutAlign="center">
       <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
-
-    <div class="bg-forest-green p-md" fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px"
+<div class="section-border">
+    <div class="bg-xlite-teal p-t-md p-b-md" fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px"
          fxLayoutAlign="center">
       <md-card class="provider-card" *ngFor="let provider of providers | paginate: paginationConfig">
         <md-card-header>
@@ -45,7 +45,7 @@
           </div>
         </md-card-header>
 
-        <md-card-content class="p-t p-b p-l-md p-r-md">
+        <md-card-content class="p-t-xs p-b p-l-md p-r-md">
           <div>
             <md2-dialog #confirm>
               <md2-dialog-title>Delete Provider</md2-dialog-title>
@@ -60,32 +60,34 @@
               <span class="fa fa-trash fa-lg font-weight500" aria-hidden="true"></span>
             </button>
           </div>
-          <div class="flexcontainer row" fxLayoutWrap="wrap">
-            <div fxFlex="0 1 120px">
-              <div class="m-t-xs flexcontainer column">
-                <div>
-                  <div class="font-size12 p-b-xxs">Contact Number</div>
-                  <div class="font-size14 font-weight500 p-b-sm">{{provider | consentProvider: 'phone' |
+          <div class="flexcontainer column" fxLayoutWrap="wrap">
+            <div fxFlex="1 1 auto">
+              <!--<div class="m-t-xs flexcontainer column">-->
+                <!--<div>-->
+              <div class="font-size12 p-b-xxs">NPI</div>
+              <div class="font-size14 font-weight600 m-b-xs">{{provider | consentProvider: 'npi'}}</div>
+              <div class="font-size12 p-b-xxs">Address</div>
+              <div class="font-size14 font-weight700 m-b-xs">{{provider | consentProvider: 'address'}}</div>
+              <div class="font-size12 p-b-xxs">Contact Number</div>
+                  <div class="font-size14 font-weight700 p-b-xs">{{provider | consentProvider: 'phone' |
                     usPhoneNumber}}
                   </div>
-                  <div class="font-size12 p-b-xxs">NPI</div>
-                  <div class="font-size14 font-weight600">{{provider | consentProvider: 'npi'}}</div>
-                </div>
-              </div>
-            </div>
-            <div fxFlex="1 0 120px">
-              <div class="m-t-xs flexcontainer column">
-                <div fxLayout="column">
-                  <div class="font-size12 p-b-xxs">Address</div>
-                  <div class="font-size14 font-weight700">{{provider | consentProvider: 'address'}}</div>
-                </div>
-              </div>
+
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div fxFlex="1 0 auto">-->
+              <!--<div class="m-t-xs flexcontainer column">-->
+                <!--<div fxLayout="column">-->
+
+                <!--</div>-->
+              <!--</div>-->
             </div>
           </div>
         </md-card-content>
       </md-card>
     </div>
-
+</div>
     <div fxLayoutAlign="center">
       <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
     </div>

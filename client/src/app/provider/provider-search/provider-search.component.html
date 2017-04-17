@@ -16,7 +16,7 @@
             </md2-accordion-header>
 
             <md-card-content>
-              <div class="section-border">
+              <div class="section-border hover p-xs">
                 <md-toolbar class="toolbar-base">
                   <button md-mini-fab aria-label="Step 1">
                     <span>1</span>
@@ -51,7 +51,7 @@
 
                   <!--</div>-->
 
-                  <div class="p-sm m-t-xs" *ngIf="isStateCityType()">
+                  <div class="p-sm m-t" *ngIf="isStateCityType()">
                     <div class="p-b-sm">
                       <!--<div fxLayout="column">-->
 
@@ -101,7 +101,7 @@
                   </div>
 
                   <div class="p-sm m-t-xs" *ngIf="!isStateCityType()">
-                    <div class="p-t-md p-b-sm">
+                    <div class="p-b-sm">
                       <div fxLayout="column" formGroupName="zip">
                         <div fxLayout="row" fxLayoutAlign="center">
                           <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
@@ -128,7 +128,7 @@
                 </div>
               </div>
 
-              <div class="m-t section-border">
+              <div class="m-t section-border hover p-xs">
                 <md-toolbar class="toolbar-base">
                   <button md-mini-fab aria-label="Step 2">
                     <span>2</span>
