@@ -7,7 +7,7 @@ import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.mode
 @Component({
   selector: 'c2s-provider-multi-add',
   templateUrl: './provider-multi-add.component.html',
-  styleUrls: ['./provider-multi-add.component.css']
+  styleUrls: ['provider-multi-add.component.scss']
 })
 export class ProviderMultiAddComponent implements OnInit {
   @Input() providers: FlattenedSmallProvider[];

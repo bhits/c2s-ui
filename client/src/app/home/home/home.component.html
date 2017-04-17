@@ -1,12 +1,10 @@
-<!--<c2s-page-title title="Home" [isHidden]="true"></c2s-page-title>-->
-
 <div class="p-t-75 p-l-lg p-b-md p-r-lg">
   <div class="center-sm-left">
     <h1 class="m-n p-t-sm">{{ 'HOME.WELCOME.TITLE' | translate }}</h1>
     <h2 class="m-t-sm m-t-sm">{{ 'HOME.WELCOME.DESCRIPTION' | translate }}</h2>
   </div>
 
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="15px" fxLayoutAlign="center">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="center">
 
     <md-card class="home-card contacts" (click)="navigateTo('provider-list')">
 
@@ -17,7 +15,7 @@
       </md-card-header>
       <md-card-content class="p-md">
 
-        <button md-fab >
+        <button md-fab class="plus" >
           <md-icon class="md-24 font-weight500">add</md-icon>
         </button>
         <md-chip-list class="p-15">
@@ -49,7 +47,7 @@
       </md-card-header>
       <md-card-content class="p-md">
 
-        <button md-fab >
+        <button md-fab class="plus" >
           <md-icon class="md-24 font-weight500">add</md-icon>
         </button>
         <md-chip-list class="p-15">
@@ -66,6 +64,23 @@
         </div>
       </md-card-content>
 
+    </md-card>
+
+    <md-card class="home-card no-consent">
+      <md-card-header fxLayoutAlign="end" class="middle">
+        <md-card-title class="">
+          <button md-icon-button>
+            <md-icon class="white-text p-r-xs">clear</md-icon>
+          </button>
+        </md-card-title>
+      </md-card-header>
+      <md-card-content class="p-lg m-t-lg">
+        <div class="border-top-white p-b-lg"></div>
+        <div class="m-t-xs m-b center font-size24 font-weight400">
+          To create consents, you must first add the people with whom you trust to share health information
+        </div>
+        <div class="border-bottom-white p-t-lg"></div>
+      </md-card-content>
     </md-card>
   </div>
 </div>

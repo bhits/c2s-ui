@@ -7,7 +7,7 @@ import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
 @Component({
   selector: 'c2s-provider-search',
   templateUrl: './provider-search.component.html',
-  styleUrls: ['./provider-search.component.css']
+  styleUrls: ['provider-search.component.scss']
 })
 export class ProviderSearchComponent implements OnInit {
   searchProviderFrom: FormGroup;
