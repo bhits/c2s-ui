@@ -15,15 +15,15 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
   @Input() providerResult: ProviderSearchResponse;
 
   private providerList: FlattenedSmallProvider[] = [];
-  private selectedProviders: FlattenedSmallProvider[] = [];
-  private asyncProviderResult: Observable<FlattenedSmallProvider[]>;
+  selectedProviders: FlattenedSmallProvider[] = [];
+  asyncProviderResult: Observable<FlattenedSmallProvider[]>;
   private searchResponse: ProviderSearchResponse;
 
-  private itemsPerPage: number;
-  private currentPage: number = 1;
-  private totalItems: number;
+  itemsPerPage: number;
+  currentPage: number = 1;
+  totalItems: number;
   private totalPages: number;
-  private loading: boolean;
+  loading: boolean;
 
   constructor(private route: ActivatedRoute,
               private providerService: ProviderService,

@@ -16,7 +16,7 @@ import {UtilityService} from "../../shared/utility.service";
 })
 export class ConsentCardComponent implements OnInit, OnChanges {
 
-  @Input() private consent: Consent;
+  @Input() consent: Consent;
   @Output() private deleteConsent = new EventEmitter<number>();
 
   private detailsVisible: boolean = false;

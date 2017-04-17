@@ -8,7 +8,8 @@ export class C2sUiApiUrlService {
     [
       ["PcmBaseUrl", "/c2s-ui-api/pcm"],
       ["PlsBaseUrl", "/c2s-ui-api/pls"],
-      ["VssBaseUrl", "/c2s-ui-api/vss"]
+      ["VssBaseUrl", "/c2s-ui-api/vss"],
+      ["UmsBaseUrl", "/c2s-ui-api/ums"]
     ]
   );
 
@@ -25,5 +26,9 @@ export class C2sUiApiUrlService {
 
   getVssBaseUrl(): string {
     return this.urls.get('VssBaseUrl');
+  }
+
+  getUmsBaseUrl(): string {
+    return this.urls.get('UmsBaseUrl');
   }
 }

@@ -12,16 +12,16 @@ import {ActivatedRoute} from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConsentCardListComponent implements OnInit {
-  public consentList: ConsentList;
-  private totalItems: number = 0;
-  private totalPages: number = 0;
-  private itemsPerPage: number = 0;
-  private currentPage: number = 1;
-  private loading: boolean = false;
+  consentList: ConsentList;
+  totalItems: number = 0;
+  totalPages: number = 0;
+  itemsPerPage: number = 0;
+  currentPage: number = 1;
+  loading: boolean = false;
 
   title: string = "Consents";
 
-  private consents: Observable<Consent[]>;
+  consents: Observable<Consent[]>;
 
   constructor(private dataService: DataService,
               private route: ActivatedRoute) {

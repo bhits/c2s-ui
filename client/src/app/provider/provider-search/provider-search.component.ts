@@ -10,11 +10,11 @@ import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
   styleUrls: ['provider-search.component.scss']
 })
 export class ProviderSearchComponent implements OnInit {
-  private searchProviderFrom: FormGroup;
+  searchProviderFrom: FormGroup;
 
-  private searchResponse: ProviderSearchResponse;
-  private accordionTab: boolean = true;
-  private hasSearchResult: boolean = false;
+  searchResponse: ProviderSearchResponse;
+  accordionTab: boolean = true;
+  hasSearchResult: boolean = false;
   private PHONE_PATTERN = '^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$';
 
   title:string = "Add Providers";
@@ -194,13 +194,13 @@ export class ProviderSearchComponent implements OnInit {
     });
   }
 
-  private setLocatingType(type: string): void {
+  setLocatingType(type: string): void {
     // update payment method type value
     const ctrl: FormControl = (<any>this.searchProviderFrom).controls.locatingType.controls.type;
     ctrl.setValue(type);
   }
 
-  private setProviderType(type: string): void {
+  setProviderType(type: string): void {
     // update payment method type value
     const ctrl: FormControl = (<any>this.searchProviderFrom).controls.providerType.controls.type;
     ctrl.setValue(type);

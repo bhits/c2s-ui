@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 
-import {AuthenticationService} from "./security/shared/authentication.service";
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,8 +7,7 @@ import {AuthenticationService} from "./security/shared/authentication.service";
 })
 export class AppComponent implements OnInit {
 
-  constructor(){
-  }
+  constructor(){}
 
   ngOnInit() {
   }

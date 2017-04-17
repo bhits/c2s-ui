@@ -4,7 +4,6 @@ import {Routes, RouterModule} from "@angular/router";
 import {ConsentCreateEditComponent} from "./consent-create-edit/consent-create-edit.component";
 import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.component";
 import {ConsentResolveService} from "./shared/consent-resolve.service";
-import {ProviderResolveService} from "./shared/provider-resolve.service";
 import {SensitivityPoliciesResolveService} from "./shared/sensitivity-policies-resolve.service";
 import {PurposeOfUsesResolveService} from "./shared/purpose-of-uses-resolve.service";
 import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-guard.service";
@@ -14,6 +13,7 @@ import {DetailedConsentResolveService} from "./shared/detailed-consent-resolve.s
 import {ConsentTermsResolveService} from "./shared/consent-terms-resolve.service";
 import {ConsentRevocationTermsResolveService} from "./shared/consent-revocation-terms-resolve.service";
 import {ConsentListResolveService} from "./shared/consent-list-resolve.service";
+import {ProviderResolveService} from "./shared/provider-resolve.service";
 
 
 const consentRoutes: Routes = [

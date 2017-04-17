@@ -1,4 +1,4 @@
-package gov.samhsa.c2s.c2sui;
+package gov.samhsa.c2s.c2sui.config;
 
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
