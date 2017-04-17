@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+
 import {ConsentService} from "../shared/consent.service";
 import {ActivatedRoute} from "@angular/router";
 import {UtilityService} from "../../shared/utility.service";
