@@ -7,7 +7,6 @@ import {GlobalEventManagerService} from "../../core/global-event-manager.service
   styleUrls: ['footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  showFooter: boolean = false;
 
   constructor() {}
 
