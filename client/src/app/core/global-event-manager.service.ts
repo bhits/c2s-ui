@@ -26,7 +26,7 @@ export class GlobalEventManagerService {
     return this.userProfileEmitter;
   }
 
-  getShowHEaderEmitter(): Observable<boolean>{
+  getShowHeaderEmitter(): Observable<boolean>{
     return this.showHeaderEmitter;
   }
 }
