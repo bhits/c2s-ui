@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   showHeader: boolean = false;
 
   constructor(private globalEventManagerService: GlobalEventManagerService) {
-    this.globalEventManagerService.getShowHEaderAndFooterEmitter().subscribe((showHeader)=>{
+    this.globalEventManagerService.getShowHEaderEmitter().subscribe((showHeader)=>{
       if (showHeader !== null) {
         this.showHeader = showHeader;
       }
