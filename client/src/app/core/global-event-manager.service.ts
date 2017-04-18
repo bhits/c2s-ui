@@ -6,16 +6,16 @@ import {Profile} from "./profile.model";
 @Injectable()
 export class GlobalEventManagerService {
 
-  private showHeaderAndFooter: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
-  public showHeaderAndFooterEmitter: Observable<boolean> = this.showHeaderAndFooter.asObservable();
+  private showHeader: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
+  public showHeaderEmitter: Observable<boolean> = this.showHeader.asObservable();
 
   private userProfileSudject: BehaviorSubject<Profile> = new BehaviorSubject<Profile>(null);
   public userProfileEmitter: Observable<Profile> = this.userProfileSudject.asObservable();
 
   constructor() { }
 
-  setShowHeaderAndFooter(show: boolean) {
-    this.showHeaderAndFooter.next(show);
+  setShowHeader(show: boolean) {
+    this.showHeader.next(show);
   }
 
   setProfile(profile: Profile){
@@ -26,7 +26,7 @@ export class GlobalEventManagerService {
     return this.userProfileEmitter;
   }
 
-  getShowHEaderAndFooterEmitter(): Observable<boolean>{
-    return this.showHeaderAndFooterEmitter;
+  getShowHeaderEmitter(): Observable<boolean>{
+    return this.showHeaderEmitter;
   }
 }
