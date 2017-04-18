@@ -73,10 +73,11 @@
 
 <md2-dialog #confirmDialog>
   <md2-dialog-title>Add Providers Alert</md2-dialog-title>
-    <h2 class="m-t-xs">
-      To create consents, you must first add the people with whom you trust to share health information.
-    </h2>
+    <div class="m-t-xs">
+      <div class="font-weight600">Please Note:</div>
+      <div class="m-t-xs">To create consents, you must first add at least <strong>2 Providers</strong> with whom you trust to share your health information.</div>
+    </div>
   <md2-dialog-footer>
-    <button md-raised-button (click)="confirmDialog.close()">Cancel</button>
+    <button md-raised-button (click)="confirmDialog.close()">Close</button>
   </md2-dialog-footer>
 </md2-dialog>

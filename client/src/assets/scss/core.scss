@@ -100,6 +100,9 @@ ul.ng2-pagination {
       }
     }
   }
+  md2-dialog-footer button {
+    &:not(:last-of-type) {margin-right: 10px;}
+  }
 
   // provider-search styles -------------------------------------- provider search //
 
@@ -150,6 +153,7 @@ ul.ng2-pagination {
   .mat-input-wrapper {padding-bottom: 0 !important;}
 
   // end provider-search styles ---------------------------------- //
+
   .toolbar-header {
     padding-left: 10px;
     @media (max-width: 959px) {
@@ -182,6 +186,18 @@ ul.ng2-pagination {
       border: 3px solid #24a69a;
     }
   }
+  .section-border-thin {
+    //border: 1px solid #243852;
+    border: 1px solid #bdcdd4;
+    border-radius: 2px;
+    //padding: 5px;
+    &.hover:hover {
+      //border: 2px solid #f4c426;
+      border: 2px solid #24a69a;
+    }
+  }
+
+
 
   .flex-min-height-max {
     min-height: calc(100vh - 0px);
@@ -222,7 +238,9 @@ ul.ng2-pagination {
     text-decoration: none;
   }
 
-  //------------------------------------------------- border radius //
+
+
+  //------------------------------------------------- border radius ----//
 .border-radius2 {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -244,8 +262,15 @@ ul.ng2-pagination {
   border-radius: 8px;
 }
 
+//---------------------------------------------------- position ----//
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
 
-  /***** MARGINS & PADDINGS *****/
+//------------------------------------------- MARGINS & PADDINGS -----//
   //padding
 .p-none {
   padding: 0 !important;
