@@ -6,15 +6,15 @@
     <table>
       <tr>
         <td>
-          <span>Start Date: <md2-datepicker [(ngModel)]="startDate" openOnFocus="true" format="MM/d/y" (change)="onStateDateChanged(startDate)"></md2-datepicker></span>
+          <span>Start Date: <md2-datepicker [(ngModel)]="startDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onStateDateChanged()"></md2-datepicker></span>
         </td>
         <td>
-          <span>End Date: <md2-datepicker [(ngModel)]="endDate" openOnFocus="true" format="MM/d/y" (change)="onEndDateChanged(endDate)"></md2-datepicker></span>
+          <span>End Date: <md2-datepicker [(ngModel)]="endDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onEndDateChanged()"></md2-datepicker></span>
         </td>
       </tr>
       <tr>
-        <div *ngIf="hasStartDatePast" class="has-error"> Start date should be in the present.</div>
-        <div *ngIf="hasEndDatePast" class="has-error"> End date should be in the present.</div>
+        <div *ngIf="startDateHasPast" class="has-error"> Start date should be in the present.</div>
+        <div *ngIf="endDateHasPast" class="has-error"> End date should be in the present.</div>
         <div *ngIf="compareDate === true " class="has-error"> Start date should proceed end date.</div>
       </tr>
     </table>

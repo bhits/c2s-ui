@@ -39,7 +39,7 @@ export class AuthenticationService {
     this.tokenService.deleteAccessToken();
     this.tokenService.deleteProfileToken();
     this.profileService.deleteProfileFromSessionStorage();
-    this.globalEventManagerService.setShowHeaderAndFooter(false);
+    this.globalEventManagerService.setShowHeader(false);
     this.router.navigate([this.LOGIN]);
   }
 
@@ -54,7 +54,7 @@ export class AuthenticationService {
           this.customTranslateService.setDefaultLanguage(umsProfile.defaultLocale);
         }
 
-        this.globalEventManagerService.setShowHeaderAndFooter(true);
+        this.globalEventManagerService.setShowHeader(true);
         this.globalEventManagerService.setProfile(profile);
 
         return true;
@@ -68,13 +68,9 @@ export class AuthenticationService {
   }
 
   onGetUserProfileSuccess(profile:Profile){
-    this.globalEventManagerService.setShowHeaderAndFooter(true);
+    this.globalEventManagerService.setShowHeader(true);
     this.globalEventManagerService.setProfile(profile);
     this.router.navigate([this.HOME]);
-  }
-
-  onGetUserProfileError(){
-    this.tokenService.deleteAccessToken();
   }
 
   private setHeaders():RequestOptions {

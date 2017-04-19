@@ -112,13 +112,17 @@ export class UtilityService {
     return identifiers;
   }
 
-  isPastDate(dateStr: string){
-    return (new Date(dateStr) < new Date())
+  isPastDate(dateStr: Date){
+    if(this.isDefined(dateStr) ){
+      let today = new Date();
+      today.setHours(0,0,0,0); // Reset Time
+      return ((dateStr).valueOf() < today.valueOf());
+    }
   }
 
-  isStarteAfterEndDate(startDate:string, endDate:string){
+  isStarteAfterEndDate(startDate:Date, endDate:Date){
     if(this.isDefined(startDate) && this.isDefined(endDate)){
-      return (new Date(startDate) > new Date(endDate));
+      return (startDate.valueOf() >= endDate.valueOf());
     }
   }
 }
