@@ -3,6 +3,7 @@ import {ProviderService} from "../shared/provider.service";
 import {ProviderRequestQuery} from "../shared/provider-request-query.model";
 import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'c2s-provider-search',
@@ -48,7 +49,8 @@ export class ProviderSearchComponent implements OnInit {
   };
 
   constructor(private formBuilder: FormBuilder,
-              private providerService: ProviderService) {
+              private providerService: ProviderService,
+              private translate: TranslateService) {
   }
 
   ngOnInit(): void {

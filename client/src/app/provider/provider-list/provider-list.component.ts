@@ -25,7 +25,7 @@ export class ProviderListComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private notificationService: NotificationService,
               private providerService: ProviderService,
-              private translate: TranslateService,) {
+              private translate: TranslateService) {
   }
 
   ngOnInit() {
