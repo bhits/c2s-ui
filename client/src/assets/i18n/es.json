@@ -37,5 +37,28 @@
       }
     }
 
+  },
+  "PROVIDERS":{
+    "TITLE": "Mis Proveedores",
+    "WARNING": "¡DE ACUERDO! Debe agregar al menos dos contactos antes de compartir su información de salud.",
+    "ADD_PROVIDER_BUTTON": "Agregar un proveedor de servicios de salud",
+    "SORT_LIST_TITLE": "Mostrar lista por",
+    "PAGINATION": {
+      "PREVIOUS":"Anterior",
+      "NEXT": "Siguiente"
+    },
+    "CARD": {
+      "NPI":"NPI",
+      "ADDRESS":"Dirección",
+      "CONTACT":"Número de contacto"
+    },
+    "DELETE_DIALOG":{
+      "TITLE":"Eliminar proveedor",
+      "DESCRIPTION":"¿Estás seguro de que deseas eliminar este proveedor?",
+      "BUTTON":{
+        "OK":"De acuerdo",
+        "CANCEL":"Cancelar"
+      }
+    }
   }
 }
