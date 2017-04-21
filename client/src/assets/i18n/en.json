@@ -150,5 +150,53 @@
         }
       }
     }
+  },
+  "CONSENTS":{
+    "TITLE":"My Consents",
+    "ADD_CONSENT_BUTTON":"Add a Consent",
+    "PAGINATION":{
+      "NEXT":"Next",
+      "PREVIOUS":"Previous"
+    },
+    "CARD":{
+      "AUTHORIZED_TO_SHARE":"Authorized to share",
+      "SHARING_WITH":"Sharing with",
+      "EFFECTIVE_DATE":"Effective Dates",
+      "MEDICAL_INFORMATION_DISCLOSED":"Medical Information disclosed",
+      "SHARE_ALL":"Sharing all medical information",
+      "SHARE_ALL_MEDICAL_INFORMATION":"All my medical information can be shared.",
+      "SHARE_PURPOSE_OF_USES":"Share the following purposes",
+      "CONSENT_STATE":"Consent State",
+      "MANAGE_CONSENT_BUTTON_TEXT":"Manage Consents",
+      "MANAGE_CONSENT_DIALOG":{
+        "TITLE":"Consent Options",
+        "DELETE_CONSENT_DIALOG":{
+          "TITLE":"Delete Consent",
+          "CONTENT":"Are you sure you want to delete this consent?",
+          "CANCEL_BTN":"Cancel",
+          "OK_BTN":"Ok"
+        }
+      },
+      "CONSENT_SAVE_STAGE":{
+        "STAGE":"SAVED",
+        "IN_PROGRES":"IN PROGRES",
+        "EDIT_THIS_CONSENT":"Edit This Consent",
+        "PREVIEW_THIS_CONSENT":"Preview This Consent",
+        "PROVIDE_ESIGNATURE":"Provide eSignature",
+        "DELETE_THIS_PROVIDER":"Delete This Consent"
+      },
+      "CONSENT_SIGNED_STAGE":{
+        "STAGE":"SIGNED",
+        "SIGNED":"SIGNED",
+        "VIEW_SIGNED_CONSENT":"View Signed Consent",
+        "REVOCATION":"Revocation"
+      },
+      "CONSENT_REVOKED_STAGE":{
+        "STAGE":"REVOKED",
+        "REVOKED":"REVOKED",
+        "VIEW_SIGNED_CONSENT":"View Signed Consent",
+        "VIEW_SIGNED_REVOCATION":"View Signed Revocation"
+      }
+    }
   }
 }

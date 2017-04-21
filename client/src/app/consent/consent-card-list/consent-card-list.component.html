@@ -1,7 +1,5 @@
-<!--<c2s-page-title [title]="title"></c2s-page-title>-->
-
 <div class="p-t-75 p-l-md p-r-md p-b">
-  <h1 class="">My Consents</h1>
+  <h1 class="">{{ 'CONSENTS.TITLE' | translate }}</h1>
   <div>
     <div style="background-color: #FEB652;font-weight: 500; color: black; font-size: 2em;" class="p-md font-size18 font-weight center-sm-left" *ngIf="consentList.totalElements===0">There are currently no Consents available. Please click the Add a Consent button to create a new consent.
     </div>
@@ -11,10 +9,16 @@
   <div fxLayout="column">
     <div fxFlexOffset="8.5">
       <a md-raised-button routerLink="/consent-create-edit" color="primary">
-        Add a Consent</a>
+        {{ 'CONSENTS.ADD_CONSENT_BUTTON' | translate }}
+      </a>
     </div>
   </div>
-  <pagination-controls fxLayoutAlign="center" (pageChange)="getPage($event)" *ngIf="totalItems"></pagination-controls>
+  <pagination-controls fxLayoutAlign="center"
+                       previousLabel="{{ 'CONSENTS.PAGINATION.PREVIOUS' | translate }}"
+                       nextLabel="{{ 'CONSENTS.PAGINATION.NEXT' | translate }}"
+                       (pageChange)="getPage($event)"
+                       *ngIf="totalItems">
+  </pagination-controls>
   <div fxLayoutAlign="center">
     <md-spinner *ngIf="loading"></md-spinner>
   </div>
@@ -23,7 +27,12 @@
                     [consent]="consent"
                     (deleteConsent)="onDeleteConsent($event)">
   </c2s-consent-card>
-  <pagination-controls fxLayoutAlign="center" (pageChange)="getPage($event)" *ngIf="totalItems"></pagination-controls>
+  <pagination-controls fxLayoutAlign="center"
+                       previousLabel="{{ 'CONSENTS.PAGINATION.PREVIOUS' | translate }}"
+                       nextLabel="{{ 'CONSENTS.PAGINATION.NEXT' | translate }}"
+                       (pageChange)="getPage($event)"
+                       *ngIf="totalItems">
+  </pagination-controls>
 </div>
 
 </div>

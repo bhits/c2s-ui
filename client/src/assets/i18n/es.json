@@ -151,5 +151,54 @@
       }
     }
 
+  },
+  "CONSENTS":{
+    "TITLE":"Mis Consentimientos",
+    "ADD_CONSENT_BUTTON":"Añadir un consentimiento",
+    "PAGINATION":{
+      "NEXT":"Siguiente",
+      "PREVIOUS":"Anterior"
+    },
+    "CARD":{
+      "AUTHORIZED_TO_SHARE":"Autorizado para compartir",
+      "SHARING_WITH":"Compartir con",
+      "EFFECTIVE_DATE":"Fechas de vigencia",
+      "MEDICAL_INFORMATION_DISCLOSED":"Información médica divulgada",
+      "SHARE_ALL":"Compartir toda la información médica",
+      "SHARE_ALL_MEDICAL_INFORMATION":"Toda mi información médica puede ser compartida.",
+      "SHARE_PURPOSE_OF_USES":"Comparte los siguientes propósitos",
+      "CONSENT_STATE":"Estado de consentimiento",
+      "MANAGE_CONSENT_BUTTON_TEXT":"Administrar consentimientos",
+      "MANAGE_CONSENT_DIALOG":{
+        "TITLE":"Opciones de Consentimiento",
+        "DELETE_CONSENT_DIALOG":{
+          "TITLE":"Eliminar consentimiento",
+          "CONTENT":"¿Está seguro de que desea eliminar este consentimiento?",
+          "CANCEL_BTN":"Cancelar",
+          "OK_BTN":"De acuerdo"
+        }
+      },
+      "CONSENT_SAVE_STAGE":{
+        "STAGE":"SALVADO",
+        "IN_PROGRES":"EN CURSO",
+        "EDIT_THIS_CONSENT":"Editar este consentimiento",
+        "PREVIEW_THIS_CONSENT":"Previsualizar este consentimiento",
+        "PROVIDE_ESIGNATURE":"Proporcionar eSignature",
+        "DELETE_THIS_PROVIDER":"Eliminar este consentimiento"
+      },
+      "CONSENT_SIGNED_STAGE":{
+        "STAGE":"FIRMADO",
+        "SIGNED":"FIRMADO",
+        "VIEW_SIGNED_CONSENT":"Ver el consentimiento firmado",
+        "REVOCATION":"Revocación"
+      },
+      "CONSENT_REVOKED_STAGE":{
+        "STAGE":"Rechazado",
+        "REVOKED":"Rechazado",
+        "VIEW_SIGNED_CONSENT":"Ver el consentimiento firmado",
+        "VIEW_SIGNED_REVOCATION":"Ver la revocación firmada"
+      }
+    }
+
   }
 }
