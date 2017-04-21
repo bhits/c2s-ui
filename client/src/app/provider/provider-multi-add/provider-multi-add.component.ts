@@ -3,6 +3,7 @@ import {ProviderService} from "../shared/provider.service";
 import {Router} from "@angular/router";
 import {NotificationService} from "../../core/notification.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'c2s-provider-multi-add',
@@ -15,7 +16,8 @@ export class ProviderMultiAddComponent implements OnInit {
 
   constructor(private notificationService: NotificationService,
               private providerService: ProviderService,
-              private router: Router) {
+              private router: Router,
+              private translate: TranslateService) {
   }
 
   ngOnInit() {

@@ -1,16 +1,22 @@
 <div fxLayout="row" fxLayoutGap="20px">
   <div fxFlex>
     <md-toolbar color="primary" fxLayoutAlign="center">
-      <h3>Results</h3>
+      <h3> {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.TITLE' | translate }}</h3>
     </md-toolbar>
     <div>
-      <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
+      <pagination-controls
+          previousLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.PREVIOUS' | translate }}"
+          nextLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.NEXT' | translate }}"
+          (pageChange)="getPage($event)">
+      </pagination-controls>
     </div>
     <div fxLayoutAlign="center" *ngIf="loading">
       <md-spinner></md-spinner>
     </div>
     <div *ngIf="providerResult?._embedded['flattenedSmallProviderDtoList'].length===0">
-      <md-toolbar fxLayoutAlign="center" color="warn">Sorry, There is no provider found!</md-toolbar>
+      <md-toolbar fxLayoutAlign="center" color="warn">
+        {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.NO_RESULT_MSG' | translate }}
+      </md-toolbar>
     </div>
     <div fxLayout="column" fxLayoutAlign="center" [ngStyle]="{'padding-top': '20px'}"
          *ngFor="let provider of asyncProviderResult | async | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems}">
@@ -27,7 +33,7 @@
                 <button md-icon-button (click)="addProviders(provider)">
                   <md-icon color="primary">add_box</md-icon>
                 </button>
-                <span>Select this provider</span>
+                <span>{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.RESULT.SELECT_PROVIDER_LABEL' | translate }}</span>
               </div>
             </div>
           </div>
@@ -46,7 +52,7 @@
                 <button md-icon-button disabled>
                   <md-icon>check_circle</md-icon>
                 </button>
-                <span>This Provider has already in your provider list.</span>
+                <span>{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.RESULT.PROVIDER_ALREADY_ADDED_LABEL' | translate }}</span>
               </div>
             </div>
           </div>
@@ -65,7 +71,7 @@
                 <button md-icon-button disabled>
                   <md-icon>add_box</md-icon>
                 </button>
-                <span>Provider currently added.</span>
+                <span>{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.RESULT.PROVIDER_CURRENT_ADDED_LABEL' | translate }}</span>
               </div>
             </div>
           </div>
@@ -79,12 +85,16 @@
       </div>
     </div>
     <div>
-      <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
+      <pagination-controls
+          previousLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.PREVIOUS' | translate }}"
+          nextLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.NEXT' | translate }}"
+          (pageChange)="getPage($event)">
+      </pagination-controls>
     </div>
   </div>
   <div fxFlex>
     <md-toolbar color="primary" fxLayoutAlign="center">
-      <h3>Selections to Add</h3>
+      <h3> {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.TITLE' | translate }} </h3>
     </md-toolbar>
     <c2s-provider-multi-add [providers]="selectedProviders"></c2s-provider-multi-add>
   </div>
