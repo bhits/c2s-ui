@@ -1,22 +1,27 @@
-<div class="flex-min-height-max login-background">
-  <c2s-unsecured-header></c2s-unsecured-header>
-  <div class="p-t-md p-b-md p-l-lg p-r-lg">
-    <div class="font-size20 font-weight500 center" style="color: #266357;">Take control of your health and well-being
-      with Consent2Share.
+<div class="flexcontainer column">
+  <div class="flex-min-height-max login-background">
+    <div class="bg-white p-sm border-bottom">
+      <div class="center">
+        <img src="assets/img/C2S-logo-color.svg" style="height: 46px;"/>
+      </div>
     </div>
-  </div>
+    <div class="p-t-md p-b-md p-l-lg p-r-lg">
+      <div class="font-size20 font-weight500 center" style="color: #266357;">Take control of your health and well-being
+        with Consent2Share.
+      </div>
+    </div>
 
-  <form fxFlex [formGroup]="loginForm" class="login-form" novalidate>
+    <form fxFlex [formGroup]="loginForm" class="login-form" novalidate>
 
-    <h2 class="m-t-none">Log in with your account.</h2>
+      <h2 class="m-t-none">Log in with your account.</h2>
 
-    <md-input-container class="full-width">
-      <input class="font-size15" mdInput placeholder="User name" type="email"
-             name="username"
-             required
-             [formControl]="loginForm.controls['username']">
-      <c2s-control-messages [control]="loginForm.controls.username"></c2s-control-messages>
-    </md-input-container>
+      <md-input-container class="full-width">
+        <input class="font-size15" mdInput placeholder="User name" type="email"
+               name="username"
+               required
+               [formControl]="loginForm.controls['username']">
+        <c2s-control-messages [control]="loginForm.controls.username"></c2s-control-messages>
+      </md-input-container>
 
     <md-input-container class="full-width">
       <input type="password" mdInput placeholder="Password"
@@ -39,4 +44,49 @@
       </button>
     </div>
   </form>
+  </div>
+
+  <div class="bg-white flex10auto">
+
+    <!--<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="nowrap" fxLayoutGap="15px" fxLayoutAlign="space-around">-->
+    <div class="login-help-section p-t-sm p-b-md p-l-md p-r-md">
+      <div class="center border-bottom-purple p-b-xs m-15">
+        <img src="assets/img/cap.svg" class="login-help-icon m-b-n"/>
+        <div class="border-top-purple p-b-sm"></div>
+        <div class="font-size19 font-weight500 text-purple">Why is it import to share my health information using
+          Consent2Share?
+        </div>
+        <a href="#">
+          <div class="p-t-xs learn-more" fxLayoutAlign="center center">
+            <div class="font-size17 font-weight400 p-r-xs inline">Learn more</div>
+            <div class="fa fa-4x fa-chevron-circle-right p-t-xs"></div>
+          </div>
+        </a>
+      </div>
+      <div class="center border-bottom-purple p-b-xs m-15">
+        <img src="assets/img/shield.svg" class="login-help-icon m-b-n"/>
+        <div class="border-top-purple p-b-sm"></div>
+        <div class="font-size19 font-weight500 text-purple">How does Consent2Share keep my health information private and secure?</div>
+        <a href="#">
+          <div class="p-t-xs learn-more" fxLayoutAlign="center center">
+            <div class="font-size17 font-weight400 p-r-xs inline">Learn more</div>
+            <div class="fa fa-4x fa-chevron-circle-right p-t-xs"></div>
+          </div>
+        </a>
+      </div>
+      <div class="center border-bottom-purple p-b-xs m-15">
+        <img src="assets/img/hand.svg" class="login-help-icon m-b-n"/>
+        <div class="border-top-purple p-b-sm"></div>
+        <div class="font-size19 font-weight500 text-purple">How does Consent2Share help providers coordinate my health care
+          treatment?
+        </div>
+        <a href="#">
+          <div class="p-t-xs learn-more" fxLayoutAlign="center center">
+            <div class="font-size17 font-weight400 p-r-xs inline">Learn more</div>
+            <div class="fa fa-4x fa-chevron-circle-right p-t-xs"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 import {Component, OnInit, ChangeDetectionStrategy} from "@angular/core";
 import {Observable} from "rxjs";
+
 import {ConsentList} from "../shared/consent-list.model";
 import {Consent} from "../shared/consent.model";
 import {DataService} from "../../shared/data.service";

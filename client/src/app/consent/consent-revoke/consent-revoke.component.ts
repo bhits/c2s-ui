@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+
 import {AuthenticationService} from "../../security/shared/authentication.service";
 import {TokenService} from "../../security/shared/token.service";
 import {ActivatedRoute} from "@angular/router";

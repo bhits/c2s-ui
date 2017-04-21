@@ -7,17 +7,14 @@ import {GlobalEventManagerService} from "../../core/global-event-manager.service
   styleUrls: ['footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  showFooter: boolean = false;
 
-  constructor(private globalEventManagerService: GlobalEventManagerService) {
-    this.globalEventManagerService.showHeaderAndFooterEmitter.subscribe((showFooter)=>{
-      if (showFooter !== null) {
-        this.showFooter = showFooter;
-      }
-    });
-  }
+  constructor() {}
 
   ngOnInit() {
+  }
+
+  getFullYear():number{
+    return (new Date()).getFullYear();
   }
 
 }

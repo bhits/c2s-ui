@@ -1,3 +1,5 @@
+
+
 .filter-card {
   display: flex;
   align-items: center;
@@ -25,9 +27,11 @@
 
   img {margin: 0;}
   md-card-header {
-    background-color: #E2DCE2;
+    //background-color: #E2DCE2;
+    background-color: #BCDEDB;
     border-radius: 3px 3px 0 0;
     color:#644F63;
+    //color: white;
     padding: 5px 10px;
     margin: 5px;
     line-height: 4em;
@@ -47,12 +51,14 @@
     position: absolute;
     top: -25px;
     right: 25px;
-    background-color:#FF7BAC;
+    //background-color:#FF7BAC;
+    background-color:rgba(253, 140, 0, .45);
     color: white;
     md-icon {font-weight: 700; font-size: 2em; padding: 8px 3px 0 0;}
     span {font-weight: 300; font-size: 1.8em; padding: 10px 0 0 0;}
     &:hover {
-      background-color: #f72b76;
+      //background-color: #f72b76;
+      background-color: #c7332c;
       span {font-weight: 500;}
     }
     &:disabled {
