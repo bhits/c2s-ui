@@ -195,6 +195,22 @@
   },
   "CONSENT_CREATE_EDIT": {
     "TITLE": "I, {{name}}, por la presente autorizo ​​...",
+    "SELECT_PROVIDERS":{
+      "TITLE":"Seleccionar Proveedores",
+      "AUTHORIZED_DESCRIPTION":"La siguiente persona u organización",
+      "DISCLOSED_DESCRIPTION":"Para revelar mi información a",
+      "DIALOG":{
+        "AUTHORIZE_HEADER":"Autorizar",
+        "AUTHORIZE_TITLE":"La siguiente persona u organización",
+        "DISCLOSE_HEADER":"Revelar",
+        "DISCLOSE_TITLE":"Para revelar mi información a",
+        "DESCRIPTION":"Seleccione una persona u organización autorizada para compartir su información:",
+        "IND_PROVIDER_LABEL":"Individual:",
+        "ORG_PROVIDER_LABEL":"Organizativo:",
+        "CANCEL_BTN":"Cancelar",
+        "ADD_BTN":"Añadir seleccionados"
+      }
+    },
     "MEDICAL_INFORMATION": {
       "TITLE": "Información médica",
       "DESCRIPTION": "Seleccione cómo le gustaría compartir su información médica.",
