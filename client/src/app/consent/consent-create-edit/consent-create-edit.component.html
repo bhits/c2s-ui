@@ -4,7 +4,7 @@
   <md-grid-list cols="1">
 
     <md-card class="left-align">
-      <h2> I, <span > {{profile.name}}</span>, hereby authorize... </h2>
+      <h2>  {{ 'CONSENT_CREATE_EDIT.TITLE' | translate:username }} </h2>
     </md-card>
 
     <c2s-select-providers [providers]="providers"></c2s-select-providers>
@@ -16,9 +16,12 @@
     <c2s-consent-terms></c2s-consent-terms>
 
     <md-card class="right-align">
-        <button md-raised-button (click)="navigateTo('consent-list')">Cancel</button>
-      <!--<button md-raised-button color="primary" type="submit" (click)="submitForm()" >Save</button>-->
-        <button md-raised-button color="primary" type="submit" (click)="submitForm()" [disabled]="canSave()">Save</button>
+        <button md-raised-button (click)="navigateTo('consent-list')">
+          {{ 'CONSENT_CREATE_EDIT.CANCEL_BUTTON_LABEL' | translate }}
+        </button>
+        <button md-raised-button color="primary" type="submit" (click)="submitForm()" [disabled]="canSave()">
+          {{ 'CONSENT_CREATE_EDIT.SAVE_BUTTON_LABEL' | translate }}
+        </button>
     </md-card>
 
   </md-grid-list>

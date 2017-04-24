@@ -10,6 +10,7 @@ import {GlobalEventManagerService} from "../../core/global-event-manager.service
 import {Profile} from "../../core/profile.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -21,6 +22,7 @@ export class ConsentCreateEditComponent implements OnInit {
   providers: ConsentProvider[];
   sensitivityPolicies: SensitivityPolicy[];
   purposeOfUses: SharePurpose[];
+  username:any;
 
   title: string = "Create Consent";
   consentId: string;
@@ -30,7 +32,8 @@ export class ConsentCreateEditComponent implements OnInit {
               private notificationService: NotificationService,
               private route: ActivatedRoute,
               private utilityService: UtilityService,
-              private globalEventManagerService: GlobalEventManagerService) {
+              private globalEventManagerService: GlobalEventManagerService,
+              private translate: TranslateService) {
 
     this.consentService.getConsentEmitter().subscribe((consent) => {
       if (consent) {
@@ -41,6 +44,7 @@ export class ConsentCreateEditComponent implements OnInit {
     this.globalEventManagerService.getUserProfileEmitter().subscribe((profile) => {
       if (profile) {
         this.profile = profile;
+        this.username = {name: profile.name}
       }
     });
   }

@@ -1,25 +1,28 @@
 <md-card class="left-align">
-  <md-card-title>Medical Information</md-card-title>
+  <md-card-title>{{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.TITLE' | translate }}</md-card-title>
   <md-card-content>
-    <p>Select how you would like to share your medical information.</p>
+    <p>{{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DESCRIPTION' | translate }}</p>
     <md-radio-group [(ngModel)]="isShareAll">
       <div>
         <md-radio-button name="medicalInformation"
                          #medInfoA
                          [value]="1"
                          (click)="onSelectShareAll(medicalInformationDialog, medInfoA.value)">
-          <strong>SHARE</strong> my medical record <strong>WITHOUT ANY EXCEPTION</strong> of medical information categories.</md-radio-button>
+            <span [innerHTML]="'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.SHARE_ALL_RADIO' | translate" ></span>
+          </md-radio-button>
       </div>
       <div>
         <md-radio-button name="medicalInformation"
                          #medInfoB
                          [value]="0"
                          (click)="onSelectDonotShareAll(medicalInformationDialog, medInfoB.value)">
-          <strong>SHARE</strong> my medical record <strong>WITH EXCEPTION</strong> of specific medical information categories.
+          <span [innerHTML]="'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.SHARE_SOME_RADIO' | translate"></span>
           <button type="button" *ngIf="(isShareAll === 0)"
                                 md-raised-button
                                 color="primary"
-                                (click)="onSelectEditDonotShareAll(medicalInformationDialog,medInfoB.value)">Edit</button>
+                                (click)="onSelectEditDonotShareAll(medicalInformationDialog,medInfoB.value)">
+            {{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.EDIT_BTN' | translate }}
+          </button>
         </md-radio-button>
       </div>
     </md-radio-group>
@@ -35,11 +38,11 @@
 
 
 <md2-dialog #medicalInformationDialog>
-  <md2-dialog-title>Privacy Settings</md2-dialog-title>
+  <md2-dialog-title>{{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.TITLE' | translate }}</md2-dialog-title>
   <md-card class="left-align">
-    <md-card-title>Sensitive Information Categories</md-card-title>
+    <md-card-title>{{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.HEADER1' | translate }}</md-card-title>
     <md-card-content>
-      <h2>Select the medical information that you wish to share.</h2>
+      <h2>{{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.HEADER2' | translate }}</h2>
       <h4 *ngIf="isSelectAllCategories">
         Please select the "Share my medical record without any exceptions" option,
         if you want to share all of your health information.
@@ -86,12 +89,18 @@
     </md-card-content>
   </md-card>
   <md2-dialog-footer>
-    <button type="button" md-raised-button *ngIf="(isShareAll === 0)" (click)="closeDialog(medicalInformationDialog)">Cancel</button>
+    <button type="button" md-raised-button *ngIf="(isShareAll === 0)" (click)="closeDialog(medicalInformationDialog)">
+      {{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.CANCEL_BTN' | translate }}
+    </button>
     <button type="button" md-raised-button color="primary"
             *ngIf="(isShareAll === 0)"
             [disabled]="isSelectAllCategories"
-            (click)="setSelectedMedicalInformation(medicalInformationDialog)" >Save changes</button>
-    <button type="button" md-raised-button color="primary"  *ngIf="(isShareAll === 1)" (click)="confirmSelectAll(medicalInformationDialog)" >Confirm</button>
+            (click)="setSelectedMedicalInformation(medicalInformationDialog)" >
+      {{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.SAVE_BTN' | translate }}
+    </button>
+    <button type="button" md-raised-button color="primary"  *ngIf="(isShareAll === 1)" (click)="confirmSelectAll(medicalInformationDialog)" >
+      {{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.CONFIRM_BTN' | translate }}
+    </button>
 
   </md2-dialog-footer>
 </md2-dialog>

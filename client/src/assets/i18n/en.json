@@ -198,5 +198,50 @@
         "VIEW_SIGNED_REVOCATION":"View Signed Revocation"
       }
     }
+  },
+  "CONSENT_CREATE_EDIT":{
+    "TITLE":"I, {{name}}, hereby authorize...",
+    "MEDICAL_INFORMATION":{
+      "TITLE":"Medical Information",
+      "DESCRIPTION":"Select how you would like to share your medical information.",
+      "SHARE_ALL_RADIO":"<strong>SHARE</strong> my medical record <strong>WITHOUT ANY EXCEPTION</strong> of medical information categories.",
+      "SHARE_SOME_RADIO":"<strong>SHARE</strong> my medical record <strong>WITH EXCEPTION</strong> of specific medical information categories.",
+      "EDIT_BTN":"Edit",
+      "DIALOG":{
+        "TITLE":"Privacy Settings",
+        "HEADER1":"Sensitive Information Categories",
+        "HEADER2":"Select the medical information that you wish to share.",
+        "CONTENT":"Please select the \"Share my medical record without any exceptions\" option,if you want to share all of your health information.",
+        "CANCEL_BTN":"Cancel",
+        "SAVE_BTN":"Cancel",
+        "CONFIRM_BTN":"Confirm"
+      }
+
+    },
+    "PURPOSE_OF_USE":{
+      "TITLE":"Purpose Of Use",
+      "DESCRIPTION":"Choose for what purposes your medical information may be used.",
+      "SHARE_TEXT":"<strong>SHARE</strong> my medical record ONLY for the selected purposes of use.",
+      "EDIT_BTN":"Edit",
+      "DIALOG":{
+        "TITLE":"Share for selected purpose only",
+        "DESCRIPTION":"Share my information only for specified purposes of use.",
+        "SELECT_BTN":"Select All",
+        "DESELECT_BTN":"Deselect All",
+        "CANCEL_BTN":"Cancel",
+        "SAVE_BTN":"Save changes"
+      }
+    },
+    "CONSENT_TERMS":{
+      "TITLE":"Consent Terms",
+      "TEXT":"Enter a start and end date during wich your medical records will be shared.",
+      "START_DATE":"Start Date",
+      "END_DATE":"End Date",
+      "ERROR_PAST_START_DATE":"Start date should be in the present.",
+      "ERROR_PAST_END_DATE":"End date should be in the present.",
+      "ERROR_END_DATE_BEFORE_START":"Start date should proceed end date."
+    },
+    "CANCEL_BUTTON_LABEL":"Cancel",
+    "SAVE_BUTTON_LABEL":"Save"
   }
 }

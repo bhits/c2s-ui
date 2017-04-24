@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UtilityService} from "../../shared/utility.service";
 import {ConsentService} from "../shared/consent.service";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -20,7 +21,9 @@ export class ConsentTermsComponent implements OnInit {
   compareDate: boolean;
   today:Date = new Date();
 
-  constructor(private utilityService:UtilityService, private consentService: ConsentService) {
+  constructor(private utilityService:UtilityService,
+              private consentService: ConsentService,
+              private translate: TranslateService) {
     this.consentService.getConsentEmitter().subscribe((consent)=>{
       if (consent) {
         this.consent = consent;

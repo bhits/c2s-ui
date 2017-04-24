@@ -5,6 +5,7 @@ import {MedicalInformationService} from "./medical-information.service";
 import {MedicalInformationCategory} from "../shared/medical-information-category";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {ConsentService} from "../shared/consent.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'c2s-medical-information',
@@ -23,7 +24,9 @@ export class MedicalInformationComponent implements OnInit {
   @Input() sensitivityPolicies: SensitivityPolicy[];
   private consent: ConsentCreateEdit;
 
-  constructor(private medicalInformationService:MedicalInformationService, private consentService: ConsentService ) {
+  constructor(private medicalInformationService:MedicalInformationService,
+              private consentService: ConsentService,
+              private translate: TranslateService) {
     this.consentService.getConsentEmitter().subscribe((consent)=>{
       if (consent) {
         this.consent = consent;
