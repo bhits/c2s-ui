@@ -35,6 +35,11 @@ export class ConsentTermsComponent implements OnInit {
     if(this.consent && this.consent.startDate && this.consent.endDate){
       this.startDate = this.utilityService.formatDate(this.consent.startDate, this.DATE_FORMAT) ;
       this.endDate = this.utilityService.formatDate(this.consent.endDate, this.DATE_FORMAT) ;
+    }else{
+      let today = new Date();
+      let oneYearFromNow = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
+      this.startDate = this.utilityService.formatDate(today, this.DATE_FORMAT) ;
+      this.endDate = this.utilityService.formatDate(oneYearFromNow, this.DATE_FORMAT) ;
     }
   }
 
