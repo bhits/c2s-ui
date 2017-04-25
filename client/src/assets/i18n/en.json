@@ -208,7 +208,7 @@
       "DIALOG":{
         "AUTHORIZE_HEADER":"Authorize",
         "AUTHORIZE_TITLE":"The following individual or organization",
-        "DISCLOSE_HEADER":"Disclose",
+        "DISCLOSE_HEADER":"Disclosure",
         "DISCLOSE_TITLE":"To disclose my information to",
         "DESCRIPTION":"Please select one individual or organization authorized to share your information:",
         "IND_PROVIDER_LABEL":"Individual:",
@@ -229,7 +229,7 @@
         "HEADER2":"Select the medical information that you wish to share.",
         "CONTENT":"Please select the \"Share my medical record without any exceptions\" option,if you want to share all of your health information.",
         "CANCEL_BTN":"Cancel",
-        "SAVE_BTN":"Cancel",
+        "SAVE_BTN":"Save changes",
         "CONFIRM_BTN":"Confirm"
       }
 
@@ -259,5 +259,70 @@
     },
     "CANCEL_BUTTON_LABEL":"Cancel",
     "SAVE_BUTTON_LABEL":"Save"
+  },
+  "CONSENT_SIGN":{
+    "TITLE":"Consent to Share My Medical Information",
+    "REFERENCE_NUMBER":"Consent Reference Number",
+    "PATIENT_NAME":"Patient Name",
+    "PATIENT_DOB":"Patient DOB",
+    "AUTHORIZATION_SECTION":{
+      "TITLE":"AUTHORIZATION TO DISCLOSE",
+      "AUTHORIZE_LABEL":"Authorizes",
+      "DISCLOSE_LABEL":"To disclose to",
+      "PROVIDER":{
+        "NAME":"Provider Name",
+        "NPI":"NPI Number",
+        "PHONE":"Phone",
+        "ADDRESS":"Address"
+      }
+    },
+    "HEALTH_INFORMATION_SECTION":{
+      "TITLE":"HEALTH INFORMATION TO BE DISCLOSED",
+      "SHARE_MEDICAL_INFO":"To SHARE the following medical information",
+      "SHARE_PURPOSES":"To SHARE for the following purpose(s)"
+
+    },
+    "CONSENT_TERMS_SECTION":{
+      "TITLE":"CONSENT TERMS",
+      "START_DATE":"Effective Date",
+      "END_DATE":"Expiration Date",
+      "TERMS":"I, {{name}}, hereby accept, and understand the terms of this consent."
+
+    },
+    "CONFIRM_DIALOG":{
+      "TITLE":"Please Authenticate",
+      "CONTENT":"Please provide your account password to authenticate, and complete e-signature",
+      "AUTHENTICATE_MSG":"Failed to authenticate, please try again...",
+      "CANCEL_BTN":"Cancel",
+      "CONTINUE_BTN":"Continue"
+    },
+    "COMPLETE_DIALOG":{
+      "TITLE":"Success in created Signed Consent",
+      "DOWNLOAD_BTN":"Download Signed Consent",
+      "CONTINUE_BTN":"Continue"
+    },
+    "CANCEL_BTN":"Cancel",
+    "COMPLETE_BTN":"Complete"
+  },
+  "CONSENT_REVOKE":{
+    "TITLE":"Revocation of Consent to Participate in Health Information Exchange",
+    "REFERENCE_NUMBER":"Consent Reference Number",
+    "PATIENT_NAME":"Patient Name",
+    "PATIENT_DOB":"Patient DOB",
+    "CONFIRM_DIALOG":{
+      "TITLE":"Please Authenticate",
+      "CONTENT":"Please provide your account password to authenticate, and complete e-signature",
+      "AUTHENTICATE_MSG":"Failed to authenticate, please try again...",
+      "CANCEL_BTN":"Cancel",
+      "CONTINUE_BTN":"Continue"
+    },
+    "COMPLETE_DIALOG":{
+      "TITLE":"Successfully Revoked Consent",
+      "DOWNLOAD_BTN":"Download Signed Consent Revocation",
+      "CONTINUE_BTN":"Continue"
+    },
+    "TERMS":"I, {{name}}, hereby accept, and understand the terms of this consent.",
+    "CANCEL_BTN":"Cancel",
+    "COMPLETE_BTN":"Complete"
   }
 }
