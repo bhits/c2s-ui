@@ -14,7 +14,7 @@ export class ConsentTermsComponent implements OnInit {
 
   startDate: any;
   endDate: any;
-  DATE_FORMAT:string = "MM/dd/yyyy"
+  DATE_FORMAT:string = "MM/dd/yyyy";
   private consent: ConsentCreateEdit;
   startDateHasPast: boolean;
   endDateHasPast: boolean;
@@ -39,7 +39,9 @@ export class ConsentTermsComponent implements OnInit {
       let today = new Date();
       let oneYearFromNow = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
       this.startDate = this.utilityService.formatDate(today, this.DATE_FORMAT) ;
+      this.consent.startDate = this.startDate;
       this.endDate = this.utilityService.formatDate(oneYearFromNow, this.DATE_FORMAT) ;
+      this.consent.endDate = this.endDate;
     }
   }
 

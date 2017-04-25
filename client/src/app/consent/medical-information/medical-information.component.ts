@@ -6,6 +6,7 @@ import {MedicalInformationCategory} from "../shared/medical-information-category
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {ConsentService} from "../shared/consent.service";
 import {TranslateService} from "@ngx-translate/core";
+import {Md2DialogConfig} from "md2";
 
 @Component({
   selector: 'c2s-medical-information',
@@ -15,7 +16,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class MedicalInformationComponent implements OnInit {
 
   isShareAll:number ;
-  isSelectAllCategories: boolean = false;
+  isAllCategoriesSelected: boolean = false;
   federalInfo:MedicalInformationCategory;
   stateInfo:MedicalInformationCategory;
   checkedSensitityPolicies: string[] = [];
@@ -23,6 +24,7 @@ export class MedicalInformationComponent implements OnInit {
   sensitivityPoliciesCodes: string[] = [];
   @Input() sensitivityPolicies: SensitivityPolicy[];
   private consent: ConsentCreateEdit;
+  dialogConfig: Md2DialogConfig = new Md2DialogConfig();
 
   constructor(private medicalInformationService:MedicalInformationService,
               private consentService: ConsentService,
@@ -35,7 +37,7 @@ export class MedicalInformationComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.dialogConfig.disableClose = true;
     //TODO put in a constant service
     this.federalInfo = new MedicalInformationCategory();
     this.federalInfo.title = 'Federal Categories';
@@ -58,9 +60,9 @@ export class MedicalInformationComponent implements OnInit {
     this.updateSelectedSensitityPolicy();
   }
   private updateSelectedSensitityPolicy(){
-    if(this.sensitivityPoliciesCodes.length === this.sensitivityPolicies.length){
+    if( this.sensitivityPoliciesCodes.length > 0 && (this.sensitivityPoliciesCodes.length === this.sensitivityPolicies.length)){
       this.isShareAll = 1;
-    }else if(this.sensitivityPoliciesCodes.length <= this.sensitivityPolicies.length ){
+    }else if( (this.sensitivityPoliciesCodes.length > 0)&& (this.sensitivityPoliciesCodes.length < this.sensitivityPolicies.length) ){
       this.isShareAll = 0;
       this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
     }
@@ -77,7 +79,7 @@ export class MedicalInformationComponent implements OnInit {
     this.sensitivityPoliciesCodes = [];
     //Unchecked all checked boxes
     this.medicalInformationService.setSensitivityPoliciesStatusToChecked(this.sensitivityPolicies);
-    dialog.open();
+    dialog.open(this.dialogConfig);
   }
 
   setSelectedMedicalInformation(dialog: any){
@@ -88,20 +90,22 @@ export class MedicalInformationComponent implements OnInit {
   }
 
   closeDialog(dialog: any){
-    this.medicalInformationService.updateSelectedCategories(this.sensitivityPolicies, this.checkedSensitityPolicies)
+    this.medicalInformationService.updateSelectedCategories(this.sensitivityPolicies, this.checkedSensitityPolicies);
     dialog.close();
   }
 
   onSelectDonotShareAll(dialog: any, value:number){
+    this.checkAllCategoriesSelected();
+
     this.isShareAll = value;
-    dialog.open();
+    dialog.open(this.dialogConfig);
     this.consent.shareSensitivityCategories = this.medicalInformationService.getSelectedSensitivityPolicyIdentifiers(this.sensitivityPolicies);
     this.consentService.setConsent(this.consent);
   }
 
   onSelectEditDonotShareAll(dialog: any, value:number){
     this.isShareAll = value;
-    dialog.open();
+    dialog.open(this.dialogConfig);
   }
 
   confirmSelectAll(dialog: any){
@@ -113,8 +117,12 @@ export class MedicalInformationComponent implements OnInit {
 
   isCheckedAll(){
     if(this.isShareAll === 0){
-      this.isSelectAllCategories =  this.medicalInformationService.isCheckedAll(this.sensitivityPolicies);
+      this.checkAllCategoriesSelected();
     }
+  }
+
+  private checkAllCategoriesSelected(){
+    this.isAllCategoriesSelected =  this.medicalInformationService.isCheckedAll(this.sensitivityPolicies);
   }
 
 }
