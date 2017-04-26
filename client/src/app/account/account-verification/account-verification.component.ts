@@ -13,7 +13,7 @@ import {AccountVerificationRequest} from "../shared/account-verification-request
 })
 export class AccountVerificationComponent implements OnInit {
   public accountVerificationFrom: FormGroup;
-  public FORMAT: string = "MM/DD/YYYY";
+  public FORMAT: string = "MM/dd/y";
   public today: Date = new Date();
   private emailToken: string;
 
@@ -41,7 +41,7 @@ export class AccountVerificationComponent implements OnInit {
       .subscribe(
         (verificationResponse) => {
           this.accountVerificationService.setVerificationInfo(this.prepareVerificationAccount());
-          this.accountVerificationService.setUsername(verificationResponse.username);
+          this.accountVerificationService.setUserId(verificationResponse.userId);
           this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationUrl())
         },
         err => {

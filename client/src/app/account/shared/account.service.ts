@@ -19,7 +19,7 @@ export class AccountService {
   }
 
   public verifyAccount(verificationRequest: AccountVerificationRequest): Observable<AccountVerificationResponse> {
-    const VERIFY_ACCOUNT_URL = this.umsUserUrl.concat("/verifications");
+    const VERIFY_ACCOUNT_URL = this.umsUserUrl.concat("/verification");
     return this.http.post(VERIFY_ACCOUNT_URL, verificationRequest)
       .map((resp: Response) => <AccountVerificationResponse>(resp.json()))
       .catch(this.exceptionService.handleError);

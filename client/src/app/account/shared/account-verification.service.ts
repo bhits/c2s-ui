@@ -4,7 +4,7 @@ import {AccountVerificationRequest} from "./account-verification-request.model";
 
 @Injectable()
 export class AccountVerificationService {
-  private USERNAME_KEY: string = 'username';
+  private USER_ID_KEY: string = 'user-id';
   private VERIFICATION_INFO_KEY: string = 'verification-info';
 
   constructor(private sessionStorageService: SessionStorageService) {
@@ -15,12 +15,12 @@ export class AccountVerificationService {
     return verificationPath.split(SEPARATOR).pop();
   }
 
-  public setUsername(username: string): void {
-    this.sessionStorageService.setItemInSessionStorage(this.USERNAME_KEY, username);
+  public setUserId(userId: string): void {
+    this.sessionStorageService.setItemInSessionStorage(this.USER_ID_KEY, userId);
   }
 
-  public getUsername(): string {
-    return this.sessionStorageService.getItemFromSessionStorage(this.USERNAME_KEY);
+  public getUserId(): string {
+    return this.sessionStorageService.getItemFromSessionStorage(this.USER_ID_KEY);
   }
 
   public setVerificationInfo(verificationInfo: AccountVerificationRequest): void {
@@ -32,7 +32,7 @@ export class AccountVerificationService {
   }
 
   public deleteVerificationInfo(): void {
-    this.sessionStorageService.removeItemFromSessionStorage(this.USERNAME_KEY);
+    this.sessionStorageService.removeItemFromSessionStorage(this.USER_ID_KEY);
     this.sessionStorageService.removeItemFromSessionStorage(this.VERIFICATION_INFO_KEY);
   }
 }

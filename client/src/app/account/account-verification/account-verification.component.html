@@ -8,7 +8,7 @@
 
 <form fxFlex [formGroup]="accountVerificationFrom" class="account-verification-form" novalidate>
   <md2-datepicker class="full-width font-size20" placeholder="Date of Birth"
-                  [format]="FORMAT" [max]="today"
+                  [format]="FORMAT" [max]="today" openOnFocus="true"
                   formControlName="birthDate"></md2-datepicker>
   <br><br>
   <md-input-container class="full-width font-size20">
