@@ -16,7 +16,6 @@ import {AccountActivationResponse} from "../shared/account-activation-response.m
 })
 export class AccountActivationComponent implements OnInit {
   public accountActivationFrom: FormGroup;
-  public username: string;
   public passwordErrorMessage: string = ValidationRules.PASSWORD_MESSAGE;
   public mismatchedPasswordsMessage: string = ValidationRules.MISMATCHED_PASSWORDS_MESSAGE;
 
@@ -30,10 +29,10 @@ export class AccountActivationComponent implements OnInit {
 
   ngOnInit() {
     this.accountActivationFrom = this.formBuilder.group({
+      username: ['', [Validators.minLength(ValidationRules.NORMAL_MIN_LENGTH), Validators.required]],
       password: ['', [Validators.pattern(ValidationRules.PASSWORD_PATTERN), Validators.required]],
       confirmPassword: ['', Validators.required]
     }, {validator: this.validationService.matchingPasswords('password', 'confirmPassword')});
-    this.username = this.accountVerificationService.getUsername();
   }
 
   public clear() {
@@ -63,7 +62,7 @@ export class AccountActivationComponent implements OnInit {
       birthDate: this.accountVerificationService.getVerificationInfo().birthDate,
       password: formModel.password,
       confirmPassword: formModel.confirmPassword,
-      username: this.accountVerificationService.getUsername()
+      username: formModel.username
     };
   }
 }

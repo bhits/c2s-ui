@@ -26,7 +26,7 @@ export class AccountService {
   }
 
   public activateAccount(activationRequest: AccountActivationRequest): Observable<AccountActivationResponse> {
-    const ACTIVATE_ACCOUNT_URL = this.umsUserUrl.concat("/activations");
+    const ACTIVATE_ACCOUNT_URL = this.umsUserUrl.concat("/activation");
     return this.http.post(ACTIVATE_ACCOUNT_URL, activationRequest)
       .map((resp: Response) => <AccountActivationResponse>(resp.json()))
       .catch(this.exceptionService.handleError);

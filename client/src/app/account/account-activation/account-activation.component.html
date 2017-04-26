@@ -1,15 +1,17 @@
 <div class="p-t-md p-b-md p-l-lg p-r-lg">
-  <div class="font-size20" style="color: #266357;"><strong>Create your Password</strong></div>
+  <div class="font-size20" style="color: #266357;"><strong>Create your Account</strong></div>
 </div>
 <div style="background-color: #BCDEDB;" class="p-md font-size18 font-weight">
   Please create a Password for your account.
-  <strong>The email address you provided to begin this enrollment is your Username.</strong>
   Remember your Username and Password. You will need them to log in to your account.
 </div>
 
 <form fxFlex [formGroup]="accountActivationFrom" class="account-activation-from" novalidate>
   <md-input-container class="full-width font-size20">
-    <input class="font-size15" mdInput placeholder="Username" [value]="username" disabled>
+    <input type="text" class="font-size15" mdInput placeholder="Username"
+           formControlName="username">
+    <c2s-control-messages [control]="accountActivationFrom.controls.username"
+                          [customMessage]="passwordErrorMessage"></c2s-control-messages>
   </md-input-container>
   <md-input-container class="full-width font-size20">
     <input type="password" class="font-size15" mdInput placeholder="Password"
