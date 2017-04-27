@@ -31,11 +31,11 @@
               </md2-dialog-title>
                       {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.DELETE_DIALOG.CONTENT' | translate }}
               <md2-dialog-footer>
-                <button md-raised-button color="primary" (click)="confirmDeleteProvider(confirm, provider)">
-                  {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.DELETE_DIALOG.OK_BUTTON' | translate }}
-                </button>
                 <button md-raised-button (click)="confirm.close()">
                   {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.DELETE_DIALOG.CANCEL_BUTTON' | translate }}
+                </button>
+                <button md-raised-button color="primary" (click)="confirmDeleteProvider(confirm, provider)">
+                  {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.DELETE_DIALOG.OK_BUTTON' | translate }}
                 </button>
               </md2-dialog-footer>
             </md2-dialog>
@@ -57,11 +57,11 @@
       </md2-dialog-title>
           {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.CONTENT' | translate }}
       <md2-dialog-footer>
-        <button md-raised-button color="primary" (click)="confirmAddProviders(confirm, providers)">
-          {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.OK_BUTTON' | translate }}
-        </button>
         <button md-raised-button (click)="confirm.close()">
           {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.CANCEL_BUTTON' | translate }}
+        </button>
+        <button md-raised-button color="primary" (click)="confirmAddProviders(confirm, providers)">
+          {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.OK_BUTTON' | translate }}
         </button>
       </md2-dialog-footer>
     </md2-dialog>

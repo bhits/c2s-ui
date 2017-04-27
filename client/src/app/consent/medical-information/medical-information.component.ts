@@ -7,6 +7,7 @@ import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {ConsentService} from "../shared/consent.service";
 import {TranslateService} from "@ngx-translate/core";
 import {Md2DialogConfig} from "md2";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'c2s-medical-information',
@@ -28,7 +29,8 @@ export class MedicalInformationComponent implements OnInit {
 
   constructor(private medicalInformationService:MedicalInformationService,
               private consentService: ConsentService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private sanitizer: DomSanitizer) {
     this.consentService.getConsentEmitter().subscribe((consent)=>{
       if (consent) {
         this.consent = consent;
@@ -40,15 +42,12 @@ export class MedicalInformationComponent implements OnInit {
     this.dialogConfig.disableClose = true;
     //TODO put in a constant service
     this.federalInfo = new MedicalInformationCategory();
-    this.federalInfo.title = 'Federal Categories';
-    this.federalInfo.description = 'Federal requirements strictly restrict health professionals from disclosing substance abuse treatment information without signed patient consent ' +
-      '(called <a href="http://www.samhsa.gov/about-us/who-we-are/laws/confidentiality-regulations-faqs" target="_blank"> 42 CFR Part 2 <i class="fa fa-external-link"></i></a> ).' +
-      'You have the right to choose the information you wish to share or not share and with whom.';
+    this.federalInfo.title = 'FED_TITLE';
+    this.federalInfo.description = 'FED_DESCRIPTION';
 
     this.stateInfo = new MedicalInformationCategory();
-    this.stateInfo.title = 'State Categories';
-    this.stateInfo.description = 'Most states have laws restricting health professionals from disclosing information related to substance abuse, HIV/AIDS, and mental health. ' +
-      'Some states have restrictions regarding genetic information and communicable diseases. You have the right to choose the information you wish to share or not share and with whom.'
+    this.stateInfo.title = 'STATE_TITLE';
+    this.stateInfo.description = 'STATE_DESCRIPTION';
 
     if(this.consent.shareSensitivityCategories.identifiers){
       this.consent.shareSensitivityCategories.identifiers.forEach( sp =>{

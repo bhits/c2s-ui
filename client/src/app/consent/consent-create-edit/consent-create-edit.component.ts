@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {DomSanitizer} from "@angular/platform-browser";
 
 import {ConsentService} from "../shared/consent.service";
 import {ActivatedRoute} from "@angular/router";
@@ -11,6 +12,7 @@ import {Profile} from "../../core/profile.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {TranslateService} from "@ngx-translate/core";
+
 
 @Component({
   selector: 'c2s-consent-create-edit',

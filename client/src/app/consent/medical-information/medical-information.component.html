@@ -44,12 +44,11 @@
     <md-card-content>
       <h2>{{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.HEADER2' | translate }}</h2>
       <h4 *ngIf="isAllCategoriesSelected">
-        Please select the "Share my medical record without any exceptions" option,
-        if you want to share all of your health information.
+        {{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.WARNING' | translate }}
       </h4>
       <div>
         <strong>
-                {{federalInfo.title}}
+                {{federalInfo.title | translate}}
                 <md-icon tooltip="{{federalInfo.description}}"
                          tooltip-positionh="below"
                          tooltip-delay="100">info</md-icon>
@@ -69,7 +68,7 @@
       <br>
       <div>
         <strong>
-          {{stateInfo.title}}
+          {{stateInfo.title | translate}}
           <md-icon tooltip="{{stateInfo.description}}"
                    tooltip-positionh="below"
                    tooltip-delay="100">info</md-icon>

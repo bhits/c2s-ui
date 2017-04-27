@@ -1,7 +1,8 @@
 <div class="p-t-75 p-l-md p-r-md p-b">
   <h1 class="">{{ 'CONSENTS.TITLE' | translate }}</h1>
   <div>
-    <div style="background-color: #FEB652;font-weight: 500; color: black; font-size: 2em;" class="p-md font-size18 font-weight center-sm-left" *ngIf="consentList.totalElements===0">There are currently no Consents available. Please click the Add a Consent button to create a new consent.
+    <div style="background-color: #FEB652;font-weight: 500; color: black; font-size: 2em;" class="p-md font-size18 font-weight center-sm-left" *ngIf="consentList.totalElements===0">
+      {{ 'CONSENTS.WARNING' | translate }}
     </div>
   </div>
 
