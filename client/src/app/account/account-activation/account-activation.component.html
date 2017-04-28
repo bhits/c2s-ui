@@ -9,7 +9,10 @@
 <form fxFlex [formGroup]="accountActivationFrom" class="account-activation-from" novalidate>
   <md-input-container class="full-width font-size20">
     <input type="text" class="font-size15" mdInput placeholder="Username"
-           formControlName="username">
+           (blur)="checkUsername()" formControlName="username">
+    <md-hint class="has-error font-size16" *ngIf="isUsernameUsed">
+      The username is already in use. Try another?
+    </md-hint>
     <c2s-control-messages [control]="accountActivationFrom.controls.username"
                           [customMessage]="passwordErrorMessage"></c2s-control-messages>
   </md-input-container>
