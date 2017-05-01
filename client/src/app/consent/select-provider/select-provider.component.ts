@@ -7,6 +7,7 @@ import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
 import {Identifier} from "../../shared/identifier.model";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -24,7 +25,9 @@ export class SelectProviderComponent implements OnInit {
   selectedProviderNpi:string;
   selectedProvider: ConsentProvider;
 
-  constructor(private consentService: ConsentService, private utilityService:UtilityService) {
+  constructor(private consentService: ConsentService,
+              private utilityService:UtilityService,
+              private translate: TranslateService) {
     this.consentService.getConsentEmitter().subscribe((consent)=>{
       if (consent) {
         this.consent = consent;

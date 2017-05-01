@@ -5,6 +5,7 @@ import {ConsentList} from "../shared/consent-list.model";
 import {Consent} from "../shared/consent.model";
 import {DataService} from "../../shared/data.service";
 import {ActivatedRoute} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'c2s-consent-card-list',
@@ -25,7 +26,8 @@ export class ConsentCardListComponent implements OnInit {
   consents: Observable<Consent[]>;
 
   constructor(private dataService: DataService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private translate: TranslateService) {
   }
 
   ngOnInit() {

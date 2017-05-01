@@ -1,19 +1,19 @@
 <md-card class="left-align">
-  <md-card-title>Select Providers</md-card-title>
+  <md-card-title>{{ 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.TITLE' | translate }}</md-card-title>
   <md-card-content>
     <md-grid-list cols="2" rowHeight="130px">
       <md-grid-tile>
         <c2s-select-provider [providers]="providers"
-                             [title]="authorizeTitle"
-                             [dialogTitle]="'Authorize'"
+                             [title]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.AUTHORIZE_TITLE' | translate "
+                             [dialogTitle]=" 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.AUTHORIZE_HEADER' | translate "
                              [selectedProviders]="completeSelectedProviders"
           >
         </c2s-select-provider>
       </md-grid-tile>
       <md-grid-tile>
         <c2s-select-provider [providers]="providers"
-                             [title]="discloseTitle"
-                             [dialogTitle]="'Disclosure'"
+                             [title]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DISCLOSE_TITLE' | translate"
+                             [dialogTitle]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DISCLOSE_HEADER' | translate "
                              [selectedProviders]="completeSelectedProviders">
         </c2s-select-provider>
       </md-grid-tile>

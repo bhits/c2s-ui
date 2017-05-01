@@ -10,6 +10,7 @@ import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
+ import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'c2s-consent-sign',
@@ -25,13 +26,15 @@ export class ConsentSignComponent implements OnInit {
   public isAuthenticated: boolean = false;
   public password: string;
   public inValid: boolean;
+  username:any;
 
   constructor(private authenticationService: AuthenticationService,
               private consentService: ConsentService,
               private notificationService: NotificationService,
               private tokenService: TokenService,
               private route: ActivatedRoute,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private translate: TranslateService) {
   }
 
   ngOnInit() {
@@ -41,6 +44,7 @@ export class ConsentSignComponent implements OnInit {
       }
     });
     this.profile = this.tokenService.getProfileToken();
+    this.username = {name: this.profile.name};
     this.termsWithUserName = this.getConsentAttestationTerm(this.route.snapshot.data['consentTerms']);
     //Todo: patient birth of date should get from backend
     this.profile.birthDate = new Date("1980-01-01");

@@ -20,6 +20,7 @@ import {SelectProvidersComponent} from "./select-providers/select-providers.comp
 import {NotificationService} from "../core/notification.service";
 import {SharePurposePipe} from "./shared/share-purpose.pipe";
 import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
     SharedModule,
     Md2Module,
     RouterModule,
-    ConsentRoutingModule
+    ConsentRoutingModule,
+    TranslateModule
   ],
   declarations: [
     ConsentTermsComponent,

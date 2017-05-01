@@ -5,6 +5,7 @@ import {UtilityService} from "../../shared/utility.service";
 import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'c2s-select-providers',
@@ -13,8 +14,6 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
 })
 export class SelectProvidersComponent implements OnInit {
 
-  authorizeTitle:string = "The following individual or organization";
-  discloseTitle:string = "To disclose my information to";
   @Input() providers: ConsentProvider[];
   fromProviders: ListOfIdentifiers;
   toProviders: ListOfIdentifiers;
@@ -22,7 +21,9 @@ export class SelectProvidersComponent implements OnInit {
   @Input() completeSelectedProviders: ConsentProvider[] = [];
   selectedProvidersNpi:any = {authorize:[], disclosure:[]};
 
-  constructor(private consentService: ConsentService,private utilityService:UtilityService) {
+  constructor(private consentService: ConsentService,
+              private utilityService:UtilityService,
+              private translate: TranslateService) {
     this.consentService.getConsentEmitter().subscribe((consent)=>{
       if (consent) {
         this.consent = consent;
@@ -34,19 +35,6 @@ export class SelectProvidersComponent implements OnInit {
 
   ngOnInit() {
     this.getAllSelectedProvidersProperties();
-
-    // this.fromProviders =
-    // if(this.authorizeOrgProviderNpi.length >0){
-    //   this.selectedProvidersNpi.authorize = this.authorizeOrgProviderNpi;
-    // }else if(this.authorizeIndProviderNpi.length >0){
-    //   this.selectedProvidersNpi.authorize = this.authorizeIndProviderNpi;
-    // }
-
-    // if(this.disclosureOrgProviderNpi.length >0){
-    //   this.selectedProvidersNpi.disclosure = this.disclosureOrgProviderNpi;
-    // }else if(this.disclosureIndProviderNpi.length >0){
-    //   this.selectedProvidersNpi.disclosure = this.disclosureIndProviderNpi;
-    // }
   }
 
   getAllSelectedProvidersProperties(){
