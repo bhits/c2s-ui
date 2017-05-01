@@ -12,6 +12,7 @@ import {Profile} from "../../core/profile.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {TranslateService} from "@ngx-translate/core";
+import {TokenService} from "../../security/shared/token.service";
 
 
 @Component({
@@ -35,7 +36,8 @@ export class ConsentCreateEditComponent implements OnInit {
               private route: ActivatedRoute,
               private utilityService: UtilityService,
               private globalEventManagerService: GlobalEventManagerService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private tokenService: TokenService) {
 
     this.consentService.getConsentEmitter().subscribe((consent) => {
       if (consent) {
@@ -64,6 +66,12 @@ export class ConsentCreateEditComponent implements OnInit {
       if (params['consentId']) { // Edit mode
         this.title = "Edit Consent";
         this.consent = this.route.snapshot.data['consent'];
+      }else{
+        let providerCount: number = this.tokenService.getProviderCount();
+        if(providerCount && providerCount<= 1){
+          this.notificationService.show("You don't have enough providers to create consent.")
+          window.history.back();
+        }
       }
       this.consentService.setConsent(this.consent);
     });
