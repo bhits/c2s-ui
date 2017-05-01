@@ -68,7 +68,7 @@ export class ConsentCreateEditComponent implements OnInit {
         this.consent = this.route.snapshot.data['consent'];
       }else{
         let providerCount: number = this.tokenService.getProviderCount();
-        if(providerCount && providerCount<= 1){
+        if( providerCount<= 1){
           this.notificationService.show("You don't have enough providers to create consent.")
           window.history.back();
         }
