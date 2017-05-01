@@ -47,3 +47,14 @@ c2s-control-messages {font-size: 1.4em; color: #eb0404;}
   color:  #8CBEC7;
   &:hover {color: #3FA3BA; font-weight: 700;}
 }
+
+.mat-input-placeholder-wrapper {
+  top: -1.1em !important;
+  color: pink !important;
+}
+
+.mat-input-placeholder.mat-float.mat-focused, .mat-input-placeholder.mat-float:not(.mat-empty) {
+  //display: block;
+  transform: translateY(-1.35em) scale(1) !important;
+  //width: 133.33333%;
+}

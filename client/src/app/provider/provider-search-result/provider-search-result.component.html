@@ -1,7 +1,7 @@
 <div  class="p-sm" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="15px">
   <div fxFlex class="section-border p-sm">
     <md-toolbar  class="border-radius4" color="primary" fxLayoutAlign="center">
-      <h3>Results</h3>
+      <i class="material-icons">playlist_add_check</i><h3 class="m-l-sm">Results</h3>
     </md-toolbar>
     <div class="center">
       <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
@@ -85,7 +85,7 @@
   </div>
   <div fxFlex class="section-border p-sm">
     <md-toolbar color="primary" fxLayoutAlign="center">
-      <h3>Selections to Add</h3>
+      <i class="material-icons">playlist_add</i><h3 class="m-l-sm">Selections to Add</h3>
     </md-toolbar>
     <c2s-provider-multi-add [providers]="selectedProviders"></c2s-provider-multi-add>
   </div>

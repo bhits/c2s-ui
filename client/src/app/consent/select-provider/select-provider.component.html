@@ -13,11 +13,11 @@
   <md2-dialog-title>{{dialogTitle}}</md2-dialog-title>
   <md-card class="left-align">
     <md-card-title>Please select one individual or organization authorized to share your information:</md-card-title>
-    <md-card-content>
+    <md-card-content class="p-l-sm p-r-sm p-b-md">
       <h3>Individual:</h3>
       <md-radio-group  [(ngModel)]="selectedProviderNpi">
           <div *ngFor="let provider of providers">
-            <md-radio-button *ngIf="provider.providerType === 'PRACTITIONER'"
+            <md-radio-button class="p-b-xs" *ngIf="provider.providerType === 'PRACTITIONER'"
                              [value]="provider?.identifiers[0]?.value"
                              [disabled]="isSelected(provider?.identifiers[0]?.value)">
               {{provider | consentProvider : 'name'}}

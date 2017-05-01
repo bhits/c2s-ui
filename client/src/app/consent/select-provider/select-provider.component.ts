@@ -12,7 +12,7 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
 @Component({
   selector: 'c2s-select-provider',
   templateUrl: './select-provider.component.html',
-  styleUrls: ['./select-provider.component.css']
+  styleUrls: ['select-provider.component.scss']
 })
 export class SelectProviderComponent implements OnInit {
   @Input() providers: ConsentProvider[];

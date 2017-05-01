@@ -2,11 +2,11 @@
 <div class="p-t-75 p-l-md p-r-md p-b">
   <h1>My Consents</h1>
   <div>
-    <div class="p-md white font-size20 font-weight500 bg-maroon border-radius4 center-sm-left" *ngIf="consentList.totalElements===0">There are currently no Consents available. Please click the Add a Consent button to create a new consent.
+    <div class="p-md white font-size20 font-weight400 bg-maroon border-radius4 center-sm-left" *ngIf="consentList.totalElements===0">There are currently no Consents available. Please click the <strong>Add a Consent</strong> button to create a new consent.
     </div>
   </div>
 
-<div class="margin-bottom-55 margin-top-10" fxLayout="column" fxLayoutAlign="space-around">
+<div class="margin-bottom-55 m-t-md" fxLayout="column" fxLayoutAlign="space-around">
   <div fxLayout="column">
     <div class="border-bottom-purple-thin p-b" fxLayoutAlign="center">
       <a md-raised-button class="plus-button" fxFlex="0 1 370px" routerLink="/consent-create-edit">

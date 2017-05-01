@@ -15,8 +15,8 @@
 
       <h2 class="m-t-none">Log in with your account.</h2>
 
-      <md-input-container class="full-width">
-        <input class="font-size15" mdInput placeholder="User name" type="email"
+      <md-input-container class="full-width m-b-xs">
+        <input class="m-t-xs font-size15" mdInput placeholder="User name" type="email"
                name="username"
                required
                [formControl]="loginForm.controls['username']"
@@ -26,7 +26,7 @@
       </md-input-container>
 
     <md-input-container class="full-width">
-      <input type="password" mdInput placeholder="Password"
+      <input class="m-t-xs" type="password" mdInput placeholder="Password"
              name="password"
              required
              [formControl]="loginForm.controls['password']"
@@ -56,7 +56,7 @@
       <div class="center border-bottom-purple p-b-xs m-15">
         <img src="assets/img/cap.svg" class="login-help-icon m-b-n"/>
         <div class="border-top-purple p-b-sm"></div>
-        <div class="font-size19 font-weight500 text-purple">Why is it import to share my health information using
+        <div class="font-size19 font-weight500 text-purple">Why is it important to share my health information using
           Consent2Share?
         </div>
         <a href="#">

@@ -15,6 +15,25 @@ body {
 //  align-content: stretch;
 //}
 
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.mat-input-placeholder-wrapper {
+  top: -1.2em !important;
+  //padding-top:15px !important;
+  label {
+    color: blueviolet !important;
+    //font-size: 1.2em;
+  }
+}
+.mat-input-placeholder.mat-float.mat-focused, .mat-input-placeholder.mat-float:not(.mat-empty) {
+  //display: block;
+  //transform: translateY(-1.35em) scale(.75) !important;
+  //width: 133.33333%;
+}
+
 // pagination -------------------------------------------------- pagination //
 $dark-blue: #2f526d;
 
@@ -102,6 +121,10 @@ ul.ng2-pagination {
   }
   md2-dialog-footer button {
     &:not(:last-of-type) {margin-right: 10px;}
+  }
+  .mat-radio-label {
+    padding-bottom: 5px;
+    white-space: inherit !important;
   }
 
   // provider-search styles -------------------------------------- provider search //
