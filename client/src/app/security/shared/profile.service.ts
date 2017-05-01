@@ -31,6 +31,24 @@ export class ProfileService {
     return this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
   }
 
+  getUserName(): String{
+    let umsProfile:UmsProfile = this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
+    if(umsProfile){
+      return umsProfile.userName;
+    }else {
+      return "";
+    }
+  }
+
+  getFullName(): string{
+    let umsProfile:UmsProfile = this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
+    if(umsProfile){
+      return umsProfile.firstName + " " + umsProfile.lastName;
+    }else {
+      return "";
+    }
+  }
+
   deleteProfileFromSessionStorage(){
     this.sessionStorageService.removeItemFromSessionStorage(this.UMS_PROFILE_KEY);
   }

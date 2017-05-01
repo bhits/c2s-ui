@@ -22,10 +22,6 @@ export class GlobalEventManagerService {
     this.userProfileSudject.next(profile);
   }
 
-  getUserProfileEmitter(): Observable<Profile>{
-    return this.userProfileEmitter;
-  }
-
   getShowHeaderEmitter(): Observable<boolean>{
     return this.showHeaderEmitter;
   }

@@ -12,6 +12,7 @@ import {Profile} from "../../core/profile.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {TranslateService} from "@ngx-translate/core";
+import {ProfileService} from "../../security/shared/profile.service";
 
 
 @Component({
@@ -28,13 +29,12 @@ export class ConsentCreateEditComponent implements OnInit {
 
   title: string = "Create Consent";
   consentId: string;
-  profile: Profile;
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,
               private route: ActivatedRoute,
               private utilityService: UtilityService,
-              private globalEventManagerService: GlobalEventManagerService,
+              private profileService: ProfileService,
               private translate: TranslateService) {
 
     this.consentService.getConsentEmitter().subscribe((consent) => {
@@ -43,12 +43,8 @@ export class ConsentCreateEditComponent implements OnInit {
       }
     });
 
-    this.globalEventManagerService.getUserProfileEmitter().subscribe((profile) => {
-      if (profile) {
-        this.profile = profile;
-        this.username = {name: profile.name}
-      }
-    });
+    let fullName:string = this.profileService.getFullName()
+    this.username = {name: fullName};
   }
 
   ngOnInit() {

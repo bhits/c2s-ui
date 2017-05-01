@@ -1,4 +1,8 @@
 export class UmsProfile {
-  defaultLocale: string;
-  locales: string[];
+  userLocale: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  mrn: string;
+  supportedLocales: string[];
 }

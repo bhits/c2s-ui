@@ -77,8 +77,8 @@ export class LoginComponent implements OnInit {
   getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile){
     this.profileService.getUMSProfile().subscribe(
       (profile: UmsProfile)=>{
-        this.customTranslateService.addSupportedLanguages(profile.locales);
-        this.customTranslateService.setDefaultLanguage(profile.defaultLocale);
+        this.customTranslateService.addSupportedLanguages(profile.supportedLocales);
+        this.customTranslateService.setDefaultLanguage(profile.userLocale);
         this.profileService.setProfileInSessionStorage(profile);
         this.authenticationService.onGetUserProfileSuccess(uaaProfile);
       },
@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleLoginError(error:any){
-    this.tokenService.deleteAccessToken()
+    this.tokenService.deleteAccessToken();
     this.showLoginBackendError = true;
     console.log(error)
   }

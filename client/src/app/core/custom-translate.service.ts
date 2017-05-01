@@ -25,7 +25,7 @@ export class CustomTranslateService {
   private updateProfileLocale(locale:string){
     let profile: UmsProfile = this.profileService.getProfileFromSessionStorage();
     if(profile){
-      profile.defaultLocale = locale;
+      profile.userLocale = locale;
       this.profileService.setProfileInSessionStorage(profile);
     }
   }
