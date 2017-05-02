@@ -1,12 +1,12 @@
 
-<md-card class="left-align">
-  <md-card-title><i class="material-icons md-36 bottom p-r-xs">schedule</i>Consent Terms</md-card-title>
-  <md-card-content>
-    <p>Enter a start and end date during wich your medical records will be shared.</p>
+<md-card class="left-align p-none m-sm section-border-thin">
+  <md-card-title class="bg-dark-bluegrey p-sm white"><i class="material-icons md-36 bottom p-r-xs">schedule</i>Consent Terms</md-card-title>
+  <md-card-content class="p-15">
+    <p class="m-b-xs">Enter a start and end date during wich your medical records will be shared.</p>
     <table>
       <tr>
         <td>
-          <span>Start Date: <md2-datepicker [(ngModel)]="startDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onStateDateChanged()"></md2-datepicker></span>
+          <span>Start Date: <md2-datepicker class="font-size12" [(ngModel)]="startDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onStateDateChanged()"></md2-datepicker></span>
         </td>
         <td>
           <span>End Date: <md2-datepicker [(ngModel)]="endDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onEndDateChanged()"></md2-datepicker></span>

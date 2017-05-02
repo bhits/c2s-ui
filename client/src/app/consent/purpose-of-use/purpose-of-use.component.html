@@ -1,14 +1,21 @@
-<md-card class="left-align" style="background-color: #fbf7e9">
-  <md-card-title><i class="material-icons md-36 bottom p-r-xs">settings</i>Purpose Of Use</md-card-title>
-  <md-card-content>
+<md-card class="left-align p-none m-sm section-border-thin">
+  <md-card-title class="bg-dark-blue p-sm white"><i class="material-icons md-36 bottom p-r-xs">settings</i>Purpose Of Use</md-card-title>
+  <md-card-content class="p-15">
     <p>Choose for what purposes your medical information may be used.</p>
     <span><strong>SHARE</strong> my medical record ONLY for the selected purposes of use.</span>
-    <button md-raised-button color="primary" (click)="openDialog(purposeOfUseDialog)">Edit</button>
+    <button class="lineHeight28" md-raised-button color="primary" (click)="openDialog(purposeOfUseDialog)">Edit</button>
     <div>
       <md-chip-list>
-        <span *ngFor="let purposeOfuse of checkedPurposeOfUses; let i = index;">
-          <md-chip color="primary" selected="true" *ngIf="purposeOfuse">{{purposeOfuse}}</md-chip>
-        </span>
+        <!--<span *ngFor="let purposeOfuse of checkedPurposeOfUses; let i = index;">-->
+          <!--<md-chip class="shared purposeOfUse" selected="true" *ngIf="purposeOfuse"><md-icon>check_circle</md-icon>{{purposeOfuse}}</md-chip>-->
+        <!--</span>-->
+
+        <md-chip class="consents" *ngFor="let purposeOfuse of checkedPurposeOfUses; let i = index;"
+                 color="accent" selected="true">
+          <md-icon>check_circle</md-icon>
+          <span class="md-chip-icon-text">{{purposeOfuse}}</span>
+        </md-chip>
+
       </md-chip-list>
     </div>
   </md-card-content>
@@ -18,7 +25,7 @@
   <md2-dialog-title>Share for selected purpose only</md2-dialog-title>
   <md-card class="left-align">
     <md-card-title>Share my information only for specified purposes of use.</md-card-title>
-    <md-card-content>
+    <md-card-content class="p-l-sm p-r-sm p-b-md">
       <button type="button" md-raised-button color="primary" (click)="selectAll()" >Select All</button>
       <button type="button" md-raised-button color="primary" (click)="deSelectAll()" >Deselect All</button>
       <br><br>

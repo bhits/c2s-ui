@@ -1,6 +1,6 @@
-<md-card class="left-align">
-  <md-card-title><i class="material-icons md-36 bottom p-r-xs">content_paste</i>Medical Information</md-card-title>
-  <md-card-content>
+<md-card class="left-align p-none m-sm section-border-thin">
+  <md-card-title class="bg-forest-green p-sm white"><i class="material-icons md-36 bottom p-r-xs">content_paste</i>Medical Information</md-card-title>
+  <md-card-content class="p-15">
     <p>Select how you would like to share your medical information.</p>
     <md-radio-group [(ngModel)]="isShareAll">
       <div>
@@ -16,7 +16,7 @@
                          [value]="0"
                          (click)="onSelectDonotShareAll(medicalInformationDialog, medInfoB.value)">
           <strong>SHARE</strong> my medical record <strong>WITH EXCEPTION</strong> of specific medical information categories.
-          <button type="button" *ngIf="(isShareAll === 0)"
+          <button type="button" class="lineHeight28" *ngIf="(isShareAll === 0)"
                                 md-raised-button
                                 color="primary"
                                 (click)="onSelectEditDonotShareAll(medicalInformationDialog,medInfoB.value)">Edit</button>
@@ -25,9 +25,16 @@
     </md-radio-group>
     <br>
     <md-chip-list>
-        <span *ngFor="let sensitivityPolicy of checkedSensitityPolicies; let i = index;">
-          <md-chip color="primary" selected="true" >{{sensitivityPolicy}}</md-chip>
-        </span>
+        <!--<span *ngFor="let sensitivityPolicy of checkedSensitityPolicies; let i = index;">-->
+          <!--<md-chip class="shared medInfo" selected="true" ><span class="fa fa-check fa-lg m-r-xs"></span>{{sensitivityPolicy}}</md-chip>-->
+        <!--</span>-->
+
+      <md-chip class="medInfo" *ngFor="let sensitivityPolicy of checkedSensitityPolicies; let i = index;"
+               color="accent" selected="true">
+        <md-icon>lock</md-icon>
+        <span class="md-chip-icon-text">{{sensitivityPolicy}}</span>
+      </md-chip>
+
     </md-chip-list>
   </md-card-content>
 </md-card>
@@ -38,7 +45,7 @@
   <md2-dialog-title>Privacy Settings</md2-dialog-title>
   <md-card class="left-align">
     <md-card-title>Sensitive Information Categories</md-card-title>
-    <md-card-content>
+    <md-card-content class="p-l-sm p-r-sm p-b-md">
       <h2>Select the medical information that you wish to share.</h2>
       <h4 *ngIf="isSelectAllCategories">
         Please select the "Share my medical record without any exceptions" option,

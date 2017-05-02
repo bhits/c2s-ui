@@ -33,6 +33,58 @@ body {
   //transform: translateY(-1.35em) scale(.75) !important;
   //width: 133.33333%;
 }
+// ------------------------------------------------------------- create consent styling -------------//
+.lineHeight28 {
+  line-height: 28px !important;
+}
+
+//md-chip {
+//  &.shared {
+//    margin-right: 3px;
+//    border-radius: 4px !important;
+//    font-size: 1em !important;
+//    &.medInfo {
+//      background-color: #8a1004 !important;
+//    }
+//    &.purposeOfUse {
+//      background-color: pink !important;
+//    }
+//  }
+//}
+
+md-chip {
+  margin: 5px;
+  border-radius: 4px !important;
+  font-size: 1em !important;
+  padding: 4px 8px !important;
+  &.consents {}
+  &.medInfo {
+    background-color: #8a1004 !important;
+  }
+  &.purposeOfUse {
+    background-color: pink !important;
+  }
+}
+
+md-chip span.md-chip-icon-text {
+  position: relative;
+  bottom: 5px;
+  margin: 1px;
+}
+
+
+
+
+
+div.md2-datepicker-input {
+  margin-right: 10px;
+  min-width: auto;
+  padding-right: 0;
+  input.md2-datepicker-value {
+    font-size: 15px !important;
+  }
+}
+
 
 // pagination -------------------------------------------------- pagination //
 $dark-blue: #2f526d;
