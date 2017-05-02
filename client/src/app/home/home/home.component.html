@@ -28,8 +28,8 @@
           <img md-card-image src="assets/img/addProviders.svg" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders < 2)">
           <img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders > 1)">
         </div>
-        <div class="p-t-xs font-size12">
-          <span class="font-weight700 font-size16" >{{totalProviders}}</span>
+        <div class="p-t-xs font-size12"  >
+          <span class="font-weight700 font-size16" *ngIf="(totalProviders > 0)">{{totalProviders}}</span>
           {{ totalProviders | i18nPlural: providerMapping | translate :{count: totalProviders} }}
         </div>
       </md-card-content>
@@ -59,7 +59,7 @@
         <div class="center middle">
           <img md-card-image src="assets/img/consents.svg" [ngStyle]="{'width': '75%'}">
         </div>
-        <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalConsents}}</span>
+        <div class="p-t-xs font-size12"><span class="font-weight700 font-size16" *ngIf="(totalConsents > 0)">{{totalConsents}}</span>
           {{ totalConsents | i18nPlural: consentMapping | translate :{count: totalConsents} }}
         </div>
       </md-card-content>
