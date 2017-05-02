@@ -121,6 +121,8 @@ node
 client/src/app/**/*.js
 client/src/app/**/*.js.map
 
+dist/
+
 # e2e
 client/e2e/*.js
 client/e2e/*.map

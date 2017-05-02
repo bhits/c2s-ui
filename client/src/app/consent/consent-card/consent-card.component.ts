@@ -8,6 +8,7 @@ import {NotificationService} from "../../core/notification.service";
 import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -25,7 +26,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,
-              private utilityService: UtilityService) {
+              private translate: TranslateService) {
   }
 
   ngOnInit() {

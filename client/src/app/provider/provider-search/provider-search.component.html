@@ -1,18 +1,14 @@
 <div class="p-t-75 p-l-md p-r-md p-b">
-  <h1 class="">Search Providers</h1>
+  <h1 class="">{{ 'PROVIDER.SEARCH.TITLE' | translate }}</h1>
 
   <md-card class="provider-search-card" xmlns="http://www.w3.org/1999/html">
-    <!--<h2 fxLayoutAlign="start">Search</h2>-->
-
     <div class="containerX">
-      <!--<div fxLayout="column" fxLayoutAlign="start">-->
-
       <form [formGroup]="searchProviderFrom" novalidate>
         <md2-accordion multiple="false" (open)="resetAccordionTab()">
           <md2-accordion-tab [active]="accordionTab">
 
             <md2-accordion-header class="">
-              <md-card-title align="start">Search</md-card-title>
+              <md-card-title align="start">{{ 'PROVIDER.SEARCH.ACCORDION_NAME' | translate }}</md-card-title>
             </md2-accordion-header>
 
             <md-card-content>
@@ -21,44 +17,44 @@
                   <button md-mini-fab aria-label="Step 1">
                     <span>1</span>
                   </button>
-                  <span class="toolbar-header">Step 1. Please enter the provider State and City OR Zip Code.</span>
+                  <span class="toolbar-header">
+                    {{ 'PROVIDER.SEARCH.STEP_1.TITLE' | translate }}
+                  </span>
                 </md-toolbar>
 
                 <div formGroupName="locatingType">
-                  <!--<div fxLayout="column" fxLayoutAlign="center center">-->
                   <div class="p-sm m-t-xs bg-lite-blue">
-                    <div class="font-size14 font-weight400 text-purple p-t-sm p-b center">Please choose one.</div>
+                    <div class="font-size14 font-weight400 text-purple p-t-sm p-b center">
+                      {{ 'PROVIDER.SEARCH.STEP_1.LABEL' | translate }}
+                    </div>
 
                     <div class="bob">
                       <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 280px" class="toggle toggle-block"
                               (click)="setLocatingType(LOCATING_TYPE.STATE_CITY)"
                               [class.toggle-default]="!isStateCityType()"
                               [class.toggle-primary]="isStateCityType()">
-                        <strong>Enter State and City</strong>
+                        <strong>{{ 'PROVIDER.SEARCH.STEP_1.LABEL' | translate }}</strong>
                       </button>
 
-                      <div class="p-l-sm p-r-sm center"><h3>OR</h3></div>
+                      <div class="p-l-sm p-r-sm center">
+                        <h3>{{ 'PROVIDER.SEARCH.STEP_1.OR' | translate }}</h3>
+                      </div>
 
                       <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 280px" fxLayoutAlign="center"
                               class="toggle toggle-block"
                               (click)="setLocatingType(LOCATING_TYPE.ZIP)"
                               [class.toggle-default]="isStateCityType()"
                               [class.toggle-primary]="!isStateCityType()">
-                        <strong>Enter Zip Code</strong>
+                        <strong>{{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.LABEL' | translate }}</strong>
                       </button>
                     </div>
                   </div>
-
-                  <!--</div>-->
-
                   <div class="p-sm m-t" *ngIf="isStateCityType()">
                     <div class="p-b-sm">
-                      <!--<div fxLayout="column">-->
-
                       <div fxLayout="column" formGroupName="stateCity">
                         <div fxLayout="row" fxLayoutAlign="center">
                           <md-select fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                                     placeholder="Please Select State (Required)"
+                                     placeholder="{{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.STATE_PLACE_HOLDER' | translate }}"
                                      formControlName="state">
                             <md-option *ngFor="let state of states" [value]="state.stateCode">
                               {{ state.stateValue }}
@@ -69,7 +65,7 @@
                           <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                                *ngIf="hasErrorOnCurrentFormControl('locatingType.stateCity.state', ERROR_CODE.REQUIRED)"
                                class="form-invalid">
-                            State is required.
+                            {{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.STATE_REQUIRED_ERROR_MSG' | translate }}
                           </div>
                         </div>
                       </div>
@@ -77,21 +73,22 @@
                       <div fxLayout="column" formGroupName="stateCity" class="p-t-sm">
                         <div fxLayout="row" fxLayoutAlign="center">
                           <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                            <input mdInput placeholder="City (Required)" formControlName="city">
+                            <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.STATE_PLACE_HOLDER' | translate }}" formControlName="city">
                           </md-input-container>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center">
                           <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                                *ngIf="hasErrorOnCurrentFormControl('locatingType.stateCity.city', ERROR_CODE.MIN_LENGTH)"
                                class="form-invalid">
-                            Must be at least 2 characters long.
+                            {{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.CITY_MIN_LENGHT_ERROR_MSG' | translate }}
+
                           </div>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center">
                           <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                                *ngIf="hasErrorOnCurrentFormControl('locatingType.stateCity.city', ERROR_CODE.REQUIRED)"
                                class="form-invalid">
-                            City is required.
+                            {{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.STATE_REQUIRED_ERROR_MSG' | translate }}
                           </div>
                         </div>
                       </div>
@@ -105,21 +102,21 @@
                       <div fxLayout="column" formGroupName="zip">
                         <div fxLayout="row" fxLayoutAlign="center">
                           <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                            <input mdInput placeholder="Zip Code (Required)" formControlName="zipCode">
+                            <input mdInput placeholder=" {{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.ZIP_CODE_PLACEHOLDER' | translate }}" formControlName="zipCode">
                           </md-input-container>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center">
                           <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                                *ngIf="hasErrorOnCurrentFormControl('locatingType.zip.zipCode', ERROR_CODE.PATTERN)"
                                class="form-invalid">
-                            Must be with formats: 12345 or 12345-6789.
+                            {{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.ZIP_CODE_FORMAT_ERROR_MSG' | translate }}
                           </div>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center">
                           <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                                *ngIf="hasErrorOnCurrentFormControl('locatingType.zip.zipCode', ERROR_CODE.REQUIRED)"
                                class="form-invalid">
-                            Zip code is required.
+                            {{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.ZIP_CODE_REQUIREDS_MSG' | translate }}
                           </div>
                         </div>
                       </div>
@@ -133,7 +130,9 @@
                   <button md-mini-fab aria-label="Step 2">
                     <span>2</span>
                   </button>
-                  <span class="toolbar-header">Step 2. Please enter the provider Facility Name OR Provider Name and Other Criteria.</span>
+                  <span class="toolbar-header">
+                    {{ 'PROVIDER.SEARCH.STEP_2.TITLE' | translate }}
+                  </span>
                 </md-toolbar>
 
                 <div formGroupName="providerType">
@@ -143,16 +142,16 @@
                               (click)="setProviderType(PROVIDER_TYPE.INDIVIDUAL)"
                               [class.toggle-default]="!isIndividualProviderType()"
                               [class.toggle-primary]="isIndividualProviderType()">
-                        <strong>Enter Provider Name and Other Criteria</strong>
+                        <strong>{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LABEL' | translate }}</strong>
                       </button>
 
-                      <div class="p-l-sm p-r-sm center"><h3>OR</h3></div>
+                      <div class="p-l-sm p-r-sm center"><h3>{{ 'PROVIDER.SEARCH.STEP_2.OR' | translate }}</h3></div>
 
                       <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
                               (click)="setProviderType(PROVIDER_TYPE.ORGANIZATION)"
                               [class.toggle-default]="isIndividualProviderType()"
                               [class.toggle-primary]="!isIndividualProviderType()">
-                        <strong>Enter Facility Name</strong>
+                        <strong>{{ 'PROVIDER.SEARCH.STEP_2.FACILITY.LABEL' | translate }}</strong>
                       </button>
 
                     </div>
@@ -164,21 +163,21 @@
                       <div fxLayout="column" formGroupName="individual">
                         <div fxLayout="row" fxLayoutAlign="center">
                           <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                            <input mdInput placeholder="Last Name (Required)" formControlName="lastName"/>
+                            <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LAST_NAME_PLACEHOLDER' | translate }}" formControlName="lastName"/>
                           </md-input-container>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center">
                           <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                                *ngIf="hasErrorOnCurrentFormControl('providerType.individual.lastName', ERROR_CODE.MIN_LENGTH)"
                                class="form-invalid">
-                            Must be at least 2 characters long.
+                            {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LAST_NAME_MIN_LENGHT_MSG' | translate }}
                           </div>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center">
                           <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                                *ngIf="hasErrorOnCurrentFormControl('providerType.individual.lastName', ERROR_CODE.REQUIRED)"
                                class="form-invalid">
-                            Last Name is required.
+                            {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LAST_NAME_REQUIRED_MSG' | translate }}
                           </div>
                         </div>
                       </div>
@@ -186,14 +185,14 @@
                       <div fxLayout="column" formGroupName="individual" class="p-t-sm">
                         <div fxLayout="row" fxLayoutAlign="center">
                           <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                            <input mdInput placeholder="First Name (Optional)" formControlName="firstName">
+                            <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.FIRST_NAME_PLACEHOLDER' | translate }}" formControlName="firstName">
                           </md-input-container>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center">
                           <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                                *ngIf="hasErrorOnCurrentFormControl('providerType.individual.firstName', ERROR_CODE.MIN_LENGTH)"
                                class="form-invalid">
-                            Must be at least 2 characters long.
+                            {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.FIRST_NAME_MIN_LENGHT_MSG' | translate }}
                           </div>
                         </div>
                       </div>
@@ -201,14 +200,14 @@
                       <div fxLayout="column" formGroupName="individual" class="p-t-sm">
                         <div fxLayout="row" fxLayoutAlign="center">
                           <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                            <input mdInput placeholder="Telephone (Optional)" formControlName="phone">
+                            <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.TELEPHONE_PLACEHOLDER' | translate }}" formControlName="phone">
                           </md-input-container>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap="wrap" class="m-b-sm">
                           <div fxFlex="0 0" fxFlex.gt-sm="0 1 600px"
                                *ngIf="hasErrorOnCurrentFormControl('providerType.individual.phone', ERROR_CODE.PATTERN)"
                                class="form-invalid">
-                            Must be with formats: 123-456-7890 (123)456-7890 1234567890 123.456.7890.
+                            {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.TELEPHONE_FORMAT_MSG' | translate }}
                           </div>
                         </div>
                       </div>
@@ -216,7 +215,7 @@
                       <div fxLayout="column" formGroupName="individual" class="p-t-sm">
                         <div fxLayout="row" fxLayoutAlign="center">
                         <md-select fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                                   placeholder="Gender (Optional)"
+                                   placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.GENDER_PLACEHOLDER' | translate }}"
                                    formControlName="genderCode">
                           <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
                             {{ gender.genderValue }}
@@ -234,35 +233,35 @@
                       <div fxLayout="column" formGroupName="organization">
                         <div fxLayout="row" fxLayoutAlign="center">
                         <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                          <input mdInput placeholder="Facility Name (Required)" formControlName="orgName"/>
+                          <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.FACILITY.NAME_PLACEHOLDER' | translate }}" formControlName="orgName"/>
                         </md-input-container>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center">
                         <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                              *ngIf="hasErrorOnCurrentFormControl('providerType.organization.orgName', ERROR_CODE.MIN_LENGTH)"
                              class="form-invalid">
-                          Must be at least 2 characters long.
+                          {{ 'PROVIDER.SEARCH.STEP_2.FACILITY.NAME_MIN_LENGTH_MSG' | translate }}
                         </div>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center">
                         <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
                              *ngIf="hasErrorOnCurrentFormControl('providerType.organization.orgName', ERROR_CODE.REQUIRED)"
                              class="form-invalid">
-                          Facility Name is required.
+                          {{ 'PROVIDER.SEARCH.STEP_2.FACILITY.NAME_REQUIRED_MSG' | translate }}
                         </div>
                         </div>
                       </div>
                       <div fxLayout="column" formGroupName="organization" class="p-t-xs">
                         <div fxLayout="row" fxLayoutAlign="center">
                         <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                          <input mdInput placeholder="Telephone (Optional)" formControlName="phone">
+                          <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.FACILITY.TELEPHONE_PLACEHOLDER' | translate }}" formControlName="phone">
                         </md-input-container>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center">
                         <div fxFlex="0 0" fxFlex.gt-sm="0 1 600px"
                              *ngIf="hasErrorOnCurrentFormControl('providerType.organization.phone', ERROR_CODE.PATTERN)"
                              class="form-invalid">
-                          Must be with formats: 123-456-7890 (123)456-7890 1234567890 123.456.7890.
+                          {{ 'PROVIDER.SEARCH.STEP_2.FACILITY.TELEPHONE_FORMAT_MSG' | translate }}
                         </div>
                         </div>
                       </div>
@@ -274,10 +273,10 @@
             </md-card-content>
             <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
               <button md-raised-button color="primary" (click)="clearForm()" [disabled]="searchProviderFrom.pristine">
-                <strong>Clear All</strong>
+                <strong>{{ 'PROVIDER.SEARCH.BUTTON.CLEAR_ALL' | translate }}</strong>
               </button>
               <button md-raised-button color="primary" (click)="searchProviders()"
-                      [disabled]="searchProviderFrom.invalid"><strong>Search</strong>
+                      [disabled]="searchProviderFrom.invalid"><strong>{{ 'PROVIDER.SEARCH.BUTTON.SEARCH' | translate }}</strong>
               </button>
             </div>
           </md2-accordion-tab>

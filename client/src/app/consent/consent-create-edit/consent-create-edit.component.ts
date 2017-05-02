@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {DomSanitizer} from "@angular/platform-browser";
 
 import {ConsentService} from "../shared/consent.service";
 import {ActivatedRoute} from "@angular/router";
@@ -10,6 +11,9 @@ import {GlobalEventManagerService} from "../../core/global-event-manager.service
 import {Profile} from "../../core/profile.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
+import {TranslateService} from "@ngx-translate/core";
+import {TokenService} from "../../security/shared/token.service";
+
 
 @Component({
   selector: 'c2s-consent-create-edit',
@@ -21,6 +25,7 @@ export class ConsentCreateEditComponent implements OnInit {
   providers: ConsentProvider[];
   sensitivityPolicies: SensitivityPolicy[];
   purposeOfUses: SharePurpose[];
+  username:any;
 
   title: string = "Create Consent";
   consentId: string;
@@ -30,7 +35,9 @@ export class ConsentCreateEditComponent implements OnInit {
               private notificationService: NotificationService,
               private route: ActivatedRoute,
               private utilityService: UtilityService,
-              private globalEventManagerService: GlobalEventManagerService) {
+              private globalEventManagerService: GlobalEventManagerService,
+              private translate: TranslateService,
+              private tokenService: TokenService) {
 
     this.consentService.getConsentEmitter().subscribe((consent) => {
       if (consent) {
@@ -41,6 +48,7 @@ export class ConsentCreateEditComponent implements OnInit {
     this.globalEventManagerService.getUserProfileEmitter().subscribe((profile) => {
       if (profile) {
         this.profile = profile;
+        this.username = {name: profile.name}
       }
     });
   }
@@ -58,6 +66,12 @@ export class ConsentCreateEditComponent implements OnInit {
       if (params['consentId']) { // Edit mode
         this.title = "Edit Consent";
         this.consent = this.route.snapshot.data['consent'];
+      }else{
+        let providerCount: number = this.tokenService.getProviderCount();
+        if( providerCount<= 1){
+          this.notificationService.show("You don't have enough providers to create consent.")
+          window.history.back();
+        }
       }
       this.consentService.setConsent(this.consent);
     });

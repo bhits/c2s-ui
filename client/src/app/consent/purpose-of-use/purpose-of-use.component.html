@@ -1,9 +1,9 @@
 <md-card class="left-align">
-  <md-card-title>Purpose Of Use</md-card-title>
+  <md-card-title>{{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.TITLE' | translate }}</md-card-title>
   <md-card-content>
-    <p>Choose for what purposes your medical information may be used.</p>
-    <span><strong>SHARE</strong> my medical record ONLY for the selected purposes of use.</span>
-    <button md-raised-button color="primary" (click)="openDialog(purposeOfUseDialog)">Edit</button>
+    <p>{{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DESCRIPTION' | translate }}</p>
+    <span [innerHTML]="'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.SHARE_TEXT' | translate"></span>
+    <button md-raised-button color="primary" (click)="openDialog(purposeOfUseDialog)">{{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.EDIT_BTN' | translate }}</button>
     <div>
       <md-chip-list>
         <span *ngFor="let purposeOfuse of checkedPurposeOfUses; let i = index;">
@@ -15,12 +15,16 @@
 </md-card>
 
 <md2-dialog #purposeOfUseDialog>
-  <md2-dialog-title>Share for selected purpose only</md2-dialog-title>
+  <md2-dialog-title>{{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.TITLE' | translate }}</md2-dialog-title>
   <md-card class="left-align">
-    <md-card-title>Share my information only for specified purposes of use.</md-card-title>
+    <md-card-title>{{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.DESCRIPTION' | translate }}</md-card-title>
     <md-card-content>
-      <button type="button" md-raised-button color="primary" (click)="selectAll()" >Select All</button>
-      <button type="button" md-raised-button color="primary" (click)="deSelectAll()" >Deselect All</button>
+      <button type="button" md-raised-button color="primary" (click)="selectAll()" >
+        {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.SELECT_BTN' | translate }}
+      </button>
+      <button type="button" md-raised-button color="primary" (click)="deSelectAll()" >
+        {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.DESELECT_BTN' | translate }}
+      </button>
       <br><br>
         <div *ngFor="let purposeOfuse of purposeOfUSes; let i = index;">
           <md-checkbox [(ngModel)]="purposeOfUSes[i].checked">
@@ -33,7 +37,11 @@
     </md-card-content>
   </md-card>
   <md2-dialog-footer>
-    <button type="button" md-raised-button (click)="closeDialog(purposeOfUseDialog)">Cancel</button>
-    <button type="button" md-raised-button color="primary" (click)="setSelectedPurposesOfUse(purposeOfUseDialog)" >Save changes</button>
+    <button type="button" md-raised-button (click)="closeDialog(purposeOfUseDialog)">
+      {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.CANCEL_BTN' | translate }}
+    </button>
+    <button type="button" md-raised-button color="primary" (click)="setSelectedPurposesOfUse(purposeOfUseDialog)" >
+      {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.SAVE_BTN' | translate }}
+    </button>
   </md2-dialog-footer>
 </md2-dialog>

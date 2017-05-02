@@ -38,6 +38,7 @@ export class AuthenticationService {
   logout() {
     this.tokenService.deleteAccessToken();
     this.tokenService.deleteProfileToken();
+    this.tokenService.deleteProviderCount();
     this.profileService.deleteProfileFromSessionStorage();
     this.globalEventManagerService.setShowHeader(false);
     this.router.navigate([this.LOGIN]);

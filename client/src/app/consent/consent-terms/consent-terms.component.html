@@ -1,21 +1,27 @@
 
 <md-card class="left-align">
-  <md-card-title>Consent Terms</md-card-title>
+  <md-card-title>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.TITLE' | translate }}</md-card-title>
   <md-card-content>
-    <p>Enter a start and end date during wich your medical records will be shared.</p>
+    <p>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.TEXT' | translate }}</p>
     <table>
       <tr>
         <td>
-          <span>Start Date: <md2-datepicker [(ngModel)]="startDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onStateDateChanged()"></md2-datepicker></span>
+          <span>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.START_DATE' | translate }}: <md2-datepicker [(ngModel)]="startDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onStateDateChanged()"></md2-datepicker></span>
         </td>
         <td>
-          <span>End Date: <md2-datepicker [(ngModel)]="endDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onEndDateChanged()"></md2-datepicker></span>
+          <span>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.END_DATE' | translate }}: <md2-datepicker [(ngModel)]="endDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onEndDateChanged()"></md2-datepicker></span>
         </td>
       </tr>
       <tr>
-        <div *ngIf="startDateHasPast" class="has-error"> Start date should be in the present.</div>
-        <div *ngIf="endDateHasPast" class="has-error"> End date should be in the present.</div>
-        <div *ngIf="compareDate === true " class="has-error"> Start date should proceed end date.</div>
+        <div *ngIf="startDateHasPast" class="has-error">
+          {{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.ERROR_PAST_START_DATE' | translate }}
+        </div>
+        <div *ngIf="endDateHasPast" class="has-error">
+          {{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.ERROR_PAST_END_DATE' | translate }}
+        </div>
+        <div *ngIf="compareDate === true " class="has-error">
+          {{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.ERROR_END_DATE_BEFORE_START' | translate }}
+        </div>
       </tr>
     </table>
     </md-card-content>

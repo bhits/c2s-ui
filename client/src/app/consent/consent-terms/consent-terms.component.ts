@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UtilityService} from "../../shared/utility.service";
 import {ConsentService} from "../shared/consent.service";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -13,14 +14,16 @@ export class ConsentTermsComponent implements OnInit {
 
   startDate: any;
   endDate: any;
-  DATE_FORMAT:string = "MM/dd/yyyy"
+  DATE_FORMAT:string = "MM/dd/yyyy";
   private consent: ConsentCreateEdit;
   startDateHasPast: boolean;
   endDateHasPast: boolean;
   compareDate: boolean;
   today:Date = new Date();
 
-  constructor(private utilityService:UtilityService, private consentService: ConsentService) {
+  constructor(private utilityService:UtilityService,
+              private consentService: ConsentService,
+              private translate: TranslateService) {
     this.consentService.getConsentEmitter().subscribe((consent)=>{
       if (consent) {
         this.consent = consent;
@@ -32,6 +35,13 @@ export class ConsentTermsComponent implements OnInit {
     if(this.consent && this.consent.startDate && this.consent.endDate){
       this.startDate = this.utilityService.formatDate(this.consent.startDate, this.DATE_FORMAT) ;
       this.endDate = this.utilityService.formatDate(this.consent.endDate, this.DATE_FORMAT) ;
+    }else{
+      let today = new Date();
+      let oneYearFromNow = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
+      this.startDate = this.utilityService.formatDate(today, this.DATE_FORMAT) ;
+      this.consent.startDate = this.startDate;
+      this.endDate = this.utilityService.formatDate(oneYearFromNow, this.DATE_FORMAT) ;
+      this.consent.endDate = this.endDate;
     }
   }
 
