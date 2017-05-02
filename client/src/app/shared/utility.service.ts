@@ -1,13 +1,16 @@
 import {Injectable} from "@angular/core";
+import {DatePipe, Location} from "@angular/common";
 import {Router} from "@angular/router";
-import {DatePipe} from "@angular/common";
 import {Identifier} from "./identifier.model";
 import {BrowserService} from "../core/browser.service";
 
 @Injectable()
 export class UtilityService {
 
-  constructor(private router: Router, private datePipe: DatePipe, private browserService: BrowserService) {
+  constructor(private location: Location,
+              private router: Router,
+              private datePipe: DatePipe,
+              private browserService: BrowserService) {
   }
 
   navigateTo(url: string) {
@@ -46,7 +49,7 @@ export class UtilityService {
     }
   }
 
-  base64StringtoBlob(b64Data, contentType, sliceSize?): Blob {
+  base64StringtoBlob(b64Data, contentType, sliceSize ?): Blob {
     contentType = contentType || '';
     sliceSize = sliceSize || 512;
 
@@ -124,5 +127,10 @@ export class UtilityService {
     if(this.isDefined(startDate) && this.isDefined(endDate)){
       return (startDate.valueOf() >= endDate.valueOf());
     }
+  }
+
+  getCurrentNormalizedPath(): string {
+    const includeHash: boolean = true;
+    return this.location.path(includeHash);
   }
 }

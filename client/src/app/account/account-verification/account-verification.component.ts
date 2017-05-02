@@ -1,0 +1,64 @@
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AccountService} from "../shared/account.service";
+import {AccountVerificationService} from "../shared/account-verification.service";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {UtilityService} from "../../shared/utility.service";
+import {AccountVerificationRequest} from "../shared/account-verification-request.model";
+
+@Component({
+  selector: 'c2s-account-verification',
+  templateUrl: './account-verification.component.html',
+  styleUrls: ['./account-verification.component.scss']
+})
+export class AccountVerificationComponent implements OnInit {
+  public accountVerificationFrom: FormGroup;
+  public FORMAT: string = "MM/dd/y";
+  public today: Date = new Date();
+  private emailToken: string;
+
+  constructor(private accountService: AccountService,
+              private accountVerificationService: AccountVerificationService,
+              private c2sUiApiUrlService: C2sUiApiUrlService,
+              private formBuilder: FormBuilder,
+              private utilityService: UtilityService) {
+  }
+
+  ngOnInit() {
+    this.accountVerificationFrom = this.formBuilder.group({
+      birthDate: ['', Validators.required],
+      verificationCode: ['', Validators.required]
+    });
+    this.emailToken = this.accountVerificationService.retrieveEmailToken(this.utilityService.getCurrentNormalizedPath());
+  }
+
+  public clear() {
+    this.accountVerificationFrom.reset();
+  }
+
+  public verify() {
+    this.accountService.verifyAccount(this.prepareVerificationAccount())
+      .subscribe(
+        (verificationResponse) => {
+          this.accountVerificationService.setVerificationInfo(this.prepareVerificationAccount());
+          this.accountVerificationService.setUserId(verificationResponse.userId);
+          this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationUrl())
+        },
+        err => {
+          this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationErrorUrl());
+          console.log(err);
+        }
+      );
+  }
+
+  private prepareVerificationAccount(): AccountVerificationRequest {
+    const formModel = this.accountVerificationFrom.value;
+    if (this.emailToken != null) {
+      return {
+        birthDate: new Date(formModel.birthDate),
+        verificationCode: formModel.verificationCode,
+        emailToken: this.emailToken
+      };
+    }
+  }
+}

@@ -61,7 +61,7 @@
                 </button>
               </md2-dialog-footer>
             </md2-dialog>
-            <button md-fab [disabled]="!provider.deletable" (click)="confirm.open()">
+            <button md-fab [disabled]="!provider.deletable" (click)="openConfirmDialog(confirm, provider)">
               <span class="fa fa-trash fa-lg font-weight500" aria-hidden="true"></span>
             </button>
           </div>
@@ -82,10 +82,18 @@
     </div>
 </div>
     <div fxLayoutAlign="center">
-      <pagination-controls
-        previousLabel="{{ 'PROVIDER.LIST.PAGINATION.PREVIOUS' | translate }}"
-        nextLabel="{{ 'PROVIDER.LIST.PAGINATION.NEXT' | translate }}"
-        (pageChange)="onPageChange($event)"></pagination-controls>
+      <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
   </div>
+</div>
+<div>
+  <md2-dialog #confirm>
+    <md2-dialog-title>Delete Provider</md2-dialog-title>
+    Are you sure you want to delete this provider?
+    <md2-dialog-footer>
+      <button md-raised-button color="primary" (click)="confirmDeleteProvider(confirm)">Ok
+      </button>
+      <button md-raised-button (click)="confirm.close()">Cancel</button>
+    </md2-dialog-footer>
+  </md2-dialog>
 </div>

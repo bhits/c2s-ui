@@ -10,8 +10,9 @@ import {PageContentComponent} from "./page-content/page-content.component";
 import {SharedModule} from "../shared/shared.module";
 import {RouterModule} from "@angular/router";
 import {AuthenticationService} from "../security/shared/authentication.service";
-import { MultiLanguageComponent } from './multi-language/multi-language.component';
-import {TranslateModule} from '@ngx-translate/core';
+import {UnsecuredHeaderComponent} from "./unsecured-header/unsecured-header.component";
+import {MultiLanguageComponent} from "./multi-language/multi-language.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   imports: [
@@ -28,9 +29,11 @@ import {TranslateModule} from '@ngx-translate/core';
     HeaderComponent,
     FooterComponent,
     PageContentComponent,
+    UnsecuredHeaderComponent,
     MultiLanguageComponent],
   exports: [
     HeaderComponent,
+    UnsecuredHeaderComponent,
     FooterComponent,
     PageContentComponent,
     MaterialModule

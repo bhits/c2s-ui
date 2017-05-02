@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import {Component, OnInit} from "@angular/core";
 import {AuthenticationService} from "../shared/authentication.service";
 import {Credentials} from "../shared/credentials.model";
-import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../../shared/validation.service";
 import {TokenService} from "../shared/token.service";
 import {CustomTranslateService} from "../../core/custom-translate.service";
@@ -30,18 +29,8 @@ export class LoginComponent implements OnInit {
 
     this.credentials = new Credentials();
     this.loginForm = formBuilder.group({
-          'username' : [null, Validators.compose([
-                                        Validators.required,
-                                        Validators.minLength(this.validationService.EMAIL_MIN_LENGHT),
-                                        Validators.maxLength(this.validationService.EMAIL_MAX_LENGHT),
-                                        this.validationService.emailValidator])
-                       ],
-          'password':  [null, Validators.compose([
-                                        Validators.required,
-                                        Validators.minLength(this.validationService.PASSWORD_MIN_LENGHT),
-                                        Validators.maxLength(this.validationService.PAASOWRD_MAX_LENGHT),
-                                        this.validationService.passwordValidator])
-                        ],
+      'username': [null, Validators.required],
+      'password': [null, Validators.required],
     });
   }
 

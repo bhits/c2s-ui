@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
 import {
-  Http,
   ConnectionBackend,
-  RequestOptions,
+  Headers,
+  Http,
   Request,
+  RequestOptions,
   RequestOptionsArgs,
   Response,
-  Headers,
   XHRBackend
 } from "@angular/http";
 import {Observable} from "rxjs";
@@ -53,11 +53,14 @@ export class HttpInterceptorService extends Http {
   }
 
   intercept(observable: Observable<Response>): Observable<Response> {
-    return observable.do(() => this.slimLoadingBarService.complete());
+    return observable.do(() => this.slimLoadingBarService.complete())
+      .catch((err: any, caught: Observable<Response>) => {
+        this.slimLoadingBarService.complete();
+        return Observable.throw(err);
+      });
   }
 
   private setHeaders(options: RequestOptionsArgs): RequestOptionsArgs {
-
     if (!options) {
       options = new RequestOptions({});
     }

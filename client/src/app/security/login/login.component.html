@@ -1,10 +1,6 @@
 <div class="flexcontainer column">
   <div class="flex-min-height-max login-background">
-    <div class="bg-white p-sm border-bottom">
-      <div class="center">
-        <img src="assets/img/C2S-logo-color.svg" style="height: 46px;"/>
-      </div>
-    </div>
+    <c2s-unsecured-header></c2s-unsecured-header>
     <div class="p-t-md p-b-md p-l-lg p-r-lg">
       <div class="font-size20 font-weight500 center" style="color: #266357;">Take control of your health and well-being
         with Consent2Share.
@@ -19,34 +15,31 @@
         <input class="font-size15" mdInput placeholder="User name" type="email"
                name="username"
                required
-               [formControl]="loginForm.controls['username']"
-        >
+               [formControl]="loginForm.controls['username']">
         <c2s-control-messages [control]="loginForm.controls.username"></c2s-control-messages>
-
       </md-input-container>
 
-    <md-input-container class="full-width">
-      <input type="password" mdInput placeholder="Password"
-             name="password"
-             required
-             [formControl]="loginForm.controls['password']"
-      >
-      <c2s-control-messages [control]="loginForm.controls.password"></c2s-control-messages>
-      <md-hint class="has-error" *ngIf="showLoginBackendError">
-        Sorry, you do not have permission to access this site.
-      </md-hint>
-    </md-input-container>
-    <br><br>
-    <div class="flexcontainer row">
-      <button class="flex10auto"
-              type="button"
-              type="submit"
-              [disabled]="!isValidForm(loginForm)"
-              md-raised-button color="primary"
-              (click)="login(loginForm.value)">Login
-      </button>
-    </div>
-  </form>
+      <md-input-container class="full-width">
+        <input type="password" mdInput placeholder="Password"
+               name="password"
+               required
+               [formControl]="loginForm.controls['password']">
+        <c2s-control-messages [control]="loginForm.controls.password"></c2s-control-messages>
+        <md-hint class="has-error" *ngIf="showLoginBackendError">
+          Sorry, you do not have permission to access this site.
+        </md-hint>
+      </md-input-container>
+      <br><br>
+      <div class="flexcontainer row">
+        <button class="flex10auto"
+                type="button"
+                type="submit"
+                [disabled]="!isValidForm(loginForm)"
+                md-raised-button color="primary"
+                (click)="login(loginForm.value)">Login
+        </button>
+      </div>
+    </form>
   </div>
 
   <div class="bg-white flex10auto">
@@ -69,7 +62,9 @@
       <div class="center border-bottom-purple p-b-xs m-15">
         <img src="assets/img/shield.svg" class="login-help-icon m-b-n"/>
         <div class="border-top-purple p-b-sm"></div>
-        <div class="font-size19 font-weight500 text-purple">How does Consent2Share keep my health information private and secure?</div>
+        <div class="font-size19 font-weight500 text-purple">How does Consent2Share keep my health information private
+          and secure?
+        </div>
         <a href="#">
           <div class="p-t-xs learn-more" fxLayoutAlign="center center">
             <div class="font-size17 font-weight400 p-r-xs inline">Learn more</div>
@@ -80,7 +75,8 @@
       <div class="center border-bottom-purple p-b-xs m-15">
         <img src="assets/img/hand.svg" class="login-help-icon m-b-n"/>
         <div class="border-top-purple p-b-sm"></div>
-        <div class="font-size19 font-weight500 text-purple">How does Consent2Share help providers coordinate my health care
+        <div class="font-size19 font-weight500 text-purple">How does Consent2Share help providers coordinate my health
+          care
           treatment?
         </div>
         <a href="#">
