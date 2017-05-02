@@ -9,7 +9,7 @@ import {SessionStorageService} from "./session-storage.service";
 
 @Injectable()
 export class ProfileService {
-  umsProfileUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl() + "/profile";
+  umsProfileUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl() + "/users/profile";
   private UMS_PROFILE_KEY:string = 'c2s-ums-profile';
 
   constructor(
