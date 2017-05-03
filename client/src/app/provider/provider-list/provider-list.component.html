@@ -49,19 +49,7 @@
 
         <md-card-content class="p-t-xs p-b p-l-md p-r-md">
           <div>
-            <md2-dialog #confirm>
-              <md2-dialog-title> {{ 'PROVIDER.LIST.DELETE_DIALOG.TITLE' | translate }}</md2-dialog-title>
-              {{ 'PROVIDER.LIST.DELETE_DIALOG.DESCRIPTION' | translate }}
-              <md2-dialog-footer>
-                <button md-raised-button color="primary" (click)="confirmDeleteProvider(confirm, provider)">
-                  {{ 'PROVIDER.LIST.DELETE_DIALOG.BUTTON.OK' | translate }}
-                </button>
-                <button md-raised-button (click)="confirm.close()">
-                  {{ 'PROVIDER.LIST.DELETE_DIALOG.BUTTON.CANCEL' | translate }}
-                </button>
-              </md2-dialog-footer>
-            </md2-dialog>
-            <button md-fab [disabled]="!provider.deletable" (click)="confirm.open()">
+            <button md-fab [disabled]="!provider.deletable" (click)="openConfirmDialog(confirm, provider)">
               <span class="fa fa-trash fa-lg font-weight500" aria-hidden="true"></span>
             </button>
           </div>
@@ -88,4 +76,18 @@
         (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
   </div>
+</div>
+<div>
+  <md2-dialog #confirm>
+    <md2-dialog-title>{{ 'PROVIDER.LIST.DELETE_DIALOG.TITLE' | translate }}</md2-dialog-title>
+    {{ 'PROVIDER.LIST.DELETE_DIALOG.DESCRIPTION' | translate }}
+    <md2-dialog-footer>
+      <button md-raised-button color="primary" (click)="confirmDeleteProvider(confirm)">
+        {{ 'PROVIDER.LIST.DELETE_DIALOG.BUTTON.OK' | translate }}
+      </button>
+      <button md-raised-button (click)="confirm.close()">
+        {{ 'PROVIDER.LIST.DELETE_DIALOG.BUTTON.CANCEL' | translate }}
+      </button>
+    </md2-dialog-footer>
+  </md2-dialog>
 </div>

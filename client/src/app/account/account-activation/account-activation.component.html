@@ -1,0 +1,42 @@
+<div class="p-t-md p-b-md p-l-lg p-r-lg">
+  <div class="font-size20" style="color: #266357;"><strong>Create your Account</strong></div>
+</div>
+<div style="background-color: #BCDEDB;" class="p-md font-size18 font-weight">
+  Please create a Password for your account.
+  Remember your Username and Password. You will need them to log in to your account.
+</div>
+
+<form fxFlex [formGroup]="accountActivationFrom" class="account-activation-from" novalidate>
+  <md-input-container class="full-width font-size20">
+    <input type="text" class="font-size15" mdInput placeholder="Username"
+           (blur)="checkUsername()" formControlName="username">
+    <md-hint class="has-error font-size16" *ngIf="isUsernameUsed">
+      The username is already in use. Try another?
+    </md-hint>
+    <c2s-control-messages [control]="accountActivationFrom.controls.username"
+                          [customMessage]="passwordErrorMessage"></c2s-control-messages>
+  </md-input-container>
+  <md-input-container class="full-width font-size20">
+    <input type="password" class="font-size15" mdInput placeholder="Password"
+           formControlName="password">
+    <c2s-control-messages [control]="accountActivationFrom.controls.password"
+                          [customMessage]="passwordErrorMessage"></c2s-control-messages>
+  </md-input-container>
+  <md-input-container class="full-width font-size20">
+    <input type="password" class="font-size15" mdInput placeholder="Re-enter Password"
+           formControlName="confirmPassword">
+    <c2s-control-messages [control]="accountActivationFrom.controls.confirmPassword"></c2s-control-messages>
+    <md-hint class="has-error font-size16" *ngIf="accountActivationFrom.hasError('mismatchedPasswords')">
+      {{mismatchedPasswordsMessage}}
+    </md-hint>
+  </md-input-container>
+  <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px">
+    <button md-raised-button color="primary" [disabled]="accountActivationFrom.pristine" (click)="clear()">
+      <strong>Clear</strong>
+    </button>
+    <button md-raised-button color="primary" [disabled]="accountActivationFrom.invalid" (click)="activate()">
+      <strong>Submit</strong>
+    </button>
+  </div>
+</form>
+
