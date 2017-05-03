@@ -5,24 +5,29 @@ import {Observable} from "rxjs";
 import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
 import {ConsentList} from "../consent/shared/consent-list.model";
 import {ConsentProvider} from "./consent-provider.model";
+import {ProfileService} from "../security/shared/profile.service";
 
 @Injectable()
 export class DataService {
 
+  //Todo: Change it when current user can manage multiple patients
+  private currentUserMrn: string = this.profileService.getUserMrn();
+
   constructor(private c2sUiApiUrlService: C2sUiApiUrlService,
               private http: Http,
-              private exceptionService: ExceptionService) {
+              private exceptionService: ExceptionService,
+              private profileService: ProfileService) {
   }
 
   getProviders(): Observable<ConsentProvider[]> {
-    const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers");
+    const resourceUrl = `${this.c2sUiApiUrlService.getPcmBaseUrl()}/patients/${this.currentUserMrn}/providers`;
     return this.http.get(resourceUrl)
       .map((resp: Response) => <ConsentProvider>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
   getConsents(page: number): Observable<ConsentList> {
-    const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents");
+    const resourceUrl = `${this.c2sUiApiUrlService.getPcmBaseUrl()}/patients/${this.currentUserMrn}/consents`;
     let params: URLSearchParams = new URLSearchParams();
     params.set('page', page.toString());
     return this.http.get(resourceUrl, {search: params})

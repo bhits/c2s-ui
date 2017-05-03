@@ -3,7 +3,6 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class C2sUiApiUrlService {
 
-  //TODO: get urls configuration from server side
   urls: Map<string, string> = new Map(
     [
       // Internal routes maps
