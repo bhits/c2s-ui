@@ -32,7 +32,7 @@ export class ProfileService {
   }
 
   getUserName(): String{
-    let umsProfile:UmsProfile = this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
+    let umsProfile:UmsProfile = this.getProfileFromSessionStorage();
     if(umsProfile){
       return umsProfile.userName;
     }else {
@@ -41,7 +41,7 @@ export class ProfileService {
   }
 
   getFullName(): string{
-    let umsProfile:UmsProfile = this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
+    let umsProfile:UmsProfile = this.getProfileFromSessionStorage();
     if(umsProfile){
       return umsProfile.firstName + " " + umsProfile.lastName;
     }else {
@@ -51,5 +51,14 @@ export class ProfileService {
 
   deleteProfileFromSessionStorage(){
     this.sessionStorageService.removeItemFromSessionStorage(this.UMS_PROFILE_KEY);
+  }
+
+  getMRN(){
+    let umsProfile:UmsProfile = this.getProfileFromSessionStorage();
+    if(umsProfile){
+      return umsProfile.mrn;
+    }else {
+      return "";
+    }
   }
 }
