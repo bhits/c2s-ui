@@ -24,7 +24,7 @@ body {
   top: -1.2em !important;
   //padding-top:15px !important;
   label {
-    color: blueviolet !important;
+    //color: blueviolet !important;
     //font-size: 1.2em;
   }
 }
@@ -193,15 +193,15 @@ ul.ng2-pagination {
     .mat-card-title {margin: 0; padding-left: 15px;}
     .md2-accordion-header-icon {border-color: white !important; right: 20px; top: 23px !important;}
     .md2-accordion-tab-active .md2-accordion-header-icon {border-color: white !important; top: 27px !important;}
-    .bob {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      @media (min-width: 960px){
-        flex-direction: row;
-      }
-    }
 
+  }
+  .row-to-column960-centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (min-width: 960px){
+      flex-direction: row;
+    }
   }
 
   .toolbar-base {
@@ -268,7 +268,8 @@ ul.ng2-pagination {
     //padding: 5px;
     &.hover:hover {
       //border: 2px solid #f4c426;
-      border: 2px solid #24a69a;
+      //border: 2px solid #24a69a;
+      border: 2px solid #efbf78;
     }
   }
 

@@ -29,7 +29,7 @@
                   <div class="p-sm p-b m-t-xs bg-lite-blue">
                     <div class="font-size12 font-weight400 p-t-sm p-b-sm center">PLEASE CHOOSE ONE.</div>
 
-                    <div class="bob">
+                    <div class="row-to-column960-centered">
                       <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
                               (click)="setLocatingType(LOCATING_TYPE.STATE_CITY)"
                               [class.toggle-default]="!isStateCityType()"
@@ -139,7 +139,7 @@
                 <div formGroupName="providerType">
                   <div class="p-sm p-b m-t-xs bg-lite-blue">
                     <div class="font-size12 font-weight400 p-t-sm p-b-sm center">PLEASE CHOOSE ONE.</div>
-                    <div class="bob">
+                    <div class="row-to-column960-centered">
                       <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
                               (click)="setProviderType(PROVIDER_TYPE.INDIVIDUAL)"
                               [class.toggle-default]="!isIndividualProviderType()"
@@ -253,7 +253,7 @@
                         </div>
                         </div>
                       </div>
-                      <div fxLayout="column" formGroupName="organization" class="p-t-xs">
+                      <div fxLayout="column" formGroupName="organization" class="p-t-sm">
                         <div fxLayout="row" fxLayoutAlign="center">
                         <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
                           <input mdInput placeholder="Telephone (Optional)" formControlName="phone">
