@@ -35,7 +35,7 @@ export class ConsentCreateEditComponent implements OnInit {
               private notificationService: NotificationService,
               private route: ActivatedRoute,
               private utilityService: UtilityService,
-              private tokenService: TokenService) {
+              private tokenService: TokenService ,
               private profileService: ProfileService,
               private translate: TranslateService) {
 

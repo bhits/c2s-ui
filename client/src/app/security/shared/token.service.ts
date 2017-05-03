@@ -38,6 +38,18 @@ export class TokenService {
     this.sessionStorageService.setItemInSessionStorage(this.USER_PROFILE_KEY, userProfile);
   }
 
+  storeProviderCount(count:Number){
+    this.sessionStorageService.setItemInSessionStorage(this.PROVIDER_COUNT_KEY, count);
+  }
+
+  getProviderCount(){
+    return this.sessionStorageService.getItemFromSessionStorage(this.PROVIDER_COUNT_KEY);
+  }
+
+  deleteProviderCount(){
+    this.sessionStorageService.removeItemFromSessionStorage(this.PROVIDER_COUNT_KEY);
+  }
+
   createProfileObject(uaaProfile:any): Profile{
     let profile = new Profile();
     profile.email = uaaProfile.email;
