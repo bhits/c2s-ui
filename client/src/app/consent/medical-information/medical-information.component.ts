@@ -12,7 +12,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 @Component({
   selector: 'c2s-medical-information',
   templateUrl: './medical-information.component.html',
-  styleUrls: ['./medical-information.component.css']
+  styleUrls: ['medical-information.component.scss']
 })
 export class MedicalInformationComponent implements OnInit {
 

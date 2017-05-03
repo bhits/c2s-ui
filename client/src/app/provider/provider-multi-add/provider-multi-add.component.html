@@ -57,7 +57,7 @@
       </md2-dialog-title>
           {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.CONTENT' | translate }}
       <md2-dialog-footer>
-        <button md-raised-button (click)="confirm.close()">
+        <button class="m-r" md-raised-button color="primary" (click)="confirmAddProviders(confirm, providers)">
           {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.CANCEL_BUTTON' | translate }}
         </button>
         <button md-raised-button color="primary" (click)="confirmAddProviders(confirm, providers)">

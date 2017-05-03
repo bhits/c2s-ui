@@ -15,11 +15,11 @@
     <md-card-title>
       {{ 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DESCRIPTION' | translate }}
     </md-card-title>
-    <md-card-content>
+    <md-card-content class="p-l-sm p-r-sm p-b-md">
       <h3>{{ 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.IND_PROVIDER_LABEL' | translate }}</h3>
       <md-radio-group  [(ngModel)]="selectedProviderNpi">
           <div *ngFor="let provider of providers">
-            <md-radio-button *ngIf="provider.providerType === 'PRACTITIONER'"
+            <md-radio-button class="p-b-xs" *ngIf="provider.providerType === 'PRACTITIONER'"
                              [value]="provider?.identifiers[0]?.value"
                              [disabled]="isSelected(provider?.identifiers[0]?.value)">
               {{provider | consentProvider : 'name'}}
