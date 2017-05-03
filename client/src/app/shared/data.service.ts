@@ -10,7 +10,6 @@ import {ProfileService} from "../security/shared/profile.service";
 @Injectable()
 export class DataService {
 
-  //Todo: Change it when current user can manage multiple patients
   private currentUserMrn: string = this.profileService.getUserMrn();
 
   constructor(private c2sUiApiUrlService: C2sUiApiUrlService,
@@ -20,14 +19,14 @@ export class DataService {
   }
 
   getProviders(): Observable<ConsentProvider[]> {
-    const resourceUrl = `${this.c2sUiApiUrlService.getPcmBaseUrl()}/patients/${this.currentUserMrn}/providers`;
+    const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/providers");
     return this.http.get(resourceUrl)
       .map((resp: Response) => <ConsentProvider>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
   getConsents(page: number): Observable<ConsentList> {
-    const resourceUrl = `${this.c2sUiApiUrlService.getPcmBaseUrl()}/patients/${this.currentUserMrn}/consents`;
+    const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/consents");
     let params: URLSearchParams = new URLSearchParams();
     params.set('page', page.toString());
     return this.http.get(resourceUrl, {search: params})

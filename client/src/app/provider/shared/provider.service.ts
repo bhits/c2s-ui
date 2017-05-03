@@ -1,4 +1,4 @@
-import {Http, URLSearchParams, Headers, Response} from "@angular/http";
+import {Headers, Http, Response, URLSearchParams} from "@angular/http";
 import {Injectable} from "@angular/core";
 import "rxjs/add/operator/toPromise";
 import {ProviderRequestQuery} from "./provider-request-query.model";
@@ -9,14 +9,17 @@ import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 import {Identifier} from "../../shared/identifier.model";
 import {FHIR_US_NPI_SYSTEM} from "../../shared/consent-provider.model";
+import {ProfileService} from "../../security/shared/profile.service";
 
 @Injectable()
 export class ProviderService {
   private headers = new Headers({'Content-Type': 'application/json'});
+  private currentUserMrn: string = this.profileService.getUserMrn();
 
   constructor(private c2sUiApiUrlService: C2sUiApiUrlService,
               private http: Http,
-              private exceptionService: ExceptionService) {
+              private exceptionService: ExceptionService,
+              private profileService: ProfileService) {
   }
 
   searchProviders(requestParams: ProviderRequestQuery): Observable<ProviderSearchResponse> {
@@ -41,20 +44,21 @@ export class ProviderService {
   }
 
   deleteProvider(id: number): Observable<void> {
-    const DELETE_PROVIDERS_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers")}/${id}`;
+    const DELETE_PROVIDERS_URL = `${this.c2sUiApiUrlService.getPcmBaseUrl()}/patients/${this.currentUserMrn}/providers/${id}`;
     return this.http.delete(DELETE_PROVIDERS_URL)
       .map(() => null)
       .catch(this.exceptionService.handleError);
   }
 
   addProviders(providers: FlattenedSmallProvider[]): Observable<void> {
+    const ADD_PROVIDERS_URL = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/providers");
     if (providers != null) {
       let identifiers: Identifier[] = [];
       providers.forEach(
         provider => identifiers.push(new Identifier(FHIR_US_NPI_SYSTEM, provider.npi))
       );
       return this.http
-        .post(this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/providers"), JSON.stringify({identifiers: identifiers}), {headers: this.headers})
+        .post(ADD_PROVIDERS_URL, JSON.stringify({identifiers: identifiers}), {headers: this.headers})
         .map(() => null)
         .catch(this.exceptionService.handleError);
     }

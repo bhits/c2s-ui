@@ -47,6 +47,7 @@ export class ProfileService {
     }
   }
 
+  //Todo: Change it when current user can manage multiple patients
   getUserMrn(): string {
     let umsProfile: UmsProfile = this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
     if (umsProfile != null) {
