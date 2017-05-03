@@ -1,10 +1,11 @@
 import {Injectable} from "@angular/core";
 import {SessionStorageService} from "../../security/shared/session-storage.service";
 import {AccountVerificationRequest} from "./account-verification-request.model";
+import {AccountActivationResponse} from "./account-activation-response.model";
 
 @Injectable()
 export class AccountVerificationService {
-  private USER_ID_KEY: string = 'user-id';
+  private USER_FULL_NAME_KEY: string = 'user-full-name';
   private VERIFICATION_INFO_KEY: string = 'verification-info';
 
   constructor(private sessionStorageService: SessionStorageService) {
@@ -15,12 +16,13 @@ export class AccountVerificationService {
     return verificationPath.split(SEPARATOR).pop();
   }
 
-  public setUserId(userId: string): void {
-    this.sessionStorageService.setItemInSessionStorage(this.USER_ID_KEY, userId);
+  public setUserFullName(activationResponse: AccountActivationResponse): void {
+    let userFullName: string = AccountVerificationService.getName(activationResponse, 'firstName').concat(' ').concat(AccountVerificationService.getName(activationResponse, 'middleName')).concat(' ').concat(AccountVerificationService.getName(activationResponse, 'lastName'));
+    this.sessionStorageService.setItemInSessionStorage(this.USER_FULL_NAME_KEY, userFullName);
   }
 
-  public getUserId(): string {
-    return this.sessionStorageService.getItemFromSessionStorage(this.USER_ID_KEY);
+  public getUserFullName(): string {
+    return this.sessionStorageService.getItemFromSessionStorage(this.USER_FULL_NAME_KEY);
   }
 
   public setVerificationInfo(verificationInfo: AccountVerificationRequest): void {
@@ -32,7 +34,17 @@ export class AccountVerificationService {
   }
 
   public deleteVerificationInfo(): void {
-    this.sessionStorageService.removeItemFromSessionStorage(this.USER_ID_KEY);
     this.sessionStorageService.removeItemFromSessionStorage(this.VERIFICATION_INFO_KEY);
+  }
+
+  public deleteUserFullName(): void {
+    this.sessionStorageService.removeItemFromSessionStorage(this.USER_FULL_NAME_KEY);
+  }
+
+  private static getName(activationResponse: AccountActivationResponse, key: string): string {
+    if (activationResponse !== null && activationResponse[key]) {
+      return activationResponse[key];
+    }
+    return ''
   }
 }

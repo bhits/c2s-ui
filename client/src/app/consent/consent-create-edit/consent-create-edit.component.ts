@@ -7,11 +7,11 @@ import {UtilityService} from "../../shared/utility.service";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {NotificationService} from "../../core/notification.service";
-import {GlobalEventManagerService} from "../../core/global-event-manager.service";
 import {Profile} from "../../core/profile.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {TranslateService} from "@ngx-translate/core";
+import {TokenService} from "../../security/shared/token.service";
 import {ProfileService} from "../../security/shared/profile.service";
 
 
@@ -29,11 +29,13 @@ export class ConsentCreateEditComponent implements OnInit {
 
   title: string = "Create Consent";
   consentId: string;
+  profile: Profile;
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,
               private route: ActivatedRoute,
               private utilityService: UtilityService,
+              private tokenService: TokenService) {
               private profileService: ProfileService,
               private translate: TranslateService) {
 
@@ -60,6 +62,12 @@ export class ConsentCreateEditComponent implements OnInit {
       if (params['consentId']) { // Edit mode
         this.title = "Edit Consent";
         this.consent = this.route.snapshot.data['consent'];
+      }else{
+        let providerCount: number = this.tokenService.getProviderCount();
+        if( providerCount<= 1){
+          this.notificationService.show("You don't have enough providers to create consent.")
+          window.history.back();
+        }
       }
       this.consentService.setConsent(this.consent);
     });

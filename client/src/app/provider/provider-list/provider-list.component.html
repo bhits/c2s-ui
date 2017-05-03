@@ -88,12 +88,15 @@
 </div>
 <div>
   <md2-dialog #confirm>
-    <md2-dialog-title>Delete Provider</md2-dialog-title>
-    Are you sure you want to delete this provider?
+    <md2-dialog-title>{{ 'PROVIDER.LIST.DELETE_DIALOG.TITLE' | translate }}</md2-dialog-title>
+    {{ 'PROVIDER.LIST.DELETE_DIALOG.DESCRIPTION' | translate }}
     <md2-dialog-footer>
-      <button md-raised-button color="primary" (click)="confirmDeleteProvider(confirm)">Ok
+      <button md-raised-button color="primary" (click)="confirmDeleteProvider(confirm)">
+        {{ 'PROVIDER.LIST.DELETE_DIALOG.BUTTON.OK' | translate }}
       </button>
-      <button md-raised-button (click)="confirm.close()">Cancel</button>
+      <button md-raised-button (click)="confirm.close()">
+        {{ 'PROVIDER.LIST.DELETE_DIALOG.BUTTON.CANCEL' | translate }}
+      </button>
     </md2-dialog-footer>
   </md2-dialog>
 </div>

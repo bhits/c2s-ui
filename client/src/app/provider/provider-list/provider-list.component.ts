@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {NotificationService} from "../../core/notification.service";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {TranslateService} from "@ngx-translate/core";
+import {TokenService} from "../../security/shared/token.service";
 
 @Component({
   selector: 'c2s-provider-list',
@@ -26,11 +27,13 @@ export class ProviderListComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private notificationService: NotificationService,
               private providerService: ProviderService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private tokenService: TokenService) {
   }
 
   ngOnInit() {
     this.providers = this.route.snapshot.data['providers'];
+    this.tokenService.storeProviderCount(this.providers.length);
   }
 
   onPageChange(number: number) {
