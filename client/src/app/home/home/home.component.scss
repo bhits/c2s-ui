@@ -37,6 +37,7 @@
   }
   &.consents {
     md-card-header {background-color: #243852; color: white;}
+    md-chip {background-color: #243852 !important;}
   }
   &.no-consent {
     background-color: #644F63;

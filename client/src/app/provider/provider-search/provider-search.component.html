@@ -8,10 +8,11 @@
           <md2-accordion-tab [active]="accordionTab">
 
             <md2-accordion-header class="">
-              <md-card-title align="start">{{ 'PROVIDER.SEARCH.ACCORDION_NAME' | translate }}</md-card-title>
+              <md-card-title align="start"><i class="material-icons middle m-r-xs">search</i>
+                {{ 'PROVIDER.SEARCH.ACCORDION_NAME' | translate }</md-card-title>
             </md2-accordion-header>
 
-            <md-card-content>
+            <md-card-content class="m-l-sm m-r-sm">
               <div class="section-border hover p-xs">
                 <md-toolbar class="toolbar-base">
                   <button md-mini-fab aria-label="Step 1">
@@ -23,13 +24,11 @@
                 </md-toolbar>
 
                 <div formGroupName="locatingType">
-                  <div class="p-sm m-t-xs bg-lite-blue">
-                    <div class="font-size14 font-weight400 text-purple p-t-sm p-b center">
-                      {{ 'PROVIDER.SEARCH.STEP_1.LABEL' | translate }}
-                    </div>
+                  <div class="p-sm p-b m-t-xs bg-lite-blue">
+                    <div class="font-size12 font-weight400 p-t-sm p-b-sm center">{{ 'PROVIDER.SEARCH.STEP_1.LABEL' | translate }}</div>
 
-                    <div class="bob">
-                      <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 280px" class="toggle toggle-block"
+                    <div class="row-to-column960-centered">
+                      <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
                               (click)="setLocatingType(LOCATING_TYPE.STATE_CITY)"
                               [class.toggle-default]="!isStateCityType()"
                               [class.toggle-primary]="isStateCityType()">
@@ -40,7 +39,7 @@
                         <h3>{{ 'PROVIDER.SEARCH.STEP_1.OR' | translate }}</h3>
                       </div>
 
-                      <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 280px" fxLayoutAlign="center"
+                      <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" fxLayoutAlign="center"
                               class="toggle toggle-block"
                               (click)="setLocatingType(LOCATING_TYPE.ZIP)"
                               [class.toggle-default]="isStateCityType()"
@@ -136,8 +135,9 @@
                 </md-toolbar>
 
                 <div formGroupName="providerType">
-                  <div class="p-sm m-t-xs bg-lite-blue">
-                    <div class="bob">
+                  <div class="p-sm p-b m-t-xs bg-lite-blue">
+                    <div class="font-size12 font-weight400 p-t-sm p-b-sm center">PLEASE CHOOSE ONE.</div>
+                    <div class="row-to-column960-centered">
                       <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
                               (click)="setProviderType(PROVIDER_TYPE.INDIVIDUAL)"
                               [class.toggle-default]="!isIndividualProviderType()"
@@ -251,7 +251,7 @@
                         </div>
                         </div>
                       </div>
-                      <div fxLayout="column" formGroupName="organization" class="p-t-xs">
+                      <div fxLayout="column" formGroupName="organization" class="p-t-sm">
                         <div fxLayout="row" fxLayoutAlign="center">
                         <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
                           <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.FACILITY.TELEPHONE_PLACEHOLDER' | translate }}" formControlName="phone">
@@ -271,7 +271,7 @@
                 </div>
               </div>
             </md-card-content>
-            <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+            <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="15px" class="p-r">
               <button md-raised-button color="primary" (click)="clearForm()" [disabled]="searchProviderFrom.pristine">
                 <strong>{{ 'PROVIDER.SEARCH.BUTTON.CLEAR_ALL' | translate }}</strong>
               </button>

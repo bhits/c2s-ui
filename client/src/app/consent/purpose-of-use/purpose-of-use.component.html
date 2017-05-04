@@ -1,24 +1,34 @@
-<md-card class="left-align">
-  <md-card-title>{{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.TITLE' | translate }}</md-card-title>
-  <md-card-content>
+<md-card class="left-align p-none m-sm section-border-thin hover">
+  <md-card-title class="bg-forest-green p-sm white"><i class="material-icons md-36 bottom p-r-xs">settings</i>
+    {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.TITLE' | translate }}</md-card-title>
+  <md-card-content class="p-15">
     <p>{{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DESCRIPTION' | translate }}</p>
     <span [innerHTML]="'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.SHARE_TEXT' | translate"></span>
-    <button md-raised-button color="primary" (click)="openDialog(purposeOfUseDialog)">{{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.EDIT_BTN' | translate }}</button>
+    <button class="lineHeight28" md-raised-button color="primary" (click)="openDialog(purposeOfUseDialog)">
+      {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.EDIT_BTN' | translate }}
+    </button>
     <div>
       <md-chip-list>
-        <span *ngFor="let purposeOfuse of checkedPurposeOfUses; let i = index;">
-          <md-chip color="primary" selected="true" *ngIf="purposeOfuse">{{purposeOfuse}}</md-chip>
-        </span>
+        <md-chip class="consents" *ngFor="let purposeOfuse of checkedPurposeOfUses; let i = index;"
+                 color="accent" selected="true">
+          <md-icon>check_circle</md-icon>
+          <span class="md-chip-icon-text">{{purposeOfuse}}</span>
+        </md-chip>
+
       </md-chip-list>
     </div>
   </md-card-content>
 </md-card>
 
 <md2-dialog #purposeOfUseDialog>
-  <md2-dialog-title>{{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.TITLE' | translate }}</md2-dialog-title>
+  <md2-dialog-title>
+    {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.TITLE' | translate }}
+  </md2-dialog-title>
   <md-card class="left-align">
-    <md-card-title>{{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.DESCRIPTION' | translate }}</md-card-title>
-    <md-card-content>
+    <md-card-title>
+      {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.DESCRIPTION' | translate }}
+    </md-card-title>
+    <md-card-content class="p-l-sm p-r-sm p-b-md">
       <button type="button" md-raised-button color="primary" (click)="selectAll()" >
         {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.SELECT_BTN' | translate }}
       </button>
@@ -37,11 +47,7 @@
     </md-card-content>
   </md-card>
   <md2-dialog-footer>
-    <button type="button" md-raised-button (click)="closeDialog(purposeOfUseDialog)">
-      {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.CANCEL_BTN' | translate }}
-    </button>
-    <button type="button" md-raised-button color="primary" (click)="setSelectedPurposesOfUse(purposeOfUseDialog)" >
-      {{ 'CONSENT_CREATE_EDIT.PURPOSE_OF_USE.DIALOG.SAVE_BTN' | translate }}
-    </button>
+    <button type="button" md-raised-button (click)="closeDialog(purposeOfUseDialog)">Cancel</button>
+    <button type="button" md-raised-button color="primary" (click)="setSelectedPurposesOfUse(purposeOfUseDialog)" >Save changes</button>
   </md2-dialog-footer>
 </md2-dialog>

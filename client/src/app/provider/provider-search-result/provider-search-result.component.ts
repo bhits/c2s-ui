@@ -10,7 +10,7 @@ import {TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'c2s-provider-search-result',
   templateUrl: './provider-search-result.component.html',
-  styleUrls: ['./provider-search-result.component.css']
+  styleUrls: ['provider-search-result.component.scss']
 })
 export class ProviderSearchResultComponent implements OnInit, OnChanges {
   @Input() providerResult: ProviderSearchResponse;
