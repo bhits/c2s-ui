@@ -26,8 +26,6 @@ export class AccountVerificationComponent implements OnInit {
               private formBuilder: FormBuilder,
               private utilityService: UtilityService,
               private translate: TranslateService) {
-    translate.setDefaultLang('en');
-    //translate.use('es');
   }
 
   ngOnInit() {
@@ -35,12 +33,10 @@ export class AccountVerificationComponent implements OnInit {
       birthDate: ['', Validators.required],
       verificationCode: ['', Validators.required]
     });
-    this.emailToken = this.accountVerificationService
-      .retrieveEmailLinkInfo(this.utilityService.getCurrentNormalizedPath())
-      .get(EmailLinkInfoKey.EMAIL_TOKEN);
-    this.userPreferredLocale = this.accountVerificationService
-      .retrieveEmailLinkInfo(this.utilityService.getCurrentNormalizedPath())
-      .get(EmailLinkInfoKey.USER_PREFERRED_LOCALE);
+    this.accountVerificationService.retrieveEmailLinkInfo(this.utilityService.getCurrentNormalizedPath());
+    this.emailToken = this.accountVerificationService.getEmailToken();
+    this.userPreferredLocale = this.accountVerificationService.getUserPreferredLocale();
+    this.translate.setDefaultLang(this.userPreferredLocale);
   }
 
   public clear() {

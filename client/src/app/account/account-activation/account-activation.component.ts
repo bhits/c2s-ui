@@ -32,11 +32,8 @@ export class AccountActivationComponent implements OnInit {
               private notificationService: NotificationService,
               private validationService: ValidationService,
               private utilityService: UtilityService,
-              private translate : TranslateService) {
-    translate.setDefaultLang('en');
-    //translate.use('es');
-
-
+              private translate: TranslateService) {
+    translate.setDefaultLang(this.accountVerificationService.getUserPreferredLocale());
   }
 
   ngOnInit() {

@@ -19,20 +19,20 @@ export class AccountActivationSuccessComponent implements OnInit {
   constructor(private accountVerificationService: AccountVerificationService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private utilityService: UtilityService,
-              private translate:TranslateService) {
-    translate.setDefaultLang('en');
-    //translate.use('es');
+              private translate: TranslateService) {
+    translate.setDefaultLang(this.accountVerificationService.getUserPreferredLocale());
   }
 
   ngOnInit() {
     //let userFullName = this.accountService.getUserFullName();
     this.fullName = {
-      userFullName: this.accountVerificationService.getUserFullName()
+      userFullName: this.accountVerificationService.getUserFullName()+""
     }
   }
 
   public navigateTo() {
     this.accountVerificationService.deleteUserFullName();
+    this.accountVerificationService.deleteEmailLinkInfo();
     this.utilityService.navigateTo(this.c2sUiApiUrlService.getLoginUrl());
   }
 }
