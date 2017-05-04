@@ -13,10 +13,11 @@ export class AccountVerificationService {
 
   public retrieveEmailLinkInfo(verificationPath: string): Map<EmailLinkInfoKey, string> {
     const SEPARATOR: string = "emailToken=";
+    const LOCALE_SEPARATOR: string = "&userPreferredLocale=";
     let emailLinkInfoValue: string = verificationPath.split(SEPARATOR).pop();
     if (emailLinkInfoValue != null) {
-      let emailToken: string = emailLinkInfoValue.split("&")[0];
-      let userPreferredLocale: string = emailLinkInfoValue.split("&")[1];
+      let emailToken: string = emailLinkInfoValue.split(LOCALE_SEPARATOR)[0];
+      let userPreferredLocale: string = emailLinkInfoValue.split(LOCALE_SEPARATOR)[1];
       return new Map(
         [
           [EmailLinkInfoKey.EMAIL_TOKEN, emailToken],
