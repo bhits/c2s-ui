@@ -8,7 +8,8 @@ import {Profile} from "../../core/profile.model";
 @Injectable()
 export class TokenService {
   private ACCESS_TOKEN_KEY:string = 'c2s-access-token';
-  private USER_PROFILE_KEY:string = 'c2s-user-profile-token';
+  private USER_PROFILE_KEY:string = 'c2s-userprofile-token';
+  private PROVIDER_COUNT_KEY:string = 'c2s-provider-count';
 
   constructor(private sessionStorageService : SessionStorageService) { }
 
@@ -35,6 +36,18 @@ export class TokenService {
 
   storeUserProfile(userProfile:any){
     this.sessionStorageService.setItemInSessionStorage(this.USER_PROFILE_KEY, userProfile);
+  }
+
+  storeProviderCount(count:Number){
+    this.sessionStorageService.setItemInSessionStorage(this.PROVIDER_COUNT_KEY, count);
+  }
+
+  getProviderCount(){
+    return this.sessionStorageService.getItemFromSessionStorage(this.PROVIDER_COUNT_KEY);
+  }
+
+  deleteProviderCount(){
+    this.sessionStorageService.removeItemFromSessionStorage(this.PROVIDER_COUNT_KEY);
   }
 
   createProfileObject(uaaProfile:any): Profile{

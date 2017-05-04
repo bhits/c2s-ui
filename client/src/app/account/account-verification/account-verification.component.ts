@@ -41,7 +41,6 @@ export class AccountVerificationComponent implements OnInit {
       .subscribe(
         (verificationResponse) => {
           this.accountVerificationService.setVerificationInfo(this.prepareVerificationAccount());
-          this.accountVerificationService.setUserId(verificationResponse.userId);
           this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationUrl())
         },
         err => {

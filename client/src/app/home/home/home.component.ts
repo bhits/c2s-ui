@@ -4,6 +4,9 @@ import {ActivatedRoute} from "@angular/router";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {ConsentList} from "../../consent/shared/consent-list.model";
 
+import {TranslateService} from "@ngx-translate/core";
+import {TokenService} from "../../security/shared/token.service";
+
 @Component({
   selector: 'c2s-home',
   templateUrl: './home.component.html',
@@ -19,7 +22,8 @@ export class HomeComponent implements OnInit {
   providerMapping: any;
 
   constructor(private utilityService: UtilityService,
-              private route: ActivatedRoute,) {
+              private route: ActivatedRoute,
+              private tokenService: TokenService) {
   }
 
   ngOnInit() {
@@ -36,6 +40,7 @@ export class HomeComponent implements OnInit {
     this.providers = this.route.snapshot.data['providers'];
     if (this.providers) {
       this.totalProviders = this.providers.length;
+      this.tokenService.storeProviderCount(this.providers.length);
     }
 
     this.consentList = this.route.snapshot.data['consentList'];

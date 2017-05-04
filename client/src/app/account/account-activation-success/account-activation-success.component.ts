@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {AccountService} from "../shared/account.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {UtilityService} from "../../shared/utility.service";
+import {AccountVerificationService} from "../shared/account-verification.service";
 
 @Component({
   selector: 'c2s-account-activation-success',
@@ -10,18 +10,20 @@ import {UtilityService} from "../../shared/utility.service";
 })
 export class AccountActivationSuccessComponent implements OnInit {
   public userFullName: string;
+  //Todo: Get from config server
   public brandName: string = "Consent2Share";
 
-  constructor(private accountService: AccountService,
+  constructor(private accountVerificationService: AccountVerificationService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private utilityService: UtilityService) {
   }
 
   ngOnInit() {
-    this.userFullName = this.accountService.getUserFullName();
+    this.userFullName = this.accountVerificationService.getUserFullName();
   }
 
   public navigateTo() {
+    this.accountVerificationService.deleteUserFullName();
     this.utilityService.navigateTo(this.c2sUiApiUrlService.getLoginUrl());
   }
 }
