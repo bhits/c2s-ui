@@ -5,6 +5,7 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
 import {ConsentList} from "../../consent/shared/consent-list.model";
 
 import {TranslateService} from "@ngx-translate/core";
+import {TokenService} from "../../security/shared/token.service";
 
 @Component({
   selector: 'c2s-home',
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
   providerMapping: any;
 
   constructor(private utilityService: UtilityService,
-              private route: ActivatedRoute,) {
+              private route: ActivatedRoute,
+              private tokenService: TokenService) {
   }
 
   ngOnInit() {

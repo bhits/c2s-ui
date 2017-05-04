@@ -4,6 +4,7 @@
     <md-grid-list cols="2" rowHeight="130px">
       <md-grid-tile>
         <c2s-select-provider [providers]="providers"
+                             [isAuthorizedProviders]="true"
                              [title]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.AUTHORIZE_TITLE' | translate "
                              [dialogTitle]=" 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.AUTHORIZE_HEADER' | translate "
                              [selectedProviders]="completeSelectedProviders"
@@ -12,6 +13,7 @@
       </md-grid-tile>
       <md-grid-tile>
         <c2s-select-provider [providers]="providers"
+                             [isAuthorizedProviders]="false"
                              [title]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DISCLOSE_TITLE' | translate"
                              [dialogTitle]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DISCLOSE_HEADER' | translate "
                              [selectedProviders]="completeSelectedProviders">
