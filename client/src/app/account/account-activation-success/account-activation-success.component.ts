@@ -22,9 +22,7 @@ export class AccountActivationSuccessComponent implements OnInit {
               private translate:TranslateService) {
     translate.setDefaultLang('en');
     //translate.use('es');
-
   }
-
 
   ngOnInit() {
     //let userFullName = this.accountService.getUserFullName();
