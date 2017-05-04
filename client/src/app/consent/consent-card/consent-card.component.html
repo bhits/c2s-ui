@@ -10,31 +10,8 @@
             <div class="font-size12" *ngFor="let fromProvider of consent.fromProviders">{{fromProvider |
               consentProvider: 'name'}}
             </div>
-            <!--<div fxFlex>-->
-              <!--<h3><strong>{{ 'CONSENTS.CARD.AUTHORIZED_TO_SHARE' | translate }}:</strong></h3>-->
-              <!--<md-list fxLayoutAlign="center" fxLayout="column">-->
-                <!--<md-list-item *ngFor="let fromProvider of consent.fromProviders">{{fromProvider | consentProvider:-->
-                  <!--'name'}}-->
-                <!--</md-list-item>-->
-              <!--</md-list>-->
-            <!--</div>-->
           </div>
         </div>
-
-          <!--<div fxFlex>-->
-            <!--<h3><strong>{{ 'CONSENTS.CARD.SHARING_WITH' | translate }}:</strong></h3>-->
-            <!--<md-list fxLayoutAlign="center" fxLayout="column">-->
-              <!--<md-list-item *ngFor="let toProvider of consent.toProviders">{{toProvider | consentProvider: 'name'}}-->
-              <!--</md-list-item>-->
-            <!--</md-list>-->
-          <!--</div>-->
-
-          <!--<div fxFlex>-->
-            <!--<h3><strong>{{ 'CONSENTS.CARD.EFFECTIVE_DATE' | translate }}:</strong></h3>-->
-            <!--<md-list fxLayoutAlign="center">-->
-              <!--<md-list-item>{{consent.startDate | date}} - {{consent.endDate | date}}</md-list-item>-->
-            <!--</md-list>-->
-          <!--</div>-->
 
           <div fxFlex="1 1 35%">
             <div fxLAyout="column">
@@ -148,7 +125,6 @@
             </md-list>
           </md2-dialog>
         </div>
-      </div>
     </div>
   </md-card-actions>
 </md-card>
