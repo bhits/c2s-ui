@@ -322,5 +322,35 @@
     "TERMS":"I, {{name}}, hereby accept, and understand the terms of this consent.",
     "CANCEL_BTN":"Cancel",
     "COMPLETE_BTN":"Complete"
+  },
+  "ACCOUNT_VERIFICATION":{
+    "TITLE": "(SPANISH)Account Setup Verification",
+    "NOTIFICATION": "To begin setting up your personal account, please enter your <strong>Date of Birth</strong> and the <strong>Verification Code</strong> that was provided to you. All fields are required in order to proceed.",
+    "CLEAR_BTN":"Clear",
+    "CONTINUE_BTN":"Complete",
+    "DOB":"Date of Birth",
+    "VERIFICATION_CODE":"Verification Code (Verification Code is case sensitive)"
+  },
+  "ACCOUNT_ACTIVATION":{
+    "TITLE": "(SPANISH)Create your Account",
+    "NOTIFICATION": "Please create a Password for your account.Remember your Username and Password. You will need them to log in to your account.",
+    "CLEAR_BTN":"Clear",
+    "SUBMIT_BTN":"Submit",
+    "USERNAME":"Username",
+    "PASSWORD":"Password",
+    "CONFIRM_PASSWORD":"Re-enter Password"
+  },
+  "ACCOUNT_ACTIVATION_SUCCESS":{
+    "TITLE": "(SPANISH)Account Activation Complete!",
+    "CONGRATULATION":"Congratulations! ",
+    "NOTIFICATION1":"<strong>Congratulations {{userFullName}}!</strong>",
+    "NOTIFICATION2":" You have successfully created your <strong>{{brandName}}</strong> password. Click on the link below to log in to your account.",
+    "CONTINUE_LOGIN_BTN":"Continue to Login Page"
+  },
+  "ACCOUNT_ACTIVATION_ERROR":{
+    "TITLE": "(SPANISH)Account Activation Failed!",
+    "NOTIFICATION": "<strong>Whoops!</strong> An error occurred during account activation. Please contact administrator for a new Verification Code. ",
+    "NOTIFICATION_FOR_BUTTON": "Please click the link below for more information about Consent2Share available on the C2S Login Page",
+    "CONTINUE_LOGIN_BTN":"Continue to Login Page"
   }
 }

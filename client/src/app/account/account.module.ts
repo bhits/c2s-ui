@@ -5,11 +5,14 @@ import {LayoutModule} from "../layout/layout.module";
 import {AccountService} from "./shared/account.service";
 import {AccountVerificationService} from "./shared/account-verification.service";
 
+import {TranslateModule} from "@ngx-translate/core";
+
 @NgModule({
   imports: [
     SharedModule,
     LayoutModule,
-    AccountRoutingModule
+    AccountRoutingModule,
+    TranslateModule
   ],
   declarations: [routedComponents],
   providers: [
