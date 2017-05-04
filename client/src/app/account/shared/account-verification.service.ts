@@ -11,9 +11,20 @@ export class AccountVerificationService {
   constructor(private sessionStorageService: SessionStorageService) {
   }
 
-  public retrieveEmailToken(verificationPath: string): string {
+  public retrieveEmailLinkInfo(verificationPath: string): Map<EmailLinkInfoKey, string> {
     const SEPARATOR: string = "emailToken=";
-    return verificationPath.split(SEPARATOR).pop();
+    const LOCALE_SEPARATOR: string = "&userPreferredLocale=";
+    let emailLinkInfoValue: string = verificationPath.split(SEPARATOR).pop();
+    if (emailLinkInfoValue != null) {
+      let emailToken: string = emailLinkInfoValue.split(LOCALE_SEPARATOR)[0];
+      let userPreferredLocale: string = emailLinkInfoValue.split(LOCALE_SEPARATOR)[1];
+      return new Map(
+        [
+          [EmailLinkInfoKey.EMAIL_TOKEN, emailToken],
+          [EmailLinkInfoKey.USER_PREFERRED_LOCALE, userPreferredLocale]
+        ]
+      );
+    }
   }
 
   public setUserFullName(activationResponse: AccountActivationResponse): void {
@@ -47,4 +58,9 @@ export class AccountVerificationService {
     }
     return ''
   }
+}
+
+export enum EmailLinkInfoKey {
+  EMAIL_TOKEN,
+  USER_PREFERRED_LOCALE
 }

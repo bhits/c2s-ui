@@ -82,7 +82,10 @@
     </div>
 </div>
     <div fxLayoutAlign="center">
-      <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+      <pagination-controls
+        previousLabel="{{ 'PROVIDER.LIST.PAGINATION.PREVIOUS' | translate }}"
+        nextLabel="{{ 'PROVIDER.LIST.PAGINATION.NEXT' | translate }}"
+        (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
   </div>
 </div>
