@@ -8,7 +8,7 @@ import {TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'c2s-consent-terms',
   templateUrl: './consent-terms.component.html',
-  styleUrls: ['./consent-terms.component.css']
+  styleUrls: ['consent-terms.component.scss']
 })
 export class ConsentTermsComponent implements OnInit {
 

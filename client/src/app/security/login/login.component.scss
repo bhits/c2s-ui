@@ -1,9 +1,9 @@
 
 .login-background {
   background-color: #BCDEDB;
-  background-image: url("../../../assets/img/c2s-3.0-background.svg");
+  background-image: url("../../../assets/img/c2s-3.0-bkgrnd-LtR.svg");
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: left;
   background-size: cover;
 }
 
@@ -46,4 +46,15 @@ c2s-control-messages {font-size: 1.4em; color: #eb0404;}
 .learn-more  {
   color:  #8CBEC7;
   &:hover {color: #3FA3BA; font-weight: 700;}
+}
+
+.mat-input-placeholder-wrapper {
+  top: -1.1em !important;
+  color: pink !important;
+}
+
+.mat-input-placeholder.mat-float.mat-focused, .mat-input-placeholder.mat-float:not(.mat-empty) {
+  //display: block;
+  transform: translateY(-1.35em) scale(1) !important;
+  //width: 133.33333%;
 }

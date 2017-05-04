@@ -15,12 +15,19 @@
       </md-card-header>
       <md-card-content class="p-md">
 
-        <button md-fab class="plus" >
-          <md-icon class="md-24 font-weight500">add</md-icon>
-        </button>
+        <!--<button md-fab class="plus" >-->
+          <!--<md-icon class="md-24 font-weight500">add</md-icon>-->
+        <!--</button>-->
         <md-chip-list class="p-15">
-          <md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.PROVIDERS.STEP_1.TITLE' | translate }}</md-chip>
+          <!--<md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.PROVIDERS.STEP_1.TITLE' | translate }}</md-chip>-->
+
+        <md-chip class="bg-plus-green"
+                 color="accent" selected="true">
+
+          <span class="p-sm">{{ 'HOME.PROVIDERS.STEP_1.TITLE' | translate }}</span>
+        </md-chip>
         </md-chip-list>
+
         <h2 class="m-t-xs">
           {{ 'HOME.PROVIDERS.STEP_1.DESCRIPTION' | translate }}
         </h2>
@@ -28,8 +35,8 @@
           <img md-card-image src="assets/img/addProviders.svg" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders < 2)">
           <img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders > 1)">
         </div>
-        <div class="p-t-xs font-size12">
-          <span class="font-weight700 font-size16" >{{totalProviders}}</span>
+        <div class="p-t-xs font-size12"   *ngIf="(totalProviders > 0)">
+          <span class="font-weight700 font-size16">{{totalProviders}}</span>
           {{ totalProviders | i18nPlural: providerMapping | translate :{count: totalProviders} }}
         </div>
       </md-card-content>
@@ -47,41 +54,33 @@
       </md-card-header>
       <md-card-content class="p-md">
 
-        <button md-fab class="plus" >
-          <md-icon class="md-24 font-weight500">add</md-icon>
-        </button>
+        <!--<button md-fab class="plus" >-->
+          <!--<md-icon class="md-24 font-weight500">add</md-icon>-->
+        <!--</button>-->
         <md-chip-list class="p-15">
-          <md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.CONSENTS.STEP_2.TITLE' | translate }}</md-chip>
+          <!--<md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.CONSENTS.STEP_2.TITLE' | translate }}</md-chip>-->
+
+          <md-chip class=""
+                   color="accent" selected="true">
+            {{ 'HOME.CONSENTS.STEP_2.TITLE' | translate }}
+          </md-chip>
+
         </md-chip-list>
         <h2 class="m-t-xs">
           {{ 'HOME.CONSENTS.STEP_2.DESCRIPTION' | translate }}
         </h2>
         <div class="center middle">
-          <img md-card-image src="assets/img/consents.svg" [ngStyle]="{'width': '75%'}">
+
+          <img md-card-image src="assets/img/addConsents.svg" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders < 2)">
+          <img md-card-image src="assets/img/consents.svg" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders > 1)">
         </div>
-        <div class="p-t-xs font-size12"><span class="font-weight700 font-size16">{{totalConsents}}</span>
+        <div class="p-t-xs font-size12" *ngIf="(totalConsents > 0)"><span class="font-weight700 font-size16" >{{totalConsents}}</span>
           {{ totalConsents | i18nPlural: consentMapping | translate :{count: totalConsents} }}
         </div>
       </md-card-content>
 
     </md-card>
 
-    <!--<md-card class="home-card no-consent">-->
-      <!--<md-card-header fxLayoutAlign="end" class="middle">-->
-        <!--<md-card-title class="">-->
-          <!--<button md-icon-button>-->
-            <!--<md-icon class="white-text p-r-xs">clear</md-icon>-->
-          <!--</button>-->
-        <!--</md-card-title>-->
-      <!--</md-card-header>-->
-      <!--<md-card-content class="p-lg m-t-lg">-->
-        <!--<div class="border-top-white p-b-lg"></div>-->
-        <!--<div class="m-t-xs m-b center font-size24 font-weight400">-->
-          <!--To create consents, you must first add the people with whom you trust to share health information-->
-        <!--</div>-->
-        <!--<div class="border-bottom-white p-t-lg"></div>-->
-      <!--</md-card-content>-->
-    <!--</md-card>-->
   </div>
 </div>
 
@@ -89,10 +88,11 @@
 
 <md2-dialog #confirmDialog>
   <md2-dialog-title>Add Providers Alert</md2-dialog-title>
-    <h2 class="m-t-xs">
-      To create consents, you must first add the people with whom you trust to share health information.
-    </h2>
+    <div class="m-t-xs">
+      <div class="font-weight600">Please Note:</div>
+      <div class="m-t-xs">To create consents, you must first add at least <strong>2 Providers</strong> with whom you trust to share your health information.</div>
+    </div>
   <md2-dialog-footer>
-    <button md-raised-button (click)="confirmDialog.close()">Cancel</button>
+    <button md-raised-button (click)="confirmDialog.close()">Close</button>
   </md2-dialog-footer>
 </md2-dialog>

@@ -49,7 +49,7 @@
     height: 40px;
     width:40px;
     position: absolute;
-    top: -25px;
+    top: -20px;
     right: 25px;
     //background-color:#FF7BAC;
     background-color:rgba(253, 140, 0, .45);
@@ -113,4 +113,8 @@ table td {
   color: rgba(0, 0, 0, 0.87);
   padding: 0 16px;
   text-align: left;
+}
+div.md2-dialog-header {
+  //background-color: #3fa3ba !important;
+  background-color: red !important;
 }

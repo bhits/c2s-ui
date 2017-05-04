@@ -1,40 +1,41 @@
-<div fxLayout="row" fxLayoutGap="20px">
-  <div fxFlex>
-    <md-toolbar color="primary" fxLayoutAlign="center">
-      <h3> {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.TITLE' | translate }}</h3>
+<div  class="p-sm" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="15px">
+  <div fxFlex class="section-border p-sm">
+    <md-toolbar  class="border-radius4" color="primary" fxLayoutAlign="center">
+      <i class="material-icons">playlist_add_check</i>
+      <h3 class="m-l-sm">
+        {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.TITLE' | translate }}
+    </h3>
     </md-toolbar>
-    <div>
+    <div class="center">
       <pagination-controls
-          previousLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.PREVIOUS' | translate }}"
-          nextLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.NEXT' | translate }}"
-          (pageChange)="getPage($event)">
+        previousLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.PREVIOUS' | translate }}"
+        nextLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.NEXT' | translate }}"
+        (pageChange)="getPage($event)">
       </pagination-controls>
     </div>
     <div fxLayoutAlign="center" *ngIf="loading">
       <md-spinner></md-spinner>
     </div>
     <div *ngIf="providerResult?._embedded['flattenedSmallProviderDtoList'].length===0">
-      <md-toolbar fxLayoutAlign="center" color="warn">
-        {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.NO_RESULT_MSG' | translate }}
-      </md-toolbar>
+      <md-toolbar fxLayoutAlign="center" color="warn">Sorry, There is no provider found!</md-toolbar>
     </div>
-    <div fxLayout="column" fxLayoutAlign="center" [ngStyle]="{'padding-top': '20px'}"
+    <div class="section-border-thin m-b-md" fxLayout="column" fxLayoutAlign="center"
          *ngFor="let provider of asyncProviderResult | async | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems}">
       <!--case 1: ready to add-->
       <div [ngStyle]="{'background-color': '#dff0d8', 'border':'1px solid #d5e2d0'}"
            *ngIf="canSelectProvider(provider)">
-        <div fxLayout="column" fxFlexOffset="10px">
+        <div fxLayout="column" fxFlexOffset="15px">
           <div fxLayout="row" fxLayoutAlign="start">
-            <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+            <p class="font-size14 font-weight500">{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
           </div>
           <div>
-            <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="20px">
-              <div>
-                <button md-icon-button (click)="addProviders(provider)">
-                  <md-icon color="primary">add_box</md-icon>
+            <div class="font-size14 m-t-n-sm" fxLayout="row" fxLayoutAlign="left center">
+              <!--<div>-->
+                <button md-icon-button (click)="addProviders(provider)" fxFlex="0 0 auto">
+                  <md-icon class="text-dark-green">add_box</md-icon>
                 </button>
-                <span>{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.RESULT.SELECT_PROVIDER_LABEL' | translate }}</span>
-              </div>
+                <span fxFlex="1 auto">{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.RESULT.SELECT_PROVIDER_LABEL' | translate }}</span>
+              <!--</div>-->
             </div>
           </div>
         </div>
@@ -42,59 +43,60 @@
       <!--case 2: current provider has already been added in patient's provider list-->
       <div [ngStyle]="{'background-color': '#f5f5f5', 'border':'1px solid #d5e2d0'}"
            *ngIf="isInProviderList(provider)">
-        <div fxLayout="column" fxFlexOffset="10px">
+        <div fxLayout="column" fxFlexOffset="15px">
           <div fxLayout="row" fxLayoutAlign="start">
-            <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+            <p class="font-size14 font-weight500">{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
           </div>
           <div>
-            <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="20px">
-              <div>
-                <button md-icon-button disabled>
-                  <md-icon>check_circle</md-icon>
+            <div class="font-size14 m-t-n-sm" fxLayout="row" fxLayoutAlign="left center">
+              <!--<div>-->
+                <button md-icon-button disabled fxFlex="0 0 auto">
+                  <md-icon class="navy-blue">check_circle</md-icon>
                 </button>
-                <span>{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.RESULT.PROVIDER_ALREADY_ADDED_LABEL' | translate }}</span>
-              </div>
+                <span fxFlex="1 auto">{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.RESULT.PROVIDER_ALREADY_ADDED_LABEL' | translate }}</span>
             </div>
           </div>
         </div>
       </div>
       <!--case 3: current provider has been added in waiting list-->
-      <div [ngStyle]="{'background-color': '#f5f5f5', 'border':'1px solid #d5e2d0'}"
+      <div class="relative" [ngStyle]="{'background-color': '#f5f5f5', 'border':'1px solid #d5e2d0'}"
            *ngIf="isProviderSelected(provider)">
-        <div fxLayout="column" fxFlexOffset="10px">
+        <span class="top-right-ribbon"></span>
+        <div fxLayout="column" fxFlexOffset="15px">
           <div fxLayout="row" fxLayoutAlign="start">
-            <p>{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
+            <p class="font-size14 font-weight500">{{provider | providerName}}&nbsp;<span>[NPI: {{provider.npi}}]</span></p>
           </div>
           <div>
-            <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="20px">
-              <div>
-                <button md-icon-button disabled>
-                  <md-icon>add_box</md-icon>
+            <div class="font-size14 m-t-n-sm" fxLayout="row" fxLayoutAlign="left center">
+                <button md-icon-button disabled fxFlex="0 0 auto">
+                  <md-icon class="ribbon-blue">add_box</md-icon>
                 </button>
-                <span>{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.RESULT.PROVIDER_CURRENT_ADDED_LABEL' | translate }}</span>
-              </div>
+                <span class="font-weight700 ribbon-blue" fxFlex="1 auto">
+                  {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.RESULT.PROVIDER_CURRENT_ADDED_LABEL' | translate }}
+                </span>
             </div>
           </div>
         </div>
       </div>
       <div [ngStyle]="{'border':'1px solid #d5e2d0'}">
         <div fxFlexOffset="20px">
-          <p fxLayoutAlign="left">{{provider | providerAddress}}</p>
-          <p fxLayoutAlign="left">{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</p>
+          <p class="font-size13 m-b-xs" fxLayoutAlign="left">{{provider | providerAddress}}</p>
+          <p class="font-size15 font-weight500 m-t-xs" fxLayoutAlign="left">{{provider.practiceLocationAddressTelephoneNumber | usPhoneNumber}}</p>
         </div>
       </div>
     </div>
-    <div>
+    <div class="center">
       <pagination-controls
-          previousLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.PREVIOUS' | translate }}"
-          nextLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.NEXT' | translate }}"
-          (pageChange)="getPage($event)">
+        previousLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.PREVIOUS' | translate }}"
+        nextLabel="{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.PAGINATION.NEXT' | translate }}"
+        (pageChange)="getPage($event)">
       </pagination-controls>
     </div>
   </div>
-  <div fxFlex>
+  <div fxFlex class="section-border p-sm">
     <md-toolbar color="primary" fxLayoutAlign="center">
-      <h3> {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.TITLE' | translate }} </h3>
+      <i class="material-icons">playlist_add</i>
+      <h3 class="m-l-sm">{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.TITLE' | translate }} </h3>
     </md-toolbar>
     <c2s-provider-multi-add [providers]="selectedProviders"></c2s-provider-multi-add>
   </div>

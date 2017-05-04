@@ -1,20 +1,20 @@
 <div class="p-t-75 p-l-md p-r-md p-b">
   <h1 class="">{{ 'CONSENTS.TITLE' | translate }}</h1>
   <div>
-    <div style="background-color: #FEB652;font-weight: 500; color: black; font-size: 2em;" class="p-md font-size18 font-weight center-sm-left" *ngIf="consentList.totalElements===0">
+    <div class="p-md white font-size20 font-weight400 bg-maroon border-radius4 center-sm-left" *ngIf="consentList.totalElements===0">
       {{ 'CONSENTS.WARNING' | translate }}
     </div>
   </div>
 
-<div class="margin-bottom-55 margin-top-10" fxLayout="column" fxLayoutAlign="space-around">
+<div class="margin-bottom-55 m-t-md" fxLayout="column" fxLayoutAlign="space-around">
   <div fxLayout="column">
-    <div fxFlexOffset="8.5">
-      <a md-raised-button routerLink="/consent-create-edit" color="primary">
-        {{ 'CONSENTS.ADD_CONSENT_BUTTON' | translate }}
-      </a>
+    <div class="border-bottom-purple-thin p-b" fxLayoutAlign="center">
+      <a md-raised-button class="plus-button" fxFlex="0 1 370px" routerLink="/consent-create-edit">
+        <md-icon class="font-weight700">add</md-icon>
+        {{ 'CONSENTS.ADD_CONSENT_BUTTON' | translate }}</a>
     </div>
   </div>
-  <pagination-controls fxLayoutAlign="center"
+  <pagination-controls class="m-t-sm" fxLayoutAlign="center"
                        previousLabel="{{ 'CONSENTS.PAGINATION.PREVIOUS' | translate }}"
                        nextLabel="{{ 'CONSENTS.PAGINATION.NEXT' | translate }}"
                        (pageChange)="getPage($event)"
