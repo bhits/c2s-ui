@@ -51,8 +51,8 @@ export class AuthenticationService {
     if(oauth2Token && profile){
         let umsProfile:UmsProfile =  this.profileService.getProfileFromSessionStorage();
         if(umsProfile){
-          this.customTranslateService.addSupportedLanguages(umsProfile.locales);
-          this.customTranslateService.setDefaultLanguage(umsProfile.defaultLocale);
+          this.customTranslateService.addSupportedLanguages(umsProfile.supportedLocales);
+          this.customTranslateService.setDefaultLanguage(umsProfile.userLocale);
         }
 
         this.globalEventManagerService.setShowHeader(true);
