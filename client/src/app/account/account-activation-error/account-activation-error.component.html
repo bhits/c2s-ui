@@ -1,14 +1,13 @@
 <div class="p-t-md p-b-md p-l-lg p-r-lg">
-  <div class="font-size20" style="color: #266357;"><strong>Account Activation Failed!</strong></div>
+  <div class="font-size20" style="color: #266357;"><strong>{{'ACCOUNT_ACTIVATION_ERROR.TITLE' | translate}}</strong></div>
 </div>
 <div style="background-color: #BCDEDB;" class="p-md font-size18 font-weight">
-  <strong>Whoops!</strong>
-  An error occurred during account activation. Please contact administrator for a new Verification Code.
+  <span [innerHTML]="'ACCOUNT_ACTIVATION_ERROR.NOTIFICATION' | translate"></span>
 </div>
 <p class="font-size16">
-  Please click the link below for more information about Consent2Share available on the C2S Login Page
+  {{'ACCOUNT_ACTIVATION_ERROR.NOTIFICATION_FOR_BUTTON' | translate}}
 </p>
 <br><br>
 <button md-raised-button color="primary" (click)="navigateTo()">
-  <strong>Continue to Login Page</strong>
+  <strong>{{'ACCOUNT_ACTIVATION_ERROR.CONTINUE_LOGIN_BTN' | translate}}</strong>
 </button>
