@@ -3,22 +3,34 @@ import {AccountService} from "../shared/account.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {UtilityService} from "../../shared/utility.service";
 
+import {TranslateService} from "@ngx-translate/core";
+
+
 @Component({
   selector: 'c2s-account-activation-success',
   templateUrl: './account-activation-success.component.html',
   styleUrls: ['./account-activation-success.component.scss']
 })
 export class AccountActivationSuccessComponent implements OnInit {
-  public userFullName: string;
-  public brandName: string = "Consent2Share";
+  // public userFullName: any ;
+  public brand: any = {brandName: "Consent2Share"};
+  public fullName: any;
 
   constructor(private accountService: AccountService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private translate:TranslateService) {
+    translate.setDefaultLang('en');
+    //translate.use('es');
+
   }
 
+
   ngOnInit() {
-    this.userFullName = this.accountService.getUserFullName();
+    //let userFullName = this.accountService.getUserFullName();
+    this.fullName = {
+      userFullName: this.accountService.getUserFullName()+""
+    }
   }
 
   public navigateTo() {
