@@ -6,6 +6,8 @@ import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {UtilityService} from "../../shared/utility.service";
 import {AccountVerificationRequest} from "../shared/account-verification-request.model";
 
+import {TranslateService} from "@ngx-translate/core";
+
 @Component({
   selector: 'c2s-account-verification',
   templateUrl: './account-verification.component.html',
@@ -21,7 +23,10 @@ export class AccountVerificationComponent implements OnInit {
               private accountVerificationService: AccountVerificationService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private formBuilder: FormBuilder,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private translate: TranslateService) {
+    translate.setDefaultLang('en');
+    //translate.use('es');
   }
 
   ngOnInit() {
