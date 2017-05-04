@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../shared/account.service";
-import {AccountVerificationService} from "../shared/account-verification.service";
+import {AccountVerificationService, EmailLinkInfoKey} from "../shared/account-verification.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {UtilityService} from "../../shared/utility.service";
 import {AccountVerificationRequest} from "../shared/account-verification-request.model";
@@ -18,6 +18,7 @@ export class AccountVerificationComponent implements OnInit {
   public FORMAT: string = "MM/dd/y";
   public today: Date = new Date();
   private emailToken: string;
+  private userPreferredLocale: string;
 
   constructor(private accountService: AccountService,
               private accountVerificationService: AccountVerificationService,
@@ -34,7 +35,12 @@ export class AccountVerificationComponent implements OnInit {
       birthDate: ['', Validators.required],
       verificationCode: ['', Validators.required]
     });
-    this.emailToken = this.accountVerificationService.retrieveEmailToken(this.utilityService.getCurrentNormalizedPath());
+    this.emailToken = this.accountVerificationService
+      .retrieveEmailLinkInfo(this.utilityService.getCurrentNormalizedPath())
+      .get(EmailLinkInfoKey.EMAIL_TOKEN);
+    this.userPreferredLocale = this.accountVerificationService
+      .retrieveEmailLinkInfo(this.utilityService.getCurrentNormalizedPath())
+      .get(EmailLinkInfoKey.USER_PREFERRED_LOCALE);
   }
 
   public clear() {
@@ -46,7 +52,6 @@ export class AccountVerificationComponent implements OnInit {
       .subscribe(
         (verificationResponse) => {
           this.accountVerificationService.setVerificationInfo(this.prepareVerificationAccount());
-          this.accountVerificationService.setUserId(verificationResponse.userId);
           this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationUrl())
         },
         err => {

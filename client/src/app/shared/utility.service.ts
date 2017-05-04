@@ -133,4 +133,12 @@ export class UtilityService {
     const includeHash: boolean = true;
     return this.location.path(includeHash);
   }
+
+  getSupportedLocaleCode(supportedLocales:any){
+    let localeCode:string [] = [];
+    supportedLocales.forEach(locale =>{
+      localeCode.push(locale.code);
+    });
+    return localeCode;
+  }
 }

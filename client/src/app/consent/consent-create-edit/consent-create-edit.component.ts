@@ -7,18 +7,18 @@ import {UtilityService} from "../../shared/utility.service";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {NotificationService} from "../../core/notification.service";
-import {GlobalEventManagerService} from "../../core/global-event-manager.service";
 import {Profile} from "../../core/profile.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {TranslateService} from "@ngx-translate/core";
+import {TokenService} from "../../security/shared/token.service";
 import {ProfileService} from "../../security/shared/profile.service";
 
 
 @Component({
   selector: 'c2s-consent-create-edit',
   templateUrl: './consent-create-edit.component.html',
-  styleUrls: ['./consent-create-edit.component.css']
+  styleUrls: ['consent-create-edit.component.scss']
 })
 export class ConsentCreateEditComponent implements OnInit {
   consent: ConsentCreateEdit;
@@ -29,13 +29,13 @@ export class ConsentCreateEditComponent implements OnInit {
 
   title: string = "Create Consent";
   consentId: string;
+  profile: Profile;
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,
               private route: ActivatedRoute,
               private utilityService: UtilityService,
-              private profileService: ProfileService,
-              private translate: TranslateService) {
+              private profileService: ProfileService) {
 
     this.consentService.getConsentEmitter().subscribe((consent) => {
       if (consent) {
@@ -43,7 +43,7 @@ export class ConsentCreateEditComponent implements OnInit {
       }
     });
 
-    let fullName:string = this.profileService.getFullName()
+    let fullName:string = this.profileService.getFullName();
     this.username = {name: fullName};
   }
 
@@ -63,8 +63,6 @@ export class ConsentCreateEditComponent implements OnInit {
       }
       this.consentService.setConsent(this.consent);
     });
-
-
   }
 
   submitForm() {

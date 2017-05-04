@@ -71,12 +71,13 @@ export class AccountActivationComponent implements OnInit {
     this.accountService.activateAccount(this.prepareActivationAccount())
       .subscribe(
         (activationResponse: AccountActivationResponse) => {
-          this.accountService.setUserFullName(activationResponse);
+          this.accountVerificationService.setUserFullName(activationResponse);
           this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationSuccessUrl());
           this.accountVerificationService.deleteVerificationInfo();
         },
         err => {
           this.utilityService.navigateTo(this.c2sUiApiUrlService.getAccountActivationErrorUrl());
+          this.accountVerificationService.deleteVerificationInfo();
           console.log(err);
         }
       );

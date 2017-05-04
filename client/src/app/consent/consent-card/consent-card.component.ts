@@ -14,7 +14,7 @@ import {TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'c2s-consent-card',
   templateUrl: './consent-card.component.html',
-  styleUrls: ['./consent-card.component.css']
+  styleUrls: ['consent-card.component.scss']
 })
 export class ConsentCardComponent implements OnInit, OnChanges {
 
