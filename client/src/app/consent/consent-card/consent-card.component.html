@@ -92,15 +92,15 @@
                 <div class="margin-20" fxFill>
                   <md2-dialog #deleteConfirmationDialog (onOpen)="consentOptionsDialog.close()">
                     <md2-dialog-title>
-                      {{ 'CONSENTS.CARD.DELETE_CONSENT_DIALOG.TITLE' | translate }}
+                      {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.TITLE' | translate }}
                     </md2-dialog-title>
-                      {{ 'CONSENTS.CARD.DELETE_CONSENT_DIALOG.CONTENT' | translate }}
+                      {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.CONTENT' | translate }}
                     <md2-dialog-footer>
                       <button md-raised-button color="primary" (click)="confirmDeleteConsent(deleteConfirmationDialog)">
-                        {{ 'CONSENTS.CARD.DELETE_CONSENT_DIALOG.OK_BUTTON' | translate }}
+                        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.OK_BTN' | translate }}
                       </button>
                       <button md-raised-button (click)="deleteConfirmationDialog.close()">
-                        {{ 'CONSENTS.CARD.DELETE_CONSENT_DIALOG.CANCEL_BUTTON' | translate }}
+                        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.CANCEL_BTN' | translate }}
                       </button>
                     </md2-dialog-footer>
                   </md2-dialog>
