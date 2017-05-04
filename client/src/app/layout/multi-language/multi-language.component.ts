@@ -15,6 +15,7 @@ export class MultiLanguageComponent implements OnInit {
 
   setLocale(locale:string){
     this.customTranslateService.setDefaultLanguage(locale);
+    this.customTranslateService.updateDefaultLanguage();
   }
 
   getSupportedLanguage():string[]{

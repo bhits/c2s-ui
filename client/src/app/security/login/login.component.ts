@@ -37,37 +37,37 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(value: any): void {
-    this.authenticationService.login(value.username, value.password)
-      .toPromise()
-      .then(response => {
-        this.showLoginBackendError = false;
-        this.authenticationService.onLoginSuccess(response);
-        this.authenticationService.getUserProfile()
-          .subscribe(
-            (uaaProfile) => {
-              let profile = this.tokenService.createProfileObject(uaaProfile);
-              this.tokenService.storeUserProfile(profile);
-              this.getUMSProfileAndSetDefaultLanguage(profile);
-            }
-            ,
-            (error) => this.handleLoginError
-          );
-      }).catch(error => {
-      console.log(error);
-      this.showLoginBackendError = true;
-    })
+  login(value: any):void{
+    this.authenticationService.login(value.username,value.password)
+                              .toPromise()
+                              .then(response => {
+                                this.showLoginBackendError = false;
+                                this.authenticationService.onLoginSuccess(response);
+                                this.authenticationService.getUserProfile()
+                                                            .subscribe(
+                                                              (uaaProfile)=>{
+                                                                let profile = this.tokenService.createProfileObject(uaaProfile);
+                                                                this.tokenService.storeUserProfile(profile);
+                                                                this.getUMSProfileAndSetDefaultLanguage(profile);
+                                                              }
+                                                              ,
+                                                               (error)=>this.handleLoginError
+                                                          );
+                              }).catch(error =>{
+                                console.log(error);
+                                this.showLoginBackendError = true;
+                              })
   }
 
   isValidForm(formgroup: FormGroup) {
     return this.validationService.isValidForm(formgroup);
   }
 
-  getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile) {
+  getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile){
     this.profileService.getUMSProfile().subscribe(
-      (profile: UmsProfile) => {
-        this.customTranslateService.addSupportedLanguages(profile.locales);
-        this.customTranslateService.setDefaultLanguage(profile.defaultLocale);
+      (profile: UmsProfile)=>{
+        this.customTranslateService.addSupportedLanguages(profile.supportedLocales);
+        this.customTranslateService.setDefaultLanguage(profile.userLocale);
         this.profileService.setProfileInSessionStorage(profile);
         this.authenticationService.onGetUserProfileSuccess(uaaProfile);
       },
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  handleLoginError(error: any) {
+  handleLoginError(error:any){
     this.tokenService.deleteAccessToken();
     this.showLoginBackendError = true;
     console.log(error)

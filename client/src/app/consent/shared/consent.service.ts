@@ -4,7 +4,7 @@ import "rxjs/add/operator/toPromise";
 import {PurposeOfUseBase} from "./purpose-of-use-base.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
 import {ExceptionService} from "../../core/exception.service";
-import {Observable, BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {ConsentCreateEdit} from "./consent-create-edit.model";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {SharePurpose} from "./share-purpose.model";
@@ -15,22 +15,25 @@ import {ConsentTerms} from "./consent-terms.model";
 import {ConsentRevocation} from "./consent-revocation.model";
 import {BinaryFile} from "./binary-file.model";
 import {NotificationService} from "../../core/notification.service";
+import {ProfileService} from "../../security/shared/profile.service";
 
 @Injectable()
 export class ConsentService {
+  private currentUserMrn: string = this.profileService.getUserMrn();
   private pcmPurposeOfUseUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/purposes");
   private pcmSensitivityPolicyUrl: string = this.c2sUiApiUrlService.getVssBaseUrl().concat("/valueSetCategories");
-  private pcmConsentUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents");
+  private pcmConsentUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/consents");
   private pcmConsentTermUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/consentRevocationTerm");
 
-  private consentSudject: BehaviorSubject<ConsentCreateEdit> = new BehaviorSubject<ConsentCreateEdit>(null);
-  public consentEmitter: Observable<ConsentCreateEdit> = this.consentSudject.asObservable();
+  private consentSubject: BehaviorSubject<ConsentCreateEdit> = new BehaviorSubject<ConsentCreateEdit>(null);
+  public consentEmitter: Observable<ConsentCreateEdit> = this.consentSubject.asObservable();
 
   constructor(private http: Http,
               private exceptionService: ExceptionService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private utilityService: UtilityService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private profileService: ProfileService) {
   }
 
   getConsentEmitter(): Observable<ConsentCreateEdit> {
@@ -38,7 +41,7 @@ export class ConsentService {
   }
 
   setConsent(consentCreateEdit: ConsentCreateEdit) {
-    this.consentSudject.next(consentCreateEdit);
+    this.consentSubject.next(consentCreateEdit);
   }
 
   getPurposeOfUses(): Observable<SharePurpose[]> {
@@ -152,8 +155,7 @@ export class ConsentService {
   }
 
   revokeConsent(consentRevocation: ConsentRevocation, consentId: string): Observable<void> {
-    let revocationUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/consents/")
-      .concat(consentId).concat("/revocation");
+    let revocationUrl = this.pcmConsentUrl.concat(consentId).concat("/revocation");
 
     return this.http.put(revocationUrl, consentRevocation)
       .map(() => null)
