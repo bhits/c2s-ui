@@ -76,6 +76,11 @@ View [license](https://github.com/bhits/c2s-ui/blob/master/LICENSE) information 
 ## Documentation 
 Documentation for this image is stored in the [bhits/c2s-ui](https://github.com/bhits/c2s-ui) GitHub repository. Be sure to familiarize yourself with the repository's README.md file before attempting a pull request.
 
+## Internationalization (i18n)
+
+Consent2Share provide support for Internationalization (i18n) in English and Spanish. English is the default language and is fully supported but 
+for Spanish, the translation still need to be completed.
+
 ## Issues
 
 If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/bhits/c2s-ui/issues).
