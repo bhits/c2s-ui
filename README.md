@@ -128,6 +128,12 @@ Java has a default CA Certificates Store that allows it to trust well-known cert
 
 [//]: # (## Contribute)
 
+
+## Internationalization (i18n)
+
+Consent2Share provide support for Internationalization (i18n) in English and Spanish. English is the default language and is fully supported but 
+for Spanish, the translation still need to be completed.
+
 ## Contact
 If you have any questions, comments, or concerns please see [Consent2Share](https://bhits.github.io/consent2share/) project site.
 
