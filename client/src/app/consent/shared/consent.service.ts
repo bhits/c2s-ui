@@ -155,7 +155,7 @@ export class ConsentService {
   }
 
   revokeConsent(consentRevocation: ConsentRevocation, consentId: string): Observable<void> {
-    let revocationUrl = this.pcmConsentUrl.concat(consentId).concat("/revocation");
+    let revocationUrl = this.pcmConsentUrl.concat( "/"+ consentId).concat("/revocation");
 
     return this.http.put(revocationUrl, consentRevocation)
       .map(() => null)

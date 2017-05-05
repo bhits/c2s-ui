@@ -11,6 +11,8 @@ import {AccountActivationResponse} from "../shared/account-activation-response.m
 import {Subject} from "rxjs/Subject";
 import {NotificationService} from "../../core/notification.service";
 
+import {TranslateService} from "@ngx-translate/core";
+
 @Component({
   selector: 'c2s-account-activation',
   templateUrl: './account-activation.component.html',
@@ -29,7 +31,9 @@ export class AccountActivationComponent implements OnInit {
               private formBuilder: FormBuilder,
               private notificationService: NotificationService,
               private validationService: ValidationService,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private translate: TranslateService) {
+    translate.setDefaultLang(this.accountVerificationService.getUserPreferredLocale());
   }
 
   ngOnInit() {

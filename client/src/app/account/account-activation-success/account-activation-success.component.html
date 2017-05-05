@@ -1,14 +1,14 @@
 <div class="p-t-md p-b-md p-l-lg p-r-lg">
   <div class="font-size20" style="color: #266357;"><strong>Account Activation Complete!</strong></div>
 </div>
+
 <div style="background-color: #BCDEDB;" class="p-md font-size18 font-weight center-sm-left">
-  <strong>Congratulations!
-    <span>{{userFullName}}</span>
-  </strong>
-  You have successfully created your <strong>{{brandName}}</strong> password. Click
-  on the button below to log in to your account.
+
+  <span [innerHTML]="'ACCOUNT_ACTIVATION_SUCCESS.NOTIFICATION1' | translate:fullName"></span>
+  <span [innerHTML]="'ACCOUNT_ACTIVATION_SUCCESS.NOTIFICATION2' | translate:brand"></span>
 </div>
 <br><br>
 <button md-raised-button color="primary" (click)="navigateTo()">
-  <strong>Continue to Login Page</strong>
+  <strong>{{ 'ACCOUNT_ACTIVATION_SUCCESS.CONTINUE_LOGIN_BTN' | translate }}</strong>
 </button>
+

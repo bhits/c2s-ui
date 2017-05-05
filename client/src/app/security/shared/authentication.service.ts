@@ -9,6 +9,7 @@ import {Profile} from "../../core/profile.model";
 import {ProfileService} from "./profile.service";
 import {UmsProfile} from "./ums-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
+import {UtilityService} from "../../shared/utility.service";
 
 
 @Injectable()
@@ -24,7 +25,8 @@ export class AuthenticationService {
               private tokenService: TokenService,
               private globalEventManagerService: GlobalEventManagerService,
               private profileService: ProfileService,
-              private customTranslateService: CustomTranslateService) {
+              private customTranslateService: CustomTranslateService,
+              private utilityService: UtilityService) {
   }
 
   login(username:string, password:string) {
@@ -51,13 +53,11 @@ export class AuthenticationService {
     if(oauth2Token && profile){
         let umsProfile:UmsProfile =  this.profileService.getProfileFromSessionStorage();
         if(umsProfile){
-          this.customTranslateService.addSupportedLanguages(umsProfile.supportedLocales);
+          this.customTranslateService.addSupportedLanguages(this.utilityService.getSupportedLocaleCode(umsProfile.supportedLocales));
           this.customTranslateService.setDefaultLanguage(umsProfile.userLocale);
         }
-
         this.globalEventManagerService.setShowHeader(true);
         this.globalEventManagerService.setProfile(profile);
-
         return true;
     }
     return false;
@@ -86,7 +86,6 @@ export class AuthenticationService {
     urlSearchParams.append('password', password);
     urlSearchParams.append('grant_type', 'password');
     urlSearchParams.append('response_type', 'token');
-
     return urlSearchParams.toString()
   }
 }

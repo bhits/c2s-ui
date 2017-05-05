@@ -8,6 +8,7 @@ import {CustomTranslateService} from "../../core/custom-translate.service";
 import {ProfileService} from "../shared/profile.service";
 import {UmsProfile} from "../shared/ums-profile.model";
 import {Profile} from "../../core/profile.model";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
               private validationService: ValidationService,
               private tokenService: TokenService,
               private customTranslateService: CustomTranslateService,
-              private profileService: ProfileService) {
+              private profileService: ProfileService,
+              private utilityService: UtilityService) {
 
     this.credentials = new Credentials();
     this.loginForm = formBuilder.group({
@@ -66,7 +68,8 @@ export class LoginComponent implements OnInit {
   getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile){
     this.profileService.getUMSProfile().subscribe(
       (profile: UmsProfile)=>{
-        this.customTranslateService.addSupportedLanguages(profile.supportedLocales);
+        let localesCode:string[] = this.utilityService.getSupportedLocaleCode(profile.supportedLocales);
+        this.customTranslateService.addSupportedLanguages(localesCode);
         this.customTranslateService.setDefaultLanguage(profile.userLocale);
         this.profileService.setProfileInSessionStorage(profile);
         this.authenticationService.onGetUserProfileSuccess(uaaProfile);

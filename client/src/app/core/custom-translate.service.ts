@@ -51,7 +51,7 @@ export class CustomTranslateService {
     }
   }
 
-  getSupportedLanguages(): string[]{
-    return this.translateService.getLangs();
+  getSupportedLanguages(): any[]{
+    return this.profileService.getProfileFromSessionStorage().supportedLocales;
   }
 }

@@ -8,7 +8,7 @@ import {Profile} from "../../core/profile.model";
 @Injectable()
 export class TokenService {
   private ACCESS_TOKEN_KEY:string = 'c2s-access-token';
-  private USER_PROFILE_KEY:string = 'c2s-userprofile-token';
+  private USER_PROFILE_KEY:string = 'c2s-user-profile-token';
   private PROVIDER_COUNT_KEY:string = 'c2s-provider-count';
 
   constructor(private sessionStorageService : SessionStorageService) { }

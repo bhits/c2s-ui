@@ -6,6 +6,8 @@ import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {UtilityService} from "../../shared/utility.service";
 import {AccountVerificationRequest} from "../shared/account-verification-request.model";
 
+import {TranslateService} from "@ngx-translate/core";
+
 @Component({
   selector: 'c2s-account-verification',
   templateUrl: './account-verification.component.html',
@@ -22,7 +24,8 @@ export class AccountVerificationComponent implements OnInit {
               private accountVerificationService: AccountVerificationService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private formBuilder: FormBuilder,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private translate: TranslateService) {
   }
 
   ngOnInit() {
@@ -30,12 +33,10 @@ export class AccountVerificationComponent implements OnInit {
       birthDate: ['', Validators.required],
       verificationCode: ['', Validators.required]
     });
-    this.emailToken = this.accountVerificationService
-      .retrieveEmailLinkInfo(this.utilityService.getCurrentNormalizedPath())
-      .get(EmailLinkInfoKey.EMAIL_TOKEN);
-    this.userPreferredLocale = this.accountVerificationService
-      .retrieveEmailLinkInfo(this.utilityService.getCurrentNormalizedPath())
-      .get(EmailLinkInfoKey.USER_PREFERRED_LOCALE);
+    this.accountVerificationService.retrieveEmailLinkInfo(this.utilityService.getCurrentNormalizedPath());
+    this.emailToken = this.accountVerificationService.getEmailToken();
+    this.userPreferredLocale = this.accountVerificationService.getUserPreferredLocale();
+    this.translate.setDefaultLang(this.userPreferredLocale);
   }
 
   public clear() {

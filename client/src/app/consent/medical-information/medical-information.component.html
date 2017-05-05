@@ -52,7 +52,7 @@
     <md-card-title>{{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.HEADER1' | translate }}</md-card-title>
     <md-card-content class="p-l-sm p-r-sm p-b-md">
       <h2>{{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.HEADER2' | translate }}</h2>
-      <h4>
+      <h4 *ngIf="isAllCategoriesSelected">
         {{ 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.WARNING' | translate }}
       </h4>
       <div>
