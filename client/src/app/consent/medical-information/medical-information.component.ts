@@ -42,12 +42,12 @@ export class MedicalInformationComponent implements OnInit {
     this.dialogConfig.disableClose = true;
     //TODO put in a constant service
     this.federalInfo = new MedicalInformationCategory();
-    this.federalInfo.title = 'FED_TITLE';
-    this.federalInfo.description = 'FED_DESCRIPTION';
+    this.federalInfo.title = 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.FED_TITLE';
+    this.federalInfo.description = 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.FED_DESCRIPTION';
 
     this.stateInfo = new MedicalInformationCategory();
-    this.stateInfo.title = 'STATE_TITLE';
-    this.stateInfo.description = 'STATE_DESCRIPTION';
+    this.stateInfo.title = 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.STATE_TITLE';
+    this.stateInfo.description = 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.STATE_DESCRIPTION';
 
     if(this.consent.shareSensitivityCategories.identifiers){
       this.consent.shareSensitivityCategories.identifiers.forEach( sp =>{
