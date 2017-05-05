@@ -1,7 +1,9 @@
 <div class="p-t-md p-b-md p-l-lg p-r-lg">
   <div class="font-size20" style="color: #266357;"><strong>{{'ACCOUNT_ACTIVATION.TITLE' | translate}}</strong></div>
 </div>
-<div style="background-color: #BCDEDB;" class="p-md font-size18 font-weight">{{'ACCOUNT_ACTIVATION.NOTIFICATION' | translate}}</div>
+<div style="background-color: #BCDEDB;" class="p-md font-size18 font-weight">{{'ACCOUNT_ACTIVATION.NOTIFICATION' |
+  translate}}
+</div>
 
 <form fxFlex [formGroup]="accountActivationFrom" class="account-activation-from" novalidate>
   <md-input-container class="full-width font-size20">
@@ -14,13 +16,18 @@
                           [customMessage]="passwordErrorMessage"></c2s-control-messages>
   </md-input-container>
   <md-input-container class="full-width font-size20">
-    <input type="password" class="font-size15" mdInput placeholder="{{'ACCOUNT_ACTIVATION.PASSWORD' | translate}}"
-           formControlName="password">
+    <div fxLayout="row">
+      <input [type]="passwordInputType" class="font-size15" mdInput
+             placeholder="{{'ACCOUNT_ACTIVATION.PASSWORD' | translate}}"
+             formControlName="password" flex="90">
+      <c2s-show-hide-password (setInputType)="getInputType($event)"></c2s-show-hide-password>
+    </div>
     <c2s-control-messages [control]="accountActivationFrom.controls.password"
                           [customMessage]="passwordErrorMessage"></c2s-control-messages>
   </md-input-container>
   <md-input-container class="full-width font-size20">
-    <input type="password" class="font-size15" mdInput placeholder="{{'ACCOUNT_ACTIVATION.CONFIRM_PASSWORD' | translate}}"
+    <input type="password" class="font-size15" mdInput
+           placeholder="{{'ACCOUNT_ACTIVATION.CONFIRM_PASSWORD' | translate}}"
            formControlName="confirmPassword">
     <c2s-control-messages [control]="accountActivationFrom.controls.confirmPassword"></c2s-control-messages>
     <md-hint class="has-error font-size16" *ngIf="accountActivationFrom.hasError('mismatchedPasswords')">

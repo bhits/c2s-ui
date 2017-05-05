@@ -19,27 +19,30 @@
         <c2s-control-messages [control]="loginForm.controls.username"></c2s-control-messages>
       </md-input-container>
 
-    <md-input-container class="full-width">
-      <input class="m-t-xs" type="password" mdInput placeholder="Password"
-             name="password"
-             required
-             [formControl]="loginForm.controls['password']">
-      <c2s-control-messages [control]="loginForm.controls.password"></c2s-control-messages>
-      <md-hint class="has-error" *ngIf="showLoginBackendError">
-        Sorry, you do not have permission to access this site.
-      </md-hint>
-    </md-input-container>
-    <br><br>
-    <div class="flexcontainer row">
-      <button class="flex10auto"
-              type="button"
-              type="submit"
-              [disabled]="!isValidForm(loginForm)"
-              md-raised-button color="primary"
-              (click)="login(loginForm.value)">Login
-      </button>
-    </div>
-  </form>
+      <md-input-container class="full-width">
+        <div fxLayout="row">
+          <input class="m-t-xs" [type]="passwordInputType" mdInput placeholder="Password"
+                 name="password"
+                 required
+                 [formControl]="loginForm.controls['password']">
+          <c2s-show-hide-password (setInputType)="getInputType($event)"></c2s-show-hide-password>
+        </div>
+        <c2s-control-messages [control]="loginForm.controls.password"></c2s-control-messages>
+        <md-hint class="has-error" *ngIf="showLoginBackendError">
+          Sorry, you do not have permission to access this site.
+        </md-hint>
+      </md-input-container>
+      <br><br>
+      <div class="flexcontainer row">
+        <button class="flex10auto"
+                type="button"
+                type="submit"
+                [disabled]="!isValidForm(loginForm)"
+                md-raised-button color="primary"
+                (click)="login(loginForm.value)">Login
+        </button>
+      </div>
+    </form>
   </div>
 
   <div class="bg-white flex10auto">
