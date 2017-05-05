@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 
-import { ShowHidePasswordComponent } from './show-hide-password.component';
+import {ShowHidePasswordComponent} from "./show-hide-password.component";
 
 describe('ShowHidePasswordComponent', () => {
   let component: ShowHidePasswordComponent;
@@ -8,9 +8,9 @@ describe('ShowHidePasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShowHidePasswordComponent ]
+      declarations: [ShowHidePasswordComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

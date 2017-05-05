@@ -20,7 +20,7 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class AccountActivationComponent implements OnInit {
   private usernameTerms = new Subject<string>();
-  public inputType: string = "password";
+  public passwordInputType: string = "password";
   public isUsernameUsed: boolean;
   public accountActivationFrom: FormGroup;
   public passwordErrorMessage: string = ValidationRules.PASSWORD_MESSAGE;
@@ -94,6 +94,6 @@ export class AccountActivationComponent implements OnInit {
   }
 
   public getInputType(inputType: string) {
-    this.inputType = inputType;
+    this.passwordInputType = inputType;
   }
 }

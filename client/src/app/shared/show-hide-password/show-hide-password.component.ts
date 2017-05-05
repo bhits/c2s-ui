@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 
 @Component({
   selector: 'c2s-show-hide-password',
@@ -6,7 +6,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
   styleUrls: ['./show-hide-password.component.scss']
 })
 export class ShowHidePasswordComponent implements OnInit {
-  @Input() inputType: string;
+  inputType: string = "password";
   @Output() setInputType = new EventEmitter<string>();
 
   constructor() {

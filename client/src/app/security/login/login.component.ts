@@ -16,7 +16,7 @@ import {UtilityService} from "../../shared/utility.service";
   styleUrls: ['login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public inputType: string = "password";
+  public passwordInputType: string = "password";
   credentials: Credentials;
   loginForm: FormGroup;
   showLoginBackendError: boolean = false;
@@ -85,6 +85,6 @@ export class LoginComponent implements OnInit {
   }
 
   public getInputType(inputType: string) {
-    this.inputType = inputType;
+    this.passwordInputType = inputType;
   }
 }

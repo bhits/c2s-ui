@@ -21,11 +21,11 @@
 
       <md-input-container class="full-width">
         <div fxLayout="row">
-          <input class="m-t-xs" [type]="inputType" mdInput placeholder="Password"
+          <input class="m-t-xs" [type]="passwordInputType" mdInput placeholder="Password"
                  name="password"
                  required
                  [formControl]="loginForm.controls['password']">
-          <c2s-show-hide-password [inputType]="inputType" (setInputType)="getInputType($event)"></c2s-show-hide-password>
+          <c2s-show-hide-password (setInputType)="getInputType($event)"></c2s-show-hide-password>
         </div>
         <c2s-control-messages [control]="loginForm.controls.password"></c2s-control-messages>
         <md-hint class="has-error" *ngIf="showLoginBackendError">
