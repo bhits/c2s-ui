@@ -16,6 +16,7 @@ import {ValidationService} from "./validation.service";
 import {ControlMessagesComponent} from "./control-messages/control-messages.component";
 import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
 import {ConsentProviderPipe} from "./consent-provider.pipe";
+import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password.component";
 
 @NgModule({
   imports: [
@@ -23,7 +24,13 @@ import {ConsentProviderPipe} from "./consent-provider.pipe";
     Md2Module,
     RouterModule
   ],
-  declarations: [UsPhoneNumberPipe, PageTitleComponent, ControlMessagesComponent, ConsentProviderPipe],
+  declarations: [
+    UsPhoneNumberPipe,
+    PageTitleComponent,
+    ControlMessagesComponent,
+    ConsentProviderPipe,
+    ShowHidePasswordComponent
+  ],
   exports: [
     CommonModule,
     FormsModule,
@@ -36,7 +43,8 @@ import {ConsentProviderPipe} from "./consent-provider.pipe";
     ConsentProviderPipe,
     Md2Tooltip,
     PageTitleComponent,
-    ControlMessagesComponent
+    ControlMessagesComponent,
+    ShowHidePasswordComponent
   ],
   providers: [
     C2sUiApiUrlService,

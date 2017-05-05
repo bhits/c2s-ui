@@ -14,8 +14,11 @@
                           [customMessage]="passwordErrorMessage"></c2s-control-messages>
   </md-input-container>
   <md-input-container class="full-width font-size20">
-    <input type="password" class="font-size15" mdInput placeholder="{{'ACCOUNT_ACTIVATION.PASSWORD' | translate}}"
-           formControlName="password">
+    <div fxLayout="row">
+      <input [type]="inputType" class="font-size15" mdInput placeholder="{{'ACCOUNT_ACTIVATION.PASSWORD' | translate}}"
+             formControlName="password" flex="90">
+      <c2s-show-hide-password [inputType]="inputType" (setInputType)="getInputType($event)"></c2s-show-hide-password>
+    </div>
     <c2s-control-messages [control]="accountActivationFrom.controls.password"
                           [customMessage]="passwordErrorMessage"></c2s-control-messages>
   </md-input-container>
