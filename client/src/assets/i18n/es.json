@@ -147,7 +147,7 @@
   },
   "CONSENTS": {
     "TITLE": "Mis Consentimientos",
-    "WARNING":"Actualmente no hay consentimientos disponibles. Haga clic en el botón Añadir un consentimiento para crear un nuevo consentimiento.",
+    "WARNING": "Actualmente no hay consentimientos disponibles. Haga clic en el botón Añadir un consentimiento para crear un nuevo consentimiento.",
     "ADD_CONSENT_BUTTON": "Añadir un consentimiento",
     "PAGINATION": {
       "NEXT": "Siguiente",
@@ -196,20 +196,20 @@
   },
   "CONSENT_CREATE_EDIT": {
     "TITLE": "I, {{name}}, por la presente autorizo ​​...",
-    "SELECT_PROVIDERS":{
-      "TITLE":"Seleccionar Proveedores",
-      "AUTHORIZED_DESCRIPTION":"La siguiente persona u organización",
-      "DISCLOSED_DESCRIPTION":"Para revelar mi información a",
-      "DIALOG":{
-        "AUTHORIZE_HEADER":"Autorizar",
-        "AUTHORIZE_TITLE":"La siguiente persona u organización",
-        "DISCLOSE_HEADER":"Revelar",
-        "DISCLOSE_TITLE":"Para revelar mi información a",
-        "DESCRIPTION":"Seleccione una persona u organización autorizada para compartir su información:",
-        "IND_PROVIDER_LABEL":"Individual:",
-        "ORG_PROVIDER_LABEL":"Organizativo:",
-        "CANCEL_BTN":"Cancelar",
-        "ADD_BTN":"Añadir seleccionados"
+    "SELECT_PROVIDERS": {
+      "TITLE": "Seleccionar Proveedores",
+      "AUTHORIZED_DESCRIPTION": "La siguiente persona u organización",
+      "DISCLOSED_DESCRIPTION": "Para revelar mi información a",
+      "DIALOG": {
+        "AUTHORIZE_HEADER": "Autorizar",
+        "AUTHORIZE_TITLE": "La siguiente persona u organización",
+        "DISCLOSE_HEADER": "Revelar",
+        "DISCLOSE_TITLE": "Para revelar mi información a",
+        "DESCRIPTION": "Seleccione una persona u organización autorizada para compartir su información:",
+        "IND_PROVIDER_LABEL": "Individual:",
+        "ORG_PROVIDER_LABEL": "Organizativo:",
+        "CANCEL_BTN": "Cancelar",
+        "ADD_BTN": "Añadir seleccionados"
       }
     },
     "MEDICAL_INFORMATION": {
@@ -223,11 +223,10 @@
         "HEADER1": "Categorías de información sensible",
         "WARNING": " Por favor, seleccione la opción \"Compartir mi historial médico sin excepciones\", si desea compartir toda la información de su salud.",
         "HEADER2": "Seleccione la información médica que desea compartir.",
-        "FED_TITLE":"Categorías federales",
-        "FED_DESCRIPTION":"Los requisitos federales restringen estrictamente a los profesionales de la salud que divulguen información sobre el tratamiento del abuso de sustancias sin el consentimiento firmado del paciente '+' (llamado <a href=\"http://www.samhsa.gov/about-us/who-we-are/laws/confidentiality-regulations-faqs\" target=\"_blank\"> 42 CFR Part 2 <i class=\"fa fa-external-link\"></i></a>).'+' Tiene derecho a elegir la información que desea compartir o no compartir y con quién.",
-        "STATE_TITLE":"Categorías del estado",
-        "STATE_DESCRIPTION":"La mayoría de los estados tienen leyes que restringen a los profesionales de la salud de revelar información relacionada con el abuso de sustancias, el VIH / SIDA y la salud mental. '+' Algunos estados tienen restricciones con respecto a la información genética y las enfermedades transmisibles. Usted tiene el derecho de elegir la información que desea compartir o no compartir y con quién.",
-
+        "FED_TITLE": "Categorías federales",
+        "FED_DESCRIPTION": "Los requisitos federales restringen estrictamente a los profesionales de la salud que divulguen información sobre el tratamiento del abuso de sustancias sin el consentimiento firmado del paciente '+' (llamado <a href=\"http://www.samhsa.gov/about-us/who-we-are/laws/confidentiality-regulations-faqs\" target=\"_blank\"> 42 CFR Part 2 <i class=\"fa fa-external-link\"></i></a>).'+' Tiene derecho a elegir la información que desea compartir o no compartir y con quién.",
+        "STATE_TITLE": "Categorías del estado",
+        "STATE_DESCRIPTION": "La mayoría de los estados tienen leyes que restringen a los profesionales de la salud de revelar información relacionada con el abuso de sustancias, el VIH / SIDA y la salud mental. '+' Algunos estados tienen restricciones con respecto a la información genética y las enfermedades transmisibles. Usted tiene el derecho de elegir la información que desea compartir o no compartir y con quién.",
         "CONTENT": "Por favor, seleccione la opción \"Compartir mi historial médico sin excepciones\", si desea compartir toda la información de su salud.",
         "CANCEL_BTN": "Cancelar",
         "SAVE_BTN": "Guardar cambios",
@@ -260,97 +259,101 @@
     "CANCEL_BUTTON_LABEL": "Cancelar",
     "SAVE_BUTTON_LABEL": "Salvar"
   },
-  "CONSENT_SIGN":{
-    "TITLE":"Consentimiento para compartir mi información médica",
-    "REFERENCE_NUMBER":"Número de referencia del consentimiento",
-    "PATIENT_NAME":"Nombre del paciente",
-    "PATIENT_DOB":"Fecha de nacimiento del paciente",
-    "AUTHORIZATION_SECTION":{
-      "TITLE":"AUTORIZACIÓN PARA DIVULGAR",
-      "AUTHORIZE_LABEL":"Authorizes",
-      "DISCLOSE_LABEL":"Revelar a",
-      "PROVIDER":{
-        "NAME":"Nombre del proveedor",
-        "NPI":"Número NPI",
-        "PHONE":"Teléfono",
-        "ADDRESS":"Dirección"
+  "CONSENT_SIGN": {
+    "TITLE": "Consentimiento para compartir mi información médica",
+    "REFERENCE_NUMBER": "Número de referencia del consentimiento",
+    "PATIENT_NAME": "Nombre del paciente",
+    "PATIENT_DOB": "Fecha de nacimiento del paciente",
+    "AUTHORIZATION_SECTION": {
+      "TITLE": "AUTORIZACIÓN PARA DIVULGAR",
+      "AUTHORIZE_LABEL": "Authorizes",
+      "DISCLOSE_LABEL": "Revelar a",
+      "PROVIDER": {
+        "NAME": "Nombre del proveedor",
+        "NPI": "Número NPI",
+        "PHONE": "Teléfono",
+        "ADDRESS": "Dirección"
       }
     },
-    "HEALTH_INFORMATION_SECTION":{
-      "TITLE":"INFORMACIÓN SANITARIA A REVELAR",
-      "SHARE_MEDICAL_INFO":"Para COMPARTIR la siguiente información médica",
-      "SHARE_PURPOSES":"Para COMPARTIR para el siguiente propósito (s)"
+    "HEALTH_INFORMATION_SECTION": {
+      "TITLE": "INFORMACIÓN SANITARIA A REVELAR",
+      "SHARE_MEDICAL_INFO": "Para COMPARTIR la siguiente información médica",
+      "SHARE_PURPOSES": "Para COMPARTIR para el siguiente propósito (s)"
     },
-    "CONSENT_TERMS_SECTION":{
-      "TITLE":"TÉRMINOS DE CONSENTIMIENTO",
-      "START_DATE":"Fecha de vigencia",
-      "END_DATE":"Fecha de caducidad",
-      "TERMS":"Yo, {{name}}, por la presente acepto, y entiendo los términos de este consentimiento."
+    "CONSENT_TERMS_SECTION": {
+      "TITLE": "TÉRMINOS DE CONSENTIMIENTO",
+      "START_DATE": "Fecha de vigencia",
+      "END_DATE": "Fecha de caducidad",
+      "TERMS": "Yo, {{name}}, por la presente acepto, y entiendo los términos de este consentimiento."
     },
-    "CONFIRM_DIALOG":{
-      "TITLE":"Por favor, autentifique",
-      "CONTENT":"Proporcione su contraseña de cuenta para autenticar y complete la firma electrónica",
-      "AUTHENTICATE_MSG":"No se pudo autenticar, inténtalo de nuevo ...",
-      "CANCEL_BTN":"Cancelar",
-      "CONTINUE_BTN":"Continuar"
+    "CONFIRM_DIALOG": {
+      "TITLE": "Por favor, autentifique",
+      "CONTENT": "Proporcione su contraseña de cuenta para autenticar y complete la firma electrónica",
+      "AUTHENTICATE_MSG": "No se pudo autenticar, inténtalo de nuevo ...",
+      "CANCEL_BTN": "Cancelar",
+      "CONTINUE_BTN": "Continuar"
     },
-    "COMPLETE_DIALOG":{
-      "TITLE":"El éxito en el consentimiento firmado creado",
-      "DOWNLOAD_BTN":"Descargar el consentimiento firmado",
-      "CONTINUE_BTN":"Continuar"
+    "COMPLETE_DIALOG": {
+      "TITLE": "El éxito en el consentimiento firmado creado",
+      "DOWNLOAD_BTN": "Descargar el consentimiento firmado",
+      "CONTINUE_BTN": "Continuar"
     },
-    "CANCEL_BTN":"Cancelar",
-    "COMPLETE_BTN":"Completar"
+    "CANCEL_BTN": "Cancelar",
+    "COMPLETE_BTN": "Completar"
   },
-  "CONSENT_REVOKE":{
-    "TITLE":"Revocation of Consent to Participate in Health Information Exchange",
-    "REFERENCE_NUMBER":"Consent Reference Number",
-    "PATIENT_NAME":"Patient Name",
-    "PATIENT_DOB":"Patient DOB",
-    "CONFIRM_DIALOG":{
-      "TITLE":"Please Authenticate",
-      "CONTENT":"Please provide your account password to authenticate, and complete e-signature",
-      "AUTHENTICATE_MSG":"Failed to authenticate, please try again...",
-      "CANCEL_BTN":"Cancel",
-      "CONTINUE_BTN":"Continue"
+  "CONSENT_REVOKE": {
+    "TITLE": "Revocation of Consent to Participate in Health Information Exchange",
+    "REFERENCE_NUMBER": "Consent Reference Number",
+    "PATIENT_NAME": "Patient Name",
+    "PATIENT_DOB": "Patient DOB",
+    "CONFIRM_DIALOG": {
+      "TITLE": "Please Authenticate",
+      "CONTENT": "Please provide your account password to authenticate, and complete e-signature",
+      "AUTHENTICATE_MSG": "Failed to authenticate, please try again...",
+      "CANCEL_BTN": "Cancel",
+      "CONTINUE_BTN": "Continue"
     },
-    "COMPLETE_DIALOG":{
-      "TITLE":"Successfully Revoked Consent",
-      "DOWNLOAD_BTN":"Download Signed Consent Revocation",
-      "CONTINUE_BTN":"Continue"
+    "COMPLETE_DIALOG": {
+      "TITLE": "Successfully Revoked Consent",
+      "DOWNLOAD_BTN": "Download Signed Consent Revocation",
+      "CONTINUE_BTN": "Continue"
     },
-    "TERMS":"I, {{name}}, hereby accept, and understand the terms of this consent.",
-    "CANCEL_BTN":"Cancel",
-    "COMPLETE_BTN":"Complete"
+    "TERMS": "I, {{name}}, hereby accept, and understand the terms of this consent.",
+    "CANCEL_BTN": "Cancel",
+    "COMPLETE_BTN": "Complete"
   },
-  "ACCOUNT_VERIFICATION":{
+  "ACCOUNT_VERIFICATION": {
     "TITLE": "(SPANISH)Account Setup Verification",
     "NOTIFICATION": "To begin setting up your personal account, please enter your <strong>Date of Birth</strong> and the <strong>Verification Code</strong> that was provided to you. All fields are required in order to proceed.",
-    "CLEAR_BTN":"Clear",
-    "CONTINUE_BTN":"Complete",
-    "DOB":"Date of Birth",
-    "VERIFICATION_CODE":"Verification Code (Verification Code is case sensitive)"
+    "CLEAR_BTN": "Clear",
+    "CONTINUE_BTN": "Complete",
+    "DOB": "Date of Birth",
+    "VERIFICATION_CODE": "Verification Code (Verification Code is case sensitive)"
   },
-  "ACCOUNT_ACTIVATION":{
+  "ACCOUNT_ACTIVATION": {
     "TITLE": "(SPANISH)Create your Account",
     "NOTIFICATION": "Please create a Password for your account.Remember your Username and Password. You will need them to log in to your account.",
-    "CLEAR_BTN":"Clear",
-    "SUBMIT_BTN":"Submit",
-    "USERNAME":"Username",
-    "PASSWORD":"Password",
-    "CONFIRM_PASSWORD":"Re-enter Password"
+    "CLEAR_BTN": "Clear",
+    "SUBMIT_BTN": "Submit",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Re-enter Password"
   },
-  "ACCOUNT_ACTIVATION_SUCCESS":{
+  "ACCOUNT_ACTIVATION_SUCCESS": {
     "TITLE": "(SPANISH)Account Activation Complete!",
-    "CONGRATULATION":"Congratulations! ",
-    "NOTIFICATION1":"<strong>Congratulations {{userFullName}}!</strong>",
-    "NOTIFICATION2":" You have successfully created your <strong>{{brandName}}</strong> password. Click on the link below to log in to your account.",
-    "CONTINUE_LOGIN_BTN":"Continue to Login Page"
+    "CONGRATULATION": "Congratulations! ",
+    "NOTIFICATION1": "<strong>Congratulations {{userFullName}}!</strong>",
+    "NOTIFICATION2": " You have successfully created your <strong>{{brandName}}</strong> password. Click on the link below to log in to your account.",
+    "CONTINUE_LOGIN_BTN": "Continue to Login Page"
   },
-  "ACCOUNT_ACTIVATION_ERROR":{
+  "ACCOUNT_ACTIVATION_ERROR": {
     "TITLE": "(SPANISH)Account Activation Failed!",
     "NOTIFICATION": "<strong>Whoops!</strong> An error occurred during account activation. Please contact administrator for a new Verification Code. ",
     "NOTIFICATION_FOR_BUTTON": "Please click the link below for more information about Consent2Share available on the C2S Login Page",
-    "CONTINUE_LOGIN_BTN":"Continue to Login Page"
+    "CONTINUE_LOGIN_BTN": "Continue to Login Page"
+  },
+  "PAGE_NOT_FOUND": {
+    "TITLE": "(SPANISH)Page Not Found",
+    "SUBTITLE": "Sorry, this is not the page you are looking for."
   }
 }
