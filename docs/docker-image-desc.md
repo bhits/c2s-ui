@@ -21,9 +21,9 @@ For more information and related downloads for Consent2Share, please visit [Cons
 
 ## Start a c2s-ui instance
 
-Be sure to familiarize yourself with the repository's [README.md](https://github.com/bhits-dev/c2s-ui) file before starting the instance.
+Be sure to familiarize yourself with the repository's [README.md](https://github.com/bhitsdev/c2s-ui) file before starting the instance.
 
-`docker run  --name c2s-ui -d bhits-dev/c2s-ui:latest <additional program arguments>`
+`docker run  --name c2s-ui -d bhitsdev/c2s-ui:latest <additional program arguments>`
 
 *NOTE: In order for this API to fully function as a microservice in the Consent2Share application, it is required to setup the dependency microservices and the support level infrastructure. Please refer to the Consent2Share Deployment Guide in the corresponding Consent2Share release (see [Consent2Share Releases Page](https://github.com/bhits-dev/consent2share/releases)) for instructions to setup the Consent2Share infrastructure.*
 
@@ -39,7 +39,7 @@ Also, [Spring Boot](https://projects.spring.io/spring-boot/) supports other ways
 
 The following is an example to override the default configuration:
 
-`docker run -d bhits-dev/c2s-ui:latest --c2s.c2s-ui.oauth2.client.secret=strongpassword`
+`docker run -d bhitsdev/c2s-ui:latest --c2s.c2s-ui.oauth2.client.secret=strongpassword`
 
 ## Environment Variables
 
@@ -48,18 +48,18 @@ When you start the Consent2Share UI image, you can edit the configuration of the
 ### JAR_FILE
 This environment variable is used to setup which jar file will run. you need mount the jar file to the root of container.
 
-`docker run --name c2s-ui -e JAR_FILE="c2s-ui-latest.jar" -v "/path/on/dockerhost/c2s-ui-latest.jar:/c2s-ui-latest.jar" -d bhits-dev/c2s-ui:latest`
+`docker run --name c2s-ui -e JAR_FILE="c2s-ui-latest.jar" -v "/path/on/dockerhost/c2s-ui-latest.jar:/c2s-ui-latest.jar" -d bhitsdev/c2s-ui:latest`
 
 ### JAVA_OPTS 
 This environment variable is used to setup JVM argument, such as memory configuration.
 
-`docker run --name c2s-ui -e "JAVA_OPTS=-Xms512m -Xmx700m -Xss1m" -d bhits-dev/c2s-ui:latest`
+`docker run --name c2s-ui -e "JAVA_OPTS=-Xms512m -Xmx700m -Xss1m" -d bhitsdev/c2s-ui:latest`
 
 ### DEFAULT_PROGRAM_ARGS 
 
 This environment variable is used to setup an application argument. The default value of is "--spring.profiles.active=application-default, docker".
 
-`docker run --name c2s-ui -e DEFAULT_PROGRAM_ARGS="--spring.profiles.active=application-default,ssl,docker" -d bhits-dev/c2s-ui:latest`
+`docker run --name c2s-ui -e DEFAULT_PROGRAM_ARGS="--spring.profiles.active=application-default,ssl,docker" -d bhitsdev/c2s-ui:latest`
 
 # Supported Docker versions
 This image is officially supported on Docker version 1.12.1.
@@ -74,7 +74,7 @@ View [license](https://github.com/bhits-dev/c2s-ui/blob/master/LICENSE) informat
 # User Feedback
 
 ## Documentation 
-Documentation for this image is stored in the [bhits-dev/c2s-ui](https://github.com/bhits-dev/c2s-ui) GitHub repository. Be sure to familiarize yourself with the repository's README.md file before attempting a pull request.
+Documentation for this image is stored in the [bhitsdev/c2s-ui](https://github.com/bhits-dev/c2s-ui) GitHub repository. Be sure to familiarize yourself with the repository's README.md file before attempting a pull request.
 
 ## Internationalization (i18n)
 

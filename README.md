@@ -31,7 +31,7 @@ To build the project, navigate to the folder that contains `pom.xml` file using 
 + To build a JAR:
     + For Windows, run `mvnw.cmd clean install`
     + For *nix systems, run `mvnw clean install`
-+ To build a Docker Image (this will create an image with `bhits-dev/c2s-ui:latest` tag):
++ To build a Docker Image (this will create an image with `bhitsdev/c2s-ui:latest` tag):
     + For Windows, run `mvnw.cmd clean package docker:build`
     + For *nix systems, run `mvnw clean package docker:build`
 
@@ -49,7 +49,7 @@ Note: Frontend developers can build `client` and `server` modules separately and
 This is a [Spring Boot](https://projects.spring.io/spring-boot/) project and serves the project via an embedded Tomcat instance. Therefore there is no need for a separate application server to run it.
 
 + Run as a JAR file: `java -jar c2s-ui-x.x.x-SNAPSHOT.jar <additional program arguments>`
-+ Run as a Docker Container: `docker run -d bhits-dev/c2s-ui:latest <additional program arguments>`
++ Run as a Docker Container: `docker run -d bhitsdev/c2s-ui:latest <additional program arguments>`
 
 *NOTE: In order for this project to fully function as a microservice in the Consent2Share application, it is required to setup the dependency microservices and the support level infrastructure. Please refer to the Consent2Share Deployment Guide in the corresponding Consent2Share release (see [Consent2Share Releases Page](https://github.com/bhits-dev/consent2share/releases)) for instructions to setup the Consent2Share infrastructure.*
 
@@ -79,7 +79,7 @@ Also, please refer to [Spring Cloud Config Documentation](https://cloud.spring.i
 
 ### Override a Configuration Using Program Arguments While Running as a Docker Container:
 
-+ `docker run -d bhits-dev/c2s-ui:latest --c2s.c2s-ui.oauth2.client.secret=strongpassword`
++ `docker run -d bhitsdev/c2s-ui:latest --c2s.c2s-ui.oauth2.client.secret=strongpassword`
 
 + In a `docker-compose.yml`, this can be provided as:
 ```yml
@@ -87,7 +87,7 @@ version: '2'
 services:
 ...
   c2s-ui.c2s.com:
-    image: "bhits-dev/c2s-ui:latest"
+    image: "bhitsdev/c2s-ui:latest"
     command: ["--c2s.c2s-ui.oauth2.client.secret=strongpassword"]
 ...
 ```
