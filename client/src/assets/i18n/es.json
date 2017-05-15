@@ -178,6 +178,7 @@
         "EDIT_THIS_CONSENT": "Editar este consentimiento",
         "PREVIEW_THIS_CONSENT": "Previsualizar este consentimiento",
         "PROVIDE_ESIGNATURE": "Proporcionar eSignature",
+        "APPLY_TRY_POLICY": "Probar las Selecciones de Mi Consentimiento en Mi Registro Médico antes de Compartir",
         "DELETE_THIS_PROVIDER": "Eliminar este consentimiento"
       },
       "CONSENT_SIGNED_STAGE": {
