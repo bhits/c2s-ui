@@ -176,7 +176,7 @@
       },
       "CONSENT_SAVE_STAGE": {
         "STAGE": "SAVED",
-        "IN_PROGRES": "IN PROGRES",
+        "IN_PROGRESS": "IN PROGRESS",
         "EDIT_THIS_CONSENT": "Edit This Consent",
         "PREVIEW_THIS_CONSENT": "Preview This Consent",
         "PROVIDE_ESIGNATURE": "Provide eSignature",

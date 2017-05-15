@@ -4,7 +4,7 @@ import {ConsentStageOptionKey} from "./consent-stage-option-key.enum";
 export const CONSENT_STAGES: ConsentStage[] = [
   {
     consentStage: "SAVED",
-    text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.IN_PROGRES",
+    text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.IN_PROGRESS",
     icon: "edit",
     color: "accent",
     options: [
