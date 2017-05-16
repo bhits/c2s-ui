@@ -170,6 +170,13 @@
           "CONTENT": "¿Está seguro de que desea eliminar este consentimiento?",
           "CANCEL_BTN": "Cancelar",
           "OK_BTN": "De acuerdo"
+        },
+        "TRYPOLICY_CONSENT_DIALOG": {
+          "TITLE": "Aplicar a Mi Registro",
+          "CONTENT_DOCUMENT": "Documento",
+          "CONTENT_POU": "Fines de Uso",
+          "BACK_BTN": "Volver a las Opciones de Consentimiento",
+          "OK_BTN": "Aplicar"
         }
       },
       "CONSENT_SAVE_STAGE": {

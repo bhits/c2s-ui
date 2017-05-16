@@ -172,6 +172,13 @@
           "CONTENT": "Are you sure you want to delete this consent?",
           "CANCEL_BTN": "Cancel",
           "OK_BTN": "Ok"
+        },
+        "TRYPOLICY_CONSENT_DIALOG": {
+          "TITLE": "Apply My Record",
+          "CONTENT_DOCUMENT": "Document",
+          "CONTENT_POU": "Purpose of Use",
+          "BACK_BTN": "Back to Consent Options",
+          "OK_BTN": "Apply"
         }
       },
       "CONSENT_SAVE_STAGE": {
