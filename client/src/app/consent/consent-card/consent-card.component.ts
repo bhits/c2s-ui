@@ -69,8 +69,11 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     return consentOption.isMethod;
   }
 
-  invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any) {
+  invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any, tryPolicyDialog: any) {
     switch (consentOption.key) {
+      case ConsentStageOptionKey.APPLY_TRY_POLICY:
+        tryPolicyDialog.open();
+        break;
       case ConsentStageOptionKey.DELETE:
         deleteConfirmationDialog.open();
         break;
@@ -105,4 +108,10 @@ export class ConsentCardComponent implements OnInit, OnChanges {
           console.log(err);
         });
   }
+
+  applyTryPolicy(dialog: any){
+    dialog.close();
+
+  }
+
 }
