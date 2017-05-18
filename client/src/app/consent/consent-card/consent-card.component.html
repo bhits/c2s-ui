@@ -119,8 +119,8 @@
                     <div fxFlex>
                       <label>{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}</label>
                       <md-select placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}">
-                        <md-option *ngFor="let medicalDocument of medicalDocumentList" [value]="medicalDocument.value">
-                          {{ medicalDocument.viewValue }}
+                        <md-option *ngFor="let uploadedDocument of uploadedDocumentList" [value]="uploadedDocument.id">
+                          {{ uploadedDocument.documentName }}
                         </md-option>
                       </md-select>
                     </div>
