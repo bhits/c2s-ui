@@ -9,6 +9,7 @@ import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
 import {TranslateService} from "@ngx-translate/core";
+import {UploadedDocument} from "../shared/uploaded-document.model";
 
 
 @Component({
@@ -19,6 +20,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class ConsentCardComponent implements OnInit, OnChanges {
 
   @Input() consent: Consent;
+  @Input() uploadedDocumentList: UploadedDocument[];
   @Output() private deleteConsent = new EventEmitter<number>();
 
   private detailsVisible: boolean = false;
@@ -50,6 +52,10 @@ export class ConsentCardComponent implements OnInit, OnChanges {
       this.consent.shareSensitivityCategories.length > 0;
   }
 
+  hasUploadedDocuments(): boolean {
+    return !!this.uploadedDocumentList && this.uploadedDocumentList.length > 0;
+  }
+
   getHeightPx(): string {
     return `${this.height}px`;
   }
@@ -71,9 +77,25 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any, tryPolicyDialog: any) {
     switch (consentOption.key) {
-      case ConsentStageOptionKey.APPLY_TRY_POLICY:
-        tryPolicyDialog.open();
+      case ConsentStageOptionKey.APPLY_TRY_POLICY:{
+        this.consentService.getUploadedDocumentList()
+          .subscribe(
+            (docList: UploadedDocument[]) => {
+              this.uploadedDocumentList = docList;
+              consentOptionsDialog.close()
+              tryPolicyDialog.open();
+            },
+            err => {
+              if(err == 404){
+                this.notificationService.show("No Documents found to Try your Consent Settings");
+              } else {
+                this.notificationService.show("Failed to get the list of uploaded documents, please try again later...");
+              }
+              console.log(err);
+            });
+
         break;
+      }
       case ConsentStageOptionKey.DELETE:
         deleteConfirmationDialog.open();
         break;
