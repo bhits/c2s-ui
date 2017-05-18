@@ -16,6 +16,7 @@ import {ConsentRevocation} from "./consent-revocation.model";
 import {BinaryFile} from "./binary-file.model";
 import {NotificationService} from "../../core/notification.service";
 import {ProfileService} from "../../security/shared/profile.service";
+import {UploadedDocument} from "./uploaded-document.model";
 
 @Injectable()
 export class ConsentService {
@@ -24,6 +25,7 @@ export class ConsentService {
   private pcmSensitivityPolicyUrl: string = this.c2sUiApiUrlService.getVssBaseUrl().concat("/valueSetCategories");
   private pcmConsentUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/consents");
   private pcmConsentTermUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/consentRevocationTerm");
+  private phrGetDocumentListUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patient/").concat(this.currentUserMrn).concat("/documentsList");
 
   private consentSubject: BehaviorSubject<ConsentCreateEdit> = new BehaviorSubject<ConsentCreateEdit>(null);
   public consentEmitter: Observable<ConsentCreateEdit> = this.consentSubject.asObservable();
@@ -63,6 +65,12 @@ export class ConsentService {
       }
     }
     return null;
+  }
+
+  getUploadedDocumentList(): Observable<UploadedDocument[]> {
+    return this.http.get(this.phrGetDocumentListUrl)
+      .map((resp: Response) => <UploadedDocument[]>(resp.json()))
+      .catch(this.exceptionService.handleError);
   }
 
   createConsent(consent: ConsentCreateEdit): Observable<void> {
@@ -172,6 +180,7 @@ export class ConsentService {
     this.notificationService.show("Failed to download the consent, please try again later...");
     console.log(err);
   }
+
 
   private getConsentAsBinaryFile(url: string, format: string): Observable<BinaryFile> {
     const params: URLSearchParams = new URLSearchParams();

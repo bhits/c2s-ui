@@ -10,11 +10,13 @@ export class C2sUiApiUrlService {
       ["accountActivationUrl", "/account/activation"],
       ["accountActivationSuccessUrl", "/account/activation-success"],
       ["accountActivationErrorUrl", "/account/activation-error"],
+
       // External api Url maps
       ["PcmBaseUrl", "/c2s-ui-api/pcm"],
       ["PlsBaseUrl", "/c2s-ui-api/pls"],
       ["VssBaseUrl", "/c2s-ui-api/vss"],
-      ["UmsBaseUrl", "/c2s-ui-api/ums"]
+      ["UmsBaseUrl", "/c2s-ui-api/ums"],
+      ["PhrBaseUrl", "/c2s-ui-api/phr"]
     ]
   );
 
@@ -52,4 +54,9 @@ export class C2sUiApiUrlService {
   getVssBaseUrl(): string {
     return this.urls.get('VssBaseUrl');
   }
+
+  getPhrBaseUrl(): string {
+    return this.urls.get('PhrBaseUrl');
+  }
+
 }
