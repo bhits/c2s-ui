@@ -116,23 +116,25 @@
                     <md2-dialog-title>
                       {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.TITLE' | translate }}
                     </md2-dialog-title>
-                    <div fxFlex>
-                      <label>{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}</label>
-                      <md-select placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}">
-                        <md-option *ngFor="let uploadedDocument of uploadedDocumentList" [value]="uploadedDocument.id">
-                          {{ uploadedDocument.documentName }}
-                        </md-option>
-                      </md-select>
-                    </div>
-                    <br>
-                    <div fxFlex>
-                      <label> {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}</label>
-                      <md-select  placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}">
-                        <md-option *ngFor="let sharePurpose of consent.sharePurposes" [value]="sharePurpose">
-                          {{sharePurpose | sharePurpose: 'display'}}
-                        </md-option>
-                      </md-select>
-                    </div>
+                    <form [formGroup]="tryPolicyForm">
+                      <div fxFlex>
+                        <label>{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}</label>
+                        <md-select placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}" formControlName="documentId">
+                          <md-option *ngFor="let uploadedDocument of uploadedDocumentList" [value]="uploadedDocument.documentId">
+                            {{ uploadedDocument.documentName }}
+                          </md-option>
+                        </md-select>
+                      </div>
+                      <br>
+                      <div fxFlex>
+                        <label> {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}</label>
+                        <md-select  placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}" formControlName="purposeOfUse">
+                          <md-option *ngFor="let sharePurpose of consent.sharePurposes" [value]="sharePurpose.display">
+                            {{sharePurpose | sharePurpose: 'display'}}
+                          </md-option>
+                        </md-select>
+                      </div>
+                    </form>
 
 
                     <md2-dialog-footer>

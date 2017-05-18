@@ -1,5 +1,4 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from "@angular/core";
-
 import {Consent} from "../shared/consent.model";
 import {ConsentStageOption} from "../shared/consent-stage-option.model";
 import {CONSENT_STAGES} from "../shared/consent-stages.model";
@@ -7,10 +6,10 @@ import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
 import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
 import {BinaryFile} from "../shared/binary-file.model";
-import {UtilityService} from "../../shared/utility.service";
 import {TranslateService} from "@ngx-translate/core";
 import {UploadedDocument} from "../shared/uploaded-document.model";
-
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {TryPolicy} from "../shared/tryPolicy.model";
 
 @Component({
   selector: 'c2s-consent-card',
@@ -20,19 +19,22 @@ import {UploadedDocument} from "../shared/uploaded-document.model";
 export class ConsentCardComponent implements OnInit, OnChanges {
 
   @Input() consent: Consent;
-  @Input() uploadedDocumentList: UploadedDocument[];
+  public uploadedDocumentList: UploadedDocument[];
   @Output() private deleteConsent = new EventEmitter<number>();
+  public tryPolicyForm: FormGroup;
 
   private detailsVisible: boolean = false;
   private height: number = 0;
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
     this.detailsVisible = false;
+    this.tryPolicyForm = this.initTryPolicyFormFormGroup();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -132,8 +134,25 @@ export class ConsentCardComponent implements OnInit, OnChanges {
   }
 
   applyTryPolicy(dialog: any){
+    console.log( this.prepareTryPolicyInput());
     dialog.close();
 
   }
+
+  private initTryPolicyFormFormGroup(){
+    return this.formBuilder.group({
+      documentId: [null, Validators.required],
+      purposeOfUse: [null, Validators.required]
+    })
+  }
+
+  private prepareTryPolicyInput(): TryPolicy {
+    const formModel = this.tryPolicyForm.value;
+    return {
+      documentId: formModel.documentId,
+      purposeOfUse: formModel.purposeOfUse
+    };
+  }
+
 
 }
