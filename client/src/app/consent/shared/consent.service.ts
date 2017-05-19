@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response, URLSearchParams} from "@angular/http";
+import {Http, Headers, Response, RequestOptions, URLSearchParams} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {PurposeOfUseBase} from "./purpose-of-use-base.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
@@ -17,6 +17,8 @@ import {BinaryFile} from "./binary-file.model";
 import {NotificationService} from "../../core/notification.service";
 import {ProfileService} from "../../security/shared/profile.service";
 import {UploadedDocument} from "./uploaded-document.model";
+import {TryPolicyResponse} from "./tryPolicy-response.model";
+
 
 @Injectable()
 export class ConsentService {
@@ -26,6 +28,7 @@ export class ConsentService {
   private pcmConsentUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/consents");
   private pcmConsentTermUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/consentRevocationTerm");
   private phrGetDocumentListUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patient/").concat(this.currentUserMrn).concat("/documentsList");
+  private tryPolicyUrl = this.c2sUiApiUrlService.getTryPolicyBaseUrl().concat("/tryPolicyXHTML?");
 
   private consentSubject: BehaviorSubject<ConsentCreateEdit> = new BehaviorSubject<ConsentCreateEdit>(null);
   public consentEmitter: Observable<ConsentCreateEdit> = this.consentSubject.asObservable();
@@ -73,6 +76,22 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
+  getTryPolicyXHTML(documentId: number, pou: string, consentId: number) {
+  let params: URLSearchParams = new URLSearchParams();
+  params.set('documentId', documentId.toString());
+  params.set('consentId', consentId.toString());
+  params.set('patientId', this.currentUserMrn);
+  params.set('purposeOfUseCode', pou);
+
+  let headers: Headers = new Headers();
+  headers.append('Accept-Language', this.profileService.getUserLocale());
+
+  let options = new RequestOptions({ headers: headers, search: params });
+
+  return this.http.get(this.tryPolicyUrl, options)
+    .map(() => null)
+    .catch(this.exceptionService.handleError);
+}
   createConsent(consent: ConsentCreateEdit): Observable<void> {
     return this.http.post(this.pcmConsentUrl, this.createConsentDto(consent))
       .map(() => null)

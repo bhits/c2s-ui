@@ -16,7 +16,8 @@ export class C2sUiApiUrlService {
       ["PlsBaseUrl", "/c2s-ui-api/pls"],
       ["VssBaseUrl", "/c2s-ui-api/vss"],
       ["UmsBaseUrl", "/c2s-ui-api/ums"],
-      ["PhrBaseUrl", "/c2s-ui-api/phr"]
+      ["PhrBaseUrl", "/c2s-ui-api/phr"],
+      ["TryPolicyBaseUrl", "/c2s-ui-api/tryPolicy"]
     ]
   );
 
@@ -59,4 +60,7 @@ export class C2sUiApiUrlService {
     return this.urls.get('PhrBaseUrl');
   }
 
+  getTryPolicyBaseUrl(): string {
+    return this.urls.get('TryPolicyBaseUrl');
+  }
 }

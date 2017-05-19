@@ -134,8 +134,17 @@ export class ConsentCardComponent implements OnInit, OnChanges {
   }
 
   applyTryPolicy(dialog: any){
-    console.log( this.prepareTryPolicyInput());
+    var tryPolicyInput =  this.prepareTryPolicyInput();
     dialog.close();
+    this.consentService.getTryPolicyXHTML(tryPolicyInput.documentId, tryPolicyInput.purposeOfUse, this.consent.id)
+      .subscribe(
+        () => {
+          this.notificationService.show("Success in applying  your Consent settings");
+        },
+        err => {
+          this.notificationService.show("Failed to apply your Consent settings, please try again later...");
+          console.log(err);
+        });
 
   }
 
