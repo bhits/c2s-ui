@@ -10,6 +10,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {UploadedDocument} from "../shared/uploaded-document.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TryPolicy} from "../shared/tryPolicy.model";
+import {TryPolicyResponse} from "../shared/tryPolicy-response.model";
 
 @Component({
   selector: 'c2s-consent-card',
@@ -84,7 +85,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
           .subscribe(
             (docList: UploadedDocument[]) => {
               this.uploadedDocumentList = docList;
-              consentOptionsDialog.close()
+              consentOptionsDialog.close();
               tryPolicyDialog.open();
             },
             err => {
@@ -134,15 +135,12 @@ export class ConsentCardComponent implements OnInit, OnChanges {
   }
 
   applyTryPolicy(dialog: any){
-    var tryPolicyInput =  this.prepareTryPolicyInput();
+    let tryPolicyInput =  this.prepareTryPolicyInput();
     dialog.close();
     this.consentService.getTryPolicyXHTML(tryPolicyInput.documentId, tryPolicyInput.purposeOfUse, this.consent.id)
-      .subscribe(
-        () => {
-          this.notificationService.show("Success in applying  your Consent settings");
-        },
+      .subscribe((encodedDocument: TryPolicyResponse) => this.consentService.handleTryPolicySuccess(encodedDocument),
         err => {
-          this.notificationService.show("Failed to apply your Consent settings, please try again later...");
+          this.notificationService.show("Error on viewing policies applied on medical document");
           console.log(err);
         });
 

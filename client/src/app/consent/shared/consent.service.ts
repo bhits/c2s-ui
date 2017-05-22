@@ -89,7 +89,7 @@ export class ConsentService {
   let options = new RequestOptions({ headers: headers, search: params });
 
   return this.http.get(this.tryPolicyUrl, options)
-    .map(() => null)
+    .map((resp: Response) => <TryPolicyResponse>(resp.json()))
     .catch(this.exceptionService.handleError);
 }
   createConsent(consent: ConsentCreateEdit): Observable<void> {
@@ -200,6 +200,17 @@ export class ConsentService {
     console.log(err);
   }
 
+  handleTryPolicySuccess(encodedDocument: TryPolicyResponse){
+    let decodedDocument = this.b64DecodedUnicode(encodedDocument.document);
+    let viewer = window.open('', '_blank');
+    viewer.document.open().write(decodedDocument);
+  }
+
+  private b64DecodedUnicode(str) {
+    return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+  }
 
   private getConsentAsBinaryFile(url: string, format: string): Observable<BinaryFile> {
     const params: URLSearchParams = new URLSearchParams();
@@ -208,4 +219,5 @@ export class ConsentService {
       .map((resp: Response) => <BinaryFile>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
+
 }
