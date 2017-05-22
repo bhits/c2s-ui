@@ -17,7 +17,7 @@ export class C2sUiApiUrlService {
       ["VssBaseUrl", "/c2s-ui-api/vss"],
       ["UmsBaseUrl", "/c2s-ui-api/ums"],
       ["PhrBaseUrl", "/c2s-ui-api/phr"],
-      ["TryPolicyBaseUrl", "/c2s-ui-api/tryPolicy"]
+      ["TryPolicyBaseUrl", "/c2s-ui-api/try-Policy"]
     ]
   );
 
