@@ -141,7 +141,7 @@
                       <button md-raised-button color="primary" (click)="tryPolicyDialog.close(); consentOptionsDialog.open()">
                         {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.BACK_BTN' | translate }}
                       </button>
-                      <button md-raised-button (click)="applyTryPolicy(tryPolicyDialog)">
+                      <button md-raised-button [disabled] = "!tryPolicyForm.valid" (click)="applyTryPolicy(tryPolicyDialog)">
                         {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.OK_BTN' | translate }}
                       </button>
                     </md2-dialog-footer>
