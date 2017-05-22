@@ -27,7 +27,7 @@ export class ConsentService {
   private pcmSensitivityPolicyUrl: string = this.c2sUiApiUrlService.getVssBaseUrl().concat("/valueSetCategories");
   private pcmConsentUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/consents");
   private pcmConsentTermUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/consentRevocationTerm");
-  private phrGetDocumentListUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patient/").concat(this.currentUserMrn).concat("/documentsList");
+  private phrGetDocumentListUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(this.currentUserMrn).concat("/documents");
   private tryPolicyUrl = this.c2sUiApiUrlService.getTryPolicyBaseUrl().concat("/tryPolicyXHTML?");
 
   private consentSubject: BehaviorSubject<ConsentCreateEdit> = new BehaviorSubject<ConsentCreateEdit>(null);
