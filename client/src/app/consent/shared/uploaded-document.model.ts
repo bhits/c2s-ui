@@ -1,7 +1,9 @@
 export class UploadedDocument {
-  documentId: number;
-  documentFileName: string;
-  documentName: String;
-  documentContentType: String;
-  documentDescription?: String;
+  id: number;
+  fileName: string;
+  documentName: string;
+  contentType: string;
+  description?: string;
+  documentTypeCodeId: number;
+  documentTypeDisplayName: string;
 }
