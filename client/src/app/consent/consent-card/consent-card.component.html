@@ -13,58 +13,58 @@
           </div>
         </div>
 
-          <div fxFlex="1 1 35%">
-            <div fxLAyout="column">
-              <div class="font-size11 font-weight600 m-b-xs">{{ 'CONSENTS.CARD.SHARING_WITH' | translate }}:</div>
-              <div class="font-size12" *ngFor="let toProvider of consent.toProviders">{{toProvider | consentProvider:
-                'name'}}
-              </div>
+        <div fxFlex="1 1 35%">
+          <div fxLAyout="column">
+            <div class="font-size11 font-weight600 m-b-xs">{{ 'CONSENTS.CARD.SHARING_WITH' | translate }}:</div>
+            <div class="font-size12" *ngFor="let toProvider of consent.toProviders">{{toProvider | consentProvider:
+              'name'}}
             </div>
           </div>
+        </div>
 
-          <div fxFlex="1 auto">
-            <div fxLayout="column">
-              <div class="font-size11 font-weight600">{{ 'CONSENTS.CARD.EFFECTIVE_DATE' | translate }}:</div>
-              <div class="font-size12">{{consent.startDate | date}} - {{consent.endDate | date}}</div>
-            </div>
+        <div fxFlex="1 auto">
+          <div fxLayout="column">
+            <div class="font-size11 font-weight600">{{ 'CONSENTS.CARD.EFFECTIVE_DATE' | translate }}:</div>
+            <div class="font-size12">{{consent.startDate | date}} - {{consent.endDate | date}}</div>
           </div>
+        </div>
 
       </div>
 
 
-        <div class="transition p-l p-r" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
-             (window:resize)="onResize($event, el)"
-             [style.height]="getHeightPx()" #el>
-          <div fxFlex *ngIf="hasDoNotShareSensitivityPolicyCodes()">
-            <h3><strong>{{ 'CONSENTS.CARD.MEDICAL_INFORMATION_DISCLOSED' | translate }}:</strong></h3>
-            <md-chip-list>
-              <md-chip class="consents" *ngFor="let shareSensitivityCategory of consent.shareSensitivityCategories"
-                       color="accent" selected="true">
-                <md-icon>lock</md-icon>
-                <span class="md-chip-icon-text">{{shareSensitivityCategory | sensitivityCategory: 'display'}}</span>
-              </md-chip>
-            </md-chip-list>
-          </div>
-          <div fxFlex *ngIf="!hasDoNotShareSensitivityPolicyCodes()">
-            <h3><strong>{{ 'CONSENTS.CARD.SHARE_ALL' | translate }}:</strong></h3>
-            <md-chip-list>
-              <md-chip class="consents" color="accent" selected="true">
-                <md-icon>check_circle</md-icon>
-                <span class="md-chip-icon-text">{{ 'CONSENTS.CARD.SHARE_ALL_MEDICAL_INFORMATION' | translate }}</span>
-              </md-chip>
-            </md-chip-list>
-          </div>
-          <div fxFlex>
-            <h3><strong>{{ 'CONSENTS.CARD.SHARE_PURPOSE_OF_USES' | translate }}:</strong></h3>
-            <md-chip-list>
-              <md-chip class="consents" *ngFor="let sharePurpose of consent.sharePurposes"
-                       color="accent" selected="true">
-                <md-icon>check_circle</md-icon>
-                <span class="md-chip-icon-text">{{sharePurpose | sharePurpose: 'display'}}</span>
-              </md-chip>
-            </md-chip-list>
-          </div>
+      <div class="transition p-l p-r" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+           (window:resize)="onResize($event, el)"
+           [style.height]="getHeightPx()" #el>
+        <div fxFlex *ngIf="hasDoNotShareSensitivityPolicyCodes()">
+          <h3><strong>{{ 'CONSENTS.CARD.MEDICAL_INFORMATION_DISCLOSED' | translate }}:</strong></h3>
+          <md-chip-list>
+            <md-chip class="consents" *ngFor="let shareSensitivityCategory of consent.shareSensitivityCategories"
+                     color="accent" selected="true">
+              <md-icon>lock</md-icon>
+              <span class="md-chip-icon-text">{{shareSensitivityCategory | sensitivityCategory: 'display'}}</span>
+            </md-chip>
+          </md-chip-list>
         </div>
+        <div fxFlex *ngIf="!hasDoNotShareSensitivityPolicyCodes()">
+          <h3><strong>{{ 'CONSENTS.CARD.SHARE_ALL' | translate }}:</strong></h3>
+          <md-chip-list>
+            <md-chip class="consents" color="accent" selected="true">
+              <md-icon>check_circle</md-icon>
+              <span class="md-chip-icon-text">{{ 'CONSENTS.CARD.SHARE_ALL_MEDICAL_INFORMATION' | translate }}</span>
+            </md-chip>
+          </md-chip-list>
+        </div>
+        <div fxFlex>
+          <h3><strong>{{ 'CONSENTS.CARD.SHARE_PURPOSE_OF_USES' | translate }}:</strong></h3>
+          <md-chip-list>
+            <md-chip class="consents" *ngFor="let sharePurpose of consent.sharePurposes"
+                     color="accent" selected="true">
+              <md-icon>check_circle</md-icon>
+              <span class="md-chip-icon-text">{{sharePurpose | sharePurpose: 'display'}}</span>
+            </md-chip>
+          </md-chip-list>
+        </div>
+      </div>
 
     </div>
   </md-card-content>
@@ -84,84 +84,92 @@
 
       </div>
       <div>
-
         <button md-raised-button color="primary" (click)="consentOptionsDialog.open()">
           {{ 'CONSENTS.CARD.MANAGE_CONSENT_BUTTON_TEXT' | translate }}
         </button>
-
-          <md2-dialog #consentOptionsDialog>
-            <md2-dialog-title fxLayoutAlign="center">
-              {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TITLE' | translate }}
-            </md2-dialog-title>
-            <md-list>
-              <md-list-item *ngFor="let consentOption of getConsentStageOptions()">
-                <div class="margin-20" fxFill>
-
-                  <md2-dialog #deleteConfirmationDialog (onOpen)="consentOptionsDialog.close()">
-                    <md2-dialog-title>
-                      {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.TITLE' | translate }}
-                    </md2-dialog-title>
-                      {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.CONTENT' | translate }}
-                    <md2-dialog-footer>
-                      <button md-raised-button color="primary" (click)="confirmDeleteConsent(deleteConfirmationDialog)">
-                        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.OK_BTN' | translate }}
-                      </button>
-                      <button md-raised-button (click)="deleteConfirmationDialog.close()">
-                        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.CANCEL_BTN' | translate }}
-                      </button>
-                    </md2-dialog-footer>
-                  </md2-dialog>
-
-                  <md2-dialog #tryPolicyDialog (onOpen)="consentOptionsDialog.close()">
-                    <md2-dialog-title>
-                      {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.TITLE' | translate }}
-                    </md2-dialog-title>
-                    <form [formGroup]="tryPolicyForm">
-                      <div fxFlex>
-                        <label>{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}</label>
-                        <md-select placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}" formControlName="documentId">
-                          <md-option *ngFor="let uploadedDocument of uploadedDocumentList" [value]="uploadedDocument.id">
-                            {{ uploadedDocument.documentName }}
-                          </md-option>
-                        </md-select>
-                      </div>
-                      <br>
-                      <div fxFlex>
-                        <label> {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}</label>
-                        <md-select  placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}" formControlName="purposeOfUse">
-                          <md-option *ngFor="let sharePurpose of consent.sharePurposes" [value]="sharePurpose.display">
-                            {{sharePurpose | sharePurpose: 'display'}}
-                          </md-option>
-                        </md-select>
-                      </div>
-                    </form>
-
-
-                    <md2-dialog-footer>
-                      <button md-raised-button color="primary" (click)="tryPolicyDialog.close(); consentOptionsDialog.open()">
-                        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.BACK_BTN' | translate }}
-                      </button>
-                      <button md-raised-button [disabled] = "!tryPolicyForm.valid" (click)="applyTryPolicy(tryPolicyDialog)">
-                        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.OK_BTN' | translate }}
-                      </button>
-                    </md2-dialog-footer>
-                  </md2-dialog>
-
-                  <a fxLayoutAlign="space-between" md-raised-button (click)="invokeAction(consentOption, consentOptionsDialog, deleteConfirmationDialog, tryPolicyDialog)"
-                     *ngIf="selectConsentMethodOption(consentOption)">
-                    <md-icon>{{consentOption.icon}}</md-icon>
-                    <span class="margin-20">{{consentOption.text | translate}}</span>
-                  </a>
-                  <a fxLayoutAlign="space-between" md-raised-button [routerLink]="getRouterLink(consentOption)"
-                     *ngIf="!selectConsentMethodOption(consentOption)">
-                    <md-icon>{{consentOption.icon}}</md-icon>
-                    <span class="margin-20">{{consentOption.text | translate}}</span>
-                  </a>
-                </div>
-              </md-list-item>
-            </md-list>
-          </md2-dialog>
-        </div>
+        <!--consentOptionsDialog Start-->
+        <md2-dialog #consentOptionsDialog>
+          <md2-dialog-title fxLayoutAlign="center">
+            {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TITLE' | translate }}
+          </md2-dialog-title>
+          <md-list>
+            <md-list-item *ngFor="let consentOption of getConsentStageOptions()">
+              <div class="margin-20" fxFill>
+                <a fxLayoutAlign="space-between" md-raised-button
+                   (click)="invokeAction(consentOption, consentOptionsDialog, deleteConfirmationDialog, tryPolicyDialog)"
+                   *ngIf="selectConsentMethodOption(consentOption)">
+                  <md-icon>{{consentOption.icon}}</md-icon>
+                  <span class="margin-20">{{consentOption.text | translate}}</span>
+                </a>
+                <a fxLayoutAlign="space-between" md-raised-button [routerLink]="getRouterLink(consentOption)"
+                   *ngIf="!selectConsentMethodOption(consentOption)">
+                  <md-icon>{{consentOption.icon}}</md-icon>
+                  <span class="margin-20">{{consentOption.text | translate}}</span>
+                </a>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md2-dialog>
+        <!--consentOptionsDialog End-->
+      </div>
     </div>
   </md-card-actions>
+  <!--deleteConfirmationDialog Start-->
+  <md2-dialog #deleteConfirmationDialog (onOpen)="consentOptionsDialog.close()">
+    <md2-dialog-title>
+      {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.TITLE' | translate }}
+    </md2-dialog-title>
+    {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.CONTENT' | translate }}
+    <md2-dialog-footer>
+      <button md-raised-button color="primary" (click)="confirmDeleteConsent(deleteConfirmationDialog)">
+        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.OK_BTN' | translate }}
+      </button>
+      <button md-raised-button (click)="deleteConfirmationDialog.close()">
+        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.CANCEL_BTN' | translate }}
+      </button>
+    </md2-dialog-footer>
+  </md2-dialog>
+  <!--deleteConfirmationDialog End-->
+  <!--tryPolicyDialog Start-->
+  <md2-dialog #tryPolicyDialog (onOpen)="consentOptionsDialog.close()">
+    <md2-dialog-title>
+      {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.TITLE' | translate }}
+    </md2-dialog-title>
+    <form [formGroup]="tryPolicyForm">
+      <div fxFlex>
+        <label>{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' |
+          translate }}</label>
+        <md-select
+          placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}"
+          formControlName="documentId">
+          <md-option *ngFor="let uploadedDocument of uploadedDocumentList" [value]="uploadedDocument.id">
+            {{ uploadedDocument.documentName }}
+          </md-option>
+        </md-select>
+      </div>
+      <br>
+      <div fxFlex>
+        <label> {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_POU' | translate
+          }}</label>
+        <md-select
+          placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}"
+          formControlName="purposeOfUse">
+          <md-option *ngFor="let sharePurpose of consent.sharePurposes" [value]="sharePurpose.display">
+            {{sharePurpose | sharePurpose: 'display'}}
+          </md-option>
+        </md-select>
+      </div>
+    </form>
+    <md2-dialog-footer>
+      <button md-raised-button color="primary"
+              (click)="tryPolicyDialog.close(); consentOptionsDialog.open()">
+        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.BACK_BTN' | translate }}
+      </button>
+      <button md-raised-button [disabled]="!tryPolicyForm.valid"
+              (click)="applyTryPolicy(tryPolicyDialog)">
+        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.OK_BTN' | translate }}
+      </button>
+    </md2-dialog-footer>
+  </md2-dialog>
+  <!--tryPolicyDialog End-->
 </md-card>
