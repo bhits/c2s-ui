@@ -209,10 +209,10 @@ export class ConsentService {
 
   handleShowUploadedDocumentListError(err: any){
     if(err === "404"){
-      this.notificationService.show("No Documents found to Try your Consent Settings");
+      this.notificationService.i18nShow("MEDICAL_DOCUMENTS.NO_DOCS_FOUND_ERROR");
     }
     else {
-      this.notificationService.show("Failed to get the list of uploaded documents, please try again later...");
+      this.notificationService.i18nShow("MEDICAL_DOCUMENTS.GENERIC_ERROR");
     }
   }
 

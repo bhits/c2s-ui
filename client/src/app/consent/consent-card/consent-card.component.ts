@@ -136,7 +136,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     this.consentService.getTryPolicyXHTML(tryPolicyInput.documentId, tryPolicyInput.purposeOfUse, this.consent.id)
       .subscribe((encodedDocument: TryPolicyResponse) => this.consentService.handleTryPolicySuccess(encodedDocument),
         err => {
-          this.notificationService.show("Error on viewing policies applied on medical document");
+          this.notificationService.i18nShow("CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.TRY-POLICY-ERROR");
           console.log(err);
         });
 

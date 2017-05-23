@@ -176,7 +176,8 @@
           "CONTENT_DOCUMENT": "Documento",
           "CONTENT_POU": "Fines de Uso",
           "BACK_BTN": "Volver a las Opciones de Consentimiento",
-          "OK_BTN": "Aplicar"
+          "OK_BTN": "Aplicar",
+          "TRY-POLICY-ERROR": "SPANISH-Error on viewing policies applied on medical document"
         }
       },
       "CONSENT_SAVE_STAGE": {
@@ -363,5 +364,9 @@
   "PAGE_NOT_FOUND": {
     "TITLE": "(SPANISH)Page Not Found",
     "SUBTITLE": "Sorry, this is not the page you are looking for."
+  },
+  "MEDICAL_DOCUMENTS": {
+    "NO_DOCS_FOUND_ERROR": "(SPANISH)No Documents found to Try your Consent Settings",
+    "GENERIC_ERROR": "(SPANISH)Failed to get the list of uploaded documents, please try again later..."
   }
 }

@@ -178,7 +178,8 @@
           "CONTENT_DOCUMENT": "Document",
           "CONTENT_POU": "Purpose of Use",
           "BACK_BTN": "Back to Consent Options",
-          "OK_BTN": "Apply"
+          "OK_BTN": "Apply",
+          "TRY-POLICY-ERROR": "Error on viewing policies applied on medical document"
         }
       },
       "CONSENT_SAVE_STAGE": {
@@ -365,5 +366,9 @@
   "PAGE_NOT_FOUND": {
     "TITLE": "Page Not Found",
     "SUBTITLE": "Sorry, this is not the page you are looking for."
+  },
+  "MEDICAL_DOCUMENTS": {
+    "NO_DOCS_FOUND_ERROR": "No Documents found to Try your Consent Settings",
+    "GENERIC_ERROR": "Failed to get the list of uploaded documents, please try again later..."
   }
 }
