@@ -55,10 +55,6 @@ export class ConsentCardComponent implements OnInit, OnChanges {
       this.consent.shareSensitivityCategories.length > 0;
   }
 
-  hasUploadedDocuments(): boolean {
-    return !!this.uploadedDocumentList && this.uploadedDocumentList.length > 0;
-  }
-
   getHeightPx(): string {
     return `${this.height}px`;
   }
