@@ -89,12 +89,8 @@ export class ConsentCardComponent implements OnInit, OnChanges {
               tryPolicyDialog.open();
             },
             err => {
-              if(err == 404){
-                this.notificationService.show("No Documents found to Try your Consent Settings");
-              } else {
-                this.notificationService.show("Failed to get the list of uploaded documents, please try again later...");
-              }
-              console.log(err);
+              consentOptionsDialog.close();
+              this.consentService.handleShowUploadedDocumentListError(err);
             });
 
         break;

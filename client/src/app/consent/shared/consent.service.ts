@@ -73,25 +73,26 @@ export class ConsentService {
   getUploadedDocumentList(): Observable<UploadedDocument[]> {
     return this.http.get(this.phrGetDocumentListUrl)
       .map((resp: Response) => <UploadedDocument[]>(resp.json()))
-      .catch(this.exceptionService.handleError);
+      .catch(this.exceptionService.handleErrorWithErrorCode);
   }
 
   getTryPolicyXHTML(documentId: number, pou: string, consentId: number) {
-  let params: URLSearchParams = new URLSearchParams();
-  params.set('documentId', documentId.toString());
-  params.set('consentId', consentId.toString());
-  params.set('patientId', this.currentUserMrn);
-  params.set('purposeOfUseCode', pou);
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('documentId', documentId.toString());
+    params.set('consentId', consentId.toString());
+    params.set('patientId', this.currentUserMrn);
+    params.set('purposeOfUseCode', pou);
 
-  let headers: Headers = new Headers();
-  headers.append('Accept-Language', this.profileService.getUserLocale());
+    let headers: Headers = new Headers();
+    headers.append('Accept-Language', this.profileService.getUserLocale());
 
-  let options = new RequestOptions({ headers: headers, search: params });
+    let options = new RequestOptions({ headers: headers, search: params });
 
-  return this.http.get(this.tryPolicyUrl, options)
-    .map((resp: Response) => <TryPolicyResponse>(resp.json()))
-    .catch(this.exceptionService.handleError);
-}
+    return this.http.get(this.tryPolicyUrl, options)
+      .map((resp: Response) => <TryPolicyResponse>(resp.json()))
+      .catch(this.exceptionService.handleError);
+  }
+
   createConsent(consent: ConsentCreateEdit): Observable<void> {
     return this.http.post(this.pcmConsentUrl, this.createConsentDto(consent))
       .map(() => null)
@@ -204,6 +205,15 @@ export class ConsentService {
     let decodedDocument = this.b64DecodedUnicode(encodedDocument.document);
     let viewer = window.open('', '_blank');
     viewer.document.open().write(decodedDocument);
+  }
+
+  handleShowUploadedDocumentListError(err: any){
+    if(err === "404"){
+      this.notificationService.show("No Documents found to Try your Consent Settings");
+    }
+    else {
+      this.notificationService.show("Failed to get the list of uploaded documents, please try again later...");
+    }
   }
 
   private b64DecodedUnicode(str) {
