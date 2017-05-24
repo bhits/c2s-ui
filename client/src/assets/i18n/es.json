@@ -32,6 +32,7 @@
         "HOME": "Casa",
         "PROVIDERS": "Proveedores",
         "CONSENTS": "Consentimientos",
+        "UPLOAD_DOCS": "Subir Documentos",
         "LOGOUT": "Cerrar sesión"
       }
     }
