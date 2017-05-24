@@ -4,12 +4,13 @@ import {ConsentStageOptionKey} from "./consent-stage-option-key.enum";
 export const CONSENT_STAGES: ConsentStage[] = [
   {
     consentStage: "SAVED",
-    text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.IN_PROGRES",
+    text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.IN_PROGRESS",
     icon: "edit",
     color: "accent",
     options: [
       {key: ConsentStageOptionKey.EDIT, icon: "edit", text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.EDIT_THIS_CONSENT", routerLink: '/consent-create-edit'},
       {key: ConsentStageOptionKey.DOWNLOAD_SAVED_PDF, icon: "search", text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.PREVIEW_THIS_CONSENT", isMethod: true},
+      {key: ConsentStageOptionKey.APPLY_TRY_POLICY, icon: "settings", text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.APPLY_TRY_POLICY", isMethod: true},
       {key: ConsentStageOptionKey.SIGN, icon: "assignment_turned_in", text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.PROVIDE_ESIGNATURE", routerLink: '/consent-sign'},
       {key: ConsentStageOptionKey.DELETE, icon: "delete_forever", text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.DELETE_THIS_PROVIDER", isMethod: true}]
   },

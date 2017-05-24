@@ -172,14 +172,23 @@
           "CONTENT": "Are you sure you want to delete this consent?",
           "CANCEL_BTN": "Cancel",
           "OK_BTN": "Ok"
+        },
+        "TRYPOLICY_CONSENT_DIALOG": {
+          "TITLE": "Apply My Record",
+          "CONTENT_DOCUMENT": "Document",
+          "CONTENT_POU": "Purpose of Use",
+          "BACK_BTN": "Back to Consent Options",
+          "OK_BTN": "Apply",
+          "TRY-POLICY-ERROR": "Error on viewing policies applied on medical document"
         }
       },
       "CONSENT_SAVE_STAGE": {
         "STAGE": "SAVED",
-        "IN_PROGRES": "IN PROGRES",
+        "IN_PROGRESS": "IN PROGRESS",
         "EDIT_THIS_CONSENT": "Edit This Consent",
         "PREVIEW_THIS_CONSENT": "Preview This Consent",
         "PROVIDE_ESIGNATURE": "Provide eSignature",
+        "APPLY_TRY_POLICY": "Try My Consent Settings against My Medical Record before Sharing",
         "DELETE_THIS_PROVIDER": "Delete This Consent"
       },
       "CONSENT_SIGNED_STAGE": {
@@ -357,5 +366,9 @@
   "PAGE_NOT_FOUND": {
     "TITLE": "Page Not Found",
     "SUBTITLE": "Sorry, this is not the page you are looking for."
+  },
+  "MEDICAL_DOCUMENTS": {
+    "NO_DOCS_FOUND_ERROR": "No Documents found to Try your Consent Settings",
+    "GENERIC_ERROR": "Failed to get the list of uploaded documents, please try again later..."
   }
 }
