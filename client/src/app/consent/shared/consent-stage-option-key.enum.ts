@@ -2,6 +2,7 @@ export enum ConsentStageOptionKey {
   EDIT,
   DOWNLOAD_SAVED_PDF,
   SIGN,
+  APPLY_TRY_POLICY,
   DELETE,
   DOWNLOAD_SIGNED_PDF,
   REVOKE,

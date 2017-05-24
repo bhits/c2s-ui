@@ -1,5 +1,4 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from "@angular/core";
-
 import {Consent} from "../shared/consent.model";
 import {ConsentStageOption} from "../shared/consent-stage-option.model";
 import {CONSENT_STAGES} from "../shared/consent-stages.model";
@@ -7,9 +6,11 @@ import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
 import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
 import {BinaryFile} from "../shared/binary-file.model";
-import {UtilityService} from "../../shared/utility.service";
 import {TranslateService} from "@ngx-translate/core";
-
+import {UploadedDocument} from "../shared/uploaded-document.model";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {TryPolicy} from "../shared/tryPolicy.model";
+import {TryPolicyResponse} from "../shared/tryPolicy-response.model";
 
 @Component({
   selector: 'c2s-consent-card',
@@ -19,18 +20,22 @@ import {TranslateService} from "@ngx-translate/core";
 export class ConsentCardComponent implements OnInit, OnChanges {
 
   @Input() consent: Consent;
+  public uploadedDocumentList: UploadedDocument[];
   @Output() private deleteConsent = new EventEmitter<number>();
+  public tryPolicyForm: FormGroup;
 
   private detailsVisible: boolean = false;
   private height: number = 0;
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
     this.detailsVisible = false;
+    this.tryPolicyForm = this.initTryPolicyFormFormGroup();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -69,8 +74,23 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     return consentOption.isMethod;
   }
 
-  invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any) {
+  invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any, tryPolicyDialog: any) {
     switch (consentOption.key) {
+      case ConsentStageOptionKey.APPLY_TRY_POLICY:{
+        this.consentService.getUploadedDocumentList()
+          .subscribe(
+            (docList: UploadedDocument[]) => {
+              this.uploadedDocumentList = docList;
+              consentOptionsDialog.close();
+              tryPolicyDialog.open();
+            },
+            err => {
+              consentOptionsDialog.close();
+              this.consentService.handleShowUploadedDocumentListError(err);
+            });
+
+        break;
+      }
       case ConsentStageOptionKey.DELETE:
         deleteConfirmationDialog.open();
         break;
@@ -105,4 +125,33 @@ export class ConsentCardComponent implements OnInit, OnChanges {
           console.log(err);
         });
   }
+
+  applyTryPolicy(dialog: any){
+    let tryPolicyInput =  this.prepareTryPolicyInput();
+    dialog.close();
+    this.consentService.getTryPolicyXHTML(tryPolicyInput.documentId, tryPolicyInput.purposeOfUse, this.consent.id)
+      .subscribe((encodedDocument: TryPolicyResponse) => this.consentService.handleTryPolicySuccess(encodedDocument),
+        err => {
+          this.notificationService.i18nShow("CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.TRY-POLICY-ERROR");
+          console.log(err);
+        });
+
+  }
+
+  private initTryPolicyFormFormGroup(){
+    return this.formBuilder.group({
+      documentId: [null, Validators.required],
+      purposeOfUse: [null, Validators.required]
+    })
+  }
+
+  private prepareTryPolicyInput(): TryPolicy {
+    const formModel = this.tryPolicyForm.value;
+    return {
+      documentId: formModel.documentId,
+      purposeOfUse: formModel.purposeOfUse
+    };
+  }
+
+
 }
