@@ -171,14 +171,23 @@
           "CONTENT": "¿Está seguro de que desea eliminar este consentimiento?",
           "CANCEL_BTN": "Cancelar",
           "OK_BTN": "De acuerdo"
+        },
+        "TRYPOLICY_CONSENT_DIALOG": {
+          "TITLE": "Aplicar a Mi Registro",
+          "CONTENT_DOCUMENT": "Documento",
+          "CONTENT_POU": "Fines de Uso",
+          "BACK_BTN": "Volver a las Opciones de Consentimiento",
+          "OK_BTN": "Aplicar",
+          "TRY-POLICY-ERROR": "SPANISH-Error on viewing policies applied on medical document"
         }
       },
       "CONSENT_SAVE_STAGE": {
         "STAGE": "SALVADO",
-        "IN_PROGRES": "EN CURSO",
+        "IN_PROGRESS": "EN CURSO",
         "EDIT_THIS_CONSENT": "Editar este consentimiento",
         "PREVIEW_THIS_CONSENT": "Previsualizar este consentimiento",
         "PROVIDE_ESIGNATURE": "Proporcionar eSignature",
+        "APPLY_TRY_POLICY": "Probar las Selecciones de Mi Consentimiento en Mi Registro Médico antes de Compartir",
         "DELETE_THIS_PROVIDER": "Eliminar este consentimiento"
       },
       "CONSENT_SIGNED_STAGE": {
@@ -356,5 +365,9 @@
   "PAGE_NOT_FOUND": {
     "TITLE": "(SPANISH)Page Not Found",
     "SUBTITLE": "Sorry, this is not the page you are looking for."
+  },
+  "MEDICAL_DOCUMENTS": {
+    "NO_DOCS_FOUND_ERROR": "(SPANISH)No Documents found to Try your Consent Settings",
+    "GENERIC_ERROR": "(SPANISH)Failed to get the list of uploaded documents, please try again later..."
   }
 }

@@ -67,4 +67,14 @@ export class ProfileService {
       return "";
     }
   }
+
+  getUserLocale(){
+    let umsProfile:UmsProfile = this.getProfileFromSessionStorage();
+    if(umsProfile){
+      return umsProfile.userLocale;
+    }else {
+      return "";
+    }
+  }
+
 }
