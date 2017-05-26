@@ -16,7 +16,7 @@ import {ConsentRevocation} from "./consent-revocation.model";
 import {BinaryFile} from "./binary-file.model";
 import {NotificationService} from "../../core/notification.service";
 import {ProfileService} from "../../security/shared/profile.service";
-import {UploadedDocument} from "./uploaded-document.model";
+import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {TryPolicyResponse} from "./tryPolicy-response.model";
 
 

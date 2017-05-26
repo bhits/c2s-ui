@@ -7,7 +7,7 @@ import {NotificationService} from "../../core/notification.service";
 import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
 import {BinaryFile} from "../shared/binary-file.model";
 import {TranslateService} from "@ngx-translate/core";
-import {UploadedDocument} from "../shared/uploaded-document.model";
+import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TryPolicy} from "../shared/tryPolicy.model";
 import {TryPolicyResponse} from "../shared/tryPolicy-response.model";
