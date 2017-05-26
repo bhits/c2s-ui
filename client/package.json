@@ -8,8 +8,10 @@
     "start": "ng serve",
     "prod": "ng build --prod",
     "test": "ng test",
+    "coverge":"ng test --code -coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
+
   },
   "private": true,
   "dependencies": {
