@@ -369,7 +369,7 @@
     "SUBTITLE": "Sorry, this is not the page you are looking for."
   },
   "MEDICAL_DOCUMENTS": {
-    "NO_DOCS_FOUND_ERROR": "No Documents found to Try your Consent Settings",
+    "NO_DOCS_FOUND_ERROR": "No uploaded documents found",
     "GENERIC_ERROR": "Failed to get the list of uploaded documents, please try again later..."
   }
 }
