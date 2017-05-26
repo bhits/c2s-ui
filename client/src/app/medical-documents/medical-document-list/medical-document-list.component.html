@@ -1,3 +1,40 @@
 <div class="p-t-75 p-l-md p-r-md p-b">
   <h1>{{ 'MEDICAL_DOCUMENTS.TITLE' | translate }}</h1>
+
+  <table [md2Data]="uploadedDocumentList" [rowsPerPage]="10">
+    <thead>
+    <tr>
+      <th>
+        <md-icon>mode_edit</md-icon>
+      </th>
+      <th>{{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.TABLE.DOCUMENT_NAME' | translate }}</th>
+      <th>{{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.TABLE.CONTENT_TYPE' | translate }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr [hidden]="!(uploadedDocumentList.length == 0)">
+      <td>
+        <md-icon>person_add</md-icon>
+      </td>
+      <td>
+        <p>
+          {{ 'MEDICAL_DOCUMENTS.NO_DOCS_FOUND_ERROR' | translate }}
+        </p>
+      </td>
+      <td></td>
+    </tr>
+    <tr *ngFor="let uploadedDocument of uploadedDocumentList">
+      <td>
+        <div>
+          <!-- TODO: Remove 'disabled' attribute from button once delete function is implemented in UI -->
+          <button md-icon-button color="warn" disabled>
+            <md-icon>delete_forever</md-icon>
+          </button>
+        </div>
+      </td>
+      <td>{{uploadedDocument.documentName}}</td>
+      <td>{{uploadedDocument.contentType}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>

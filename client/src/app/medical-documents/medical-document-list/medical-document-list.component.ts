@@ -10,7 +10,9 @@ import {MedicalDocumentsService} from "../shared/medical-documents.service";
 export class MedicalDocumentListComponent implements OnInit {
   public uploadedDocumentList: UploadedDocument[];
 
-  constructor(private medicalDocumentsService: MedicalDocumentsService) { }
+  constructor(private medicalDocumentsService: MedicalDocumentsService) {
+    this.uploadedDocumentList = [];
+  }
 
   ngOnInit() {
     this.medicalDocumentsService.getUploadedDocumentList()

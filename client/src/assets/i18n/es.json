@@ -369,6 +369,12 @@
   "MEDICAL_DOCUMENTS": {
     "TITLE": "(SPANISH)Medical Documents",
     "NO_DOCS_FOUND_ERROR": "(SPANISH)No uploaded documents found",
-    "GENERIC_ERROR": "(SPANISH)Failed to get the list of uploaded documents, please try again later..."
+    "GENERIC_ERROR": "(SPANISH)Failed to get the list of uploaded documents, please try again later...",
+    "MEDICAL_DOCUMENT_LIST": {
+      "TABLE": {
+        "DOCUMENT_NAME": "(SPANISH)Document Name",
+        "CONTENT_TYPE": "(SPANISH)Content Type"
+      }
+    }
   }
 }
