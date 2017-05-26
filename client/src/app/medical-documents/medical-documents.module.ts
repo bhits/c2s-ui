@@ -4,6 +4,7 @@ import {SharedModule} from "../shared/shared.module";
 import {LayoutModule} from "../layout/layout.module";
 
 import {TranslateModule} from "@ngx-translate/core";
+import {MedicalDocumentsService} from "./shared/medical-documents.service";
 
 @NgModule({
   imports: [
@@ -12,7 +13,10 @@ import {TranslateModule} from "@ngx-translate/core";
     MedicalDocumentsRoutingModule,
     TranslateModule
   ],
-  declarations: [routedComponents]
+  declarations: [routedComponents],
+  providers: [
+    MedicalDocumentsService
+  ]
 })
 export class MedicalDocumentsModule {
 }
