@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {UploadDocumentsRoutingModule, routedComponents} from "./upload-documents-routing.module";
+import {MedicalDocumentsRoutingModule, routedComponents} from "./medical-documents-routing.module";
 import {SharedModule} from "../shared/shared.module";
 import {LayoutModule} from "../layout/layout.module";
 
@@ -9,10 +9,10 @@ import {TranslateModule} from "@ngx-translate/core";
   imports: [
     SharedModule,
     LayoutModule,
-    UploadDocumentsRoutingModule,
+    MedicalDocumentsRoutingModule,
     TranslateModule
   ],
   declarations: [routedComponents]
 })
-export class UploadDocumentsModule {
+export class MedicalDocumentsModule {
 }
