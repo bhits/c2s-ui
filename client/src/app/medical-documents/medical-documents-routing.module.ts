@@ -1,11 +1,11 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {MedicalDocumentsComponent} from "./medical-documents/medical-documents.component";
+import {MedicalDocumentListComponent} from "./medical-document-list/medical-document-list.component";
 
 const medicalDocumentsRoutes: Routes = [
   {
     path: 'medical-documents',
-    component: MedicalDocumentsComponent
+    component: MedicalDocumentListComponent
   }
 ];
 
@@ -18,5 +18,5 @@ export class MedicalDocumentsRoutingModule {
 }
 
 export const routedComponents = [
-  MedicalDocumentsComponent
+  MedicalDocumentListComponent
 ];
