@@ -11,7 +11,7 @@ import {UploadedDocument} from "../../shared/uploaded-document.model";
 @Injectable()
 export class MedicalDocumentsService {
   private currentUserMrn: string = this.profileService.getUserMrn();
-  private phrGetDocumentListUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(this.currentUserMrn).concat("/documents");
+  private phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(this.currentUserMrn).concat("/documents");
 
   constructor(private http: Http,
               private exceptionService: ExceptionService,
@@ -21,7 +21,7 @@ export class MedicalDocumentsService {
   }
 
   getUploadedDocumentList(): Observable<UploadedDocument[]> {
-    return this.http.get(this.phrGetDocumentListUrl)
+    return this.http.get(this.phrDocumentsUrl)
       .map((resp: Response) => <UploadedDocument[]>(resp.json()))
       .catch(this.exceptionService.handleErrorWithErrorCode);
   }
