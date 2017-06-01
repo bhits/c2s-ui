@@ -367,13 +367,13 @@
     "SUBTITLE": "Sorry, this is not the page you are looking for."
   },
   "MEDICAL_DOCUMENTS": {
-    "TITLE": "(SPANISH)Medical Documents",
-    "NO_DOCS_FOUND_ERROR": "(SPANISH)No uploaded documents found",
-    "GENERIC_ERROR": "(SPANISH)Failed to get the list of uploaded documents, please try again later...",
+    "TITLE": "Documentos Médicos",
+    "NO_DOCS_FOUND_ERROR": "No se han subido documentos",
+    "GENERIC_ERROR": "Error al obtener la lista de documentos cargados. Por favor, inténtelo de nuevo más tarde.",
     "MEDICAL_DOCUMENT_LIST": {
       "TABLE": {
-        "DOCUMENT_NAME": "(SPANISH)Document Name",
-        "CONTENT_TYPE": "(SPANISH)Content Type"
+        "DOCUMENT_NAME": "Nombre del Documento",
+        "CONTENT_TYPE": "Tipo de Contenido"
       }
     }
   }
