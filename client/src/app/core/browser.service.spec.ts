@@ -34,25 +34,26 @@ describe('Service: BrowserService, test based on Chrome browser', () => {
   });
 
   it('should be the chrome browser, isChrome()',()=>{
-    let detectedChromeBrowser = service.isChrome();
-    expect(detectedChromeBrowser).toBe(true);
+    let checkIsChromeBrowser = service.isChrome();
+    expect(checkIsChromeBrowser).toBe(true);
   });
 
   it('should not be the FireFox browser, isFireFox()',()=>{
-    let detectedChromeBrowser = service.isFireFox();
-    expect(detectedChromeBrowser).not.toBe(true);
+    let checkIsFireFoxBrowser = service.isFireFox();
+    expect(checkIsFireFoxBrowser).not.toBe(true);
   });
 
   it('should not be the IE browser, isIE()',()=>{
-    let detectedChromeBrowser = service.isIE();
-    expect(detectedChromeBrowser).not.toBe(true);
+    let checkIsIeBrowser = service.isIE();
+    expect(checkIsIeBrowser).not.toBe(true);
   });
 
   it('should not be the Safari browser, isSafari()',()=>{
-    let detectedChromeBrowser = service.isSafari();
-    expect(detectedChromeBrowser).not.toBe(true);
+    let checkIsSafariBrowser = service.isSafari();
+    expect(checkIsSafariBrowser ).not.toBe(true);
   });
 });
+
 
 
 
