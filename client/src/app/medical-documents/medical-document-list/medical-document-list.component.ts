@@ -8,7 +8,7 @@ import {MedicalDocumentsService} from "../shared/medical-documents.service";
   styleUrls: ['./medical-document-list.component.scss']
 })
 export class MedicalDocumentListComponent implements OnInit {
-  public uploadedDocumentList: UploadedDocument[];
+  uploadedDocumentList: UploadedDocument[];
 
   constructor(private medicalDocumentsService: MedicalDocumentsService) {
     this.uploadedDocumentList = [];
