@@ -3,10 +3,8 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { BrowserService } from './browser.service';
 
-
-
-
-describe('BrowserService', () => {
+// angualr cli generate test
+describe('CustomTranslateService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [BrowserService]
@@ -16,28 +14,82 @@ describe('BrowserService', () => {
   it('should ...', inject([BrowserService], (service: BrowserService) => {
     expect(service).toBeTruthy();
   }));
-
 });
 
-describe('BrowserService without the TestBed', () => {
-  let browserService :  BrowserService;
+describe('Service: BrowserService, test based on Chrome browser', () => {
+  let service;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [BrowserService]
+    });
+  });
 
-  beforeEach(() => {browserService = new BrowserService();});
+  beforeEach(inject([BrowserService], s => {
+    service = s;
+  }));
 
-  it('#isChrome',()=>{
-    expect(browserService.isChrome()).toBe(true);
+  it('should detect browser, detectBrwoser()',()=>{
+      let detectedBrowser = service.detectBrowser();
+      expect(detectedBrowser).toContain('chrome');
   });
-  it('#isFireFox',()=>{
-    expect(browserService.isFireFox()).toBe(false);
+
+  it('should be the chrome browser, isChrome()',()=>{
+    let detectedChromeBrowser = service.isChrome();
+    expect(detectedChromeBrowser).toBe(true);
   });
-  it('#isIE',()=>{
-    expect(browserService.isIE()).toBe(false);
+
+  it('should not be the FireFox browser, isFireFox()',()=>{
+    let detectedChromeBrowser = service.isFireFox();
+    expect(detectedChromeBrowser).not.toBe(true);
   });
-  it('#isSafari',()=>{
-    expect(browserService.isSafari()).toBe(false);
+
+  it('should not be the IE browser, isIE()',()=>{
+    let detectedChromeBrowser = service.isIE();
+    expect(detectedChromeBrowser).not.toBe(true);
   });
-  it('#detectBrowser should return chrome for tester browser',()=>{
-    expect(browserService.detectBrowser()).toBe('chrome');
+
+  it('should not be the Safari browser, isSafari()',()=>{
+    let detectedChromeBrowser = service.isSafari();
+    expect(detectedChromeBrowser).not.toBe(true);
   });
 });
+
+describe('Service: BrowserService, test based on FireFox browser', () => {
+  let service;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [BrowserService]
+    });
+  });
+
+  beforeEach(inject([BrowserService], s => {
+    service = s;
+  }));
+
+  it('should detect browser, detectBrwoser()',()=>{
+    let detectedBrowser = service.detectBrowser();
+    expect(detectedBrowser).toContain('chrome');
+  });
+
+  it('should be the chrome browser, isChrome()',()=>{
+    let detectedChromeBrowser = service.isChrome();
+    expect(detectedChromeBrowser).toBe(true);
+  });
+
+  it('should not be the FireFox browser, isFireFox()',()=>{
+    let detectedChromeBrowser = service.isFireFox();
+    expect(detectedChromeBrowser).not.toBe(true);
+  });
+
+  it('should not be the IE browser, isIE()',()=>{
+    let detectedChromeBrowser = service.isIE();
+    expect(detectedChromeBrowser).not.toBe(true);
+  });
+
+  it('should not be the Safari browser, isSafari()',()=>{
+    let detectedChromeBrowser = service.isSafari();
+    expect(detectedChromeBrowser).not.toBe(true);
+  });
+});
+
 
