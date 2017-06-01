@@ -374,6 +374,18 @@
       "TABLE": {
         "DOCUMENT_NAME": "Nombre del Documento",
         "CONTENT_TYPE": "Tipo de Contenido"
+      },
+      "DELETE": {
+        "DELETE_DIALOG": {
+          "TITLE": "Eliminar Documento Médico",
+          "DESCRIPTION": "¿Está seguro de que desea eliminar este documento médico?",
+          "BUTTON": {
+            "OK": "Aprobar",
+            "CANCEL": "Cancelar"
+          }
+        },
+        "SUCCESS_MESSAGE": "Documento médico eliminado con éxito",
+        "ERROR_MESSAGE": "No se puede eliminar el documento médico"
       }
     }
   }

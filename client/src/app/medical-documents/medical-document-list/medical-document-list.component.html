@@ -26,8 +26,7 @@
     <tr *ngFor="let uploadedDocument of uploadedDocumentList">
       <td>
         <div>
-          <!-- TODO: Remove 'disabled' attribute from button once delete function is implemented in UI -->
-          <button md-icon-button color="warn" disabled>
+          <button md-icon-button color="warn" (click)="openConfirmDeleteDialog(confirm, uploadedDocument)" >
             <md-icon>delete_forever</md-icon>
           </button>
         </div>
@@ -37,4 +36,19 @@
     </tr>
     </tbody>
   </table>
+</div>
+
+<div>
+  <md2-dialog #confirm>
+    <md2-dialog-title>{{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.DELETE.DELETE_DIALOG.TITLE' | translate }}</md2-dialog-title>
+    {{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.DELETE.DELETE_DIALOG.DESCRIPTION' | translate }}
+    <md2-dialog-footer>
+      <button md-raised-button color="primary" (click)="confirmDeleteDocument(confirm)">
+        {{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.DELETE.DELETE_DIALOG.BUTTON.OK' | translate }}
+      </button>
+      <button md-raised-button (click)="confirm.close()">
+        {{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.DELETE.DELETE_DIALOG.BUTTON.CANCEL' | translate }}
+      </button>
+    </md2-dialog-footer>
+  </md2-dialog>
 </div>

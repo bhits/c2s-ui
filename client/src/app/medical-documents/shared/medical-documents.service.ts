@@ -26,6 +26,16 @@ export class MedicalDocumentsService {
       .catch(this.exceptionService.handleErrorWithErrorCode);
   }
 
+  deleteUploadedDocumentById(docId: number): Observable<void> {
+    if(docId !== null){
+      if(docId >= 0){
+        const DELETE_DOCUMENT_URL = this.phrDocumentsUrl.concat("/" + docId);
+        return this.http.delete(DELETE_DOCUMENT_URL)
+          .catch(this.exceptionService.handleErrorWithErrorCode);
+      }
+    }
+  }
+
   handleShowUploadedDocumentListError(err: any){
     if(err === "404"){
       this.notificationService.i18nShow("MEDICAL_DOCUMENTS.NO_DOCS_FOUND_ERROR");
