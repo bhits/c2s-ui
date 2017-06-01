@@ -370,6 +370,8 @@
     "TITLE": "Documentos Médicos",
     "NO_DOCS_FOUND_ERROR": "No se han subido documentos",
     "GENERIC_ERROR": "Error al obtener la lista de documentos cargados. Por favor, inténtelo de nuevo más tarde.",
+    "LIST_SECTION_HEADER": "Sus Documentos Médicos",
+    "UPLOAD_SECTION_HEADER": "Subir un Documento Médico",
     "MEDICAL_DOCUMENT_LIST": {
       "TABLE": {
         "DOCUMENT_NAME": "Nombre del Documento",

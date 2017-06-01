@@ -1,6 +1,4 @@
-<div class="p-t-75 p-l-md p-r-md p-b">
-  <h1>{{ 'MEDICAL_DOCUMENTS.TITLE' | translate }}</h1>
-
+<div fxLayout="column" fxLayoutAlign="center" [ngStyle]="{'padding-top': '20px'}">
   <table [md2Data]="uploadedDocumentList" [rowsPerPage]="10">
     <thead>
     <tr>

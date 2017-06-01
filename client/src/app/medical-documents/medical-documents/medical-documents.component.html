@@ -1,0 +1,31 @@
+<div class="p-t-75 p-l-md p-r-md p-b">
+  <h1>{{ 'MEDICAL_DOCUMENTS.TITLE' | translate }}</h1>
+
+  <md-card xmlns="http://www.w3.org/1999/html">
+    <div class="containerX">
+
+      <div  class="p-sm" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="15px">
+        <div fxFlex class="section-border p-sm">
+          <md-toolbar  class="border-radius4" color="primary" fxLayoutAlign="center">
+            <h3>
+              {{ 'MEDICAL_DOCUMENTS.LIST_SECTION_HEADER' | translate }}
+            </h3>
+          </md-toolbar>
+          <div fxLayoutAlign="center" *ngIf="loading">
+            <md-spinner></md-spinner>
+          </div>
+          <c2s-medical-document-list></c2s-medical-document-list>
+        </div>
+        <div fxFlex class="section-border p-sm">
+          <md-toolbar color="primary" fxLayoutAlign="center">
+            <h3>
+              {{ 'MEDICAL_DOCUMENTS.UPLOAD_SECTION_HEADER' | translate }}
+            </h3>
+          </md-toolbar>
+        </div>
+      </div>
+
+    </div>
+  </md-card>
+
+</div>

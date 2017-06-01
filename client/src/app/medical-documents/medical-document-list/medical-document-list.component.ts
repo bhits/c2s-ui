@@ -4,7 +4,7 @@ import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {NotificationService} from "../../core/notification.service";
 
 @Component({
-  selector: 'c2s-medical-documents',
+  selector: 'c2s-medical-document-list',
   templateUrl: './medical-document-list.component.html',
   styleUrls: ['./medical-document-list.component.scss']
 })

@@ -4,6 +4,7 @@ import {SharedModule} from "../shared/shared.module";
 import {LayoutModule} from "../layout/layout.module";
 
 import {TranslateModule} from "@ngx-translate/core";
+import {MedicalDocumentListComponent} from "./medical-document-list/medical-document-list.component";
 import {MedicalDocumentsService} from "./shared/medical-documents.service";
 
 @NgModule({
@@ -13,7 +14,10 @@ import {MedicalDocumentsService} from "./shared/medical-documents.service";
     MedicalDocumentsRoutingModule,
     TranslateModule
   ],
-  declarations: [routedComponents],
+  declarations: [
+    MedicalDocumentListComponent,
+    routedComponents
+  ],
   providers: [
     MedicalDocumentsService
   ]

@@ -372,6 +372,8 @@
     "TITLE": "Medical Documents",
     "NO_DOCS_FOUND_ERROR": "No uploaded documents found",
     "GENERIC_ERROR": "Failed to get the list of uploaded documents, please try again later.",
+    "LIST_SECTION_HEADER": "Your Medical Documents",
+    "UPLOAD_SECTION_HEADER": "Upload a Medical Document",
     "MEDICAL_DOCUMENT_LIST": {
       "TABLE": {
         "DOCUMENT_NAME": "Document Name",
