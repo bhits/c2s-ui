@@ -27,6 +27,7 @@ describe('C2sUiApiUrlService', () => {
   beforeEach(inject([C2sUiApiUrlService], s => {
     service = s;
   }));
+  // test function
   it('should get loginUrl, test getLoginUrl() work', () => {
     expect(service.getLoginUrl()).toContain(service.urls.get('loginUrl'));
   });
