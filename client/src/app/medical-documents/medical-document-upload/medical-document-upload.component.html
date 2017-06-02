@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="center" [ngStyle]="{'padding-top': '20px'}">
+<div fxLayout="column" fxLayoutAlign="center" class="component-form-wrapper">
   <form [formGroup]="uploadDocumentForm">
     <div fxLayout="row" fxLayoutGap="20px">
       <div fxFlex>
@@ -14,12 +14,12 @@
         </md-input-container>
       </div>
     </div>
-    <div fxLayout="row" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutGap="20px" class="file-input-row">
       <div fxFlex>
         <input #fileInputElement type="file" >
       </div>
     </div>
-    <div fxLayout="row" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutGap="20px" class="form-buttons-row">
       <div fxFlex>
         <button md-raised-button color="primary" (click)="handleSubmit()">
           <strong>TEMP Submit</strong>
