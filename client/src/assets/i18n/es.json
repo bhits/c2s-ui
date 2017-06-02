@@ -389,6 +389,14 @@
         "SUCCESS_MESSAGE": "Documento médico eliminado con éxito",
         "ERROR_MESSAGE": "No se puede eliminar el documento médico"
       }
+    },
+    "UPLOAD_MEDICAL_DOCUMENT": {
+      "UPLOAD_FORM": {
+        "FORM_FIELD_LABELS": {
+          "DOCUMENT_NAME": "Nombre del Documento",
+          "DOCUMENT_TYPE_CODE": "Tipo de Documento"
+        }
+      }
     }
   }
 }

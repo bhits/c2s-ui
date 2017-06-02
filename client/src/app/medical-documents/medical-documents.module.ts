@@ -5,6 +5,7 @@ import {LayoutModule} from "../layout/layout.module";
 
 import {TranslateModule} from "@ngx-translate/core";
 import {MedicalDocumentListComponent} from "./medical-document-list/medical-document-list.component";
+import {MedicalDocumentUploadComponent} from "./medical-document-upload/medical-document-upload.component";
 import {MedicalDocumentsService} from "./shared/medical-documents.service";
 
 @NgModule({
@@ -16,6 +17,7 @@ import {MedicalDocumentsService} from "./shared/medical-documents.service";
   ],
   declarations: [
     MedicalDocumentListComponent,
+    MedicalDocumentUploadComponent,
     routedComponents
   ],
   providers: [

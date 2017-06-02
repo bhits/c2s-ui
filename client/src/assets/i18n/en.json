@@ -391,6 +391,14 @@
         "SUCCESS_MESSAGE": "Successfully deleted medical document",
         "ERROR_MESSAGE": "Unable to delete medical document"
       }
+    },
+    "UPLOAD_MEDICAL_DOCUMENT": {
+      "UPLOAD_FORM": {
+        "FORM_FIELD_LABELS": {
+          "DOCUMENT_NAME": "Document Name",
+          "DOCUMENT_TYPE_CODE": "Document Type"
+        }
+      }
     }
   }
 }
