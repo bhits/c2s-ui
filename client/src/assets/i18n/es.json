@@ -395,7 +395,8 @@
         "FORM_FIELD_LABELS": {
           "DOCUMENT_NAME": "Nombre del Documento",
           "DOCUMENT_TYPE_CODE": "Tipo de Documento"
-        }
+        },
+        "SUBMIT_BTN_LABEL": "Subir"
       }
     }
   }

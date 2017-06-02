@@ -397,7 +397,8 @@
         "FORM_FIELD_LABELS": {
           "DOCUMENT_NAME": "Document Name",
           "DOCUMENT_TYPE_CODE": "Document Type"
-        }
+        },
+        "SUBMIT_BTN_LABEL": "Upload"
       }
     }
   }
