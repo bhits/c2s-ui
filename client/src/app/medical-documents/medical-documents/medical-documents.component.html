@@ -11,9 +11,6 @@
               {{ 'MEDICAL_DOCUMENTS.LIST_SECTION_HEADER' | translate }}
             </h3>
           </md-toolbar>
-          <div fxLayoutAlign="center" *ngIf="loading">
-            <md-spinner></md-spinner>
-          </div>
           <c2s-medical-document-list></c2s-medical-document-list>
         </div>
         <div fxFlex class="section-border p-sm">
