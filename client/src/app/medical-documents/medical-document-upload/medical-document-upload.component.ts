@@ -15,7 +15,7 @@ import {UploadedDocument} from "../../shared/uploaded-document.model";
 })
 export class MedicalDocumentUploadComponent implements OnInit {
   uploadDocumentForm: FormGroup;
-  @ViewChild('testfile') testFileEl: ElementRef;
+  @ViewChild('fileInputElement') fileInputElement: ElementRef;
 
   constructor(private formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -31,7 +31,7 @@ export class MedicalDocumentUploadComponent implements OnInit {
     const docToUpload = this.prepareUploadDocument();
 
     console.log(this.uploadDocumentForm.value);
-    console.log(this.testFileEl);
+    console.log(this.fileInputElement);
     console.log(docToUpload);
 
     // TODO: Invoke service call to actually upload document
@@ -52,7 +52,7 @@ export class MedicalDocumentUploadComponent implements OnInit {
 
   private prepareUploadDocument(): UploadMedicalDocument {
     const formModel = this.uploadDocumentForm.value;
-    const fileToUpload = this.testFileEl.nativeElement.files[0];
+    const fileToUpload = this.fileInputElement.nativeElement.files[0];
     return {
       file: fileToUpload,
       documentName: formModel.documentName,
