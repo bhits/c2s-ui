@@ -16,12 +16,16 @@
     </div>
     <div fxLayout="row" fxLayoutGap="20px" class="file-input-row">
       <div fxFlex>
-        <input #fileInputElement type="file" >
+        <label class="upload-button">
+          <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+          <!-- FIXME: Add i18n support for the following label text -->
+          Choose File To Upload
+        </label>
       </div>
     </div>
     <div fxLayout="row" fxLayoutGap="20px" class="form-buttons-row">
       <div fxFlex>
-        <button md-raised-button color="primary" (click)="handleSubmit()">
+        <button md-raised-button color="primary" type="button" class="start-upload-btn" (click)="startUpload()">
           <strong>{{ 'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.SUBMIT_BTN_LABEL' | translate }}</strong>
         </button>
       </div>

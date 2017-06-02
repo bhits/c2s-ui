@@ -1,4 +1,5 @@
 import {NgModule} from "@angular/core";
+import {NgUploaderModule} from "ngx-uploader";
 import {MedicalDocumentsRoutingModule, routedComponents} from "./medical-documents-routing.module";
 import {SharedModule} from "../shared/shared.module";
 import {LayoutModule} from "../layout/layout.module";
@@ -10,6 +11,7 @@ import {MedicalDocumentsService} from "./shared/medical-documents.service";
 
 @NgModule({
   imports: [
+    NgUploaderModule,
     SharedModule,
     LayoutModule,
     MedicalDocumentsRoutingModule,

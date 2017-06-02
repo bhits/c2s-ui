@@ -1,11 +1,15 @@
-import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit, EventEmitter} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UploadOutput, UploadInput, UploadFile, humanizeBytes} from 'ngx-uploader';
 import {NotificationService} from "../../core/notification.service";
 import {ValidationRules} from "../../shared/validation-rules.model";
 import {ValidationService} from "../../shared/validation.service";
 import {UploadMedicalDocument} from "../shared/upload-medical-document.model";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
+import {ProfileService} from "../../security/shared/profile.service";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {TokenService} from "../../security/shared/token.service";
 
 
 @Component({
@@ -15,26 +19,78 @@ import {UploadedDocument} from "../../shared/uploaded-document.model";
 })
 export class MedicalDocumentUploadComponent implements OnInit {
   uploadDocumentForm: FormGroup;
-  @ViewChild('fileInputElement') fileInputElement: ElementRef;
+  files: UploadFile[];
+  public uploadInput: EventEmitter<UploadInput>;
+  humanizeBytes: Function;
 
   constructor(private formBuilder: FormBuilder,
+              private tokenService: TokenService,
               private notificationService: NotificationService,
               private validationService: ValidationService,
-              private medicalDocumentsService: MedicalDocumentsService) {
+              private medicalDocumentsService: MedicalDocumentsService,
+              private c2sUiApiUrlService: C2sUiApiUrlService,
+              private profileService: ProfileService) {
+    this.files = []; // local uploading files array
+    this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
+    this.humanizeBytes = humanizeBytes;
   }
 
   ngOnInit() {
     this.uploadDocumentForm = this.initUploadDocumentFormGroup();
   }
 
-  handleSubmit(): void {
-    const docToUpload = this.prepareUploadDocument();
+  onUploadOutput(output: UploadOutput): void {
+    if (output.type === 'addedToQueue') {
+      this.files.push(output.file); // add file to array when added
+    } else if (output.type === 'uploading') {
+      // update current data in files array for uploading file
+      const index = this.files.findIndex(file => file.id === output.file.id);
+      this.files[index] = output.file;
+    } else if (output.type === 'removed') {
+      // remove file from array when removed
+      this.files = this.files.filter((file: UploadFile) => file !== output.file);
+    } else if (output.type === 'done') {
+      // FIXME: Instead of outputting the response file object, use it to update the medical document list component.
+      console.log(output.file);
+    }
+  }
 
-    console.log(this.uploadDocumentForm.value);
-    console.log(this.fileInputElement);
-    console.log(docToUpload);
+  startUpload(): void {
+    const formModel = this.uploadDocumentForm.value;
 
-    // TODO: Invoke service call to actually upload document
+    // FIXME: Move everything below except the actual code which fires 'emit' to service.
+    let currentUserMrn: string = this.profileService.getUserMrn();
+    let phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(currentUserMrn).concat("/documents");
+
+    let customHeaders = {};
+
+    let token = this.tokenService.getAccessToken();
+
+    if (token && token['access_token']) {
+      let access_token = token['access_token'];
+      let access_token_string = 'Bearer ' + access_token;
+      customHeaders = {
+        "Authorization": access_token_string
+      };
+    }else{
+      // FIXME: Replace this with proper error handling.
+      throw new Error("token variable check failed");
+    }
+
+    const event: UploadInput = {
+      type: 'uploadAll',
+      fieldName: 'file',
+      url: phrDocumentsUrl,
+      method: 'POST',
+      data: {
+        documentName: formModel.documentName,
+        documentTypeCodeId: formModel.documentTypeCodeId
+      },
+      concurrency: 1, // set sequential uploading of files with concurrency 1
+      headers: customHeaders
+    };
+
+    this.uploadInput.emit(event);
   }
 
   private initUploadDocumentFormGroup() {
@@ -48,15 +104,5 @@ export class MedicalDocumentUploadComponent implements OnInit {
       ],
       documentTypeCodeId: [null, Validators.required],
     });
-  }
-
-  private prepareUploadDocument(): UploadMedicalDocument {
-    const formModel = this.uploadDocumentForm.value;
-    const fileToUpload = this.fileInputElement.nativeElement.files[0];
-    return {
-      file: fileToUpload,
-      documentName: formModel.documentName,
-      documentTypeCodeId: formModel.documentTypeCodeId,
-    };
   }
 }
