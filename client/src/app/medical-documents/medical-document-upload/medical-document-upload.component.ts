@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter} from "@angular/core";
+import {Component, OnInit, EventEmitter, Output} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UploadOutput, UploadInput, UploadFile, humanizeBytes} from 'ngx-uploader';
 import {NotificationService} from "../../core/notification.service";
@@ -10,6 +10,7 @@ import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {ProfileService} from "../../security/shared/profile.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {TokenService} from "../../security/shared/token.service";
+import {ExceptionService} from "../../core/exception.service";
 
 
 @Component({
@@ -18,6 +19,8 @@ import {TokenService} from "../../security/shared/token.service";
   styleUrls: ['./medical-document-upload.component.scss']
 })
 export class MedicalDocumentUploadComponent implements OnInit {
+  @Output() uploadedDocumentAdded = new EventEmitter<UploadedDocument>();
+
   uploadDocumentForm: FormGroup;
   files: UploadFile[];
   public uploadInput: EventEmitter<UploadInput>;
@@ -27,6 +30,7 @@ export class MedicalDocumentUploadComponent implements OnInit {
               private tokenService: TokenService,
               private notificationService: NotificationService,
               private validationService: ValidationService,
+              private exceptionService: ExceptionService,
               private medicalDocumentsService: MedicalDocumentsService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private profileService: ProfileService) {
@@ -50,8 +54,16 @@ export class MedicalDocumentUploadComponent implements OnInit {
       // remove file from array when removed
       this.files = this.files.filter((file: UploadFile) => file !== output.file);
     } else if (output.type === 'done') {
-      // FIXME: Instead of outputting the response file object, use it to update the medical document list component.
-      console.log(output.file);
+      if(!output.file.response.hasOwnProperty('error')){
+        let newUploadedDocument: UploadedDocument = output.file.response;
+        this.uploadedDocumentAdded.emit(newUploadedDocument);
+        // FIXME: Add i18n support
+        this.notificationService.show("Successfully uploaded medical document");
+      }else{
+        // FIXME: Add i18n support and improve error message
+        console.log(output.file.response);
+        this.notificationService.show("An error has occurred");
+      }
     }
   }
 

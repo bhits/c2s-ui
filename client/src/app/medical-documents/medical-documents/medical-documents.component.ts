@@ -30,5 +30,8 @@ export class MedicalDocumentsComponent implements OnInit {
       );
   }
 
+  onUploadedDocumentAdded(newUploadedDocument: UploadedDocument) {
+    this.uploadedDocumentList.push(newUploadedDocument);
+  }
 
 }
