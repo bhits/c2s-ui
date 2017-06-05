@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {NotificationService} from "../../core/notification.service";
@@ -9,25 +9,14 @@ import {NotificationService} from "../../core/notification.service";
   styleUrls: ['./medical-document-list.component.scss']
 })
 export class MedicalDocumentListComponent implements OnInit {
-  uploadedDocumentList: UploadedDocument[];
+  @Input() uploadedDocumentList: UploadedDocument[];
   private selectedDocument: UploadedDocument;
 
   constructor(private medicalDocumentsService: MedicalDocumentsService,
               private notificationService: NotificationService) {
-    this.uploadedDocumentList = [];
   }
 
-  ngOnInit() {
-    this.medicalDocumentsService.getUploadedDocumentList()
-      .subscribe(
-        (docList: UploadedDocument[]) => {
-          this.uploadedDocumentList = docList;
-        },
-        err => {
-          this.medicalDocumentsService.handleShowUploadedDocumentListError(err);
-        }
-      )
-  }
+  ngOnInit() {}
 
   openConfirmDeleteDialog(dialog: any, document: UploadedDocument) {
     dialog.open();
