@@ -18,8 +18,7 @@
       <div fxFlex>
         <label class="upload-button">
           <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" formControlName="fileUploadInput">
-          <!-- FIXME: Add i18n support for the following label text -->
-          Choose File To Upload
+          {{'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_FIELD_LABELS.FILE_CHOOSER' | translate}}
         </label>
       </div>
     </div>

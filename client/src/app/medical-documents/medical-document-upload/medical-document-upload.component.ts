@@ -48,11 +48,8 @@ export class MedicalDocumentUploadComponent implements OnInit {
       if(!output.file.response.hasOwnProperty('error')){
         let newUploadedDocument: UploadedDocument = output.file.response;
         this.uploadedDocumentAdded.emit(newUploadedDocument);
-        // FIXME: Add i18n support
-        this.notificationService.show("Successfully uploaded medical document");
+        this.notificationService.i18nShow("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.UPLOAD_SUCCESS");
       }else{
-        // FIXME: Add i18n support and improve error message
-        console.log(output.file.response);
         this.medicalDocumentsService.handleShowUploadedDocumentListError(output.file.response.status.toString());
       }
     }
