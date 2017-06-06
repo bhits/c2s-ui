@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {NotificationService} from "../../core/notification.service";
@@ -10,6 +10,8 @@ import {NotificationService} from "../../core/notification.service";
 })
 export class MedicalDocumentListComponent implements OnInit {
   @Input() uploadedDocumentList: UploadedDocument[];
+  @Output() uploadedDocumentDeleted = new EventEmitter<number>();
+
   private selectedDocument: UploadedDocument;
 
   constructor(private medicalDocumentsService: MedicalDocumentsService,
@@ -29,7 +31,7 @@ export class MedicalDocumentListComponent implements OnInit {
       this.medicalDocumentsService.deleteUploadedDocumentById(this.selectedDocument.id)
         .subscribe(
           () => {
-            this.uploadedDocumentList = this.uploadedDocumentList.filter(doc => doc !== this.selectedDocument);
+            this.uploadedDocumentDeleted.emit(this.selectedDocument.id);
             this.notificationService.i18nShow("MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.DELETE.SUCCESS_MESSAGE");
           },
           err => {

@@ -398,7 +398,9 @@
           "DOCUMENT_NAME": "Document Name",
           "DOCUMENT_TYPE_CODE": "Document Type"
         },
-        "SUBMIT_BTN_LABEL": "Upload"
+        "SUBMIT_BTN_LABEL": "Upload",
+        "FORM_INVALID_ERROR": "One or more form fields are invalid.",
+        "DOC_NAME_ALREADY_EXISTS_ERROR": "A document with the same document name already exists."
       }
     }
   }

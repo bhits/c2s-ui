@@ -6,10 +6,6 @@ import {ValidationRules} from "../../shared/validation-rules.model";
 import {ValidationService} from "../../shared/validation.service";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
-import {ProfileService} from "../../security/shared/profile.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {TokenService} from "../../security/shared/token.service";
-import {ExceptionService} from "../../core/exception.service";
 
 
 @Component({
@@ -26,13 +22,9 @@ export class MedicalDocumentUploadComponent implements OnInit {
   humanizeBytes: Function;
 
   constructor(private formBuilder: FormBuilder,
-              private tokenService: TokenService,
               private notificationService: NotificationService,
               private validationService: ValidationService,
-              private exceptionService: ExceptionService,
-              private medicalDocumentsService: MedicalDocumentsService,
-              private c2sUiApiUrlService: C2sUiApiUrlService,
-              private profileService: ProfileService) {
+              private medicalDocumentsService: MedicalDocumentsService) {
     this.files = []; // local uploading files array
     this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
     this.humanizeBytes = humanizeBytes;
@@ -61,47 +53,25 @@ export class MedicalDocumentUploadComponent implements OnInit {
       }else{
         // FIXME: Add i18n support and improve error message
         console.log(output.file.response);
-        this.notificationService.show("An error has occurred");
+        this.medicalDocumentsService.handleShowUploadedDocumentListError(output.file.response.status.toString());
       }
     }
   }
 
   startUpload(): void {
-    const formModel = this.uploadDocumentForm.value;
-
-    // FIXME: Move everything below except the actual code which fires 'emit' to service.
-    let currentUserMrn: string = this.profileService.getUserMrn();
-    let phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(currentUserMrn).concat("/documents");
-
-    let customHeaders = {};
-
-    let token = this.tokenService.getAccessToken();
-
-    if (token && token['access_token']) {
-      let access_token = token['access_token'];
-      let access_token_string = 'Bearer ' + access_token;
-      customHeaders = {
-        "Authorization": access_token_string
-      };
-    }else{
-      // FIXME: Replace this with proper error handling.
-      throw new Error("token variable check failed");
-    }
-
-    const event: UploadInput = {
-      type: 'uploadAll',
-      fieldName: 'file',
-      url: phrDocumentsUrl,
-      method: 'POST',
-      data: {
+    if(this.validationService.isValidForm(this.uploadDocumentForm)) {
+      const formModel = this.uploadDocumentForm.value;
+      const formData = {
         documentName: formModel.documentName,
         documentTypeCodeId: formModel.documentTypeCodeId
-      },
-      concurrency: 1, // set sequential uploading of files with concurrency 1
-      headers: customHeaders
-    };
+      };
 
-    this.uploadInput.emit(event);
+      const event = this.medicalDocumentsService.prepareDocumentUpload(formData);
+      this.uploadInput.emit(event);
+      this.uploadDocumentForm.reset();
+    }else{
+      this.notificationService.i18nShow("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_INVALID_ERROR");
+    }
   }
 
   private initUploadDocumentFormGroup() {
@@ -114,6 +84,7 @@ export class MedicalDocumentUploadComponent implements OnInit {
         ]
       ],
       documentTypeCodeId: [null, Validators.required],
+      fileUploadInput: [null]
     });
   }
 }

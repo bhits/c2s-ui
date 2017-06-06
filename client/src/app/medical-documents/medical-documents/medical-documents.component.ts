@@ -34,4 +34,8 @@ export class MedicalDocumentsComponent implements OnInit {
     this.uploadedDocumentList.push(newUploadedDocument);
   }
 
+  onUploadedDocumentDeleted(deletedDocumentId: number) {
+    this.uploadedDocumentList = this.uploadedDocumentList.filter(doc => doc.id !== deletedDocumentId);
+  }
+
 }
