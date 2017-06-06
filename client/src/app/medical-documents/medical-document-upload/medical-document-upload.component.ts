@@ -19,7 +19,7 @@ export class MedicalDocumentUploadComponent implements OnInit {
   @Output() uploadedDocumentAdded = new EventEmitter<UploadedDocument>();
   @Input() documentTypeCodesList: UploadedDocumentTypeCode[];
 
-  private maxDescriptionLength: string = ValidationRules.MEDICAL_DOCUMENT_DESC_MAX_LENGTH.toString();
+  maxDescriptionLength: string = ValidationRules.MEDICAL_DOCUMENT_DESC_MAX_LENGTH.toString();
 
   uploadDocumentForm: FormGroup;
   files: UploadFile[];
