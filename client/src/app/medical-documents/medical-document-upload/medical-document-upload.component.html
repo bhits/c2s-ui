@@ -14,6 +14,13 @@
         </md-input-container>
       </div>
     </div>
+    <div fxLayout="row" fxLayoutGap="20px">
+      <div fxFlex>
+        <md-input-container class="full-width font-size20">
+          <textarea mdInput maxlength={{maxDescriptionLength}} placeholder="{{ 'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_FIELD_LABELS.DESCRIPTION' | translate }}" formControlName="description"></textarea>
+        </md-input-container>
+      </div>
+    </div>
     <div fxLayout="row" fxLayoutGap="20px" class="file-input-row">
       <div fxFlex>
         <label class="upload-button">

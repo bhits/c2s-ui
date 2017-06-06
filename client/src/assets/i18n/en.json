@@ -397,6 +397,7 @@
         "FORM_FIELD_LABELS": {
           "DOCUMENT_NAME": "Document Name",
           "DOCUMENT_TYPE_CODE": "Document Type",
+          "DESCRIPTION": "Description",
           "FILE_CHOOSER": "Choose File To Upload"
         },
         "SUBMIT_BTN_LABEL": "Upload",

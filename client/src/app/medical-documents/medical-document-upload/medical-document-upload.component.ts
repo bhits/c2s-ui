@@ -17,6 +17,8 @@ import {UploadedDocument} from "../../shared/uploaded-document.model";
 export class MedicalDocumentUploadComponent implements OnInit {
   @Output() uploadedDocumentAdded = new EventEmitter<UploadedDocument>();
 
+  private maxDescriptionLength: string = ValidationRules.MEDICAL_DOCUMENT_DESC_MAX_LENGTH.toString();
+
   uploadDocumentForm: FormGroup;
   files: UploadFile[];
   public uploadInput: EventEmitter<UploadInput>;
@@ -64,6 +66,10 @@ export class MedicalDocumentUploadComponent implements OnInit {
       documentToUploadMetadata.documentName = formModel.documentName;
       documentToUploadMetadata.documentTypeCodeId = formModel.documentTypeCodeId;
 
+      if(formModel.description){
+        documentToUploadMetadata.description = formModel.description;
+      }
+
       const event = this.medicalDocumentsService.prepareDocumentUpload(documentToUploadMetadata);
       this.uploadInput.emit(event);
       this.uploadDocumentForm.reset();
@@ -82,6 +88,11 @@ export class MedicalDocumentUploadComponent implements OnInit {
         ]
       ],
       documentTypeCodeId: [null, Validators.required],
+      description: [null,
+        [
+          Validators.maxLength(ValidationRules.MEDICAL_DOCUMENT_DESC_MAX_LENGTH)
+        ]
+      ],
       fileUploadInput: [null]
     });
   }

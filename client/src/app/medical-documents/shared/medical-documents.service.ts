@@ -44,12 +44,22 @@ export class MedicalDocumentsService {
     const currentUserMrn: string = this.profileService.getUserMrn();
     const phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(currentUserMrn).concat("/documents");
 
-    const formData: {[key: string]: string | Blob } = {
-      documentName: documentToUploadMetadata.documentName,
-      documentTypeCodeId: documentToUploadMetadata.documentTypeCodeId.toString()
-    };
-
     const token = this.tokenService.getAccessToken();
+
+    let formData: {[key: string]: string | Blob };
+
+    if(documentToUploadMetadata.description){
+      formData = {
+        documentName: documentToUploadMetadata.documentName,
+        documentTypeCodeId: documentToUploadMetadata.documentTypeCodeId.toString(),
+        description: documentToUploadMetadata.description
+      };
+    }else{
+      formData = {
+        documentName: documentToUploadMetadata.documentName,
+        documentTypeCodeId: documentToUploadMetadata.documentTypeCodeId.toString()
+      };
+    }
 
     let customHeaders = {};
 
