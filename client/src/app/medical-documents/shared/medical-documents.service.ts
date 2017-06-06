@@ -38,10 +38,10 @@ export class MedicalDocumentsService {
 
   handleShowUploadedDocumentListError(err: any){
     if(err === "404"){
-      this.notificationService.i18nShow("MEDICAL_DOCUMENTS.NO_DOCS_FOUND_ERROR");
+      this.notificationService.i18nShow("MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.NO_DOCS_FOUND_ERROR");
     }
     else {
-      this.notificationService.i18nShow("MEDICAL_DOCUMENTS.GENERIC_ERROR");
+      this.notificationService.i18nShow("MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.GENERIC_ERROR");
     }
   }
 }

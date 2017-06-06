@@ -370,8 +370,6 @@
   },
   "MEDICAL_DOCUMENTS": {
     "TITLE": "Medical Documents",
-    "NO_DOCS_FOUND_ERROR": "No uploaded documents found",
-    "GENERIC_ERROR": "Failed to get the list of uploaded documents, please try again later.",
     "LIST_SECTION_HEADER": "Your Medical Documents",
     "UPLOAD_SECTION_HEADER": "Upload a Medical Document",
     "MEDICAL_DOCUMENT_LIST": {
@@ -390,7 +388,9 @@
         },
         "SUCCESS_MESSAGE": "Successfully deleted medical document",
         "ERROR_MESSAGE": "Unable to delete medical document"
-      }
+      },
+      "NO_DOCS_FOUND_ERROR": "No uploaded documents found",
+      "GENERIC_ERROR": "Failed to get the list of uploaded documents, please try again later."
     },
     "UPLOAD_MEDICAL_DOCUMENT": {
       "UPLOAD_FORM": {
