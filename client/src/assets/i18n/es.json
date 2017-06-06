@@ -403,6 +403,7 @@
         "DOC_NAME_ALREADY_EXISTS_ERROR": "Ya existe un documento con el mismo nombre de documento.",
         "UPLOAD_SUCCESS": "Documento médico subido con éxito."
       }
-    }
+    },
+    "DOCUMENT_TYPE_CODES_LIST_ERROR": "No se puede obtener la lista de códigos de tipo de documento."
   }
 }

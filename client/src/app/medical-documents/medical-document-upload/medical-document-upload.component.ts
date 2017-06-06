@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output} from "@angular/core";
+import {Component, OnInit, EventEmitter, Output, Input} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UploadOutput, UploadInput, UploadFile, humanizeBytes} from 'ngx-uploader';
 import {NotificationService} from "../../core/notification.service";
@@ -7,6 +7,7 @@ import {ValidationService} from "../../shared/validation.service";
 import {DocumentToUploadMetadata} from "../shared/document-to-upload-metadata.model";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
+import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code.model";
 
 
 @Component({
@@ -16,6 +17,7 @@ import {UploadedDocument} from "../../shared/uploaded-document.model";
 })
 export class MedicalDocumentUploadComponent implements OnInit {
   @Output() uploadedDocumentAdded = new EventEmitter<UploadedDocument>();
+  @Input() documentTypeCodesList: UploadedDocumentTypeCode[];
 
   private maxDescriptionLength: string = ValidationRules.MEDICAL_DOCUMENT_DESC_MAX_LENGTH.toString();
 

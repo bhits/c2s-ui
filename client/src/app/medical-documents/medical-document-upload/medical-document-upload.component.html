@@ -9,9 +9,11 @@
     </div>
     <div fxLayout="row" fxLayoutGap="20px">
       <div fxFlex>
-        <md-input-container class="full-width font-size20">
-          <input mdInput placeholder="{{ 'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_FIELD_LABELS.DOCUMENT_TYPE_CODE' | translate }}" formControlName="documentTypeCodeId">
-        </md-input-container>
+        <md-select placeholder="{{ 'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_FIELD_LABELS.DOCUMENT_TYPE_CODE' | translate }}" formControlName="documentTypeCodeId" class="full-width font-size20">
+          <md-option *ngFor="let documentTypeCode of documentTypeCodesList" [value]="documentTypeCode.id">
+            {{ documentTypeCode.displayName }}
+          </md-option>
+        </md-select>
       </div>
     </div>
     <div fxLayout="row" fxLayoutGap="20px">

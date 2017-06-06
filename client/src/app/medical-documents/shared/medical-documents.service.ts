@@ -10,11 +10,13 @@ import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {UploadInput} from "ngx-uploader";
 import {TokenService} from "../../security/shared/token.service";
 import {DocumentToUploadMetadata} from "./document-to-upload-metadata.model";
+import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code.model";
 
 @Injectable()
 export class MedicalDocumentsService {
   private currentUserMrn: string = this.profileService.getUserMrn();
   private phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(this.currentUserMrn).concat("/documents");
+  private phrDocumentTypeCodesUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/documentTypeCodes");
 
   constructor(private http: Http,
               private tokenService: TokenService,
@@ -22,6 +24,12 @@ export class MedicalDocumentsService {
               private notificationService: NotificationService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private profileService: ProfileService) {
+  }
+
+  getAllDocumentTypeCodesList(): Observable<UploadedDocumentTypeCode[]> {
+    return this.http.get(this.phrDocumentTypeCodesUrl)
+      .map((resp: Response) => <UploadedDocumentTypeCode[]>(resp.json()))
+      .catch(this.exceptionService.handleErrorWithErrorCode);
   }
 
   getUploadedDocumentList(): Observable<UploadedDocument[]> {
@@ -95,6 +103,17 @@ export class MedicalDocumentsService {
         break;
       default:
         this.notificationService.i18nShow("MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.GENERIC_ERROR");
+    }
+  }
+
+  handleShowDocumentTypeCodesListError(err: string){
+    switch(err){
+      /* The case statement below is deliberately empty so it will fall through to the default case.
+         If a different error message is to be implemented in the future for the 500 code, it can be
+         easily added under the 500 case statement */
+      case "500":
+      default:
+        this.notificationService.i18nShow("MEDICAL_DOCUMENTS.DOCUMENT_TYPE_CODES_LIST_ERROR");
     }
   }
 }

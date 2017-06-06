@@ -22,7 +22,10 @@
               {{ 'MEDICAL_DOCUMENTS.UPLOAD_SECTION_HEADER' | translate }}
             </h3>
           </md-toolbar>
-          <c2s-medical-document-upload (uploadedDocumentAdded)="onUploadedDocumentAdded($event)"></c2s-medical-document-upload>
+          <c2s-medical-document-upload
+            (uploadedDocumentAdded)="onUploadedDocumentAdded($event)"
+            [documentTypeCodesList]="documentTypeCodesList">
+          </c2s-medical-document-upload>
         </div>
       </div>
 
