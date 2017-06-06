@@ -9,6 +9,7 @@ import {ProfileService} from "../../security/shared/profile.service";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {UploadInput} from "ngx-uploader";
 import {TokenService} from "../../security/shared/token.service";
+import {DocumentToUploadMetadata} from "./document-to-upload-metadata.model";
 
 @Injectable()
 export class MedicalDocumentsService {
@@ -39,13 +40,18 @@ export class MedicalDocumentsService {
     }
   }
 
-  prepareDocumentUpload(formData: {[key: string]: string | Blob }): UploadInput {
-    let currentUserMrn: string = this.profileService.getUserMrn();
-    let phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(currentUserMrn).concat("/documents");
+  prepareDocumentUpload(documentToUploadMetadata: DocumentToUploadMetadata): UploadInput {
+    const currentUserMrn: string = this.profileService.getUserMrn();
+    const phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(currentUserMrn).concat("/documents");
+
+    const formData: {[key: string]: string | Blob } = {
+      documentName: documentToUploadMetadata.documentName,
+      documentTypeCodeId: documentToUploadMetadata.documentTypeCodeId.toString()
+    };
+
+    const token = this.tokenService.getAccessToken();
 
     let customHeaders = {};
-
-    let token = this.tokenService.getAccessToken();
 
     if (token && token['access_token']) {
       let access_token = token['access_token'];

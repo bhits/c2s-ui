@@ -4,7 +4,7 @@ import {UploadOutput, UploadInput, UploadFile, humanizeBytes} from 'ngx-uploader
 import {NotificationService} from "../../core/notification.service";
 import {ValidationRules} from "../../shared/validation-rules.model";
 import {ValidationService} from "../../shared/validation.service";
-import {UploadMedicalDocument} from "../shared/upload-medical-document.model";
+import {DocumentToUploadMetadata} from "../shared/document-to-upload-metadata.model";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 
@@ -59,12 +59,12 @@ export class MedicalDocumentUploadComponent implements OnInit {
   startUpload(): void {
     if(this.validationService.isValidForm(this.uploadDocumentForm)) {
       const formModel = this.uploadDocumentForm.value;
-      const formData = {
-        documentName: formModel.documentName,
-        documentTypeCodeId: formModel.documentTypeCodeId
-      };
+      let documentToUploadMetadata: DocumentToUploadMetadata = new DocumentToUploadMetadata();
 
-      const event = this.medicalDocumentsService.prepareDocumentUpload(formData);
+      documentToUploadMetadata.documentName = formModel.documentName;
+      documentToUploadMetadata.documentTypeCodeId = formModel.documentTypeCodeId;
+
+      const event = this.medicalDocumentsService.prepareDocumentUpload(documentToUploadMetadata);
       this.uploadInput.emit(event);
       this.uploadDocumentForm.reset();
     }else{
