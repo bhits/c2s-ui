@@ -4,6 +4,7 @@ import {UploadOutput, UploadInput, UploadFile, humanizeBytes} from 'ngx-uploader
 import {NotificationService} from "../../core/notification.service";
 import {ValidationRules} from "../../shared/validation-rules.model";
 import {ValidationService} from "../../shared/validation.service";
+import {UploadMedicalDocument} from "../shared/upload-medical-document.model";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 
