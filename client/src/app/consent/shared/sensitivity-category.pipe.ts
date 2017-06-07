@@ -8,7 +8,7 @@ type ArgType = "display" | "description" | "system" | "value";
 })
 export class SensitivityCategoryPipe implements PipeTransform {
 
-  transform(value: ShareSensitivityCategory, args?: ArgType): any {
+  transform(value: ShareSensitivityCategory, args: ArgType): any {
     switch (args) {
       case "display":
         return value.display;
