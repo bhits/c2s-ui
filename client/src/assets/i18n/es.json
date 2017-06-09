@@ -403,6 +403,7 @@
         "SUBMIT_BTN_LABEL": "Subir",
         "FORM_INVALID_ERROR": "Uno o más campos de formulario no son válidos.",
         "DOC_NAME_ALREADY_EXISTS_ERROR": "Ya existe un documento con el mismo nombre de documento.",
+        "DOC_INVALID_ERROR": "No se puede cargar el documento; El documento no era un CCDA o C32 válido.",
         "UPLOAD_SUCCESS": "Documento médico subido con éxito."
       }
     },

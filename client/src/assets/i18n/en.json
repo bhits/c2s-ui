@@ -405,6 +405,7 @@
         "SUBMIT_BTN_LABEL": "Upload",
         "FORM_INVALID_ERROR": "One or more form fields are invalid.",
         "DOC_NAME_ALREADY_EXISTS_ERROR": "A document with the same document name already exists.",
+        "DOC_INVALID_ERROR": "Unable to upload document; the document was not a valid CCDA or C32.",
         "UPLOAD_SUCCESS": "Successfully uploaded medical document."
       }
     },

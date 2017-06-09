@@ -101,6 +101,9 @@ export class MedicalDocumentsService {
       case "409":
         this.notificationService.i18nShow("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.DOC_NAME_ALREADY_EXISTS_ERROR");
         break;
+      case "412":
+        this.notificationService.i18nShow("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.DOC_INVALID_ERROR");
+        break;
       default:
         this.notificationService.i18nShow("MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.GENERIC_ERROR");
     }
