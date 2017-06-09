@@ -84,7 +84,7 @@ export class MedicalDocumentsService {
 
     return {
       type: 'uploadAll',
-      fieldName: 'file',
+      fieldName: 'documentFile',
       url: phrDocumentsUrl,
       method: 'POST',
       data: formData,
