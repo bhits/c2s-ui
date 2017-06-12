@@ -28,10 +28,10 @@ describe('UsPhoneNumberPipe', () => {
   });
 
   it('should transforms "teststring" to "teststring"', () => {
-    expect(pipe.transform(invalidInputSymbol)).toBe('!@#$%^&*()');
+    expect(pipe.transform(invalidInputSymbol)).toEqual('!@#$%^&*()');
   });
 
   it('should transforms "!@#$%^&*()" to "!@#$%^&*()"', () => {
-    expect(pipe.transform(invalidInputSymbol)).toBe('!@#$%^&*()');
+    expect(pipe.transform(invalidInputSymbol)).toEqual('!@#$%^&*()');
   });
 });
