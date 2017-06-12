@@ -38,39 +38,39 @@ describe('ConsentStagePipe', () => {
     expect(pipe.transform(validValue, '')).toBeUndefined();
   });
 
-  it('should be transforms with "SAVED,text" to "CONSENTS.CARD.CONSENT_SAVE_STAGE.IN_PROGRESS"', () => {
+  it('should transforms "SAVED,text" to "CONSENTS.CARD.CONSENT_SAVE_STAGE.IN_PROGRESS"', () => {
     expect(pipe.transform(SAVED, TEXT)).toEqual('CONSENTS.CARD.CONSENT_SAVE_STAGE.IN_PROGRESS');
   });
 
-  it('should be transforms with "SAVED,icon" to "edit"', () => {
+  it('should transforms "SAVED,icon" to "edit"', () => {
     expect(pipe.transform(SAVED, ICON)).toEqual('edit');
   });
 
-  it('should be transforms with "SAVED,color" to "accent"', () => {
+  it('should transforms "SAVED,color" to "accent"', () => {
     expect(pipe.transform(SAVED, COLOR)).toEqual('accent');
   });
 
-  it('should be transforms with "SIGNED,text" to "CONSENTS.CARD.CONSENT_SIGNED_STAGE.SIGNED"', () => {
+  it('should transforms "SIGNED,text" to "CONSENTS.CARD.CONSENT_SIGNED_STAGE.SIGNED"', () => {
     expect(pipe.transform(SIGNED, TEXT)).toEqual('CONSENTS.CARD.CONSENT_SIGNED_STAGE.SIGNED');
   });
 
-  it('should be transforms with "SIGNED,icon" to "check_circle"', () => {
+  it('should transforms "SIGNED,icon" to "check_circle"', () => {
     expect(pipe.transform(SIGNED, ICON)).toEqual('check_circle');
   });
 
-  it('should be transforms with "SAVED,color" to "primary"', () => {
+  it('should transforms "SIGNED,color" to "primary"', () => {
     expect(pipe.transform(SIGNED, COLOR)).toEqual('primary');
   });
 
-  it('should be transforms with "REVOKED,text" to "CONSENTS.CARD.CONSENT_REVOKED_STAGE.REVOKED"', () => {
+  it('should transforms "REVOKED,text" to "CONSENTS.CARD.CONSENT_REVOKED_STAGE.REVOKED"', () => {
     expect(pipe.transform(REVOKED, TEXT)).toEqual('CONSENTS.CARD.CONSENT_REVOKED_STAGE.REVOKED');
   });
 
-  it('should be transforms with "REVOKED,icon" to "cancel"', () => {
+  it('should transforms "REVOKED,icon" to "cancel"', () => {
     expect(pipe.transform(REVOKED, ICON)).toEqual('cancel');
   });
 
-  it('should be transforms with "REVOKED,color" to "primary"', () => {
+  it('should transforms "REVOKED,color" to "warn"', () => {
     expect(pipe.transform(REVOKED, COLOR)).toEqual('warn');
   });
 
