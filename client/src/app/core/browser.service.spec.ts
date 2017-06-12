@@ -1,22 +1,7 @@
-/* tslint:disable:no-unused-variable */
+import {TestBed, async, inject} from '@angular/core/testing';
+import {BrowserService} from './browser.service';
 
-import { TestBed, async, inject } from '@angular/core/testing';
-import { BrowserService } from './browser.service';
-
-// angualr cli generate test
-describe('CustomTranslateService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [BrowserService]
-    });
-  });
-
-  it('should ...', inject([BrowserService], (service: BrowserService) => {
-    expect(service).toBeTruthy();
-  }));
-});
-
-describe('Service: BrowserService, test based on Chrome browser', () => {
+describe('BrowserService', () => {
   let service;
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -28,29 +13,29 @@ describe('Service: BrowserService, test based on Chrome browser', () => {
     service = s;
   }));
 
-  it('should detect browser, detectBrwoser()',()=>{
-      let detectedBrowser = service.detectBrowser();
-      expect(detectedBrowser).toContain('chrome');
+  it('#detectBrowser should return "Chrome"', () => {
+    let detectedBrowser = service.detectBrowser();
+    expect(detectedBrowser).toEqual('chrome');
   });
 
-  it('should be the chrome browser, isChrome()',()=>{
+  it('#isChrome should return true', () => {
     let checkIsChromeBrowser = service.isChrome();
-    expect(checkIsChromeBrowser).toBe(true);
+    expect(checkIsChromeBrowser).toEqual(true);
   });
 
-  it('should not be the FireFox browser, isFireFox()',()=>{
+  it('#isFireFox should return false', () => {
     let checkIsFireFoxBrowser = service.isFireFox();
-    expect(checkIsFireFoxBrowser).not.toBe(true);
+    expect(checkIsFireFoxBrowser).toEqual(false);
   });
 
-  it('should not be the IE browser, isIE()',()=>{
+  it('#isIE should return false', () => {
     let checkIsIeBrowser = service.isIE();
-    expect(checkIsIeBrowser).not.toBe(true);
+    expect(checkIsIeBrowser).toEqual(false);
   });
 
-  it('should not be the Safari browser, isSafari()',()=>{
+  it('#isSafari should return false', () => {
     let checkIsSafariBrowser = service.isSafari();
-    expect(checkIsSafariBrowser ).not.toBe(true);
+    expect(checkIsSafariBrowser).toEqual(false);
   });
 });
 
