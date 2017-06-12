@@ -2,16 +2,16 @@ import {ProviderNamePipe} from "./provider-name.pipe";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 
 describe('ProviderNamePipe', () => {
-  let pipe,testFlattenedSmallProvider;
+  let pipe, testFlattenedSmallProvider;
   const INDIVIDUAL = 'Individual';
   const ORGANIZATION = 'Organization';
   var validArgType = INDIVIDUAL;
   var inValidArgType = 'unknownType';
 
-  beforeEach(()=>{
+  beforeEach(() => {
     pipe = new ProviderNamePipe();
     testFlattenedSmallProvider = new FlattenedSmallProvider();
-    testFlattenedSmallProvider.organizationName = 'TestOrganizationName';
+    testFlattenedSmallProvider.organizationName = 'Test OrganizationName';
     testFlattenedSmallProvider.firstName = "TestFirstName";
     testFlattenedSmallProvider.lastName = "TestLastName";
   });
@@ -21,26 +21,26 @@ describe('ProviderNamePipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('should undefined with input invalid value',()=>{
-    expect(pipe.transform('',validArgType)).toBeUndefined();
-    expect(pipe.transform('test',validArgType)).toBeUndefined();
-    expect(pipe.transform(1,validArgType)).toBeUndefined();
-    expect(pipe.transform(new Object(),validArgType)).toBeUndefined();
+  it('should be undefined with invalid value parameter', () => {
+    expect(pipe.transform('', validArgType)).toBeUndefined();
+    expect(pipe.transform('test', validArgType)).toBeUndefined();
+    expect(pipe.transform(1, validArgType)).toBeUndefined();
+    expect(pipe.transform(new Object(), validArgType)).toBeUndefined();
   });
 
-  it('should defined with validArgType and invalidArgType function not depends on ArgType',()=>{
+  it('should transforms testFlattenedSmallProvider with Individual entityTpeDisplayName and invalid ArgType parameter to "TestFirstName TestLastName"', () => {
     testFlattenedSmallProvider.entityTypeDisplayName = INDIVIDUAL;
-    expect(pipe.transform(testFlattenedSmallProvider,validArgType)).toBeDefined();
-    expect(pipe.transform(testFlattenedSmallProvider,inValidArgType)).toBeDefined();
+    expect(pipe.transform(testFlattenedSmallProvider, validArgType)).toEqual('TestFirstName TestLastName');
+    expect(pipe.transform(testFlattenedSmallProvider, inValidArgType)).toEqual('TestFirstName TestLastName');
   });
 
-  it('should get expect from transform with entityTypeDisplayName Individual',()=>{
+  it('should transforms testFlattenedSmallProvider with Individual entityTpeDisplayName to "TestFirstName TestLastName"', () => {
     testFlattenedSmallProvider.entityTypeDisplayName = INDIVIDUAL;
-    expect(pipe.transform(testFlattenedSmallProvider)).toBe('TestFirstName TestLastName');
+    expect(pipe.transform(testFlattenedSmallProvider)).toEqual('TestFirstName TestLastName');
   });
 
-  it('should get expect from transform with entityTypeDisplayName Organization',()=>{
+  it('should transforms testFlattenedSmallProvider with Organization entityTpeDisplayName to "Test OrganizationName"', () => {
     testFlattenedSmallProvider.entityTypeDisplayName = ORGANIZATION;
-    expect(pipe.transform(testFlattenedSmallProvider)).toBe('TestOrganizationName');
+    expect(pipe.transform(testFlattenedSmallProvider)).toEqual('Test OrganizationName');
   });
 });
