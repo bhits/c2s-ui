@@ -13,27 +13,27 @@ describe('BrowserService', () => {
     service = s;
   }));
 
-  it('#detectBrowser should return "Chrome"', () => {
+  it('should detect Chrome browser', () => {
     let detectedBrowser = service.detectBrowser();
     expect(detectedBrowser).toEqual('chrome');
   });
 
-  it('#isChrome should return true', () => {
+  it('should test for Chrome browser', () => {
     let checkIsChromeBrowser = service.isChrome();
     expect(checkIsChromeBrowser).toEqual(true);
   });
 
-  it('#isFireFox should return false', () => {
+  it('should test for FireFox browser', () => {
     let checkIsFireFoxBrowser = service.isFireFox();
     expect(checkIsFireFoxBrowser).toEqual(false);
   });
 
-  it('#isIE should return false', () => {
+  it('should test for IE browser', () => {
     let checkIsIeBrowser = service.isIE();
     expect(checkIsIeBrowser).toEqual(false);
   });
 
-  it('#isSafari should return false', () => {
+  it('should test for Safari browser', () => {
     let checkIsSafariBrowser = service.isSafari();
     expect(checkIsSafariBrowser).toEqual(false);
   });
