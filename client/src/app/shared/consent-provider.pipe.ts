@@ -12,7 +12,7 @@ export class ConsentProviderPipe implements PipeTransform {
   constructor(private utilityService: UtilityService) {
   }
 
-  transform(value: ConsentProvider, args: ArgType): any {
+  transform(value: ConsentProvider, args?: ArgType): any {
     if(value){
       switch (args) {
         case "npi":
