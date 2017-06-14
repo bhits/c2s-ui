@@ -1,5 +1,4 @@
 import {SharePurposePipe} from "./share-purpose.pipe";
-import {SharePurpose} from "./share-purpose.model";
 import {Identifier} from "../../shared/identifier.model";
 
 describe('SharePurposePipe', () => {
@@ -78,7 +77,7 @@ describe('SharePurposePipe', () => {
   });
 
   it('should transforms "testSharePurpose,system" to "System Test"', () => {
-    expect(pipe.transform(validValue, VALUE)).toEqual('Value Test');
+    expect(pipe.transform(validValue, SYSTEM)).toEqual('System Test');
   });
 
   it('should transforms "testSharePurpose,value" to "Value Test"', () => {
