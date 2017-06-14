@@ -21,13 +21,18 @@
       </td>
       <td></td>
     </tr>
-    <tr *ngFor="let uploadedDocument of uploadedDocumentList">
-      <td>
-        <div>
+    <tr *ngFor="let uploadedDocument of uploadedDocumentList" [class.sample-doc]="uploadedDocument.sampleDocument===true">
+      <td class="actions-column">
+        <div *ngIf="!uploadedDocument.sampleDocument; else sampleDocBlock">
           <button md-icon-button color="warn" (click)="openConfirmDeleteDialog(confirm, uploadedDocument)" >
             <md-icon>delete_forever</md-icon>
           </button>
         </div>
+        <ng-template #sampleDocBlock>
+          <div>
+            <span class="action-label">SAMPLE</span>
+          </div>
+        </ng-template>
       </td>
       <td>{{uploadedDocument.documentName}}</td>
       <td>{{uploadedDocument.contentType}}</td>

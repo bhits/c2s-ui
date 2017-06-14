@@ -34,3 +34,14 @@ table td {
   padding: 0 16px;
   text-align: left;
 }
+
+.sample-doc {
+  // The !important keyword is necessary to prevent this background-color from being overridden on :hover event
+  background-color: lightgray !important;
+
+  .actions-column .action-label {
+    font-weight: bold;
+    font-size: x-small;
+    font-style: italic;
+  }
+}
