@@ -15,6 +15,10 @@ export class ValidationRules {
   public static ZIP_PATTERN = '^[0-9]{5}(?:-[0-9]{4})?$';
   public static SSN_PATTERN = '^[0-9]{3}\-?[0-9]{2}\-?[0-9]{4}$';
   public static PASSWORD_PATTERN = '^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{8,100}$';
+  public static MEDICAL_DOCUMENT_NAME_MIN_LENGTH: number = 1;
+  public static MEDICAL_DOCUMENT_NAME_MAX_LENGTH: number = 35;
+  public static MEDICAL_DOCUMENT_DESC_MIN_LENGTH: number = 0;
+  public static MEDICAL_DOCUMENT_DESC_MAX_LENGTH: number = 500;
   //Custom Error Message
   public static PHONE_MESSAGE: string = "Must be with formats: 123-456-7890 (123)456-7890 1234567890 123.456.7890.";
   public static SSN_MESSAGE: string = "Must be with formats:  123-45-6789, 123456789; 123-456789; 12345-6789";

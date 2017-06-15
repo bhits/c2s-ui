@@ -32,6 +32,7 @@
         "HOME": "Casa",
         "PROVIDERS": "Proveedores",
         "CONSENTS": "Consentimientos",
+        "MEDICAL_DOCUMENTS": "Documentos Médicos",
         "LOGOUT": "Cerrar sesión"
       }
     }
@@ -366,7 +367,46 @@
     "SUBTITLE": "Sorry, this is not the page you are looking for."
   },
   "MEDICAL_DOCUMENTS": {
-    "NO_DOCS_FOUND_ERROR": "(SPANISH)No Documents found to Try your Consent Settings",
-    "GENERIC_ERROR": "(SPANISH)Failed to get the list of uploaded documents, please try again later..."
+    "TITLE": "Documentos Médicos",
+    "LIST_SECTION_HEADER": "Sus Documentos Médicos",
+    "UPLOAD_SECTION_HEADER": "Subir un Documento Médico",
+    "NO_DOCS_FOUND_ERROR": "No se han subido documentos",
+    "GENERIC_ERROR": "Error al obtener la lista de documentos cargados. Por favor, inténtelo de nuevo más tarde.",
+    "MEDICAL_DOCUMENT_LIST": {
+      "TABLE": {
+        "DOCUMENT_NAME": "Nombre del Documento",
+        "CONTENT_TYPE": "Tipo de Contenido"
+      },
+      "DELETE": {
+        "DELETE_DIALOG": {
+          "TITLE": "Eliminar Documento Médico",
+          "DESCRIPTION": "¿Está seguro de que desea eliminar este documento médico?",
+          "BUTTON": {
+            "OK": "Aprobar",
+            "CANCEL": "Cancelar"
+          }
+        },
+        "SUCCESS_MESSAGE": "Documento médico eliminado con éxito",
+        "ERROR_MESSAGE": "No se puede eliminar el documento médico"
+      },
+      "NO_DOCS_FOUND_ERROR": "No se han subido documentos",
+      "GENERIC_ERROR": "Un error desconocido a ocurrido. Vuelva a intentarlo más tarde o póngase en contacto con el administrador del sistema."
+    },
+    "UPLOAD_MEDICAL_DOCUMENT": {
+      "UPLOAD_FORM": {
+        "FORM_FIELD_LABELS": {
+          "DOCUMENT_NAME": "Nombre del Documento",
+          "DOCUMENT_TYPE_CODE": "Tipo de Documento",
+          "DESCRIPTION": "Descripción",
+          "FILE_CHOOSER": "Elige un archivo para subir"
+        },
+        "SUBMIT_BTN_LABEL": "Subir",
+        "FORM_INVALID_ERROR": "Uno o más campos de formulario no son válidos.",
+        "DOC_NAME_ALREADY_EXISTS_ERROR": "Ya existe un documento con el mismo nombre de documento.",
+        "DOC_INVALID_ERROR": "No se puede cargar el documento; El documento no era un CCDA o C32 válido.",
+        "UPLOAD_SUCCESS": "Documento médico subido con éxito."
+      }
+    },
+    "DOCUMENT_TYPE_CODES_LIST_ERROR": "No se puede obtener la lista de códigos de tipo de documento."
   }
 }

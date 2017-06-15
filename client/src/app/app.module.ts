@@ -19,6 +19,7 @@ import {GlobalEventManagerService} from "./core/global-event-manager.service";
 import {LayoutModule} from "./layout/layout.module";
 import {AccountModule} from "./account/account.module";
 import {CustomTranslateService} from "./core/custom-translate.service";
+import {MedicalDocumentsModule} from "./medical-documents/medical-documents.module";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -52,6 +53,7 @@ export function createTranslateLoader(http: Http) {
     HomeModule,
     ConsentModule,
     ProviderModule,
+    MedicalDocumentsModule,
     AppRoutingModule // Must be the last module to be imported
   ],
   providers: [
