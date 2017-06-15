@@ -110,13 +110,8 @@ export class MedicalDocumentsService {
   }
 
   handleShowDocumentTypeCodesListError(err: string){
-    switch(err){
-      /* The case statement below is deliberately empty so it will fall through to the default case.
-         If a different error message is to be implemented in the future for the 500 code, it can be
-         easily added under the 500 case statement */
-      case "500":
-      default:
-        this.notificationService.i18nShow("MEDICAL_DOCUMENTS.DOCUMENT_TYPE_CODES_LIST_ERROR");
-    }
+    /* Currently all status codes should show the same error message. If this changes in
+       the future, a switch statement can be added here. */
+    this.notificationService.i18nShow("MEDICAL_DOCUMENTS.DOCUMENT_TYPE_CODES_LIST_ERROR");
   }
 }
