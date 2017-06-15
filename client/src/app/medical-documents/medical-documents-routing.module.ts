@@ -17,6 +17,6 @@ const medicalDocumentsRoutes: Routes = [
 export class MedicalDocumentsRoutingModule {
 }
 
-export const routedComponents = [
+export const medicalDocumentRoutedComponents = [
   MedicalDocumentsComponent
 ];
