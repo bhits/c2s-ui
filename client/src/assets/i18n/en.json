@@ -34,6 +34,7 @@
         "HOME": "Home",
         "PROVIDERS": "Providers",
         "CONSENTS": "Consents",
+        "MEDICAL_DOCUMENTS": "Medical Documents",
         "LOGOUT": "Logout"
       }
     }
@@ -368,7 +369,46 @@
     "SUBTITLE": "Sorry, this is not the page you are looking for."
   },
   "MEDICAL_DOCUMENTS": {
-    "NO_DOCS_FOUND_ERROR": "No Documents found to Try your Consent Settings",
-    "GENERIC_ERROR": "Failed to get the list of uploaded documents, please try again later..."
+    "TITLE": "Medical Documents",
+    "LIST_SECTION_HEADER": "Your Medical Documents",
+    "UPLOAD_SECTION_HEADER": "Upload a Medical Document",
+    "NO_DOCS_FOUND_ERROR": "No uploaded documents found",
+    "GENERIC_ERROR": "Failed to get the list of uploaded documents, please try again later.",
+    "MEDICAL_DOCUMENT_LIST": {
+      "TABLE": {
+        "DOCUMENT_NAME": "Document Name",
+        "CONTENT_TYPE": "Content Type"
+      },
+      "DELETE": {
+        "DELETE_DIALOG": {
+          "TITLE": "Delete Medical Document",
+          "DESCRIPTION": "Are you sure you want to delete this medical document?",
+          "BUTTON": {
+            "OK": "Ok",
+            "CANCEL": "Cancel"
+          }
+        },
+        "SUCCESS_MESSAGE": "Successfully deleted medical document",
+        "ERROR_MESSAGE": "Unable to delete medical document"
+      },
+      "NO_DOCS_FOUND_ERROR": "No uploaded documents found",
+      "GENERIC_ERROR": "An unknown error has occurred. Please try again later or contact your system administrator."
+    },
+    "UPLOAD_MEDICAL_DOCUMENT": {
+      "UPLOAD_FORM": {
+        "FORM_FIELD_LABELS": {
+          "DOCUMENT_NAME": "Document Name",
+          "DOCUMENT_TYPE_CODE": "Document Type",
+          "DESCRIPTION": "Description",
+          "FILE_CHOOSER": "Choose File To Upload"
+        },
+        "SUBMIT_BTN_LABEL": "Upload",
+        "FORM_INVALID_ERROR": "One or more form fields are invalid.",
+        "DOC_NAME_ALREADY_EXISTS_ERROR": "A document with the same document name already exists.",
+        "DOC_INVALID_ERROR": "Unable to upload document; the document was not a valid CCDA or C32.",
+        "UPLOAD_SUCCESS": "Successfully uploaded medical document."
+      }
+    },
+    "DOCUMENT_TYPE_CODES_LIST_ERROR": "Unable to get the list of document type codes."
   }
 }

@@ -1,0 +1,42 @@
+<div fxLayout="column" fxLayoutAlign="center" class="component-form-wrapper">
+  <form [formGroup]="uploadDocumentForm">
+    <div fxLayout="row" fxLayoutGap="20px" class="form-field-row document-name-row">
+      <div fxFlex>
+        <md-input-container class="full-width font-size20">
+          <input mdInput placeholder="{{ 'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_FIELD_LABELS.DOCUMENT_NAME' | translate }}" formControlName="documentName">
+        </md-input-container>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="form-field-row document-type-code-id-row">
+      <div fxFlex>
+        <md-select placeholder="{{ 'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_FIELD_LABELS.DOCUMENT_TYPE_CODE' | translate }}" formControlName="documentTypeCodeId" class="full-width font-size20">
+          <md-option *ngFor="let documentTypeCode of documentTypeCodesList" [value]="documentTypeCode.id">
+            {{ documentTypeCode.displayName }}
+          </md-option>
+        </md-select>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="form-field-row description-row">
+      <div fxFlex>
+        <md-input-container class="full-width font-size20">
+          <textarea mdInput maxlength={{maxDescriptionLength}} placeholder="{{ 'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_FIELD_LABELS.DESCRIPTION' | translate }}" formControlName="description"></textarea>
+        </md-input-container>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="form-field-row file-input-row">
+      <div fxFlex>
+        <label class="upload-button">
+          <input type="file" ngFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" formControlName="fileUploadInput">
+          {{'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_FIELD_LABELS.FILE_CHOOSER' | translate}}
+        </label>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="20px" class="form-field-row form-buttons-row">
+      <div fxFlex>
+        <button md-raised-button color="primary" type="button" class="start-upload-btn" (click)="startUpload()">
+          <strong>{{ 'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.SUBMIT_BTN_LABEL' | translate }}</strong>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

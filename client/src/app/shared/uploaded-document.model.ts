@@ -1,5 +1,6 @@
 export class UploadedDocument {
   id: number;
+  sampleDocument: boolean;
   fileName: string;
   documentName: string;
   contentType: string;
