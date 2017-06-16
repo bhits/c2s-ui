@@ -63,7 +63,7 @@ describe('SensitivityCategoryPipe', () => {
     expect(pipe.transform(validValue, '')).toBeUndefined();
   });
 
-  it('should transform with argType Display', () => {
+  it('should transform with argType DISPLAY', () => {
     expect(pipe.transform(validValue, DISPLAY)).toEqual('Display Test');
   });
 
