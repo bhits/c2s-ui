@@ -38,40 +38,21 @@ describe('ConsentStagePipe', () => {
     expect(pipe.transform(validValue, '')).toBeUndefined();
   });
 
-  it('should transforms "SAVED,text" to "CONSENTS.CARD.CONSENT_SAVE_STAGE.IN_PROGRESS"', () => {
+  it('should test for consentStage "SAVED"', () => {
     expect(pipe.transform(SAVED, TEXT)).toEqual('CONSENTS.CARD.CONSENT_SAVE_STAGE.IN_PROGRESS');
-  });
-
-  it('should transforms "SAVED,icon" to "edit"', () => {
     expect(pipe.transform(SAVED, ICON)).toEqual('edit');
-  });
-
-  it('should transforms "SAVED,color" to "accent"', () => {
     expect(pipe.transform(SAVED, COLOR)).toEqual('accent');
   });
 
-  it('should transforms "SIGNED,text" to "CONSENTS.CARD.CONSENT_SIGNED_STAGE.SIGNED"', () => {
+  it('should test for consentStage "SIGNED"', () => {
     expect(pipe.transform(SIGNED, TEXT)).toEqual('CONSENTS.CARD.CONSENT_SIGNED_STAGE.SIGNED');
-  });
-
-  it('should transforms "SIGNED,icon" to "check_circle"', () => {
     expect(pipe.transform(SIGNED, ICON)).toEqual('check_circle');
-  });
-
-  it('should transforms "SIGNED,color" to "primary"', () => {
     expect(pipe.transform(SIGNED, COLOR)).toEqual('primary');
   });
 
-  it('should transforms "REVOKED,text" to "CONSENTS.CARD.CONSENT_REVOKED_STAGE.REVOKED"', () => {
+  it('should test for consentStage "REVOKED"', () => {
     expect(pipe.transform(REVOKED, TEXT)).toEqual('CONSENTS.CARD.CONSENT_REVOKED_STAGE.REVOKED');
-  });
-
-  it('should transforms "REVOKED,icon" to "cancel"', () => {
     expect(pipe.transform(REVOKED, ICON)).toEqual('cancel');
-  });
-
-  it('should transforms "REVOKED,color" to "warn"', () => {
     expect(pipe.transform(REVOKED, COLOR)).toEqual('warn');
   });
-
 });
