@@ -67,7 +67,6 @@ export class ConsentCreateEditComponent implements OnInit {
 
   submitForm() {
     if (this.consent.id) {
-      console.log(this.consent);
       this.consentService.updateConsent(this.consent)
         .subscribe(
           () => {
