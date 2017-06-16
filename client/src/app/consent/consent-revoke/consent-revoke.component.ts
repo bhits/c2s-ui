@@ -37,7 +37,7 @@ export class ConsentRevokeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.consentRevocationTerms = this.route.snapshot.data['consentRevocationTerms'];
+    this.consentRevocationTerms = this.route.snapshot.data['consentRevocationTerms'].text;
     let profile = this.tokenService.getProfileToken();
     this.userName = profile.userName;
     this.fullName = profile.name;
