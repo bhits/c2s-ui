@@ -22,17 +22,24 @@ describe('ProviderAddressPipe', () => {
     testFlattenedSmallProvider.practiceLocationAddressStateName = "MD";
   });
 
-  it('should transforms  to ", , , fakeZipCode"', () => {
+  it('should transforms with empty value parameter', () => {
     var spy;
     spy = spyOn(utilityService, 'formatZipCode').and.returnValue('fakeZipCode')
     expect(pipe.transform("").toString()).toEqual
     (', , , fakeZipCode');
   });
 
-  it('should transforms "streetName, Columbia, MD, 12345" to "streetName, Columbia, MD, 12345"', () => {
+  it('should test for provider address', () => {
     var spy;
     spy = spyOn(utilityService, 'formatZipCode').and.returnValue('12345')
     expect(pipe.transform(testFlattenedSmallProvider).toString()).toEqual
     ('streetName, Columbia, MD, 12345');
+  });
+
+  it('should test for transforms return type', () => {
+    var spy;
+    spy = spyOn(utilityService, 'formatZipCode').and.returnValue('12345')
+    expect(typeof(pipe.transform(testFlattenedSmallProvider).toString())).toEqual
+    ('string');
   });
 });
