@@ -63,20 +63,19 @@ describe('SensitivityCategoryPipe', () => {
     expect(pipe.transform(validValue, '')).toBeUndefined();
   });
 
-  it('should transforms "testShareSensitivityCategory,display" to "Display Test"', () => {
+  it('should transform with argType Display', () => {
     expect(pipe.transform(validValue, DISPLAY)).toEqual('Display Test');
   });
 
-  it('should transforms "testShareSensitivityCategory,description Test" to "Description Test"', () => {
+  it('should transform with argType DESCRIPTION', () => {
     expect(pipe.transform(validValue, DESCRIPTION)).toEqual('Description Test');
   });
 
-  it('should transforms "testShareSensitivityCategory,system" to "System Test"', () => {
+  it('should transform with argType SYSTEM', () => {
     expect(pipe.transform(validValue, SYSTEM)).toEqual('System Test');
   });
 
-  it('should transforms "testShareSensitivityCategory,value" to "System Test"', () => {
+  it('should transform with argType VALUE', () => {
     expect(pipe.transform(validValue, VALUE)).toEqual('Value Test');
   });
-
 });
