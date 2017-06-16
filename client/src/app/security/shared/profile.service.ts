@@ -77,4 +77,14 @@ export class ProfileService {
     }
   }
 
+  getUserBirthDate(){
+    let umsProfile:UmsProfile = this.getProfileFromSessionStorage();
+    if(umsProfile){
+      return umsProfile.birthDate;
+    }else {
+      return null;
+    }
+  }
+
+
 }
