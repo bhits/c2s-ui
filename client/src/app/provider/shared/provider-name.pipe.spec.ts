@@ -28,18 +28,18 @@ describe('ProviderNamePipe', () => {
     expect(pipe.transform(new Object(), validArgType)).toBeUndefined();
   });
 
-  it('should transforms testFlattenedSmallProvider with Individual entityTpeDisplayName and invalid ArgType parameter to "TestFirstName TestLastName"', () => {
+  it('should transform with invalid ArgType parameter', () => {
     testFlattenedSmallProvider.entityTypeDisplayName = INDIVIDUAL;
     expect(pipe.transform(testFlattenedSmallProvider, validArgType)).toEqual('TestFirstName TestLastName');
     expect(pipe.transform(testFlattenedSmallProvider, inValidArgType)).toEqual('TestFirstName TestLastName');
   });
 
-  it('should transforms testFlattenedSmallProvider with Individual entityTpeDisplayName to "TestFirstName TestLastName"', () => {
+  it('should test for INDIVIDUAL provider name ', () => {
     testFlattenedSmallProvider.entityTypeDisplayName = INDIVIDUAL;
     expect(pipe.transform(testFlattenedSmallProvider)).toEqual('TestFirstName TestLastName');
   });
 
-  it('should transforms testFlattenedSmallProvider with Organization entityTpeDisplayName to "Test OrganizationName"', () => {
+  it('should test for ORGANIZATION provider name', () => {
     testFlattenedSmallProvider.entityTypeDisplayName = ORGANIZATION;
     expect(pipe.transform(testFlattenedSmallProvider)).toEqual('Test OrganizationName');
   });
