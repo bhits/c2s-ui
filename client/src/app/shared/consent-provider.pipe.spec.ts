@@ -142,7 +142,7 @@ describe(' ConsentProviderPipe', () => {
     });
   });
 
-  describe('Case phone', () => {
+  describe('Case "phone"', () => {
     it('should test for case "phone"', () => {
       testConsentProvider.phoneNumber = "1234567890";
       expect(pipe.transform(testConsentProvider, 'phone')).toEqual("1234567890");
