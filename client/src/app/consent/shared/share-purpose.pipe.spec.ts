@@ -68,19 +68,19 @@ describe('SharePurposePipe', () => {
     expect(pipe.transform(validValue, '')).toBeUndefined();
   });
 
-  it('should transforms "testSharePurpose,display" to "Display Test"', () => {
+  it('should transform with argType DISPLAY', () => {
     expect(pipe.transform(validValue, DISPLAY)).toEqual('Display Test');
   });
 
-  it('should transforms "testSharePurpose,description" to "Description Test"', () => {
+  it('should transform with argType DESCRIPTION', () => {
     expect(pipe.transform(validValue, DESCRIPTION)).toEqual('Description Test');
   });
 
-  it('should transforms "testSharePurpose,system" to "System Test"', () => {
+  it('should transform with argType SYSTEM', () => {
     expect(pipe.transform(validValue, SYSTEM)).toEqual('System Test');
   });
 
-  it('should transforms "testSharePurpose,value" to "Value Test"', () => {
+  it('should transform with argType VALUE', () => {
     expect(pipe.transform(validValue, VALUE)).toEqual('Value Test');
   });
 
