@@ -4,6 +4,7 @@ import {Identifier} from "../../shared/identifier.model";
 
 export class ConsentCreateEdit {
   id?: string;
+  consentReferenceId: string;
   startDate: Date;
   endDate: Date;
   sharePurposes: ListOfIdentifiers;
@@ -15,7 +16,7 @@ export class ConsentCreateEdit {
     let defaultPurposeOfUse = new ListOfIdentifiers();
     defaultPurposeOfUse.identifiers = [new Identifier("http://hl7.org/fhir/v3/ActReason", "TREAT") ];
     this.sharePurposes = defaultPurposeOfUse;
-
+    this.consentReferenceId = null;
     this.shareSensitivityCategories = new ListOfIdentifiers();
     this.toProviders = new ListOfIdentifiers();
     this.fromProviders = new ListOfIdentifiers();
