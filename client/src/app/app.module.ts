@@ -5,7 +5,7 @@ import {Http, HttpModule} from "@angular/http";
 import {Md2Module} from "md2";
 import {MaterialModule} from "@angular/material";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
-import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppComponent} from "./app.component";
 import {CoreModule} from "./core/core.module";
@@ -18,11 +18,9 @@ import {AuthenticationService} from "./security/shared/authentication.service";
 import {GlobalEventManagerService} from "./core/global-event-manager.service";
 import {LayoutModule} from "./layout/layout.module";
 import {AccountModule} from "./account/account.module";
-import {CustomTranslateService} from "./core/custom-translate.service";
+import {createTranslateLoader, CustomTranslateService} from "./core/custom-translate.service";
 
-export function createTranslateLoader(http: Http) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+
 
 
 @NgModule({
