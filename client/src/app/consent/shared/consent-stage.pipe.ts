@@ -8,7 +8,7 @@ type ArgType = "text" | "icon" | "color";
 })
 export class ConsentStagePipe implements PipeTransform {
 
-  transform(value: any, arg?: ArgType): any {
+  transform(value: any, arg: ArgType): any {
     return CONSENT_STAGES
       .filter(stage => stage.consentStage === value)
       .map(stage => stage[arg])
