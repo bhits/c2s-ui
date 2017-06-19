@@ -10,6 +10,7 @@ import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
 import {TranslateService} from "@ngx-translate/core";
 import {ProfileService} from "../../security/shared/profile.service";
+import {Consent} from "../shared/consent.model";
 
 @Component({
   selector: 'c2s-consent-revoke',
@@ -22,6 +23,7 @@ export class ConsentRevokeComponent implements OnInit {
   public isAuthenticated: boolean = false;
   public password: string;
   public inValid: boolean;
+  public consent: Consent;
   consentRevocationTerms: string;
   private userName: string;
   fullName: string;
@@ -40,6 +42,11 @@ export class ConsentRevokeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['consentId']) {
+        this.consent = this.route.snapshot.data['consent'];
+      }
+    });
     this.consentRevocationTerms = this.route.snapshot.data['consentRevocationTerms'].text;
     let profile = this.tokenService.getProfileToken();
     this.userName = profile.userName;
