@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {GlobalEventManagerService} from "../../core/global-event-manager.service";
-import {Profile} from "../../core/profile.model";
 import {ProfileService} from "../../security/shared/profile.service";
 
 @Component({
@@ -12,7 +10,7 @@ export class UserProfileComponent implements OnInit {
 
   userName: String;
 
-  constructor(private profileService: ProfileService) {
+    constructor(private profileService: ProfileService) {
   }
 
   ngOnInit() {

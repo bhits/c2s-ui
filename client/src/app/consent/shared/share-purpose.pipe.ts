@@ -8,7 +8,7 @@ type ArgType = "display" | "description" | "system" | "value";
 })
 export class SharePurposePipe implements PipeTransform {
 
-  transform(value: SharePurpose, args?: ArgType): any {
+  transform(value: SharePurpose, args: ArgType): any {
     switch (args) {
       case "display":
         return value.display;

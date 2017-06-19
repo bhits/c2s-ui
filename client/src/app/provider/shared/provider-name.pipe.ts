@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from "@angular/core";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
-
+// ArgType not use on this pipe
 type ArgType = "Individual" | "Organization";
 
 @Pipe({

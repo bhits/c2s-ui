@@ -4,7 +4,6 @@ import {ActivatedRoute} from "@angular/router";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {ConsentList} from "../../consent/shared/consent-list.model";
 
-import {TranslateService} from "@ngx-translate/core";
 import {TokenService} from "../../security/shared/token.service";
 
 @Component({
