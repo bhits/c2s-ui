@@ -19,6 +19,7 @@ import {GlobalEventManagerService} from "./core/global-event-manager.service";
 import {LayoutModule} from "./layout/layout.module";
 import {AccountModule} from "./account/account.module";
 import {createTranslateLoader, CustomTranslateService} from "./core/custom-translate.service";
+import {MedicalDocumentsModule} from "./medical-documents/medical-documents.module";
 
 
 
@@ -50,6 +51,7 @@ import {createTranslateLoader, CustomTranslateService} from "./core/custom-trans
     HomeModule,
     ConsentModule,
     ProviderModule,
+    MedicalDocumentsModule,
     AppRoutingModule // Must be the last module to be imported
   ],
   providers: [

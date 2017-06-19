@@ -5,4 +5,5 @@ export class UmsProfile {
   userName: string;
   mrn: string;
   supportedLocales: string[];
+  birthDate: Date;
 }

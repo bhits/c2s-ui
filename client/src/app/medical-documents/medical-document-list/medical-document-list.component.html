@@ -1,0 +1,57 @@
+<div fxLayout="column" fxLayoutAlign="center" [ngStyle]="{'padding-top': '20px'}">
+  <table [md2Data]="uploadedDocumentList" [rowsPerPage]="10">
+    <thead>
+    <tr>
+      <th>
+        <md-icon>mode_edit</md-icon>
+      </th>
+      <th>{{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.TABLE.DOCUMENT_NAME' | translate }}</th>
+      <th>{{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.TABLE.CONTENT_TYPE' | translate }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr [hidden]="!(uploadedDocumentList.length == 0)">
+      <td>
+        <md-icon>error_outline</md-icon>
+      </td>
+      <td>
+        <p>
+          {{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.NO_DOCS_FOUND_ERROR' | translate }}
+        </p>
+      </td>
+      <td></td>
+    </tr>
+    <tr *ngFor="let uploadedDocument of uploadedDocumentList" [class.sample-doc]="uploadedDocument.sampleDocument===true">
+      <td class="actions-column">
+        <div *ngIf="!uploadedDocument.sampleDocument; else sampleDocBlock">
+          <button md-icon-button color="warn" (click)="openConfirmDeleteDialog(confirm, uploadedDocument)" >
+            <md-icon>delete_forever</md-icon>
+          </button>
+        </div>
+        <ng-template #sampleDocBlock>
+          <div>
+            <span class="action-label">SAMPLE</span>
+          </div>
+        </ng-template>
+      </td>
+      <td>{{uploadedDocument.documentName}}</td>
+      <td>{{uploadedDocument.contentType}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <md2-dialog #confirm>
+    <md2-dialog-title>{{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.DELETE.DELETE_DIALOG.TITLE' | translate }}</md2-dialog-title>
+    {{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.DELETE.DELETE_DIALOG.DESCRIPTION' | translate }}
+    <md2-dialog-footer>
+      <button md-raised-button color="primary" (click)="confirmDeleteDocument(confirm)">
+        {{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.DELETE.DELETE_DIALOG.BUTTON.OK' | translate }}
+      </button>
+      <button md-raised-button (click)="confirm.close()">
+        {{ 'MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.DELETE.DELETE_DIALOG.BUTTON.CANCEL' | translate }}
+      </button>
+    </md2-dialog-footer>
+  </md2-dialog>
+</div>

@@ -1,43 +1,45 @@
-/* tslint:disable:no-unused-variable */
-
-import { TestBed, async, inject } from '@angular/core/testing';
-import { BrowserService } from './browser.service';
-
-
-
+import {TestBed, async, inject} from '@angular/core/testing';
+import {BrowserService} from './browser.service';
 
 describe('BrowserService', () => {
+  let service;
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [BrowserService]
     });
   });
 
-  it('should ...', inject([BrowserService], (service: BrowserService) => {
-    expect(service).toBeTruthy();
+  beforeEach(inject([BrowserService], s => {
+    service = s;
   }));
 
+  it('should detect Chrome browser', () => {
+    let detectedBrowser = service.detectBrowser();
+    expect(detectedBrowser).toEqual('chrome');
+  });
+
+  it('should test for Chrome browser', () => {
+    let checkIsChromeBrowser = service.isChrome();
+    expect(checkIsChromeBrowser).toEqual(true);
+  });
+
+  it('should test for FireFox browser', () => {
+    let checkIsFireFoxBrowser = service.isFireFox();
+    expect(checkIsFireFoxBrowser).toEqual(false);
+  });
+
+  it('should test for IE browser', () => {
+    let checkIsIeBrowser = service.isIE();
+    expect(checkIsIeBrowser).toEqual(false);
+  });
+
+  it('should test for Safari browser', () => {
+    let checkIsSafariBrowser = service.isSafari();
+    expect(checkIsSafariBrowser).toEqual(false);
+  });
 });
 
-describe('BrowserService without the TestBed', () => {
-  let browserService :  BrowserService;
 
-  beforeEach(() => {browserService = new BrowserService();});
 
-  it('#isChrome',()=>{
-    expect(browserService.isChrome()).toBe(true);
-  });
-  it('#isFireFox',()=>{
-    expect(browserService.isFireFox()).toBe(false);
-  });
-  it('#isIE',()=>{
-    expect(browserService.isIE()).toBe(false);
-  });
-  it('#isSafari',()=>{
-    expect(browserService.isSafari()).toBe(false);
-  });
-  it('#detectBrowser should return chrome for tester browser',()=>{
-    expect(browserService.detectBrowser()).toBe('chrome');
-  });
-});
+
 

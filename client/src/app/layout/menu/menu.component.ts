@@ -19,6 +19,7 @@ export class MenuComponent implements OnInit {
       new MenuItems('Home', 'home', 'HOME.MENU.MENU_ITEM.HOME'),
       new MenuItems('Providers', 'provider-list','HOME.MENU.MENU_ITEM.PROVIDERS'),
       new MenuItems('Consents', 'consent-list','HOME.MENU.MENU_ITEM.CONSENTS'),
+      new MenuItems('Medical Documents', 'medical-documents', 'HOME.MENU.MENU_ITEM.MEDICAL_DOCUMENTS'),
       new MenuItems('Logout', '','HOME.MENU.MENU_ITEM.LOGOUT')
     ];
   }
