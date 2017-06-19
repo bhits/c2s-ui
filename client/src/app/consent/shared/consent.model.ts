@@ -4,6 +4,7 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
 
 export class Consent {
   id: number;
+  consentReferenceId: string;
   consentStage: string;
   fromProviders: ConsentProvider[];
   toProviders: ConsentProvider[];

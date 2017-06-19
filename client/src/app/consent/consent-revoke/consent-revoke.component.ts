@@ -10,6 +10,7 @@ import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
 import {TranslateService} from "@ngx-translate/core";
 import {ProfileService} from "../../security/shared/profile.service";
+import {Consent} from "../shared/consent.model";
 
 @Component({
   selector: 'c2s-consent-revoke',
@@ -22,6 +23,7 @@ export class ConsentRevokeComponent implements OnInit {
   public isAuthenticated: boolean = false;
   public password: string;
   public inValid: boolean;
+  public consent: Consent;
   consentRevocationTerms: string;
   private userName: string;
   fullName: string;
@@ -40,6 +42,11 @@ export class ConsentRevokeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['consentId']) {
+        this.consent = this.route.snapshot.data['consent'];
+      }
+    });
     this.consentRevocationTerms = this.route.snapshot.data['consentRevocationTerms'].text;
     let profile = this.tokenService.getProfileToken();
     this.userName = profile.userName;
@@ -101,10 +108,10 @@ export class ConsentRevokeComponent implements OnInit {
 
   onSuccess(revokedPdf: BinaryFile, prefix: string) {
     this.utilityService.downloadFile(revokedPdf.content, `${prefix}_${this.consentId}.pdf`, revokedPdf.contentType);
-    this.notificationService.show("Success in downloadig revoked consent pdf ...");
+    this.notificationService.show("Success in downloading revoked consent pdf ...");
   }
 
   onError(error: any) {
-    this.notificationService.show("Error in downloadig revoked consent pdf ...");
+    this.notificationService.show("Error in downloading revoked consent pdf ...");
   }
 }
