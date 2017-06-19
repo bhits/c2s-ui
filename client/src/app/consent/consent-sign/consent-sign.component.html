@@ -15,7 +15,7 @@
     </div>
     <div fxFlex>
       <span>{{ 'CONSENT_SIGN.PATIENT_DOB' | translate }}: </span>
-      <span><strong>{{birthDate | date:'yyyy/MM/dd' }}</strong></span>
+      <span><strong>{{birthDate | date }}</strong></span>
     </div>
   </div>
   <md-toolbar color="primary">
@@ -100,19 +100,19 @@
     </p>
     <div fxLayoutAlign="start" fxLayout="row">
       <div fxFlex fxLayoutAlign="start">
-        <strong>{{ 'CONSENT_SIGN.CONSENT_TERMS_SECTION.START_DATE' | translate }}{{consent.startDate | date}}:
+        <strong>{{ 'CONSENT_SIGN.CONSENT_TERMS_SECTION.START_DATE' | translate }}: {{consent.startDate | date}}
         </strong>
       </div>
       <div fxFlex fxLayoutAlign="start">
         <strong>
-          {{ 'CONSENT_SIGN.CONSENT_TERMS_SECTION.END_DATE' | translate }}{{consent.endDate | date}}:
+          {{ 'CONSENT_SIGN.CONSENT_TERMS_SECTION.END_DATE' | translate }}: {{consent.endDate | date}}
         </strong>
       </div>
     </div>
     <div>
       <md2-dialog #confirmConsentTerms (onClose)="clearCheckbox()">
         <md2-dialog-title>
-          {{ 'CONSENT_SIGN.CONFIRM_DIALOG.TITLE' | translate }}{{consent.endDate | date}}
+          {{ 'CONSENT_SIGN.CONFIRM_DIALOG.TITLE' | translate }}
         </md2-dialog-title>
         <div fxLayout="column">
           <p class="dialog-text">{{ 'CONSENT_SIGN.CONFIRM_DIALOG.CONTENT' | translate }}</p>
