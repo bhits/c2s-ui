@@ -101,10 +101,10 @@ export class ConsentRevokeComponent implements OnInit {
 
   onSuccess(revokedPdf: BinaryFile, prefix: string) {
     this.utilityService.downloadFile(revokedPdf.content, `${prefix}_${this.consentId}.pdf`, revokedPdf.contentType);
-    this.notificationService.show("Success in downloadig revoked consent pdf ...");
+    this.notificationService.show("Success in downloading revoked consent pdf ...");
   }
 
   onError(error: any) {
-    this.notificationService.show("Error in downloadig revoked consent pdf ...");
+    this.notificationService.show("Error in downloading revoked consent pdf ...");
   }
 }
