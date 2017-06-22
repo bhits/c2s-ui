@@ -190,7 +190,7 @@
         "PREVIEW_THIS_CONSENT": "Preview This Consent",
         "PROVIDE_ESIGNATURE": "Provide eSignature",
         "APPLY_TRY_POLICY": "Try My Consent Settings against My Medical Record before Sharing",
-        "DELETE_THIS_PROVIDER": "Delete This Consent"
+        "DELETE_THIS_CONSENT": "Delete This Consent"
       },
       "CONSENT_SIGNED_STAGE": {
         "STAGE": "SIGNED",
