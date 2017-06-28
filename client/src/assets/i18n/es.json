@@ -412,5 +412,18 @@
   },
   "USER_PROFILE": {
     "TITLE": "Mi Perfil"
+  },
+  "SHARED": {
+    "VALIDATION_RULES": {
+      "PHONE_ERROR_MESSAGE": "Debe estar en uno de los siguientes formatos: 123-456-7890 (123)456-7890 1234567890 123.456.7890",
+      "SSN_ERROR_MESSAGE": "Debe estar en uno de los siguientes formatos:  123-45-6789, 123456789; 123-456789; 12345-6789",
+      "ZIP_ERROR_MESSAGE": "Debe estar en uno de los siguientes formatos: 12345 or 12345-6789",
+      "EMAIL_ERROR_MESSAGE": "Esta dirección de correo electrónico no es válida",
+      "MIN_LENGTH_ERROR_MESSAGE": "Este campo debe tener un mínimo de {{length}} caracteres",
+      "MAX_LENGTH_ERROR_MESSAGE": "Este campo no debe tener más de {{length}} caracteres",
+      "REQUIRED_ERROR_MESSAGE": "Este campo es requerido",
+      "REQUIRED_TRUE_ERROR_MESSAGE": "Este valor de campo debe ser verdadero",
+      "ONE_EMAIL_REQUIRED_MESSAGE": "Al menos una dirección de correo electrónico requerida"
+    }
   }
 }

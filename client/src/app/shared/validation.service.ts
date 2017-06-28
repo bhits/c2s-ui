@@ -30,6 +30,8 @@ export class ValidationService {
         return `Maximum length ${validatorValue.requiredLength}`;
       case ValidationRules.PATTERN_KEY:
         return customMessage;
+      case ValidationRules.ONE_EMAIL_REQUIRED_KEY:
+        return ValidationRules.ONE_EMAIL_REQUIRED_MESSAGE;
     }
   }
 
@@ -52,6 +54,33 @@ export class ValidationService {
           mismatchedPasswords: true
         };
       }
+    }
+  }
+
+  static oneEmailRequired(homeEmailKey: string, registrationPurposeEmailKey: string) {
+    return (group: FormGroup): { [key: string]: any } => {
+      let homeEmail = group.controls[homeEmailKey];
+      let registrationPurposeEmail = group.controls[registrationPurposeEmailKey];
+
+      if (homeEmail.value === '') homeEmail.setValue(null);
+      if (registrationPurposeEmail.value === '') registrationPurposeEmail.setValue(null);
+
+      if ((homeEmail.touched || homeEmail.dirty )&&(registrationPurposeEmail.dirty || registrationPurposeEmail.touched)) {
+        if (homeEmail.value === null && registrationPurposeEmail.value === null) {
+          return {
+            oneEmailRequired: true
+          }
+        }
+      }
+    }
+  }
+
+  static pastDateValidator(control):any  {
+    const today = new Date();
+    if (control.value < today) {
+      return null;
+    } else {
+      return {'invalidPastDate': true};
     }
   }
 }
