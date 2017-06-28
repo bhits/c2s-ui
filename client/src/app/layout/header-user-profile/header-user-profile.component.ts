@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {ProfileService} from "../../security/shared/profile.service";
 
 @Component({
-  selector: 'c2s-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['user-profile.component.scss']
+  selector: 'c2s-header-user-profile',
+  templateUrl: './header-user-profile.component.html',
+  styleUrls: ['header-user-profile.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class HeaderUserProfileComponent implements OnInit {
 
   userName: String;
 
