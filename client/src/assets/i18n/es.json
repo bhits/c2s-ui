@@ -33,6 +33,7 @@
         "PROVIDERS": "Proveedores",
         "CONSENTS": "Consentimientos",
         "MEDICAL_DOCUMENTS": "Documentos Médicos",
+        "MY_PROFILE": "Mi Perfil",
         "LOGOUT": "Cerrar sesión"
       }
     }
@@ -408,5 +409,8 @@
       }
     },
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "No se puede obtener la lista de códigos de tipo de documento."
+  },
+  "USER_PROFILE": {
+    "TITLE": "Mi Perfil"
   }
 }
