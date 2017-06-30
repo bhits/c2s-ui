@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 
 import {ConsentService} from "../shared/consent.service";
 import {UtilityService} from "../../shared/utility.service";
-import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
+import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {TranslateService} from "@ngx-translate/core";

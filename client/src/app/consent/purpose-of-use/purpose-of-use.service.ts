@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {PurposeOfUseBase} from "../shared/purpose-of-use-base.model";
-import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
-import {PurposeOfUse} from "../shared/purpose-of-use.model";
+import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
 import {Identifier} from "../../shared/identifier.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 

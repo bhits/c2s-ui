@@ -1,5 +1,5 @@
 
-import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
+import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
 import {Identifier} from "../../shared/identifier.model";
 
 export class ConsentCreateEdit {
