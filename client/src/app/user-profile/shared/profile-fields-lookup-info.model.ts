@@ -1,6 +1,6 @@
-import {Role} from "./role.model";
+import {Role} from "../../shared/role.model";
 import {ProfileFieldsCodesLookup} from "./profile-fields-codes-lookup.model";
-import {IdentifierSystem} from "./identifier-system.model";
+import {IdentifierSystem} from "../../shared/identifier-system.model";
 
 export class ProfileFieldsLookupInfo {
   public roles: Role[];
