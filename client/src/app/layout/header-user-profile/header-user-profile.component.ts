@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ProfileService} from "../../security/shared/profile.service";
+import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 
 @Component({
   selector: 'c2s-header-user-profile',
@@ -10,10 +10,10 @@ export class HeaderUserProfileComponent implements OnInit {
 
   userName: String;
 
-    constructor(private profileService: ProfileService) {
+    constructor(private limitedProfileService: LimitedProfileService) {
   }
 
   ngOnInit() {
-    this.userName = this.profileService.getFullName();
+    this.userName = this.limitedProfileService.getFullName();
   }
 }

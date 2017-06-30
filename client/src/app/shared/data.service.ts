@@ -5,17 +5,17 @@ import {Observable} from "rxjs";
 import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
 import {ConsentList} from "../consent/shared/consent-list.model";
 import {ConsentProvider} from "./consent-provider.model";
-import {ProfileService} from "../security/shared/profile.service";
+import {LimitedProfileService} from "../security/shared/limited-profile.service";
 
 @Injectable()
 export class DataService {
 
-  private currentUserMrn: string = this.profileService.getUserMrn();
+  private currentUserMrn: string = this.limitedProfileService.getUserMrn();
 
   constructor(private c2sUiApiUrlService: C2sUiApiUrlService,
               private http: Http,
               private exceptionService: ExceptionService,
-              private profileService: ProfileService) {
+              private limitedProfileService: LimitedProfileService) {
   }
 
   getProviders(): Observable<ConsentProvider[]> {
