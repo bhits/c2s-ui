@@ -5,6 +5,9 @@ import {SharedModule} from "../shared/shared.module";
 import {LayoutModule} from "../layout/layout.module";
 
 import {TranslateModule} from "@ngx-translate/core";
+import {ProfileFieldsLookupService} from "./shared/profile-fields-lookup.service";
+import {ExceptionService} from "../shared/exception.service";
+import {FullProfileService} from "./shared/full-profile.service";
 
 @NgModule({
   imports: [
@@ -17,7 +20,11 @@ import {TranslateModule} from "@ngx-translate/core";
   declarations: [
     userProfileRoutedComponents
   ],
-  providers: []
+  providers: [
+    ProfileFieldsLookupService,
+    FullProfileService,
+    ExceptionService
+  ]
 })
 export class UserProfileModule {
 }
