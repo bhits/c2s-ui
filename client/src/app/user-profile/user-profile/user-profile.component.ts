@@ -62,12 +62,12 @@ export class UserProfileComponent implements OnInit {
       );
   }
 
-  public updateProfile(): void {
+  updateProfile(): void {
     // TODO: Implement update profile
     this.notificationService.show("This method has not yet been implemented");
   }
 
-  public cancel() {
+  cancel(): void {
     this.redirectHome();
   }
 
