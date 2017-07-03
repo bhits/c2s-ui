@@ -1,5 +1,5 @@
-import {Address} from "../../shared/address.model";
 import {UmsFullProfileView} from "./ums-full-profile-view.model";
+import {UmsProfileAddress} from "../../shared/ums-profile-address.model";
 
 export class UmsFullProfileUpdate {
   constructor(umsFullProfileView?: UmsFullProfileView) {
@@ -12,7 +12,7 @@ export class UmsFullProfileUpdate {
   }
 
   userLocale: string;
-  homeAddress: Address;
+  homeAddress: UmsProfileAddress;
   homeEmail: string;
   homePhone: string;
 }

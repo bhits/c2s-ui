@@ -1,5 +1,5 @@
-import {Address} from "../../shared/address.model";
 import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
+import {UmsProfileAddress} from "../../shared/ums-profile-address.model";
 
 export class UmsFullProfileView {
   userLocale: string;
@@ -12,7 +12,7 @@ export class UmsFullProfileView {
   mrn: string;
   birthDate: Date;
   socialSecurityNumber: string;
-  homeAddress: Address;
+  homeAddress: UmsProfileAddress;
   homeEmail: string;
   homePhone: string;
   roles: string[];
