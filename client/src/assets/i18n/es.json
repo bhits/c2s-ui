@@ -411,7 +411,32 @@
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "No se puede obtener la lista de códigos de tipo de documento."
   },
   "USER_PROFILE": {
-    "TITLE": "Mi Perfil"
+    "TITLE": "Mi Perfil",
+    "EDIT": {
+      "REQUIRED_INFORMATION": {
+        "LABEL": "Información Requerida",
+        "FIELDS": {
+          "LOCALE_PLACEHOLDER": "Idioma Preferido",
+          "EMAIL_PLACEHOLDER": "Dirección de Correo Electrónico"
+        }
+      },
+      "ADDITIONAL_INFORMATION": {
+        "LABEL": "Información Adicional",
+        "FIELDS": {
+          "STREET_LINE1_PLACEHOLDER": "Dirección (Línea 1)",
+          "STREET_LINE2_PLACEHOLDER": "Dirección (Línea 2)",
+          "CITY_PLACEHOLDER": "Ciudad",
+          "POSTAL_CODE_PLACEHOLDER": "Código Postal",
+          "STATE_PLACEHOLDER": "Estado",
+          "COUNTRY_PLACEHOLDER": "País",
+          "PHONE_PLACEHOLDER": "Número de Teléfono"
+        }
+      },
+      "CANCEL_BTN": "Cancelar",
+      "SAVE_BTN": "Salvar",
+      "FIELDS_LOOKUP_INFO_FAILED_MSG": "No se pueden rellenar los cuadros desplegables con listas de opciones.",
+      "GET_PROFILE_FAILED_MSG": "No se pueden obtener los datos del perfil actual."
+    }
   },
   "SHARED": {
     "VALIDATION_RULES": {

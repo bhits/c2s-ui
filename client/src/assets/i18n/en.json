@@ -413,7 +413,32 @@
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "Unable to get the list of document type codes."
   },
   "USER_PROFILE": {
-    "TITLE": "My Profile"
+    "TITLE": "My Profile",
+    "EDIT": {
+      "REQUIRED_INFORMATION": {
+        "LABEL": "Required Information",
+        "FIELDS": {
+          "LOCALE_PLACEHOLDER": "Preferred Language",
+          "EMAIL_PLACEHOLDER": "E-mail Address"
+        }
+      },
+      "ADDITIONAL_INFORMATION": {
+        "LABEL": "Additional Information",
+        "FIELDS": {
+          "STREET_LINE1_PLACEHOLDER": "Street Address (Line 1)",
+          "STREET_LINE2_PLACEHOLDER": "Street Address (Line 2)",
+          "CITY_PLACEHOLDER": "City",
+          "POSTAL_CODE_PLACEHOLDER": "Postal Code",
+          "STATE_PLACEHOLDER": "State",
+          "COUNTRY_PLACEHOLDER": "Country",
+          "PHONE_PLACEHOLDER": "Home Phone Number"
+        }
+      },
+      "CANCEL_BTN": "Cancel",
+      "SAVE_BTN": "Save",
+      "FIELDS_LOOKUP_INFO_FAILED_MSG": "Unable to populate drop-down boxes with lists of options.",
+      "GET_PROFILE_FAILED_MSG": "Unable to get current profile data."
+    }
   },
   "SHARED": {
     "VALIDATION_RULES": {
