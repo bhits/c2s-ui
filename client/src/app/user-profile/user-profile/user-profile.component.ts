@@ -63,8 +63,21 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateProfile(): void {
-    // TODO: Implement update profile
-    this.notificationService.show("This method has not yet been implemented");
+    let profileUpdateModel = this.prepareFormForSubmit();
+
+    this.fullProfileService.updateUMSProfile(this.userProfile.userId, profileUpdateModel)
+      .subscribe(
+        (data) => {
+          this.userProfile = data;
+          this.initProfileUpdateModel(this.userProfile);
+          this.initEditProfileFormFieldValues();
+          this.notificationService.i18nShow("USER_PROFILE.EDIT.EDIT_PROFILE_SUCCESS_MSG");
+        },
+        err => {
+          console.log(err);
+          this.notificationService.i18nShow("USER_PROFILE.EDIT.EDIT_PROFILE_FAILED_MSG");
+        }
+      );
   }
 
   cancel(): void {
@@ -73,6 +86,17 @@ export class UserProfileComponent implements OnInit {
 
   private redirectHome(): void {
     this.router.navigateByUrl('/home');
+  }
+
+  private prepareFormForSubmit(): UmsFullProfileUpdate {
+    const formModel = this.editProfileForm.value;
+
+    return {
+      userLocale: formModel.userLocale,
+      homeAddress: formModel.homeAddress,
+      homeEmail: formModel.homeEmail,
+      homePhone: formModel.homePhone
+    };
   }
 
   private initProfileUpdateModel(userProfileView: UmsFullProfileView): void {
