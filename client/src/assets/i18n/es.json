@@ -435,7 +435,9 @@
       "CANCEL_BTN": "Cancelar",
       "SAVE_BTN": "Salvar",
       "FIELDS_LOOKUP_INFO_FAILED_MSG": "No se pueden rellenar los cuadros desplegables con listas de opciones.",
-      "GET_PROFILE_FAILED_MSG": "No se pueden obtener los datos del perfil actual."
+      "GET_PROFILE_FAILED_MSG": "No se pueden obtener los datos del perfil actual.",
+      "EDIT_PROFILE_FAILED_MSG": "No se puede actualizar el perfil.",
+      "EDIT_PROFILE_SUCCESS_MSG": "Perfil actualizado con éxito."
     }
   },
   "SHARED": {

@@ -437,7 +437,9 @@
       "CANCEL_BTN": "Cancel",
       "SAVE_BTN": "Save",
       "FIELDS_LOOKUP_INFO_FAILED_MSG": "Unable to populate drop-down boxes with lists of options.",
-      "GET_PROFILE_FAILED_MSG": "Unable to get current profile data."
+      "GET_PROFILE_FAILED_MSG": "Unable to get current profile data.",
+      "EDIT_PROFILE_FAILED_MSG": "Unable to update profile.",
+      "EDIT_PROFILE_SUCCESS_MSG": "Successfully updated profile."
     }
   },
   "SHARED": {
