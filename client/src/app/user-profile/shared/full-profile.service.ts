@@ -7,7 +7,7 @@ import {UmsFullProfileView} from "./ums-full-profile-view.model";
 
 @Injectable()
 export class FullProfileService {
-  private umsFullProfileUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl() + "/users/fullProfile";
+  private umsFullProfileUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl() + "/user/fullProfile";
 
   constructor(private http: Http,
               private c2sUiApiUrlService: C2sUiApiUrlService) {
