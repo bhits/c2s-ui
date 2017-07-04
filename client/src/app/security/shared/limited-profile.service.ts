@@ -8,7 +8,7 @@ import {SessionStorageService} from "./session-storage.service";
 
 @Injectable()
 export class LimitedProfileService {
-  private umsLimitedProfileUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl() + "/users/profile";
+  private umsLimitedProfileUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl() + "/user/profile";
   private UMS_PROFILE_KEY: string = 'c2s-ums-profile';
 
   constructor(private http: Http,
