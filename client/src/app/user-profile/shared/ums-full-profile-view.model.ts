@@ -6,7 +6,6 @@ export class UmsFullProfileView {
   userAuthId: string;
   userLocale: string;
   supportedLocales: string[];
-  username: string;
   lastName: string;
   firstName: string;
   middleName: string;
