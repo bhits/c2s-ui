@@ -92,7 +92,7 @@ export class UserProfileComponent implements OnInit {
           postalCode: this.updateUserProfile.homeAddress.postalCode,
           countryCode: this.updateUserProfile.homeAddress.countryCode
         },
-        locale: this.updateUserProfile.userLocale
+        userLocale: this.updateUserProfile.userLocale
       });
     } else {
       this.editProfileForm.setValue({
@@ -106,7 +106,7 @@ export class UserProfileComponent implements OnInit {
           postalCode: null,
           countryCode: null
         },
-        locale: this.updateUserProfile.userLocale
+        userLocale: this.updateUserProfile.userLocale
       })
     }
   }
@@ -116,7 +116,7 @@ export class UserProfileComponent implements OnInit {
       homeEmail: [null, Validators.pattern(ValidationRules.EMAIL_PATTERN)],
       homePhone: [null, Validators.pattern(ValidationRules.PHONE_PATTERN)],
       homeAddress: this.initAddressFormGroup(),
-      locale: [null, Validators.required]
+      userLocale: [null, Validators.required]
     });
   }
 
