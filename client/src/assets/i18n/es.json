@@ -11,8 +11,9 @@
     "PROVIDERS": {
       "TITLE": "Mis <span class='font-weight700'>Proveedores</span>",
       "STEP_1": {
-        "TITLE": "Paso 1.",
-        "DESCRIPTION": "Comience agregando a las personas con las que confía para compartir su información de salud."
+        "ACTION": "{spanish} add",
+        "TITLE": "{spanish} Step 1.",
+        "DESCRIPTION": "{spanish} Begin by adding the people with whom you trust to share your health information."
       },
       "ZERO": "Proveedore",
       "MORE": "Proveedores"
@@ -20,8 +21,9 @@
     "CONSENTS": {
       "TITLE": "Mis <span class='font-weight700'>Consentimientos</span>",
       "STEP_2": {
-        "TITLE": "Paso 2.",
-        "DESCRIPTION": "Comience agregando a las personas con las que confía para compartir su información de salud."
+        "ACTION": "{spanish} add",
+        "TITLE": "{spanish} Step 2.",
+        "DESCRIPTION": "{spanish} Begin by adding the people with whom you trust to share your health information."
       },
       "ZERO": "Consentimiento",
       "MORE": "Consentimientos"
@@ -170,7 +172,9 @@
           "TITLE": "Eliminar consentimiento",
           "CONTENT": "¿Está seguro de que desea eliminar este consentimiento?",
           "CANCEL_BTN": "Cancelar",
-          "OK_BTN": "De acuerdo"
+          "OK_BTN": "De acuerdo",
+          "DELETE_SUCCESS_MSG": "{spanish} Success in deleting consent.",
+          "DELETE_FAIL_MSG": "{spanish} Failed to delete the consent, please try again later..."
         },
         "TRYPOLICY_CONSENT_DIALOG": {
           "TITLE": "Aplicar a Mi Registro",
@@ -178,7 +182,7 @@
           "CONTENT_POU": "Fines de Uso",
           "BACK_BTN": "Volver a las Opciones de Consentimiento",
           "OK_BTN": "Aplicar",
-          "TRY-POLICY-ERROR": "SPANISH-Error on viewing policies applied on medical document"
+          "TRY-POLICY-ERROR": "{spanish} Error on viewing policies applied on medical document"
         }
       },
       "CONSENT_SAVE_STAGE": {
@@ -216,7 +220,7 @@
         "DISCLOSE_HEADER": "Revelar",
         "DISCLOSE_TITLE": "Para revelar mi información a",
         "DESCRIPTION": "Seleccione una persona u organización autorizada para compartir su información:",
-        "IND_PROVIDER_LABEL": "Individual:",
+        "IND_PROVIDER_LABEL": "{spanish} Individual:",
         "ORG_PROVIDER_LABEL": "Organizativo:",
         "CANCEL_BTN": "Cancelar",
         "ADD_BTN": "Añadir seleccionados"
@@ -240,7 +244,7 @@
         "CONTENT": "Por favor, seleccione la opción \"Compartir mi historial médico sin excepciones\", si desea compartir toda la información de su salud.",
         "CANCEL_BTN": "Cancelar",
         "SAVE_BTN": "Guardar cambios",
-        "CONFIRM_BTN": "Confirm"
+        "CONFIRM_BTN": "{spanish} Confirm"
       }
     },
     "PURPOSE_OF_USE": {
@@ -276,7 +280,7 @@
     "PATIENT_DOB": "Fecha de nacimiento del paciente",
     "AUTHORIZATION_SECTION": {
       "TITLE": "AUTORIZACIÓN PARA DIVULGAR",
-      "AUTHORIZE_LABEL": "Authorizes",
+      "AUTHORIZE_LABEL": "{spanish} Authorizes",
       "DISCLOSE_LABEL": "Revelar a",
       "PROVIDER": {
         "NAME": "Nombre del proveedor",
@@ -312,59 +316,77 @@
     "COMPLETE_BTN": "Completar"
   },
   "CONSENT_REVOKE": {
-    "TITLE": "Revocation of Consent to Share My Health Information",
-    "REFERENCE_NUMBER": "Consent Reference Number",
-    "PATIENT_NAME": "Patient Name",
-    "PATIENT_DOB": "Patient DOB",
+    "TITLE": "{spanish} Revocation of Consent to Share My Health Information",
+    "REFERENCE_NUMBER": "{spanish} Consent Reference Number",
+    "PATIENT_NAME": "{spanish} Patient Name",
+    "PATIENT_DOB": "{spanish} Patient DOB",
     "CONFIRM_DIALOG": {
-      "TITLE": "Please Authenticate",
-      "CONTENT": "Please provide your account password to authenticate, and complete e-signature",
-      "AUTHENTICATE_MSG": "Failed to authenticate, please try again...",
-      "CANCEL_BTN": "Cancel",
-      "CONTINUE_BTN": "Continue"
+      "TITLE": "{spanish} Please Authenticate",
+      "CONTENT": "{spanish} Please provide your account password to authenticate, and complete e-signature",
+      "AUTHENTICATE_MSG": "{spanish} Failed to authenticate, please try again...",
+      "CANCEL_BTN": "{spanish} Cancel",
+      "CONTINUE_BTN": "{spanish} Continue"
     },
     "COMPLETE_DIALOG": {
-      "TITLE": "Successfully Revoked Consent",
-      "DOWNLOAD_BTN": "Download Signed Consent Revocation",
-      "CONTINUE_BTN": "Continue"
+      "TITLE": "{spanish} Successfully Revoked Consent",
+      "DOWNLOAD_BTN": "{spanish} Download Signed Consent Revocation",
+      "CONTINUE_BTN": "{spanish} Continue"
     },
-    "TERMS": "I, {{name}}, hereby accept, and understand the terms of this consent.",
-    "CANCEL_BTN": "Cancel",
-    "COMPLETE_BTN": "Complete"
+    "TERMS": "{spanish} I, {{name}}, hereby accept, and understand the terms of this consent.",
+    "CANCEL_BTN": "{spanish} Cancel",
+    "COMPLETE_BTN": "{spanish} Complete"
+  },
+  "NOTIFICATION_MSG": {
+    "SUCCESS_UPDATING_CONSENT": "{spanish} Success in Updating consent.",
+    "FAILED_UPDATING_CONSENT": "{spanish} Error in Updating consent.",
+    "SUCCESS_CREATING_CONSENT": "{spanish} Success in creating consent.",
+    "FAILED_CREATING_CONSENT": "{spanish} Error in creating consent.",
+    "FAILED_REVOKED_CONSENT": "{spanish} Error in revoking consent.",
+    "SUCCESS_DOWNLOAD_REVOKED_CONSENT": "{spanish} Success in downloading revoked consent.",
+    "FAILED_DOWNLOAD_REVOKED_CONSENT": "{spanish} Failed to download the revoked consent, please try again later...",
+    "SUCCESS_DOWNLOAD_SIGNED_CONSENT": "{spanish} Success in downloading signed consent.",
+    "FAILED_DOWNLOAD_SIGNED_CONSENT": "{spanish} Failed to download the signed consent, please try again later...",
+    "SUCCESS_DOWNLOAD_CONSENT": "{spanish} Success in downloading consent.",
+    "FAILED_DOWNLOAD_CONSENT": "{spanish} Failed to download the consent, please try again later...",
+    "FAILED_ATTEST_CONCENT": "{spanish} Error in attest consent.",
+    "SUCCESS_DELETE_PROVIDER": "{spanish} Success in deleting provider.",
+    "FAILED_DELETE_PROVIDER": "{spanish} Failed to delete the provider, please try again later...",
+    "FAILED_ADD_PROVIDER": "{spanish} Failed to add the provider, please try again later..."
   },
   "ACCOUNT_VERIFICATION": {
     "TITLE": "(SPANISH)Account Setup Verification",
-    "NOTIFICATION": "To begin setting up your personal account, please enter your <strong>Date of Birth</strong> and the <strong>Verification Code</strong> that was provided to you. All fields are required in order to proceed.",
-    "CLEAR_BTN": "Clear",
-    "CONTINUE_BTN": "Complete",
-    "DOB": "Date of Birth",
-    "VERIFICATION_CODE": "Verification Code (Verification Code is case sensitive)"
+    "NOTIFICATION": "{spanish} To begin setting up your personal account, please enter your <strong>Date of Birth</strong> and the <strong>Verification Code</strong> that was provided to you. All fields are required in order to proceed.",
+    "CLEAR_BTN": "{spanish} Clear",
+    "CONTINUE_BTN": "{spanish} Complete",
+    "DOB": "{spanish} Date of Birth",
+    "VERIFICATION_CODE": "{spanish} Verification Code (Verification Code is case sensitive)"
   },
   "ACCOUNT_ACTIVATION": {
     "TITLE": "(SPANISH)Create your Account",
-    "NOTIFICATION": "Please create a Password for your account.Remember your Username and Password. You will need them to log in to your account.",
-    "CLEAR_BTN": "Clear",
-    "SUBMIT_BTN": "Submit",
-    "USERNAME": "Username",
-    "PASSWORD": "Password",
-    "CONFIRM_PASSWORD": "Re-enter Password"
+    "HINT": "{spanish} Please try a different username.",
+    "NOTIFICATION": "{spanish} Please create a Password for your account.Remember your Username and Password. You will need them to log in to your account.",
+    "CLEAR_BTN": "{spanish} Clear",
+    "SUBMIT_BTN": "{spanish} Submit",
+    "USERNAME": "{spanish} Username",
+    "PASSWORD": "{spanish} Password",
+    "CONFIRM_PASSWORD": "{spanish} Re-enter Password"
   },
   "ACCOUNT_ACTIVATION_SUCCESS": {
     "TITLE": "(SPANISH)Account Activation Complete!",
-    "CONGRATULATION": "Congratulations! ",
-    "NOTIFICATION1": "<strong>Congratulations {{userFullName}}!</strong>",
-    "NOTIFICATION2": " You have successfully created your <strong>{{brandName}}</strong> password. Click on the link below to log in to your account.",
-    "CONTINUE_LOGIN_BTN": "Continue to Login Page"
+    "CONGRATULATION": "{spanish} Congratulations! ",
+    "NOTIFICATION1": "{spanish} <strong>Congratulations {{userFullName}}!</strong>",
+    "NOTIFICATION2": "{spanish} You have successfully created your <strong>{{brandName}}</strong> password. Click on the link below to log in to your account.",
+    "CONTINUE_LOGIN_BTN": "{spanish} Continue to Login Page"
   },
   "ACCOUNT_ACTIVATION_ERROR": {
     "TITLE": "(SPANISH)Account Activation Failed!",
-    "NOTIFICATION": "<strong>Whoops!</strong> An error occurred during account activation. Please contact administrator for a new Verification Code. ",
-    "NOTIFICATION_FOR_BUTTON": "Please click the link below for more information about Consent2Share available on the C2S Login Page",
-    "CONTINUE_LOGIN_BTN": "Continue to Login Page"
+    "NOTIFICATION": "{spanish} <strong>Whoops!</strong> An error occurred during account activation. Please contact administrator for a new Verification Code. ",
+    "NOTIFICATION_FOR_BUTTON": "{spanish} Please click the link below for more information about Consent2Share available on the C2S Login Page",
+    "CONTINUE_LOGIN_BTN": "{spanish} Continue to Login Page"
   },
   "PAGE_NOT_FOUND": {
     "TITLE": "(SPANISH)Page Not Found",
-    "SUBTITLE": "Sorry, this is not the page you are looking for."
+    "SUBTITLE": "{spanish} Sorry, this is not the page you are looking for."
   },
   "MEDICAL_DOCUMENTS": {
     "TITLE": "Documentos Médicos",
