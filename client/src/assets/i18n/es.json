@@ -416,7 +416,6 @@
       "REQUIRED_INFORMATION": {
         "LABEL": "Información Requerida",
         "FIELDS": {
-          "LOCALE_PLACEHOLDER": "Idioma Preferido",
           "EMAIL_PLACEHOLDER": "Dirección de Correo Electrónico"
         }
       },

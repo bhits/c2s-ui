@@ -93,13 +93,8 @@ export class UserProfileComponent implements OnInit {
     const formModel = this.editProfileForm.value;
     const newAddress: UmsProfileAddress = UserProfileComponent.prepareFormAddressForSubmit(formModel);
 
-    let newUserLocale: string = null;
     let newHomeEmail: string = null;
     let newHomePhone: string = null;
-
-    if (formModel.userLocale !== null && formModel.userLocale.length > 0) {
-      newUserLocale = formModel.userLocale;
-    }
 
     if (formModel.homeEmail !== null && formModel.homeEmail.length > 0) {
       newHomeEmail = formModel.homeEmail;
@@ -110,7 +105,6 @@ export class UserProfileComponent implements OnInit {
     }
 
     return {
-      userLocale: newUserLocale,
       homeAddress: newAddress,
       homeEmail: newHomeEmail,
       homePhone: newHomePhone
@@ -164,8 +158,7 @@ export class UserProfileComponent implements OnInit {
           stateCode: this.updateUserProfile.homeAddress.stateCode,
           postalCode: this.updateUserProfile.homeAddress.postalCode,
           countryCode: this.updateUserProfile.homeAddress.countryCode
-        },
-        userLocale: this.updateUserProfile.userLocale
+        }
       });
     } else {
       this.editProfileForm.setValue({
@@ -178,8 +171,7 @@ export class UserProfileComponent implements OnInit {
           stateCode: null,
           postalCode: null,
           countryCode: null
-        },
-        userLocale: this.updateUserProfile.userLocale
+        }
       })
     }
   }
@@ -188,8 +180,7 @@ export class UserProfileComponent implements OnInit {
     return this.formBuilder.group({
       homeEmail: [null, Validators.pattern(ValidationRules.EMAIL_PATTERN)],
       homePhone: [null, Validators.pattern(ValidationRules.PHONE_PATTERN)],
-      homeAddress: this.initAddressFormGroup(),
-      userLocale: [null, Validators.required]
+      homeAddress: this.initAddressFormGroup()
     });
   }
 
