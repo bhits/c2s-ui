@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Headers, Response, RequestOptions, URLSearchParams} from "@angular/http";
+import {Headers, Http, RequestOptions, Response, URLSearchParams} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 import {PurposeOfUseBase} from "./purpose-of-use-base.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
@@ -10,7 +10,7 @@ import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {SharePurpose} from "./share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {UtilityService} from "../../shared/utility.service";
-import {Consent} from "./consent.model";
+import {DetailedConsent} from "./detailed-consent.model";
 import {ConsentTerms} from "./consent-terms.model";
 import {ConsentRevocation} from "./consent-revocation.model";
 import {BinaryFile} from "./binary-file.model";
@@ -86,7 +86,7 @@ export class ConsentService {
     let headers: Headers = new Headers();
     headers.append('Accept-Language', this.profileService.getUserLocale());
 
-    let options = new RequestOptions({ headers: headers, search: params });
+    let options = new RequestOptions({headers: headers, search: params});
 
     return this.http.get(this.tryPolicyUrl, options)
       .map((resp: Response) => <TryPolicyResponse>(resp.json()))
@@ -113,13 +113,13 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getConsent(id: number): Observable<Consent> {
+  getConsent(id: number): Observable<DetailedConsent> {
     const url = `${this.pcmConsentUrl}/${id}`;
     const jsonFormat: string = "detailedConsent";
     let params: URLSearchParams = new URLSearchParams();
     params.set('format', jsonFormat);
     return this.http.get(url, {search: params})
-      .map((resp: Response) => <Consent>(resp.json()))
+      .map((resp: Response) => <DetailedConsent>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
@@ -183,7 +183,7 @@ export class ConsentService {
   }
 
   revokeConsent(consentRevocation: ConsentRevocation, consentId: string): Observable<void> {
-    let revocationUrl = this.pcmConsentUrl.concat( "/"+ consentId).concat("/revocation");
+    let revocationUrl = this.pcmConsentUrl.concat("/" + consentId).concat("/revocation");
 
     return this.http.put(revocationUrl, consentRevocation)
       .map(() => null)
@@ -201,14 +201,14 @@ export class ConsentService {
     console.log(err);
   }
 
-  handleTryPolicySuccess(encodedDocument: TryPolicyResponse){
+  handleTryPolicySuccess(encodedDocument: TryPolicyResponse) {
     let decodedDocument = this.b64DecodedUnicode(encodedDocument.document);
     let viewer = window.open('', '_blank');
     viewer.document.open().write(decodedDocument);
   }
 
-  handleShowUploadedDocumentListError(err: any){
-    if(err === "404"){
+  handleShowUploadedDocumentListError(err: any) {
+    if (err === "404") {
       this.notificationService.i18nShow("MEDICAL_DOCUMENTS.NO_DOCS_FOUND_ERROR");
     }
     else {
@@ -217,7 +217,7 @@ export class ConsentService {
   }
 
   private b64DecodedUnicode(str) {
-    return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
+    return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
   }
@@ -229,5 +229,4 @@ export class ConsentService {
       .map((resp: Response) => <BinaryFile>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
-
 }

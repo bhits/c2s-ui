@@ -2,7 +2,7 @@ import {ShareSensitivityCategory} from "./share-sensitivity-category.model";
 import {SharePurpose} from "./share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 
-export class Consent {
+export class DetailedConsent {
   id: number;
   consentReferenceId: string;
   consentStage: string;
