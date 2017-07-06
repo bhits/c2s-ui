@@ -66,8 +66,6 @@ export class UserProfileComponent implements OnInit {
   updateProfile(): void {
     let profileUpdateModel: UmsFullProfileUpdate = this.prepareFormForSubmit();
 
-    console.log(profileUpdateModel);
-
     this.fullProfileService.updateUMSProfile(this.userProfile.userId, profileUpdateModel)
       .subscribe(
         (data) => {
