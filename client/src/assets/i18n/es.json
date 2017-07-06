@@ -28,6 +28,12 @@
       "ZERO": "Consentimiento",
       "MORE": "Consentimientos"
     },
+    "ADD_PROVIDER": {
+      "TITLE": "{spanish} Add Providers Alert",
+      "PLEASE_NOTE": "{spanish} Please Note:",
+      "DESCRIPTION": "{spanish} To create consents, you must first add at least <strong>2 Providers</strong> with whom you trust to share your health information.",
+      "CLOSE": "{spanish} Close"
+    },
     "MENU": {
       "TITLE": "Menú",
       "MENU_ITEM": {

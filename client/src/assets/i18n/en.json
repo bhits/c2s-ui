@@ -28,6 +28,12 @@
       "ZERO": "Consent",
       "MORE": "Consents"
     },
+    "ADD_PROVIDER": {
+      "TITLE": "Add Providers Alert",
+      "PLEASE_NOTE": "Please Note:",
+      "DESCRIPTION": "To create consents, you must first add at least <strong>2 Providers</strong> with whom you trust to share your health information.",
+      "CLOSE": "Close"
+    },
     "MENU": {
       "TITLE": "Menu",
       "MENU_ITEM": {
