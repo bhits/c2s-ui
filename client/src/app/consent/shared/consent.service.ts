@@ -5,7 +5,7 @@ import {PurposeOfUseBase} from "./purpose-of-use-base.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
 import {ExceptionService} from "../../core/exception.service";
 import {BehaviorSubject, Observable} from "rxjs";
-import {ConsentCreateEdit} from "./consent-create-edit.model";
+import {Consent} from "./consent.model";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {SharePurpose} from "./share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
@@ -30,8 +30,8 @@ export class ConsentService {
   private phrGetDocumentListUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(this.currentUserMrn).concat("/documents");
   private tryPolicyUrl = this.c2sUiApiUrlService.getTryPolicyBaseUrl().concat("/tryPolicyXHTML?");
 
-  private consentSubject: BehaviorSubject<ConsentCreateEdit> = new BehaviorSubject<ConsentCreateEdit>(null);
-  public consentEmitter: Observable<ConsentCreateEdit> = this.consentSubject.asObservable();
+  private consentSubject: BehaviorSubject<Consent> = new BehaviorSubject<Consent>(null);
+  public consentEmitter: Observable<Consent> = this.consentSubject.asObservable();
 
   constructor(private http: Http,
               private exceptionService: ExceptionService,
@@ -41,12 +41,12 @@ export class ConsentService {
               private profileService: ProfileService) {
   }
 
-  getConsentEmitter(): Observable<ConsentCreateEdit> {
+  getConsentEmitter(): Observable<Consent> {
     return this.consentEmitter;
   }
 
-  setConsent(consentCreateEdit: ConsentCreateEdit) {
-    this.consentSubject.next(consentCreateEdit);
+  setConsent(consent: Consent) {
+    this.consentSubject.next(consent);
   }
 
   getPurposeOfUses(): Observable<SharePurpose[]> {
@@ -93,7 +93,7 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  createConsent(consent: ConsentCreateEdit): Observable<void> {
+  createConsent(consent: Consent): Observable<void> {
     return this.http.post(this.pcmConsentUrl, this.createConsentDto(consent))
       .map(() => null)
       .catch(this.exceptionService.handleError);
@@ -106,10 +106,10 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getConsentById(id: string): Observable<ConsentCreateEdit> {
+  getConsentById(id: string): Observable<Consent> {
     const url = `${this.pcmConsentUrl}/${id}`;
     return this.http.get(url)
-      .map((resp: Response) => <ConsentCreateEdit>(resp.json()))
+      .map((resp: Response) => <Consent>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
@@ -141,7 +141,7 @@ export class ConsentService {
     return this.getConsentAsBinaryFile(url, format);
   }
 
-  updateConsent(consent: ConsentCreateEdit): Observable<void> {
+  updateConsent(consent: Consent): Observable<void> {
     return this.http.put(this.pcmConsentUrl + "/" + consent.id, this.createConsentDto(consent))
       .map(() => null)
       .catch(this.exceptionService.handleError);
@@ -163,7 +163,7 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  private createConsentDto(consent: ConsentCreateEdit): any {
+  private createConsentDto(consent: Consent): any {
     let temp = {};
     Object.keys(consent).forEach(function (key) {
       if (key !== 'startDate' && key !== 'endDate') {

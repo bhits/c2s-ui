@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
 import {Identifier} from "../../shared/identifier.model";
-import {ConsentCreateEdit} from "src/app/consent/shared/consent-create-edit.model";
+import {Consent} from "src/app/consent/shared/consent.model";
 
 @Injectable()
 export class MedicalInformationService {
@@ -22,12 +22,12 @@ export class MedicalInformationService {
     sensitivityCategories.forEach(s => s[this.CHECK] = true);
   }
 
-  public setSelectedSensitivityPoliciesStatusToChecked(consent: ConsentCreateEdit, sensitivityCategories: SensitivityPolicy[]): void {
+  public setSelectedSensitivityPoliciesStatusToChecked(consent: Consent, sensitivityCategories: SensitivityPolicy[]): void {
     this.setSensitivityPoliciesStatusToChecked(
       this.mapConsentSensitivityCategoriesToSensitivityCategories(consent, sensitivityCategories));
   }
 
-  public mapConsentSensitivityCategoriesToSensitivityCategories(consent: ConsentCreateEdit, sensitivityCategories: SensitivityPolicy[]): SensitivityPolicy[] {
+  public mapConsentSensitivityCategoriesToSensitivityCategories(consent: Consent, sensitivityCategories: SensitivityPolicy[]): SensitivityPolicy[] {
     let selected: SensitivityPolicy[] = [];
     this.setSensitivityPoliciesStatusToUnChecked(sensitivityCategories);
     consent.shareSensitivityCategories.identifiers.forEach(s1 => {

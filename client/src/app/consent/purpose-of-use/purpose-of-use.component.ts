@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 
 import {PurposeOfUseService} from "./purpose-of-use.service";
 import {ConsentService} from "../shared/consent.service";
-import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
+import {Consent} from "../shared/consent.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 
 @Component({
@@ -13,7 +13,7 @@ import {SharePurpose} from "../shared/share-purpose.model";
 export class PurposeOfUseComponent implements OnInit {
   @Input() purposeOfUSes: SharePurpose[];
   checkedPurposeOfUses: string[];
-  consent: ConsentCreateEdit;
+  consent: Consent;
 
   constructor(private purposeOfUseService: PurposeOfUseService, private consentService: ConsentService) {
     this.consentService.getConsentEmitter().subscribe((consent) => {

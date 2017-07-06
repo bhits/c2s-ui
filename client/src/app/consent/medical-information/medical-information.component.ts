@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {MedicalInformationService} from "./medical-information.service";
 import {MedicalInformationCategory} from "../shared/medical-information-category";
-import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
+import {Consent} from "../shared/consent.model";
 import {ConsentService} from "../shared/consent.service";
 import {Md2DialogConfig} from "md2";
 
@@ -21,7 +21,7 @@ export class MedicalInformationComponent implements OnInit {
   public isShareAll: number;
   public isSelectOneSensitivityCategory: boolean;
   public isInvalidNotShareAll: boolean = false;
-  private consent: ConsentCreateEdit;
+  private consent: Consent;
   private dialogConfig: Md2DialogConfig = new Md2DialogConfig();
   public federalInfo: MedicalInformationCategory;
   public stateInfo: MedicalInformationCategory;

@@ -1,7 +1,7 @@
 import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
 import {Identifier} from "../../shared/identifier.model";
 
-export class ConsentCreateEdit {
+export class Consent {
   id?: string;
   consentReferenceId: string;
   startDate: Date;

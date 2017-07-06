@@ -1,13 +1,10 @@
 import {Component, Input, OnInit} from "@angular/core";
-
 import {ConsentService} from "../shared/consent.service";
 import "rxjs/add/operator/toPromise";
-import {UtilityService} from "../../shared/utility.service";
 import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
 import {Identifier} from "../../shared/identifier.model";
-import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
+import {Consent} from "../shared/consent.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
-import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -22,13 +19,11 @@ export class SelectProviderComponent implements OnInit {
   @Input() isAuthorizedProviders: boolean;
   @Input() selectedProviders: ConsentProvider[] = null;
 
-  consent: ConsentCreateEdit;
+  consent: Consent;
   selectedProviderNpi: string;
   selectedProvider: ConsentProvider;
 
-  constructor(private consentService: ConsentService,
-              private utilityService: UtilityService,
-              private translate: TranslateService) {
+  constructor(private consentService: ConsentService) {
     this.consentService.getConsentEmitter().subscribe((consent) => {
       if (consent) {
         this.consent = consent;
