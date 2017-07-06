@@ -8,6 +8,7 @@ import {NotificationService} from "../../core/notification.service";
 import {UmsFullProfileView} from "../shared/ums-full-profile-view.model";
 import {UmsFullProfileUpdate} from "../shared/ums-full-profile-update.model";
 import {FullProfileService} from "../shared/full-profile.service";
+import {UmsProfileAddress} from "../../shared/ums-profile-address.model";
 
 @Component({
   selector: 'c2s-user-profile',
@@ -63,7 +64,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateProfile(): void {
-    let profileUpdateModel = this.prepareFormForSubmit();
+    let profileUpdateModel: UmsFullProfileUpdate = this.prepareFormForSubmit();
+
+    console.log(profileUpdateModel);
 
     this.fullProfileService.updateUMSProfile(this.userProfile.userId, profileUpdateModel)
       .subscribe(
@@ -90,13 +93,61 @@ export class UserProfileComponent implements OnInit {
 
   private prepareFormForSubmit(): UmsFullProfileUpdate {
     const formModel = this.editProfileForm.value;
+    const newAddress: UmsProfileAddress = UserProfileComponent.prepareFormAddressForSubmit(formModel);
+
+    let newUserLocale: string = null;
+    let newHomeEmail: string = null;
+    let newHomePhone: string = null;
+
+    if (formModel.userLocale !== null && formModel.userLocale.length > 0) {
+      newUserLocale = formModel.userLocale;
+    }
+
+    if (formModel.homeEmail !== null && formModel.homeEmail.length > 0) {
+      newHomeEmail = formModel.homeEmail;
+    }
+
+    if (formModel.homePhone !== null && formModel.homePhone.length > 0) {
+      newHomePhone = formModel.homePhone;
+    }
 
     return {
-      userLocale: formModel.userLocale,
-      homeAddress: formModel.homeAddress,
-      homeEmail: formModel.homeEmail,
-      homePhone: formModel.homePhone
+      userLocale: newUserLocale,
+      homeAddress: newAddress,
+      homeEmail: newHomeEmail,
+      homePhone: newHomePhone
     };
+  }
+
+  private static prepareFormAddressForSubmit(formModel: any): UmsProfileAddress {
+    const formModelHomeAddress = formModel.homeAddress;
+    let newAddress: UmsProfileAddress = new UmsProfileAddress();
+
+    if (formModelHomeAddress.line1 !== null && formModelHomeAddress.line1.length > 0) {
+      newAddress.line1 = formModelHomeAddress.line1;
+    }
+
+    if (formModelHomeAddress.line2 !== null && formModelHomeAddress.line2.length > 0) {
+      newAddress.line2 = formModelHomeAddress.line2;
+    }
+
+    if (formModelHomeAddress.city !== null && formModelHomeAddress.city.length > 0) {
+      newAddress.city = formModelHomeAddress.city;
+    }
+
+    if (formModelHomeAddress.stateCode !== null && formModelHomeAddress.stateCode.length > 0) {
+      newAddress.stateCode = formModelHomeAddress.stateCode;
+    }
+
+    if (formModelHomeAddress.postalCode !== null && formModelHomeAddress.postalCode.length > 0) {
+      newAddress.postalCode = formModelHomeAddress.postalCode;
+    }
+
+    if (formModelHomeAddress.countryCode !== null && formModelHomeAddress.countryCode.length > 0) {
+      newAddress.countryCode = formModelHomeAddress.countryCode;
+    }
+
+    return newAddress;
   }
 
   private initProfileUpdateModel(userProfileView: UmsFullProfileView): void {
