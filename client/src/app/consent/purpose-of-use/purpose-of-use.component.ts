@@ -1,8 +1,6 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input, OnInit} from "@angular/core";
 
 import {PurposeOfUseService} from "./purpose-of-use.service";
-import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
-import {PurposeOfUse} from "../shared/purpose-of-use.model";
 import {ConsentService} from "../shared/consent.service";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {SharePurpose} from "../shared/share-purpose.model";
@@ -14,11 +12,11 @@ import {SharePurpose} from "../shared/share-purpose.model";
 })
 export class PurposeOfUseComponent implements OnInit {
   @Input() purposeOfUSes: SharePurpose[];
-  checkedPurposeOfUses: string[] ;
+  checkedPurposeOfUses: string[];
   consent: ConsentCreateEdit;
 
-  constructor(private purposeOfUseService: PurposeOfUseService, private consentService: ConsentService ) {
-    this.consentService.getConsentEmitter().subscribe((consent)=>{
+  constructor(private purposeOfUseService: PurposeOfUseService, private consentService: ConsentService) {
+    this.consentService.getConsentEmitter().subscribe((consent) => {
       if (consent) {
         this.consent = consent;
       }
@@ -26,31 +24,31 @@ export class PurposeOfUseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.purposeOfUseService.updatePurposeOfUseStatus(this.consent.sharePurposes,this.purposeOfUSes);
+    this.purposeOfUseService.updatePurposeOfUseStatus(this.consent.sharePurposes, this.purposeOfUSes);
     this.checkedPurposeOfUses = this.purposeOfUseService.getCheckedPurposeOfUse(this.purposeOfUSes);
   }
 
-  closeDialog(dialog: any){
-    this.purposeOfUseService.updateSelectedPurposeOfUse( this.checkedPurposeOfUses,this.purposeOfUSes);
+  closeDialog(dialog: any) {
+    this.purposeOfUseService.updateSelectedPurposeOfUse(this.checkedPurposeOfUses, this.purposeOfUSes);
     dialog.close();
   }
 
-  openDialog(dialog: any){
+  openDialog(dialog: any) {
     dialog.open();
   }
 
-  setSelectedPurposesOfUse(dialog: any){
+  setSelectedPurposesOfUse(dialog: any) {
     dialog.close();
     this.checkedPurposeOfUses = this.purposeOfUseService.getCheckedPurposeOfUse(this.purposeOfUSes);
     this.consent.sharePurposes = this.purposeOfUseService.getSelectedPurposeOfUse(this.purposeOfUSes);
     this.consentService.setConsent(this.consent);
   }
 
-  selectAll(){
+  selectAll() {
     this.purposeOfUseService.setPurposeOfUseStatusToChecked(this.purposeOfUSes);
   }
 
-  deSelectAll(){
+  deSelectAll() {
     this.purposeOfUseService.setPurposeOfUseStatusToUnChecked(this.purposeOfUSes);
   }
 }

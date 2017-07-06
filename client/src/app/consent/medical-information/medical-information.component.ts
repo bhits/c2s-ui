@@ -1,13 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from "@angular/core";
 
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {MedicalInformationService} from "./medical-information.service";
 import {MedicalInformationCategory} from "../shared/medical-information-category";
 import {ConsentCreateEdit} from "../shared/consent-create-edit.model";
 import {ConsentService} from "../shared/consent.service";
-import {TranslateService} from "@ngx-translate/core";
 import {Md2DialogConfig} from "md2";
-import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'c2s-medical-information',
@@ -15,23 +13,22 @@ import {DomSanitizer} from "@angular/platform-browser";
   styleUrls: ['medical-information.component.scss']
 })
 export class MedicalInformationComponent implements OnInit {
-
-  isShareAll:number ;
-  isAllCategoriesSelected: boolean = false;
-  federalInfo:MedicalInformationCategory;
-  stateInfo:MedicalInformationCategory;
-  checkedSensitityPolicies: string[] = [];
-
-  sensitivityPoliciesCodes: string[] = [];
   @Input() sensitivityPolicies: SensitivityPolicy[];
+  public readonly notShareAllValue: number = 0;
+  public readonly shareAllValue: number = 1;
+  public selectedSensitivityCategories: string[];
+  public sensitivityCategoryCodes: string[] = [];
+  public isShareAll: number;
+  public isSelectOneSensitivityCategory: boolean;
+  public isInvalidNotShareAll: boolean = false;
   private consent: ConsentCreateEdit;
-  dialogConfig: Md2DialogConfig = new Md2DialogConfig();
+  private dialogConfig: Md2DialogConfig = new Md2DialogConfig();
+  public federalInfo: MedicalInformationCategory;
+  public stateInfo: MedicalInformationCategory;
 
-  constructor(private medicalInformationService:MedicalInformationService,
-              private consentService: ConsentService,
-              private translate: TranslateService,
-              private sanitizer: DomSanitizer) {
-    this.consentService.getConsentEmitter().subscribe((consent)=>{
+  constructor(private medicalInformationService: MedicalInformationService,
+              private consentService: ConsentService) {
+    this.consentService.getConsentEmitter().subscribe((consent) => {
       if (consent) {
         this.consent = consent;
       }
@@ -40,6 +37,8 @@ export class MedicalInformationComponent implements OnInit {
 
   ngOnInit() {
     this.dialogConfig.disableClose = true;
+    let consentSensitivityCategories: SensitivityPolicy[] = this.medicalInformationService.mapConsentSensitivityCategoriesToSensitivityCategories(this.consent, this.sensitivityPolicies);
+    this.selectedSensitivityCategories = this.medicalInformationService.getSelectedSensitivityPolicies(consentSensitivityCategories);
     //TODO put in a constant service
     this.federalInfo = new MedicalInformationCategory();
     this.federalInfo.title = 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.FED_TITLE';
@@ -48,80 +47,61 @@ export class MedicalInformationComponent implements OnInit {
     this.stateInfo = new MedicalInformationCategory();
     this.stateInfo.title = 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.STATE_TITLE';
     this.stateInfo.description = 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.STATE_DESCRIPTION';
-
-    if(this.consent.shareSensitivityCategories.identifiers){
-      this.consent.shareSensitivityCategories.identifiers.forEach( sp =>{
-        this.sensitivityPoliciesCodes.push(sp.value);
-      })
-    }
-
-    this.updateSensitivityPoliciesStatus();
-    this.updateSelectedSensitityPolicy();
-  }
-  private updateSelectedSensitityPolicy(){
-    if( this.sensitivityPoliciesCodes.length > 0 && (this.sensitivityPoliciesCodes.length === this.sensitivityPolicies.length)){
-      this.isShareAll = 1;
-    }else if( (this.sensitivityPoliciesCodes.length > 0)&& (this.sensitivityPoliciesCodes.length < this.sensitivityPolicies.length) ){
-      this.isShareAll = 0;
-      this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
-    }
   }
 
-
-  private updateSensitivityPoliciesStatus(){
-    this.medicalInformationService.updateSensitivitiesPoliciesStatus(this.sensitivityPoliciesCodes,this.sensitivityPolicies);
-  }
-
-  onSelectShareAll(dialog: any, value:number){
+  public onSelectShareAll(dialog: any, value: number): void {
+    this.isInvalidNotShareAll = false;
     this.isShareAll = value;
-    this.checkedSensitityPolicies = [];
-    this.sensitivityPoliciesCodes = [];
-    //Unchecked all checked boxes
+    this.selectedSensitivityCategories = [];
+    this.sensitivityCategoryCodes = [];
+    //Set all categories checked
     this.medicalInformationService.setSensitivityPoliciesStatusToChecked(this.sensitivityPolicies);
     dialog.open(this.dialogConfig);
   }
 
-  setSelectedMedicalInformation(dialog: any){
-    dialog.close();
-    this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
-    this.consent.shareSensitivityCategories = this.medicalInformationService.getSelectedSensitivityPolicyIdentifiers(this.sensitivityPolicies);
-    this.consentService.setConsent(this.consent);
-  }
-
-  closeDialog(dialog: any){
-    this.medicalInformationService.updateSelectedCategories(this.sensitivityPolicies, this.checkedSensitityPolicies);
-    dialog.close();
-  }
-
-  onSelectDonotShareAll(dialog: any, value:number){
+  public onSelectDoNotShareAll(dialog: any, value: number) {
+    //Set all categories Unchecked
+    this.medicalInformationService.setSensitivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
+    if (this.consent.id != null) {
+      //In Consent Edit Mode to set all selected categories checked
+      this.medicalInformationService
+        .setSelectedSensitivityPoliciesStatusToChecked(this.consent, this.sensitivityPolicies);
+    }
+    this.isShareAll = value;
+    dialog.open(this.dialogConfig);
     this.checkAllCategoriesSelected();
-
-    this.isShareAll = value;
-    dialog.open(this.dialogConfig);
     this.consent.shareSensitivityCategories = this.medicalInformationService.getSelectedSensitivityPolicyIdentifiers(this.sensitivityPolicies);
     this.consentService.setConsent(this.consent);
   }
 
-  onSelectEditDonotShareAll(dialog: any, value:number){
-    this.isShareAll = value;
-    dialog.open(this.dialogConfig);
-  }
-
-  confirmSelectAll(dialog: any){
+  public setSelectedMedicalInformation(dialog: any) {
     dialog.close();
-    this.checkedSensitityPolicies = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
+    this.selectedSensitivityCategories = this.medicalInformationService.getSelectedSensitivityPolicies(this.sensitivityPolicies);
     this.consent.shareSensitivityCategories = this.medicalInformationService.getSelectedSensitivityPolicyIdentifiers(this.sensitivityPolicies);
     this.consentService.setConsent(this.consent);
   }
 
-  isCheckedAll(){
-    if(this.isShareAll === 0){
+  public confirmSelectAll(dialog: any): void {
+    this.setSelectedMedicalInformation(dialog);
+  }
+
+  public checkCategoriesSelectedStatus(): void {
+    if (this.isShareAll === 0) {
       this.checkAllCategoriesSelected();
     }
+    this.isSelectOneSensitivityCategory = this.medicalInformationService.isCheckedOne(this.sensitivityPolicies);
   }
 
-  private checkAllCategoriesSelected(){
-    this.isAllCategoriesSelected =  this.medicalInformationService.isCheckedAll(this.sensitivityPolicies);
+  public cancel(dialog: any): void {
+    dialog.close();
+    this.isShareAll = null;
   }
 
+  public isAbleToSave(): boolean {
+    return !this.isSelectOneSensitivityCategory || this.isInvalidNotShareAll;
+  }
+
+  private checkAllCategoriesSelected(): void {
+    this.isInvalidNotShareAll = this.medicalInformationService.isCheckedAll(this.sensitivityPolicies);
+  }
 }
