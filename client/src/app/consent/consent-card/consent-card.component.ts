@@ -118,10 +118,10 @@ export class ConsentCardComponent implements OnInit, OnChanges {
       .subscribe(
         () => {
           this.deleteConsent.emit(this.consent.id);
-          this.notificationService.show("Success in deleting consent.");
+          this.notificationService.i18nShow("CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.DELETE_SUCCESS_MSG");
         },
         err => {
-          this.notificationService.show("Failed to delete the consent, please try again later...");
+          this.notificationService.i18nShow("CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.DELETE_FAIL_MSG");
           console.log(err);
         });
   }
@@ -152,6 +152,4 @@ export class ConsentCardComponent implements OnInit, OnChanges {
       purposeOfUse: formModel.purposeOfUse
     };
   }
-
-
 }
