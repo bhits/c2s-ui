@@ -52,10 +52,10 @@ export class ProviderListComponent implements OnInit {
         .subscribe(
           () => {
             this.providers = this.providers.filter(p => p !== this.selectedProvider);
-            this.notificationService.show("Success in deleting provider.");
+            this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_DELETE_PROVIDER');
           },
           err => {
-            this.notificationService.show("Failed to delete the provider, please try again later...");
+            this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_DELETE_PROVIDER');
             console.log(err);
           });
     }

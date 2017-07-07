@@ -87,12 +87,12 @@
 
 
 <md2-dialog #confirmDialog>
-  <md2-dialog-title>Add Providers Alert</md2-dialog-title>
+  <md2-dialog-title>{{ 'HOME.ADD_PROVIDER.TITLE' | translate }}</md2-dialog-title>
     <div class="m-t-xs">
-      <div class="font-weight600">Please Note:</div>
-      <div class="m-t-xs">To create consents, you must first add at least <strong>2 Providers</strong> with whom you trust to share your health information.</div>
+      <div class="font-weight600">{{ 'HOME.ADD_PROVIDER.PLEASE_NOTE' | translate }}</div>
+      <div class="m-t-xs" [innerHTML]="'HOME.ADD_PROVIDER.DESCRIPTION' | translate"></div>
     </div>
   <md2-dialog-footer>
-    <button md-raised-button (click)="confirmDialog.close()">Close</button>
+    <button md-raised-button (click)="confirmDialog.close()">{{ 'HOME.ADD_PROVIDER.CLOSE' | translate }}</button>
   </md2-dialog-footer>
 </md2-dialog>
