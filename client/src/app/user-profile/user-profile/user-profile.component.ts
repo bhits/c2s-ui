@@ -70,6 +70,7 @@ export class UserProfileComponent implements OnInit {
       .subscribe(
         (data) => {
           this.userProfile = data;
+          this.editProfileForm.reset();
           this.initProfileUpdateModel(this.userProfile);
           this.initEditProfileFormFieldValues();
           this.notificationService.i18nShow("USER_PROFILE.EDIT.EDIT_PROFILE_SUCCESS_MSG");

@@ -113,7 +113,7 @@
         </strong>
       </button>
       <button md-raised-button color="primary" (click)="updateProfile()"
-              [disabled]="editProfileForm.invalid">
+              [disabled]="editProfileForm.invalid || editProfileForm.pristine">
         <strong>
           {{ 'USER_PROFILE.EDIT.SAVE_BTN' | translate }}
         </strong>
