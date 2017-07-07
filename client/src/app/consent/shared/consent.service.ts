@@ -193,11 +193,11 @@ export class ConsentService {
   handleDownloadSuccess(pdf: BinaryFile, consentId: number, consentOptionsDialog: any, namePrefix: string) {
     consentOptionsDialog.close();
     this.utilityService.downloadFile(pdf.content, `${namePrefix}_${consentId}.pdf`, pdf.contentType);
-    this.notificationService.show("Success in downloading consent.");
+    this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_DOWNLOAD_CONSENT');
   }
 
   handleDownloadError(err: string) {
-    this.notificationService.show("Failed to download the consent, please try again later...");
+    this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_DOWNLOAD_CONSENT');
     console.log(err);
   }
 

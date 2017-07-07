@@ -88,7 +88,7 @@ export class ConsentRevokeComponent implements OnInit {
         dialog.open();
       },
       err => {
-        this.notificationService.show("Error in revoking concent.");
+        this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_REVOKED_CONSENT');
       }
     )
   }
@@ -106,10 +106,10 @@ export class ConsentRevokeComponent implements OnInit {
 
   onSuccess(revokedPdf: BinaryFile, prefix: string) {
     this.utilityService.downloadFile(revokedPdf.content, `${prefix}_${this.consentId}.pdf`, revokedPdf.contentType);
-    this.notificationService.show("Success in downloading revoked consent pdf ...");
+    this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_DOWNLOAD_REVOKED_CONSENT');
   }
 
   onError(error: any) {
-    this.notificationService.show("Error in downloading revoked consent pdf ...");
+    this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_DOWNLOAD_REVOKED_CONSENT');
   }
 }

@@ -76,7 +76,7 @@ export class ConsentSignComponent implements OnInit {
           dialog.open();
         },
         err => {
-          this.notificationService.show("Error in attest consent.");
+          this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_ATTEST_CONCENT');
           console.log(err);
         }
       );
@@ -88,10 +88,10 @@ export class ConsentSignComponent implements OnInit {
       .subscribe(
         (signedPdf: BinaryFile) => {
           this.utilityService.downloadFile(signedPdf.content, `${namePrefix}_${this.consent.id}.pdf`, signedPdf.contentType);
-          this.notificationService.show("Success in downloading consent.");
+          this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_DOWNLOAD_SIGNED_CONSENT');
         },
         err => {
-          this.notificationService.show("Failed to download the consent, please try again later...");
+          this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_DOWNLOAD_SIGNED_CONSENT');
           console.log(err);
         }
       );

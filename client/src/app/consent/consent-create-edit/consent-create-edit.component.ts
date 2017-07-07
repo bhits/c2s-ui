@@ -65,11 +65,11 @@ export class ConsentCreateEditComponent implements OnInit {
       this.consentService.updateConsent(this.consent)
         .subscribe(
           () => {
-            this.notificationService.show("Success in Updating consent.");
+            this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_UPDATING_CONSENT');
             this.utilityService.navigateTo('consent-list');
           },
           err => {
-            this.notificationService.show("Error in Updating consent.");
+            this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_UPDATING_CONSENT');
             console.log(err);
           }
         );
@@ -77,11 +77,11 @@ export class ConsentCreateEditComponent implements OnInit {
       this.consentService.createConsent(this.consent)
         .subscribe(
           () => {
-            this.notificationService.show("Success in creating consent.");
+            this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_CREATING_CONSENT');
             this.utilityService.navigateTo('consent-list');
           },
           err => {
-            this.notificationService.show("Error in creating consent.");
+            this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_CREATING_CONSENT');
             console.log(err);
           }
         );

@@ -10,7 +10,7 @@
     <input type="text" class="font-size15" mdInput placeholder="{{'ACCOUNT_ACTIVATION.USERNAME' | translate}}"
            (blur)="checkUsername()" formControlName="username">
     <md-hint class="has-error font-size16" *ngIf="isUsernameUsed">
-      Please try a different username.
+      {{'ACCOUNT_ACTIVATION.HINT' | translate}}
     </md-hint>
     <c2s-control-messages [control]="accountActivationFrom.controls.username"
                           [customMessage]="passwordErrorMessage"></c2s-control-messages>
