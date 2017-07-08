@@ -1,12 +1,11 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from "@angular/core";
-import {Consent} from "../shared/consent.model";
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from "@angular/core";
+import {DetailedConsent} from "../shared/detailed-consent.model";
 import {ConsentStageOption} from "../shared/consent-stage-option.model";
 import {CONSENT_STAGES} from "../shared/consent-stages.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
 import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
 import {BinaryFile} from "../shared/binary-file.model";
-import {TranslateService} from "@ngx-translate/core";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TryPolicy} from "../shared/tryPolicy.model";
@@ -19,7 +18,7 @@ import {TryPolicyResponse} from "../shared/tryPolicy-response.model";
 })
 export class ConsentCardComponent implements OnInit, OnChanges {
 
-  @Input() consent: Consent;
+  @Input() consent: DetailedConsent;
   public uploadedDocumentList: UploadedDocument[];
   @Output() private deleteConsent = new EventEmitter<number>();
   public tryPolicyForm: FormGroup;
@@ -29,7 +28,6 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,
-              private translate: TranslateService,
               private formBuilder: FormBuilder) {
   }
 
@@ -76,7 +74,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any, tryPolicyDialog: any) {
     switch (consentOption.key) {
-      case ConsentStageOptionKey.APPLY_TRY_POLICY:{
+      case ConsentStageOptionKey.APPLY_TRY_POLICY: {
         this.consentService.getUploadedDocumentList()
           .subscribe(
             (docList: UploadedDocument[]) => {
@@ -118,16 +116,16 @@ export class ConsentCardComponent implements OnInit, OnChanges {
       .subscribe(
         () => {
           this.deleteConsent.emit(this.consent.id);
-          this.notificationService.show("Success in deleting consent.");
+          this.notificationService.i18nShow("CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.DELETE_SUCCESS_MSG");
         },
         err => {
-          this.notificationService.show("Failed to delete the consent, please try again later...");
+          this.notificationService.i18nShow("CONSENTS.CARD.MANAGE_CONSENT_DIALOG.DELETE_CONSENT_DIALOG.DELETE_FAIL_MSG");
           console.log(err);
         });
   }
 
-  applyTryPolicy(dialog: any){
-    let tryPolicyInput =  this.prepareTryPolicyInput();
+  applyTryPolicy(dialog: any) {
+    let tryPolicyInput = this.prepareTryPolicyInput();
     dialog.close();
     this.consentService.getTryPolicyXHTML(tryPolicyInput.documentId, tryPolicyInput.purposeOfUse, this.consent.id)
       .subscribe((encodedDocument: TryPolicyResponse) => this.consentService.handleTryPolicySuccess(encodedDocument),
@@ -138,7 +136,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   }
 
-  private initTryPolicyFormFormGroup(){
+  private initTryPolicyFormFormGroup() {
     return this.formBuilder.group({
       documentId: [null, Validators.required],
       purposeOfUse: [null, Validators.required]
@@ -152,6 +150,4 @@ export class ConsentCardComponent implements OnInit, OnChanges {
       purposeOfUse: formModel.purposeOfUse
     };
   }
-
-
 }

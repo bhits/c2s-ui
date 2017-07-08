@@ -8,9 +8,8 @@ import {ConsentRevocation} from "../shared/consent-revocation.model";
 import {NotificationService} from "../../core/notification.service";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
-import {TranslateService} from "@ngx-translate/core";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
-import {Consent} from "../shared/consent.model";
+import {DetailedConsent} from "../shared/detailed-consent.model";
 
 @Component({
   selector: 'c2s-consent-revoke',
@@ -23,12 +22,12 @@ export class ConsentRevokeComponent implements OnInit {
   public isAuthenticated: boolean = false;
   public password: string;
   public inValid: boolean;
-  public consent: Consent;
+  public consent: DetailedConsent;
   consentRevocationTerms: string;
   private userName: string;
   fullName: string;
   consentId: string;
-  username:any;
+  username: any;
   birthDate: Date;
 
   constructor(private authenticationService: AuthenticationService,
@@ -37,7 +36,6 @@ export class ConsentRevokeComponent implements OnInit {
               private consentService: ConsentService,
               private utilityService: UtilityService,
               private notificationService: NotificationService,
-              private translate: TranslateService,
               private limitedProfileService: LimitedProfileService) {
   }
 
@@ -90,7 +88,7 @@ export class ConsentRevokeComponent implements OnInit {
         dialog.open();
       },
       err => {
-        this.notificationService.show("Error in revoking concent.");
+        this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_REVOKED_CONSENT');
       }
     )
   }
@@ -108,10 +106,10 @@ export class ConsentRevokeComponent implements OnInit {
 
   onSuccess(revokedPdf: BinaryFile, prefix: string) {
     this.utilityService.downloadFile(revokedPdf.content, `${prefix}_${this.consentId}.pdf`, revokedPdf.contentType);
-    this.notificationService.show("Success in downloading revoked consent pdf ...");
+    this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_DOWNLOAD_REVOKED_CONSENT');
   }
 
   onError(error: any) {
-    this.notificationService.show("Error in downloading revoked consent pdf ...");
+    this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_DOWNLOAD_REVOKED_CONSENT');
   }
 }

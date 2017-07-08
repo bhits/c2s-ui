@@ -1,7 +1,8 @@
-
 import {Identifier} from "./identifier.model";
+
 export class ListOfIdentifiers {
   identifiers: Identifier[];
-  constructor(){
+  constructor(identifiers: Identifier[]) {
+    this.identifiers = identifiers;
   }
 }

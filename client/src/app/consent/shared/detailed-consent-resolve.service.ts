@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Resolve, ActivatedRouteSnapshot} from "@angular/router";
-import {Consent} from "./consent.model";
+import {DetailedConsent} from "./detailed-consent.model";
 import {ConsentService} from "./consent.service";
 
 @Injectable()
@@ -12,7 +12,7 @@ export class DetailedConsentResolveService implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     let consentId = route.params['consentId'];
     return this.consentService.getConsent(consentId)
-      .do((consent: Consent) => {
+      .do((consent: DetailedConsent) => {
         return consent;
       });
   }
