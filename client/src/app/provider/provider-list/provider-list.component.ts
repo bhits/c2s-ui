@@ -4,7 +4,6 @@ import {PaginationInstance} from "ng2-pagination";
 import {ActivatedRoute} from "@angular/router";
 import {NotificationService} from "../../core/notification.service";
 import {ConsentProvider} from "../../shared/consent-provider.model";
-import {TranslateService} from "@ngx-translate/core";
 import {TokenService} from "../../security/shared/token.service";
 
 @Component({
@@ -27,7 +26,6 @@ export class ProviderListComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private notificationService: NotificationService,
               private providerService: ProviderService,
-              private translate: TranslateService,
               private tokenService: TokenService) {
   }
 
@@ -52,10 +50,11 @@ export class ProviderListComponent implements OnInit {
         .subscribe(
           () => {
             this.providers = this.providers.filter(p => p !== this.selectedProvider);
-            this.notificationService.show("Success in deleting provider.");
+            this.tokenService.storeProviderCount(this.tokenService.getProviderCount() - 1);
+            this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_DELETE_PROVIDER');
           },
           err => {
-            this.notificationService.show("Failed to delete the provider, please try again later...");
+            this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_DELETE_PROVIDER');
             console.log(err);
           });
     }

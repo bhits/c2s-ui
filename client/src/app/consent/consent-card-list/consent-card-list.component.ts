@@ -1,11 +1,10 @@
-import {Component, OnInit, ChangeDetectionStrategy} from "@angular/core";
+import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
 
 import {ConsentList} from "../shared/consent-list.model";
-import {Consent} from "../shared/consent.model";
+import {DetailedConsent} from "../shared/detailed-consent.model";
 import {DataService} from "../../shared/data.service";
 import {ActivatedRoute} from "@angular/router";
-import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'c2s-consent-card-list',
@@ -23,11 +22,10 @@ export class ConsentCardListComponent implements OnInit {
 
   title: string = "Consents";
 
-  consents: Observable<Consent[]>;
+  consents: Observable<DetailedConsent[]>;
 
   constructor(private dataService: DataService,
-              private route: ActivatedRoute,
-              private translate: TranslateService) {
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {

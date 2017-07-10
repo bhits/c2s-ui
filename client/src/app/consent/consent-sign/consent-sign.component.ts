@@ -2,14 +2,13 @@ import {Component, OnInit} from "@angular/core";
 import {TokenService} from "../../security/shared/token.service";
 import {AuthenticationService} from "../../security/shared/authentication.service";
 import {ActivatedRoute} from "@angular/router";
-import {Consent} from "../shared/consent.model";
+import {DetailedConsent} from "../shared/detailed-consent.model";
 import {Profile} from "../../core/profile.model";
 import {ConsentTerms} from "../shared/consent-terms.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
-import {TranslateService} from "@ngx-translate/core";
 import {ProfileService} from "../../security/shared/profile.service";
 
 @Component({
@@ -19,7 +18,7 @@ import {ProfileService} from "../../security/shared/profile.service";
 })
 export class ConsentSignComponent implements OnInit {
   public title: string = "eSignature";
-  public consent: Consent;
+  public consent: DetailedConsent;
   public profile: Profile;
   public termsWithUserName: string;
   public checked: boolean = false;
@@ -35,8 +34,7 @@ export class ConsentSignComponent implements OnInit {
               private tokenService: TokenService,
               private profileService: ProfileService,
               private route: ActivatedRoute,
-              private utilityService: UtilityService,
-              private translate: TranslateService) {
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
@@ -78,7 +76,7 @@ export class ConsentSignComponent implements OnInit {
           dialog.open();
         },
         err => {
-          this.notificationService.show("Error in attest consent.");
+          this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_ATTEST_CONCENT');
           console.log(err);
         }
       );
@@ -90,10 +88,10 @@ export class ConsentSignComponent implements OnInit {
       .subscribe(
         (signedPdf: BinaryFile) => {
           this.utilityService.downloadFile(signedPdf.content, `${namePrefix}_${this.consent.id}.pdf`, signedPdf.contentType);
-          this.notificationService.show("Success in downloading consent.");
+          this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_DOWNLOAD_SIGNED_CONSENT');
         },
         err => {
-          this.notificationService.show("Failed to download the consent, please try again later...");
+          this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_DOWNLOAD_SIGNED_CONSENT');
           console.log(err);
         }
       );

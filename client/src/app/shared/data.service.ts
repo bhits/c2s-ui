@@ -10,8 +10,6 @@ import {ProfileService} from "../security/shared/profile.service";
 @Injectable()
 export class DataService {
 
-  private currentUserMrn: string = this.profileService.getUserMrn();
-
   constructor(private c2sUiApiUrlService: C2sUiApiUrlService,
               private http: Http,
               private exceptionService: ExceptionService,
@@ -19,14 +17,14 @@ export class DataService {
   }
 
   getProviders(): Observable<ConsentProvider[]> {
-    const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/providers");
+    const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.profileService.getUserMrn()).concat("/providers");
     return this.http.get(resourceUrl)
       .map((resp: Response) => <ConsentProvider>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
   getConsents(page: number): Observable<ConsentList> {
-    const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/consents");
+    const resourceUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.profileService.getUserMrn()).concat("/consents");
     let params: URLSearchParams = new URLSearchParams();
     params.set('page', page.toString());
     return this.http.get(resourceUrl, {search: params})
