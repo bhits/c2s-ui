@@ -21,7 +21,8 @@ export const CONSENT_STAGES: ConsentStage[] = [
     color: "primary",
     options: [
       {key: ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF, icon: "file_download", text: "CONSENTS.CARD.CONSENT_SIGNED_STAGE.VIEW_SIGNED_CONSENT", isMethod: true},
-      {key: ConsentStageOptionKey.REVOKE, icon: "cancel", text: "CONSENTS.CARD.CONSENT_SIGNED_STAGE.REVOCATION", routerLink: '/consent-revoke'}
+      {key: ConsentStageOptionKey.REVOKE, icon: "cancel", text: "CONSENTS.CARD.CONSENT_SIGNED_STAGE.REVOCATION", routerLink: '/consent-revoke'},
+      {key: ConsentStageOptionKey.APPLY_TRY_POLICY, icon: "settings", text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.APPLY_TRY_POLICY", isMethod: true}
     ]
   },
   {
@@ -31,6 +32,7 @@ export const CONSENT_STAGES: ConsentStage[] = [
     color: "warn",
     options: [
       {key: ConsentStageOptionKey.DOWNLOAD_SIGNED_PDF, icon: "file_download", text: "CONSENTS.CARD.CONSENT_REVOKED_STAGE.VIEW_SIGNED_CONSENT", isMethod: true},
-      {key: ConsentStageOptionKey.DOWNLOAD_REVOKED_PDF, icon: "file_download", text: "CONSENTS.CARD.CONSENT_REVOKED_STAGE.VIEW_SIGNED_REVOCATION", isMethod: true}
+      {key: ConsentStageOptionKey.DOWNLOAD_REVOKED_PDF, icon: "file_download", text: "CONSENTS.CARD.CONSENT_REVOKED_STAGE.VIEW_SIGNED_REVOCATION", isMethod: true},
+      {key: ConsentStageOptionKey.APPLY_TRY_POLICY, icon: "settings", text: "CONSENTS.CARD.CONSENT_SAVE_STAGE.APPLY_TRY_POLICY", isMethod: true}
     ]
   }];
