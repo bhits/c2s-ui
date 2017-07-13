@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
-import {UmsProfile} from "../security/shared/ums-profile.model";
-import {ProfileService} from "../security/shared/profile.service";
+import {UmsLimitedProfile} from "../security/shared/ums-limited-profile.model";
+import {LimitedProfileService} from "../security/shared/limited-profile.service";
 import {Http} from "@angular/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
@@ -13,7 +13,7 @@ export class CustomTranslateService {
   private umsProfileUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl().concat("/users/locale");
 
   constructor( private translateService: TranslateService,
-               private profileService: ProfileService,
+               private limitedProfileService: LimitedProfileService,
                private http: Http,
                private c2sUiApiUrlService: C2sUiApiUrlService,
                private exceptionService: ExceptionService,) {
@@ -46,15 +46,15 @@ export class CustomTranslateService {
   }
 
   private updateProfileLocale(locale:string){
-    let profile: UmsProfile = this.profileService.getProfileFromSessionStorage();
+    let profile: UmsLimitedProfile = this.limitedProfileService.getProfileFromSessionStorage();
     if(profile){
       profile.userLocale = locale;
-      this.profileService.setProfileInSessionStorage(profile);
+      this.limitedProfileService.setProfileInSessionStorage(profile);
     }
   }
 
   getSupportedLanguages(): any[]{
-    return this.profileService.getProfileFromSessionStorage().supportedLocales;
+    return this.limitedProfileService.getProfileFromSessionStorage().supportedLocales;
   }
 }
 

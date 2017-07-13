@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {ConsentService} from "../shared/consent.service";
-import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
+import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
 import {Consent} from "../shared/consent.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 

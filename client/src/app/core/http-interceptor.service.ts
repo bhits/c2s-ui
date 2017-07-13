@@ -13,7 +13,7 @@ import {Observable} from "rxjs";
 import {SlimLoadingBarService} from "ng2-slim-loading-bar";
 import {TokenService} from "../security/shared/token.service";
 import {SessionStorageService} from "../security/shared/session-storage.service";
-import {UmsProfile} from "../security/shared/ums-profile.model";
+import {UmsLimitedProfile} from "../security/shared/ums-limited-profile.model";
 
 @Injectable()
 export class HttpInterceptorService extends Http {
@@ -81,8 +81,8 @@ export class HttpInterceptorService extends Http {
       if (!options.headers) {
         options.headers = new Headers();
       }
-      let profile:UmsProfile = this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
-      options.headers.set('Accept-Language',profile.userLocale);
+      let umsLimitedProfile:UmsLimitedProfile = this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
+      options.headers.set('Accept-Language', umsLimitedProfile.userLocale);
     }
 
     return options;

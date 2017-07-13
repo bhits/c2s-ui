@@ -1,4 +1,4 @@
-export class UmsProfile {
+export class UmsLimitedProfile {
   userLocale: string;
   firstName: string;
   lastName: string;

@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {ExceptionService} from "../../core/exception.service";
 import {NotificationService} from "../../core/notification.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {ProfileService} from "../../security/shared/profile.service";
+import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {UploadInput} from "ngx-uploader";
 import {TokenService} from "../../security/shared/token.service";
@@ -14,17 +14,17 @@ import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code
 
 @Injectable()
 export class MedicalDocumentsService {
-  private currentUserMrn: string = this.profileService.getUserMrn();
-  private phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(this.currentUserMrn).concat("/documents");
-  private phrDocumentTypeCodesUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/documentTypeCodes");
-
   constructor(private http: Http,
               private tokenService: TokenService,
               private exceptionService: ExceptionService,
               private notificationService: NotificationService,
               private c2sUiApiUrlService: C2sUiApiUrlService,
-              private profileService: ProfileService) {
+              private limitedProfileService: LimitedProfileService) {
   }
+
+  private currentUserMrn: string = this.limitedProfileService.getUserMrn();
+  private phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(this.currentUserMrn).concat("/documents");
+  private phrDocumentTypeCodesUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/documentTypeCodes");
 
   getAllDocumentTypeCodesList(): Observable<UploadedDocumentTypeCode[]> {
     return this.http.get(this.phrDocumentTypeCodesUrl)
@@ -49,7 +49,7 @@ export class MedicalDocumentsService {
   }
 
   prepareDocumentUpload(documentToUploadMetadata: DocumentToUploadMetadata): UploadInput {
-    const currentUserMrn: string = this.profileService.getUserMrn();
+    const currentUserMrn: string = this.limitedProfileService.getUserMrn();
     const phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(currentUserMrn).concat("/documents");
 
     const token = this.tokenService.getAccessToken();

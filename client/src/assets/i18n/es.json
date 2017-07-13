@@ -41,6 +41,7 @@
         "PROVIDERS": "Proveedores",
         "CONSENTS": "Consentimientos",
         "MEDICAL_DOCUMENTS": "Documentos Médicos",
+        "MY_PROFILE": "Mi Perfil",
         "LOGOUT": "Cerrar sesión"
       }
     }
@@ -437,5 +438,47 @@
       }
     },
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "No se puede obtener la lista de códigos de tipo de documento."
+  },
+  "USER_PROFILE": {
+    "TITLE": "Mi Perfil",
+    "EDIT": {
+      "REQUIRED_INFORMATION": {
+        "LABEL": "Información Requerida",
+        "FIELDS": {
+          "EMAIL_PLACEHOLDER": "Dirección de Correo Electrónico"
+        }
+      },
+      "ADDITIONAL_INFORMATION": {
+        "LABEL": "Información Adicional",
+        "FIELDS": {
+          "STREET_LINE1_PLACEHOLDER": "Dirección (Línea 1)",
+          "STREET_LINE2_PLACEHOLDER": "Dirección (Línea 2)",
+          "CITY_PLACEHOLDER": "Ciudad",
+          "POSTAL_CODE_PLACEHOLDER": "Código Postal",
+          "STATE_PLACEHOLDER": "Estado",
+          "COUNTRY_PLACEHOLDER": "País",
+          "PHONE_PLACEHOLDER": "Número de Teléfono"
+        }
+      },
+      "CANCEL_BTN": "Cancelar",
+      "SAVE_BTN": "Salvar",
+      "FIELDS_LOOKUP_INFO_FAILED_MSG": "No se pueden rellenar los cuadros desplegables con listas de opciones.",
+      "GET_PROFILE_FAILED_MSG": "No se pueden obtener los datos del perfil actual.",
+      "EDIT_PROFILE_FAILED_MSG": "No se puede actualizar el perfil.",
+      "EDIT_PROFILE_SUCCESS_MSG": "Perfil actualizado con éxito."
+    }
+  },
+  "SHARED": {
+    "VALIDATION_RULES": {
+      "PHONE_ERROR_MESSAGE": "Debe estar en uno de los siguientes formatos: 123-456-7890 (123)456-7890 1234567890 123.456.7890",
+      "SSN_ERROR_MESSAGE": "Debe estar en uno de los siguientes formatos:  123-45-6789, 123456789; 123-456789; 12345-6789",
+      "ZIP_ERROR_MESSAGE": "Debe estar en uno de los siguientes formatos: 12345 or 12345-6789",
+      "EMAIL_ERROR_MESSAGE": "Esta dirección de correo electrónico no es válida",
+      "MIN_LENGTH_ERROR_MESSAGE": "Este campo debe tener un mínimo de {{length}} caracteres",
+      "MAX_LENGTH_ERROR_MESSAGE": "Este campo no debe tener más de {{length}} caracteres",
+      "REQUIRED_ERROR_MESSAGE": "Este campo es requerido",
+      "REQUIRED_TRUE_ERROR_MESSAGE": "Este valor de campo debe ser verdadero",
+      "ONE_EMAIL_REQUIRED_MESSAGE": "Al menos una dirección de correo electrónico requerida"
+    }
   }
 }

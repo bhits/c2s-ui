@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
-import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
+import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
 import {Identifier} from "../../shared/identifier.model";
 import {Consent} from "src/app/consent/shared/consent.model";
 

@@ -20,6 +20,7 @@ import {LayoutModule} from "./layout/layout.module";
 import {AccountModule} from "./account/account.module";
 import {createTranslateLoader, CustomTranslateService} from "./core/custom-translate.service";
 import {MedicalDocumentsModule} from "./medical-documents/medical-documents.module";
+import {UserProfileModule} from "./user-profile/user-profile.module";
 
 
 
@@ -52,6 +53,7 @@ import {MedicalDocumentsModule} from "./medical-documents/medical-documents.modu
     ConsentModule,
     ProviderModule,
     MedicalDocumentsModule,
+    UserProfileModule,
     AppRoutingModule // Must be the last module to be imported
   ],
   providers: [
