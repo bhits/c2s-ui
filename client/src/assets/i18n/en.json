@@ -310,7 +310,7 @@
     "CONFIRM_DIALOG": {
       "TITLE": "Please Authenticate",
       "CONTENT": "Please provide your account password to authenticate, and complete e-signature",
-      "AUTHENTICATE_MSG": "Failed to authenticate, please try again...",
+      "AUTHENTICATE_MSG": "Failed to authenticate. Please try again.",
       "CANCEL_BTN": "Cancel",
       "CONTINUE_BTN": "Continue"
     },
@@ -358,7 +358,8 @@
     "FAILED_ATTEST_CONCENT": "Error in attest consent.",
     "SUCCESS_DELETE_PROVIDER": "Success in deleting provider.",
     "FAILED_DELETE_PROVIDER": "Failed to delete the provider, please try again later...",
-    "FAILED_ADD_PROVIDER": "Failed to add the provider, please try again later..."
+    "FAILED_ADD_PROVIDER": "Failed to add the provider, please try again later...",
+    "DUPLICATE_CONSENT": "Failed to add new consent. Duplicate consent created."
   },
   "ACCOUNT_VERIFICATION": {
     "TITLE": "Account Setup Verification",

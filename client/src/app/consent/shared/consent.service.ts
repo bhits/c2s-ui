@@ -96,7 +96,7 @@ export class ConsentService {
   createConsent(consent: Consent): Observable<void> {
     return this.http.post(this.pcmConsentUrl, this.createConsentDto(consent))
       .map(() => null)
-      .catch(this.exceptionService.handleError);
+      .catch(this.exceptionService.handleErrorWithErrorCode);
   }
 
   deleteConsent(id: number): Observable<void> {
@@ -213,6 +213,12 @@ export class ConsentService {
     }
     else {
       this.notificationService.i18nShow("MEDICAL_DOCUMENTS.GENERIC_ERROR");
+    }
+  }
+
+  handleCreateConsentError(err: any) {
+    if(err =="409"){
+      this.notificationService.i18nShow("NOTIFICATION_MSG.DUPLICATE_CONSENT");
     }
   }
 
