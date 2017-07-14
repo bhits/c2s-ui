@@ -18,6 +18,7 @@ import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
 import {ConsentProviderPipe} from "./consent-provider.pipe";
 import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password.component";
 import {FileValueAccessor} from "./file-value-accessor.directive";
+import {FileValidator} from "./file-validator.directive";
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import {FileValueAccessor} from "./file-value-accessor.directive";
     ControlMessagesComponent,
     ConsentProviderPipe,
     ShowHidePasswordComponent,
-    FileValueAccessor
+    FileValueAccessor,
+    FileValidator
   ],
   exports: [
     CommonModule,
@@ -54,7 +56,8 @@ import {FileValueAccessor} from "./file-value-accessor.directive";
     DataService,
     UtilityService,
     DatePipe,
-    ValidationService
+    ValidationService,
+    FileValidator
   ]
 })
 
