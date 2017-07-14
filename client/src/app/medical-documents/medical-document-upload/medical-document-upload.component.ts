@@ -8,6 +8,7 @@ import {DocumentToUploadMetadata} from "../shared/document-to-upload-metadata.mo
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code.model";
+import {FileValidator} from "../../shared/file-validator.directive";
 
 
 @Component({
@@ -95,7 +96,11 @@ export class MedicalDocumentUploadComponent implements OnInit {
           Validators.maxLength(ValidationRules.MEDICAL_DOCUMENT_DESC_MAX_LENGTH)
         ]
       ],
-      fileUploadInput: [null]
+      fileUploadInput: [null,
+        [
+          FileValidator.validate
+        ]
+      ]
     });
   }
 }

@@ -17,6 +17,7 @@ import {ControlMessagesComponent} from "./control-messages/control-messages.comp
 import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
 import {ConsentProviderPipe} from "./consent-provider.pipe";
 import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password.component";
+import {FileValueAccessor} from "./file-value-accessor.directive";
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password
     PageTitleComponent,
     ControlMessagesComponent,
     ConsentProviderPipe,
-    ShowHidePasswordComponent
+    ShowHidePasswordComponent,
+    FileValueAccessor
   ],
   exports: [
     CommonModule,
@@ -44,7 +46,8 @@ import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password
     Md2Tooltip,
     PageTitleComponent,
     ControlMessagesComponent,
-    ShowHidePasswordComponent
+    ShowHidePasswordComponent,
+    FileValueAccessor
   ],
   providers: [
     C2sUiApiUrlService,
