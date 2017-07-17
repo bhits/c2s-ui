@@ -8,7 +8,7 @@ import {NotificationService} from "../../core/notification.service";
 import {Profile} from "../../core/profile.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
-import {ProfileService} from "../../security/shared/profile.service";
+import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 
 
 @Component({
@@ -30,7 +30,7 @@ export class ConsentCreateEditComponent implements OnInit {
               private notificationService: NotificationService,
               private route: ActivatedRoute,
               private utilityService: UtilityService,
-              private profileService: ProfileService) {
+              private limitedProfileService: LimitedProfileService) {
 
     this.consentService.getConsentEmitter().subscribe((consent) => {
       if (consent) {
@@ -38,7 +38,7 @@ export class ConsentCreateEditComponent implements OnInit {
       }
     });
 
-    let fullName: string = this.profileService.getFullName();
+    let fullName: string = this.limitedProfileService.getFullName();
     this.username = {name: fullName};
   }
 

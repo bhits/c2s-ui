@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {ConsentService} from "../shared/consent.service";
 import "rxjs/add/operator/toPromise";
-import {ListOfIdentifiers} from "../../shared/list-of-identifies.model";
+import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
 import {Identifier} from "../../shared/identifier.model";
 import {Consent} from "../shared/consent.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";

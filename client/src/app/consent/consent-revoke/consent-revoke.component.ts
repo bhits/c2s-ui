@@ -8,7 +8,7 @@ import {ConsentRevocation} from "../shared/consent-revocation.model";
 import {NotificationService} from "../../core/notification.service";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
-import {ProfileService} from "../../security/shared/profile.service";
+import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {DetailedConsent} from "../shared/detailed-consent.model";
 
 @Component({
@@ -36,7 +36,7 @@ export class ConsentRevokeComponent implements OnInit {
               private consentService: ConsentService,
               private utilityService: UtilityService,
               private notificationService: NotificationService,
-              private profileService: ProfileService) {
+              private limitedProfileService: LimitedProfileService) {
   }
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class ConsentRevokeComponent implements OnInit {
     this.userName = profile.userName;
     this.fullName = profile.name;
     this.username = {name: profile.name};
-    this.birthDate = this.profileService.getUserBirthDate();
+    this.birthDate = this.limitedProfileService.getUserBirthDate();
 
     this.route.params.subscribe(params => {
       if (params['consentId']) {

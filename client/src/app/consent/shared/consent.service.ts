@@ -15,14 +15,14 @@ import {ConsentTerms} from "./consent-terms.model";
 import {ConsentRevocation} from "./consent-revocation.model";
 import {BinaryFile} from "./binary-file.model";
 import {NotificationService} from "../../core/notification.service";
-import {ProfileService} from "../../security/shared/profile.service";
+import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {TryPolicyResponse} from "./tryPolicy-response.model";
 
 
 @Injectable()
 export class ConsentService {
-  private currentUserMrn: string = this.profileService.getUserMrn();
+  private currentUserMrn: string = this.limitedProfileService.getUserMrn();
   private pcmPurposeOfUseUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/purposes");
   private pcmSensitivityPolicyUrl: string = this.c2sUiApiUrlService.getVssBaseUrl().concat("/valueSetCategories");
   private pcmConsentUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/consents");
@@ -38,7 +38,7 @@ export class ConsentService {
               private c2sUiApiUrlService: C2sUiApiUrlService,
               private utilityService: UtilityService,
               private notificationService: NotificationService,
-              private profileService: ProfileService) {
+              private limitedProfileService: LimitedProfileService) {
   }
 
   getConsentEmitter(): Observable<Consent> {
@@ -84,7 +84,7 @@ export class ConsentService {
     params.set('purposeOfUseCode', pou);
 
     let headers: Headers = new Headers();
-    headers.append('Accept-Language', this.profileService.getUserLocale());
+    headers.append('Accept-Language', this.limitedProfileService.getUserLocale());
 
     let options = new RequestOptions({headers: headers, search: params});
 

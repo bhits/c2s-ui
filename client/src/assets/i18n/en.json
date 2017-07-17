@@ -41,6 +41,7 @@
         "PROVIDERS": "Providers",
         "CONSENTS": "Consents",
         "MEDICAL_DOCUMENTS": "Medical Documents",
+        "MY_PROFILE": "My Profile",
         "LOGOUT": "Logout"
       }
     }
@@ -438,5 +439,47 @@
       }
     },
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "Unable to get the list of document type codes."
+  },
+  "USER_PROFILE": {
+    "TITLE": "My Profile",
+    "EDIT": {
+      "REQUIRED_INFORMATION": {
+        "LABEL": "Required Information",
+        "FIELDS": {
+          "EMAIL_PLACEHOLDER": "E-mail Address"
+        }
+      },
+      "ADDITIONAL_INFORMATION": {
+        "LABEL": "Additional Information",
+        "FIELDS": {
+          "STREET_LINE1_PLACEHOLDER": "Street Address (Line 1)",
+          "STREET_LINE2_PLACEHOLDER": "Street Address (Line 2)",
+          "CITY_PLACEHOLDER": "City",
+          "POSTAL_CODE_PLACEHOLDER": "Postal Code",
+          "STATE_PLACEHOLDER": "State",
+          "COUNTRY_PLACEHOLDER": "Country",
+          "PHONE_PLACEHOLDER": "Home Phone Number"
+        }
+      },
+      "CANCEL_BTN": "Cancel",
+      "SAVE_BTN": "Save",
+      "FIELDS_LOOKUP_INFO_FAILED_MSG": "Unable to populate drop-down boxes with lists of options.",
+      "GET_PROFILE_FAILED_MSG": "Unable to get current profile data.",
+      "EDIT_PROFILE_FAILED_MSG": "Unable to update profile.",
+      "EDIT_PROFILE_SUCCESS_MSG": "Successfully updated profile."
+    }
+  },
+  "SHARED": {
+    "VALIDATION_RULES": {
+      "PHONE_ERROR_MESSAGE": "Must be in one of the following formats: 123-456-7890 (123)456-7890 1234567890 123.456.7890",
+      "SSN_ERROR_MESSAGE": "Must be in one of the following formats:  123-45-6789, 123456789; 123-456789; 12345-6789",
+      "ZIP_ERROR_MESSAGE": "Must be in one of the following formats: 12345 or 12345-6789",
+      "EMAIL_ERROR_MESSAGE": "This email address is invalid",
+      "MIN_LENGTH_ERROR_MESSAGE": "This field must be at least {{length}} characters long",
+      "MAX_LENGTH_ERROR_MESSAGE": "This field must be no more than {{length}} characters long",
+      "REQUIRED_ERROR_MESSAGE": "This field is required",
+      "REQUIRED_TRUE_ERROR_MESSAGE": "This field value must be true",
+      "ONE_EMAIL_REQUIRED_MESSAGE": "At least one email address required"
+    }
   }
 }

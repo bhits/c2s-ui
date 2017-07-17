@@ -5,8 +5,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../../shared/validation.service";
 import {TokenService} from "../shared/token.service";
 import {CustomTranslateService} from "../../core/custom-translate.service";
-import {ProfileService} from "../shared/profile.service";
-import {UmsProfile} from "../shared/ums-profile.model";
+import {LimitedProfileService} from "../shared/limited-profile.service";
+import {UmsLimitedProfile} from "../shared/ums-limited-profile.model";
 import {Profile} from "../../core/profile.model";
 import {UtilityService} from "../../shared/utility.service";
 
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
               private validationService: ValidationService,
               private tokenService: TokenService,
               private customTranslateService: CustomTranslateService,
-              private profileService: ProfileService,
+              private limitedProfileService: LimitedProfileService,
               private utilityService: UtilityService) {
 
     this.credentials = new Credentials();
@@ -66,12 +66,12 @@ export class LoginComponent implements OnInit {
   }
 
   getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile) {
-    this.profileService.getUMSProfile().subscribe(
-      (profile: UmsProfile) => {
+    this.limitedProfileService.getUMSProfile().subscribe(
+      (profile: UmsLimitedProfile) => {
         let localesCode: string[] = this.utilityService.getSupportedLocaleCode(profile.supportedLocales);
         this.customTranslateService.addSupportedLanguages(localesCode);
         this.customTranslateService.setDefaultLanguage(profile.userLocale);
-        this.profileService.setProfileInSessionStorage(profile);
+        this.limitedProfileService.setProfileInSessionStorage(profile);
         this.authenticationService.onGetUserProfileSuccess(uaaProfile);
       },
       this.handleLoginError

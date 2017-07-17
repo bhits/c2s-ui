@@ -6,8 +6,8 @@ import {GlobalEventManagerService} from "../../core/global-event-manager.service
 import {AccessToken} from "./access-token.model";
 import {TokenService} from "./token.service";
 import {Profile} from "../../core/profile.model";
-import {ProfileService} from "./profile.service";
-import {UmsProfile} from "./ums-profile.model";
+import {LimitedProfileService} from "./limited-profile.service";
+import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {UtilityService} from "../../shared/utility.service";
 
@@ -24,7 +24,7 @@ export class AuthenticationService {
               private http: Http,
               private tokenService: TokenService,
               private globalEventManagerService: GlobalEventManagerService,
-              private profileService: ProfileService,
+              private limitedProfileService: LimitedProfileService,
               private customTranslateService: CustomTranslateService,
               private utilityService: UtilityService) {
   }
@@ -41,7 +41,7 @@ export class AuthenticationService {
     this.tokenService.deleteAccessToken();
     this.tokenService.deleteProfileToken();
     this.tokenService.deleteProviderCount();
-    this.profileService.deleteProfileFromSessionStorage();
+    this.limitedProfileService.deleteProfileFromSessionStorage();
     this.globalEventManagerService.setShowHeader(false);
     this.router.navigate([this.LOGIN]);
   }
@@ -51,7 +51,7 @@ export class AuthenticationService {
     let profile:Profile =  this.tokenService.getProfileToken();
 
     if(oauth2Token && profile){
-        let umsProfile:UmsProfile =  this.profileService.getProfileFromSessionStorage();
+        let umsProfile:UmsLimitedProfile =  this.limitedProfileService.getProfileFromSessionStorage();
         if(umsProfile){
           this.customTranslateService.addSupportedLanguages(this.utilityService.getSupportedLocaleCode(umsProfile.supportedLocales));
           this.customTranslateService.setDefaultLanguage(umsProfile.userLocale);

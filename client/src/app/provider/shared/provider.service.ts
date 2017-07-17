@@ -9,17 +9,17 @@ import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 import {Identifier} from "../../shared/identifier.model";
 import {FHIR_US_NPI_SYSTEM} from "../../shared/consent-provider.model";
-import {ProfileService} from "../../security/shared/profile.service";
+import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 
 @Injectable()
 export class ProviderService {
   private headers = new Headers({'Content-Type': 'application/json'});
-  private currentUserMrn: string = this.profileService.getUserMrn();
+  private currentUserMrn: string = this.limitedProfileService.getUserMrn();
 
   constructor(private c2sUiApiUrlService: C2sUiApiUrlService,
               private http: Http,
               private exceptionService: ExceptionService,
-              private profileService: ProfileService) {
+              private limitedProfileService: LimitedProfileService) {
   }
 
   searchProviders(requestParams: ProviderRequestQuery): Observable<ProviderSearchResponse> {

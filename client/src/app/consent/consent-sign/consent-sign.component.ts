@@ -9,7 +9,7 @@ import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
-import {ProfileService} from "../../security/shared/profile.service";
+import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 
 @Component({
   selector: 'c2s-consent-sign',
@@ -32,7 +32,7 @@ export class ConsentSignComponent implements OnInit {
               private consentService: ConsentService,
               private notificationService: NotificationService,
               private tokenService: TokenService,
-              private profileService: ProfileService,
+              private limitedProfileService: LimitedProfileService,
               private route: ActivatedRoute,
               private utilityService: UtilityService) {
   }
@@ -46,7 +46,7 @@ export class ConsentSignComponent implements OnInit {
     this.profile = this.tokenService.getProfileToken();
     this.username = {name: this.profile.name};
     this.termsWithUserName = this.getConsentAttestationTerm(this.route.snapshot.data['consentTerms']);
-    this.birthDate = this.profileService.getUserBirthDate();
+    this.birthDate = this.limitedProfileService.getUserBirthDate();
   }
 
   clearCheckbox() {
