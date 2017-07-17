@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output, Input} from "@angular/core";
+import {Component, OnInit, EventEmitter, Output, Input, ViewChild, ElementRef} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UploadOutput, UploadInput, UploadFile, humanizeBytes} from 'ngx-uploader';
 import {NotificationService} from "../../core/notification.service";
@@ -8,6 +8,7 @@ import {DocumentToUploadMetadata} from "../shared/document-to-upload-metadata.mo
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code.model";
+import {FileValidator} from "../../shared/file-validator.directive";
 
 
 @Component({
@@ -18,6 +19,9 @@ import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code
 export class MedicalDocumentUploadComponent implements OnInit {
   @Output() uploadedDocumentAdded = new EventEmitter<UploadedDocument>();
   @Input() documentTypeCodesList: UploadedDocumentTypeCode[];
+
+  // A direct reference to the HTML form element as a ViewChild is necessary to properly reset file type input element (see resetUploadForm method below for details)
+  @ViewChild('uploadForm') uploadForm: ElementRef;
 
   maxDescriptionLength: string = ValidationRules.MEDICAL_DOCUMENT_DESC_MAX_LENGTH.toString();
 
@@ -74,10 +78,17 @@ export class MedicalDocumentUploadComponent implements OnInit {
 
       const event = this.medicalDocumentsService.prepareDocumentUpload(documentToUploadMetadata);
       this.uploadInput.emit(event);
-      this.uploadDocumentForm.reset();
+      this.resetUploadForm();
     }else{
       this.notificationService.i18nShow("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_INVALID_ERROR");
     }
+  }
+
+  private resetUploadForm(): void {
+    // Reset FormGroup
+    this.uploadDocumentForm.reset();
+    // Manually reset native form element to clear out file input element (file input element currently not natively supported in FormGroup)
+    this.uploadForm.nativeElement.reset();
   }
 
   private initUploadDocumentFormGroup() {
@@ -95,7 +106,11 @@ export class MedicalDocumentUploadComponent implements OnInit {
           Validators.maxLength(ValidationRules.MEDICAL_DOCUMENT_DESC_MAX_LENGTH)
         ]
       ],
-      fileUploadInput: [null]
+      fileUploadInput: [null,
+        [
+          FileValidator.validate
+        ]
+      ]
     });
   }
 }
