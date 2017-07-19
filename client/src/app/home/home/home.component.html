@@ -32,8 +32,8 @@
           {{ 'HOME.PROVIDERS.STEP_1.DESCRIPTION' | translate }}
         </h2>
         <div class="center middle">
-          <img md-card-image src="assets/img/addProviders.svg" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders < 2)">
-          <img md-card-image src="assets/img/contacts.svg" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders > 1)">
+          <img md-card-image src="assets/img/addProviders.png" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders < 2)">
+          <img md-card-image src="assets/img/contacts.png" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders > 1)">
         </div>
         <div class="p-t-xs font-size12"   *ngIf="(totalProviders > 0)">
           <span class="font-weight700 font-size16">{{totalProviders}}</span>
@@ -71,8 +71,8 @@
         </h2>
         <div class="center middle">
 
-          <img md-card-image src="assets/img/addConsents.svg" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders < 2)">
-          <img md-card-image src="assets/img/consents.svg" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders > 1)">
+          <img md-card-image src="assets/img/addConsents.png" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders < 2)">
+          <img md-card-image src="assets/img/consents.png" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders > 1)">
         </div>
         <div class="p-t-xs font-size12" *ngIf="(totalConsents > 0)"><span class="font-weight700 font-size16" >{{totalConsents}}</span>
           {{ totalConsents | i18nPlural: consentMapping | translate :{count: totalConsents} }}
