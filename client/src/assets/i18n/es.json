@@ -442,6 +442,7 @@
   },
   "USER_PROFILE": {
     "TITLE": "Mi Perfil",
+    "AVATAR_REDIRECT_LABEL": "Subir / Editar Imagen de Avatar",
     "EDIT": {
       "REQUIRED_INFORMATION": {
         "LABEL": "Información Requerida",
@@ -468,6 +469,9 @@
       "EDIT_PROFILE_FAILED_MSG": "No se puede actualizar el perfil.",
       "EDIT_PROFILE_SUCCESS_MSG": "Perfil actualizado con éxito."
     }
+  },
+  "USER_AVATAR": {
+    "TITLE": "Mi Avatar"
   },
   "SHARED": {
     "VALIDATION_RULES": {

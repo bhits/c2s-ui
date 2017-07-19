@@ -86,6 +86,14 @@ export class UserProfileComponent implements OnInit {
     this.redirectHome();
   }
 
+  uploadEditAvatar(): void {
+    this.redirectUploadEditAvatarPage();
+  }
+
+  private redirectUploadEditAvatarPage(): void {
+    this.router.navigateByUrl('/user-avatar');
+  }
+
   private redirectHome(): void {
     this.router.navigateByUrl('/home');
   }

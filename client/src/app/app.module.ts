@@ -21,6 +21,7 @@ import {AccountModule} from "./account/account.module";
 import {createTranslateLoader, CustomTranslateService} from "./core/custom-translate.service";
 import {MedicalDocumentsModule} from "./medical-documents/medical-documents.module";
 import {UserProfileModule} from "./user-profile/user-profile.module";
+import {UserAvatarModule} from "./user-avatar/user-avatar.module";
 
 
 
@@ -54,6 +55,7 @@ import {UserProfileModule} from "./user-profile/user-profile.module";
     ProviderModule,
     MedicalDocumentsModule,
     UserProfileModule,
+    UserAvatarModule,
     AppRoutingModule // Must be the last module to be imported
   ],
   providers: [
