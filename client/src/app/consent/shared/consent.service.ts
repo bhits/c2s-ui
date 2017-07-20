@@ -160,7 +160,7 @@ export class ConsentService {
 
     return this.http.put(url, JSON.stringify({acceptTerms: acceptTerms}))
       .map(() => null)
-      .catch(this.exceptionService.handleError);
+      .catch(this.exceptionService.handleErrorWithErrorCode);
   }
 
   private createConsentDto(consent: Consent): any {
@@ -219,6 +219,12 @@ export class ConsentService {
   handleCreateConsentError(err: any) {
     if(err =="409"){
       this.notificationService.i18nShow("NOTIFICATION_MSG.DUPLICATE_CONSENT");
+    }
+  }
+
+  handleSignConsentError(err: any) {
+    if(err =="400"){
+      this.notificationService.i18nShow("NOTIFICATION_MSG.INVALID_CONSENT_SIGN_DATE");
     }
   }
 
