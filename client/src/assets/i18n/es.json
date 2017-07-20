@@ -472,7 +472,12 @@
   },
   "USER_AVATAR": {
     "TITLE": "Mi Avatar",
-    "SUBMIT_CROPPED_IMAGE_BTN_LABEL": "Salvar"
+    "SUBMIT_CROPPED_IMAGE_BTN_LABEL": "Salvar",
+    "CANCEL_BTN_LABEL": "Cancelar",
+    "AVATAR_UPLOAD_SUCCESS_MSG": "Imagen de avatar correctamente guardada.",
+    "ERROR_MSGS": {
+      "ERROR_SAVING_AVATAR": "No se puede guardar el avatar."
+    }
   },
   "SHARED": {
     "VALIDATION_RULES": {

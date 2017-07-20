@@ -16,6 +16,12 @@
   </div>
 
   <div fxLayout="row" fxLayoutGap="20px">
+    <button md-raised-button (click)="cancel()">
+      <strong>
+        {{ 'USER_AVATAR.CANCEL_BTN_LABEL' | translate }}
+      </strong>
+    </button>
+
     <button md-raised-button color="primary" [disabled]="!cropper.image.hasOwnProperty('image')" (click)="submitCroppedImage()">
       <strong>
         {{ 'USER_AVATAR.SUBMIT_CROPPED_IMAGE_BTN_LABEL' | translate }}
