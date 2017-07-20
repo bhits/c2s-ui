@@ -471,7 +471,8 @@
     }
   },
   "USER_AVATAR": {
-    "TITLE": "My Avatar"
+    "TITLE": "My Avatar",
+    "SUBMIT_CROPPED_IMAGE_BTN_LABEL": "Save"
   },
   "SHARED": {
     "VALIDATION_RULES": {

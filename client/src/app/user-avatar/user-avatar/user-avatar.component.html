@@ -1,3 +1,25 @@
 <div class="p-t-75 p-l-md p-r-md p-b">
   <h1>{{ 'USER_AVATAR.TITLE' | translate }}</h1>
+
+  <div fxLayout="row" fxLayoutGap="20px">
+    <div class="file-upload">
+      <span class="text">upload</span>
+      <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="20px">
+    <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+    <span class="result rounded" *ngIf="data.image">
+      <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+    </span>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="20px">
+    <button md-raised-button color="primary" [disabled]="!cropper.image.hasOwnProperty('image')" (click)="submitCroppedImage()">
+      <strong>
+        {{ 'USER_AVATAR.SUBMIT_CROPPED_IMAGE_BTN_LABEL' | translate }}
+      </strong>
+    </button>
+  </div>
 </div>
