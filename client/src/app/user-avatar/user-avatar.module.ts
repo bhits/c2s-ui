@@ -6,10 +6,11 @@ import {LayoutModule} from "../layout/layout.module";
 
 import {TranslateModule} from "@ngx-translate/core";
 import {ExceptionService} from "../shared/exception.service";
-import {ImageCropperComponent} from "ng2-image-cropper";
+import {ImageCropperModule} from "ng2-image-cropper";
 
 @NgModule({
   imports: [
+    ImageCropperModule,
     NgUploaderModule,
     SharedModule,
     LayoutModule,
@@ -17,7 +18,6 @@ import {ImageCropperComponent} from "ng2-image-cropper";
     TranslateModule
   ],
   declarations: [
-    ImageCropperComponent,
     userAvatarRoutedComponents
   ],
   providers: [
