@@ -2,4 +2,70 @@
   <h1>
     {{ 'ACTIVITY.CONSENT_ACTIVITY.TITLE' | translate }}
   </h1>
+  <div class="p-l p-r" class.gt-sm="p-l-lg p-r-lg">
+    <div class="m-t-xs m-b-sm p-b-sm border-bottom-purple-thin" fxFlex="1 1 auto" fxLayoutAlign="flex-start center">
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxHide fxHide.gt-xs="false"
+         class="m-t p-sm bg-dark-bluegrey white">
+      <div fxFlex class="font-size15 font-weight500">
+        {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.DATE' | translate }}
+      </div>
+      <div fxFlex class="font-size15 font-weight500">
+        {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.ACTION' | translate }}
+      </div>
+      <div fxFlex class="font-size15 font-weight500">
+        {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.CONSENT_REFERENCE_ID' | translate }}
+      </div>
+      <div fxFlex class="font-size15 font-weight500">
+        {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.CHANGED_BY' | translate }}
+      </div>
+      <div fxFlex class="font-size15 font-weight500">
+        {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.ROLE' | translate }}
+      </div>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-xs="row" class="stripedRows p-sm p-t p-b">
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
+          <div fxHide.gt-xs="true" class="font-size15">
+            {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.DATE' | translate }}
+          </div>
+          <div class="font-size15 font-weight500">June 4, 2017</div>
+        </div>
+      </div>
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
+          <div fxHide.gt-xs="true" class="font-size15">
+            {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.ACTION' | translate }}
+          </div>
+          <div class="font-size15 font-weight500">Create Consent</div>
+        </div>
+      </div>
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
+          <div fxHide.gt-xs="true" class="font-size15">
+            {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.CONSENT_REFERENCE_ID' | translate }}
+          </div>
+          <div class="font-size15 font-weight500">CGuK7WwnGt</div>
+        </div>
+      </div>
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
+          <div fxHide.gt-xs="true" class="font-size15">
+            {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.CHANGED_BY' | translate }}
+          </div>
+          <div class="font-size15 font-weight500">Provider Bob</div>
+        </div>
+      </div>
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
+          <div fxHide.gt-xs="true" class="font-size15">
+            {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.ROLE' | translate }}
+          </div>
+          <div class="font-size15 font-weight500">Administrator</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

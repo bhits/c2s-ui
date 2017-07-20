@@ -5,9 +5,13 @@
   "ACTIVITY": {
     "CONSENT_ACTIVITY": {
       "TITLE": "Activity History",
-      "DESCRIPTION": "View all patients in my organization.",
-      "SINGULAR": "Patient",
-      "PLURAL": "Patients"
+      "TABLE": {
+        "DATE": "Date",
+        "ACTION": "Action",
+        "CONSENT_REFERENCE_ID": "Consent Reference ID",
+        "CHANGED_BY": "Changed By",
+        "ROLE": "Role"
+      }
     }
   },
   "HOME": {

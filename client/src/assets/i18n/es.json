@@ -5,9 +5,13 @@
   "ACTIVITY": {
     "CONSENT_ACTIVITY": {
       "TITLE": "{spanish} Activity History",
-      "DESCRIPTION": "{spanish} View all patients in my organization.",
-      "SINGULAR": "{spanish} Patient",
-      "PLURAL": "{spanish} Patients"
+      "TABLE": {
+        "DATE": "{spanish} Date",
+        "ACTION": "{spanish} Action",
+        "CONSENT_REFERENCE_ID": "{spanish} Consent Reference ID",
+        "CHANGED_BY": "{spanish} Changed By",
+        "ROLE": "{spanish} Role"
+      }
     }
   },
   "HOME": {
