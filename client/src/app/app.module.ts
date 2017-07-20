@@ -5,7 +5,6 @@ import {Http, HttpModule} from "@angular/http";
 import {Md2Module} from "md2";
 import {MaterialModule} from "@angular/material";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
-
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppComponent} from "./app.component";
 import {CoreModule} from "./core/core.module";
@@ -21,8 +20,7 @@ import {AccountModule} from "./account/account.module";
 import {createTranslateLoader, CustomTranslateService} from "./core/custom-translate.service";
 import {MedicalDocumentsModule} from "./medical-documents/medical-documents.module";
 import {UserProfileModule} from "./user-profile/user-profile.module";
-
-
+import {ActivityModule} from "./activity/activity.module";
 
 
 @NgModule({
@@ -47,6 +45,7 @@ import {UserProfileModule} from "./user-profile/user-profile.module";
     }),
     // C2S Modules
     AccountModule,
+    ActivityModule,
     CoreModule,
     LayoutModule,
     HomeModule,
