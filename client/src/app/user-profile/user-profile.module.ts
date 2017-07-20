@@ -7,7 +7,7 @@ import {LayoutModule} from "../layout/layout.module";
 import {TranslateModule} from "@ngx-translate/core";
 import {ProfileFieldsLookupService} from "./shared/profile-fields-lookup.service";
 import {ExceptionService} from "../shared/exception.service";
-import {FullProfileService} from "./shared/full-profile.service";
+import {FullProfileService} from "../shared/full-profile.service";
 
 @NgModule({
   imports: [
