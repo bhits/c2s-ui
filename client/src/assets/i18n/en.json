@@ -4,7 +4,7 @@
   },
   "ACTIVITY": {
     "CONSENT_ACTIVITY": {
-      "TITLE": "Activities Record List",
+      "TITLE": "Activity History",
       "DESCRIPTION": "View all patients in my organization.",
       "SINGULAR": "Patient",
       "PLURAL": "Patients"
@@ -46,6 +46,7 @@
       "TITLE": "Menu",
       "MENU_ITEM": {
         "HOME": "Home",
+        "ACTIVITY_HISTORY": "Activity History",
         "PROVIDERS": "Providers",
         "CONSENTS": "Consents",
         "MEDICAL_DOCUMENTS": "Medical Documents",

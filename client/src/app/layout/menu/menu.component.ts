@@ -1,7 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {UtilityService} from "../../shared/utility.service";
 import {AuthenticationService} from "../../security/shared/authentication.service";
-import {MenuItems} from "../shared/menu-items.model";
+import {MenuItem} from "../shared/menu-item.model";
+import {MENU_ITEMS} from "../shared/menu-items.model";
 
 @Component({
   selector: 'c2s-menu',
@@ -9,27 +10,23 @@ import {MenuItems} from "../shared/menu-items.model";
   styleUrls: ['menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  menuItems: MenuItems[];
+  public menuItems: MenuItem[];
 
-  constructor(private utilityService: UtilityService, private authenticationService:AuthenticationService) {
+  constructor(private utilityService: UtilityService,
+              private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
-    this.menuItems = [
-      new MenuItems('Home', 'home', 'HOME.MENU.MENU_ITEM.HOME'),
-      new MenuItems('Providers', 'provider-list','HOME.MENU.MENU_ITEM.PROVIDERS'),
-      new MenuItems('Consents', 'consent-list','HOME.MENU.MENU_ITEM.CONSENTS'),
-      new MenuItems('Medical Documents', 'medical-documents', 'HOME.MENU.MENU_ITEM.MEDICAL_DOCUMENTS'),
-      new MenuItems('My Profile', 'user-profile', 'HOME.MENU.MENU_ITEM.MY_PROFILE'),
-      new MenuItems('Logout', '','HOME.MENU.MENU_ITEM.LOGOUT')
-    ];
+    this.menuItems = MENU_ITEMS;
   }
 
-  navigateTo(url: string, name:string) {
-    if (name === 'Logout') {
-      this.authenticationService.logout();
-    } else {
-      this.utilityService.navigateTo(url);
+  public navigateTo(key: string, routerLink: string): void {
+    switch (key) {
+      case 'Logout':
+        this.authenticationService.logout();
+        break;
+      default:
+        this.utilityService.navigateTo(routerLink);
     }
   }
 }
