@@ -5,6 +5,7 @@
   "ACTIVITY": {
     "CONSENT_ACTIVITY": {
       "TITLE": "Activity History",
+      "NO_ACTIVITIES_MSG": "There are currently no activity.",
       "TABLE": {
         "DATE": "Date",
         "ACTION": "Action",

@@ -13,7 +13,7 @@ import {LimitedProfileService} from "src/app/security/shared/limited-profile.ser
 export class ConsentActivityComponent implements OnInit {
   public totalItems: number = 0;
   public currentPage: number = 1;
-  public itemsPerPage: number = 3;
+  public itemsPerPage: number = 10;
   public noActivity: boolean = false;
   public loading: boolean = false;
   public asyncActivities: Observable<ConsentActivity[]>;
