@@ -1,14 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, URLSearchParams} from "@angular/http";
-import {ExceptionService} from "../../core/exception.service";
+import {PageableData} from "../../shared/pageable-data.model";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {PageableData} from "src/app/shared/pageable-data.model";
-import {ConsentActivity} from "src/app/activity/shared/consent-activity.model";
+import {ExceptionService} from "../../core/exception.service";
+import {ConsentActivity} from "./consent-activity.model";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
-export class ActivityServiceService {
-
+export class ActivityService {
   constructor(private apiUrlService: C2sUiApiUrlService,
               private exceptionService: ExceptionService,
               private http: Http) {
