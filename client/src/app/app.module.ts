@@ -28,12 +28,13 @@ import {ActivityModule} from "./activity/activity.module";
     AppComponent
   ],
   imports: [
-
-    //3rd Party modules
+    // Angular Modules
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
+
+    //3rd Party modules
     Md2Module,
     MaterialModule, // TODO: Move to core module - verify why it is not working now.
     TranslateModule.forRoot({

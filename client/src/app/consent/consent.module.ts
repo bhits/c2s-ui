@@ -1,18 +1,15 @@
-import {MaterialModule} from "@angular/material";
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
 import {PurposeOfUseService} from "./purpose-of-use/purpose-of-use.service";
 import {ConsentTermsComponent} from "./consent-terms/consent-terms.component";
 import {PurposeOfUseComponent} from "./purpose-of-use/purpose-of-use.component";
 import {SelectProviderComponent} from "./select-provider/select-provider.component";
 import {MedicalInformationComponent} from "./medical-information/medical-information.component";
-import {ConsentRoutingModule, consentRoutableComponents, consentRoutableResolves} from "./consent-routing.module";
+import {consentRoutableComponents, consentRoutableResolves, ConsentRoutingModule} from "./consent-routing.module";
 import {ConsentService} from "./shared/consent.service";
 import {ConsentCreateEditComponent} from "./consent-create-edit/consent-create-edit.component";
 import {MedicalInformationService} from "./medical-information/medical-information.service";
-import {Md2Module} from "md2";
 import {RouterModule} from "@angular/router";
 import {ConsentCardComponent} from "./consent-card/consent-card.component";
 import {ConsentStagePipe} from "./shared/consent-stage.pipe";
@@ -20,18 +17,13 @@ import {SelectProvidersComponent} from "./select-providers/select-providers.comp
 import {NotificationService} from "../core/notification.service";
 import {SharePurposePipe} from "./shared/share-purpose.pipe";
 import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
-import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule,
-    FormsModule, // TODO: verify while FormModule when imported at root level is not available to every other module
     SharedModule,
-    Md2Module,
     RouterModule,
-    ConsentRoutingModule,
-    TranslateModule
+    ConsentRoutingModule
   ],
   declarations: [
     ConsentTermsComponent,

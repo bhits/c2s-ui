@@ -2,6 +2,14 @@
   "APP": {
     "MENU": "Menú"
   },
+  "ACTIVITY": {
+    "CONSENT_ACTIVITY": {
+      "TITLE": "{spanish} Activities Record List",
+      "DESCRIPTION": "{spanish} View all patients in my organization.",
+      "SINGULAR": "{spanish} Patient",
+      "PLURAL": "{spanish} Patients"
+    }
+  },
   "HOME": {
     "SELECT_LANG": "Change language",
     "WELCOME": {

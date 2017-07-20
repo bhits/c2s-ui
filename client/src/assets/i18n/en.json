@@ -2,6 +2,14 @@
   "APP": {
     "MENU": "Menu"
   },
+  "ACTIVITY": {
+    "CONSENT_ACTIVITY": {
+      "TITLE": "Activities Record List",
+      "DESCRIPTION": "View all patients in my organization.",
+      "SINGULAR": "Patient",
+      "PLURAL": "Patients"
+    }
+  },
   "HOME": {
     "SELECT_LANG": "Change language",
     "WELCOME": {
