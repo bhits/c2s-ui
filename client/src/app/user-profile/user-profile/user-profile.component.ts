@@ -44,7 +44,7 @@ export class UserProfileComponent implements OnInit {
         err => {
           this.notificationService.i18nShow("USER_PROFILE.EDIT.FIELDS_LOOKUP_INFO_FAILED_MSG");
           console.log(err);
-          this.router.navigateByUrl('/home');
+          this.redirectHome();
         }
       );
 
