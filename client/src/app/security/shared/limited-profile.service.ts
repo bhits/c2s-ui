@@ -47,20 +47,24 @@ export class LimitedProfileService {
     let avatarImage: AvatarImage = this.getAvatarImageFromSessionStorage();
 
     if (!isNullOrUndefined(avatarImage)) {
-      console.log(avatarImage);
       return Observable.of(avatarImage)
         .map(avatarImage => avatarImage);
     } else {
       return this.getAvatarImageFromServer()
         .do(
           (data) => {
-            console.log(data);
             let imgFromServer: AvatarImage = data;
             this.sessionStorageService.setItemInSessionStorage(this.AVATAR_IMG_KEY, imgFromServer);
             return imgFromServer;
           },
           (err) => {
-            console.log(err);
+            let emptyAvatar: AvatarImage = new AvatarImage();
+            emptyAvatar.fileContents = null;
+            emptyAvatar.fileWidthPixels = null;
+            emptyAvatar.fileHeightPixels = null;
+            emptyAvatar.fileExtension = null;
+            this.sessionStorageService.setItemInSessionStorage(this.AVATAR_IMG_KEY, emptyAvatar);
+
             return this.exceptionService.handleErrorWithErrorCode(err);
           }
         );

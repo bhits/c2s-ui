@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {UtilityService} from "../../shared/utility.service";
+import {isNullOrUndefined} from "util";
+import {AvatarImage} from "../../user-avatar/shared/avatar-image.model";
 
 @Component({
   selector: 'c2s-header-user-profile',
@@ -8,23 +10,28 @@ import {UtilityService} from "../../shared/utility.service";
   styleUrls: ['header-user-profile.component.scss']
 })
 export class HeaderUserProfileComponent implements OnInit {
+  private DEFAULT_AVATAR_IMG_URI: string = "assets/img/generic-avatar-sm-48.png";
+
   avatarImgDataUri: string;
   userName: String;
 
   constructor(private limitedProfileService: LimitedProfileService) {
-    this.avatarImgDataUri = "";
+    this.avatarImgDataUri = this.DEFAULT_AVATAR_IMG_URI;
   }
 
   ngOnInit() {
     this.userName = this.limitedProfileService.getFullName();
     this.limitedProfileService.getAvatarImage()
       .subscribe(
-        (data) => {
-          this.avatarImgDataUri = UtilityService.base64ToString(data.fileContents);
+        (data: AvatarImage) => {
+          if ((!isNullOrUndefined(data)) && (!isNullOrUndefined(data.fileContents))) {
+            this.avatarImgDataUri = UtilityService.base64ToString(data.fileContents);
+          } else {
+            this.avatarImgDataUri = this.DEFAULT_AVATAR_IMG_URI;
+          }
         },
-        (err) => {
-          console.log(err);
-          // FIXME: Display i18n error message via notificationService
+        () => {
+          this.avatarImgDataUri = this.DEFAULT_AVATAR_IMG_URI;
         }
       );
   }
