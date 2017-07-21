@@ -12,7 +12,7 @@ import {isNullOrUndefined} from "util";
 @Injectable()
 export class LimitedProfileService {
   private umsLimitedProfileUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl() + "/user/profile";
-  private umsUserAvatarUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl() + "/user-avatars/";
+  private umsUserAvatarUrl: string = this.c2sUiApiUrlService.getUmsBaseUrl() + "/user-avatars";
   private UMS_PROFILE_KEY: string = 'c2s-ums-profile';
   private AVATAR_IMG_KEY: string = 'c2s-avatar-image';
 
