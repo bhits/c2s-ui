@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {UtilityService} from "../../shared/utility.service";
-import {NotificationService} from "../../core/notification.service";
 
 @Component({
   selector: 'c2s-header-user-profile',
@@ -12,9 +11,7 @@ export class HeaderUserProfileComponent implements OnInit {
   avatarImgDataUri: string;
   userName: String;
 
-  constructor(private limitedProfileService: LimitedProfileService,
-              private utilityService: UtilityService,
-              private notificationService: NotificationService) {
+  constructor(private limitedProfileService: LimitedProfileService) {
     this.avatarImgDataUri = "";
   }
 
