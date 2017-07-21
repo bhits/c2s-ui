@@ -105,6 +105,10 @@ export class LimitedProfileService {
     this.sessionStorageService.removeItemFromSessionStorage(this.UMS_PROFILE_KEY);
   }
 
+  deleteAvatarFromSessionStorage() {
+    this.sessionStorageService.removeItemFromSessionStorage(this.AVATAR_IMG_KEY);
+  }
+
   getMRN(){
     let umsProfile:UmsLimitedProfile = this.getProfileFromSessionStorage();
     if(umsProfile){
