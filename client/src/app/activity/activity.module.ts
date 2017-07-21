@@ -1,6 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {activityRoutedComponents, ActivityRoutingModule} from "src/app/activity/activity-routing.module";
+import {
+  activityRoutedComponents,
+  activityRoutedResolves,
+  ActivityRoutingModule
+} from "src/app/activity/activity-routing.module";
 import {SharedModule} from "src/app/shared/shared.module";
 import {ActivityService} from "src/app/activity/shared/activity.service";
 
@@ -12,7 +16,10 @@ import {ActivityService} from "src/app/activity/shared/activity.service";
     SharedModule
   ],
   declarations: [activityRoutedComponents],
-  providers: [ActivityService]
+  providers: [
+    activityRoutedResolves,
+    ActivityService
+  ]
 })
 
 export class ActivityModule {

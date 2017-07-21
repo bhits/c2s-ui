@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {ActivitiesComponent} from "./activities/activities.component";
 import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-guard.service";
 import {ConsentActivityComponent} from "./consent-activity/consent-activity.component";
+import {ConsentActivityResolveService} from "./shared/consent-activity-resolve.service";
 
 const activityRoutes: Routes = [
   {
@@ -13,7 +14,10 @@ const activityRoutes: Routes = [
     children: [
       {
         path: 'consent-activity',
-        component: ConsentActivityComponent
+        component: ConsentActivityComponent,
+        resolve: {
+          pagedConsentActivities: ConsentActivityResolveService
+        }
       }
     ]
   }
@@ -30,4 +34,8 @@ export class ActivityRoutingModule {
 export const activityRoutedComponents = [
   ActivitiesComponent,
   ConsentActivityComponent
+];
+
+export const activityRoutedResolves = [
+  ConsentActivityResolveService
 ];
