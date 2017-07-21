@@ -1,9 +1,7 @@
+import "hammerjs";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
-import {Http, HttpModule} from "@angular/http";
-import {Md2Module} from "md2";
-import {MaterialModule} from "@angular/material";
+import {Http} from "@angular/http";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppComponent} from "./app.component";
@@ -31,12 +29,8 @@ import {ActivityModule} from "./activity/activity.module";
     // Angular Modules
     BrowserAnimationsModule,
     BrowserModule,
-    FormsModule,
-    HttpModule,
 
     //3rd Party modules
-    Md2Module,
-    MaterialModule, // TODO: Move to core module - verify why it is not working now.
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

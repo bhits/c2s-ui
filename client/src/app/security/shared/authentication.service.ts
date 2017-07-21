@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {Headers, Http, RequestOptions, Response, URLSearchParams} from "@angular/http";
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";
-import {AccessToken} from "./access-token.model";
 import {TokenService} from "./token.service";
 import {Profile} from "../../core/profile.model";
 import {LimitedProfileService} from "./limited-profile.service";
@@ -11,6 +10,7 @@ import {CustomTranslateService} from "../../core/custom-translate.service";
 import {UtilityService} from "../../shared/utility.service";
 import {Observable} from "rxjs/Observable";
 import {ExceptionService} from "src/app/core/exception.service";
+import {AuthorizationResponse} from "src/app/security/shared/authorization-response.model";
 
 
 @Injectable()
@@ -31,13 +31,13 @@ export class AuthenticationService {
               private utilityService: UtilityService) {
   }
 
-  login(username: string, password: string): Observable<Response> {
+  public login(username: string, password: string): Observable<AuthorizationResponse> {
     return this.http.post(this.oauth2TokenUrl, this.composeParameters(username, password), this.setHeaders())
-      .map((resp: Response) => <Response>(resp.json()))
+      .map((resp: Response) => <AuthorizationResponse>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
-  onLoginSuccess(response: Response) {
+  onLoginSuccess(response: AuthorizationResponse) {
     this.tokenService.setAccessToken(response);
   }
 
@@ -51,7 +51,7 @@ export class AuthenticationService {
   }
 
   isLogin() {
-    let oauth2Token: AccessToken = this.tokenService.getAccessToken();
+    let oauth2Token: AuthorizationResponse = this.tokenService.getAccessToken();
     let profile: Profile = this.tokenService.getProfileToken();
 
     if (oauth2Token && profile) {
