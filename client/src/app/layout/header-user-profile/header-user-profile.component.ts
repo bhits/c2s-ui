@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
+import {UtilityService} from "../../shared/utility.service";
+import {NotificationService} from "../../core/notification.service";
 
 @Component({
   selector: 'c2s-header-user-profile',
@@ -7,13 +9,26 @@ import {LimitedProfileService} from "../../security/shared/limited-profile.servi
   styleUrls: ['header-user-profile.component.scss']
 })
 export class HeaderUserProfileComponent implements OnInit {
-
+  avatarImgDataUri: string;
   userName: String;
 
-    constructor(private limitedProfileService: LimitedProfileService) {
+  constructor(private limitedProfileService: LimitedProfileService,
+              private utilityService: UtilityService,
+              private notificationService: NotificationService) {
+    this.avatarImgDataUri = "";
   }
 
   ngOnInit() {
     this.userName = this.limitedProfileService.getFullName();
+    this.limitedProfileService.getAvatarImage()
+      .subscribe(
+        (data) => {
+          this.avatarImgDataUri = UtilityService.base64ToString(data.fileContents);
+        },
+        (err) => {
+          console.log(err);
+          // FIXME: Display i18n error message via notificationService
+        }
+      );
   }
 }
