@@ -22,6 +22,7 @@ import {createTranslateLoader, CustomTranslateService} from "./core/custom-trans
 import {MedicalDocumentsModule} from "./medical-documents/medical-documents.module";
 import {UserProfileModule} from "./user-profile/user-profile.module";
 import {UserAvatarModule} from "./user-avatar/user-avatar.module";
+import {UserAvatarMonitoringService} from "./shared/user-avatar-monitoring.service";
 
 
 
@@ -63,7 +64,8 @@ import {UserAvatarModule} from "./user-avatar/user-avatar.module";
     AuthenticationService,
     GlobalEventManagerService,
     TranslateService,
-    CustomTranslateService
+    CustomTranslateService,
+    UserAvatarMonitoringService
   ],
   bootstrap: [AppComponent]
 })

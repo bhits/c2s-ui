@@ -10,6 +10,7 @@ import {LimitedProfileService} from "./limited-profile.service";
 import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {UtilityService} from "../../shared/utility.service";
+import {UserAvatarMonitoringService} from "../../shared/user-avatar-monitoring.service";
 
 
 @Injectable()
@@ -26,7 +27,8 @@ export class AuthenticationService {
               private globalEventManagerService: GlobalEventManagerService,
               private limitedProfileService: LimitedProfileService,
               private customTranslateService: CustomTranslateService,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private userAvatarMonitoringService: UserAvatarMonitoringService) {
   }
 
   login(username:string, password:string) {
@@ -42,7 +44,7 @@ export class AuthenticationService {
     this.tokenService.deleteProfileToken();
     this.tokenService.deleteProviderCount();
     this.limitedProfileService.deleteProfileFromSessionStorage();
-    this.limitedProfileService.deleteAvatarFromSessionStorage();
+    this.userAvatarMonitoringService.deleteAvatarFromSessionStorage();
     this.globalEventManagerService.setShowHeader(false);
     this.router.navigate([this.LOGIN]);
   }

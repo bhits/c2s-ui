@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {UtilityService} from "../../shared/utility.service";
-import {isNullOrUndefined} from "util";
 import {AvatarImage} from "../../user-avatar/shared/avatar-image.model";
+import {UserAvatarMonitoringService} from "../../shared/user-avatar-monitoring.service";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'c2s-header-user-profile',
@@ -15,24 +16,26 @@ export class HeaderUserProfileComponent implements OnInit {
   avatarImgDataUri: string;
   userName: String;
 
-  constructor(private limitedProfileService: LimitedProfileService) {
+  constructor(private limitedProfileService: LimitedProfileService,
+              private userAvatarMonitoringService: UserAvatarMonitoringService) {
     this.avatarImgDataUri = this.DEFAULT_AVATAR_IMG_URI;
-  }
 
-  ngOnInit() {
-    this.userName = this.limitedProfileService.getFullName();
-    this.limitedProfileService.getAvatarImage()
+    this.userAvatarMonitoringService.userAvatarSource
       .subscribe(
-        (data: AvatarImage) => {
-          if ((!isNullOrUndefined(data)) && (!isNullOrUndefined(data.fileContents))) {
-            this.avatarImgDataUri = UtilityService.base64ToString(data.fileContents);
+        (currentAvatar: AvatarImage) => {
+          if ((!isNullOrUndefined(currentAvatar)) && (!isNullOrUndefined(currentAvatar.fileContents))) {
+            this.avatarImgDataUri = UtilityService.base64ToString(currentAvatar.fileContents);
           } else {
             this.avatarImgDataUri = this.DEFAULT_AVATAR_IMG_URI;
           }
         },
         () => {
           this.avatarImgDataUri = this.DEFAULT_AVATAR_IMG_URI;
-        }
-      );
+        });
+  }
+
+  ngOnInit() {
+    this.userAvatarMonitoringService.triggerGetAvatarImage();
+    this.userName = this.limitedProfileService.getFullName();
   }
 }

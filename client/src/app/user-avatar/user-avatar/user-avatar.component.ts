@@ -3,6 +3,8 @@ import {CropperSettings, ImageCropperComponent} from "ng2-image-cropper";
 import {UserAvatarService} from "../shared/user-avatar.service";
 import {NotificationService} from "../../core/notification.service";
 import {Router} from "@angular/router";
+import {UserAvatarMonitoringService} from "../../shared/user-avatar-monitoring.service";
+import {AvatarImage} from "../shared/avatar-image.model";
 
 const CROPPED_IMAGE_WIDTH: number = 48;  // Width of cropped avatar image in pixels
 const CROPPED_IMAGE_HEIGHT: number = 48;  // Height of cropped avatar image in pixels
@@ -29,7 +31,8 @@ export class UserAvatarComponent implements OnInit {
 
   constructor(private router: Router,
               private userAvatarService: UserAvatarService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private userAvatarMonitoringService: UserAvatarMonitoringService) {
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.croppedWidth = CROPPED_IMAGE_WIDTH;
     this.cropperSettings.croppedHeight = CROPPED_IMAGE_HEIGHT;
@@ -52,7 +55,8 @@ export class UserAvatarComponent implements OnInit {
           .then(file => {
             this.userAvatarService.saveUserAvatar(UserAvatarService.buildAvatarFileUploadRequest(this.data.image, file, CROPPED_IMAGE_HEIGHT, CROPPED_IMAGE_WIDTH))
               .subscribe(
-                () => {
+                (newAvatar: AvatarImage) => {
+                  this.userAvatarMonitoringService.changeUserAvatar(newAvatar);
                   this.notificationService.i18nShow("USER_AVATAR.AVATAR_UPLOAD_SUCCESS_MSG");
                   this.redirectToUserProfile();
                 },
