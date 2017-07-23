@@ -35,8 +35,6 @@ export class UserAvatarService {
 
     avatarFileUploadRequest.fileName = croppedImageFile.name;
     avatarFileUploadRequest.fileExtension = UtilityService.extractExtensionFromFileName(croppedImageFile.name);
-    avatarFileUploadRequest.fileHeightPixels = croppedImgHeight;
-    avatarFileUploadRequest.fileWidthPixels = croppedImgWidth;
     avatarFileUploadRequest.fileContents = UtilityService.stringToBase64(imgSrc);
     avatarFileUploadRequest.fileSizeBytes = croppedImageFile.size;
 

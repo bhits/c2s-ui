@@ -3,6 +3,4 @@ export class AvatarFileUploadRequest {
   fileExtension: string;
   fileName: string;
   fileSizeBytes: number;
-  fileWidthPixels: number;
-  fileHeightPixels: number;
 }
