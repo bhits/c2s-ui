@@ -79,7 +79,7 @@ export class ConsentSignComponent implements OnInit {
           dialog.open();
         },
         err => {
-          this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_ATTEST_CONCENT');
+          this.consentService.handleSignConsentError(err);
           console.log(err);
         }
       );
