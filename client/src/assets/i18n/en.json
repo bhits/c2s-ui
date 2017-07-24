@@ -2,6 +2,9 @@
   "APP": {
     "MENU": "Menu"
   },
+  "ACCOUNT": {
+    "FAILED_CHECK_USERNAME" : "Failed to check username, please try again later."
+  },
   "HOME": {
     "SELECT_LANG": "Change language",
     "WELCOME": {
