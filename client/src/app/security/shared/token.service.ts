@@ -10,6 +10,7 @@ export class TokenService {
   private ACCESS_TOKEN_KEY:string = 'c2s-access-token';
   private USER_PROFILE_KEY:string = 'c2s-user-profile-token';
   private PROVIDER_COUNT_KEY:string = 'c2s-provider-count';
+  private MASTER_UI_LOGIN: string = 'c2s-master-ui-login';
 
   constructor(private sessionStorageService : SessionStorageService) { }
 
@@ -48,6 +49,14 @@ export class TokenService {
 
   deleteProviderCount(){
     this.sessionStorageService.removeItemFromSessionStorage(this.PROVIDER_COUNT_KEY);
+  }
+
+  getMasterUiLoginUrl(): string{
+    return this.sessionStorageService.getItemFromSessionStorage(this.MASTER_UI_LOGIN);
+  }
+
+  deleteMasterUiLoginUrl(){
+    this.sessionStorageService.removeItemFromSessionStorage(this.MASTER_UI_LOGIN);
   }
 
   createProfileObject(uaaProfile:any): Profile{
