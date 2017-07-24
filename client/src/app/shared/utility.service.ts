@@ -17,6 +17,10 @@ export class UtilityService {
     this.router.navigate([url]);
   }
 
+  redirectInSameTab(url: string) {
+    window.location.replace( url);
+  }
+
   removeAll(entries: any[]) {
     entries.splice(0, entries.length);
   }
