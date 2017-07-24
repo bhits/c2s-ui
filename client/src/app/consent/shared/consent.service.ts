@@ -228,7 +228,7 @@ export class ConsentService {
     if(err =="400"){
       this.notificationService.i18nShow("NOTIFICATION_MSG.INVALID_CONSENT_SIGN_DATE");
     } else {
-      this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_ATTEST_CONCENT');
+      this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_ATTEST_CONSENT');
     }
   }
 
