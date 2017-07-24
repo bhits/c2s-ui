@@ -43,7 +43,10 @@ export class AuthenticationService {
     this.tokenService.deleteProviderCount();
     this.limitedProfileService.deleteProfileFromSessionStorage();
     this.globalEventManagerService.setShowHeader(false);
-    this.router.navigate([this.LOGIN]);
+    let masterUiLoginUrl = this.tokenService.getMasterUiLoginUrl();
+    this.tokenService.deleteMasterUiLoginUrl();
+    this.utilityService.redirectInSameTab(masterUiLoginUrl);
+
   }
 
   isLogin(){
