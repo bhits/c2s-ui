@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
+import {Observable} from "rxjs/Observable";
 import {ExceptionService} from "../../core/exception.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {UtilityService} from "../../shared/utility.service";
 import {AvatarFileUploadRequest} from "./avatar-file-upload-request.model";
 import {FullProfileService} from "../../shared/full-profile.service";
-import {Observable} from "rxjs/Observable";
 import {AvatarImage} from "./avatar-image.model";
 
 @Injectable()
