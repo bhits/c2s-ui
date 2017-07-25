@@ -24,7 +24,7 @@ export class UserAvatarMonitoringService {
               private c2sUiApiUrlService: C2sUiApiUrlService) {
   }
 
-  changeUserAvatar(newUserAvatar: AvatarImage) {
+  changeUserAvatar(newUserAvatar: AvatarImage): void {
     this.setAvatarImageInSessionStorage(newUserAvatar);
     this.userAvatarSource.next(newUserAvatar);
   }
@@ -33,9 +33,13 @@ export class UserAvatarMonitoringService {
     return this.sessionStorageService.getItemFromSessionStorage(this.AVATAR_IMG_KEY);
   }
 
-  deleteAvatarFromSessionStorage() {
-    this.changeUserAvatar(new AvatarImage());  // Empty AvatarImage
+  deleteAvatarFromSessionStorage(): void {
+    this.clearAvatar();
     this.sessionStorageService.removeItemFromSessionStorage(this.AVATAR_IMG_KEY);
+  }
+
+  clearAvatar(): void {
+    this.changeUserAvatar(new AvatarImage());  // Empty AvatarImage
   }
 
   triggerGetAvatarImage(): void {
