@@ -30,7 +30,7 @@ export class UserAvatarService {
       .catch(this.exceptionService.handleErrorWithErrorCode);
   }
 
-  public static buildAvatarFileUploadRequest(imgSrc: string, croppedImageFile: File, croppedImgHeight: number, croppedImgWidth: number): AvatarFileUploadRequest {
+  public static buildAvatarFileUploadRequest(imgSrc: string, croppedImageFile: File): AvatarFileUploadRequest {
     let avatarFileUploadRequest = new AvatarFileUploadRequest();
 
     avatarFileUploadRequest.fileName = croppedImageFile.name;

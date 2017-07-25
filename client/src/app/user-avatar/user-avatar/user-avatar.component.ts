@@ -53,7 +53,7 @@ export class UserAvatarComponent implements OnInit {
       if ((this.fileName !== null) && (this.fileName.length > 0)) {
         this.extractCroppedImageAsFile(this.data.image, this.fileName)
           .then(file => {
-            this.userAvatarService.saveUserAvatar(UserAvatarService.buildAvatarFileUploadRequest(this.data.image, file, CROPPED_IMAGE_HEIGHT, CROPPED_IMAGE_WIDTH))
+            this.userAvatarService.saveUserAvatar(UserAvatarService.buildAvatarFileUploadRequest(this.data.image, file))
               .subscribe(
                 (newAvatar: AvatarImage) => {
                   this.userAvatarMonitoringService.changeUserAvatar(newAvatar);
