@@ -127,4 +127,7 @@ md-toolbar-row {
   transition: all 0.5s ease-in-out;
 }
 
-
+img-cropper div.dropify-wrapper {
+  /* Hide dropify-wrapper div within img-cropper elements */
+  display: none;
+}
