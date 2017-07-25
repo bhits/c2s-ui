@@ -5,6 +5,7 @@ import {NotificationService} from "../../core/notification.service";
 import {Router} from "@angular/router";
 import {UserAvatarMonitoringService} from "../../shared/user-avatar-monitoring.service";
 import {AvatarImage} from "../shared/avatar-image.model";
+import {isNullOrUndefined} from "util";
 
 const CROPPED_IMAGE_WIDTH: number = 48;  // Width of cropped avatar image in pixels
 const CROPPED_IMAGE_HEIGHT: number = 48;  // Height of cropped avatar image in pixels
@@ -25,6 +26,7 @@ export class UserAvatarComponent implements OnInit {
 
   data: any;
   cropperSettings: CropperSettings;
+  isCurrentAvatarDefault: boolean;
 
   @ViewChild('cropper', undefined)
   cropper: ImageCropperComponent;
@@ -43,6 +45,20 @@ export class UserAvatarComponent implements OnInit {
     this.cropperSettings.noFileInput = true;
     this.data = {};
     this.fileName = null;
+    this.isCurrentAvatarDefault = null;
+
+    this.userAvatarMonitoringService.userAvatarSource
+      .subscribe(
+        (currentAvatar: AvatarImage) => {
+          if (!isNullOrUndefined(currentAvatar)) {
+            this.isCurrentAvatarDefault = currentAvatar.fileContents === null;
+          } else {
+            this.isCurrentAvatarDefault = null;
+          }
+        },
+        () => {
+          this.isCurrentAvatarDefault = null;
+        });
   }
 
   ngOnInit(): void {
@@ -67,6 +83,18 @@ export class UserAvatarComponent implements OnInit {
           });
       }
     }
+  }
+
+  deleteCurrentAvatar(): void {
+    this.userAvatarService.deleteUserAvatar()
+      .subscribe(
+        (isDeleteSuccess: boolean) => {
+          if (isDeleteSuccess) {
+            this.notificationService.i18nShow("USER_AVATAR.AVATAR_DELETE_SUCCESS_MSG");
+          } else {
+            this.notificationService.i18nShow("USER_AVATAR.ERROR_MSGS.ERROR_DELETING_AVATAR");
+          }
+        });
   }
 
   cancel(): void {

@@ -476,11 +476,15 @@
   },
   "USER_AVATAR": {
     "TITLE": "My Avatar",
+    "UPLOAD_NEW_AVATAR_SECTION_HEADER": "Upload New Avatar",
+    "DELETE_AVATAR_BTN_LABEL": "Delete Current Avatar",
     "SUBMIT_CROPPED_IMAGE_BTN_LABEL": "Save",
     "CANCEL_BTN_LABEL": "Cancel",
     "AVATAR_UPLOAD_SUCCESS_MSG": "Successfully saved avatar image.",
+    "AVATAR_DELETE_SUCCESS_MSG": "Successfully deleted avatar image.",
     "ERROR_MSGS": {
-      "ERROR_SAVING_AVATAR": "Unable to save avatar."
+      "ERROR_SAVING_AVATAR": "Unable to save avatar.",
+      "ERROR_DELETING_AVATAR": "Unable to delete avatar."
     }
   },
   "SHARED": {
