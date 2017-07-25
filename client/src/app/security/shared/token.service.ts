@@ -83,4 +83,12 @@ export class TokenService {
     return token;
   }
 
+  public hasScope(scope: string): boolean {
+    let accessToken: AccessToken = this.getAccessToken();
+    if (accessToken) {
+      return accessToken.scope.includes(scope);
+    }
+    return false;
+  }
+
 }

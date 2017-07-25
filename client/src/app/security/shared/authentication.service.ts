@@ -57,10 +57,11 @@ export class AuthenticationService {
   }
 
   isLogin(){
+    const C2S_UI_ACCESS_SCOPE: string = "c2sUi.access";
     let oauth2Token:AccessToken =  this.tokenService.getAccessToken();
     let profile:Profile =  this.tokenService.getProfileToken();
 
-    if(oauth2Token && profile){
+    if(oauth2Token && this.tokenService.hasScope(C2S_UI_ACCESS_SCOPE) && profile){
         let umsProfile:UmsLimitedProfile =  this.limitedProfileService.getProfileFromSessionStorage();
         if(umsProfile){
           this.customTranslateService.addSupportedLanguages(this.utilityService.getSupportedLocaleCode(umsProfile.supportedLocales));
