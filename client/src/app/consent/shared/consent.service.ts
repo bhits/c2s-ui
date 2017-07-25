@@ -219,12 +219,16 @@ export class ConsentService {
   handleCreateConsentError(err: any) {
     if(err =="409"){
       this.notificationService.i18nShow("NOTIFICATION_MSG.DUPLICATE_CONSENT");
+    }else {
+      this.notificationService.i18nShow("NOTIFICATION_MSG.FAILED_CREATING_CONSENT");
     }
   }
 
   handleSignConsentError(err: any) {
     if(err =="400"){
       this.notificationService.i18nShow("NOTIFICATION_MSG.INVALID_CONSENT_SIGN_DATE");
+    } else {
+      this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_ATTEST_CONSENT');
     }
   }
 
