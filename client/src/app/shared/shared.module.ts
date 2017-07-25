@@ -19,6 +19,7 @@ import {ConsentProviderPipe} from "./consent-provider.pipe";
 import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password.component";
 import {FileValueAccessor} from "./file-value-accessor.directive";
 import {FileValidator} from "./file-validator.directive";
+import {UserAvatarDisplayComponent} from "./user-avatar-display/user-avatar-display.component";
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import {FileValidator} from "./file-validator.directive";
     ConsentProviderPipe,
     ShowHidePasswordComponent,
     FileValueAccessor,
-    FileValidator
+    FileValidator,
+    UserAvatarDisplayComponent
   ],
   exports: [
     CommonModule,
@@ -49,7 +51,8 @@ import {FileValidator} from "./file-validator.directive";
     PageTitleComponent,
     ControlMessagesComponent,
     ShowHidePasswordComponent,
-    FileValueAccessor
+    FileValueAccessor,
+    UserAvatarDisplayComponent
   ],
   providers: [
     C2sUiApiUrlService,
