@@ -21,7 +21,7 @@
       </strong>
     </button>
 
-    <button md-raised-button color="primary" [disabled]="!cropper.image.hasOwnProperty('image')" (click)="submitCroppedImage()">
+    <button md-raised-button color="primary" [disabled]="!data.hasOwnProperty('image')" (click)="submitCroppedImage()">
       <strong>
         {{ 'USER_AVATAR.SUBMIT_CROPPED_IMAGE_BTN_LABEL' | translate }}
       </strong>
