@@ -43,10 +43,17 @@ export class AuthenticationService {
     this.tokenService.deleteProviderCount();
     this.limitedProfileService.deleteProfileFromSessionStorage();
     this.globalEventManagerService.setShowHeader(false);
-    let masterUiLoginUrl = this.tokenService.getMasterUiLoginUrl();
-    this.tokenService.deleteMasterUiLoginUrl();
-    this.utilityService.redirectInSameTab(masterUiLoginUrl);
+    this.goToLogin();
+  }
 
+  private goToLogin(){
+    let masterUiLoginUrl = this.tokenService.getMasterUiLoginUrl();
+    if(masterUiLoginUrl){
+      this.tokenService.deleteMasterUiLoginUrl();
+      this.utilityService.redirectInSameTab(masterUiLoginUrl);
+    }else{
+      this.router.navigate([this.LOGIN]);
+    }
   }
 
   isLogin(){
