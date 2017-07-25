@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {UtilityService} from "../utility.service";
 import {isNullOrUndefined} from "util";
 import {AvatarImage} from "../../user-avatar/shared/avatar-image.model";
