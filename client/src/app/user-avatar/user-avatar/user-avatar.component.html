@@ -13,30 +13,32 @@
 
   <h2>{{ 'USER_AVATAR.UPLOAD_NEW_AVATAR_SECTION_HEADER' | translate }}</h2>
 
-  <div fxLayout="row" fxLayoutGap="20px" class="m-b-sm">
-    <div class="file-upload">
-      <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+  <form #uploadForm [formGroup]="uploadImageForm">
+    <div fxLayout="row" fxLayoutGap="20px" class="m-b-sm">
+      <div class="file-upload">
+        <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+      </div>
     </div>
-  </div>
 
-  <div fxLayout="row" fxLayoutGap="20px">
-    <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
-    <span class="result rounded" *ngIf="data.image">
-      <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
-    </span>
-  </div>
+    <div fxLayout="row" fxLayoutGap="20px">
+      <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+      <span class="result rounded" *ngIf="data.image">
+        <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+      </span>
+    </div>
 
-  <div fxLayout="row" fxLayoutGap="20px">
-    <button md-raised-button (click)="cancel()">
-      <strong>
-        {{ 'USER_AVATAR.CANCEL_BTN_LABEL' | translate }}
-      </strong>
-    </button>
+    <div fxLayout="row" fxLayoutGap="20px">
+      <button md-raised-button (click)="cancel()">
+        <strong>
+          {{ 'USER_AVATAR.CANCEL_BTN_LABEL' | translate }}
+        </strong>
+      </button>
 
-    <button md-raised-button color="primary" [disabled]="!data.hasOwnProperty('image')" (click)="submitCroppedImage()">
-      <strong>
-        {{ 'USER_AVATAR.SUBMIT_CROPPED_IMAGE_BTN_LABEL' | translate }}
-      </strong>
-    </button>
-  </div>
+      <button md-raised-button color="primary" [disabled]="!data.hasOwnProperty('image')" (click)="submitCroppedImage()">
+        <strong>
+          {{ 'USER_AVATAR.SUBMIT_CROPPED_IMAGE_BTN_LABEL' | translate }}
+        </strong>
+      </button>
+    </div>
+  </form>
 </div>

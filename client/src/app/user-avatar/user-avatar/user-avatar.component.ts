@@ -1,5 +1,7 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {CropperSettings, ImageCropperComponent} from "ng2-image-cropper";
+import {FileValidator} from "../../shared/file-validator.directive";
 import {UserAvatarService} from "../shared/user-avatar.service";
 import {NotificationService} from "../../core/notification.service";
 import {Router} from "@angular/router";
@@ -24,6 +26,8 @@ const CLASS_WHEN_IMAGE_FILE_SELECTED: string = "ready-to-crop";
 export class UserAvatarComponent implements OnInit {
   private fileName: string;
 
+  uploadImageForm: FormGroup;
+
   data: any;
   cropperSettings: CropperSettings;
   isCurrentAvatarDefault: boolean;
@@ -31,7 +35,11 @@ export class UserAvatarComponent implements OnInit {
   @ViewChild('cropper', undefined)
   cropper: ImageCropperComponent;
 
+  // A direct reference to the HTML form element as a ViewChild is necessary to properly reset file type input element (see resetUploadForm method below for details)
+  @ViewChild('uploadForm') uploadForm: ElementRef;
+
   constructor(private router: Router,
+              private formBuilder: FormBuilder,
               private userAvatarService: UserAvatarService,
               private notificationService: NotificationService,
               private userAvatarMonitoringService: UserAvatarMonitoringService) {
@@ -62,6 +70,7 @@ export class UserAvatarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.uploadImageForm = this.initUploadImageFormGroup();
   }
 
   submitCroppedImage() {
@@ -73,8 +82,9 @@ export class UserAvatarComponent implements OnInit {
               .subscribe(
                 (newAvatar: AvatarImage) => {
                   this.userAvatarMonitoringService.changeUserAvatar(newAvatar);
+                  this.cropper.reset();
+                  this.resetUploadForm();
                   this.notificationService.i18nShow("USER_AVATAR.AVATAR_UPLOAD_SUCCESS_MSG");
-                  this.redirectToUserProfile();
                 },
                 (err) => {
                   console.log(err);
@@ -116,6 +126,13 @@ export class UserAvatarComponent implements OnInit {
     currentThis.fileName = file.name;
   }
 
+  private resetUploadForm(): void {
+    // Reset FormGroup
+    this.uploadImageForm.reset();
+    // Manually reset native form element to clear out file input element (file input element currently not natively supported in FormGroup)
+    this.uploadForm.nativeElement.reset();
+  }
+
   private redirectToUserProfile(): void {
     this.router.navigateByUrl('/user-profile');
   }
@@ -135,5 +152,15 @@ export class UserAvatarComponent implements OnInit {
         .then(function(res){return res.arrayBuffer();})
         .then(function(buf){return new File([buf], fileName, {type:mimeType});})
     );
+  }
+
+  private initUploadImageFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      fileUploadInput: [null,
+        [
+          FileValidator.validate
+        ]
+      ]
+    });
   }
 }
