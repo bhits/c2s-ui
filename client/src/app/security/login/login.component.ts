@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {AuthenticationService} from "../shared/authentication.service";
 import {Credentials} from "../shared/credentials.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ValidationService} from "../../shared/validation.service";
 import {TokenService} from "../shared/token.service";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {LimitedProfileService} from "../shared/limited-profile.service";
@@ -23,7 +22,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService,
               private formBuilder: FormBuilder,
-              private validationService: ValidationService,
               private tokenService: TokenService,
               private customTranslateService: CustomTranslateService,
               private limitedProfileService: LimitedProfileService,
@@ -51,9 +49,8 @@ export class LoginComponent implements OnInit {
                 let profile = this.tokenService.createProfileObject(uaaProfile);
                 this.tokenService.storeUserProfile(profile);
                 this.getUMSProfileAndSetDefaultLanguage(profile);
-              }
-              ,
-              (error) => this.handleLoginError
+              },
+              (error) => this.handleLoginError()
             );
         },
         err => {
@@ -63,11 +60,7 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  isValidForm(formgroup: FormGroup) {
-    return this.validationService.isValidForm(formgroup);
-  }
-
-  getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile) {
+  private getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile) {
     this.limitedProfileService.getUMSProfile().subscribe(
       (profile: UmsLimitedProfile) => {
         let localesCode: string[] = this.utilityService.getSupportedLocaleCode(profile.supportedLocales);
@@ -76,14 +69,14 @@ export class LoginComponent implements OnInit {
         this.limitedProfileService.setProfileInSessionStorage(profile);
         this.authenticationService.onGetUserProfileSuccess(uaaProfile);
       },
-      this.handleLoginError
+      (err) => this.handleLoginError()
     )
   }
 
-  handleLoginError(error: any) {
+  private handleLoginError(): void {
     this.tokenService.deleteAccessToken();
+    this.tokenService.deleteProfileToken();
     this.showLoginBackendError = true;
-    console.log(error)
   }
 
   public getInputType(inputType: string) {
