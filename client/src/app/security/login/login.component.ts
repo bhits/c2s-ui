@@ -39,26 +39,28 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(value: any): void {
+  public login(value: any): void {
     this.authenticationService.login(value.username, value.password)
-      .toPromise()
-      .then(response => {
-        this.showLoginBackendError = false;
-        this.authenticationService.onLoginSuccess(response);
-        this.authenticationService.getUserProfile()
-          .subscribe(
-            (uaaProfile) => {
-              let profile = this.tokenService.createProfileObject(uaaProfile);
-              this.tokenService.storeUserProfile(profile);
-              this.getUMSProfileAndSetDefaultLanguage(profile);
-            }
-            ,
-            (error) => this.handleLoginError
-          );
-      }).catch(error => {
-      console.log(error);
-      this.showLoginBackendError = true;
-    })
+      .subscribe(
+        (res) => {
+          this.showLoginBackendError = false;
+          this.authenticationService.onLoginSuccess(res);
+          this.authenticationService.getUserProfile()
+            .subscribe(
+              (uaaProfile) => {
+                let profile = this.tokenService.createProfileObject(uaaProfile);
+                this.tokenService.storeUserProfile(profile);
+                this.getUMSProfileAndSetDefaultLanguage(profile);
+              }
+              ,
+              (error) => this.handleLoginError
+            );
+        },
+        err => {
+          console.log(err);
+          this.showLoginBackendError = true;
+        }
+      );
   }
 
   isValidForm(formgroup: FormGroup) {

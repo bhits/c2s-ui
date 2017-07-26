@@ -8,36 +8,77 @@ $plus-green: #24a69a;
 $xlite-teal: #e5eded;
 $dark-bluegrey: #426575;
 
-.dark-bluegrey {color:$dark-bluegrey;}
+.dark-bluegrey {
+  color: $dark-bluegrey;
+}
 
-//background colors
-//.bg-white {background-color: white !important;}
-//.bg-forest-green {background-color: $forest-green;}
-//.bg-dark-green {background-color: $dark-green;}
-//.bg-lite-blue {background-color: $lite-blue;}
-//.bg-dark-blue {background-color: $dark-blue;}
-//.bg-plus-green {background-color: $plus-green;}
-//.bg-xlite-teal {background-color: $xlite-teal;}
-//.bg-dark-bluegrey {background-color:$dark-bluegrey;}
+.bg-white {
+  background-color: white !important;
+}
 
-.bg-white {background-color: white !important;}
-.bg-forest-green {background-color: #008b8b;}
-.bg-dark-green {background-color: #104952;}
-.bg-lite-blue {background-color: #daeaf7;}
-.bg-navy-blue {background-color: #33668C;}
-.bg-plus-green {background-color: #24a69a !important;}
-.bg-xlite-teal {background-color: #e5eded;}
-.bg-dark-bluegrey {background-color:#426575;}
-.bg-dark-blue {background-color: #2f526d;}
-.bg-maroon {background-color: #8a1004;}
+.bg-forest-green {
+  background-color: #008b8b;
+}
 
-.white {color: white;}
-.black {color: black;}
-.navy-blue {color: #33668C;}
-.dark-blue {color:#2f526d;}
-.current-blue {color: #3fa3ba;}
-.ribbon-blue {color: #50687F;}
-.maroon {color: #8a1004;}
+.bg-dark-green {
+  background-color: #104952;
+}
+
+.bg-lite-blue {
+  background-color: #daeaf7;
+}
+
+.bg-navy-blue {
+  background-color: #33668C;
+}
+
+.bg-plus-green {
+  background-color: #24a69a !important;
+}
+
+.bg-xlite-teal {
+  background-color: #e5eded;
+}
+
+.bg-dark-bluegrey {
+  background-color: #426575;
+}
+
+.bg-dark-blue {
+  background-color: #2f526d;
+}
+
+.bg-maroon {
+  background-color: #8a1004;
+}
+
+.white {
+  color: white;
+}
+
+.black {
+  color: black;
+}
+
+.navy-blue {
+  color: #33668C;
+}
+
+.dark-blue {
+  color: #2f526d;
+}
+
+.current-blue {
+  color: #3fa3ba;
+}
+
+.ribbon-blue {
+  color: #50687F;
+}
+
+.maroon {
+  color: #8a1004;
+}
 
 //C2S Custom Theme
 $mat-deep-plumb: (
@@ -51,7 +92,6 @@ $mat-deep-plumb: (
   700: #493648,
   800: #331D32,
   900: #331D32,
-
   A100: #9B8D9B,
   A200: #7D6A7C,
   A400: #644F63,
@@ -73,7 +113,6 @@ $mat-deep-plumb: (
     A700: $black-87-opacity,
   )
 );
-
 
 $mat-deep-sea-foam: (
   50: #CDE6F0,
