@@ -1,10 +1,8 @@
 import {NgModule} from "@angular/core";
 import {NgUploaderModule} from "ngx-uploader";
-import {MedicalDocumentsRoutingModule, medicalDocumentRoutedComponents} from "./medical-documents-routing.module";
+import {medicalDocumentRoutedComponents, MedicalDocumentsRoutingModule} from "./medical-documents-routing.module";
 import {SharedModule} from "../shared/shared.module";
 import {LayoutModule} from "../layout/layout.module";
-
-import {TranslateModule} from "@ngx-translate/core";
 import {MedicalDocumentListComponent} from "./medical-document-list/medical-document-list.component";
 import {MedicalDocumentUploadComponent} from "./medical-document-upload/medical-document-upload.component";
 import {MedicalDocumentsService} from "./shared/medical-documents.service";
@@ -14,8 +12,7 @@ import {MedicalDocumentsService} from "./shared/medical-documents.service";
     NgUploaderModule,
     SharedModule,
     LayoutModule,
-    MedicalDocumentsRoutingModule,
-    TranslateModule
+    MedicalDocumentsRoutingModule
   ],
   declarations: [
     MedicalDocumentListComponent,

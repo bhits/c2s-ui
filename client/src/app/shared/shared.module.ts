@@ -6,8 +6,7 @@ import {Md2Module, Md2Tooltip} from "md2";
 import {Ng2PaginationModule} from "ng2-pagination";
 import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
-
-
+import {TranslateModule} from "@ngx-translate/core";
 import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 import {UtilityService} from "./utility.service";
 import {DataService} from "./data.service";
@@ -25,7 +24,8 @@ import {UserAvatarDisplayComponent} from "./user-avatar-display/user-avatar-disp
   imports: [
     CommonModule,
     Md2Module,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ],
   declarations: [
     UsPhoneNumberPipe,
@@ -45,6 +45,7 @@ import {UserAvatarDisplayComponent} from "./user-avatar-display/user-avatar-disp
     Md2Module,
     Ng2PaginationModule,
     ReactiveFormsModule,
+    TranslateModule,
     UsPhoneNumberPipe,
     ConsentProviderPipe,
     Md2Tooltip,

@@ -1,11 +1,8 @@
+import "hammerjs";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
-import {Http, HttpModule} from "@angular/http";
-import {Md2Module} from "md2";
-import {MaterialModule} from "@angular/material";
+import {Http} from "@angular/http";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
-
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppComponent} from "./app.component";
 import {CoreModule} from "./core/core.module";
@@ -23,8 +20,7 @@ import {MedicalDocumentsModule} from "./medical-documents/medical-documents.modu
 import {UserProfileModule} from "./user-profile/user-profile.module";
 import {UserAvatarModule} from "./user-avatar/user-avatar.module";
 import {UserAvatarMonitoringService} from "./shared/user-avatar-monitoring.service";
-
-
+import {ActivityModule} from "./activity/activity.module";
 
 
 @NgModule({
@@ -32,14 +28,11 @@ import {UserAvatarMonitoringService} from "./shared/user-avatar-monitoring.servi
     AppComponent
   ],
   imports: [
-
-    //3rd Party modules
+    // Angular Modules
     BrowserAnimationsModule,
     BrowserModule,
-    FormsModule,
-    HttpModule,
-    Md2Module,
-    MaterialModule, // TODO: Move to core module - verify why it is not working now.
+
+    //3rd Party modules
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -49,6 +42,7 @@ import {UserAvatarMonitoringService} from "./shared/user-avatar-monitoring.servi
     }),
     // C2S Modules
     AccountModule,
+    ActivityModule,
     CoreModule,
     LayoutModule,
     HomeModule,

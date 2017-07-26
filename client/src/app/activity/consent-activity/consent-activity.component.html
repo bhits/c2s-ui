@@ -1,0 +1,87 @@
+<div>
+  <h1>
+    {{ 'ACTIVITY.CONSENT_ACTIVITY.TITLE' | translate }}
+  </h1>
+  <div class="p-l p-r" class.gt-sm="p-l-lg p-r-lg">
+    <div class="m-t-xs m-b-sm p-b-sm border-bottom-purple-thin" fxFlex="1 1 auto"
+         fxLayoutAlign="flex-start center"></div>
+    <div style="padding-top: 20px;" *ngIf="noActivity; else hasActivity">
+      <div style="background-color: #DEBCC9" class="p-md font-size18 font-weight center-sm-left">
+        {{ 'ACTIVITY.CONSENT_ACTIVITY.NO_ACTIVITIES_MSG' | translate }}
+      </div>
+    </div>
+    <ng-template #hasActivity>
+      <div fxLayoutAlign="center">
+        <md-spinner *ngIf="loading"></md-spinner>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxHide fxHide.gt-xs="false"
+           class="m-t p-sm bg-dark-bluegrey white">
+        <div fxFlex class="font-size15 font-weight500">
+          {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.DATE' | translate }}
+        </div>
+        <div fxFlex class="font-size15 font-weight500">
+          {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.ACTION' | translate }}
+        </div>
+        <div fxFlex class="font-size15 font-weight500">
+          {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.CONSENT_REFERENCE_ID' | translate }}
+        </div>
+        <div fxFlex class="font-size15 font-weight500">
+          {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.CHANGED_BY' | translate }}
+        </div>
+        <div fxFlex class="font-size15 font-weight500">
+          {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.ROLE' | translate }}
+        </div>
+      </div>
+      <div fxLayout="column" fxLayout.gt-xs="row" class="stripedRows p-sm p-t p-b"
+           *ngFor="let activity of asyncActivities | async | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }">
+        <div fxFlex>
+          <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
+            <div fxHide.gt-xs="true" class="font-size15">
+              {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.DATE' | translate }}
+            </div>
+            <div class="font-size15 font-weight500">{{activity.updatedDateTime}}</div>
+          </div>
+        </div>
+        <div fxFlex>
+          <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
+            <div fxHide.gt-xs="true" class="font-size15">
+              {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.ACTION' | translate }}
+            </div>
+            <div class="font-size15 font-weight500">{{activity.actionType}}</div>
+          </div>
+        </div>
+        <div fxFlex>
+          <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
+            <div fxHide.gt-xs="true" class="font-size15">
+              {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.CONSENT_REFERENCE_ID' | translate }}
+            </div>
+            <div class="font-size15 font-weight500">{{activity.consentReferenceId}}</div>
+          </div>
+        </div>
+        <div fxFlex>
+          <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
+            <div fxHide.gt-xs="true" class="font-size15">
+              {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.CHANGED_BY' | translate }}
+            </div>
+            <div class="font-size15 font-weight500">{{activity.updatedBy}}</div>
+          </div>
+        </div>
+        <div fxFlex>
+          <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
+            <div fxHide.gt-xs="true" class="font-size15">
+              {{ 'ACTIVITY.CONSENT_ACTIVITY.TABLE.ROLE' | translate }}
+            </div>
+            <div class="font-size15 font-weight500">{{activity.role}}</div>
+          </div>
+        </div>
+      </div>
+      <div fxLayoutAlign="center">
+        <pagination-controls
+          previousLabel="{{ 'CONSENTS.PAGINATION.PREVIOUS' | translate }}"
+          nextLabel="{{ 'CONSENTS.PAGINATION.NEXT' | translate }}"
+          (pageChange)="getPage($event)">
+        </pagination-controls>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -5,6 +5,19 @@
   "ACCOUNT": {
     "FAILED_CHECK_USERNAME" : "Failed to check username, please try again later."
   },
+  "ACTIVITY": {
+    "CONSENT_ACTIVITY": {
+      "TITLE": "Activity History",
+      "NO_ACTIVITIES_MSG": "There are currently no activity.",
+      "TABLE": {
+        "DATE": "Date",
+        "ACTION": "Action",
+        "CONSENT_REFERENCE_ID": "Consent Reference ID",
+        "CHANGED_BY": "Changed By",
+        "ROLE": "Role"
+      }
+    }
+  },
   "HOME": {
     "SELECT_LANG": "Change language",
     "WELCOME": {
@@ -41,6 +54,7 @@
       "TITLE": "Menu",
       "MENU_ITEM": {
         "HOME": "Home",
+        "ACTIVITY_HISTORY": "Activity History",
         "PROVIDERS": "Providers",
         "CONSENTS": "Consents",
         "MEDICAL_DOCUMENTS": "Medical Documents",
