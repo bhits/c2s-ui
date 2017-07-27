@@ -1,7 +1,10 @@
-import {Page} from "./page.model";
-import {Links} from "./links.model";
 export interface PageableData<T> {
-  _embedded: Map<string, T[]>;
-  _links: Links;
-  page: Page;
+  content: T[];
+  last?: boolean;
+  totalElements: number;
+  totalPages: number;
+  size: number;
+  number: number;
+  first?: boolean;
+  numberOfElements?: number;
 }

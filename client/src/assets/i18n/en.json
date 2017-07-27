@@ -2,6 +2,22 @@
   "APP": {
     "MENU": "Menu"
   },
+  "ACCOUNT": {
+    "FAILED_CHECK_USERNAME" : "Failed to check username, please try again later."
+  },
+  "ACTIVITY": {
+    "CONSENT_ACTIVITY": {
+      "TITLE": "Activity History",
+      "NO_ACTIVITIES_MSG": "There are currently no activity.",
+      "TABLE": {
+        "DATE": "Date",
+        "ACTION": "Action",
+        "CONSENT_REFERENCE_ID": "Consent Reference ID",
+        "CHANGED_BY": "Changed By",
+        "ROLE": "Role"
+      }
+    }
+  },
   "HOME": {
     "SELECT_LANG": "Change language",
     "WELCOME": {
@@ -38,6 +54,7 @@
       "TITLE": "Menu",
       "MENU_ITEM": {
         "HOME": "Home",
+        "ACTIVITY_HISTORY": "Activity History",
         "PROVIDERS": "Providers",
         "CONSENTS": "Consents",
         "MEDICAL_DOCUMENTS": "Medical Documents",
@@ -356,11 +373,12 @@
     "FAILED_DOWNLOAD_SIGNED_CONSENT": "Failed to download the signed consent, please try again later...",
     "SUCCESS_DOWNLOAD_CONSENT": "Success in downloading consent.",
     "FAILED_DOWNLOAD_CONSENT": "Failed to download the consent, please try again later...",
-    "FAILED_ATTEST_CONCENT": "Error in attest consent.",
+    "FAILED_ATTEST_CONSENT": "Error in attest consent.",
     "SUCCESS_DELETE_PROVIDER": "Success in deleting provider.",
     "FAILED_DELETE_PROVIDER": "Failed to delete the provider, please try again later...",
     "FAILED_ADD_PROVIDER": "Failed to add the provider, please try again later...",
-    "DUPLICATE_CONSENT": "Failed to add new consent. Duplicate consent created."
+    "DUPLICATE_CONSENT": "Failed to add new consent. Duplicate consent created.",
+    "INVALID_CONSENT_SIGN_DATE": "Consent start date can not before the signing date."
   },
   "ACCOUNT_VERIFICATION": {
     "TITLE": "Account Setup Verification",

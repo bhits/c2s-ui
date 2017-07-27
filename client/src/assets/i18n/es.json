@@ -2,6 +2,19 @@
   "APP": {
     "MENU": "Menú"
   },
+  "ACTIVITY": {
+    "CONSENT_ACTIVITY": {
+      "TITLE": "{spanish} Activity History",
+      "NO_ACTIVITIES_MSG": "{spanish} There are currently no activity.",
+      "TABLE": {
+        "DATE": "{spanish} Date",
+        "ACTION": "{spanish} Action",
+        "CONSENT_REFERENCE_ID": "{spanish} Consent Reference ID",
+        "CHANGED_BY": "{spanish} Changed By",
+        "ROLE": "{spanish} Role"
+      }
+    }
+  },
   "HOME": {
     "SELECT_LANG": "Change language",
     "WELCOME": {
@@ -38,6 +51,7 @@
       "TITLE": "Menú",
       "MENU_ITEM": {
         "HOME": "Casa",
+        "ACTIVITY_HISTORY": "{spanish} Activity History",
         "PROVIDERS": "Proveedores",
         "CONSENTS": "Consentimientos",
         "MEDICAL_DOCUMENTS": "Documentos Médicos",

@@ -10,6 +10,9 @@ import {LimitedProfileService} from "./limited-profile.service";
 import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {UtilityService} from "../../shared/utility.service";
+import {Observable} from "rxjs/Observable";
+import {ExceptionService} from "src/app/core/exception.service";
+import {AuthorizationResponse} from "src/app/security/shared/authorization-response.model";
 
 
 @Injectable()
@@ -21,6 +24,7 @@ export class AuthenticationService {
   LOGIN:string ='login';
 
   constructor(private router: Router,
+              private exceptionService: ExceptionService,
               private http: Http,
               private tokenService: TokenService,
               private globalEventManagerService: GlobalEventManagerService,
@@ -29,8 +33,10 @@ export class AuthenticationService {
               private utilityService: UtilityService) {
   }
 
-  login(username:string, password:string) {
-    return this.http.post(this.oauth2TokenUrl, this.composeParameters(username, password), this.setHeaders());
+  public login(username: string, password: string): Observable<AuthorizationResponse> {
+    return this.http.post(this.oauth2TokenUrl, this.composeParameters(username, password), this.setHeaders())
+      .map((resp: Response) => <AuthorizationResponse>(resp.json()))
+      .catch(this.exceptionService.handleError);
   }
 
   onLoginSuccess(response: Response){
@@ -53,11 +59,10 @@ export class AuthenticationService {
   }
 
   isLogin(){
-    const C2S_UI_ACCESS_SCOPE: string = "c2sUi.access";
     let oauth2Token:AccessToken =  this.tokenService.getAccessToken();
     let profile:Profile =  this.tokenService.getProfileToken();
 
-    if(oauth2Token && this.tokenService.hasScope(C2S_UI_ACCESS_SCOPE) && profile){
+    if(oauth2Token && profile){
         let umsProfile:UmsLimitedProfile =  this.limitedProfileService.getProfileFromSessionStorage();
         if(umsProfile){
           this.customTranslateService.addSupportedLanguages(this.utilityService.getSupportedLocaleCode(umsProfile.supportedLocales));
@@ -70,24 +75,26 @@ export class AuthenticationService {
     return false;
   }
 
-  getUserProfile(){
+  getUserProfile() {
     return this.http.get(this.oauth2UserInfoUrl)
-                      .map((resp: Response) => <any>(resp.json()));
+      .map((resp: Response) => <any>(resp.json()));
   }
 
-  onGetUserProfileSuccess(profile:Profile){
+  onGetUserProfileSuccess(profile: Profile) {
     this.globalEventManagerService.setShowHeader(true);
     this.globalEventManagerService.setProfile(profile);
     this.router.navigate([this.HOME]);
   }
 
-  private setHeaders():RequestOptions {
-    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded',
-                                'Authorization': 'Basic ' + this.CLIENT_ID } );
-    return new RequestOptions({ headers: headers });
+  private setHeaders(): RequestOptions {
+    let headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic ' + this.CLIENT_ID
+    });
+    return new RequestOptions({headers: headers});
   }
 
-  private composeParameters(username: string, password:string): string{
+  private composeParameters(username: string, password: string): string {
     let urlSearchParams = new URLSearchParams();
     urlSearchParams.append('username', username);
     urlSearchParams.append('password', password);

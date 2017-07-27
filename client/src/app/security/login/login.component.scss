@@ -1,7 +1,6 @@
-
 .login-background {
   background-color: #BCDEDB;
-  background-image: url("../../../assets/img/c2s-3.0-bkgrnd-LtR.svg");
+  background-image: url("../../../assets/img/c2s-3.0-bkgrnd-LtR.png");
   background-repeat: no-repeat;
   background-position: left;
   background-size: cover;
@@ -14,9 +13,11 @@
   background-color: rgba(250, 250, 250, .9);
   border: 1px solid #ebebeb;
   border-radius: 6px;
-  box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
   font-size: 1em;
-  button[disabled] {background-color: #E2DCE2 !important;}
+  button[disabled] {
+    background-color: #E2DCE2 !important;
+  }
 }
 
 .full-width {
@@ -27,13 +28,16 @@ input {
   font-size: 1.7em !important;
 }
 
-c2s-control-messages {font-size: 1.4em; color: #eb0404;}
+c2s-control-messages {
+  font-size: 1.4em;
+  color: #eb0404;
+}
 
 .login-help-section {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     flex-direction: column;
   }
 }
@@ -43,9 +47,12 @@ c2s-control-messages {font-size: 1.4em; color: #eb0404;}
 
 }
 
-.learn-more  {
-  color:  #8CBEC7;
-  &:hover {color: #3FA3BA; font-weight: 700;}
+.learn-more {
+  color: #8CBEC7;
+  &:hover {
+    color: #3FA3BA;
+    font-weight: 700;
+  }
 }
 
 .mat-input-placeholder-wrapper {
@@ -54,7 +61,9 @@ c2s-control-messages {font-size: 1.4em; color: #eb0404;}
 }
 
 .mat-input-placeholder.mat-float.mat-focused, .mat-input-placeholder.mat-float:not(.mat-empty) {
-  //display: block;
   transform: translateY(-1.35em) scale(1) !important;
-  //width: 133.33333%;
+}
+
+.has-error {
+  color: brown;
 }
