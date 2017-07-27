@@ -47,9 +47,6 @@ export class TokenService {
     return this.sessionStorageService.getItemFromSessionStorage(this.PROVIDER_COUNT_KEY);
   }
 
-  deleteProviderCount(){
-    this.sessionStorageService.removeItemFromSessionStorage(this.PROVIDER_COUNT_KEY);
-  }
 
   getMasterUiLoginUrl(): string{
     return this.sessionStorageService.getItemFromSessionStorage(this.MASTER_UI_LOGIN);

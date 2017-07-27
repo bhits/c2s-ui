@@ -38,18 +38,14 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.tokenService.deleteAccessToken();
-    this.tokenService.deleteProfileToken();
-    this.tokenService.deleteProviderCount();
-    this.limitedProfileService.deleteProfileFromSessionStorage();
     this.globalEventManagerService.setShowHeader(false);
-    this.goToLogin();
+    this.clearSessionStorgeAndRedirectToLogin();
   }
 
-  private goToLogin(){
+  private clearSessionStorgeAndRedirectToLogin(){
     let masterUiLoginUrl = this.tokenService.getMasterUiLoginUrl();
+    sessionStorage.clear();
     if(masterUiLoginUrl){
-      this.tokenService.deleteMasterUiLoginUrl();
       this.utilityService.redirectInSameTab(masterUiLoginUrl);
     }else{
       this.router.navigate([this.LOGIN]);

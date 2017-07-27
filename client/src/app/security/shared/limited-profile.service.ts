@@ -55,10 +55,6 @@ export class LimitedProfileService {
     }
   }
 
-  deleteProfileFromSessionStorage() {
-    this.sessionStorageService.removeItemFromSessionStorage(this.UMS_PROFILE_KEY);
-  }
-
   getMRN(){
     let umsProfile:UmsLimitedProfile = this.getProfileFromSessionStorage();
     if(umsProfile){
