@@ -131,6 +131,7 @@ export class UserAvatarComponent implements OnInit {
     this.uploadImageForm.reset();
     // Manually reset native form element to clear out file input element (file input element currently not natively supported in FormGroup)
     this.uploadForm.nativeElement.reset();
+    this.data = {};
   }
 
   private redirectToUserProfile(): void {
