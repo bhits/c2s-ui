@@ -49,6 +49,14 @@ export class UtilityService {
     }
   }
 
+  static stringToBase64(inString: string): string {
+    return btoa(inString);
+  }
+
+  static base64ToString(inBase64: string): string {
+    return atob(inBase64);
+  }
+
   base64StringtoBlob(b64Data, contentType, sliceSize ?): Blob {
     contentType = contentType || '';
     sliceSize = sliceSize || 512;
@@ -140,5 +148,10 @@ export class UtilityService {
       localeCode.push(locale.code);
     });
     return localeCode;
+  }
+
+  static extractExtensionFromFileName(fileName: string): string {
+    let indexOfLastDot = fileName.lastIndexOf(".");
+    return fileName.substr(indexOfLastDot + 1);
   }
 }

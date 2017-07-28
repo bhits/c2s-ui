@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {Headers, Http, RequestOptions, Response, URLSearchParams} from "@angular/http";
+import {Observable} from "rxjs/Observable";
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";
 import {TokenService} from "./token.service";
 import {Profile} from "../../core/profile.model";
@@ -8,7 +9,7 @@ import {LimitedProfileService} from "./limited-profile.service";
 import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {UtilityService} from "../../shared/utility.service";
-import {Observable} from "rxjs/Observable";
+import {UserAvatarMonitoringService} from "../../shared/user-avatar-monitoring.service";
 import {ExceptionService} from "src/app/core/exception.service";
 import {AuthorizationResponse} from "src/app/security/shared/authorization-response.model";
 
@@ -28,7 +29,8 @@ export class AuthenticationService {
               private globalEventManagerService: GlobalEventManagerService,
               private limitedProfileService: LimitedProfileService,
               private customTranslateService: CustomTranslateService,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private userAvatarMonitoringService: UserAvatarMonitoringService) {
   }
 
   public login(username: string, password: string): Observable<AuthorizationResponse> {
@@ -46,6 +48,7 @@ export class AuthenticationService {
     this.tokenService.deleteProfileToken();
     this.tokenService.deleteProviderCount();
     this.limitedProfileService.deleteProfileFromSessionStorage();
+    this.userAvatarMonitoringService.deleteAvatarFromSessionStorage();
     this.globalEventManagerService.setShowHeader(false);
     this.router.navigate([this.LOGIN]);
   }

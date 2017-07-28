@@ -1,6 +1,14 @@
 <div class="p-t-75 p-l-md p-r-md p-b">
   <h1>{{ 'USER_PROFILE.TITLE' | translate }}</h1>
 
+  <div fxLayout="row" fxLayoutGap="20px">
+    <button md-raised-button color="primary" (click)="uploadEditAvatar()">
+      <strong>
+        {{ 'USER_PROFILE.AVATAR_REDIRECT_LABEL' | translate }}
+      </strong>
+    </button>
+  </div>
+
   <form [formGroup]="editProfileForm" class="create-edit-patient-form" novalidate>
     <h2>
       {{ 'USER_PROFILE.EDIT.REQUIRED_INFORMATION.LABEL' | translate }}

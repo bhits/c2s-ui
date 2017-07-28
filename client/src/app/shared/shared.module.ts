@@ -6,6 +6,7 @@ import {Md2Module, Md2Tooltip} from "md2";
 import {Ng2PaginationModule} from "ng2-pagination";
 import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
+import {TranslateModule} from "@ngx-translate/core";
 import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
 import {UtilityService} from "./utility.service";
 import {DataService} from "./data.service";
@@ -17,7 +18,7 @@ import {ConsentProviderPipe} from "./consent-provider.pipe";
 import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password.component";
 import {FileValueAccessor} from "./file-value-accessor.directive";
 import {FileValidator} from "./file-validator.directive";
-import {TranslateModule} from "@ngx-translate/core";
+import {UserAvatarDisplayComponent} from "./user-avatar-display/user-avatar-display.component";
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import {TranslateModule} from "@ngx-translate/core";
     ConsentProviderPipe,
     ShowHidePasswordComponent,
     FileValueAccessor,
-    FileValidator
+    FileValidator,
+    UserAvatarDisplayComponent
   ],
   exports: [
     CommonModule,
@@ -50,7 +52,8 @@ import {TranslateModule} from "@ngx-translate/core";
     PageTitleComponent,
     ControlMessagesComponent,
     ShowHidePasswordComponent,
-    FileValueAccessor
+    FileValueAccessor,
+    UserAvatarDisplayComponent
   ],
   providers: [
     C2sUiApiUrlService,
