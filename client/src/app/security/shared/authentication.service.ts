@@ -42,12 +42,18 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.tokenService.deleteAccessToken();
-    this.tokenService.deleteProfileToken();
-    this.tokenService.deleteProviderCount();
-    this.limitedProfileService.deleteProfileFromSessionStorage();
     this.globalEventManagerService.setShowHeader(false);
-    this.router.navigate([this.LOGIN]);
+    this.clearSessionStorgeAndRedirectToLogin();
+  }
+
+  private clearSessionStorgeAndRedirectToLogin(){
+    let masterUiLoginUrl = this.tokenService.getMasterUiLoginUrl();
+    sessionStorage.clear();
+    if(masterUiLoginUrl){
+      this.utilityService.redirectInSameTab(masterUiLoginUrl);
+    }else{
+      this.utilityService.navigateTo(this.LOGIN);
+    }
   }
 
   isLogin() {
