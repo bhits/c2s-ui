@@ -200,7 +200,7 @@
           "DELETE_SUCCESS_MSG": "Success in deleting consent.",
           "DELETE_FAIL_MSG": "Failed to delete the consent, please try again later..."
         },
-        "TRYPOLICY_CONSENT_DIALOG": {
+        "TRY_POLICY_CONSENT_DIALOG": {
           "TITLE": "Apply My Record",
           "CONTENT_DOCUMENT": "Document",
           "CONTENT_POU": "Purpose of Use",
