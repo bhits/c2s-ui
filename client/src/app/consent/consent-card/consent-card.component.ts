@@ -8,8 +8,8 @@ import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {TryPolicy} from "../shared/tryPolicy.model";
-import {TryPolicyResponse} from "../shared/tryPolicy-response.model";
+import {TryPolicyService} from "../shared/try-policy.service";
+import {TryPolicyResponse} from "src/app/consent/shared/try-policy-response.model";
 
 @Component({
   selector: 'c2s-consent-card',
@@ -28,7 +28,8 @@ export class ConsentCardComponent implements OnInit, OnChanges {
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private tryPolicyService: TryPolicyService) {
   }
 
   ngOnInit() {
@@ -37,6 +38,13 @@ export class ConsentCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+  }
+
+  private initTryPolicyFormFormGroup() {
+    return this.formBuilder.group({
+      documentId: [null, Validators.required],
+      purposeOfUse: [null, Validators.required]
+    })
   }
 
   toggleDetailsVisible(el: any) {
@@ -124,30 +132,21 @@ export class ConsentCardComponent implements OnInit, OnChanges {
         });
   }
 
-  applyTryPolicy(dialog: any) {
-    let tryPolicyInput = this.prepareTryPolicyInput();
+  public applyTryPolicy(dialog: any): void {
     dialog.close();
-    this.consentService.getTryPolicyXHTML(tryPolicyInput.documentId, tryPolicyInput.purposeOfUse, this.consent.id)
-      .subscribe((encodedDocument: TryPolicyResponse) => this.consentService.handleTryPolicySuccess(encodedDocument),
+    let tryPolicyInput = this.tryPolicyForm.value;
+    this.tryPolicyService.applyTryPolicyAgainstConsent(this.consent.id, tryPolicyInput.documentId, tryPolicyInput.purposeOfUse)
+      .subscribe(
+        (tryPolicyResponse: TryPolicyResponse) =>
+          this.tryPolicyService.handleApplyTryPolicySuccess(tryPolicyResponse),
         err => {
           this.notificationService.i18nShow("CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.TRY-POLICY-ERROR");
-          console.log(err);
         });
 
   }
 
-  private initTryPolicyFormFormGroup() {
-    return this.formBuilder.group({
-      documentId: [null, Validators.required],
-      purposeOfUse: [null, Validators.required]
-    })
-  }
-
-  private prepareTryPolicyInput(): TryPolicy {
-    const formModel = this.tryPolicyForm.value;
-    return {
-      documentId: formModel.documentId,
-      purposeOfUse: formModel.purposeOfUse
-    };
+  public backToOptions(applyTryPolicyDialog: any, consentOptionsDialog: any): void {
+    applyTryPolicyDialog.close();
+    consentOptionsDialog.open();
   }
 }
