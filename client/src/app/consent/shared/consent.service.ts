@@ -16,7 +16,6 @@ import {ConsentRevocation} from "./consent-revocation.model";
 import {BinaryFile} from "./binary-file.model";
 import {NotificationService} from "../../core/notification.service";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
-import {UploadedDocument} from "../../shared/uploaded-document.model";
 
 
 @Injectable()
@@ -26,7 +25,6 @@ export class ConsentService {
   private pcmSensitivityPolicyUrl: string = this.c2sUiApiUrlService.getVssBaseUrl().concat("/valueSetCategories");
   private pcmConsentUrl = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/consents");
   private pcmConsentTermUrl: string = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/consentRevocationTerm");
-  private phrGetDocumentListUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(this.currentUserMrn).concat("/documents");
 
   private consentSubject: BehaviorSubject<Consent> = new BehaviorSubject<Consent>(null);
   public consentEmitter: Observable<Consent> = this.consentSubject.asObservable();
@@ -66,12 +64,6 @@ export class ConsentService {
       }
     }
     return null;
-  }
-
-  getUploadedDocumentList(): Observable<UploadedDocument[]> {
-    return this.http.get(this.phrGetDocumentListUrl)
-      .map((resp: Response) => <UploadedDocument[]>(resp.json()))
-      .catch(this.exceptionService.handleErrorWithErrorCode);
   }
 
   createConsent(consent: Consent): Observable<void> {
@@ -180,15 +172,6 @@ export class ConsentService {
   handleDownloadError(err: string) {
     this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_DOWNLOAD_CONSENT');
     console.log(err);
-  }
-
-  handleShowUploadedDocumentListError(err: any) {
-    if (err === "404") {
-      this.notificationService.i18nShow("MEDICAL_DOCUMENTS.NO_DOCS_FOUND_ERROR");
-    }
-    else {
-      this.notificationService.i18nShow("MEDICAL_DOCUMENTS.GENERIC_ERROR");
-    }
   }
 
   handleCreateConsentError(err: any) {
