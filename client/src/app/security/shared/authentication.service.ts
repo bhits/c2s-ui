@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Router } from "@angular/router";
-import {Http, Response, RequestOptions, Headers, URLSearchParams} from "@angular/http";
-
+import {Injectable} from '@angular/core';
+import {Router} from "@angular/router";
+import {Headers, Http, RequestOptions, Response, URLSearchParams} from "@angular/http";
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";
 import {TokenService} from "./token.service";
 import {Profile} from "../../core/profile.model";
@@ -18,9 +17,9 @@ import {AuthorizationResponse} from "src/app/security/shared/authorization-respo
 export class AuthenticationService {
   oauth2TokenUrl: string = "/uaa/oauth/token/";
   oauth2UserInfoUrl: string = "/uaa/userinfo";
-  CLIENT_ID:string = 'YzJzLXVpOmNoYW5nZWl0';
-  HOME:string ='home';
-  LOGIN:string ='login';
+  CLIENT_ID: string = 'YzJzLXVpOmNoYW5nZWl0';
+  HOME: string = 'home';
+  LOGIN: string = 'login';
 
   constructor(private router: Router,
               private exceptionService: ExceptionService,
@@ -38,7 +37,7 @@ export class AuthenticationService {
       .catch(this.exceptionService.handleError);
   }
 
-  onLoginSuccess(response: AuthorizationResponse){
+  onLoginSuccess(response: AuthorizationResponse) {
     this.tokenService.setAccessToken(response);
   }
 
@@ -53,23 +52,23 @@ export class AuthenticationService {
     if(masterUiLoginUrl){
       this.utilityService.redirectInSameTab(masterUiLoginUrl);
     }else{
-      this.router.navigate([this.LOGIN]);
+      this.utilityService.navigateTo(this.LOGIN);
     }
   }
 
-  isLogin(){
-    let oauth2Token:AuthorizationResponse =  this.tokenService.getAccessToken();
-    let profile:Profile =  this.tokenService.getProfileToken();
+  isLogin() {
+    let oauth2Token: AuthorizationResponse = this.tokenService.getAccessToken();
+    let profile: Profile = this.tokenService.getProfileToken();
 
-    if(oauth2Token && profile){
-        let umsProfile:UmsLimitedProfile =  this.limitedProfileService.getProfileFromSessionStorage();
-        if(umsProfile){
-          this.customTranslateService.addSupportedLanguages(this.utilityService.getSupportedLocaleCode(umsProfile.supportedLocales));
-          this.customTranslateService.setDefaultLanguage(umsProfile.userLocale);
-        }
-        this.globalEventManagerService.setShowHeader(true);
-        this.globalEventManagerService.setProfile(profile);
-        return true;
+    if (oauth2Token && profile) {
+      let umsProfile: UmsLimitedProfile = this.limitedProfileService.getProfileFromSessionStorage();
+      if (umsProfile) {
+        this.customTranslateService.addSupportedLanguages(this.utilityService.getSupportedLocaleCode(umsProfile.supportedLocales));
+        this.customTranslateService.setDefaultLanguage(umsProfile.userLocale);
+      }
+      this.globalEventManagerService.setShowHeader(true);
+      this.globalEventManagerService.setProfile(profile);
+      return true;
     }
     return false;
   }

@@ -11,11 +11,10 @@ export class TokenService {
   private PROVIDER_COUNT_KEY: string = 'c2s-provider-count';
   private MASTER_UI_LOGIN: string = 'c2s-master-ui-login';
 
-
   constructor(private sessionStorageService: SessionStorageService) {
   }
 
-  getAccessToken(): AuthorizationResponse{
+  getAccessToken(): AuthorizationResponse {
     return this.sessionStorageService.getItemFromSessionStorage(this.ACCESS_TOKEN_KEY);
   }
 
@@ -52,10 +51,6 @@ export class TokenService {
     return this.sessionStorageService.getItemFromSessionStorage(this.MASTER_UI_LOGIN);
   }
 
-  deleteProviderCount(){
-    this.sessionStorageService.removeItemFromSessionStorage(this.PROVIDER_COUNT_KEY);
-  }
-
   createProfileObject(uaaProfile: any): Profile {
     let profile = new Profile();
     profile.email = uaaProfile.email;
@@ -68,12 +63,4 @@ export class TokenService {
     return profile;
   }
 
-
-  public hasScope(scope: string): boolean {
-    let accessToken: AuthorizationResponse = this.getAccessToken();
-    if (accessToken) {
-      return accessToken.scope.includes(scope);
-    }
-    return false;
-  }
 }
