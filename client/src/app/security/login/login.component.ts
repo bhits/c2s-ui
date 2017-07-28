@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit {
   public login(value: any): void {
     this.authenticationService.login(value.username, value.password)
       .subscribe(
-        (res) => {
+        (response) => {
           this.showLoginBackendError = false;
-          this.authenticationService.onLoginSuccess(res);
+          this.authenticationService.onLoginSuccess(response);
           this.authenticationService.getUserProfile()
             .subscribe(
               (uaaProfile) => {

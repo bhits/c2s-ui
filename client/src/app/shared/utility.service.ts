@@ -17,6 +17,18 @@ export class UtilityService {
     this.router.navigate([url]);
   }
 
+  redirectInSameTab(path: string) {
+    let url:string = this.composeUrl().concat(path);
+    window.location.replace(url);
+  }
+
+  private composeUrl():string{
+    let protocol:string = window.location.protocol;
+    let host:string = window.location.host;
+    let port:string = window.location.port;
+    return protocol.concat("//").concat(host).concat( port? ":".concat(port).concat("/"): "/");
+  }
+
   removeAll(entries: any[]) {
     entries.splice(0, entries.length);
   }
