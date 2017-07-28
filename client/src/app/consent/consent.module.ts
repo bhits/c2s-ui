@@ -17,6 +17,7 @@ import {SelectProvidersComponent} from "./select-providers/select-providers.comp
 import {NotificationService} from "../core/notification.service";
 import {SharePurposePipe} from "./shared/share-purpose.pipe";
 import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
+import {TryPolicyService} from "./shared/try-policy.service";
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
     MedicalInformationService,
     consentRoutableResolves,
     NotificationService,
+    TryPolicyService
   ],
 })
 export class ConsentModule {

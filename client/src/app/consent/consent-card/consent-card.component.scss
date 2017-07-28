@@ -1,6 +1,4 @@
 .consent-card-header {
-  //border-radius: 15px;
-  //border: 2px solid #3f51b5;
   margin: 5px;
   padding: 10px;
   background-color: #bcdedb;
@@ -10,25 +8,9 @@
   background-color: rgba(63, 81, 181, 0.2);
 }
 
-//md-chip {
-//  margin: 5px;
-//  &.consents {
-//    border-radius: 4px !important;
-//    font-size: 1em !important;
-//    padding: 4px 8px !important;
-//  }
-//}
-//
-//md-chip span.md-chip-icon-text {
-//  position: relative;
-//  bottom: 5px;
-//  margin: 1px;
-//}
-
 .mat-card-actions {
   margin: 10px !important;
 }
-
 
 .transition {
   overflow: hidden;
@@ -38,4 +20,8 @@
 
 .margin-20 {
   margin: 20px;
+}
+
+.medium-width {
+  width: 80%;
 }
