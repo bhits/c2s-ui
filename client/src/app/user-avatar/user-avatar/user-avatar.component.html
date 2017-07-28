@@ -1,0 +1,47 @@
+<div class="p-t-75 p-l-md p-r-md p-b">
+  <h1>{{ 'USER_AVATAR.TITLE' | translate }}</h1>
+
+  <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" class="m-b-lg"
+       *ngIf="!data.hasOwnProperty('image') && !isCurrentAvatarDefault">
+    <c2s-user-avatar-display></c2s-user-avatar-display>
+    <button md-raised-button color="primary" (click)="deleteCurrentAvatar()">
+      <strong>
+        {{ 'USER_AVATAR.DELETE_AVATAR_BTN_LABEL' | translate }}
+      </strong>
+    </button>
+  </div>
+
+  <h2>{{ 'USER_AVATAR.UPLOAD_NEW_AVATAR_SECTION_HEADER' | translate }}</h2>
+
+  <form #uploadForm [formGroup]="uploadImageForm">
+    <div fxLayout="row" fxLayoutGap="20px" class="m-b-sm">
+      <div class="file-upload">
+        <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="20px">
+      <span class="result rounded" *ngIf="data.image">
+        <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+      </span>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="20px">
+      <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="20px">
+      <button md-raised-button (click)="cancel()">
+        <strong>
+          {{ 'USER_AVATAR.CANCEL_BTN_LABEL' | translate }}
+        </strong>
+      </button>
+
+      <button md-raised-button color="primary" [disabled]="!data.hasOwnProperty('image')" (click)="submitCroppedImage()">
+        <strong>
+          {{ 'USER_AVATAR.SUBMIT_CROPPED_IMAGE_BTN_LABEL' | translate }}
+        </strong>
+      </button>
+    </div>
+  </form>
+</div>

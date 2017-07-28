@@ -1,4 +1,5 @@
 export class UmsLimitedProfile {
+  userId: number;
   userLocale: string;
   firstName: string;
   lastName: string;

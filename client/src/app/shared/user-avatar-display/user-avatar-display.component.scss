@@ -1,0 +1,8 @@
+img {
+  border: 1px solid #644F63;
+  vertical-align: middle;
+
+  @media (max-width: 599px) {
+    height: 38px;
+  }
+}
