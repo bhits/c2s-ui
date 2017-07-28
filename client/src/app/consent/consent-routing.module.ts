@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {Routes, RouterModule} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {ConsentCreateEditComponent} from "./consent-create-edit/consent-create-edit.component";
 import {ConsentCardListComponent} from "./consent-card-list/consent-card-list.component";
 import {ConsentResolveService} from "./shared/consent-resolve.service";
@@ -14,6 +14,7 @@ import {ConsentTermsResolveService} from "./shared/consent-terms-resolve.service
 import {ConsentRevocationTermsResolveService} from "./shared/consent-revocation-terms-resolve.service";
 import {ConsentListResolveService} from "./shared/consent-list-resolve.service";
 import {ProviderResolveService} from "./shared/provider-resolve.service";
+import {PatientUploadedDocumentResolveService} from "./shared/patient-uploaded-document-resolve.service";
 
 
 const consentRoutes: Routes = [
@@ -24,6 +25,7 @@ const consentRoutes: Routes = [
     canActivateChild: [CanActivateAuthGuardService],
     resolve: {
       consentList: ConsentListResolveService,
+      patientUploadedDocuments: PatientUploadedDocumentResolveService
     }
   },
   {
@@ -92,6 +94,7 @@ export const consentRoutableResolves = [
   ConsentTermsResolveService,
   ConsentRevocationTermsResolveService,
   DetailedConsentResolveService,
+  PatientUploadedDocumentResolveService,
   ProviderResolveService,
   SensitivityPoliciesResolveService,
   PurposeOfUsesResolveService
