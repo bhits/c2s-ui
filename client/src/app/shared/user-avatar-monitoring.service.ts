@@ -33,11 +33,6 @@ export class UserAvatarMonitoringService {
     return this.sessionStorageService.getItemFromSessionStorage(this.AVATAR_IMG_KEY);
   }
 
-  deleteAvatarFromSessionStorage(): void {
-    this.clearAvatar();
-    this.sessionStorageService.removeItemFromSessionStorage(this.AVATAR_IMG_KEY);
-  }
-
   clearAvatar(): void {
     this.changeUserAvatar(new AvatarImage());  // Empty AvatarImage
   }
