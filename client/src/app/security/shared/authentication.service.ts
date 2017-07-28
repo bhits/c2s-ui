@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import {Http, Response, RequestOptions, Headers, URLSearchParams} from "@angular/http";
 
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";
-import {AccessToken} from "./access-token.model";
 import {TokenService} from "./token.service";
 import {Profile} from "../../core/profile.model";
 import {LimitedProfileService} from "./limited-profile.service";
@@ -39,7 +38,7 @@ export class AuthenticationService {
       .catch(this.exceptionService.handleError);
   }
 
-  onLoginSuccess(response: Response){
+  onLoginSuccess(response: AuthorizationResponse){
     this.tokenService.setAccessToken(response);
   }
 
@@ -59,7 +58,7 @@ export class AuthenticationService {
   }
 
   isLogin(){
-    let oauth2Token:AccessToken =  this.tokenService.getAccessToken();
+    let oauth2Token:AuthorizationResponse =  this.tokenService.getAccessToken();
     let profile:Profile =  this.tokenService.getProfileToken();
 
     if(oauth2Token && profile){

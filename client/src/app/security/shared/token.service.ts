@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {SessionStorageService} from "./session-storage.service";
-import {AccessToken} from "./access-token.model";
 import {Profile} from "../../core/profile.model";
 import {AuthorizationResponse} from "./authorization-response.model";
 
@@ -16,12 +15,12 @@ export class TokenService {
   constructor(private sessionStorageService: SessionStorageService) {
   }
 
-  getAccessToken(): AccessToken{
+  getAccessToken(): AuthorizationResponse{
     return this.sessionStorageService.getItemFromSessionStorage(this.ACCESS_TOKEN_KEY);
   }
 
-  setAccessToken(response: Response){
-    this.sessionStorageService.setItemInSessionStorage(this.ACCESS_TOKEN_KEY, this.createTokenObject(response.json()));
+  setAccessToken(accessToken: AuthorizationResponse) {
+    this.sessionStorageService.setItemInSessionStorage(this.ACCESS_TOKEN_KEY, accessToken);
   }
 
   deleteAccessToken() {
@@ -69,20 +68,9 @@ export class TokenService {
     return profile;
   }
 
-  private createTokenObject(token:any): AccessToken{
-    let uaaToken = new AccessToken();
-    uaaToken.accessToken = token.access_token;
-    uaaToken.exspiresIn = token.expires_in;
-    uaaToken.jti = token.jti;
-    uaaToken.refreshToken = token.refresh_token;
-    uaaToken.scope = token.scope;
-    uaaToken.tokenType = token.token_type;
-
-    return token;
-  }
 
   public hasScope(scope: string): boolean {
-    let accessToken: AccessToken = this.getAccessToken();
+    let accessToken: AuthorizationResponse = this.getAccessToken();
     if (accessToken) {
       return accessToken.scope.includes(scope);
     }
