@@ -12,8 +12,8 @@ import {isNullOrUndefined} from "util";
 const CROPPED_IMAGE_WIDTH: number = 48;  // Width of cropped avatar image in pixels
 const CROPPED_IMAGE_HEIGHT: number = 48;  // Height of cropped avatar image in pixels
 
-const CANVAS_WIDTH: number = 460;  // Width of canvas in pixels
-const CANVAS_HEIGHT: number = 460;  // Height of canvas in pixels
+const CANVAS_WIDTH: number = 280;  // Width of canvas in pixels
+const CANVAS_HEIGHT: number = 280;  // Height of canvas in pixels
 
 const CROPPING_CANVAS_CLASS: string = "cropping-canvas";
 const CLASS_WHEN_IMAGE_FILE_SELECTED: string = "ready-to-crop";
