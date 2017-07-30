@@ -51,6 +51,7 @@
       "TITLE": "My Providers",
       "WARNING": "OK! You must add at least two contacts before sharing your health information.",
       "ADD_PROVIDER_BUTTON": "Add a Health Provider",
+      "CURRENT_LIST": "Current Provider List",
       "SORT_LIST_TITLE": "Show List by",
       "PAGINATION": {
         "PREVIOUS": "Previous",
