@@ -7,7 +7,7 @@ import {ProfileFieldsLookupInfo} from "../shared/profile-fields-lookup-info.mode
 import {NotificationService} from "../../core/notification.service";
 import {UmsFullProfileView} from "../shared/ums-full-profile-view.model";
 import {UmsFullProfileUpdate} from "../shared/ums-full-profile-update.model";
-import {FullProfileService} from "../shared/full-profile.service";
+import {FullProfileService} from "../../shared/full-profile.service";
 import {UmsProfileAddress} from "../../shared/ums-profile-address.model";
 
 @Component({
@@ -44,7 +44,7 @@ export class UserProfileComponent implements OnInit {
         err => {
           this.notificationService.i18nShow("USER_PROFILE.EDIT.FIELDS_LOOKUP_INFO_FAILED_MSG");
           console.log(err);
-          this.router.navigateByUrl('/home');
+          this.redirectHome();
         }
       );
 
@@ -84,6 +84,14 @@ export class UserProfileComponent implements OnInit {
 
   cancel(): void {
     this.redirectHome();
+  }
+
+  uploadEditAvatar(): void {
+    this.redirectUploadEditAvatarPage();
+  }
+
+  private redirectUploadEditAvatarPage(): void {
+    this.router.navigateByUrl('/user-avatar');
   }
 
   private redirectHome(): void {

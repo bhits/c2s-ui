@@ -4,7 +4,7 @@ import {Md2Toast} from "md2";
 
 @Injectable()
 export class NotificationService {
-  private duration: number = 2000;
+  private duration: number = 5000;
 
   constructor(private toast: Md2Toast, private translate: TranslateService) {
     // this language will be used as a fallback when a translation isn't found in the current language

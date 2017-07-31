@@ -53,7 +53,7 @@ export class AccountActivationComponent implements OnInit {
           this.isUsernameUsed = res.used;
         },
         err => {
-          this.notificationService.show("Failed to check username, please try again later...");
+          this.notificationService.i18nShow("ACCOUNT.FAILED_CHECK_USERNAME");
         });
   }
 
