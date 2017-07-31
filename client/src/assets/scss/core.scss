@@ -25,6 +25,16 @@ body {
 }
 
 // ------------------------------------------------------------- create consent styling -------------//
+.width100 {width: 100px;}
+
+#consent-sign {
+  md-list-item {
+    height: 15px !important;
+    margin-bottom: 5px;
+  }
+}
+
+
 .consent-accordion {
   border: thin solid #94b9af;
   &:hover {border: 1px solid #448866;}
