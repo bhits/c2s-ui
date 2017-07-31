@@ -58,15 +58,18 @@ export class ConsentSignComponent implements OnInit {
 
   toAuthenticate(dialog: any) {
     const username: string = this.profile.userName;
-    this.authenticationService.login(username, this.password).toPromise()
-      .then(() => {
-        this.inValid = false;
-        this.isAuthenticated = true;
-        dialog.close();
-      }).catch(() => {
-      this.inValid = true;
-      this.password = null;
-    });
+    this.authenticationService.login(username, this.password)
+      .subscribe(
+        () => {
+          this.inValid = false;
+          this.isAuthenticated = true;
+          dialog.close();
+        },
+        error => {
+          this.inValid = true;
+          this.password = null;
+        }
+      );
   }
 
   attestConsent(dialog: any) {
@@ -76,7 +79,7 @@ export class ConsentSignComponent implements OnInit {
           dialog.open();
         },
         err => {
-          this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_ATTEST_CONCENT');
+          this.consentService.handleSignConsentError(err);
           console.log(err);
         }
       );
@@ -102,6 +105,7 @@ export class ConsentSignComponent implements OnInit {
   }
 
   private
+
   getConsentAttestationTerm(consentTerms: ConsentTerms): string {
     const terms: string = consentTerms.text;
     const userNameKey: string = "${ATTESTER_FULL_NAME}";

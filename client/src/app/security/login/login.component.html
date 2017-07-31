@@ -28,7 +28,7 @@
           <c2s-show-hide-password (setInputType)="getInputType($event)"></c2s-show-hide-password>
         </div>
         <c2s-control-messages [control]="loginForm.controls.password"></c2s-control-messages>
-        <md-hint class="has-error" *ngIf="showLoginBackendError">
+        <md-hint class="has-error font-size16" *ngIf="showLoginBackendError">
           Sorry, you do not have permission to access this site.
         </md-hint>
       </md-input-container>
@@ -36,8 +36,7 @@
       <div class="flexcontainer row">
         <button class="flex10auto"
                 type="button"
-                type="submit"
-                [disabled]="!isValidForm(loginForm)"
+                [disabled]="loginForm.invalid"
                 md-raised-button color="primary"
                 (click)="login(loginForm.value)">Login
         </button>
@@ -47,7 +46,6 @@
 
   <div class="bg-white flex10auto">
 
-    <!--<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="nowrap" fxLayoutGap="15px" fxLayoutAlign="space-around">-->
     <div class="login-help-section p-t-sm p-b-md p-l-md p-r-md">
       <div class="center border-bottom-purple p-b-xs m-15">
         <img src="assets/img/cap.png" class="login-help-icon m-b-n"/>

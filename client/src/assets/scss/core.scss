@@ -6,14 +6,6 @@ body {
   //background-color: #BCDEDB;
   background-color: rgba(188, 222, 219, .2);
 }
-//.wrapper {
-//  display: flex;
-//  flex-direction: column;
-//  flex-wrap: nowrap;
-//  justify-content: space-between;
-//  align-items: stretch;
-//  align-content: stretch;
-//}
 
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
@@ -22,17 +14,16 @@ body {
 
 .mat-input-placeholder-wrapper {
   top: -1.2em !important;
-  //padding-top:15px !important;
   label {
-    //color: blueviolet !important;
-    //font-size: 1.2em;
   }
 }
+
 .mat-input-placeholder.mat-float.mat-focused, .mat-input-placeholder.mat-float:not(.mat-empty) {
   //display: block;
   //transform: translateY(-1.35em) scale(.75) !important;
   //width: 133.33333%;
 }
+
 // ------------------------------------------------------------- create consent styling -------------//
 .consent-accordion {
   border: thin solid #94b9af;
@@ -76,21 +67,6 @@ body {
   line-height: 28px !important;
 }
 
-
-//md-chip {
-//  &.shared {
-//    margin-right: 3px;
-//    border-radius: 4px !important;
-//    font-size: 1em !important;
-//    &.medInfo {
-//      background-color: #8a1004 !important;
-//    }
-//    &.purposeOfUse {
-//      background-color: pink !important;
-//    }
-//  }
-//}
-
 md-chip {
   margin: 5px;
   border-radius: 4px !important;
@@ -113,10 +89,6 @@ md-chip span.md-chip-icon-text {
   margin: 1px;
 }
 
-
-
-
-
 div.md2-datepicker-input {
   margin-right: 10px;
   min-width: auto;
@@ -126,7 +98,6 @@ div.md2-datepicker-input {
   }
 }
 
-
 // pagination -------------------------------------------------- pagination //
 $dark-blue: #2f526d;
 
@@ -134,6 +105,7 @@ ul.ng2-pagination {
   padding: 5px !important;
   .disabled {color: #9bb5ce !important;}
 }
+
 .ng2-pagination li:not(.pagination-previous):not(.pagination-next):not(.current) {
   a {
     color:$dark-blue !important;
@@ -143,30 +115,21 @@ ul.ng2-pagination {
 .ng2-pagination li {
   font-size: 1.7em;
   font-weight: 500;
-  //color: #3FA3BA;
 
-  padding: 0!important;
-  //-webkit-border-radius:50%;
-  //-moz-border-radius:50%;
-  //border-radius:50% !important;
+  padding: 0 !important;
   font-size: 1.5em;
   font-weight: 500;
   vertical-align: middle;
 
   &.current {
-  //height: 40px;
-  //width:40px;
-  padding: 8px 14px!important;
-  -webkit-border-radius:2px;
-  -moz-border-radius:2px;
-  border-radius:2px;
-  vertical-align: middle;
-  //background-color: $dark-blue !important;
-  //background-color: #3FA3BA !important;
-  background-color: #6c4e70 !important;
+    padding: 8px 14px !important;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    vertical-align: middle;
+    background-color: #6c4e70 !important;
   }
   div {
-    //padding-top: 10px;
     text-align: center;
   }
   &.pagination-previous {

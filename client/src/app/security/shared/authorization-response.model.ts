@@ -1,4 +1,4 @@
-export class AccessToken {
+export class AuthorizationResponse {
   accessToken: string;
   exspiresIn: number;
   refreshToken: string;

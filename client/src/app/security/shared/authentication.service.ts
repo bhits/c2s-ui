@@ -1,26 +1,28 @@
-import { Injectable } from '@angular/core';
-import { Router } from "@angular/router";
-import {Http, Response, RequestOptions, Headers, URLSearchParams} from "@angular/http";
-
+import {Injectable} from '@angular/core';
+import {Router} from "@angular/router";
+import {Headers, Http, RequestOptions, Response, URLSearchParams} from "@angular/http";
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";
-import {AccessToken} from "./access-token.model";
 import {TokenService} from "./token.service";
 import {Profile} from "../../core/profile.model";
 import {LimitedProfileService} from "./limited-profile.service";
 import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {UtilityService} from "../../shared/utility.service";
+import {Observable} from "rxjs/Observable";
+import {ExceptionService} from "src/app/core/exception.service";
+import {AuthorizationResponse} from "src/app/security/shared/authorization-response.model";
 
 
 @Injectable()
 export class AuthenticationService {
   oauth2TokenUrl: string = "/uaa/oauth/token/";
   oauth2UserInfoUrl: string = "/uaa/userinfo";
-  CLIENT_ID:string = 'YzJzLXVpOmNoYW5nZWl0';
-  HOME:string ='home';
-  LOGIN:string ='login';
+  CLIENT_ID: string = 'YzJzLXVpOmNoYW5nZWl0';
+  HOME: string = 'home';
+  LOGIN: string = 'login';
 
   constructor(private router: Router,
+              private exceptionService: ExceptionService,
               private http: Http,
               private tokenService: TokenService,
               private globalEventManagerService: GlobalEventManagerService,
@@ -29,58 +31,68 @@ export class AuthenticationService {
               private utilityService: UtilityService) {
   }
 
-  login(username:string, password:string) {
-    return this.http.post(this.oauth2TokenUrl, this.composeParameters(username, password), this.setHeaders());
+  public login(username: string, password: string): Observable<AuthorizationResponse> {
+    return this.http.post(this.oauth2TokenUrl, this.composeParameters(username, password), this.setHeaders())
+      .map((resp: Response) => <AuthorizationResponse>(resp.json()))
+      .catch(this.exceptionService.handleError);
   }
 
-  onLoginSuccess(response: Response){
+  onLoginSuccess(response: AuthorizationResponse) {
     this.tokenService.setAccessToken(response);
   }
 
   logout() {
-    this.tokenService.deleteAccessToken();
-    this.tokenService.deleteProfileToken();
-    this.tokenService.deleteProviderCount();
-    this.limitedProfileService.deleteProfileFromSessionStorage();
     this.globalEventManagerService.setShowHeader(false);
-    this.router.navigate([this.LOGIN]);
+    this.clearSessionStorgeAndRedirectToLogin();
   }
 
-  isLogin(){
-    let oauth2Token:AccessToken =  this.tokenService.getAccessToken();
-    let profile:Profile =  this.tokenService.getProfileToken();
+  private clearSessionStorgeAndRedirectToLogin(){
+    let masterUiLoginUrl = this.tokenService.getMasterUiLoginUrl();
+    sessionStorage.clear();
+    if(masterUiLoginUrl){
+      this.utilityService.redirectInSameTab(masterUiLoginUrl);
+    }else{
+      this.utilityService.navigateTo(this.LOGIN);
+    }
+  }
 
-    if(oauth2Token && profile){
-        let umsProfile:UmsLimitedProfile =  this.limitedProfileService.getProfileFromSessionStorage();
-        if(umsProfile){
-          this.customTranslateService.addSupportedLanguages(this.utilityService.getSupportedLocaleCode(umsProfile.supportedLocales));
-          this.customTranslateService.setDefaultLanguage(umsProfile.userLocale);
-        }
-        this.globalEventManagerService.setShowHeader(true);
-        this.globalEventManagerService.setProfile(profile);
-        return true;
+  isLogin() {
+    let oauth2Token: AuthorizationResponse = this.tokenService.getAccessToken();
+    let profile: Profile = this.tokenService.getProfileToken();
+
+    if (oauth2Token && profile) {
+      let umsProfile: UmsLimitedProfile = this.limitedProfileService.getProfileFromSessionStorage();
+      if (umsProfile) {
+        this.customTranslateService.addSupportedLanguages(this.utilityService.getSupportedLocaleCode(umsProfile.supportedLocales));
+        this.customTranslateService.setDefaultLanguage(umsProfile.userLocale);
+      }
+      this.globalEventManagerService.setShowHeader(true);
+      this.globalEventManagerService.setProfile(profile);
+      return true;
     }
     return false;
   }
 
-  getUserProfile(){
+  getUserProfile() {
     return this.http.get(this.oauth2UserInfoUrl)
-                      .map((resp: Response) => <any>(resp.json()));
+      .map((resp: Response) => <any>(resp.json()));
   }
 
-  onGetUserProfileSuccess(profile:Profile){
+  onGetUserProfileSuccess(profile: Profile) {
     this.globalEventManagerService.setShowHeader(true);
     this.globalEventManagerService.setProfile(profile);
     this.router.navigate([this.HOME]);
   }
 
-  private setHeaders():RequestOptions {
-    let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded',
-                                'Authorization': 'Basic ' + this.CLIENT_ID } );
-    return new RequestOptions({ headers: headers });
+  private setHeaders(): RequestOptions {
+    let headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic ' + this.CLIENT_ID
+    });
+    return new RequestOptions({headers: headers});
   }
 
-  private composeParameters(username: string, password:string): string{
+  private composeParameters(username: string, password: string): string {
     let urlSearchParams = new URLSearchParams();
     urlSearchParams.append('username', username);
     urlSearchParams.append('password', password);

@@ -17,6 +17,18 @@ export class UtilityService {
     this.router.navigate([url]);
   }
 
+  redirectInSameTab(path: string) {
+    let url:string = this.composeUrl().concat(path);
+    window.location.replace(url);
+  }
+
+  private composeUrl():string{
+    let protocol:string = window.location.protocol;
+    let host:string = window.location.host;
+    let port:string = window.location.port;
+    return protocol.concat("//").concat(host).concat( port? ":".concat(port).concat("/"): "/");
+  }
+
   removeAll(entries: any[]) {
     entries.splice(0, entries.length);
   }
@@ -47,6 +59,14 @@ export class UtilityService {
     } else if (this.browserService.isChrome() || this.browserService.isSafari()) {
       this.saveFileToDiskInChromeAndFF(file, filename);
     }
+  }
+
+  static stringToBase64(inString: string): string {
+    return btoa(inString);
+  }
+
+  static base64ToString(inBase64: string): string {
+    return atob(inBase64);
   }
 
   base64StringtoBlob(b64Data, contentType, sliceSize ?): Blob {
@@ -140,5 +160,10 @@ export class UtilityService {
       localeCode.push(locale.code);
     });
     return localeCode;
+  }
+
+  static extractExtensionFromFileName(fileName: string): string {
+    let indexOfLastDot = fileName.lastIndexOf(".");
+    return fileName.substr(indexOfLastDot + 1);
   }
 }

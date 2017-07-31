@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 
 @Component({
@@ -7,10 +7,9 @@ import {LimitedProfileService} from "../../security/shared/limited-profile.servi
   styleUrls: ['header-user-profile.component.scss']
 })
 export class HeaderUserProfileComponent implements OnInit {
-
   userName: String;
 
-    constructor(private limitedProfileService: LimitedProfileService) {
+  constructor(private limitedProfileService: LimitedProfileService) {
   }
 
   ngOnInit() {
