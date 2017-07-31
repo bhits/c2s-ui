@@ -34,9 +34,48 @@ body {
   //width: 133.33333%;
 }
 // ------------------------------------------------------------- create consent styling -------------//
+.consent-accordion {
+  border: thin solid #94b9af;
+  &:hover {border: 1px solid #448866;}
+  div.md2-accordion-header {
+    padding: 10px 15px;
+    line-height: inherit;
+
+    background-color: #b0d6cf;
+    border: none !important;
+    //box-shadow: 0 1px 0 #cecece !important;
+    box-shadow: none !important;
+    &:hover {background-color: #71cbb5;}
+    md-card-title {
+      margin-bottom: 0 !important;
+      font-size: 14px;
+    }
+    .md2-accordion-header-icon {
+      top: 24px !important;
+      right: 25px !important;
+      border-width: 0 4px 4px 0 !important;
+    }
+  }
+}
+
+.md2-accordion-header {
+  white-space: inherit !important;
+  padding: 15px 40px 15px 15px !important;
+  line-height: inherit !important;
+}
+
+.consent-accordion {
+  .md2-accordion-header {white-space: inherit !important;}
+}
+
+.lineHeight20 {
+  line-height: 20px !important;
+}
+
 .lineHeight28 {
   line-height: 28px !important;
 }
+
 
 //md-chip {
 //  &.shared {
@@ -55,9 +94,11 @@ body {
 md-chip {
   margin: 5px;
   border-radius: 4px !important;
-  font-size: 1em !important;
+  //font-size: 1em !important;
   padding: 4px 8px !important;
-  &.consents {}
+  &.consents {
+    margin: 0 5px 5px 0 !important;
+  }
   &.medInfo {
     background-color: #8a1004 !important;
   }
