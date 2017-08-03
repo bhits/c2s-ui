@@ -335,6 +335,7 @@
     },
     "COMPLETE_DIALOG": {
       "TITLE": "Success in created Signed Consent",
+      "CLICK_TO_DOWNLOAD_MSG": "You may obtain a copy of your signed consent by clicking the 'Download' button.",
       "DOWNLOAD_BTN": "Download Signed Consent",
       "CONTINUE_BTN": "Continue"
     },

@@ -332,6 +332,7 @@
     },
     "COMPLETE_DIALOG": {
       "TITLE": "El éxito en el consentimiento firmado creado",
+      "CLICK_TO_DOWNLOAD_MSG": "Puede obtener una copia de su consentimiento firmado haciendo clic en el botón 'Descargar'.",
       "DOWNLOAD_BTN": "Descargar el consentimiento firmado",
       "CONTINUE_BTN": "Continuar"
     },
