@@ -12,13 +12,13 @@ import {UtilityService} from "./utility.service";
 import {DataService} from "./data.service";
 import {PageTitleComponent} from "./page-title/page-title.component";
 import {ValidationService} from "./validation.service";
-import {ControlMessagesComponent} from "./control-messages/control-messages.component";
 import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
 import {ConsentProviderPipe} from "./consent-provider.pipe";
 import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password.component";
 import {FileValueAccessor} from "./file-value-accessor.directive";
 import {FileValidator} from "./file-validator.directive";
 import {UserAvatarDisplayComponent} from "./user-avatar-display/user-avatar-display.component";
+import {ControlValidationErrorMessageComponent} from "./control-validation-error-message/control-validation-error-message.component";
 
 @NgModule({
   imports: [
@@ -30,7 +30,7 @@ import {UserAvatarDisplayComponent} from "./user-avatar-display/user-avatar-disp
   declarations: [
     UsPhoneNumberPipe,
     PageTitleComponent,
-    ControlMessagesComponent,
+    ControlValidationErrorMessageComponent,
     ConsentProviderPipe,
     ShowHidePasswordComponent,
     FileValueAccessor,
@@ -50,7 +50,7 @@ import {UserAvatarDisplayComponent} from "./user-avatar-display/user-avatar-disp
     ConsentProviderPipe,
     Md2Tooltip,
     PageTitleComponent,
-    ControlMessagesComponent,
+    ControlValidationErrorMessageComponent,
     ShowHidePasswordComponent,
     FileValueAccessor,
     UserAvatarDisplayComponent

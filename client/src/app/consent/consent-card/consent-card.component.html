@@ -147,9 +147,9 @@
             </md-option>
           </md-select>
         </div>
-        <c2s-control-messages fxLayoutAlign="start"
-                              [control]="tryPolicyForm.get('documentId')">
-        </c2s-control-messages>
+        <c2s-control-validation-error-message fxLayoutAlign="start"
+                                              [control]="tryPolicyForm.get('documentId')">
+        </c2s-control-validation-error-message>
       </div>
       <br>
       <div fxLayout="column">
@@ -162,9 +162,9 @@
             </md-option>
           </md-select>
         </div>
-        <c2s-control-messages fxLayoutAlign="start"
-                              [control]="tryPolicyForm.get('purposeOfUse')">
-        </c2s-control-messages>
+        <c2s-control-validation-error-message fxLayoutAlign="start"
+                                              [control]="tryPolicyForm.get('purposeOfUse')">
+        </c2s-control-validation-error-message>
       </div>
     </form>
     <md2-dialog-footer>

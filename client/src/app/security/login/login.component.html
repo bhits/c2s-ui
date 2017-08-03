@@ -16,7 +16,8 @@
                name="username"
                required
                [formControl]="loginForm.controls['username']">
-        <c2s-control-messages [control]="loginForm.controls.username"></c2s-control-messages>
+        <c2s-control-validation-error-message [control]="loginForm.get('username')">
+        </c2s-control-validation-error-message>
       </md-input-container>
 
       <md-input-container class="full-width">
@@ -27,7 +28,8 @@
                  [formControl]="loginForm.controls['password']">
           <c2s-show-hide-password (setInputType)="getInputType($event)"></c2s-show-hide-password>
         </div>
-        <c2s-control-messages [control]="loginForm.controls.password"></c2s-control-messages>
+        <c2s-control-validation-error-message [control]="loginForm.get('password')">
+        </c2s-control-validation-error-message>
         <md-hint class="has-error font-size16" *ngIf="showLoginBackendError">
           Sorry, you do not have permission to access this site.
         </md-hint>

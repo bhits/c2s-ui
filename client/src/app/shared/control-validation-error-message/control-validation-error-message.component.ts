@@ -1,13 +1,13 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {ValidationService} from "../validation.service";
+import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl} from "@angular/forms";
+import {ValidationService} from "../validation.service";
 
 @Component({
-  selector: 'c2s-control-messages',
-  templateUrl: './control-messages.component.html',
-  styleUrls: ['./control-messages.component.scss']
+  selector: 'c2s-control-validation-error-message',
+  templateUrl: './control-validation-error-message.component.html',
+  styleUrls: ['./control-validation-error-message.component.scss']
 })
-export class ControlMessagesComponent implements OnInit {
+export class ControlValidationErrorMessageComponent implements OnInit {
   @Input() control: AbstractControl;
   @Input() customMessage: string;
 
