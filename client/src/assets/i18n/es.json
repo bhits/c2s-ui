@@ -55,6 +55,7 @@
         "PROVIDERS": "Proveedores",
         "CONSENTS": "Consentimientos",
         "MEDICAL_DOCUMENTS": "Documentos Médicos",
+        "HEALTH_INFORMATION": "{spanish} Health Information",
         "MY_PROFILE": "Mi Perfil",
         "LOGOUT": "Cerrar sesión"
       }

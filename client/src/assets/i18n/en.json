@@ -3,7 +3,7 @@
     "MENU": "Menu"
   },
   "ACCOUNT": {
-    "FAILED_CHECK_USERNAME" : "Failed to check username, please try again later."
+    "FAILED_CHECK_USERNAME": "Failed to check username, please try again later."
   },
   "ACTIVITY": {
     "CONSENT_ACTIVITY": {
@@ -58,6 +58,7 @@
         "PROVIDERS": "Providers",
         "CONSENTS": "Consents",
         "MEDICAL_DOCUMENTS": "Medical Documents",
+        "HEALTH_INFORMATION": "Health Information",
         "MY_PROFILE": "My Profile",
         "LOGOUT": "Logout"
       }
