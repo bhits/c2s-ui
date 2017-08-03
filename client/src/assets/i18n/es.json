@@ -65,6 +65,7 @@
       "TITLE": "Mis Proveedores",
       "WARNING": "¡DE ACUERDO! Debe agregar al menos dos contactos antes de compartir su información de salud.",
       "ADD_PROVIDER_BUTTON": "Agregar un proveedor de servicios de salud",
+      "CURRENT_LIST": "{Spanish} Current Provider List",
       "SORT_LIST_TITLE": "Mostrar lista por",
       "PAGINATION": {
         "PREVIOUS": "Anterior",
@@ -331,6 +332,7 @@
     },
     "COMPLETE_DIALOG": {
       "TITLE": "El éxito en el consentimiento firmado creado",
+      "CLICK_TO_DOWNLOAD_MSG": "Puede obtener una copia de su consentimiento firmado haciendo clic en el botón 'Descargar'.",
       "DOWNLOAD_BTN": "Descargar el consentimiento firmado",
       "CONTINUE_BTN": "Continuar"
     },
