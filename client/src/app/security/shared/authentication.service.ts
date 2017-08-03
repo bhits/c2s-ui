@@ -9,8 +9,8 @@ import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {UtilityService} from "../../shared/utility.service";
 import {Observable} from "rxjs/Observable";
-import {ExceptionService} from "src/app/core/exception.service";
-import {AuthorizationResponse} from "src/app/security/shared/authorization-response.model";
+import {ExceptionService} from "../../core/exception.service";
+import {AuthorizationResponse} from "./authorization-response.model";
 
 
 @Injectable()
@@ -46,12 +46,12 @@ export class AuthenticationService {
     this.clearSessionStorgeAndRedirectToLogin();
   }
 
-  private clearSessionStorgeAndRedirectToLogin(){
+  private clearSessionStorgeAndRedirectToLogin() {
     let masterUiLoginUrl = this.tokenService.getMasterUiLoginUrl();
     sessionStorage.clear();
-    if(masterUiLoginUrl){
+    if (masterUiLoginUrl) {
       this.utilityService.redirectInSameTab(masterUiLoginUrl);
-    }else{
+    } else {
       this.utilityService.navigateTo(this.LOGIN);
     }
   }
