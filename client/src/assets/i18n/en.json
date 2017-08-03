@@ -459,6 +459,11 @@
     },
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "Unable to get the list of document type codes."
   },
+  "HEALTH_INFORMATION": {
+    "HEALTH_INFORMATION_LIST": {
+      "TITLE": "Health Information"
+    }
+  },
   "USER_PROFILE": {
     "TITLE": "My Profile",
     "AVATAR_REDIRECT_LABEL": "Upload/Edit Avatar Image",

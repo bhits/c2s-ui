@@ -455,6 +455,11 @@
     },
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "No se puede obtener la lista de códigos de tipo de documento."
   },
+  "HEALTH_INFORMATION": {
+    "HEALTH_INFORMATION_LIST": {
+      "TITLE": "{spanish} Health Information"
+    }
+  },
   "USER_PROFILE": {
     "TITLE": "Mi Perfil",
     "AVATAR_REDIRECT_LABEL": "Subir / Editar Imagen de Avatar",
