@@ -26,7 +26,7 @@ export class UtilityService {
     let protocol:string = window.location.protocol;
     let host:string = window.location.host;
     let port:string = window.location.port;
-    return protocol.concat("//").concat(host).concat( port? ":".concat(port).concat("/"): "/");
+    return protocol.concat("//").concat(host).concat( (!port)? ":".concat(port).concat("/"): "/");
   }
 
   removeAll(entries: any[]) {
