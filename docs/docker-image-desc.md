@@ -5,9 +5,9 @@ The Consent2Share User Interface (c2s-ui) is a generic user interface component 
 
 # Supported Source Code Tags and Current `Dockerfile` Link
 
-[`0.4.0(latest)`](https://github.com/bhits-dev/c2s-ui/releases/tag/0.4.0),[`0.3.0`](https://github.com/bhits-dev/c2s-ui/releases/tag/0.3.0), [`0.1.0`](https://github.com/bhits-dev/c2s-ui/releases/tag/0.1.0)
+[`0.5.0(latest)`](https://github.com/bhits-dev/c2s-ui/releases/tag/0.5.0), [`0.4.0`](https://github.com/bhits-dev/c2s-ui/releases/tag/0.4.0),[`0.3.0`](https://github.com/bhits-dev/c2s-ui/releases/tag/0.3.0), [`0.1.0`](https://github.com/bhits-dev/c2s-ui/releases/tag/0.1.0)
 
-[`Current Dockerfile`](https://github.com/bhits-dev/c2s-ui/blob/master/server/src/main/docker/Dockerfile)
+[`Current Dockerfile`](../server/src/main/docker/Dockerfile)
 
 For more information about this image, the source code, and its history, please see the [GitHub repository](https://github.com/bhits-dev/c2s-ui).
 

@@ -16,26 +16,24 @@
       <md-card-content class="p-md">
 
         <!--<button md-fab class="plus" >-->
-          <!--<md-icon class="md-24 font-weight500">add</md-icon>-->
+        <!--<md-icon class="md-24 font-weight500">add</md-icon>-->
         <!--</button>-->
-        <md-chip-list class="p-15">
-          <!--<md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.PROVIDERS.STEP_1.TITLE' | translate }}</md-chip>-->
-
-        <md-chip class="bg-plus-green"
-                 color="accent" selected="true">
-
-          <span class="p-sm">{{ 'HOME.PROVIDERS.STEP_1.TITLE' | translate }}</span>
-        </md-chip>
-        </md-chip-list>
+        <!--<md-chip-list class="p-15">-->
+        <!--<md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.PROVIDERS.STEP_1.TITLE' | translate }}</md-chip>-->
+        <!--<md-chip class="bg-plus-green" color="accent" selected="true">-->
+        <!--<span class="p-sm">{{ 'HOME.PROVIDERS.STEP_1.TITLE' | translate }}</span>-->
+        <!--</md-chip>-->
+        <!--</md-chip-list>-->
 
         <h2 class="m-t-xs">
           {{ 'HOME.PROVIDERS.STEP_1.DESCRIPTION' | translate }}
         </h2>
         <div class="center middle">
-          <img md-card-image src="assets/img/addProviders.png" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders < 2)">
+          <img md-card-image src="assets/img/addProviders.png" [ngStyle]="{'width': '75%'}"
+               *ngIf="(totalProviders < 2)">
           <img md-card-image src="assets/img/contacts.png" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders > 1)">
         </div>
-        <div class="p-t-xs font-size12"   *ngIf="(totalProviders > 0)">
+        <div class="p-t-xs font-size12" *ngIf="(totalProviders > 0)">
           <span class="font-weight700 font-size16">{{totalProviders}}</span>
           {{ totalProviders | i18nPlural: providerMapping | translate :{count: totalProviders} }}
         </div>
@@ -55,17 +53,15 @@
       <md-card-content class="p-md">
 
         <!--<button md-fab class="plus" >-->
-          <!--<md-icon class="md-24 font-weight500">add</md-icon>-->
+        <!--<md-icon class="md-24 font-weight500">add</md-icon>-->
         <!--</button>-->
-        <md-chip-list class="p-15">
-          <!--<md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.CONSENTS.STEP_2.TITLE' | translate }}</md-chip>-->
+        <!--<md-chip-list class="p-15">-->
+        <!--<md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.CONSENTS.STEP_2.TITLE' | translate }}</md-chip>-->
+        <!--<md-chip class="" color="accent" selected="true">-->
+        <!--{{ 'HOME.CONSENTS.STEP_2.TITLE' | translate }}-->
+        <!--</md-chip>-->
+        <!--</md-chip-list>-->
 
-          <md-chip class=""
-                   color="accent" selected="true">
-            {{ 'HOME.CONSENTS.STEP_2.TITLE' | translate }}
-          </md-chip>
-
-        </md-chip-list>
         <h2 class="m-t-xs">
           {{ 'HOME.CONSENTS.STEP_2.DESCRIPTION' | translate }}
         </h2>
@@ -74,7 +70,7 @@
           <img md-card-image src="assets/img/addConsents.png" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders < 2)">
           <img md-card-image src="assets/img/consents.png" [ngStyle]="{'width': '75%'}" *ngIf="(totalProviders > 1)">
         </div>
-        <div class="p-t-xs font-size12" *ngIf="(totalConsents > 0)"><span class="font-weight700 font-size16" >{{totalConsents}}</span>
+        <div class="p-t-xs font-size12" *ngIf="(totalConsents > 0)"><span class="font-weight700 font-size16">{{totalConsents}}</span>
           {{ totalConsents | i18nPlural: consentMapping | translate :{count: totalConsents} }}
         </div>
       </md-card-content>
@@ -85,13 +81,12 @@
 </div>
 
 
-
 <md2-dialog #confirmDialog>
   <md2-dialog-title>{{ 'HOME.ADD_PROVIDER.TITLE' | translate }}</md2-dialog-title>
-    <div class="m-t-xs">
-      <div class="font-weight600">{{ 'HOME.ADD_PROVIDER.PLEASE_NOTE' | translate }}</div>
-      <div class="m-t-xs" [innerHTML]="'HOME.ADD_PROVIDER.DESCRIPTION' | translate"></div>
-    </div>
+  <div class="m-t-xs">
+    <div class="font-weight600">{{ 'HOME.ADD_PROVIDER.PLEASE_NOTE' | translate }}</div>
+    <div class="m-t-xs" [innerHTML]="'HOME.ADD_PROVIDER.DESCRIPTION' | translate"></div>
+  </div>
   <md2-dialog-footer>
     <button md-raised-button (click)="confirmDialog.close()">{{ 'HOME.ADD_PROVIDER.CLOSE' | translate }}</button>
   </md2-dialog-footer>
