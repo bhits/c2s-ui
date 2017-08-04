@@ -376,7 +376,8 @@
     "SUCCESS_DELETE_PROVIDER": "{spanish} Success in deleting provider.",
     "FAILED_DELETE_PROVIDER": "{spanish} Failed to delete the provider, please try again later...",
     "FAILED_ADD_PROVIDER": "{spanish} Failed to add the provider, please try again later...",
-    "DUPLICATE_CONSENT": "{spanish} Failed to add new consent. Duplicate consent created."
+    "DUPLICATE_CONSENT": "{spanish} Failed to add new consent. Duplicate consent created.",
+    "INVALID_CONSENT_SIGN_DATE": "{spanish} Consent start date cannot be before today."
   },
   "ACCOUNT_VERIFICATION": {
     "TITLE": "(SPANISH)Account Setup Verification",
