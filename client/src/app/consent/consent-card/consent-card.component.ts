@@ -50,40 +50,32 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     })
   }
 
-  toggleDetailsVisible(el: any) {
+  public toggleDetailsVisible(el: any): void {
     this.detailsVisible = !this.detailsVisible;
     this.height = this.height ? 0 : el.scrollHeight;
   }
 
-  onResize(event: any, el: any) {
-    this.height = this.height ? el.scrollHeight : 0;
-  }
-
-  hasDoNotShareSensitivityPolicyCodes(): boolean {
+  public hasDoNotShareSensitivityPolicyCodes(): boolean {
     return !!this.consent && !!this.consent.shareSensitivityCategories &&
       this.consent.shareSensitivityCategories.length > 0;
   }
 
-  getHeightPx(): string {
-    return `${this.height}px`;
-  }
-
-  getConsentStageOptions(): ConsentStageOption[] {
+  public getConsentStageOptions(): ConsentStageOption[] {
     return CONSENT_STAGES
       .filter(consentStage => consentStage.consentStage === this.consent.consentStage)
       .map(consentStage => consentStage.options)
       .pop();
   }
 
-  getRouterLink(consentOption: ConsentStageOption): any {
+  public getRouterLink(consentOption: ConsentStageOption): any {
     return consentOption.routerLink ? [consentOption.routerLink, this.consent.id] : '.'
   }
 
-  selectConsentMethodOption(consentOption: ConsentStageOption): boolean {
+  public selectConsentMethodOption(consentOption: ConsentStageOption): boolean {
     return consentOption.isMethod;
   }
 
-  invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any, tryPolicyDialog: any) {
+  public invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any, tryPolicyDialog: any) {
     switch (consentOption.key) {
       case ConsentStageOptionKey.APPLY_TRY_POLICY:
         tryPolicyDialog.open();
@@ -109,7 +101,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     }
   }
 
-  confirmDeleteConsent(dialog: any) {
+  public confirmDeleteConsent(dialog: any) {
     dialog.close();
     this.consentService.deleteConsent(this.consent.id)
       .subscribe(
