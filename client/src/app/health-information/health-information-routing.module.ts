@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HealthInformationComponent} from "./health-information/health-information.component";
 import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-guard.service";
 import {HealthInformationListComponent} from "./health-information-list/health-information-list.component";
+import {HealthInformationResolveService} from "./shared/health-information-resolve.service";
 
 const healthInformationRoutes: Routes = [
   {
@@ -13,7 +14,10 @@ const healthInformationRoutes: Routes = [
     children: [
       {
         path: '',
-        component: HealthInformationListComponent
+        component: HealthInformationListComponent,
+        resolve: {
+          healthInformation: HealthInformationResolveService,
+        }
       }
     ]
   }
@@ -30,4 +34,8 @@ export class HealthInformationRoutingModule {
 export const healthInformationRoutedComponents = [
   HealthInformationComponent,
   HealthInformationListComponent
+];
+
+export const healthInformationRoutedResolves = [
+  HealthInformationResolveService
 ];

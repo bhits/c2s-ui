@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {PatientHealthData} from "../shared/patient-health-data.model";
 
 @Component({
   selector: 'c2s-health-information-list',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./health-information-list.component.scss']
 })
 export class HealthInformationListComponent implements OnInit {
+  public healthInformation: PatientHealthData;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private route: ActivatedRoute) {
   }
 
+  ngOnInit() {
+    this.healthInformation = this.route.snapshot.data['healthInformation'];
+  }
 }
