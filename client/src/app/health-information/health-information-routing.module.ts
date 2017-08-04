@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CanActivateAuthGuardService} from "src/app/security/shared/can-activate-auth-guard.service";
-import {HealthInformationComponent} from "src/app/health-information/health-information/health-information.component";
-import {HealthInformationListComponent} from "src/app/health-information/health-information-list/health-information-list.component";
+import {HealthInformationComponent} from "./health-information/health-information.component";
+import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-guard.service";
+import {HealthInformationListComponent} from "./health-information-list/health-information-list.component";
 
 const healthInformationRoutes: Routes = [
   {
