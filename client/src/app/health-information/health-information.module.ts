@@ -9,6 +9,7 @@ import {
 import {PatientHealthInformationService} from "./shared/patient-health-information.service";
 import {HealthInformationDocumentComponent} from "./health-information-document/health-information-document.component";
 import {SharedModule} from "../shared/shared.module";
+import {HealthInformationCdaDocumentComponent} from "./health-information-cda-document/health-information-cda-document.component";
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import {SharedModule} from "../shared/shared.module";
   ],
   declarations: [
     healthInformationRoutedComponents,
-    HealthInformationDocumentComponent
+    HealthInformationDocumentComponent,
+    HealthInformationCdaDocumentComponent
   ],
   providers: [
     healthInformationRoutedResolves,
