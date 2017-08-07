@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PatientHealthDataCdaDocument} from "../shared/patient-health-data-cda-document.model";
-import {PatientHealthDataTargetPatient} from "../shared/patient-health-data-target-patient.model";
-import {PatientHealthDataTreatment} from "../shared/patient-health-data-treatment.model";
+import {PatientHealthDataCdaDocumentTargetPatient} from "../shared/patient-health-data-cda-document-target-patient.model";
+import {PatientHealthDataCdaDocumentTreatment} from "../shared/patient-health-data-cda-document-treatment.model";
 
 @Component({
   selector: 'c2s-health-information-cda-document',
@@ -11,8 +11,8 @@ import {PatientHealthDataTreatment} from "../shared/patient-health-data-treatmen
 export class HealthInformationCdaDocumentComponent implements OnInit {
   @Input()
   public patientHealthDataCdaDocument: PatientHealthDataCdaDocument;
-  public targetPatient: PatientHealthDataTargetPatient;
-  public patientTreatment: PatientHealthDataTreatment;
+  public targetPatient: PatientHealthDataCdaDocumentTargetPatient;
+  public patientTreatment: PatientHealthDataCdaDocumentTreatment;
 
   constructor() {
   }

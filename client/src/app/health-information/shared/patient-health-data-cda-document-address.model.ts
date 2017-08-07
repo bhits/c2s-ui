@@ -1,4 +1,4 @@
-export class PatientHealthDataAddress {
+export class PatientHealthDataCdaDocumentAddress {
   type: string;
   addressLine: string;
   city: string;

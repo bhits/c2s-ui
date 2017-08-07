@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {PatientHealthDataProvider} from "./patient-health-data-provider.model";
+import {PatientHealthDataCdaDocumentProvider} from "./patient-health-data-cda-document-provider.model";
 
 type ArgType = "providerName" | "organizationName" | "softwareUse" | "nationalProviderId" | "contactInfo";
 
@@ -8,7 +8,7 @@ type ArgType = "providerName" | "organizationName" | "softwareUse" | "nationalPr
 })
 export class PatientTreatmentProviderPipe implements PipeTransform {
 
-  transform(value: PatientHealthDataProvider, args?: ArgType): any {
+  transform(value: PatientHealthDataCdaDocumentProvider, args?: ArgType): any {
     if (value != null) {
       switch (args) {
         case "providerName":

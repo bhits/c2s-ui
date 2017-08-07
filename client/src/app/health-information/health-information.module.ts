@@ -10,8 +10,9 @@ import {PatientHealthInformationService} from "./shared/patient-health-informati
 import {HealthInformationDocumentComponent} from "./health-information-document/health-information-document.component";
 import {SharedModule} from "../shared/shared.module";
 import {HealthInformationCdaDocumentComponent} from "./health-information-cda-document/health-information-cda-document.component";
-import { TargetPatientContactInfoPipe } from './shared/target-patient-contact-info.pipe';
-import { PatientTreatmentProviderPipe } from './shared/patient-treatment-provider.pipe';
+import {TargetPatientContactInfoPipe} from './shared/target-patient-contact-info.pipe';
+import {PatientTreatmentProviderPipe} from './shared/patient-treatment-provider.pipe';
+import {HealthInformationCdaDocumentSectionComponent} from "./health-information-cda-document-section/health-information-cda-document-section.component";
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { PatientTreatmentProviderPipe } from './shared/patient-treatment-provide
     healthInformationRoutedComponents,
     HealthInformationDocumentComponent,
     HealthInformationCdaDocumentComponent,
+    HealthInformationCdaDocumentSectionComponent,
     TargetPatientContactInfoPipe,
     PatientTreatmentProviderPipe
   ],

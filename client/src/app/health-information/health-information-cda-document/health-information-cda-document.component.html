@@ -70,6 +70,9 @@
           </div>
         </div>
       </div>
+      <c2s-health-information-cda-document-section *ngFor="let section of patientHealthDataCdaDocument.sections"
+                                                   [patientCdaDocumentSection]="section">
+      </c2s-health-information-cda-document-section>
     </div>
     <!--------- END ACCORDION BODY --------------------------->
   </md2-accordion-tab>

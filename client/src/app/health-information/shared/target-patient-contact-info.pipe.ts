@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {PatientHealthDataContactInfo} from "./patient-health-data-contact-info.model";
-import {PatientHealthDataAddress} from "./patient-health-data-address.model";
+import {PatientHealthDataCdaDocumentContactInfo} from "./patient-health-data-cda-document-contact-info.model";
+import {PatientHealthDataCdaDocumentAddress} from "./patient-health-data-cda-document-address.model";
 
 type ArgType = "address" | "telecommunications";
 
@@ -9,7 +9,7 @@ type ArgType = "address" | "telecommunications";
 })
 export class TargetPatientContactInfoPipe implements PipeTransform {
 
-  transform(value: PatientHealthDataContactInfo, args?: ArgType): any {
+  transform(value: PatientHealthDataCdaDocumentContactInfo, args?: ArgType): any {
     if (value != null) {
       switch (args) {
         case "address":
@@ -23,7 +23,7 @@ export class TargetPatientContactInfoPipe implements PipeTransform {
     return null;
   }
 
-  private formatAddress(address: PatientHealthDataAddress) {
+  private formatAddress(address: PatientHealthDataCdaDocumentAddress) {
     return address.addressLine.concat(', ') + address.city.concat(', ') + address.state.concat(', ')
       + address.code.concat(', ') + address.country;
   }
