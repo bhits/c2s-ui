@@ -464,6 +464,20 @@
   "HEALTH_INFORMATION": {
     "HEALTH_INFORMATION_LIST": {
       "TITLE": "Health Information"
+    },
+    "HEALTH_INFORMATION_CDA_DOCUMENT": {
+      "TARGET_PATIENT": {
+        "NAME": "Patient Name",
+        "GENDER": "Gender",
+        "BIRTHDAY": "Birthday",
+        "ADDRESS": "Address"
+      },
+      "TREATMENT": {
+        "PROVIDER": "Provider",
+        "TREATMENT": "Treatment",
+        "TREATMENT_START_DATE": "Treatment Start Date",
+        "TREATMENT_END_DATE": "Treatment End Date"
+      }
     }
   },
   "USER_PROFILE": {

@@ -460,6 +460,20 @@
   "HEALTH_INFORMATION": {
     "HEALTH_INFORMATION_LIST": {
       "TITLE": "{spanish} Health Information"
+    },
+    "HEALTH_INFORMATION_CDA_DOCUMENT": {
+      "TARGET_PATIENT": {
+        "NAME": "{spanish} Patient Name",
+        "GENDER": "{spanish} Gender",
+        "BIRTHDAY": "{spanish} Birthday",
+        "ADDRESS": "{spanish} Address"
+      },
+      "TREATMENT": {
+        "PROVIDER": "{spanish} Provider",
+        "TREATMENT": "{spanish} Treatment",
+        "TREATMENT_START_DATE": "{spanish} Treatment Start Date",
+        "TREATMENT_END_DATE": "{spanish} Treatment End Date"
+      }
     }
   },
   "USER_PROFILE": {

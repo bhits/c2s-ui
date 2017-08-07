@@ -1,0 +1,29 @@
+.patient-cda-document-accordion {
+  border: thin solid #94b9af;
+  &:hover {
+    border: 1px solid #448866;
+  }
+  div.md2-accordion-header {
+    padding: 10px 15px;
+    background-color: #b0d6cf;
+    border: none !important;
+    box-shadow: none !important;
+    &:hover {
+      background-color: #71cbb5;
+    }
+    md-card-title {
+      margin-bottom: 0 !important;
+    }
+    .md2-accordion-header-icon {
+      top: 24px !important;
+      right: 25px !important;
+      border-width: 0 4px 4px 0 !important;
+    }
+  }
+}
+
+.patient-cda-document-accordion {
+  .md2-accordion-header {
+    white-space: inherit !important;
+  }
+}
