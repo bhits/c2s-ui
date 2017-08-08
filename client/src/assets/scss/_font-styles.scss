@@ -2,6 +2,7 @@ body {
   font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif" !important;
   font-size: 62.5%;
 }
+
 h1 {
   font-weight: 400;
   font-size: 2.8em;
@@ -12,20 +13,37 @@ h2 {
   font-size: 2.2em;
 }
 
-h3, h4, h5 {}
-
-  //flow
-//.pre-wrap {white-space: pre-wrap;}
-//.nowrap {white-space: nowrap;}
+h3, h4, h5 {
+}
 
 //style
-.italic {font-style: italic;}
-.center {text-align: center;}
-.pull-left {float: Left;}
-.pull-right {float: right;}
-.middle {vertical-align: middle;}
-.bottom {vertical-align: bottom;}
-.inline {display: inline-block !important;}
+.italic {
+  font-style: italic;
+}
+
+.center {
+  text-align: center;
+}
+
+.pull-left {
+  float: Left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+.bottom {
+  vertical-align: bottom;
+}
+
+.inline {
+  display: inline-block !important;
+}
 
 .center-sm-left {
   text-align: center;
@@ -86,12 +104,15 @@ h3, h4, h5 {}
 .font-size20 {
   font-size: 2em;
 }
+
 .font-size21 {
   font-size: 2.1em;
 }
+
 .font-size22 {
   font-size: 2.2em;
 }
+
 .font-size24 {
   font-size: 2.4em;
 }
@@ -112,13 +133,31 @@ h3, h4, h5 {}
 .font-weight300 {
   font-weight: 300;
 }
+
 .font-weight100 {
   font-weight: 100;
 }
 
-.text-black {color: black;}
-.text-dark-green {color: #266357;}
-.text-forest-green {color: #00796B;}
-.text-purple {color: #6C4E70;}
-.text-med-teal {color: #8CBEC7;}
-.text-teal {color: #3FA3BA;}
+.text-black {
+  color: black;
+}
+
+.text-dark-green {
+  color: #266357;
+}
+
+.text-forest-green {
+  color: #00796B;
+}
+
+.text-purple {
+  color: #6C4E70;
+}
+
+.text-med-teal {
+  color: #8CBEC7;
+}
+
+.text-teal {
+  color: #3FA3BA;
+}

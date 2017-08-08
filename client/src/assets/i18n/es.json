@@ -462,6 +462,10 @@
       "TITLE": "{spanish} Health Information"
     },
     "HEALTH_INFORMATION_CDA_DOCUMENT": {
+      "ACCORDION_HEADER": {
+        "CREATED_ON": "{spanish} Created on",
+        "AT": "{spanish} at"
+      },
       "TARGET_PATIENT": {
         "NAME": "{spanish} Patient Name",
         "GENDER": "{spanish} Gender",

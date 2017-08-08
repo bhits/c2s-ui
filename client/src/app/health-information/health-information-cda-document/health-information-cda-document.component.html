@@ -5,17 +5,28 @@
     <md2-accordion-header>
       <md-card-title>
         <div fxFlex fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start center">
-          <div class="font-size24 font-weight400 p-r-lg">
+          <span class="font-size24 font-weight400 p-r-lg">
             {{patientHealthDataCdaDocument.type}}
-          </div>
-          <div class="font-size20 font-weight400">
-        Created on {{patientHealthDataCdaDocument.date | date:'shortDate'}} at {{patientHealthDataCdaDocument.title}}
-          </div>
+          </span>
+          <span class="font-size20 font-weight400">
+            {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.ACCORDION_HEADER.CREATED_ON' | translate}}
+            {{patientHealthDataCdaDocument.date | date:'shortDate'}}
+            {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.ACCORDION_HEADER.AT' | translate}}
+            {{patientHealthDataCdaDocument.title}}
+          </span>
         </div>
       </md-card-title>
     </md2-accordion-header>
     <!--------- END ACCORDION HEADER --------------------------->
     <!--- ACCORDION BODY ------------------------------------->
+    <div class="p-l-lg p-b flex-start">
+      <button md-raised-button color="primary">
+        Expand All
+      </button>
+      <button md-raised-button color="primary">
+        Collapse All
+      </button>
+    </div>
     <div class="p-l p-r" class.gt-sm="p-l-lg p-r-lg">
       <div fxFlex fxLayout="column" fxLayout.gt-sm="row" class="font-size14">
         <div fxFlex>

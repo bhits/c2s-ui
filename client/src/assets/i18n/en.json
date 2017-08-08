@@ -466,6 +466,10 @@
       "TITLE": "Health Information"
     },
     "HEALTH_INFORMATION_CDA_DOCUMENT": {
+      "ACCORDION_HEADER": {
+        "CREATED_ON": "Created on",
+        "AT": "at"
+      },
       "TARGET_PATIENT": {
         "NAME": "Patient Name",
         "GENDER": "Gender",
