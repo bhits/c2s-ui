@@ -2,13 +2,16 @@
 <md2-accordion class="patient-cda-document-accordion m-b-sm" multiple="false">
   <md2-accordion-tab>
     <!--- ACCORDION HEADER ------------------------------------->
-    <md2-accordion-header class="">
-      <md-card-title align="start">
-        {{patientHealthDataCdaDocument.type}}
-        <strong>Created on</strong>
-        {{patientHealthDataCdaDocument.date | date:'shortDate'}}
-        <strong>at</strong>
-        {{patientHealthDataCdaDocument.title}}
+    <md2-accordion-header>
+      <md-card-title>
+        <div fxFlex fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start center">
+          <div class="font-size24 font-weight400 p-r-lg">
+            {{patientHealthDataCdaDocument.type}}
+          </div>
+          <div class="font-size20 font-weight400">
+        Created on {{patientHealthDataCdaDocument.date | date:'shortDate'}} at {{patientHealthDataCdaDocument.title}}
+          </div>
+        </div>
       </md-card-title>
     </md2-accordion-header>
     <!--------- END ACCORDION HEADER --------------------------->
