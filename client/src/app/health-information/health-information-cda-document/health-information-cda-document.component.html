@@ -49,8 +49,8 @@
             <span class="p-r font-weight600">
               {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.TREATMENT.PROVIDER' | translate}}:
             </span>
-            <div *ngFor="let provider of patientTreatment.providers">
-              {{provider | patientTreatmentProvider: 'providerName'}}
+            <div *ngFor="let author of patientHealthDataCdaDocument.authors">
+              {{author.providerName}}
             </div>
           </div>
           <div class="p-b-xs">

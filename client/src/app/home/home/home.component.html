@@ -5,26 +5,13 @@
   </div>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="center">
-
     <md-card class="home-card contacts" (click)="navigateTo('provider-list')">
-
       <md-card-header class="middle">
         <md-card-title>
           <div class="m-n" [innerHTML]="'HOME.PROVIDERS.TITLE' | translate"></div>
         </md-card-title>
       </md-card-header>
       <md-card-content class="p-md">
-
-        <!--<button md-fab class="plus" >-->
-        <!--<md-icon class="md-24 font-weight500">add</md-icon>-->
-        <!--</button>-->
-        <!--<md-chip-list class="p-15">-->
-        <!--<md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.PROVIDERS.STEP_1.TITLE' | translate }}</md-chip>-->
-        <!--<md-chip class="bg-plus-green" color="accent" selected="true">-->
-        <!--<span class="p-sm">{{ 'HOME.PROVIDERS.STEP_1.TITLE' | translate }}</span>-->
-        <!--</md-chip>-->
-        <!--</md-chip-list>-->
-
         <h2 class="m-t-xs">
           {{ 'HOME.PROVIDERS.STEP_1.DESCRIPTION' | translate }}
         </h2>
@@ -38,7 +25,6 @@
           {{ totalProviders | i18nPlural: providerMapping | translate :{count: totalProviders} }}
         </div>
       </md-card-content>
-
     </md-card>
 
     <md-card class="home-card consents"
@@ -51,17 +37,6 @@
         </md-card-title>
       </md-card-header>
       <md-card-content class="p-md">
-
-        <!--<button md-fab class="plus" >-->
-        <!--<md-icon class="md-24 font-weight500">add</md-icon>-->
-        <!--</button>-->
-        <!--<md-chip-list class="p-15">-->
-        <!--<md-chip color="primary" selected="true" class="font-size16">{{ 'HOME.CONSENTS.STEP_2.TITLE' | translate }}</md-chip>-->
-        <!--<md-chip class="" color="accent" selected="true">-->
-        <!--{{ 'HOME.CONSENTS.STEP_2.TITLE' | translate }}-->
-        <!--</md-chip>-->
-        <!--</md-chip-list>-->
-
         <h2 class="m-t-xs">
           {{ 'HOME.CONSENTS.STEP_2.DESCRIPTION' | translate }}
         </h2>
@@ -74,12 +49,9 @@
           {{ totalConsents | i18nPlural: consentMapping | translate :{count: totalConsents} }}
         </div>
       </md-card-content>
-
     </md-card>
-
   </div>
 </div>
-
 
 <md2-dialog #confirmDialog>
   <md2-dialog-title>{{ 'HOME.ADD_PROVIDER.TITLE' | translate }}</md2-dialog-title>
