@@ -13,6 +13,7 @@ export class HealthInformationCdaDocumentComponent implements OnInit {
   public patientHealthDataCdaDocument: PatientHealthDataCdaDocument;
   public targetPatient: PatientHealthDataCdaDocumentTargetPatient;
   public patientTreatment: PatientHealthDataCdaDocumentTreatment;
+  public cdaDocumentSectionAccordionTabActive: boolean = false;
 
   constructor() {
   }
@@ -20,5 +21,13 @@ export class HealthInformationCdaDocumentComponent implements OnInit {
   ngOnInit() {
     this.targetPatient = this.patientHealthDataCdaDocument.targetPatient;
     this.patientTreatment = this.patientHealthDataCdaDocument.treatment;
+  }
+
+  public expandSectionAccordionTab(): void {
+    this.cdaDocumentSectionAccordionTabActive = true;
+  }
+
+  public collapseSectionAccordionTab(): void {
+    this.cdaDocumentSectionAccordionTabActive = false;
   }
 }

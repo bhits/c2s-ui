@@ -9,11 +9,12 @@ import {PatientHealthDataCdaDocumentSection} from "../shared/patient-health-data
 export class HealthInformationCdaDocumentSectionComponent implements OnInit {
   @Input()
   public patientCdaDocumentSection: PatientHealthDataCdaDocumentSection;
+  @Input()
+  public sectionAccordionTabActive: boolean;
 
   constructor() {
   }
 
   ngOnInit() {
   }
-
 }
