@@ -1,8 +1,8 @@
 <!--------- ACCORDION ------------------------------------------>
 <md2-accordion class="patient-cda-document-section-accordion m-b-sm" multiple="false">
-  <md2-accordion-tab>
+  <md2-accordion-tab [active]="sectionAccordionTabActive">
     <!--- ACCORDION HEADER ------------------------------------->
-    <md2-accordion-header class="">
+    <md2-accordion-header>
       <md-card-title align="start">
         {{patientCdaDocumentSection.title}}
       </md-card-title>

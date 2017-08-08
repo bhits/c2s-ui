@@ -20,10 +20,12 @@
     <!--------- END ACCORDION HEADER --------------------------->
     <!--- ACCORDION BODY ------------------------------------->
     <div class="p-l-lg p-b flex-start">
-      <button md-raised-button color="primary">
+      <button md-raised-button color="primary"
+              (click)="expandSectionAccordionTab()">
         Expand All
       </button>
-      <button md-raised-button color="primary">
+      <button md-raised-button color="primary"
+              (click)="collapseSectionAccordionTab()">
         Collapse All
       </button>
     </div>
@@ -85,6 +87,7 @@
         </div>
       </div>
       <c2s-health-information-cda-document-section *ngFor="let section of patientHealthDataCdaDocument.sections"
+                                                   [sectionAccordionTabActive]="cdaDocumentSectionAccordionTabActive"
                                                    [patientCdaDocumentSection]="section">
       </c2s-health-information-cda-document-section>
     </div>
