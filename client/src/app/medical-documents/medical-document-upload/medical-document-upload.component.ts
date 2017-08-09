@@ -29,6 +29,7 @@ export class MedicalDocumentUploadComponent implements OnInit {
   files: UploadFile[];
   public uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
+  submitPending: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -58,14 +59,18 @@ export class MedicalDocumentUploadComponent implements OnInit {
         let newUploadedDocument: UploadedDocument = output.file.response;
         this.uploadedDocumentAdded.emit(newUploadedDocument);
         this.resetUploadForm();
+        this.submitPending = false;
         this.notificationService.i18nShow("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.UPLOAD_SUCCESS");
       }else{
+        this.submitPending = false;
         this.medicalDocumentsService.handleShowUploadedDocumentListError(output.file.response.status.toString());
       }
     }
   }
 
   startUpload(): void {
+    this.submitPending = true;
+
     if(this.validationService.isValidForm(this.uploadDocumentForm)) {
       const formModel = this.uploadDocumentForm.value;
       let documentToUploadMetadata: DocumentToUploadMetadata = new DocumentToUploadMetadata();
@@ -120,6 +125,7 @@ export class MedicalDocumentUploadComponent implements OnInit {
   }
 
   private handleUploadError(errMsgI18nKey: string): void {
+    this.submitPending = false;
     this.notificationService.i18nShow(errMsgI18nKey);
   }
 }
