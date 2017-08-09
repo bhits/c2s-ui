@@ -33,7 +33,7 @@
     </div>
     <div fxLayout="row" fxLayoutGap="20px" class="form-field-row form-buttons-row">
       <div fxFlex>
-        <button md-raised-button color="primary" type="button" class="start-upload-btn" (click)="startUpload()" [disabled]="submitPending || !uploadDocumentForm.valid">
+        <button md-raised-button color="primary" type="button" class="start-upload-btn" (click)="startUpload()" [disabled]="shouldSubmitBeDisabled()">
           <strong>{{ 'MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.SUBMIT_BTN_LABEL' | translate }}</strong>
           <md-spinner *ngIf="submitPending"></md-spinner>
         </button>

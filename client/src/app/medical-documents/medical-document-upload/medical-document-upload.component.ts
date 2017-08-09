@@ -94,6 +94,10 @@ export class MedicalDocumentUploadComponent implements OnInit {
     }
   }
 
+  shouldSubmitBeDisabled(): boolean {
+    return this.submitPending || !this.uploadDocumentForm.valid
+  }
+
   private resetUploadForm(): void {
     // Reset FormGroup
     this.uploadDocumentForm.reset();
