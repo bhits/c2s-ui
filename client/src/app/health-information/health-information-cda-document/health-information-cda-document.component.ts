@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {PatientHealthDataCdaDocument} from "../shared/patient-health-data-cda-document.model";
 import {PatientHealthDataCdaDocumentTargetPatient} from "../shared/patient-health-data-cda-document-target-patient.model";
 import {PatientHealthDataCdaDocumentTreatment} from "../shared/patient-health-data-cda-document-treatment.model";
@@ -6,7 +6,8 @@ import {PatientHealthDataCdaDocumentTreatment} from "../shared/patient-health-da
 @Component({
   selector: 'c2s-health-information-cda-document',
   templateUrl: './health-information-cda-document.component.html',
-  styleUrls: ['./health-information-cda-document.component.scss']
+  styleUrls: ['./health-information-cda-document.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HealthInformationCdaDocumentComponent implements OnInit {
   @Input()

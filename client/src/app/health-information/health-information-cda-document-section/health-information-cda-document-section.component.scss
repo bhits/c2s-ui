@@ -3,13 +3,14 @@
   &:hover {
     border: 1px solid #448866;
   }
+
   div.md2-accordion-header {
     padding: 10px 15px;
-    background-color: #b0d6cf;
+    background-color: #e8efee;
     border: none !important;
     box-shadow: none !important;
     &:hover {
-      background-color: #71cbb5;
+      background-color: #c8e8e1;
     }
     md-card-title {
       margin-bottom: 0 !important;
@@ -36,7 +37,7 @@
   th {
     background-color: #018DB1;
     font-weight: bold;
-    color: red;
+    color: #646464;
   }
   tbody tr td:nth-of-type(1) {
     font-weight: bold;
@@ -47,7 +48,7 @@
       width: 100%;
     }
     thead {
-      display: none;
+      display: block;
     }
     tr:nth-of-type(2n) {
       background-color: inherit;
@@ -59,12 +60,12 @@
     }
     tbody td {
       display: block;
-      text-align: center;
+      text-align: left;
     }
     tbody td:before {
       content: attr(data-th);
       display: block;
-      text-align: center;
+      text-align: left;
     }
   }
 }
