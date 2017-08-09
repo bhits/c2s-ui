@@ -1,6 +1,6 @@
 <!--------- ACCORDION ------------------------------------------>
 <md2-accordion class="patient-cda-document-section-accordion m-b-sm" multiple="false">
-  <md2-accordion-tab [active]="sectionAccordionTabActive">
+  <md2-accordion-tab [active]="sectionAccordionTabActive" (click)="updateTabActiveStatus()">
     <!--- ACCORDION HEADER ------------------------------------->
     <md2-accordion-header>
       <md-card-title class="font-size16">

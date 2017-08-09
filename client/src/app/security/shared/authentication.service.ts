@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Router} from "@angular/router";
 import {Headers, Http, RequestOptions, Response, URLSearchParams} from "@angular/http";
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";
 import {TokenService} from "./token.service";
@@ -11,6 +10,7 @@ import {UtilityService} from "../../shared/utility.service";
 import {Observable} from "rxjs/Observable";
 import {ExceptionService} from "../../core/exception.service";
 import {AuthorizationResponse} from "./authorization-response.model";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 
 
 @Injectable()
@@ -18,10 +18,8 @@ export class AuthenticationService {
   oauth2TokenUrl: string = "/uaa/oauth/token/";
   oauth2UserInfoUrl: string = "/uaa/userinfo";
   CLIENT_ID: string = 'YzJzLXVpOmNoYW5nZWl0';
-  HOME: string = 'home';
-  LOGIN: string = 'login';
 
-  constructor(private router: Router,
+  constructor(private apiUrlService: C2sUiApiUrlService,
               private exceptionService: ExceptionService,
               private http: Http,
               private tokenService: TokenService,
@@ -43,16 +41,16 @@ export class AuthenticationService {
 
   logout() {
     this.globalEventManagerService.setShowHeader(false);
-    this.clearSessionStorgeAndRedirectToLogin();
+    this.clearSessionStorageAndRedirectToLogin();
   }
 
-  private clearSessionStorgeAndRedirectToLogin() {
+  private clearSessionStorageAndRedirectToLogin() {
     let masterUiLoginUrl = this.tokenService.getMasterUiLoginUrl();
     sessionStorage.clear();
     if (masterUiLoginUrl) {
       this.utilityService.redirectInSameTab(masterUiLoginUrl);
     } else {
-      this.utilityService.navigateTo(this.LOGIN);
+      this.utilityService.navigateTo(this.apiUrlService.getLoginUrl());
     }
   }
 
@@ -79,9 +77,8 @@ export class AuthenticationService {
   }
 
   onGetUserProfileSuccess(profile: Profile) {
-    this.globalEventManagerService.setShowHeader(true);
     this.globalEventManagerService.setProfile(profile);
-    this.router.navigate([this.HOME]);
+    this.utilityService.navigateTo(this.apiUrlService.getHomeUrl());
   }
 
   private setHeaders(): RequestOptions {
