@@ -78,8 +78,8 @@ export class MedicalDocumentsService {
         "Authorization": access_token_string
       };
     }else{
-      // FIXME: Replace this with proper error handling.
-      throw new Error("token variable check failed");
+      console.error("Unable to retrieve valid access token from session");
+      return null;
     }
 
     return {
