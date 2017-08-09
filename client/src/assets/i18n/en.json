@@ -466,6 +466,8 @@
       "TITLE": "Health Information"
     },
     "HEALTH_INFORMATION_CDA_DOCUMENT": {
+      "EXPAND_ALL_BTN": "Expand All",
+      "COLLAPSE_ALL_BTN": "Collapse All",
       "ACCORDION_HEADER": {
         "CREATED_ON": "Created on",
         "AT": "at"

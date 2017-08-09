@@ -11,6 +11,7 @@ import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TryPolicyService} from "../shared/try-policy.service";
 import {TryPolicyResponse} from "src/app/consent/shared/try-policy-response.model";
+import {Md2Dialog} from "md2";
 
 @Component({
   selector: 'c2s-consent-card',
@@ -75,7 +76,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     return consentOption.isMethod;
   }
 
-  public invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: any, deleteConfirmationDialog: any, tryPolicyDialog: any) {
+  public invokeAction(consentOption: ConsentStageOption, consentOptionsDialog: Md2Dialog, deleteConfirmationDialog: Md2Dialog, tryPolicyDialog: Md2Dialog) {
     switch (consentOption.key) {
       case ConsentStageOptionKey.APPLY_TRY_POLICY:
         tryPolicyDialog.open();
@@ -101,7 +102,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
     }
   }
 
-  public confirmDeleteConsent(dialog: any) {
+  public confirmDeleteConsent(dialog: Md2Dialog) {
     dialog.close();
     this.consentService.deleteConsent(this.consent.id)
       .subscribe(
@@ -115,7 +116,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
         });
   }
 
-  public applyTryPolicy(dialog: any): void {
+  public applyTryPolicy(dialog: Md2Dialog): void {
     dialog.close();
     let tryPolicyInput = this.tryPolicyForm.value;
     this.tryPolicyService.applyTryPolicyAgainstConsent(this.consent.id, tryPolicyInput.documentId, tryPolicyInput.purposeOfUse)
@@ -127,7 +128,7 @@ export class ConsentCardComponent implements OnInit, OnChanges {
         });
   }
 
-  public backToOptions(applyTryPolicyDialog: any, consentOptionsDialog: any): void {
+  public backToOptions(applyTryPolicyDialog: Md2Dialog, consentOptionsDialog: Md2Dialog): void {
     applyTryPolicyDialog.close();
     consentOptionsDialog.open();
   }
