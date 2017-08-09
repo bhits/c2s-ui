@@ -4,9 +4,12 @@ import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {ExceptionService} from "../../core/exception.service";
 import {PatientHealthData} from "./patient-health-data.model";
 import {Observable} from "rxjs/Observable";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class PatientHealthInformationService {
+  private sectionAccordionTabActiveStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private sectionAccordionTabActiveStatusEmitter: Observable<boolean> = this.sectionAccordionTabActiveStatus.asObservable();
 
   constructor(private apiUrlService: C2sUiApiUrlService,
               private exceptionService: ExceptionService,
@@ -20,5 +23,13 @@ export class PatientHealthInformationService {
     return this.http.get(resourceUrl)
       .map((resp: Response) => <PatientHealthData>(resp.json()))
       .catch(this.exceptionService.handleError);
+  }
+
+  public setSectionAccordionTabActiveStatus(activeStatus: boolean): void {
+    this.sectionAccordionTabActiveStatus.next(activeStatus);
+  }
+
+  public getSectionAccordionTabActiveStatusEmitter(): Observable<boolean> {
+    return this.sectionAccordionTabActiveStatusEmitter;
   }
 }

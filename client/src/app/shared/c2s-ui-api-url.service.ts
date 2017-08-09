@@ -7,6 +7,7 @@ export class C2sUiApiUrlService {
     [
       // Internal routes maps
       ["loginUrl", "/login"],
+      ["homeUrl", "/home"],
       ["accountActivationUrl", "/account/activation"],
       ["accountActivationSuccessUrl", "/account/activation-success"],
       ["accountActivationErrorUrl", "/account/activation-error"],
@@ -27,6 +28,10 @@ export class C2sUiApiUrlService {
 
   public getLoginUrl(): string {
     return this.urls.get('loginUrl');
+  }
+
+  public getHomeUrl(): string {
+    return this.urls.get('homeUrl');
   }
 
   public getAccountActivationUrl(): string {

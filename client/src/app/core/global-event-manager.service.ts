@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import { Observable } from "rxjs/Observable";
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
 import {Profile} from "./profile.model";
 
 @Injectable()
@@ -9,24 +9,25 @@ export class GlobalEventManagerService {
   private showHeader: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   public showHeaderEmitter: Observable<boolean> = this.showHeader.asObservable();
 
-  private userProfileSudject: BehaviorSubject<Profile> = new BehaviorSubject<Profile>(null);
-  public userProfileEmitter: Observable<Profile> = this.userProfileSudject.asObservable();
+  private userProfileSubject: BehaviorSubject<Profile> = new BehaviorSubject<Profile>(null);
+  public userProfileEmitter: Observable<Profile> = this.userProfileSubject.asObservable();
 
-  constructor() { }
+  constructor() {
+  }
 
-  setShowHeader(show: boolean) {
+  public setShowHeader(show: boolean): void {
     this.showHeader.next(show);
   }
 
-  setProfile(profile: Profile){
-    this.userProfileSudject.next(profile);
-  }
-
-  getUserProfileEmitter(): Observable<Profile>{
-    return this.userProfileEmitter;
-  }
-
-  getShowHeaderEmitter(): Observable<boolean>{
+  public getShowHeaderEmitter(): Observable<boolean> {
     return this.showHeaderEmitter;
+  }
+
+  public setProfile(profile: Profile): void {
+    this.userProfileSubject.next(profile);
+  }
+
+  public getUserProfileEmitter(): Observable<Profile> {
+    return this.userProfileEmitter;
   }
 }

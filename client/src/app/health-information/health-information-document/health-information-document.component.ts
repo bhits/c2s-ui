@@ -7,8 +7,7 @@ import {PatientHealthDataDocument} from "src/app/health-information/shared/patie
   styleUrls: ['./health-information-document.component.scss']
 })
 export class HealthInformationDocumentComponent implements OnInit {
-  @Input()
-  public patientHealthDataDocument: PatientHealthDataDocument;
+  @Input() public patientHealthDataDocument: PatientHealthDataDocument;
 
   constructor() {
   }

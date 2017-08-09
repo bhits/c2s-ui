@@ -2,6 +2,7 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {PatientHealthDataCdaDocument} from "../shared/patient-health-data-cda-document.model";
 import {PatientHealthDataCdaDocumentTargetPatient} from "../shared/patient-health-data-cda-document-target-patient.model";
 import {PatientHealthDataCdaDocumentTreatment} from "../shared/patient-health-data-cda-document-treatment.model";
+import {PatientHealthInformationService} from "../shared/patient-health-information.service";
 
 @Component({
   selector: 'c2s-health-information-cda-document',
@@ -10,13 +11,12 @@ import {PatientHealthDataCdaDocumentTreatment} from "../shared/patient-health-da
   encapsulation: ViewEncapsulation.None
 })
 export class HealthInformationCdaDocumentComponent implements OnInit {
-  @Input()
-  public patientHealthDataCdaDocument: PatientHealthDataCdaDocument;
+  @Input() public patientHealthDataCdaDocument: PatientHealthDataCdaDocument;
+
   public targetPatient: PatientHealthDataCdaDocumentTargetPatient;
   public patientTreatment: PatientHealthDataCdaDocumentTreatment;
-  public cdaDocumentSectionAccordionTabActive: boolean = false;
 
-  constructor() {
+  constructor(private patientHealthInformationService: PatientHealthInformationService) {
   }
 
   ngOnInit() {
@@ -25,10 +25,10 @@ export class HealthInformationCdaDocumentComponent implements OnInit {
   }
 
   public expandSectionAccordionTab(): void {
-    this.cdaDocumentSectionAccordionTabActive = true;
+    this.patientHealthInformationService.setSectionAccordionTabActiveStatus(true);
   }
 
   public collapseSectionAccordionTab(): void {
-    this.cdaDocumentSectionAccordionTabActive = false;
+    this.patientHealthInformationService.setSectionAccordionTabActiveStatus(false);
   }
 }
