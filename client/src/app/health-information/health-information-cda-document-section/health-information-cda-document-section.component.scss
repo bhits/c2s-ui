@@ -34,9 +34,10 @@
   table {
     width: 100%;
     font-size:14px;
+    border-collapse: collapse;
   }
-  tbody tr td {
-    padding: 5px;
+  thead tr th, tbody tr td {
+    padding: 8px 10px;
     vertical-align: top;
   }
 

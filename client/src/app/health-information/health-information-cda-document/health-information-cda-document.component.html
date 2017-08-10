@@ -58,12 +58,14 @@
           </div>
         </div>
         <div fxFlex class="p-b-sm">
-          <div class="p-b-xs" fxflex fxLayout="row" fxLayoutAlign="start start">
+          <div class="p-b-xs" fxflex fxLayout="row" fxLayoutAlign="start stretch">
             <div class="p-r font-weight600" fxFlex="0 1 auto">
               {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.TREATMENT.PROVIDER' | translate}}:
             </div>
-            <div *ngFor="let author of patientHealthDataCdaDocument.authors" fxFlex>
+            <div fxFlex="1 0 auto">
+              <div class="p-b-xs" *ngFor="let author of patientHealthDataCdaDocument.authors" fxFlex="auto">
               {{author.providerName}}
+            </div>
             </div>
           </div>
           <div class="p-b-xs">
