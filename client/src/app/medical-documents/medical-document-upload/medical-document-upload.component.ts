@@ -29,6 +29,7 @@ export class MedicalDocumentUploadComponent implements OnInit {
   files: UploadFile[];
   public uploadInput: EventEmitter<UploadInput>;
   humanizeBytes: Function;
+  submitPending: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -57,14 +58,19 @@ export class MedicalDocumentUploadComponent implements OnInit {
       if(!output.file.response.hasOwnProperty('error')){
         let newUploadedDocument: UploadedDocument = output.file.response;
         this.uploadedDocumentAdded.emit(newUploadedDocument);
+        this.resetUploadForm();
+        this.submitPending = false;
         this.notificationService.i18nShow("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.UPLOAD_SUCCESS");
       }else{
+        this.submitPending = false;
         this.medicalDocumentsService.handleShowUploadedDocumentListError(output.file.response.status.toString());
       }
     }
   }
 
   startUpload(): void {
+    this.submitPending = true;
+
     if(this.validationService.isValidForm(this.uploadDocumentForm)) {
       const formModel = this.uploadDocumentForm.value;
       let documentToUploadMetadata: DocumentToUploadMetadata = new DocumentToUploadMetadata();
@@ -76,12 +82,20 @@ export class MedicalDocumentUploadComponent implements OnInit {
         documentToUploadMetadata.description = formModel.description;
       }
 
-      const event = this.medicalDocumentsService.prepareDocumentUpload(documentToUploadMetadata);
-      this.uploadInput.emit(event);
-      this.resetUploadForm();
+      let event = this.medicalDocumentsService.prepareDocumentUpload(documentToUploadMetadata);
+
+      if (event !== null) {
+        this.uploadInput.emit(event);
+      } else {
+        this.handleUploadError("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.DOC_PREP_ERROR");
+      }
     }else{
-      this.notificationService.i18nShow("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_INVALID_ERROR");
+      this.handleUploadError("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_INVALID_ERROR");
     }
+  }
+
+  shouldSubmitBeDisabled(): boolean {
+    return this.submitPending || !this.uploadDocumentForm.valid
   }
 
   private resetUploadForm(): void {
@@ -112,5 +126,10 @@ export class MedicalDocumentUploadComponent implements OnInit {
         ]
       ]
     });
+  }
+
+  private handleUploadError(errMsgI18nKey: string): void {
+    this.submitPending = false;
+    this.notificationService.i18nShow(errMsgI18nKey);
   }
 }
