@@ -4,16 +4,16 @@
     <!--- ACCORDION HEADER ------------------------------------->
     <md2-accordion-header>
       <md-card-title>
-        <div fxFlex fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start center">
-          <span class="font-size24 font-weight400 p-r-lg">
+        <div fxFlex fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start end">
+          <div class="font-weight400 p-r-lg">
             {{patientHealthDataCdaDocument.type}}
-          </span>
-          <span class="font-size20 font-weight400">
+          </div>
+          <div class="font-weight300">
             {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.ACCORDION_HEADER.CREATED_ON' | translate}}
             {{patientHealthDataCdaDocument.date | date:'shortDate'}}
             {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.ACCORDION_HEADER.AT' | translate}}
             {{patientHealthDataCdaDocument.title}}
-          </span>
+          </div>
         </div>
       </md-card-title>
     </md2-accordion-header>
