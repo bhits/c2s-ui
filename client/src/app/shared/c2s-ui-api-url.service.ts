@@ -17,6 +17,7 @@ export class C2sUiApiUrlService {
       ["PlsBaseUrl", "/c2s-ui-api/pls"],
       ["VssBaseUrl", "/c2s-ui-api/vss"],
       ["UmsBaseUrl", "/c2s-ui-api/ums"],
+      ["UaaBaseUrl", "/c2s-ui-api/uaa"],
       ["PhrBaseUrl", "/c2s-ui-api/phr"],
       ["TryPolicyBaseUrl", "/c2s-ui-api/try-policy"],
       ["IExHubXdsbBaseUrl", "/c2s-ui-api/iexhub-xdsb"]
@@ -48,6 +49,10 @@ export class C2sUiApiUrlService {
 
   public getUmsBaseUrl(): string {
     return this.urls.get('UmsBaseUrl');
+  }
+
+  public getUaaBaseUrl(): string {
+    return this.urls.get('UaaBaseUrl');
   }
 
   public getPcmBaseUrl(): string {

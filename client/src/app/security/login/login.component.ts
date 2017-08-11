@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
                 this.tokenService.storeUserProfile(profile);
                 this.getUMSProfileAndSetDefaultLanguage(profile);
               },
-              (error) => this.handleLoginError()
+              (error) => this.authenticationService.onLoginFailure()
             );
         },
         err => {
@@ -69,14 +69,8 @@ export class LoginComponent implements OnInit {
         this.limitedProfileService.setProfileInSessionStorage(profile);
         this.authenticationService.onGetUserProfileSuccess(uaaProfile);
       },
-      (err) => this.handleLoginError()
+      (err) => this.authenticationService.onLoginFailure()
     )
-  }
-
-  private handleLoginError(): void {
-    this.tokenService.deleteAccessToken();
-    this.tokenService.deleteProfileToken();
-    this.showLoginBackendError = true;
   }
 
   public getInputType(inputType: string) {
