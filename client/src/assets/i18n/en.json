@@ -381,7 +381,7 @@
     "FAILED_DELETE_PROVIDER": "Failed to delete the provider, please try again later...",
     "FAILED_ADD_PROVIDER": "Failed to add the provider, please try again later...",
     "DUPLICATE_CONSENT": "Failed to add new consent. Duplicate consent created.",
-    "INVALID_CONSENT_SIGN_DATE": "Consent start date can not before the signing date."
+    "INVALID_CONSENT_SIGN_DATE": "Consent start date cannot be before today."
   },
   "ACCOUNT_VERIFICATION": {
     "TITLE": "Account Setup Verification",
@@ -454,6 +454,7 @@
         },
         "SUBMIT_BTN_LABEL": "Upload",
         "FORM_INVALID_ERROR": "One or more form fields are invalid.",
+        "DOC_PREP_ERROR": "An error occurred while preparing the document for upload.",
         "DOC_NAME_ALREADY_EXISTS_ERROR": "A document with the same document name already exists.",
         "DOC_INVALID_ERROR": "Unable to upload document; the document was not a valid CCDA or C32.",
         "UPLOAD_SUCCESS": "Successfully uploaded medical document."
