@@ -10,9 +10,11 @@
     <!--------- END ACCORDION HEADER --------------------------->
     <!--- ACCORDION BODY ------------------------------------->
     <div class="p-l p-r" class.gt-sm="p-l-lg p-r-lg">
-      <div class="cda-document-tables">
-        <div [innerHTML]="patientCdaDocumentSection.content"></div>
-      </div>
+      <md-card>
+        <div class="cda-document-tables">
+          <div [innerHTML]="patientCdaDocumentSection.content"></div>
+        </div>
+      </md-card>
     </div>
     <!--------- END ACCORDION BODY --------------------------->
   </md2-accordion-tab>
