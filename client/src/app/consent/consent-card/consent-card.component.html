@@ -156,14 +156,14 @@
   <!--tryPolicyDialog Start-->
   <md2-dialog #tryPolicyDialog (onOpen)="consentOptionsDialog.close()">
     <md2-dialog-title>
-      {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.TITLE' | translate }}
+      {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.TITLE' | translate }}
     </md2-dialog-title>
     <form [formGroup]="tryPolicyForm">
       <div fxFlex>
-        <label>{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' |
+        <label>{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' |
           translate }}</label>
         <md-select
-          placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}"
+          placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}"
           formControlName="documentId">
           <md-option *ngFor="let uploadedDocument of uploadedDocumentList" [value]="uploadedDocument.id">
             {{ uploadedDocument.documentName }}
@@ -172,10 +172,10 @@
       </div>
       <br>
       <div fxFlex>
-        <label> {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_POU' | translate
+        <label> {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.CONTENT_POU' | translate
           }}</label>
         <md-select
-          placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}"
+          placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}"
           formControlName="purposeOfUse">
           <md-option *ngFor="let sharePurpose of consent.sharePurposes" [value]="sharePurpose.display">
             {{sharePurpose | sharePurpose: 'display'}}
@@ -186,11 +186,11 @@
     <md2-dialog-footer>
       <button md-raised-button color="primary"
               (click)="tryPolicyDialog.close(); consentOptionsDialog.open()">
-        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.BACK_BTN' | translate }}
+        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.BACK_BTN' | translate }}
       </button>
       <button md-raised-button [disabled]="!tryPolicyForm.valid"
               (click)="applyTryPolicy(tryPolicyDialog)">
-        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRYPOLICY_CONSENT_DIALOG.OK_BTN' | translate }}
+        {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.OK_BTN' | translate }}
       </button>
     </md2-dialog-footer>
   </md2-dialog>
