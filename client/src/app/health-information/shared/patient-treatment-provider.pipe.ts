@@ -8,20 +8,9 @@ type ArgType = "providerName" | "organizationName" | "softwareUse" | "nationalPr
 })
 export class PatientTreatmentProviderPipe implements PipeTransform {
 
-  transform(value: PatientHealthDataCdaDocumentProvider, args?: ArgType): any {
-    if (value != null) {
-      switch (args) {
-        case "providerName":
-          return value.providerName;
-        case "organizationName":
-          return value.organizationName;
-        case "softwareUse":
-          return value.softwareUse;
-        case "nationalProviderId":
-          return value.nationalProviderId;
-        case "contactInfo":
-          return value.contactInfo;
-      }
+  transform(value: PatientHealthDataCdaDocumentProvider, arg?: ArgType): any {
+    if (value && arg) {
+      return value[arg]
     }
     return null;
   }
