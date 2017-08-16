@@ -12,8 +12,9 @@
     <md-hint class="has-error font-size16" *ngIf="isUsernameUsed">
       {{'ACCOUNT_ACTIVATION.HINT' | translate}}
     </md-hint>
-    <c2s-control-messages [control]="accountActivationFrom.controls.username"
-                          [customMessage]="passwordErrorMessage"></c2s-control-messages>
+    <c2s-control-validation-error-message [customMessage]="passwordErrorMessage"
+                                          [control]="accountActivationFrom.get('username')">
+    </c2s-control-validation-error-message>
   </md-input-container>
   <md-input-container class="full-width font-size20">
     <div fxLayout="row">
@@ -22,14 +23,16 @@
              formControlName="password" flex="90">
       <c2s-show-hide-password (setInputType)="getInputType($event)"></c2s-show-hide-password>
     </div>
-    <c2s-control-messages [control]="accountActivationFrom.controls.password"
-                          [customMessage]="passwordErrorMessage"></c2s-control-messages>
+    <c2s-control-validation-error-message [customMessage]="passwordErrorMessage"
+                                          [control]="accountActivationFrom.get('password')">
+    </c2s-control-validation-error-message>
   </md-input-container>
   <md-input-container class="full-width font-size20">
     <input type="password" class="font-size15" mdInput
            placeholder="{{'ACCOUNT_ACTIVATION.CONFIRM_PASSWORD' | translate}}"
            formControlName="confirmPassword">
-    <c2s-control-messages [control]="accountActivationFrom.controls.confirmPassword"></c2s-control-messages>
+    <c2s-control-validation-error-message [control]="accountActivationFrom.get('confirmPassword')">
+    </c2s-control-validation-error-message>
     <md-hint class="has-error font-size16" *ngIf="accountActivationFrom.hasError('mismatchedPasswords')">
       {{mismatchedPasswordsMessage}}
     </md-hint>

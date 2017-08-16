@@ -21,6 +21,7 @@ import {UserProfileModule} from "./user-profile/user-profile.module";
 import {UserAvatarModule} from "./user-avatar/user-avatar.module";
 import {UserAvatarMonitoringService} from "./shared/user-avatar-monitoring.service";
 import {ActivityModule} from "./activity/activity.module";
+import {HealthInformationModule} from "./health-information/health-information.module";
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {ActivityModule} from "./activity/activity.module";
     ConsentModule,
     ProviderModule,
     MedicalDocumentsModule,
+    HealthInformationModule,
     UserProfileModule,
     UserAvatarModule,
     AppRoutingModule // Must be the last module to be imported

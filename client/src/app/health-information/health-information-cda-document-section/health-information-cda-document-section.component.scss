@@ -1,0 +1,101 @@
+.patient-cda-document-section-accordion {
+  md-card {padding: 10px !important;}
+  border: thin solid #94b9af;
+  &:hover {
+    border: 1px solid #448866;
+  }
+
+  div.md2-accordion-header {
+    padding: 10px 15px;
+    background-color: #e2e8e9;
+    border: none !important;
+    box-shadow: none !important;
+    &:hover {
+      background-color: #c8e8e1;
+    }
+    md-card-title {
+      margin-bottom: 0 !important;
+      font-size: 1.6em;
+    }
+    .md2-accordion-header-icon {
+      top: 17px !important;
+      right: 20px !important;
+      border-width: 0 3px 3px 0 !important;
+    }
+  }
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0px;
+  }
+  ::-webkit-scrollbar:horizontal {
+    height: 15px !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: rgba(110, 145, 164, 0.55);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  }
+}
+
+.patient-cda-document-section-accordion {
+  .md2-accordion-header {
+    white-space: inherit !important;
+  }
+}
+//-------------------------- Responsive Table
+
+.cda-document-tables {
+  border: thin solid darkgray;
+  width: 100%;
+  overflow-x: scroll;
+  font-size:14px;;
+
+  span {
+    display: inline-table;
+    padding: 8px 10px;
+    &:empty {display:none;}
+  }
+
+
+  p {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  table {
+    width: 100%;
+    font-size:14px;
+    border-collapse: collapse;
+    //overflow: scroll;
+    //display: block;
+  }
+  thead {border-bottom: solid lightgray thin;}
+  tr th, tr td {
+    padding: 8px 10px;
+    vertical-align: top;
+  }
+
+  tbody {
+    tr:hover {background-color:#fffdce;}
+    tr:nth-of-type(2n) {
+    //background-color: #f0f0f0;
+    background-color: #f8f8f5;
+      &:hover {background-color:#fffdce;}
+    }
+  }
+  th {
+    font-weight: bold;
+    color: #33668C;
+    background-color: #fef9e0;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 600px) {
+    table {
+      width: 100%;
+      font-size:12px;
+    }
+  }
+}

@@ -1,4 +1,3 @@
-
 <!--------- ACCORDION ------------------------------------------>
 <div class="m-t-lg">
   <md2-accordion class="consent-accordion p-sm m-b-sm bg-white" multiple="false">
@@ -111,30 +110,30 @@
 <!--------- END ACCORDION -------------------------------------->
 
 <div>
-<!--consentOptionsDialog Start-->
-        <md2-dialog #consentOptionsDialog>
-          <md2-dialog-title fxLayoutAlign="center">
-            {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TITLE' | translate }}
-          </md2-dialog-title>
-          <md-list>
-            <md-list-item *ngFor="let consentOption of getConsentStageOptions()">
-              <div class="margin-20" fxFill>
-                <a fxLayoutAlign="space-between" md-raised-button
-                   (click)="invokeAction(consentOption, consentOptionsDialog, deleteConfirmationDialog, tryPolicyDialog)"
-                   *ngIf="selectConsentMethodOption(consentOption)">
-                  <md-icon>{{consentOption.icon}}</md-icon>
-                  <span class="margin-20">{{consentOption.text | translate}}</span>
-                </a>
-                <a fxLayoutAlign="space-between" md-raised-button [routerLink]="getRouterLink(consentOption)"
-                   *ngIf="!selectConsentMethodOption(consentOption)">
-                  <md-icon>{{consentOption.icon}}</md-icon>
-                  <span class="margin-20">{{consentOption.text | translate}}</span>
-                </a>
-              </div>
-            </md-list-item>
-          </md-list>
-        </md2-dialog>
-        <!--consentOptionsDialog End-->
+  <!--consentOptionsDialog Start-->
+  <md2-dialog #consentOptionsDialog>
+    <md2-dialog-title fxLayoutAlign="center">
+      {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TITLE' | translate }}
+    </md2-dialog-title>
+    <md-list>
+      <md-list-item *ngFor="let consentOption of getConsentStageOptions()">
+        <div class="margin-20" fxFill>
+          <a fxLayoutAlign="space-between" md-raised-button
+             (click)="invokeAction(consentOption, consentOptionsDialog, deleteConfirmationDialog, applyTryPolicyDialog)"
+             *ngIf="selectConsentMethodOption(consentOption)">
+            <md-icon>{{consentOption.icon}}</md-icon>
+            <span class="margin-20">{{consentOption.text | translate}}</span>
+          </a>
+          <a fxLayoutAlign="space-between" md-raised-button [routerLink]="getRouterLink(consentOption)"
+             *ngIf="!selectConsentMethodOption(consentOption)">
+            <md-icon>{{consentOption.icon}}</md-icon>
+            <span class="margin-20">{{consentOption.text | translate}}</span>
+          </a>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md2-dialog>
+  <!--consentOptionsDialog End-->
 
 
   <!--deleteConfirmationDialog Start-->
@@ -153,47 +152,54 @@
     </md2-dialog-footer>
   </md2-dialog>
   <!--deleteConfirmationDialog End-->
-  <!--tryPolicyDialog Start-->
-  <md2-dialog #tryPolicyDialog (onOpen)="consentOptionsDialog.close()">
+  <!--apply tryPolicy dialog Start-->
+  <md2-dialog #applyTryPolicyDialog (onOpen)="consentOptionsDialog.close()">
     <md2-dialog-title>
       {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.TITLE' | translate }}
     </md2-dialog-title>
-    <form [formGroup]="tryPolicyForm">
-      <div fxFlex>
-        <label>{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' |
-          translate }}</label>
-        <md-select
-          placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}"
-          formControlName="documentId">
-          <md-option *ngFor="let uploadedDocument of uploadedDocumentList" [value]="uploadedDocument.id">
-            {{ uploadedDocument.documentName }}
-          </md-option>
-        </md-select>
+    <form [formGroup]="tryPolicyForm" novalidate>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start">
+          <md-select class="medium-width font-size20"
+                     placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.CONTENT_DOCUMENT' | translate }}"
+                     formControlName="documentId">
+            <md-option *ngFor="let uploadedDocument of uploadedDocumentList"
+                       [value]="uploadedDocument.id">
+              {{ uploadedDocument.documentName }}
+            </md-option>
+          </md-select>
+        </div>
+        <c2s-control-validation-error-message fxLayoutAlign="start"
+                                              [control]="tryPolicyForm.get('documentId')">
+        </c2s-control-validation-error-message>
       </div>
       <br>
-      <div fxFlex>
-        <label> {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.CONTENT_POU' | translate
-          }}</label>
-        <md-select
-          placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}"
-          formControlName="purposeOfUse">
-          <md-option *ngFor="let sharePurpose of consent.sharePurposes" [value]="sharePurpose.display">
-            {{sharePurpose | sharePurpose: 'display'}}
-          </md-option>
-        </md-select>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start">
+          <md-select class="medium-width font-size20"
+                     placeholder="{{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.CONTENT_POU' | translate }}"
+                     formControlName="purposeOfUse">
+            <md-option *ngFor="let sharePurpose of consent.sharePurposes" [value]="sharePurpose.display">
+              {{sharePurpose | sharePurpose: 'display'}}
+            </md-option>
+          </md-select>
+        </div>
+        <c2s-control-validation-error-message fxLayoutAlign="start"
+                                              [control]="tryPolicyForm.get('purposeOfUse')">
+        </c2s-control-validation-error-message>
       </div>
     </form>
     <md2-dialog-footer>
       <button md-raised-button color="primary"
-              (click)="tryPolicyDialog.close(); consentOptionsDialog.open()">
+              (click)="backToOptions(applyTryPolicyDialog, consentOptionsDialog)">
         {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.BACK_BTN' | translate }}
       </button>
-      <button md-raised-button [disabled]="!tryPolicyForm.valid"
-              (click)="applyTryPolicy(tryPolicyDialog)">
+      <button md-raised-button color="primary"
+              [disabled]="tryPolicyForm.invalid"
+              (click)="applyTryPolicy(applyTryPolicyDialog)">
         {{ 'CONSENTS.CARD.MANAGE_CONSENT_DIALOG.TRY_POLICY_CONSENT_DIALOG.OK_BTN' | translate }}
       </button>
     </md2-dialog-footer>
   </md2-dialog>
-  <!--tryPolicyDialog End-->
-  </div>
-
+  <!--applyTryPolicyDialog End-->
+</div>

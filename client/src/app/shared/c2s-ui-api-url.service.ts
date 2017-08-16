@@ -7,6 +7,7 @@ export class C2sUiApiUrlService {
     [
       // Internal routes maps
       ["loginUrl", "/login"],
+      ["homeUrl", "/home"],
       ["accountActivationUrl", "/account/activation"],
       ["accountActivationSuccessUrl", "/account/activation-success"],
       ["accountActivationErrorUrl", "/account/activation-error"],
@@ -16,51 +17,65 @@ export class C2sUiApiUrlService {
       ["PlsBaseUrl", "/c2s-ui-api/pls"],
       ["VssBaseUrl", "/c2s-ui-api/vss"],
       ["UmsBaseUrl", "/c2s-ui-api/ums"],
+      ["UaaBaseUrl", "/c2s-ui-api/uaa"],
       ["PhrBaseUrl", "/c2s-ui-api/phr"],
-      ["TryPolicyBaseUrl", "/c2s-ui-api/try-policy"]
+      ["TryPolicyBaseUrl", "/c2s-ui-api/try-policy"],
+      ["IExHubXdsbBaseUrl", "/c2s-ui-api/iexhub-xdsb"]
     ]
   );
 
   constructor() {
   }
 
-  getLoginUrl(): string {
+  public getLoginUrl(): string {
     return this.urls.get('loginUrl');
   }
 
-  getAccountActivationUrl(): string {
+  public getHomeUrl(): string {
+    return this.urls.get('homeUrl');
+  }
+
+  public getAccountActivationUrl(): string {
     return this.urls.get('accountActivationUrl');
   }
 
-  getAccountActivationSuccessUrl(): string {
+  public getAccountActivationSuccessUrl(): string {
     return this.urls.get('accountActivationSuccessUrl');
   }
 
-  getAccountActivationErrorUrl(): string {
+  public getAccountActivationErrorUrl(): string {
     return this.urls.get('accountActivationErrorUrl');
   }
 
-  getUmsBaseUrl(): string {
+  public getUmsBaseUrl(): string {
     return this.urls.get('UmsBaseUrl');
   }
 
-  getPcmBaseUrl(): string {
+  public getUaaBaseUrl(): string {
+    return this.urls.get('UaaBaseUrl');
+  }
+
+  public getPcmBaseUrl(): string {
     return this.urls.get('PcmBaseUrl');
   }
 
-  getPlsBaseUrl(): string {
+  public getPlsBaseUrl(): string {
     return this.urls.get('PlsBaseUrl');
   }
 
-  getVssBaseUrl(): string {
+  public getVssBaseUrl(): string {
     return this.urls.get('VssBaseUrl');
   }
 
-  getPhrBaseUrl(): string {
+  public getPhrBaseUrl(): string {
     return this.urls.get('PhrBaseUrl');
   }
 
-  getTryPolicyBaseUrl(): string {
+  public getTryPolicyBaseUrl(): string {
     return this.urls.get('TryPolicyBaseUrl');
+  }
+
+  public getIExHubXdsbBaseUrl(): string {
+    return this.urls.get('IExHubXdsbBaseUrl');
   }
 }

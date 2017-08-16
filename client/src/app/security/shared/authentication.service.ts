@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Router} from "@angular/router";
-import {Headers, Http, RequestOptions, Response, URLSearchParams} from "@angular/http";
+import {Http, Response} from "@angular/http";
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";
 import {TokenService} from "./token.service";
 import {Profile} from "../../core/profile.model";
@@ -9,19 +8,17 @@ import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {UtilityService} from "../../shared/utility.service";
 import {Observable} from "rxjs/Observable";
-import {ExceptionService} from "src/app/core/exception.service";
-import {AuthorizationResponse} from "src/app/security/shared/authorization-response.model";
+import {ExceptionService} from "../../core/exception.service";
+import {AuthorizationResponse} from "./authorization-response.model";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {LoginRequest} from "./login-request.model";
 
 
 @Injectable()
 export class AuthenticationService {
-  oauth2TokenUrl: string = "/uaa/oauth/token/";
   oauth2UserInfoUrl: string = "/uaa/userinfo";
-  CLIENT_ID: string = 'YzJzLXVpOmNoYW5nZWl0';
-  HOME: string = 'home';
-  LOGIN: string = 'login';
 
-  constructor(private router: Router,
+  constructor(private apiUrlService: C2sUiApiUrlService,
               private exceptionService: ExceptionService,
               private http: Http,
               private tokenService: TokenService,
@@ -32,31 +29,37 @@ export class AuthenticationService {
   }
 
   public login(username: string, password: string): Observable<AuthorizationResponse> {
-    return this.http.post(this.oauth2TokenUrl, this.composeParameters(username, password), this.setHeaders())
+    return this.http.post(this.apiUrlService.getUaaBaseUrl().concat("/login"), new LoginRequest(username, password))
       .map((resp: Response) => <AuthorizationResponse>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
 
-  onLoginSuccess(response: AuthorizationResponse) {
+  public onLoginSuccess(response: AuthorizationResponse): void {
     this.tokenService.setAccessToken(response);
   }
 
-  logout() {
+  public onGetUserProfileFailure(): void {
     this.globalEventManagerService.setShowHeader(false);
-    this.clearSessionStorgeAndRedirectToLogin();
+    this.tokenService.deleteAccessToken();
+    this.tokenService.deleteProfileToken();
   }
 
-  private clearSessionStorgeAndRedirectToLogin(){
+  public logout(): void {
+    this.globalEventManagerService.setShowHeader(false);
+    this.clearSessionStorageAndRedirectToLogin();
+  }
+
+  private clearSessionStorageAndRedirectToLogin() {
     let masterUiLoginUrl = this.tokenService.getMasterUiLoginUrl();
     sessionStorage.clear();
-    if(masterUiLoginUrl){
+    if (masterUiLoginUrl) {
       this.utilityService.redirectInSameTab(masterUiLoginUrl);
-    }else{
-      this.utilityService.navigateTo(this.LOGIN);
+    } else {
+      this.utilityService.navigateTo(this.apiUrlService.getLoginUrl());
     }
   }
 
-  isLogin() {
+  public isLogin(): boolean {
     let oauth2Token: AuthorizationResponse = this.tokenService.getAccessToken();
     let profile: Profile = this.tokenService.getProfileToken();
 
@@ -73,31 +76,13 @@ export class AuthenticationService {
     return false;
   }
 
-  getUserProfile() {
+  public getUserProfile() {
     return this.http.get(this.oauth2UserInfoUrl)
       .map((resp: Response) => <any>(resp.json()));
   }
 
-  onGetUserProfileSuccess(profile: Profile) {
-    this.globalEventManagerService.setShowHeader(true);
+  public onGetUserProfileSuccess(profile: Profile): void {
     this.globalEventManagerService.setProfile(profile);
-    this.router.navigate([this.HOME]);
-  }
-
-  private setHeaders(): RequestOptions {
-    let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic ' + this.CLIENT_ID
-    });
-    return new RequestOptions({headers: headers});
-  }
-
-  private composeParameters(username: string, password: string): string {
-    let urlSearchParams = new URLSearchParams();
-    urlSearchParams.append('username', username);
-    urlSearchParams.append('password', password);
-    urlSearchParams.append('grant_type', 'password');
-    urlSearchParams.append('response_type', 'token');
-    return urlSearchParams.toString()
+    this.utilityService.navigateTo(this.apiUrlService.getHomeUrl());
   }
 }

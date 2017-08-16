@@ -1,0 +1,120 @@
+<!--------- ACCORDION ------------------------------------------>
+<md2-accordion class="patient-cda-document-accordion m-b-sm" multiple="false">
+  <md2-accordion-tab>
+    <!--- ACCORDION HEADER ------------------------------------->
+    <md2-accordion-header>
+      <md-card-title>
+        <div fxFlex fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start end">
+          <div class="font-weight400 p-r-lg">
+            {{patientHealthDataCdaDocument.type}}
+          </div>
+          <div class="p-t-xs font-weight300">
+            {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.ACCORDION_HEADER.CREATED_ON' | translate}}
+            {{patientHealthDataCdaDocument.date | date:'shortDate'}}
+            {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.ACCORDION_HEADER.AT' | translate}}
+            {{patientHealthDataCdaDocument.title}}
+          </div>
+        </div>
+      </md-card-title>
+    </md2-accordion-header>
+    <!--------- END ACCORDION HEADER --------------------------->
+    <!--- ACCORDION BODY ------------------------------------->
+    <div class="p-b p-l p-r" class.gt-sm="p-l-lg p-r-lg" fxLayoutGap="5px">
+      <button md-raised-button color="primary" class="p-r-sm"
+              (click)="expandSectionAccordionTab()">
+        {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.EXPAND_ALL_BTN' | translate}}
+      </button>
+      <button md-raised-button color="primary"
+              (click)="collapseSectionAccordionTab()">
+        {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.COLLAPSE_ALL_BTN' | translate}}
+      </button>
+    </div>
+    <div class="p-l p-r" class.gt-sm="p-l-lg p-r-lg">
+      <div fxFlex fxLayout="column" fxLayout.gt-sm="row" class="font-size14">
+        <div fxFlex>
+          <div class="p-b-xs" fxflex fxLayout="row" fxLayoutAlign="start stretch">
+            <div class="p-r font-weight600">
+            {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.TARGET_PATIENT.NAME' | translate}}:
+            </div>
+            <div>
+            {{targetPatient.name}}
+            </div>
+          </div>
+
+          <div class="p-b-xs" fxflex fxLayout="row" fxLayoutAlign="start stretch">
+            <div class="p-r font-weight600">
+              {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.TARGET_PATIENT.GENDER' | translate}}:
+            </div>
+            <div>
+              {{targetPatient.gender}}
+            </div>
+          </div>
+
+          <div class="p-b-xs" fxflex fxLayout="row" fxLayoutAlign="start stretch">
+            <div class="p-r font-weight600">
+              {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.TARGET_PATIENT.BIRTHDAY' | translate}}:
+            </div>
+            <div>
+              {{targetPatient.dob | date:'shortDate'}}
+            </div>
+          </div>
+
+          <div class="p-b-xs" fxflex fxLayout="row" fxLayoutAlign="start stretch">
+            <div class="p-r font-weight600">
+              {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.TARGET_PATIENT.ADDRESS' | translate}}:
+            </div>
+            <div>
+            {{targetPatient.contactInfo | targetPatientContactInfo: 'address'}}
+            </div>
+          </div>
+        </div>
+
+        <div fxFlex class="p-b-sm">
+          <div class="p-b-xs" fxflex fxLayout="row" fxLayoutAlign="start stretch">
+            <div class="p-r font-weight600" fxFlex="0 1 auto">
+              {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.TREATMENT.PROVIDER' | translate}}:
+            </div>
+            <div  fxFlex="1 0 auto">
+              <div class="p-b-xxs" *ngFor="let author of patientHealthDataCdaDocument.authors" fxFlex="auto">
+                {{author.providerName}}
+              </div>
+            </div>
+          </div>
+
+          <div class="p-b-xs" fxflex fxLayout="row" fxLayoutAlign="start stretch">
+            <div class="p-r font-weight600">
+              {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.TREATMENT.TREATMENT' | translate}}:
+            </div>
+            <div>
+              {{patientTreatment.service}}
+            </div>
+          </div>
+
+          <div class="p-b-xs" fxflex fxLayout="row" fxLayoutAlign="start stretch">
+            <div fxFlex="160px" class="p-r font-weight600">
+              {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.TREATMENT.TREATMENT_START_DATE' | translate}}:
+            </div>
+            <div>
+              {{patientTreatment.serviceStartDate | date:'shortDate'}}
+            </div>
+          </div>
+
+          <div class="p-b-xs" fxflex fxLayout="row" fxLayoutAlign="start stretch">
+            <div fxFlex="160px" class="p-r font-weight600">
+              {{'HEALTH_INFORMATION.HEALTH_INFORMATION_CDA_DOCUMENT.TREATMENT.TREATMENT_END_DATE' | translate}}:
+            </div>
+            <div>
+              {{patientTreatment.serviceEndDate | date:'shortDate'}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <c2s-health-information-cda-document-section *ngFor="let section of patientHealthDataCdaDocument.sections"
+                                                   [patientCdaDocumentSection]="section">
+      </c2s-health-information-cda-document-section>
+    </div>
+    <!--------- END ACCORDION BODY --------------------------->
+  </md2-accordion-tab>
+</md2-accordion>
+<!--------- END ACCORDION -------------------------------------->

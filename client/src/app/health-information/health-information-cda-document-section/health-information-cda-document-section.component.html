@@ -1,0 +1,22 @@
+<!--------- ACCORDION ------------------------------------------>
+<md2-accordion class="patient-cda-document-section-accordion m-b-sm" multiple="false">
+  <md2-accordion-tab [active]="sectionAccordionTabActive" (click)="updateTabActiveStatus()" class="bg-white">
+    <!--- ACCORDION HEADER ------------------------------------->
+    <md2-accordion-header>
+      <md-card-title class="font-size16">
+        {{patientCdaDocumentSection.title}}
+      </md-card-title>
+    </md2-accordion-header>
+    <!--------- END ACCORDION HEADER --------------------------->
+    <!--- ACCORDION BODY ------------------------------------->
+    <div class="p-l p-r" class.gt-sm="p-l-lg p-r-lg">
+      <md-card>
+        <div class="cda-document-tables">
+          <div [innerHTML]="patientCdaDocumentSection.content"></div>
+        </div>
+      </md-card>
+    </div>
+    <!--------- END ACCORDION BODY --------------------------->
+  </md2-accordion-tab>
+</md2-accordion>
+<!--------- END ACCORDION -------------------------------------->

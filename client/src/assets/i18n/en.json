@@ -3,7 +3,7 @@
     "MENU": "Menu"
   },
   "ACCOUNT": {
-    "FAILED_CHECK_USERNAME" : "Failed to check username, please try again later."
+    "FAILED_CHECK_USERNAME": "Failed to check username, please try again later."
   },
   "ACTIVITY": {
     "CONSENT_ACTIVITY": {
@@ -58,6 +58,7 @@
         "PROVIDERS": "Providers",
         "CONSENTS": "Consents",
         "MEDICAL_DOCUMENTS": "Medical Documents",
+        "HEALTH_INFORMATION": "Health Information",
         "MY_PROFILE": "My Profile",
         "LOGOUT": "Logout"
       }
@@ -460,6 +461,31 @@
       }
     },
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "Unable to get the list of document type codes."
+  },
+  "HEALTH_INFORMATION": {
+    "HEALTH_INFORMATION_LIST": {
+      "TITLE": "Health Information"
+    },
+    "HEALTH_INFORMATION_CDA_DOCUMENT": {
+      "EXPAND_ALL_BTN": "Expand All",
+      "COLLAPSE_ALL_BTN": "Collapse All",
+      "ACCORDION_HEADER": {
+        "CREATED_ON": "Created on",
+        "AT": "at"
+      },
+      "TARGET_PATIENT": {
+        "NAME": "Patient Name",
+        "GENDER": "Gender",
+        "BIRTHDAY": "Birthday",
+        "ADDRESS": "Address"
+      },
+      "TREATMENT": {
+        "PROVIDER": "Provider",
+        "TREATMENT": "Treatment",
+        "TREATMENT_START_DATE": "Treatment Start Date",
+        "TREATMENT_END_DATE": "Treatment End Date"
+      }
+    }
   },
   "USER_PROFILE": {
     "TITLE": "My Profile",

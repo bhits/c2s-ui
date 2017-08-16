@@ -2,9 +2,8 @@
   <h1>
     {{ 'ACTIVITY.CONSENT_ACTIVITY.TITLE' | translate }}
   </h1>
+  <div class="border-bottom-purple-thin"></div>
   <div class="p-l p-r" class.gt-sm="p-l-lg p-r-lg">
-    <div class="m-t-xs m-b-sm p-b-sm border-bottom-purple-thin" fxFlex="1 1 auto"
-         fxLayoutAlign="flex-start center"></div>
     <div style="padding-top: 20px;" *ngIf="noActivity; else hasActivity">
       <div style="background-color: #DEBCC9" class="p-md font-size18 font-weight center-sm-left">
         {{ 'ACTIVITY.CONSENT_ACTIVITY.NO_ACTIVITIES_MSG' | translate }}

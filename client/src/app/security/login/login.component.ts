@@ -50,17 +50,16 @@ export class LoginComponent implements OnInit {
                 this.tokenService.storeUserProfile(profile);
                 this.getUMSProfileAndSetDefaultLanguage(profile);
               },
-              (error) => this.handleLoginError()
+              () => this.authenticationService.onGetUserProfileFailure()
             );
         },
-        err => {
-          console.log(err);
+        () => {
           this.showLoginBackendError = true;
         }
       );
   }
 
-  private getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile) {
+  private getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile): void {
     this.limitedProfileService.getUMSProfile().subscribe(
       (profile: UmsLimitedProfile) => {
         let localesCode: string[] = this.utilityService.getSupportedLocaleCode(profile.supportedLocales);
@@ -69,17 +68,11 @@ export class LoginComponent implements OnInit {
         this.limitedProfileService.setProfileInSessionStorage(profile);
         this.authenticationService.onGetUserProfileSuccess(uaaProfile);
       },
-      (err) => this.handleLoginError()
+      () => this.authenticationService.onGetUserProfileFailure()
     )
   }
 
-  private handleLoginError(): void {
-    this.tokenService.deleteAccessToken();
-    this.tokenService.deleteProfileToken();
-    this.showLoginBackendError = true;
-  }
-
-  public getInputType(inputType: string) {
+  public getInputType(inputType: string): void {
     this.passwordInputType = inputType;
   }
 }
