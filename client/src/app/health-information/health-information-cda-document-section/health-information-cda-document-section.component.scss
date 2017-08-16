@@ -27,6 +27,10 @@
     -webkit-appearance: none;
     width: 0px;
   }
+  ::-webkit-scrollbar:horizontal {
+    height: 15px !important;
+  }
+
   ::-webkit-scrollbar-thumb {
     border-radius: 6px;
     background-color: rgba(110, 145, 164, 0.55);
