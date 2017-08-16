@@ -17,9 +17,10 @@ import {LoginRequest} from "./login-request.model";
 @Injectable()
 export class AuthenticationService {
   oauth2UserInfoUrl: string = "/uaa/userinfo";
+  private ACCOUNT_LOCKED_MESSAGE:string = "Your account has been locked because of too many failed attempts to login.";
+  private BAD_CREDENTIAL_MESSAGE = "Bad credential Exception.";
 
   constructor(private apiUrlService: C2sUiApiUrlService,
-              private exceptionService: ExceptionService,
               private http: Http,
               private tokenService: TokenService,
               private globalEventManagerService: GlobalEventManagerService,
@@ -30,8 +31,7 @@ export class AuthenticationService {
 
   public login(username: string, password: string): Observable<AuthorizationResponse> {
     return this.http.post(this.apiUrlService.getUaaBaseUrl().concat("/login"), new LoginRequest(username, password))
-      .map((resp: Response) => <AuthorizationResponse>(resp.json()))
-      .catch(this.exceptionService.handleError);
+      .map((resp: Response) => <AuthorizationResponse>(resp.json()));
   }
 
   public onLoginSuccess(response: AuthorizationResponse): void {
@@ -84,5 +84,13 @@ export class AuthenticationService {
   public onGetUserProfileSuccess(profile: Profile): void {
     this.globalEventManagerService.setProfile(profile);
     this.utilityService.navigateTo(this.apiUrlService.getHomeUrl());
+  }
+
+  isAccountLocked(msg: string): boolean {
+    return msg === this.ACCOUNT_LOCKED_MESSAGE;
+  }
+
+  isBadCredendials(msg: string): boolean {
+    return msg === this.BAD_CREDENTIAL_MESSAGE;
   }
 }

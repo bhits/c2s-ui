@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   public passwordInputType: string = "password";
   credentials: Credentials;
   loginForm: FormGroup;
-  showLoginBackendError: boolean = false;
+  showBadCredentialError: boolean = false;
+  showAccountLockedError: boolean = false;
 
   constructor(private authenticationService: AuthenticationService,
               private formBuilder: FormBuilder,
@@ -41,7 +42,8 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(value.username, value.password)
       .subscribe(
         (response) => {
-          this.showLoginBackendError = false;
+          this.showBadCredentialError = false;
+          this.showAccountLockedError = false;
           this.authenticationService.onLoginSuccess(response);
           this.authenticationService.getUserProfile()
             .subscribe(
@@ -52,9 +54,18 @@ export class LoginComponent implements OnInit {
               },
               () => this.authenticationService.onGetUserProfileFailure()
             );
-        },
-        () => {
-          this.showLoginBackendError = true;
+        },(error)=>{
+          let message:string = error.json()['message'];
+          if(this.authenticationService.isAccountLocked(message)){
+            this.showAccountLockedError = true;
+            this.showBadCredentialError = false;
+            console.log(message);
+          }else if(this.authenticationService.isBadCredendials(message)){
+            this.showBadCredentialError = true;
+            this.showAccountLockedError = false;
+            console.log(message);
+          }
+
         }
       );
   }

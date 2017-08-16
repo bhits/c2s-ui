@@ -30,8 +30,12 @@
         </div>
         <c2s-control-validation-error-message [control]="loginForm.get('password')">
         </c2s-control-validation-error-message>
-        <md-hint class="has-error font-size16" *ngIf="showLoginBackendError">
-          Sorry, you do not have permission to access this site.
+        <md-hint class="has-error" *ngIf="showBadCredentialError">
+          Incorrect combination of username and/or password.
+        </md-hint>
+        <md-hint class="has-error" *ngIf="showAccountLockedError">
+          Your account has been locked because of
+          too many failed attempts to login.
         </md-hint>
       </md-input-container>
       <br><br>
