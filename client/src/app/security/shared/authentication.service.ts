@@ -8,7 +8,6 @@ import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {UtilityService} from "../../shared/utility.service";
 import {Observable} from "rxjs/Observable";
-import {ExceptionService} from "../../core/exception.service";
 import {AuthorizationResponse} from "./authorization-response.model";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {LoginRequest} from "./login-request.model";
@@ -17,7 +16,7 @@ import {LoginRequest} from "./login-request.model";
 @Injectable()
 export class AuthenticationService {
   oauth2UserInfoUrl: string = "/uaa/userinfo";
-  private ACCOUNT_LOCKED_MESSAGE:string = "Your account has been locked because of too many failed attempts to login.";
+  private ACCOUNT_LOCKED_MESSAGE: string = "Your account has been locked because of too many failed attempts to login.";
   private BAD_CREDENTIAL_MESSAGE = "Bad credential Exception.";
 
   constructor(private apiUrlService: C2sUiApiUrlService,
@@ -86,11 +85,11 @@ export class AuthenticationService {
     this.utilityService.navigateTo(this.apiUrlService.getHomeUrl());
   }
 
-  isAccountLocked(msg: string): boolean {
+  public isAccountLocked(msg: string): boolean {
     return msg === this.ACCOUNT_LOCKED_MESSAGE;
   }
 
-  isBadCredendials(msg: string): boolean {
+  public isBadCredentials(msg: string): boolean {
     return msg === this.BAD_CREDENTIAL_MESSAGE;
   }
 }

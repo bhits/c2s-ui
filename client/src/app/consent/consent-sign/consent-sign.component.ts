@@ -1,9 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {TokenService} from "../../security/shared/token.service";
 import {AuthenticationService} from "../../security/shared/authentication.service";
 import {ActivatedRoute} from "@angular/router";
 import {DetailedConsent} from "../shared/detailed-consent.model";
-import {Profile} from "../../core/profile.model";
 import {ConsentTerms} from "../shared/consent-terms.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
@@ -19,19 +17,18 @@ import {LimitedProfileService} from "../../security/shared/limited-profile.servi
 export class ConsentSignComponent implements OnInit {
   public title: string = "eSignature";
   public consent: DetailedConsent;
-  public profile: Profile;
   public termsWithUserName: string;
   public checked: boolean = false;
   public isAuthenticated: boolean = false;
   public password: string;
   public inValid: boolean;
-  username: any;
-  birthDate: Date;
+  public usernameTranslateParam: any;
+  public userFullName: string;
+  public birthDate: Date;
 
   constructor(private authenticationService: AuthenticationService,
               private consentService: ConsentService,
               private notificationService: NotificationService,
-              private tokenService: TokenService,
               private limitedProfileService: LimitedProfileService,
               private route: ActivatedRoute,
               private utilityService: UtilityService) {
@@ -43,21 +40,21 @@ export class ConsentSignComponent implements OnInit {
         this.consent = this.route.snapshot.data['consent'];
       }
     });
-    this.profile = this.tokenService.getProfileToken();
-    this.username = {name: this.profile.name};
-    this.termsWithUserName = this.getConsentAttestationTerm(this.route.snapshot.data['consentTerms']);
     this.birthDate = this.limitedProfileService.getUserBirthDate();
+    this.userFullName = this.limitedProfileService.getFullName();
+    this.usernameTranslateParam = {name: this.userFullName};
+    this.termsWithUserName = this.getConsentAttestationTerm(this.route.snapshot.data['consentTerms']);
   }
 
-  clearCheckbox() {
+  public clearCheckbox(): void {
     if (this.isAuthenticated != true) {
       this.checked = false;
       this.inValid = false;
     }
   }
 
-  toAuthenticate(dialog: any) {
-    const username: string = this.profile.userName;
+  public toAuthenticate(dialog: any): void {
+    const username: string = this.limitedProfileService.getUserName();
     this.authenticationService.login(username, this.password)
       .subscribe(
         () => {
@@ -65,14 +62,14 @@ export class ConsentSignComponent implements OnInit {
           this.isAuthenticated = true;
           dialog.close();
         },
-        error => {
+        () => {
           this.inValid = true;
           this.password = null;
         }
       );
   }
 
-  attestConsent(dialog: any) {
+  public attestConsent(dialog: any): void {
     this.consentService.attestConsent(this.consent.id)
       .subscribe(
         () => {
@@ -85,7 +82,7 @@ export class ConsentSignComponent implements OnInit {
       );
   }
 
-  getSignedConsentPdf() {
+  public getSignedConsentPdf(): void {
     const namePrefix: string = "Signed_Consent";
     this.consentService.getSignedConsentPdf(this.consent.id)
       .subscribe(
@@ -100,15 +97,13 @@ export class ConsentSignComponent implements OnInit {
       );
   }
 
-  navigateTo() {
+  public navigateTo(): void {
     this.utilityService.navigateTo('/consent-list');
   }
 
-  private
-
-  getConsentAttestationTerm(consentTerms: ConsentTerms): string {
+  public getConsentAttestationTerm(consentTerms: ConsentTerms): string {
     const terms: string = consentTerms.text;
     const userNameKey: string = "${ATTESTER_FULL_NAME}";
-    return terms.replace(userNameKey, this.profile.name);
+    return terms.replace(userNameKey, this.userFullName);
   }
 }

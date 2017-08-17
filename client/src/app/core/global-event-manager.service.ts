@@ -26,8 +26,4 @@ export class GlobalEventManagerService {
   public setProfile(profile: Profile): void {
     this.userProfileSubject.next(profile);
   }
-
-  public getUserProfileEmitter(): Observable<Profile> {
-    return this.userProfileEmitter;
-  }
 }

@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
             this.showAccountLockedError = true;
             this.showBadCredentialError = false;
             console.log(message);
-          }else if(this.authenticationService.isBadCredendials(message)){
+          }else if(this.authenticationService.isBadCredentials(message)){
             this.showBadCredentialError = true;
             this.showAccountLockedError = false;
             console.log(message);

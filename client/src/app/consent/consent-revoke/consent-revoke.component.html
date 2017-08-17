@@ -12,7 +12,7 @@
 
     <div fxLayout="column" fxLayout.gt-xs="row" class="font-size18 p-b-sm">
       <div class="m-r-sm">{{ 'CONSENT_REVOKE.PATIENT_NAME' | translate }}:</div>
-      <div><strong>{{fullName}}</strong></div>
+      <div><strong>{{userFullName}}</strong></div>
     </div>
     <div fxLayout="column" fxLayout.gt-xs="row" class="font-size18 p-b-sm">
       <div class="m-r-sm">{{ 'CONSENT_REVOKE.PATIENT_DOB' | translate }}:</div>
@@ -22,23 +22,23 @@
     <div fxLayout="column" class="font-size16">
       <p fxLayout="row" style="white-space: pre-line;">{{consentRevocationTerms}}</p>
       <div class="m-t center">
-      <md-checkbox fxLayoutAlign="start" (click)="confirmRevokeConsentTerms.open()" [(ngModel)]="checked">
-        {{ 'CONSENT_REVOKE.TERMS' | translate:username }}
-      </md-checkbox>
+        <md-checkbox fxLayoutAlign="start" (click)="confirmRevokeConsentTerms.open()" [(ngModel)]="checked">
+          {{ 'CONSENT_REVOKE.TERMS' | translate:usernameTranslateParam }}
+        </md-checkbox>
+      </div>
     </div>
-  </div>
 
-  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
-    <button md-raised-button color="primary" routerLink="/consent-list">
-      <strong>{{ 'CONSENT_REVOKE.CANCEL_BTN' | translate }}</strong>
-    </button>
-    <button md-raised-button color="primary" [disabled]="!isAuthenticated"
-            (click)="revokeConsent(completeRevokeAttestation)">
-      <strong>
-        {{ 'CONSENT_REVOKE.COMPLETE_BTN' | translate }}
-      </strong>
-    </button>
-  </div>
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+      <button md-raised-button color="primary" routerLink="/consent-list">
+        <strong>{{ 'CONSENT_REVOKE.CANCEL_BTN' | translate }}</strong>
+      </button>
+      <button md-raised-button color="primary" [disabled]="!isAuthenticated"
+              (click)="revokeConsent(completeRevokeAttestation)">
+        <strong>
+          {{ 'CONSENT_REVOKE.COMPLETE_BTN' | translate }}
+        </strong>
+      </button>
+    </div>
   </div>
 </md-card>
 
