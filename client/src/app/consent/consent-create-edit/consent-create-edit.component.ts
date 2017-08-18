@@ -5,7 +5,6 @@ import {UtilityService} from "../../shared/utility.service";
 import {Consent} from "../shared/consent.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {NotificationService} from "../../core/notification.service";
-import {Profile} from "../../core/profile.model";
 import {SharePurpose} from "../shared/share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
@@ -24,7 +23,6 @@ export class ConsentCreateEditComponent implements OnInit {
   username: any;
   title: string = "Create Consent";
   consentId: string;
-  profile: Profile;
 
   constructor(private consentService: ConsentService,
               private notificationService: NotificationService,

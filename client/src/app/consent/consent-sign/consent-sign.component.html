@@ -4,7 +4,7 @@
   <h1 class="font-weight600 dark-bluegrey" fxLayoutAlign="start">{{ 'CONSENT_SIGN.TITLE' | translate }}</h1>
 
   <div fxLayout="column" fxLayout.gt-xs="row" class="font-size18 p-b-xs">
-    <div class="m-r-sm">{{ 'CONSENT_SIGN.REFERENCE_NUMBER' | translate }}: </div>
+    <div class="m-r-sm">{{ 'CONSENT_SIGN.REFERENCE_NUMBER' | translate }}:</div>
     <div>
       <strong>{{consent.consentReferenceId}}</strong>
     </div>
@@ -12,7 +12,7 @@
   <div fxLayout="column" fxLayout.gt-xs="row" class="font-size18 p-b-xs">
     <div fxFlex>
       <span>{{ 'CONSENT_SIGN.PATIENT_NAME' | translate }}: </span>
-      <span><strong>{{profile.name}}</strong></span>
+      <span><strong>{{userFullName}}</strong></span>
     </div>
     <div fxFlex>
       <span>{{ 'CONSENT_SIGN.PATIENT_DOB' | translate }}: </span>
@@ -153,8 +153,9 @@
         </md2-dialog-footer>
       </md2-dialog>
 
-      <md-checkbox class="font-size16 lineHeight20 m-b" fxLayoutAlign="start center" (click)="confirmConsentTerms.open()" [(ngModel)]="checked">
-        {{ 'CONSENT_SIGN.CONSENT_TERMS_SECTION.TERMS' | translate:username}}
+      <md-checkbox class="font-size16 lineHeight20 m-b" fxLayoutAlign="start center"
+                   (click)="confirmConsentTerms.open()" [(ngModel)]="checked">
+        {{ 'CONSENT_SIGN.CONSENT_TERMS_SECTION.TERMS' | translate:usernameTranslateParam}}
       </md-checkbox>
     </div>
   </div>
@@ -186,5 +187,4 @@
       </strong>
     </button>
   </div>
-
 </md-card>
