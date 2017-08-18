@@ -13,14 +13,14 @@ export class C2sUiApiUrlService {
       ["accountActivationErrorUrl", "/account/activation-error"],
 
       // External api Url maps
-      ["PcmBaseUrl", "/c2s-ui-api/pcm"],
-      ["PlsBaseUrl", "/c2s-ui-api/pls"],
-      ["VssBaseUrl", "/c2s-ui-api/vss"],
-      ["UmsBaseUrl", "/c2s-ui-api/ums"],
-      ["UaaBaseUrl", "/c2s-ui-api/uaa"],
-      ["PhrBaseUrl", "/c2s-ui-api/phr"],
-      ["TryPolicyBaseUrl", "/c2s-ui-api/try-policy"],
-      ["IExHubXdsbBaseUrl", "/c2s-ui-api/iexhub-xdsb"]
+      ["pcmBaseUrl", "/c2s-ui-api/pcm"],
+      ["plsBaseUrl", "/c2s-ui-api/pls"],
+      ["vssBaseUrl", "/c2s-ui-api/vss"],
+      ["umsBaseUrl", "/c2s-ui-api/ums"],
+      ["uaaBaseUrl", "/c2s-ui-api/uaa"],
+      ["phrBaseUrl", "/c2s-ui-api/phr"],
+      ["tryPolicyBaseUrl", "/c2s-ui-api/try-policy"],
+      ["iexHubXdsbBaseUrl", "/c2s-ui-api/iexhub-xdsb"]
     ]
   );
 
@@ -48,34 +48,34 @@ export class C2sUiApiUrlService {
   }
 
   public getUmsBaseUrl(): string {
-    return this.urls.get('UmsBaseUrl');
+    return this.urls.get('umsBaseUrl');
   }
 
   public getUaaBaseUrl(): string {
-    return this.urls.get('UaaBaseUrl');
+    return this.urls.get('uaaBaseUrl');
   }
 
   public getPcmBaseUrl(): string {
-    return this.urls.get('PcmBaseUrl');
+    return this.urls.get('pcmBaseUrl');
   }
 
   public getPlsBaseUrl(): string {
-    return this.urls.get('PlsBaseUrl');
+    return this.urls.get('plsBaseUrl');
   }
 
   public getVssBaseUrl(): string {
-    return this.urls.get('VssBaseUrl');
+    return this.urls.get('vssBaseUrl');
   }
 
   public getPhrBaseUrl(): string {
-    return this.urls.get('PhrBaseUrl');
+    return this.urls.get('phrBaseUrl');
   }
 
   public getTryPolicyBaseUrl(): string {
-    return this.urls.get('TryPolicyBaseUrl');
+    return this.urls.get('tryPolicyBaseUrl');
   }
 
   public getIExHubXdsbBaseUrl(): string {
-    return this.urls.get('IExHubXdsbBaseUrl');
+    return this.urls.get('iexHubXdsbBaseUrl');
   }
 }
