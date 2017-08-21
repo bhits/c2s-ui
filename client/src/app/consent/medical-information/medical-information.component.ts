@@ -47,31 +47,34 @@ export class MedicalInformationComponent implements OnInit {
     this.stateInfo = new MedicalInformationCategory();
     this.stateInfo.title = 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.STATE_TITLE';
     this.stateInfo.description = 'CONSENT_CREATE_EDIT.MEDICAL_INFORMATION.DIALOG.STATE_DESCRIPTION';
+    this.setRadioButton();
+  }
+
+  public setRadioButton(): void {
+    if (this.selectedSensitivityCategories.length ===0) {
+      this.isShareAll = null;
+    } else {
+      this.isShareAll = this.selectedSensitivityCategories.length === this.sensitivityPolicies.length ? 1 : 0;
+    }
   }
 
   public onSelectShareAll(dialog: any, value: number): void {
     this.isInvalidNotShareAll = false;
-    this.isShareAll = value;
-    this.selectedSensitivityCategories = [];
-    this.sensitivityCategoryCodes = [];
     //Set all categories checked
     this.medicalInformationService.setSensitivityPoliciesStatusToChecked(this.sensitivityPolicies);
     dialog.open(this.dialogConfig);
   }
 
   public onSelectDoNotShareAll(dialog: any, value: number) {
-    //Set all categories Unchecked
-    this.medicalInformationService.setSensitivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
-    if (this.consent.id != null) {
-      //In Consent Edit Mode to set all selected categories checked
-      this.medicalInformationService
-        .setSelectedSensitivityPoliciesStatusToChecked(this.consent, this.sensitivityPolicies);
+    if (this.isShareAll === null || this.isShareAll === 1){
+      // Set all categories Unchecked
+      this.isSelectOneSensitivityCategory = false;
+      this.medicalInformationService.setSensitivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
+    } else {
+      this.medicalInformationService.setSelectedSensitivityPoliciesStatusToChecked(this.consent, this.sensitivityPolicies);
     }
-    this.isShareAll = value;
     dialog.open(this.dialogConfig);
     this.checkAllCategoriesSelected();
-    this.consent.shareSensitivityCategories = this.medicalInformationService.getSelectedSensitivityPolicyIdentifiers(this.sensitivityPolicies);
-    this.consentService.setConsent(this.consent);
   }
 
   public setSelectedMedicalInformation(dialog: any) {
@@ -94,7 +97,7 @@ export class MedicalInformationComponent implements OnInit {
 
   public cancel(dialog: any): void {
     dialog.close();
-    this.isShareAll = null;
+    this.setRadioButton();
   }
 
   public isAbleToSave(): boolean {
