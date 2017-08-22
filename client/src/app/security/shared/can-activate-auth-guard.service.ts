@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot} from "@angular/router";
 
 import {AuthenticationService} from "./authentication.service";
 import {TokenService} from "./token.service";
@@ -14,6 +14,7 @@ export class CanActivateAuthGuardService implements CanActivate, CanActivateChil
               private apiUrlService: C2sUiApiUrlService,
               private tokenService: TokenService,
               private notificationService: NotificationService,
+              private router: Router,
               private utilityService: UtilityService) {
   }
 
@@ -36,7 +37,7 @@ export class CanActivateAuthGuardService implements CanActivate, CanActivateChil
       }
       return true;
     }
-    this.utilityService.navigateTo(this.apiUrlService.getLoginUrl());
+    this.router.navigate([this.apiUrlService.getLoginUrl()], {queryParams: {redirectUrl: state.url}});
     return false;
   }
 }
