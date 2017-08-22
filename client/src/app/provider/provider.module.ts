@@ -1,6 +1,4 @@
 import {NgModule} from "@angular/core";
-import {RouterModule} from "@angular/router";
-
 import {SharedModule} from "../shared/shared.module";
 import {ProviderService} from "./shared/provider.service";
 import {ProviderSearchResultComponent} from "./provider-search-result/provider-search-result.component";
@@ -13,7 +11,6 @@ import {providerRoutableComponents, providerRoutableResolves, ProviderRoutingMod
 @NgModule({
   imports: [
     ProviderRoutingModule,
-    RouterModule,
     SharedModule
   ],
   declarations: [

@@ -1,9 +1,9 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {ProviderService} from "../shared/provider.service";
-import {Router} from "@angular/router";
 import {NotificationService} from "../../core/notification.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
-import {TranslateService} from "@ngx-translate/core";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-provider-multi-add',
@@ -14,23 +14,22 @@ export class ProviderMultiAddComponent implements OnInit {
   @Input() providers: FlattenedSmallProvider[];
   currentProvider: FlattenedSmallProvider = null;
 
-  constructor(private notificationService: NotificationService,
+  constructor(private apiUrlService: C2sUiApiUrlService,
+              private notificationService: NotificationService,
               private providerService: ProviderService,
-              private router: Router,
-              private translate: TranslateService) {
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
   }
 
-  confirmAddProviders(dialog: any, selectedProviders: FlattenedSmallProvider[]) {
+  public confirmAddProviders(dialog: any, selectedProviders: FlattenedSmallProvider[]): void {
     dialog.close();
     if (selectedProviders != null) {
-      const PROVIDER_LIST_URL = "provider-list";
       this.providerService.addProviders(selectedProviders)
         .subscribe(
           () => {
-            this.router.navigate([PROVIDER_LIST_URL]);
+            this.utilityService.navigateTo(this.apiUrlService.getProviderListUrl());
           },
           err => {
             this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_ADD_PROVIDER');
@@ -40,7 +39,7 @@ export class ProviderMultiAddComponent implements OnInit {
     }
   }
 
-  confirmDeleteProvider(dialog: any, provider: FlattenedSmallProvider) {
+  public confirmDeleteProvider(dialog: any, provider: FlattenedSmallProvider): void {
     dialog.close();
     if (provider != name) {
       this.currentProvider = provider;

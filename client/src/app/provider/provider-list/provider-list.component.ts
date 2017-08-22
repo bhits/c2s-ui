@@ -5,6 +5,8 @@ import {ActivatedRoute} from "@angular/router";
 import {NotificationService} from "../../core/notification.service";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {TokenService} from "../../security/shared/token.service";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-provider-list',
@@ -14,19 +16,19 @@ import {TokenService} from "../../security/shared/token.service";
 
 export class ProviderListComponent implements OnInit {
   providers: ConsentProvider[];
-  title: string = "Providers";
   private selectedProvider: ConsentProvider;
 
   paginationConfig: PaginationInstance = {
     itemsPerPage: 6,
     currentPage: 1
   };
-  accordionTab: boolean = true;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private apiUrlService: C2sUiApiUrlService,
+              private route: ActivatedRoute,
               private notificationService: NotificationService,
               private providerService: ProviderService,
-              private tokenService: TokenService) {
+              private tokenService: TokenService,
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
@@ -34,16 +36,16 @@ export class ProviderListComponent implements OnInit {
     this.tokenService.storeProviderCount(this.providers.length);
   }
 
-  onPageChange(number: number) {
+  public onPageChange(number: number): void {
     this.paginationConfig.currentPage = number;
   }
 
-  openConfirmDialog(dialog: any, provider: ConsentProvider) {
+  public openConfirmDialog(dialog: any, provider: ConsentProvider): void {
     dialog.open();
     this.selectedProvider = provider;
   }
 
-  confirmDeleteProvider(dialog: any) {
+  public confirmDeleteProvider(dialog: any): void {
     dialog.close();
     if (this.selectedProvider != null) {
       this.providerService.deleteProvider(this.selectedProvider.id)
@@ -58,5 +60,9 @@ export class ProviderListComponent implements OnInit {
             console.log(err);
           });
     }
+  }
+
+  public navigateToProviderSearch(): void {
+    this.utilityService.navigateTo(this.apiUrlService.getProviderSearchUrl());
   }
 }

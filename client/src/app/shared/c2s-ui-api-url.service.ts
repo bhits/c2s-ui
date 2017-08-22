@@ -10,7 +10,8 @@ export class C2sUiApiUrlService {
       ["homeUrl", "/home"],
       ["consentListUrl", "/consents"],
       ["consentCreateEditUrl", "/consents/consent-create-edit"],
-      ["providerListUrl", "/provider-list"],
+      ["providerListUrl", "/providers"],
+      ["providerSearchUrl", "/providers/provider-search"],
       ["accountActivationUrl", "/account/activation"],
       ["accountActivationSuccessUrl", "/account/activation-success"],
       ["accountActivationErrorUrl", "/account/activation-error"],
@@ -48,6 +49,10 @@ export class C2sUiApiUrlService {
 
   public getProviderListUrl(): string {
     return this.urls.get('providerListUrl');
+  }
+
+  public getProviderSearchUrl(): string {
+    return this.urls.get('providerSearchUrl');
   }
 
   public getAccountActivationUrl(): string {
