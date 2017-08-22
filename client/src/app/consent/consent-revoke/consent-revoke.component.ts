@@ -9,6 +9,7 @@ import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {DetailedConsent} from "../shared/detailed-consent.model";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-consent-revoke',
@@ -16,7 +17,6 @@ import {DetailedConsent} from "../shared/detailed-consent.model";
   styleUrls: ['./consent-revoke.component.css']
 })
 export class ConsentRevokeComponent implements OnInit {
-  public title: string = "Revoke Consent";
   public consent: DetailedConsent;
   public checked: boolean = false;
   public isAuthenticated: boolean = false;
@@ -28,6 +28,7 @@ export class ConsentRevokeComponent implements OnInit {
   public birthDate: Date;
 
   constructor(private authenticationService: AuthenticationService,
+              private apiUrlService: C2sUiApiUrlService,
               private route: ActivatedRoute,
               private consentService: ConsentService,
               private utilityService: UtilityService,
@@ -82,10 +83,6 @@ export class ConsentRevokeComponent implements OnInit {
     )
   }
 
-  public navigateTo(): void {
-    this.utilityService.navigateTo('/consent-list');
-  }
-
   public downloadRevokedConsent(): void {
     this.consentService.getRevokedConsentPdf(this.consent.id)
       .subscribe(
@@ -100,5 +97,9 @@ export class ConsentRevokeComponent implements OnInit {
 
   public onError(error: any): void {
     this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_DOWNLOAD_REVOKED_CONSENT');
+  }
+
+  public navigateToConsentList(): void {
+    this.utilityService.navigateTo(this.apiUrlService.getConsentListUrl());
   }
 }

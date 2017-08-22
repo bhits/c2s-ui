@@ -1,9 +1,7 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ConsentSignComponent } from './consent-sign.component';
+import {ConsentSignComponent} from './consent-sign.component';
 
 describe('ConsentSignComponent', () => {
   let component: ConsentSignComponent;
@@ -11,9 +9,9 @@ describe('ConsentSignComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConsentSignComponent ]
+      declarations: [ConsentSignComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,10 +1,11 @@
 import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
-
+import {ActivatedRoute} from "@angular/router";
 import {ConsentList} from "../shared/consent-list.model";
 import {DetailedConsent} from "../shared/detailed-consent.model";
 import {DataService} from "../../shared/data.service";
-import {ActivatedRoute} from "@angular/router";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-consent-card-list',
@@ -19,13 +20,12 @@ export class ConsentCardListComponent implements OnInit {
   itemsPerPage: number = 0;
   currentPage: number = 1;
   loading: boolean = false;
-
-  title: string = "Consents";
-
   consents: Observable<DetailedConsent[]>;
 
-  constructor(private dataService: DataService,
-              private route: ActivatedRoute) {
+  constructor(private apiUrlService: C2sUiApiUrlService,
+              private dataService: DataService,
+              private route: ActivatedRoute,
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
@@ -46,7 +46,11 @@ export class ConsentCardListComponent implements OnInit {
       .do(() => this.loading = false);
   }
 
-  onDeleteConsent(consentId: number) {
+  public onDeleteConsent(consentId: number): void {
     this.consents = this.consents.filter(consent => consent['id'] !== consentId)
+  }
+
+  public navigateToConsentCreate(): void {
+    this.utilityService.navigateTo(this.apiUrlService.getConsentCreateEditUrl());
   }
 }

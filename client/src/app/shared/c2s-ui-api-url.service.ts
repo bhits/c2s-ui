@@ -8,6 +8,9 @@ export class C2sUiApiUrlService {
       // Internal routes maps
       ["loginUrl", "/login"],
       ["homeUrl", "/home"],
+      ["consentListUrl", "/consents"],
+      ["consentCreateEditUrl", "/consents/consent-create-edit"],
+      ["providerListUrl", "/provider-list"],
       ["accountActivationUrl", "/account/activation"],
       ["accountActivationSuccessUrl", "/account/activation-success"],
       ["accountActivationErrorUrl", "/account/activation-error"],
@@ -33,6 +36,18 @@ export class C2sUiApiUrlService {
 
   public getHomeUrl(): string {
     return this.urls.get('homeUrl');
+  }
+
+  public getConsentListUrl(): string {
+    return this.urls.get('consentListUrl');
+  }
+
+  public getConsentCreateEditUrl(): string {
+    return this.urls.get('consentCreateEditUrl');
+  }
+
+  public getProviderListUrl(): string {
+    return this.urls.get('providerListUrl');
   }
 
   public getAccountActivationUrl(): string {

@@ -1,5 +1,3 @@
-<c2s-page-title [title]="title"></c2s-page-title>
-
 <md-card id="revocation" class="m-t-sm m-l m-r">
   <div class="buffer">
     <h1 class="font-weight600 dark-bluegrey" fxLayoutAlign="start">{{ 'CONSENT_REVOKE.TITLE' | translate }}</h1>
@@ -29,7 +27,7 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
-      <button md-raised-button color="primary" routerLink="/consent-list">
+      <button md-raised-button color="primary" (click)="navigateToConsentList()">
         <strong>{{ 'CONSENT_REVOKE.CANCEL_BTN' | translate }}</strong>
       </button>
       <button md-raised-button color="primary" [disabled]="!isAuthenticated"
@@ -65,13 +63,13 @@
   </md2-dialog-footer>
 </md2-dialog>
 
-<md2-dialog #completeRevokeAttestation (onClose)="navigateTo()">
+<md2-dialog #completeRevokeAttestation (onClose)="navigateToConsentList()">
   <md2-dialog-title>{{ 'CONSENT_REVOKE.COMPLETE_DIALOG.TITLE' | translate }}</md2-dialog-title>
   <md2-dialog-footer class="bg-lite-gray-f5">
     <button md-raised-button color="primary" (click)="downloadRevokedConsent()">
       {{ 'CONSENT_REVOKE.COMPLETE_DIALOG.DOWNLOAD_BTN' | translate }}
     </button>
-    <button md-raised-button color="primary" routerLink="/consent-list">
+    <button md-raised-button color="primary" (click)="navigateToConsentList()">
       {{ 'CONSENT_REVOKE.COMPLETE_DIALOG.CONTINUE_BTN' | translate }}
     </button>
   </md2-dialog-footer>

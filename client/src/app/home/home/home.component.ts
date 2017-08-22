@@ -5,6 +5,7 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
 import {ConsentList} from "../../consent/shared/consent-list.model";
 
 import {TokenService} from "../../security/shared/token.service";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-home',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
   providerMapping: any;
 
   constructor(private utilityService: UtilityService,
+              private apiUrlService: C2sUiApiUrlService,
               private route: ActivatedRoute,
               private tokenService: TokenService) {
   }
@@ -49,17 +51,15 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  navigateTo(url: string) {
-    this.utilityService.navigateTo(url);
+  public navigateToProviderList(): void {
+    this.utilityService.navigateTo(this.apiUrlService.getProviderListUrl());
   }
 
-
-  onClick(isDisabled: boolean, dialog: any) {
+  public navigateToConsentList(isDisabled: boolean, dialog: any): void {
     if (isDisabled) {
       dialog.open();
     } else {
-      this.navigateTo('consent-list');
+      this.utilityService.navigateTo(this.apiUrlService.getConsentListUrl());
     }
   }
-
 }
