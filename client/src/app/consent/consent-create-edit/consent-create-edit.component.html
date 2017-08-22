@@ -1,6 +1,4 @@
-<c2s-page-title [title]="title"></c2s-page-title>
-
-<form >
+<form>
   <md-grid-list cols="1">
 
     <md-card class="left-align">
@@ -9,19 +7,19 @@
 
     <c2s-select-providers [providers]="providers"></c2s-select-providers>
 
-    <c2s-medical-information [sensitivityPolicies] ="sensitivityPolicies"></c2s-medical-information>
+    <c2s-medical-information [sensitivityPolicies]="sensitivityPolicies"></c2s-medical-information>
 
-    <c2s-purpose-of-use [purposeOfUSes] ="purposeOfUses"></c2s-purpose-of-use>
+    <c2s-purpose-of-use [purposeOfUSes]="purposeOfUses"></c2s-purpose-of-use>
 
     <c2s-consent-terms></c2s-consent-terms>
 
     <md-card class="right-align">
-        <button md-raised-button (click)="navigateTo('consent-list')">
-          {{ 'CONSENT_CREATE_EDIT.CANCEL_BUTTON_LABEL' | translate }}
-        </button>
-        <button md-raised-button color="primary" type="submit" (click)="submitForm()" [disabled]="canSave()">
-          {{ 'CONSENT_CREATE_EDIT.SAVE_BUTTON_LABEL' | translate }}
-        </button>
+      <button md-raised-button (click)="navigateTo()">
+        {{ 'CONSENT_CREATE_EDIT.CANCEL_BUTTON_LABEL' | translate }}
+      </button>
+      <button md-raised-button color="primary" (click)="submitForm()" [disabled]="canSave()">
+        {{ 'CONSENT_CREATE_EDIT.SAVE_BUTTON_LABEL' | translate }}
+      </button>
     </md-card>
 
   </md-grid-list>
