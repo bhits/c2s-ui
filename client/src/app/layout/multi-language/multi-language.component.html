@@ -2,6 +2,6 @@
   <i class="material-icons">language</i>
   <select class="m-l-n-xs" #langSelect (change)="setLocale(langSelect.value)">
     <option *ngFor="let lang of getSupportedLanguage()" [value]="lang.code"
-            [selected]="lang.code === getCurrentLanguage()">{{ lang.code }}</option>
+            [selected]="lang.code === getCurrentLanguage()">{{ lang.code | uppercase}}</option>
   </select>
 </label>
