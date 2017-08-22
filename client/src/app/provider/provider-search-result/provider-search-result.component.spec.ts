@@ -1,9 +1,7 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ProviderSearchResultComponent } from './provider-search-result.component';
+import {ProviderSearchResultComponent} from './provider-search-result.component';
 
 describe('ProviderSearchResultComponent', () => {
   let component: ProviderSearchResultComponent;
@@ -11,9 +9,9 @@ describe('ProviderSearchResultComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProviderSearchResultComponent ]
+      declarations: [ProviderSearchResultComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

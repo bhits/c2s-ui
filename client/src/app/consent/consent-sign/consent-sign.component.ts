@@ -8,6 +8,7 @@ import {NotificationService} from "../../core/notification.service";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-consent-sign',
@@ -15,7 +16,6 @@ import {LimitedProfileService} from "../../security/shared/limited-profile.servi
   styleUrls: ['./consent-sign.component.css']
 })
 export class ConsentSignComponent implements OnInit {
-  public title: string = "eSignature";
   public consent: DetailedConsent;
   public termsWithUserName: string;
   public checked: boolean = false;
@@ -27,6 +27,7 @@ export class ConsentSignComponent implements OnInit {
   public birthDate: Date;
 
   constructor(private authenticationService: AuthenticationService,
+              private apiUrlService: C2sUiApiUrlService,
               private consentService: ConsentService,
               private notificationService: NotificationService,
               private limitedProfileService: LimitedProfileService,
@@ -97,13 +98,13 @@ export class ConsentSignComponent implements OnInit {
       );
   }
 
-  public navigateTo(): void {
-    this.utilityService.navigateTo('/consent-list');
-  }
-
   public getConsentAttestationTerm(consentTerms: ConsentTerms): string {
     const terms: string = consentTerms.text;
     const userNameKey: string = "${ATTESTER_FULL_NAME}";
     return terms.replace(userNameKey, this.userFullName);
+  }
+
+  public navigateToConsentList(): void {
+    this.utilityService.navigateTo(this.apiUrlService.getConsentListUrl());
   }
 }

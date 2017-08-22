@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import {CanActivate, CanActivateChild, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot} from "@angular/router";
 
 import {AuthenticationService} from "./authentication.service";
 import {TokenService} from "./token.service";
 import {NotificationService} from "../../core/notification.service";
 import {UtilityService} from "../../shared/utility.service";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 
 @Injectable()
-export class CanActivateAuthGuardService implements CanActivate, CanActivateChild{
-  private CONSENT_CREATE_EDIT_URL:string = "consent-create-edit";
+export class CanActivateAuthGuardService implements CanActivate, CanActivateChild {
 
   constructor(private authenticationService: AuthenticationService,
-              private router: Router,
+              private apiUrlService: C2sUiApiUrlService,
               private tokenService: TokenService,
               private notificationService: NotificationService,
               private utilityService: UtilityService) {
@@ -27,16 +27,16 @@ export class CanActivateAuthGuardService implements CanActivate, CanActivateChil
        * Prevent user from viewing consent list if they don't
        * have the required number of providers
        */
-      if(next.url.toString() === this.CONSENT_CREATE_EDIT_URL){
+      if (next.url.toString() === this.apiUrlService.getConsentCreateEditUrl()) {
         let providerCount: number = this.tokenService.getProviderCount();
-        if( providerCount<= 1){
+        if (providerCount <= 1) {
           this.notificationService.show("You don't have enough providers to create consent.");
-          this.utilityService.navigateTo("consent-list");
+          this.utilityService.navigateTo(this.apiUrlService.getConsentListUrl());
         }
       }
       return true;
     }
-    this.router.navigate(['login']);
+    this.utilityService.navigateTo(this.apiUrlService.getLoginUrl());
     return false;
   }
 }

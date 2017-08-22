@@ -8,6 +8,7 @@ import {NotificationService} from "../../core/notification.service";
 import {SharePurpose} from "../shared/share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 
 
 @Component({
@@ -21,10 +22,10 @@ export class ConsentCreateEditComponent implements OnInit {
   sensitivityPolicies: SensitivityPolicy[];
   purposeOfUses: SharePurpose[];
   username: any;
-  title: string = "Create Consent";
   consentId: string;
 
   constructor(private consentService: ConsentService,
+              private apiUrlService: C2sUiApiUrlService,
               private notificationService: NotificationService,
               private route: ActivatedRoute,
               private utilityService: UtilityService,
@@ -51,7 +52,6 @@ export class ConsentCreateEditComponent implements OnInit {
     this.route.params.subscribe(params => {
 
       if (params['consentId']) { // Edit mode
-        this.title = "Edit Consent";
         this.consent = this.route.snapshot.data['consent'];
       }
       this.consentService.setConsent(this.consent);
@@ -64,7 +64,7 @@ export class ConsentCreateEditComponent implements OnInit {
         .subscribe(
           () => {
             this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_UPDATING_CONSENT');
-            this.utilityService.navigateTo('consent-list');
+            this.utilityService.navigateTo(this.apiUrlService.getConsentListUrl());
           },
           err => {
             this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_UPDATING_CONSENT');
@@ -76,7 +76,7 @@ export class ConsentCreateEditComponent implements OnInit {
         .subscribe(
           () => {
             this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_CREATING_CONSENT');
-            this.utilityService.navigateTo('consent-list');
+            this.utilityService.navigateTo(this.apiUrlService.getConsentListUrl());
           },
           err => {
             this.consentService.handleCreateConsentError(err);
@@ -86,8 +86,8 @@ export class ConsentCreateEditComponent implements OnInit {
     }
   }
 
-  navigateTo(url: string) {
-    this.utilityService.navigateTo(url);
+  navigateTo() {
+    this.utilityService.navigateTo(this.apiUrlService.getConsentListUrl());
   }
 
   canSave(): boolean {

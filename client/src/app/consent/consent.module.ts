@@ -8,9 +8,7 @@ import {SelectProviderComponent} from "./select-provider/select-provider.compone
 import {MedicalInformationComponent} from "./medical-information/medical-information.component";
 import {consentRoutableComponents, consentRoutableResolves, ConsentRoutingModule} from "./consent-routing.module";
 import {ConsentService} from "./shared/consent.service";
-import {ConsentCreateEditComponent} from "./consent-create-edit/consent-create-edit.component";
 import {MedicalInformationService} from "./medical-information/medical-information.service";
-import {RouterModule} from "@angular/router";
 import {ConsentCardComponent} from "./consent-card/consent-card.component";
 import {ConsentStagePipe} from "./shared/consent-stage.pipe";
 import {SelectProvidersComponent} from "./select-providers/select-providers.component";
@@ -23,10 +21,10 @@ import {TryPolicyService} from "./shared/try-policy.service";
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule,
     ConsentRoutingModule
   ],
   declarations: [
+    consentRoutableComponents,
     ConsentTermsComponent,
     PurposeOfUseComponent,
     SelectProviderComponent,
@@ -34,12 +32,8 @@ import {TryPolicyService} from "./shared/try-policy.service";
     ConsentCardComponent,
     ConsentStagePipe,
     SelectProvidersComponent,
-    consentRoutableComponents,
     SharePurposePipe,
     SensitivityCategoryPipe
-  ],
-  exports: [
-    ConsentCreateEditComponent
   ],
   providers: [
     ConsentService,

@@ -5,7 +5,7 @@
   </div>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutAlign="center">
-    <md-card class="home-card contacts" (click)="navigateTo('provider-list')">
+    <md-card class="home-card contacts" (click)="navigateToProviderList()">
       <md-card-header class="middle">
         <md-card-title>
           <div class="m-n" [innerHTML]="'HOME.PROVIDERS.TITLE' | translate"></div>
@@ -29,7 +29,7 @@
 
     <md-card class="home-card consents"
              [ngClass]="{ disabled: isDisabled}"
-             (click)="onClick(isDisabled, confirmDialog)">
+             (click)="navigateToConsentList(isDisabled, confirmDialog)">
 
       <md-card-header class="middle">
         <md-card-title>

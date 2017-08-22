@@ -1,39 +1,40 @@
-<div class="p-t-75 p-l-md p-r-md p-b">
+<div>
   <h1 class="">{{ 'CONSENTS.TITLE' | translate }}</h1>
   <div>
-    <div class="p-md white font-size20 font-weight400 bg-maroon border-radius4 center-sm-left" *ngIf="consentList.totalElements===0">
+    <div class="p-md white font-size20 font-weight400 bg-maroon border-radius4 center-sm-left"
+         *ngIf="consentList.totalElements===0">
       {{ 'CONSENTS.WARNING' | translate }}
     </div>
   </div>
 
-<div class="margin-bottom-55 m-t-md" fxLayout="column" fxLayoutAlign="space-around">
-  <div fxLayout="column">
-    <div class="border-bottom-purple-thin p-b" fxLayoutAlign="center">
-      <a md-raised-button class="plus-button" fxFlex="0 1 370px" routerLink="/consent-create-edit">
-        <md-icon class="font-weight700">add</md-icon>
-        {{ 'CONSENTS.ADD_CONSENT_BUTTON' | translate }}</a>
+  <div class="margin-bottom-55 m-t-md" fxLayout="column" fxLayoutAlign="space-around">
+    <div fxLayout="column">
+      <div class="border-bottom-purple-thin p-b" fxLayoutAlign="center">
+        <a md-raised-button class="plus-button" fxFlex="0 1 370px" (click)="navigateToConsentCreate()">
+          <md-icon class="font-weight700">add</md-icon>
+          {{ 'CONSENTS.ADD_CONSENT_BUTTON' | translate }}</a>
+      </div>
     </div>
+    <pagination-controls class="m-t-sm" fxLayoutAlign="center"
+                         previousLabel="{{ 'CONSENTS.PAGINATION.PREVIOUS' | translate }}"
+                         nextLabel="{{ 'CONSENTS.PAGINATION.NEXT' | translate }}"
+                         (pageChange)="getPage($event)"
+                         *ngIf="totalItems">
+    </pagination-controls>
+    <div fxLayoutAlign="center">
+      <md-spinner *ngIf="loading"></md-spinner>
+    </div>
+    <c2s-consent-card fxFlexFill
+                      *ngFor="let consent of consents | async | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }"
+                      [consent]="consent"
+                      (deleteConsent)="onDeleteConsent($event)">
+    </c2s-consent-card>
+    <pagination-controls fxLayoutAlign="center"
+                         previousLabel="{{ 'CONSENTS.PAGINATION.PREVIOUS' | translate }}"
+                         nextLabel="{{ 'CONSENTS.PAGINATION.NEXT' | translate }}"
+                         (pageChange)="getPage($event)"
+                         *ngIf="totalItems">
+    </pagination-controls>
   </div>
-  <pagination-controls class="m-t-sm" fxLayoutAlign="center"
-                       previousLabel="{{ 'CONSENTS.PAGINATION.PREVIOUS' | translate }}"
-                       nextLabel="{{ 'CONSENTS.PAGINATION.NEXT' | translate }}"
-                       (pageChange)="getPage($event)"
-                       *ngIf="totalItems">
-  </pagination-controls>
-  <div fxLayoutAlign="center">
-    <md-spinner *ngIf="loading"></md-spinner>
-  </div>
-  <c2s-consent-card fxFlexFill
-                    *ngFor="let consent of consents | async | paginate: {itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }"
-                    [consent]="consent"
-                    (deleteConsent)="onDeleteConsent($event)">
-  </c2s-consent-card>
-  <pagination-controls fxLayoutAlign="center"
-                       previousLabel="{{ 'CONSENTS.PAGINATION.PREVIOUS' | translate }}"
-                       nextLabel="{{ 'CONSENTS.PAGINATION.NEXT' | translate }}"
-                       (pageChange)="getPage($event)"
-                       *ngIf="totalItems">
-  </pagination-controls>
-</div>
 
 </div>

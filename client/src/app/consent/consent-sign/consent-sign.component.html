@@ -1,17 +1,21 @@
-<c2s-page-title [title]="title"></c2s-page-title>
-
 <md-card id="consent-sign" class="m-t-sm m-l m-r m-b">
-  <h1 class="font-weight600 dark-bluegrey" fxLayoutAlign="start">{{ 'CONSENT_SIGN.TITLE' | translate }}</h1>
+  <h1 class="font-weight600 dark-bluegrey" fxLayoutAlign="start">
+    {{ 'CONSENT_SIGN.TITLE' | translate }}
+  </h1>
 
   <div fxLayout="column" fxLayout.gt-xs="row" class="font-size18 p-b-xs">
-    <div class="m-r-sm">{{ 'CONSENT_SIGN.REFERENCE_NUMBER' | translate }}:</div>
+    <div class="m-r-sm">
+      {{ 'CONSENT_SIGN.REFERENCE_NUMBER' | translate }}:
+    </div>
     <div>
       <strong>{{consent.consentReferenceId}}</strong>
     </div>
   </div>
   <div fxLayout="column" fxLayout.gt-xs="row" class="font-size18 p-b-xs">
     <div fxFlex>
-      <span>{{ 'CONSENT_SIGN.PATIENT_NAME' | translate }}: </span>
+      <span>
+        {{ 'CONSENT_SIGN.PATIENT_NAME' | translate }}:
+      </span>
       <span><strong>{{userFullName}}</strong></span>
     </div>
     <div fxFlex>
@@ -25,48 +29,70 @@
 
   <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-between" class="p-b-xs p-l p-r">
     <div fxFlex="48%">
-      <div class="font-size17 m-b-xs current-blue"><strong>{{
-        'CONSENT_SIGN.AUTHORIZATION_SECTION.AUTHORIZE_LABEL' | translate}}: </strong></div>
+      <div class="font-size17 m-b-xs current-blue">
+        <strong>
+          {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.AUTHORIZE_LABEL' | translate}}:
+        </strong>
+      </div>
       <div class="font-size14" fxLayoutAlign="start">
         <div *ngFor="let provider of consent.fromProviders">
           <div fxLayout="row" class="m-b-xs">
-            <div fxFlex="0 0 115px">{{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NAME' | translate }}</div>
+            <div fxFlex="0 0 115px">
+              {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NAME' | translate }}
+            </div>
             <div><strong>{{provider | consentProvider: 'name'}}</strong></div>
           </div>
           <div fxLayout="row" class="m-b-xs">
-            <div fxFlex="0 0 115px">{{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NPI' | translate }}</div>
+            <div fxFlex="0 0 115px">
+              {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NPI' | translate }}
+            </div>
             <div><strong>{{provider | consentProvider: 'npi'}}</strong></div>
           </div>
           <div fxLayout="row" class="m-b-xs">
-            <div fxFlex="0 0 115px">{{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.PHONE' | translate }}</div>
+            <div fxFlex="0 0 115px">
+              {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.PHONE' | translate }}
+            </div>
             <div><strong>{{provider | consentProvider: 'phone'}}</strong></div>
           </div>
           <div fxLayout="row" class="m-b-xs">
-            <div fxFlex="0 0 115px">{{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.ADDRESS' | translate}}</div>
+            <div fxFlex="0 0 115px">
+              {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.ADDRESS' | translate}}
+            </div>
             <div><strong>{{provider | consentProvider: 'address' | usPhoneNumber}}</strong></div>
           </div>
         </div>
       </div>
     </div>
     <div fxFlex="48%">
-      <div class="font-size17 m-b-xs current-blue"><strong>{{
-        'CONSENT_SIGN.AUTHORIZATION_SECTION.DISCLOSE_LABEL' | translate }}: </strong></div>
+      <div class="font-size17 m-b-xs current-blue">
+        <strong>
+          {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.DISCLOSE_LABEL' | translate }}:
+        </strong>
+      </div>
       <div class="font-size14" fxLayoutAlign="start">
         <div *ngFor="let provider of consent.toProviders">
           <div fxLayout="row" class="m-b-xs">
-            <div fxFlex="0 0 115px">{{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NAME' | translate }}</div>
+            <div fxFlex="0 0 115px">
+              {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NAME' | translate }}
+            </div>
             <div><strong>{{provider | consentProvider: 'name'}}</strong></div>
           </div>
           <div fxLayout="row" class="m-b-xs">
-            <div fxFlex="0 0 115px">{{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NPI' | translate }}</div>
+            <div fxFlex="0 0 115px">
+              {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NPI' | translate }}
+            </div>
             <div><strong>{{provider | consentProvider: 'npi'}}</strong></div>
           </div>
           <div fxLayout="row" class="m-b-xs">
-            <div fxFlex="0 0 115px">{{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.PHONE' | translate }}</div>
+            <div fxFlex="0 0 115px">
+              {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.PHONE' | translate }}
+            </div>
             <div><strong>{{provider | consentProvider: 'phone'}}</strong></div>
           </div>
           <div fxLayout="row" class="m-b-xs">
-            <div fxFlex="0 0 115px">{{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.ADDRESS' | translate }}</div>
+            <div fxFlex="0 0 115px">
+              {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.ADDRESS' | translate }}
+            </div>
             <div><strong>{{provider | consentProvider: 'address' | usPhoneNumber}}</strong></div>
           </div>
         </div>
@@ -117,8 +143,8 @@
     </p>
     <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="start" class="font-size16 p-b-xs p-l p-r m-b">
       <div fxFlex class="m-b-xs">
-        <strong>{{ 'CONSENT_SIGN.CONSENT_TERMS_SECTION.START_DATE' | translate }}: {{consent.startDate |
-          date}}
+        <strong>
+          {{ 'CONSENT_SIGN.CONSENT_TERMS_SECTION.START_DATE' | translate }}: {{consent.startDate | date}}
         </strong>
       </div>
       <div fxFlex>
@@ -134,13 +160,14 @@
           {{ 'CONSENT_SIGN.CONFIRM_DIALOG.TITLE' | translate }}
         </md2-dialog-title>
         <div fxLayout="column" class="modalContent-centered">
-          <p class="dialog-text">{{ 'CONSENT_SIGN.CONFIRM_DIALOG.CONTENT' | translate }}</p>
+          <p class="dialog-text">
+            {{ 'CONSENT_SIGN.CONFIRM_DIALOG.CONTENT' | translate }}
+          </p>
           <md-input-container>
             <input mdInput type="password" placeholder="Password" [(ngModel)]="password">
           </md-input-container>
-          <div *ngIf="inValid" class="authenticate-invalid">{{
-            'CONSENT_SIGN.CONFIRM_DIALOG.AUTHENTICATE_MSG' |
-            translate }}
+          <div *ngIf="inValid" class="authenticate-invalid">
+            {{ 'CONSENT_SIGN.CONFIRM_DIALOG.AUTHENTICATE_MSG' | translate }}
           </div>
         </div>
         <md2-dialog-footer class="bg-lite-gray-f5">
@@ -161,20 +188,24 @@
   </div>
 
   <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
-    <button md-raised-button color="primary" routerLink="/consent-list">
+    <button md-raised-button color="primary" (click)="navigateToConsentList()">
       <strong>{{ 'CONSENT_SIGN.CANCEL_BTN' | translate }}</strong>
     </button>
 
-    <md2-dialog #completeAttestation (onClose)="navigateTo()">
-      <md2-dialog-title>{{ 'CONSENT_SIGN.COMPLETE_DIALOG.TITLE' | translate }}</md2-dialog-title>
+    <md2-dialog #completeAttestation (onClose)="navigateToConsentList()">
+      <md2-dialog-title>
+        {{ 'CONSENT_SIGN.COMPLETE_DIALOG.TITLE' | translate }}
+      </md2-dialog-title>
       <div fxLayout="column" class="modalContent-centered">
-        <div class="p-b-sm">{{ 'CONSENT_SIGN.COMPLETE_DIALOG.CLICK_TO_DOWNLOAD_MSG' | translate }}</div>
+        <div class="p-b-sm">
+          {{ 'CONSENT_SIGN.COMPLETE_DIALOG.CLICK_TO_DOWNLOAD_MSG' | translate }}
+        </div>
         <button md-raised-button color="accent" (click)="getSignedConsentPdf()">
           {{ 'CONSENT_SIGN.COMPLETE_DIALOG.DOWNLOAD_BTN' | translate }}
         </button>
       </div>
       <md2-dialog-footer class="bg-lite-gray-f5">
-        <button md-raised-button color="primary" routerLink="/consent-list">
+        <button md-raised-button color="primary" (click)="navigateToConsentList()">
           {{ 'CONSENT_SIGN.COMPLETE_DIALOG.CONTINUE_BTN' | translate }}
         </button>
       </md2-dialog-footer>
