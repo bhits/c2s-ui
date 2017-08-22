@@ -1,0 +1,14 @@
+
+  label.multiLanguage {
+    display: flex;
+    border: thin solid #cfc9d3;
+    padding: 8px 4px;
+    border-radius: 6px;
+    color: #01b3a0;;
+    background-color: #f1f8f7;
+    select {
+      border: none;
+      background: none;
+      text-transform: uppercase;
+    }
+  }
