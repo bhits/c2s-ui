@@ -1,13 +1,18 @@
 
   label.multiLanguage {
     display: flex;
-    border: thin solid #cfc9d3;
-    padding: 8px 4px;
+    //border: thin solid #cfc9d3;
+    max-width: 60px;
+    padding: 2px 5px;
     border-radius: 6px;
     color: #01b3a0;;
-    background-color: #f1f8f7;
+    &:hover {background-color: #d9efef;}
     select {
-      border: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+
+      border: 0;
       background: none;
     }
   }

@@ -1,6 +1,6 @@
-<label class="multiLanguage">
-  <i class="material-icons">language</i>
-  <select class="m-l-n-xs" #langSelect (change)="setLocale(langSelect.value)">
+<label fxFlex class="multiLanguage">
+  <i class="material-icons p-r-xxs">language</i>
+  <select class="" #langSelect (change)="setLocale(langSelect.value)">
     <option *ngFor="let lang of getSupportedLanguage()" [value]="lang.code"
             [selected]="lang.code === getCurrentLanguage()">{{ lang.code | uppercase}}</option>
   </select>
