@@ -8,6 +8,7 @@
     color: #01b3a0;;
     &:hover {background-color: #d9efef;}
     select {
+      font-size: 1.2em;
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -15,4 +16,5 @@
       border: 0;
       background: none;
     }
+    i {font-size: 22px;}
   }
