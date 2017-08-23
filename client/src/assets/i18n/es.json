@@ -460,6 +460,7 @@
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "No se puede obtener la lista de códigos de tipo de documento."
   },
   "HEALTH_INFORMATION": {
+    "NO_HEALTH_DATA": "{spanish} No data found to display",
     "HEALTH_INFORMATION_LIST": {
       "TITLE": "{spanish} Health Information"
     },

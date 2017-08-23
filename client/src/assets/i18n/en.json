@@ -463,6 +463,7 @@
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "Unable to get the list of document type codes."
   },
   "HEALTH_INFORMATION": {
+    "NO_HEALTH_DATA": "No data found to display",
     "HEALTH_INFORMATION_LIST": {
       "TITLE": "Health Information"
     },

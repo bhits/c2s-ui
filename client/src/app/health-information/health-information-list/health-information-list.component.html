@@ -3,9 +3,17 @@
     {{ 'HEALTH_INFORMATION.HEALTH_INFORMATION_LIST.TITLE' | translate }}
   </h1>
   <div class="border-bottom-purple-thin"></div>
-  <div class="p-t-md">
-    <c2s-health-information-document *ngFor="let document of healthInformation.Documents"
-                                     [patientHealthDataDocument]="document">
-    </c2s-health-information-document>
+  <div style="padding-top: 20px;" *ngIf="noHealthData; else hasHealthData">
+    <div style="background-color: #DEBCC9" class="p-md font-size18 font-weight center-sm-left">
+      {{ 'HEALTH_INFORMATION.NO_HEALTH_DATA' | translate }}
+    </div>
   </div>
+
+  <ng-template #hasHealthData>
+    <div class="p-t-md">
+      <c2s-health-information-document *ngFor="let document of healthInformation.Documents"
+                                       [patientHealthDataDocument]="document">
+      </c2s-health-information-document>
+    </div>
+  </ng-template>
 </div>
