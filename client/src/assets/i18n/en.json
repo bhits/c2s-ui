@@ -463,7 +463,8 @@
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "Unable to get the list of document type codes."
   },
   "HEALTH_INFORMATION": {
-    "NO_HEALTH_DATA": "No data found to display",
+    "NO_HEALTH_DATA": "No health data found to display",
+    "GENERIC_ERROR_MESSAGE": "Internal server error occurred while retrieving your health data",
     "HEALTH_INFORMATION_LIST": {
       "TITLE": "Health Information"
     },

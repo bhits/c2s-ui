@@ -460,7 +460,8 @@
     "DOCUMENT_TYPE_CODES_LIST_ERROR": "No se puede obtener la lista de códigos de tipo de documento."
   },
   "HEALTH_INFORMATION": {
-    "NO_HEALTH_DATA": "{spanish} No data found to display",
+    "NO_HEALTH_DATA": "{spanish} No health data found to display",
+    "GENERIC_ERROR_MESSAGE": "{spanish} Internal server error occurred while retrieving your health data",
     "HEALTH_INFORMATION_LIST": {
       "TITLE": "{spanish} Health Information"
     },
