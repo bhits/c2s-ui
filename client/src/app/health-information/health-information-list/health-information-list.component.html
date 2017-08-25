@@ -3,7 +3,7 @@
     {{ 'HEALTH_INFORMATION.HEALTH_INFORMATION_LIST.TITLE' | translate }}
   </h1>
   <div class="border-bottom-purple-thin"></div>
-  <div style="padding-top: 20px;" *ngIf="noHealthData; else hasHealthData">
+  <div style="padding-top: 20px;" *ngIf="hasDataToDisplay == false; else hasHealthData">
     <div style="background-color: #DEBCC9" class="p-md font-size18 font-weight center-sm-left">
       {{ 'HEALTH_INFORMATION.NO_HEALTH_DATA' | translate }}
     </div>
