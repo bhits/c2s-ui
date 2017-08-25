@@ -18,7 +18,6 @@ export class HealthInformationResolveService implements Resolve<any> {
       .do((patientHealthData: PatientHealthData) => {
         return patientHealthData;
       }).catch((errCode: string) => {
-        console.log("Errr=" + errCode);
         switch(errCode){
           case "404":
             this.notificationService.i18nShow("HEALTH_INFORMATION.NO_HEALTH_DATA");
