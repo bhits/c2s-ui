@@ -6,7 +6,7 @@
     <table>
       <tr>
         <td>
-          <span>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.START_DATE' | translate }}: <md2-datepicker class="font-size12" [(ngModel)]="startDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onStateDateChanged()"></md2-datepicker></span>
+          <span>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.START_DATE' | translate }}: <md2-datepicker class="font-size12" [(ngModel)]="startDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onStartDateChanged()"></md2-datepicker></span>
         </td>
         <td>
           <span>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.END_DATE' | translate }}: <md2-datepicker [(ngModel)]="endDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onEndDateChanged()"></md2-datepicker></span>

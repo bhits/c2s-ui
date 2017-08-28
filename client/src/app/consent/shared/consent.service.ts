@@ -197,4 +197,6 @@ export class ConsentService {
       .map((resp: Response) => <BinaryFile>(resp.json()))
       .catch(this.exceptionService.handleError);
   }
+
+
 }
