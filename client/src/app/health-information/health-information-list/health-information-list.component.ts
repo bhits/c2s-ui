@@ -9,11 +9,18 @@ import {PatientHealthData} from "../shared/patient-health-data.model";
 })
 export class HealthInformationListComponent implements OnInit {
   public healthInformation: PatientHealthData;
+  public hasDataToDisplay: boolean = false;
+
 
   constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.healthInformation = this.route.snapshot.data['healthInformation'];
+    this.hasDataToDisplay = this.checkIfHealthDataIsPresent(this.healthInformation);
+  }
+
+  checkIfHealthDataIsPresent(data: PatientHealthData): boolean {
+    return (data != null && data.Documents != null && data.Documents.length > 0);
   }
 }
