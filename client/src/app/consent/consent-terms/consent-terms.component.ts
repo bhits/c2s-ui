@@ -35,14 +35,12 @@ export class ConsentTermsComponent implements OnInit {
       this.startDate = this.utilityService.formatDate(this.consent.startDate, this.DATE_FORMAT);
       this.endDate = this.utilityService.formatDate(this.consent.endDate, this.DATE_FORMAT);
       // check consent start date
-      this.formatToday = this.utilityService.formatDate(this.today,this.DATE_FORMAT);
+      this.formatToday = this.utilityService.formatDate(this.today, this.DATE_FORMAT);
       if (this.formatToday > this.startDate) {
         this.startDateHasPast = true;
         this.consent.startDate = null;
-        //this.consent.endDate = null;
         this.updateConsent();
-      };
-
+      }
     } else {
       let today = new Date();
       let oneYearFromNow = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
@@ -53,7 +51,7 @@ export class ConsentTermsComponent implements OnInit {
     }
   }
 
-  updateConsent(){
+  updateConsent() {
     this.consentService.setConsent(this.consent);
   }
 
@@ -87,8 +85,5 @@ export class ConsentTermsComponent implements OnInit {
       this.consent.endDate = null;
       this.updateConsent();
     }
-
-
-
   }
 }
