@@ -1,15 +1,25 @@
-
 <md-card class="left-align p-none m-sm section-border-thin hover">
-  <md-card-title class="bg-forest-green p-sm white"><i class="material-icons md-36 bottom p-r-xs">schedule</i>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.TITLE' | translate }}</md-card-title>
+  <md-card-title class="bg-forest-green p-sm white"><i class="material-icons md-36 bottom p-r-xs">schedule</i>{{
+    'CONSENT_CREATE_EDIT.CONSENT_TERMS.TITLE' | translate }}
+  </md-card-title>
   <md-card-content class="p-15">
     <p class="m-b-xs">{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.TEXT' | translate }}</p>
     <table>
       <tr>
         <td>
-          <span>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.START_DATE' | translate }}: <md2-datepicker class="font-size12" [(ngModel)]="startDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onStateDateChanged()"></md2-datepicker></span>
+          <span>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.START_DATE' | translate }}: <md2-datepicker class="font-size12"
+                                                                                                  [(ngModel)]="startDate"
+                                                                                                  [min]="today"
+                                                                                                  openOnFocus="true"
+                                                                                                  format="MM/d/y"
+                                                                                                  (change)="onStartDateChanged()"></md2-datepicker></span>
         </td>
         <td>
-          <span>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.END_DATE' | translate }}: <md2-datepicker [(ngModel)]="endDate" [min]="today" openOnFocus="true" format="MM/d/y" (change)="onEndDateChanged()"></md2-datepicker></span>
+          <span>{{ 'CONSENT_CREATE_EDIT.CONSENT_TERMS.END_DATE' | translate }}: <md2-datepicker [(ngModel)]="endDate"
+                                                                                                [min]="today"
+                                                                                                openOnFocus="true"
+                                                                                                format="MM/d/y"
+                                                                                                (change)="onEndDateChanged()"></md2-datepicker></span>
         </td>
       </tr>
       <tr>
@@ -24,5 +34,5 @@
         </div>
       </tr>
     </table>
-    </md-card-content>
+  </md-card-content>
 </md-card>
