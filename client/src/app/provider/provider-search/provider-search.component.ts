@@ -2,8 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ProviderService} from "../shared/provider.service";
 import {ProviderRequestQuery} from "../shared/provider-request-query.model";
 import {ProviderSearchResponse} from "../shared/provider-search-response.model";
-import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
-import {TranslateService} from "@ngx-translate/core";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'c2s-provider-search',
@@ -18,7 +17,7 @@ export class ProviderSearchComponent implements OnInit {
   hasSearchResult: boolean = false;
   private PHONE_PATTERN = '^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$';
 
-  title:string = "Add Providers";
+  title: string = "Add Providers";
 
   public states = [
     {stateCode: 'AZ', stateValue: 'ARIZONA'},
@@ -49,8 +48,7 @@ export class ProviderSearchComponent implements OnInit {
   };
 
   constructor(private formBuilder: FormBuilder,
-              private providerService: ProviderService,
-              private translate: TranslateService) {
+              private providerService: ProviderService) {
   }
 
   ngOnInit(): void {

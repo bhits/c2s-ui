@@ -16,31 +16,31 @@ export class LimitedProfileService {
               private sessionStorageService: SessionStorageService) {
   }
 
-  getUMSProfile(): Observable<UmsLimitedProfile> {
+  public getUMSProfile(): Observable<UmsLimitedProfile> {
     return this.http.get(this.umsLimitedProfileUrl)
       .map((resp: Response) => <any>(resp.json()));
   }
 
-  setProfileInSessionStorage(profile: UmsLimitedProfile) {
+  public setProfileInSessionStorage(profile: UmsLimitedProfile): void {
     this.sessionStorageService.setItemInSessionStorage(this.UMS_PROFILE_KEY, profile);
   }
 
-  getProfileFromSessionStorage(): UmsLimitedProfile {
+  public getProfileFromSessionStorage(): UmsLimitedProfile {
     return this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
   }
 
-  getUserName(): String{
-    let umsProfile:UmsLimitedProfile = this.getProfileFromSessionStorage();
-    if(umsProfile){
-      return umsProfile.userName;
+  public getUserName(): string {
+    let umsProfile: UmsLimitedProfile = this.getProfileFromSessionStorage();
+    if (umsProfile) {
+      return umsProfile.username;
     } else {
       return "";
     }
   }
 
-  getFullName(): string{
-    let umsProfile:UmsLimitedProfile = this.getProfileFromSessionStorage();
-    if(umsProfile){
+  public getFullName(): string {
+    let umsProfile: UmsLimitedProfile = this.getProfileFromSessionStorage();
+    if (umsProfile) {
       return umsProfile.firstName + " " + umsProfile.lastName;
     } else {
       return "";
@@ -48,36 +48,29 @@ export class LimitedProfileService {
   }
 
   //Todo: Change it when current user can manage multiple patients
-  getUserMrn(): string {
-    let umsProfile: UmsLimitedProfile = this.sessionStorageService.getItemFromSessionStorage(this.UMS_PROFILE_KEY);
-    if (umsProfile != null) {
+  public getUserMrn(): string {
+    let umsProfile: UmsLimitedProfile = this.getProfileFromSessionStorage();
+    if (umsProfile) {
       return umsProfile.mrn;
-    }
-  }
-
-  getMRN(){
-    let umsProfile:UmsLimitedProfile = this.getProfileFromSessionStorage();
-    if(umsProfile){
-      return umsProfile.mrn;
-    }else {
+    } else {
       return "";
     }
   }
 
-  getUserLocale(){
-    let umsProfile:UmsLimitedProfile = this.getProfileFromSessionStorage();
-    if(umsProfile){
+  public getUserLocale(): string {
+    let umsProfile: UmsLimitedProfile = this.getProfileFromSessionStorage();
+    if (umsProfile) {
       return umsProfile.userLocale;
-    }else {
+    } else {
       return "";
     }
   }
 
-  getUserBirthDate(){
-    let umsProfile:UmsLimitedProfile = this.getProfileFromSessionStorage();
-    if(umsProfile){
+  public getUserBirthDate(): Date {
+    let umsProfile: UmsLimitedProfile = this.getProfileFromSessionStorage();
+    if (umsProfile) {
       return umsProfile.birthDate;
-    }else {
+    } else {
       return null;
     }
   }

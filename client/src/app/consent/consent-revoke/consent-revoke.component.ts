@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 
 import {AuthenticationService} from "../../security/shared/authentication.service";
-import {TokenService} from "../../security/shared/token.service";
 import {ActivatedRoute} from "@angular/router";
 import {ConsentService} from "../shared/consent.service";
 import {ConsentRevocation} from "../shared/consent-revocation.model";
@@ -10,6 +9,7 @@ import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../shared/utility.service";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {DetailedConsent} from "../shared/detailed-consent.model";
+import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-consent-revoke',
@@ -17,22 +17,19 @@ import {DetailedConsent} from "../shared/detailed-consent.model";
   styleUrls: ['./consent-revoke.component.css']
 })
 export class ConsentRevokeComponent implements OnInit {
-  public title: string = "Revoke Consent";
+  public consent: DetailedConsent;
   public checked: boolean = false;
   public isAuthenticated: boolean = false;
   public password: string;
   public inValid: boolean;
-  public consent: DetailedConsent;
-  consentRevocationTerms: string;
-  private userName: string;
-  fullName: string;
-  consentId: string;
-  username: any;
-  birthDate: Date;
+  public consentRevocationTerms: string;
+  public usernameTranslateParam: any;
+  public userFullName: string;
+  public birthDate: Date;
 
   constructor(private authenticationService: AuthenticationService,
+              private apiUrlService: C2sUiApiUrlService,
               private route: ActivatedRoute,
-              private tokenService: TokenService,
               private consentService: ConsentService,
               private utilityService: UtilityService,
               private notificationService: NotificationService,
@@ -46,70 +43,63 @@ export class ConsentRevokeComponent implements OnInit {
       }
     });
     this.consentRevocationTerms = this.route.snapshot.data['consentRevocationTerms'].text;
-    let profile = this.tokenService.getProfileToken();
-    this.userName = profile.userName;
-    this.fullName = profile.name;
-    this.username = {name: profile.name};
     this.birthDate = this.limitedProfileService.getUserBirthDate();
-
-    this.route.params.subscribe(params => {
-      if (params['consentId']) {
-        this.consentId = params['consentId'];
-      }
-    });
+    this.userFullName = this.limitedProfileService.getFullName();
+    this.usernameTranslateParam = {name: this.userFullName};
   }
 
-  clearCheckbox() {
+  public clearCheckbox(): void {
     if (this.isAuthenticated != true) {
       this.checked = false;
       this.inValid = false;
     }
   }
 
-  toAuthenticate(dialog: any) {
-    this.authenticationService.login(this.userName, this.password)
+  public toAuthenticate(dialog: any): void {
+    const username: string = this.limitedProfileService.getUserName();
+    this.authenticationService.login(username, this.password)
       .subscribe(
         () => {
           this.inValid = false;
           this.isAuthenticated = true;
           dialog.close();
         },
-        error => {
+        () => {
           this.inValid = true;
           this.password = null;
         }
       );
   }
 
-  revokeConsent(dialog: any) {
+  public revokeConsent(dialog: any): void {
     let consentRevocation = new ConsentRevocation(true);
-    this.consentService.revokeConsent(consentRevocation, this.consentId).subscribe(
+    this.consentService.revokeConsent(consentRevocation, this.consent.id).subscribe(
       () => {
         dialog.open();
       },
-      err => {
+      () => {
         this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_REVOKED_CONSENT');
       }
     )
   }
 
-  navigateTo() {
-    this.utilityService.navigateTo('/consent-list');
-  }
-
-  downloadRevokedConsent() {
-    this.consentService.getRevokedConsentPdf(parseInt(this.consentId))
+  public downloadRevokedConsent(): void {
+    this.consentService.getRevokedConsentPdf(this.consent.id)
       .subscribe(
         (revokedPdf: BinaryFile) => this.onSuccess(revokedPdf, "Revoked_consent"),
         (error: any) => this.onError);
   }
 
-  onSuccess(revokedPdf: BinaryFile, prefix: string) {
-    this.utilityService.downloadFile(revokedPdf.content, `${prefix}_${this.consentId}.pdf`, revokedPdf.contentType);
+  public onSuccess(revokedPdf: BinaryFile, prefix: string): void {
+    this.utilityService.downloadFile(revokedPdf.content, `${prefix}_${this.consent.id}.pdf`, revokedPdf.contentType);
     this.notificationService.i18nShow('NOTIFICATION_MSG.SUCCESS_DOWNLOAD_REVOKED_CONSENT');
   }
 
-  onError(error: any) {
+  public onError(error: any): void {
     this.notificationService.i18nShow('NOTIFICATION_MSG.FAILED_DOWNLOAD_REVOKED_CONSENT');
+  }
+
+  public navigateToConsentList(): void {
+    this.utilityService.navigateTo(this.apiUrlService.getConsentListUrl());
   }
 }

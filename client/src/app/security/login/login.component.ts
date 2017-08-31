@@ -2,11 +2,9 @@ import {Component, OnInit} from "@angular/core";
 import {AuthenticationService} from "../shared/authentication.service";
 import {Credentials} from "../shared/credentials.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {TokenService} from "../shared/token.service";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {LimitedProfileService} from "../shared/limited-profile.service";
 import {UmsLimitedProfile} from "../shared/ums-limited-profile.model";
-import {Profile} from "../../core/profile.model";
 import {UtilityService} from "../../shared/utility.service";
 
 @Component({
@@ -23,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService,
               private formBuilder: FormBuilder,
-              private tokenService: TokenService,
               private customTranslateService: CustomTranslateService,
               private limitedProfileService: LimitedProfileService,
               private utilityService: UtilityService) {
@@ -45,39 +42,31 @@ export class LoginComponent implements OnInit {
           this.showBadCredentialError = false;
           this.showAccountLockedError = false;
           this.authenticationService.onLoginSuccess(response);
-          this.authenticationService.getUserProfile()
-            .subscribe(
-              (uaaProfile) => {
-                let profile = this.tokenService.createProfileObject(uaaProfile);
-                this.tokenService.storeUserProfile(profile);
-                this.getUMSProfileAndSetDefaultLanguage(profile);
-              },
-              () => this.authenticationService.onGetUserProfileFailure()
-            );
-        },(error)=>{
-          let message:string = error.json()['message'];
-          if(this.authenticationService.isAccountLocked(message)){
+          this.getUMSProfileAndSetDefaultLanguage();
+        },
+        (error) => {
+          let message: string = error.json()['message'];
+          if (this.authenticationService.isAccountLocked(message)) {
             this.showAccountLockedError = true;
             this.showBadCredentialError = false;
             console.log(message);
-          }else if(this.authenticationService.isBadCredendials(message)){
+          } else if (this.authenticationService.isBadCredentials(message)) {
             this.showBadCredentialError = true;
             this.showAccountLockedError = false;
             console.log(message);
           }
-
         }
       );
   }
 
-  private getUMSProfileAndSetDefaultLanguage(uaaProfile: Profile): void {
+  private getUMSProfileAndSetDefaultLanguage(): void {
     this.limitedProfileService.getUMSProfile().subscribe(
       (profile: UmsLimitedProfile) => {
         let localesCode: string[] = this.utilityService.getSupportedLocaleCode(profile.supportedLocales);
         this.customTranslateService.addSupportedLanguages(localesCode);
         this.customTranslateService.setDefaultLanguage(profile.userLocale);
         this.limitedProfileService.setProfileInSessionStorage(profile);
-        this.authenticationService.onGetUserProfileSuccess(uaaProfile);
+        this.authenticationService.onGetUserProfileSuccess();
       },
       () => this.authenticationService.onGetUserProfileFailure()
     )

@@ -1,291 +1,305 @@
-<div class="p-t-75 p-l-md p-r-md p-b">
-  <h1 class="">{{ 'PROVIDER.SEARCH.TITLE' | translate }}</h1>
+<div>
+  <h1 class="">
+    {{ 'PROVIDER.SEARCH.TITLE' | translate }}
+  </h1>
 
   <md-card class="provider-search-card" xmlns="http://www.w3.org/1999/html">
     <div class="containerX">
       <form [formGroup]="searchProviderFrom" novalidate>
-        <!--<md2-accordion multiple="false" (open)="resetAccordionTab()">-->
-          <!--<md2-accordion-tab [active]="accordionTab">-->
+        <md-card-header class="">
+          <md-card-title align="start"><i class="material-icons md-36 middle m-r-xs">search</i>
+            {{ 'PROVIDER.SEARCH.ACCORDION_NAME' | translate }}
+          </md-card-title>
+        </md-card-header>
 
-            <md-card-header class="">
-              <md-card-title align="start"><i class="material-icons md-36 middle m-r-xs">search</i>
-                {{ 'PROVIDER.SEARCH.ACCORDION_NAME' | translate }}</md-card-title>
-            </md-card-header>
-
-            <md-card-content class="m-15">
-              <div class="section-border hover p-xs">
-                <md-toolbar class="toolbar-base">
-                  <button md-mini-fab aria-label="Step 1">
-                    <span>1</span>
-                  </button>
-                  <span class="toolbar-header">
+        <md-card-content class="m-15">
+          <div class="section-border hover p-xs">
+            <md-toolbar class="toolbar-base">
+              <button md-mini-fab aria-label="Step 1">
+                <span>1</span>
+              </button>
+              <span class="toolbar-header">
                     {{ 'PROVIDER.SEARCH.STEP_1.TITLE' | translate }}
                   </span>
-                </md-toolbar>
+            </md-toolbar>
 
-                <div formGroupName="locatingType">
-                  <div class="p-sm p-b m-t-xs bg-lite-blue">
-                    <div class="font-size12 font-weight400 p-t-sm p-b-sm center">{{ 'PROVIDER.SEARCH.STEP_1.LABEL' | translate }}</div>
+            <div formGroupName="locatingType">
+              <div class="p-sm p-b m-t-xs bg-lite-blue">
+                <div class="font-size12 font-weight400 p-t-sm p-b-sm center">
+                  {{ 'PROVIDER.SEARCH.STEP_1.LABEL' | translate }}
+                </div>
 
-                    <div class="row-to-column960-centered">
-                      <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
-                              (click)="setLocatingType(LOCATING_TYPE.STATE_CITY)"
-                              [class.toggle-default]="!isStateCityType()"
-                              [class.toggle-primary]="isStateCityType()">
-                        <strong>{{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.LABEL' | translate }}</strong>
-                      </button>
+                <div class="row-to-column960-centered">
+                  <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
+                          (click)="setLocatingType(LOCATING_TYPE.STATE_CITY)"
+                          [class.toggle-default]="!isStateCityType()"
+                          [class.toggle-primary]="isStateCityType()">
+                    <strong>
+                      {{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.LABEL' | translate }}
+                    </strong>
+                  </button>
 
-                      <div class="p-l-sm p-r-sm center">
-                        <h3>{{ 'PROVIDER.SEARCH.STEP_1.OR' | translate }}</h3>
-                      </div>
-
-                      <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" fxLayoutAlign="center"
-                              class="toggle toggle-block"
-                              (click)="setLocatingType(LOCATING_TYPE.ZIP)"
-                              [class.toggle-default]="isStateCityType()"
-                              [class.toggle-primary]="!isStateCityType()">
-                        <strong>{{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.LABEL' | translate }}</strong>
-                      </button>
-                    </div>
+                  <div class="p-l-sm p-r-sm center">
+                    <h3>{{ 'PROVIDER.SEARCH.STEP_1.OR' | translate }}</h3>
                   </div>
-                  <div class="p-sm m-t" *ngIf="isStateCityType()">
-                    <div class="p-b-sm">
-                      <div fxLayout="column" formGroupName="stateCity">
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <md-select fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                                     placeholder="{{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.STATE_PLACE_HOLDER' | translate }}"
-                                     formControlName="state">
-                            <md-option *ngFor="let state of states" [value]="state.stateCode">
-                              {{ state.stateValue }}
-                            </md-option>
-                          </md-select>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center" class="p-t-xs">
-                          <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                               *ngIf="hasErrorOnCurrentFormControl('locatingType.stateCity.state', ERROR_CODE.REQUIRED)"
-                               class="form-invalid">
-                            {{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.STATE_REQUIRED_ERROR_MSG' | translate }}
-                          </div>
-                        </div>
+
+                  <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" fxLayoutAlign="center"
+                          class="toggle toggle-block"
+                          (click)="setLocatingType(LOCATING_TYPE.ZIP)"
+                          [class.toggle-default]="isStateCityType()"
+                          [class.toggle-primary]="!isStateCityType()">
+                    <strong>
+                      {{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.LABEL' | translate }}
+                    </strong>
+                  </button>
+                </div>
+              </div>
+              <div class="p-sm m-t" *ngIf="isStateCityType()">
+                <div class="p-b-sm">
+                  <div fxLayout="column" formGroupName="stateCity">
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <md-select fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                                 placeholder="{{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.STATE_PLACE_HOLDER' | translate }}"
+                                 formControlName="state">
+                        <md-option *ngFor="let state of states" [value]="state.stateCode">
+                          {{ state.stateValue }}
+                        </md-option>
+                      </md-select>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center" class="p-t-xs">
+                      <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('locatingType.stateCity.state', ERROR_CODE.REQUIRED)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.STATE_REQUIRED_ERROR_MSG' | translate }}
                       </div>
-
-                      <div fxLayout="column" formGroupName="stateCity" class="p-t-sm">
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                            <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.CITY_PLACEHOLDER' | translate }}" formControlName="city">
-                          </md-input-container>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                               *ngIf="hasErrorOnCurrentFormControl('locatingType.stateCity.city', ERROR_CODE.MIN_LENGTH)"
-                               class="form-invalid">
-                            {{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.CITY_MIN_LENGHT_ERROR_MSG' | translate }}
-
-                          </div>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                               *ngIf="hasErrorOnCurrentFormControl('locatingType.stateCity.city', ERROR_CODE.REQUIRED)"
-                               class="form-invalid">
-                            {{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.STATE_REQUIRED_ERROR_MSG' | translate }}
-                          </div>
-                        </div>
-                      </div>
-
-                      <!--</div>-->
                     </div>
                   </div>
 
-                  <div class="p-sm m-t-xs" *ngIf="!isStateCityType()">
-                    <div class="p-b-sm">
-                      <div fxLayout="column" formGroupName="zip">
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                            <input mdInput placeholder=" {{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.ZIP_CODE_PLACEHOLDER' | translate }}" formControlName="zipCode">
-                          </md-input-container>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                               *ngIf="hasErrorOnCurrentFormControl('locatingType.zip.zipCode', ERROR_CODE.PATTERN)"
-                               class="form-invalid">
-                            {{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.ZIP_CODE_FORMAT_ERROR_MSG' | translate }}
-                          </div>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                               *ngIf="hasErrorOnCurrentFormControl('locatingType.zip.zipCode', ERROR_CODE.REQUIRED)"
-                               class="form-invalid">
-                            {{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.ZIP_CODE_REQUIREDS_MSG' | translate }}
-                          </div>
-                        </div>
+                  <div fxLayout="column" formGroupName="stateCity" class="p-t-sm">
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
+                        <input mdInput
+                               placeholder="{{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.CITY_PLACEHOLDER' | translate }}"
+                               formControlName="city">
+                      </md-input-container>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('locatingType.stateCity.city', ERROR_CODE.MIN_LENGTH)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.CITY_MIN_LENGHT_ERROR_MSG' | translate }}
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('locatingType.stateCity.city', ERROR_CODE.REQUIRED)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_1.STATE_AND_CITY.STATE_REQUIRED_ERROR_MSG' | translate }}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="m-t section-border hover p-xs">
-                <md-toolbar class="toolbar-base">
-                  <button md-mini-fab aria-label="Step 2">
-                    <span>2</span>
-                  </button>
-                  <span class="toolbar-header">
+              <div class="p-sm m-t-xs" *ngIf="!isStateCityType()">
+                <div class="p-b-sm">
+                  <div fxLayout="column" formGroupName="zip">
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
+                        <input mdInput
+                               placeholder=" {{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.ZIP_CODE_PLACEHOLDER' | translate }}"
+                               formControlName="zipCode">
+                      </md-input-container>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('locatingType.zip.zipCode', ERROR_CODE.PATTERN)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.ZIP_CODE_FORMAT_ERROR_MSG' | translate }}
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('locatingType.zip.zipCode', ERROR_CODE.REQUIRED)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_1.ZIP_CODE.ZIP_CODE_REQUIREDS_MSG' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-t section-border hover p-xs">
+            <md-toolbar class="toolbar-base">
+              <button md-mini-fab aria-label="Step 2">
+                <span>2</span>
+              </button>
+              <span class="toolbar-header">
                     {{ 'PROVIDER.SEARCH.STEP_2.TITLE' | translate }}
                   </span>
-                </md-toolbar>
+            </md-toolbar>
 
-                <div formGroupName="providerType">
-                  <div class="p-sm p-b m-t-xs bg-lite-blue">
-                    <div class="font-size12 font-weight400 p-t-sm p-b-sm center">PLEASE CHOOSE ONE.</div>
-                    <div class="row-to-column960-centered">
-                      <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
-                              (click)="setProviderType(PROVIDER_TYPE.INDIVIDUAL)"
-                              [class.toggle-default]="!isIndividualProviderType()"
-                              [class.toggle-primary]="isIndividualProviderType()">
-                        <strong>{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LABEL' | translate }}</strong>
-                      </button>
+            <div formGroupName="providerType">
+              <div class="p-sm p-b m-t-xs bg-lite-blue">
+                <div class="font-size12 font-weight400 p-t-sm p-b-sm center">PLEASE CHOOSE ONE.</div>
+                <div class="row-to-column960-centered">
+                  <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
+                          (click)="setProviderType(PROVIDER_TYPE.INDIVIDUAL)"
+                          [class.toggle-default]="!isIndividualProviderType()"
+                          [class.toggle-primary]="isIndividualProviderType()">
+                    <strong>{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LABEL' | translate }}</strong>
+                  </button>
 
-                      <div class="p-l-sm p-r-sm center"><h3>{{ 'PROVIDER.SEARCH.STEP_2.OR' | translate }}</h3></div>
+                  <div class="p-l-sm p-r-sm center"><h3>{{ 'PROVIDER.SEARCH.STEP_2.OR' | translate }}</h3></div>
 
-                      <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
-                              (click)="setProviderType(PROVIDER_TYPE.ORGANIZATION)"
-                              [class.toggle-default]="isIndividualProviderType()"
-                              [class.toggle-primary]="!isIndividualProviderType()">
-                        <strong>{{ 'PROVIDER.SEARCH.STEP_2.FACILITY.LABEL' | translate }}</strong>
-                      </button>
-
-                    </div>
-                  </div>
-
-                  <div class="p-sm m-t-xs" *ngIf="isIndividualProviderType()">
-                    <div class="p-b-sm">
-
-                      <div fxLayout="column" formGroupName="individual">
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                            <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LAST_NAME_PLACEHOLDER' | translate }}" formControlName="lastName"/>
-                          </md-input-container>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                               *ngIf="hasErrorOnCurrentFormControl('providerType.individual.lastName', ERROR_CODE.MIN_LENGTH)"
-                               class="form-invalid">
-                            {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LAST_NAME_MIN_LENGHT_MSG' | translate }}
-                          </div>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                               *ngIf="hasErrorOnCurrentFormControl('providerType.individual.lastName', ERROR_CODE.REQUIRED)"
-                               class="form-invalid">
-                            {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LAST_NAME_REQUIRED_MSG' | translate }}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div fxLayout="column" formGroupName="individual" class="p-t-sm">
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                            <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.FIRST_NAME_PLACEHOLDER' | translate }}" formControlName="firstName">
-                          </md-input-container>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                               *ngIf="hasErrorOnCurrentFormControl('providerType.individual.firstName', ERROR_CODE.MIN_LENGTH)"
-                               class="form-invalid">
-                            {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.FIRST_NAME_MIN_LENGHT_MSG' | translate }}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div fxLayout="column" formGroupName="individual" class="p-t-sm">
-                        <div fxLayout="row" fxLayoutAlign="center">
-                          <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                            <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.TELEPHONE_PLACEHOLDER' | translate }}" formControlName="phone">
-                          </md-input-container>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap="wrap" class="m-b-sm">
-                          <div fxFlex="0 0" fxFlex.gt-sm="0 1 600px"
-                               *ngIf="hasErrorOnCurrentFormControl('providerType.individual.phone', ERROR_CODE.PATTERN)"
-                               class="form-invalid">
-                            {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.TELEPHONE_FORMAT_MSG' | translate }}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div fxLayout="column" formGroupName="individual" class="p-t-sm">
-                        <div fxLayout="row" fxLayoutAlign="center">
-                        <md-select fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                                   placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.GENDER_PLACEHOLDER' | translate }}"
-                                   formControlName="genderCode">
-                          <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
-                            {{ gender.genderValue }}
-                          </md-option>
-                        </md-select>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div class="p-sm m-t-xs" *ngIf="!isIndividualProviderType()">
-                    <div class="p-b-sm">
-
-                      <div fxLayout="column" formGroupName="organization">
-                        <div fxLayout="row" fxLayoutAlign="center">
-                        <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                          <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.FACILITY.NAME_PLACEHOLDER' | translate }}" formControlName="orgName"/>
-                        </md-input-container>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center">
-                        <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                             *ngIf="hasErrorOnCurrentFormControl('providerType.organization.orgName', ERROR_CODE.MIN_LENGTH)"
-                             class="form-invalid">
-                          {{ 'PROVIDER.SEARCH.STEP_2.FACILITY.NAME_MIN_LENGTH_MSG' | translate }}
-                        </div>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center">
-                        <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
-                             *ngIf="hasErrorOnCurrentFormControl('providerType.organization.orgName', ERROR_CODE.REQUIRED)"
-                             class="form-invalid">
-                          {{ 'PROVIDER.SEARCH.STEP_2.FACILITY.NAME_REQUIRED_MSG' | translate }}
-                        </div>
-                        </div>
-                      </div>
-                      <div fxLayout="column" formGroupName="organization" class="p-t-sm">
-                        <div fxLayout="row" fxLayoutAlign="center">
-                        <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
-                          <input mdInput placeholder="{{ 'PROVIDER.SEARCH.STEP_2.FACILITY.TELEPHONE_PLACEHOLDER' | translate }}" formControlName="phone">
-                        </md-input-container>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="center">
-                        <div fxFlex="0 0" fxFlex.gt-sm="0 1 600px"
-                             *ngIf="hasErrorOnCurrentFormControl('providerType.organization.phone', ERROR_CODE.PATTERN)"
-                             class="form-invalid">
-                          {{ 'PROVIDER.SEARCH.STEP_2.FACILITY.TELEPHONE_FORMAT_MSG' | translate }}
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                  <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
+                          (click)="setProviderType(PROVIDER_TYPE.ORGANIZATION)"
+                          [class.toggle-default]="isIndividualProviderType()"
+                          [class.toggle-primary]="!isIndividualProviderType()">
+                    <strong>{{ 'PROVIDER.SEARCH.STEP_2.FACILITY.LABEL' | translate }}</strong>
+                  </button>
                 </div>
               </div>
-            </md-card-content>
-            <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="15px" class="p-r p-b-md">
-              <button md-raised-button color="primary" (click)="clearForm()" [disabled]="searchProviderFrom.pristine">
-                <strong>{{ 'PROVIDER.SEARCH.BUTTON.CLEAR_ALL' | translate }}</strong>
-              </button>
-              <button md-raised-button color="primary" (click)="searchProviders()"
-                      [disabled]="searchProviderFrom.invalid"><strong>{{ 'PROVIDER.SEARCH.BUTTON.SEARCH' | translate }}</strong>
-              </button>
+
+              <div class="p-sm m-t-xs" *ngIf="isIndividualProviderType()">
+                <div class="p-b-sm">
+
+                  <div fxLayout="column" formGroupName="individual">
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
+                        <input mdInput
+                               placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LAST_NAME_PLACEHOLDER' | translate }}"
+                               formControlName="lastName"/>
+                      </md-input-container>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('providerType.individual.lastName', ERROR_CODE.MIN_LENGTH)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LAST_NAME_MIN_LENGHT_MSG' | translate }}
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('providerType.individual.lastName', ERROR_CODE.REQUIRED)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.LAST_NAME_REQUIRED_MSG' | translate }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div fxLayout="column" formGroupName="individual" class="p-t-sm">
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
+                        <input mdInput
+                               placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.FIRST_NAME_PLACEHOLDER' | translate }}"
+                               formControlName="firstName">
+                      </md-input-container>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('providerType.individual.firstName', ERROR_CODE.MIN_LENGTH)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.FIRST_NAME_MIN_LENGHT_MSG' | translate }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div fxLayout="column" formGroupName="individual" class="p-t-sm">
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
+                        <input mdInput
+                               placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.TELEPHONE_PLACEHOLDER' | translate }}"
+                               formControlName="phone">
+                      </md-input-container>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center" fxLayoutWrap="wrap" class="m-b-sm">
+                      <div fxFlex="0 0" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('providerType.individual.phone', ERROR_CODE.PATTERN)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.TELEPHONE_FORMAT_MSG' | translate }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div fxLayout="column" formGroupName="individual" class="p-t-sm">
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <md-select fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                                 placeholder="{{ 'PROVIDER.SEARCH.STEP_2.PROVIDER_NAME_AND_OTHERS.GENDER_PLACEHOLDER' | translate }}"
+                                 formControlName="genderCode">
+                        <md-option *ngFor="let gender of genderGroup" [value]="gender.genderCode">
+                          {{ gender.genderValue }}
+                        </md-option>
+                      </md-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-sm m-t-xs" *ngIf="!isIndividualProviderType()">
+                <div class="p-b-sm">
+
+                  <div fxLayout="column" formGroupName="organization">
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
+                        <input mdInput
+                               placeholder="{{ 'PROVIDER.SEARCH.STEP_2.FACILITY.NAME_PLACEHOLDER' | translate }}"
+                               formControlName="orgName"/>
+                      </md-input-container>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('providerType.organization.orgName', ERROR_CODE.MIN_LENGTH)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_2.FACILITY.NAME_MIN_LENGTH_MSG' | translate }}
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <div fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('providerType.organization.orgName', ERROR_CODE.REQUIRED)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_2.FACILITY.NAME_REQUIRED_MSG' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                  <div fxLayout="column" formGroupName="organization" class="p-t-sm">
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <md-input-container fxFlex="1 0 auto" fxFlex.gt-sm="0 1 600px">
+                        <input mdInput
+                               placeholder="{{ 'PROVIDER.SEARCH.STEP_2.FACILITY.TELEPHONE_PLACEHOLDER' | translate }}"
+                               formControlName="phone">
+                      </md-input-container>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                      <div fxFlex="0 0" fxFlex.gt-sm="0 1 600px"
+                           *ngIf="hasErrorOnCurrentFormControl('providerType.organization.phone', ERROR_CODE.PATTERN)"
+                           class="form-invalid">
+                        {{ 'PROVIDER.SEARCH.STEP_2.FACILITY.TELEPHONE_FORMAT_MSG' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          <!--</md2-accordion-tab>-->
-        <!--</md2-accordion>-->
+          </div>
+        </md-card-content>
+        <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="15px" class="p-r p-b-md">
+          <button md-raised-button color="primary" (click)="clearForm()" [disabled]="searchProviderFrom.pristine">
+            <strong>{{ 'PROVIDER.SEARCH.BUTTON.CLEAR_ALL' | translate }}</strong>
+          </button>
+          <button md-raised-button color="primary" (click)="searchProviders()"
+                  [disabled]="searchProviderFrom.invalid">
+            <strong>
+              {{ 'PROVIDER.SEARCH.BUTTON.SEARCH' | translate}}
+            </strong>
+          </button>
+        </div>
       </form>
     </div>
   </md-card>
   <div [hidden]="!hasSearchResult" [ngStyle]="{'padding-top': '30px'}">
     <c2s-provider-search-result [providerResult]="searchResponse"></c2s-provider-search-result>
   </div>
-
 </div>

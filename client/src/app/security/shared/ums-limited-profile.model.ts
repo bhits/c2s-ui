@@ -1,10 +1,10 @@
 export class UmsLimitedProfile {
   userId: number;
   userLocale: string;
-  firstName: string;
-  lastName: string;
-  userName: string;
-  mrn: string;
   supportedLocales: string[];
+  username: string;
+  lastName: string;
+  firstName: string;
+  mrn: string;
   birthDate: Date;
 }
