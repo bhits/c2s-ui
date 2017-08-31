@@ -19,7 +19,7 @@ export class CanActivateAuthGuardService implements CanActivate, CanActivateChil
               private notificationService: NotificationService,
               private utilityService: UtilityService,
               private location: PlatformLocation,
-              private globalEventManagerService: GlobalEventManagerService,) {
+              private globalEventManagerService: GlobalEventManagerService) {
 
     location.onPopState(() => {
       if(window.location.pathname === this.LOGIN_PATH){
