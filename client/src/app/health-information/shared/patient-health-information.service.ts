@@ -22,7 +22,7 @@ export class PatientHealthInformationService {
 
     return this.http.get(resourceUrl)
       .map((resp: Response) => <PatientHealthData>(resp.json()))
-      .catch(this.exceptionService.handleError);
+      .catch(this.exceptionService.handleErrorWithErrorCode);
   }
 
   public setSectionAccordionTabActiveStatus(activeStatus: boolean): void {

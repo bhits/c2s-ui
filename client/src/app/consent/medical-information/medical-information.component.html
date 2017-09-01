@@ -8,7 +8,8 @@
     </p>
     <md-radio-group [(ngModel)]="isShareAll">
       <div>
-        <md-radio-button name="medicalInformation"
+        <md-radio-button class="disable-text-selection"
+                         name="medicalInformation"
                          #medInfoA
                          [value]="shareAllValue"
                          (click)="onSelectShareAll(medicalInformationDialog, medInfoA.value)">
@@ -16,7 +17,8 @@
         </md-radio-button>
       </div>
       <div>
-        <md-radio-button name="medicalInformation"
+        <md-radio-button class="disable-text-selection"
+                         name="medicalInformation"
                          #medInfoB
                          [value]="notShareAllValue"
                          (click)="onSelectDoNotShareAll(medicalInformationDialog, medInfoB.value)">
