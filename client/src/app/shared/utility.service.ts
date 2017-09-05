@@ -166,4 +166,18 @@ export class UtilityService {
     let indexOfLastDot = fileName.lastIndexOf(".");
     return fileName.substr(indexOfLastDot + 1);
   }
+
+  sortArrayByProperty(entries:any[], property:string, direction:number):any[]{
+    return entries.sort(function(a, b){
+      if(a[property] < b[property]){
+        return -1 * direction;
+      }
+      else if( a[property] > b[property]){
+        return 1 * direction;
+      }
+      else{
+        return 0;
+      }
+    });
+  }
 }
