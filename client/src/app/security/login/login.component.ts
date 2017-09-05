@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "../shared/authentication.service";
 import {Credentials} from "../shared/credentials.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -13,6 +14,7 @@ import {UtilityService} from "../../shared/utility.service";
   styleUrls: ['login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  private redirectUrl: string;
   public passwordInputType: string = "password";
   credentials: Credentials;
   loginForm: FormGroup;
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private customTranslateService: CustomTranslateService,
               private limitedProfileService: LimitedProfileService,
+              private route: ActivatedRoute,
               private utilityService: UtilityService) {
 
     this.credentials = new Credentials();
@@ -33,6 +36,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    // get redirect url from route parameters
+    this.redirectUrl = this.route.snapshot.queryParams['redirectUrl'];
   }
 
   public login(value: any): void {
@@ -66,7 +71,7 @@ export class LoginComponent implements OnInit {
         this.customTranslateService.addSupportedLanguages(localesCode);
         this.customTranslateService.setDefaultLanguage(profile.userLocale);
         this.limitedProfileService.setProfileInSessionStorage(profile);
-        this.authenticationService.onGetUserProfileSuccess();
+        this.authenticationService.onGetUserProfileSuccess(this.redirectUrl);
       },
       () => this.authenticationService.onGetUserProfileFailure()
     )
