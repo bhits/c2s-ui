@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {UploadedDocument} from "../../shared/uploaded-document.model";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code.model";
+import {UtilityService} from "../../shared/utility.service";
 
 @Component({
   selector: 'c2s-medical-documents',
@@ -12,7 +13,8 @@ export class MedicalDocumentsComponent implements OnInit {
   uploadedDocumentList: UploadedDocument[];
   documentTypeCodesList: UploadedDocumentTypeCode[];
 
-  constructor(private medicalDocumentsService: MedicalDocumentsService) {
+  constructor(private medicalDocumentsService: MedicalDocumentsService,
+              private utilityService: UtilityService) {
     this.uploadedDocumentList = [];
     this.documentTypeCodesList = [];
   }
@@ -38,7 +40,7 @@ export class MedicalDocumentsComponent implements OnInit {
     this.medicalDocumentsService.getUploadedDocumentList()
       .subscribe(
         (docList: UploadedDocument[]) => {
-          this.uploadedDocumentList = docList;
+          this.uploadedDocumentList = this.utilityService.sortArrayByProperty(docList, 'id', -1);
         },
         err => {
           this.medicalDocumentsService.handleShowUploadedDocumentListError(err);
@@ -48,6 +50,7 @@ export class MedicalDocumentsComponent implements OnInit {
 
   onUploadedDocumentAdded(newUploadedDocument: UploadedDocument) {
     this.uploadedDocumentList.push(newUploadedDocument);
+    this.uploadedDocumentList = this.utilityService.sortArrayByProperty(this.uploadedDocumentList, 'id', -1);
   }
 
   onUploadedDocumentDeleted(deletedDocumentId: number) {
