@@ -143,7 +143,9 @@
 
             <div formGroupName="providerType">
               <div class="p-sm p-b m-t-xs bg-lite-blue">
-                <div class="font-size12 font-weight400 p-t-sm p-b-sm center">PLEASE CHOOSE ONE.</div>
+                <div class="font-size12 font-weight400 p-t-sm p-b-sm center">
+                  {{ 'PROVIDER.SEARCH.STEP_2.LABEL' | translate }}
+                </div>
                 <div class="row-to-column960-centered">
                   <button fxFlex="1 0 auto" fxFlex.gt-sm="0 1 400px" class="toggle toggle-block"
                           (click)="setProviderType(PROVIDER_TYPE.INDIVIDUAL)"

@@ -113,6 +113,7 @@
       },
       "STEP_2": {
         "TITLE": "Step 2. Please enter the provider Facility Name OR Provider Name and Other Criteria.",
+        "LABEL": "Please choose one.",
         "PROVIDER_NAME_AND_OTHERS": {
           "LABEL": "Enter Provider Name and Other Criteria",
           "LAST_NAME_PLACEHOLDER": "Last Name (Required)",
