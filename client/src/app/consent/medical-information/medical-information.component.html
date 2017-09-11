@@ -28,9 +28,9 @@
     </md-radio-group>
     <br><br>
     <md-chip-list>
-      <md-chip class="medInfo" *ngFor="let sensitivityPolicy of selectedSensitivityCategories; let i = index;"
+      <md-chip *ngFor="let sensitivityPolicy of selectedSensitivityCategories; let i = index;"
                color="accent" selected="true">
-        <md-icon>lock</md-icon>
+        <md-icon>check_circle</md-icon>
         <span class="md-chip-icon-text">{{sensitivityPolicy}}</span>
       </md-chip>
     </md-chip-list>

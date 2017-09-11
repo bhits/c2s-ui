@@ -206,10 +206,6 @@ div.md2-datepicker-input {
 }
 
 // ------------------------------------------------------------- create consent styling -------------//
-.mat-list-item-content {
-  height: auto !important;
-  padding: 3px 16px !important;
-}
 
 .width100 {
   width: 100px;
@@ -277,9 +273,6 @@ md-chip {
   padding: 4px 8px !important;
   &.consents {
     margin: 0 5px 5px 0 !important;
-  }
-  &.medInfo {
-    background-color: #8a1004 !important;
   }
   &.purposeOfUse {
     background-color: pink !important;
