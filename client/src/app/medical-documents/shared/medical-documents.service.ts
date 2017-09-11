@@ -14,6 +14,9 @@ import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code
 
 @Injectable()
 export class MedicalDocumentsService {
+  private  UPLOAD_DOCUMENT_PATIENTS:string = "/uploadedDocuments/patients/";
+  private  UPLOAD_DOCUMENT_TYPE_CODES:string = "/uploadedDocuments/documentTypeCodes";
+
   constructor(private http: Http,
               private tokenService: TokenService,
               private exceptionService: ExceptionService,
@@ -22,18 +25,27 @@ export class MedicalDocumentsService {
               private limitedProfileService: LimitedProfileService) {
   }
 
-  private currentUserMrn: string = this.limitedProfileService.getUserMrn();
-  private phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(this.currentUserMrn).concat("/documents");
-  private phrDocumentTypeCodesUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/documentTypeCodes");
+  private getCurrentUserMrn():string{
+    return this.limitedProfileService.getUserMrn();
+  }
+
+  private getPhrDocumentUrl():string{
+    const currentUserMrn:string  = this.getCurrentUserMrn();
+    return this.c2sUiApiUrlService.getPhrBaseUrl().concat(this.UPLOAD_DOCUMENT_PATIENTS).concat(currentUserMrn).concat("/documents");
+  }
+
+  private getPhrDocumentTypeCodeUrl():string{
+    return this.c2sUiApiUrlService.getPhrBaseUrl().concat(this.UPLOAD_DOCUMENT_TYPE_CODES);
+  }
 
   getAllDocumentTypeCodesList(): Observable<UploadedDocumentTypeCode[]> {
-    return this.http.get(this.phrDocumentTypeCodesUrl)
+    return this.http.get(this.getPhrDocumentTypeCodeUrl())
       .map((resp: Response) => <UploadedDocumentTypeCode[]>(resp.json()))
       .catch(this.exceptionService.handleErrorWithErrorCode);
   }
 
   getUploadedDocumentList(): Observable<UploadedDocument[]> {
-    return this.http.get(this.phrDocumentsUrl)
+    return this.http.get(this.getPhrDocumentUrl())
       .map((resp: Response) => <UploadedDocument[]>(resp.json()))
       .catch(this.exceptionService.handleErrorWithErrorCode);
   }
@@ -41,7 +53,7 @@ export class MedicalDocumentsService {
   deleteUploadedDocumentById(docId: number): Observable<void> {
     if(docId !== null){
       if(docId >= 0){
-        const DELETE_DOCUMENT_URL = this.phrDocumentsUrl.concat("/" + docId);
+        const DELETE_DOCUMENT_URL = this.getPhrDocumentUrl().concat("/" + docId);
         return this.http.delete(DELETE_DOCUMENT_URL)
           .catch(this.exceptionService.handleErrorWithErrorCode);
       }
@@ -50,7 +62,7 @@ export class MedicalDocumentsService {
 
   prepareDocumentUpload(documentToUploadMetadata: DocumentToUploadMetadata): UploadInput {
     const currentUserMrn: string = this.limitedProfileService.getUserMrn();
-    const phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat("/uploadedDocuments/patients/").concat(currentUserMrn).concat("/documents");
+    const phrDocumentsUrl = this.c2sUiApiUrlService.getPhrBaseUrl().concat(this.UPLOAD_DOCUMENT_PATIENTS).concat(currentUserMrn).concat("/documents");
 
     const token = this.tokenService.getAccessToken();
 
