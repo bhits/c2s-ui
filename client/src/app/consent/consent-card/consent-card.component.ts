@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from "@angular/core";
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {DetailedConsent} from "../shared/detailed-consent.model";
 import {ConsentStageOption} from "../shared/consent-stage-option.model";
@@ -16,7 +16,8 @@ import {Md2Dialog} from "md2";
 @Component({
   selector: 'c2s-consent-card',
   templateUrl: './consent-card.component.html',
-  styleUrls: ['consent-card.component.scss']
+  styleUrls: ['consent-card.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ConsentCardComponent implements OnInit, OnChanges {
   @Input() consent: DetailedConsent;
