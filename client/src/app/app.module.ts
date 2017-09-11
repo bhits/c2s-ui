@@ -22,7 +22,6 @@ import {UserAvatarModule} from "./user-avatar/user-avatar.module";
 import {UserAvatarMonitoringService} from "./shared/user-avatar-monitoring.service";
 import {ActivityModule} from "./activity/activity.module";
 import {HealthInformationModule} from "./health-information/health-information.module";
-import {FlexModule} from "./flex/flex.module";
 
 
 @NgModule({
@@ -54,7 +53,6 @@ import {FlexModule} from "./flex/flex.module";
     HealthInformationModule,
     UserProfileModule,
     UserAvatarModule,
-    FlexModule,
     AppRoutingModule // Must be the last module to be imported
   ],
   providers: [
