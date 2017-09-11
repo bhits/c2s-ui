@@ -206,6 +206,11 @@ div.md2-datepicker-input {
 }
 
 // ------------------------------------------------------------- create consent styling -------------//
+.mat-list-item-content {
+  height: auto !important;
+  padding: 3px 16px !important;
+}
+
 .width100 {
   width: 100px;
 }
