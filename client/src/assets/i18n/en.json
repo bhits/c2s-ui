@@ -94,7 +94,7 @@
       "ACCORDION_NAME": "Search",
       "STEP_1": {
         "TITLE": "Step 1. Please enter the provider State and City OR Zip Code.",
-        "LABEL": "Please choose one.",
+        "LABEL": "PLEASE CHOOSE ONE.",
         "STATE_AND_CITY": {
           "LABEL": "Enter State and City",
           "STATE_PLACE_HOLDER": "Please Select State (Required)",
@@ -113,7 +113,7 @@
       },
       "STEP_2": {
         "TITLE": "Step 2. Please enter the provider Facility Name OR Provider Name and Other Criteria.",
-        "LABEL": "Please choose one.",
+        "LABEL": "PLEASE CHOOSE ONE.",
         "PROVIDER_NAME_AND_OTHERS": {
           "LABEL": "Enter Provider Name and Other Criteria",
           "LAST_NAME_PLACEHOLDER": "Last Name (Required)",
