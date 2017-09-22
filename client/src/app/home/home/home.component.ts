@@ -14,7 +14,7 @@ import {ConfigService} from "../../core/config.service";
   styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public isHealthInformationEnabled:boolean;
+  public isHealthInformationEnabled: boolean;
   totalProviders: number = 0;
   totalConsents: number = 0;
   providers: ConsentProvider[];
@@ -27,11 +27,11 @@ export class HomeComponent implements OnInit {
               private apiUrlService: C2sUiApiUrlService,
               private route: ActivatedRoute,
               private tokenService: TokenService,
-              private configService:ConfigService) {
+              private configService: ConfigService) {
   }
 
   ngOnInit() {
-    this.isHealthInformationEnabled=this.configService.getConfigInSessionStorage().patientPermissions.healthInformationEnabled;
+    this.isHealthInformationEnabled = this.configService.getConfigInSessionStorage().patientPermissions.healthInformationEnabled;
     this.consentMapping = {
       '=0': 'HOME.CONSENTS.ZERO',
       'other': 'HOME.CONSENTS.MORE'

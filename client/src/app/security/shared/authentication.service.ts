@@ -27,8 +27,8 @@ export class AuthenticationService {
               private limitedProfileService: LimitedProfileService,
               private customTranslateService: CustomTranslateService,
               private utilityService: UtilityService,
-              private configService:ConfigService,
-              private notificationService:NotificationService) {
+              private configService: ConfigService,
+              private notificationService: NotificationService) {
   }
 
   public login(username: string, password: string): Observable<AuthorizationResponse> {
