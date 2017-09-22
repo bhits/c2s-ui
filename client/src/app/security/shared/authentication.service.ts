@@ -10,6 +10,9 @@ import {Observable} from "rxjs/Observable";
 import {AuthorizationResponse} from "./authorization-response.model";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {LoginRequest} from "./login-request.model";
+import {ConfigService} from "../../core/config.service";
+import {Config} from "../../core/config.model";
+import {NotificationService} from "../../core/notification.service";
 
 
 @Injectable()
@@ -23,7 +26,9 @@ export class AuthenticationService {
               private globalEventManagerService: GlobalEventManagerService,
               private limitedProfileService: LimitedProfileService,
               private customTranslateService: CustomTranslateService,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private configService:ConfigService,
+              private notificationService:NotificationService) {
   }
 
   public login(username: string, password: string): Observable<AuthorizationResponse> {
@@ -33,6 +38,16 @@ export class AuthenticationService {
 
   public onLoginSuccess(response: AuthorizationResponse): void {
     this.tokenService.setAccessToken(response);
+
+    // Get config data once login
+    this.configService.getConfig().subscribe(
+      (config: Config) => {
+        this.configService.setConfigInSessionStorage(config);
+      },
+      () => {
+        this.notificationService.i18nShow("SHARED.CONFIGURATION_SERVICE_ERROR");
+      }
+    );
   }
 
   public onGetUserProfileSuccess(redirectUrl: string): void {
