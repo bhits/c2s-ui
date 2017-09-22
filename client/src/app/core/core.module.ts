@@ -11,6 +11,7 @@ import {GlobalEventManagerService} from "./global-event-manager.service";
 import {BrowserService} from "./browser.service";
 import {CustomTranslateService} from "./custom-translate.service";
 import {SessionStorageService} from "../security/shared/session-storage.service";
+import {ConfigService} from "./config.service";
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {SessionStorageService} from "../security/shared/session-storage.service"
   ],
   declarations: [],
   providers: [
+    ConfigService,
     BrowserService,
     ExceptionService,
     NotificationService,
