@@ -19,6 +19,7 @@ import {FileValueAccessor} from "./file-value-accessor.directive";
 import {FileValidator} from "./file-validator.directive";
 import {UserAvatarDisplayComponent} from "./user-avatar-display/user-avatar-display.component";
 import {ControlValidationErrorMessageComponent} from "./control-validation-error-message/control-validation-error-message.component";
+import {ExceptionService} from "./exception.service";
 
 @NgModule({
   imports: [
@@ -60,6 +61,7 @@ import {ControlValidationErrorMessageComponent} from "./control-validation-error
     DataService,
     UtilityService,
     DatePipe,
+    ExceptionService,
     ValidationService,
     FileValidator
   ]
