@@ -17,6 +17,7 @@ export class C2sUiApiUrlService {
       ["accountActivationErrorUrl", "/account/activation-error"],
 
       // External api Url maps
+      ["configBaseUrl","/c2s-ui-api/config"],
       ["pcmBaseUrl", "/c2s-ui-api/pcm"],
       ["plsBaseUrl", "/c2s-ui-api/pls"],
       ["vssBaseUrl", "/c2s-ui-api/vss"],
@@ -97,5 +98,9 @@ export class C2sUiApiUrlService {
 
   public getIExHubXdsbBaseUrl(): string {
     return this.urls.get('iexHubXdsbBaseUrl');
+  }
+
+  public getConfigBaseUrl():string{
+    return this.urls.get('configBaseUrl');
   }
 }
