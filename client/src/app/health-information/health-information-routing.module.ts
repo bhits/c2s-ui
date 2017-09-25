@@ -4,6 +4,7 @@ import {HealthInformationComponent} from "./health-information/health-informatio
 import {CanActivateAuthGuardService} from "../security/shared/can-activate-auth-guard.service";
 import {HealthInformationListComponent} from "./health-information-list/health-information-list.component";
 import {HealthInformationResolveService} from "./shared/health-information-resolve.service";
+import {CanActivateHealthInformationService} from "./shared/can-activate-health-information.service";
 
 const healthInformationRoutes: Routes = [
   {
@@ -15,6 +16,7 @@ const healthInformationRoutes: Routes = [
       {
         path: '',
         component: HealthInformationListComponent,
+        canActivate:[CanActivateHealthInformationService],
         resolve: {
           healthInformation: HealthInformationResolveService,
         }
