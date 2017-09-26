@@ -8,6 +8,7 @@ import {SessionStorageService} from "./shared/session-storage.service";
 import {TokenService} from "./shared/token.service";
 import {LimitedProfileService} from "./shared/limited-profile.service";
 import {LayoutModule} from "../layout/layout.module";
+import {CanActivateHealthInformationService} from "../health-information/shared/can-activate-health-information.service";
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import {LayoutModule} from "../layout/layout.module";
   ],
   providers: [
     CanActivateAuthGuardService,
+    CanActivateHealthInformationService,
     AuthenticationService,
     SessionStorageService,
     TokenService,

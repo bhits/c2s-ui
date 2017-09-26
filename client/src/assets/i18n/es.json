@@ -531,6 +531,7 @@
     }
   },
   "SHARED": {
+    "CONFIGURATION_SERVICE_ERROR": "No se han podido cargar las configuraciones desde el servidor. Vaya a la página de inicio de sesión y vuelva a intentarlo.",
     "VALIDATION_RULES": {
       "PHONE_ERROR_MESSAGE": "Debe estar en uno de los siguientes formatos: 123-456-7890 (123)456-7890 1234567890 123.456.7890",
       "SSN_ERROR_MESSAGE": "Debe estar en uno de los siguientes formatos:  123-45-6789, 123456789; 123-456789; 12345-6789",
