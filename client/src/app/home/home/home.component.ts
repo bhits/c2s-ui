@@ -6,6 +6,7 @@ import {ConsentList} from "../../consent/shared/consent-list.model";
 
 import {TokenService} from "../../security/shared/token.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {ConfigService} from "../../core/config.service";
 
 @Component({
   selector: 'c2s-home',
@@ -13,6 +14,7 @@ import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
   styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public isHealthInformationEnabled: boolean;
   totalProviders: number = 0;
   totalConsents: number = 0;
   providers: ConsentProvider[];
@@ -24,10 +26,12 @@ export class HomeComponent implements OnInit {
   constructor(private utilityService: UtilityService,
               private apiUrlService: C2sUiApiUrlService,
               private route: ActivatedRoute,
-              private tokenService: TokenService) {
+              private tokenService: TokenService,
+              private configService: ConfigService) {
   }
 
   ngOnInit() {
+    this.isHealthInformationEnabled = this.configService.getConfigInSessionStorage().patientPermissions.healthInformationEnabled;
     this.consentMapping = {
       '=0': 'HOME.CONSENTS.ZERO',
       'other': 'HOME.CONSENTS.MORE'

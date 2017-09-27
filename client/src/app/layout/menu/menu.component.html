@@ -3,7 +3,7 @@
 
 <md-menu #menu="mdMenu">
   <md-list>
-    <md-list-item *ngFor="let menuItem of menuItems">
+    <md-list-item *ngFor="let menuItem of getEnabledMenuItems()">
       <button md-menu-item (click)="navigateTo(menuItem.key, menuItem.routerLink)">
         <span>{{menuItem.text | translate}}</span>
       </button>
