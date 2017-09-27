@@ -12,10 +12,6 @@ const accountRoutes: Routes = [
     component: AccountComponent,
     children: [
       {
-        path: 'verification',
-        component: AccountVerificationComponent
-      },
-      {
         path: 'activation',
         component: AccountActivationComponent
       },
@@ -28,6 +24,10 @@ const accountRoutes: Routes = [
         component: AccountActivationErrorComponent
       }
     ]
+  },
+  {
+    path: 'account-verification',
+    component: AccountVerificationComponent,
   }
 ];
 
