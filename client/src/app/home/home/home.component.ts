@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isHealthInformationEnabled = this.configService.getConfigInSessionStorage().patientPermissions.healthInformationEnabled;
+    this.isHealthInformationEnabled = this.configService.getConfigInSessionStorage().features.healthInformationEnabled;
     this.consentMapping = {
       '=0': 'HOME.CONSENTS.ZERO',
       'other': 'HOME.CONSENTS.MORE'
