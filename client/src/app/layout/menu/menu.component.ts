@@ -4,6 +4,7 @@ import {AuthenticationService} from "../../security/shared/authentication.servic
 import {MenuItem} from "../shared/menu-item.model";
 import {MENU_ITEMS} from "../shared/menu-items.model";
 import {ConfigService} from "../../core/config.service";
+import {MenuItemKey} from "../shared/menu-item-key";
 
 @Component({
   selector: 'c2s-menu',
@@ -23,7 +24,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     let config: any = this.configService.getConfigInSessionStorage();
     if (config) {
-      this.isHealthInformationEnabled = config.patientPermissions.healthInformationEnabled;
+      this.isHealthInformationEnabled = config.features.healthInformationEnabled;
     } else {
       console.log("Cannot get config from session")
     }
@@ -35,7 +36,7 @@ export class MenuComponent implements OnInit {
 
   private isShowInMenu(menuItem: MenuItem): boolean {
     switch (menuItem.key) {
-      case "Health Information":
+      case MenuItemKey.HEALTH_INFORMATION:
         return this.isHealthInformationEnabled;
       default:
         return true;
@@ -44,7 +45,7 @@ export class MenuComponent implements OnInit {
 
   public navigateTo(key: string, routerLink: string): void {
     switch (key) {
-      case 'Logout':
+      case MenuItemKey.LOGOUT:
         this.authenticationService.logout();
         break;
       default:

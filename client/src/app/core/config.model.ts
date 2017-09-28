@@ -1,5 +1,5 @@
-import {PatientPermissions} from "./patient-permissions.model";
+import {Features} from "./features.model";
 
 export class Config {
-  patientPermissions: PatientPermissions;
+  features: Features;
 }

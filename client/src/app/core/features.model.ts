@@ -1,3 +1,3 @@
-export class PatientPermissions {
+export class Features {
   healthInformationEnabled: boolean;
 }
