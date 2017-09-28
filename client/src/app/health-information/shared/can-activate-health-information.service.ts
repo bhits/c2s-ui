@@ -9,7 +9,7 @@ export class CanActivateHealthInformationService implements CanActivate, CanActi
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.configService.getConfigInSessionStorage().patientPermissions.healthInformationEnabled;
+    return this.configService.getConfigInSessionStorage().features.healthInformationEnabled;
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
