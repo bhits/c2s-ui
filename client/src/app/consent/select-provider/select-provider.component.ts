@@ -20,8 +20,8 @@ export class SelectProviderComponent implements OnInit {
   @Input() selectedProviders: ConsentProvider[] = null;
 
   consent: Consent;
-  selectedProviderNpi: string;
-  selectedProvider: ConsentProvider;
+  selectedProviderNpi: string[];
+  newlySelectedProviders: ConsentProvider[];
 
   constructor(private consentService: ConsentService) {
     this.consentService.getConsentEmitter().subscribe((consent) => {
@@ -39,11 +39,11 @@ export class SelectProviderComponent implements OnInit {
     if (this.isAuthorizedProviders &&
       (this.consent.fromProviders.identifiers) &&
       (this.consent.fromProviders.identifiers.length > 0)) {
-      this.selectedProvider = this.consentService.getProviderByNPI(this.providers, this.consent.fromProviders.identifiers[0].value);
+        this.newlySelectedProviders = this.consentService.getProvidersByIdentifier(this.providers, this.consent.fromProviders);
     } else if ((!this.isAuthorizedProviders) &&
       (this.consent.toProviders.identifiers) &&
       (this.consent.toProviders.identifiers.length > 0)) {
-      this.selectedProvider = this.consentService.getProviderByNPI(this.providers, this.consent.toProviders.identifiers[0].value);
+      this.newlySelectedProviders = this.consentService.getProvidersByIdentifier(this.providers, this.consent.toProviders);
     }
   }
 
@@ -55,13 +55,21 @@ export class SelectProviderComponent implements OnInit {
     dialog.close();
   }
 
-  onAddSelectedProviders(dialog: any) {
-    this.selectedProvider = this.consentService.getProviderByNPI(this.providers, this.selectedProviderNpi);
+  private getSelectedProviders(newlSelectedProviders:any[]):ConsentProvider[]{
+    let providers:ConsentProvider[] = [];
+    newlSelectedProviders.forEach(item =>{
+      providers.push(item.value)
+    });
+    return providers;
+  }
+
+  onAddSelectedProviders(newlSelectedProviders:any[], dialog: any) {
+    this.newlySelectedProviders = this.getSelectedProviders(newlSelectedProviders);
     if (this.isAuthorizedProviders) {
-      this.consent.fromProviders = this.createListOfIdentifiers(this.selectedProvider);
+      this.consent.fromProviders = this.createListOfIdentifiers(this.newlySelectedProviders);
       this.consentService.setConsent(this.consent);
     } else if (!this.isAuthorizedProviders) {
-      this.consent.toProviders = this.createListOfIdentifiers(this.selectedProvider);
+      this.consent.toProviders = this.createListOfIdentifiers(this.newlySelectedProviders);
       this.consentService.setConsent(this.consent);
     }
     dialog.close();
@@ -70,19 +78,21 @@ export class SelectProviderComponent implements OnInit {
   isSelected(npi: string): boolean {
     if ((this.isAuthorizedProviders) && this.consent.toProviders
       && this.consent.toProviders.identifiers && this.consent.toProviders.identifiers[0]) {
-      return (this.consent.toProviders.identifiers[0].value === npi);
+      return  this.consentService.isSelected(this.consent.toProviders.identifiers, npi);
     } else if ((!this.isAuthorizedProviders) && this.consent.fromProviders &&
       this.consent.fromProviders.identifiers && this.consent.fromProviders.identifiers[0]) {
-      return (this.consent.fromProviders.identifiers[0].value === npi);
+      return this.consentService.isSelected(this.consent.fromProviders.identifiers, npi);;
     }
     return false;
   }
 
-  private createListOfIdentifiers(selectedProvider: ConsentProvider) {
-    let provider = new ListOfIdentifiers([new Identifier(null, null)]);
-    if (selectedProvider) {
-      provider.identifiers = [new Identifier(selectedProvider.identifiers[0].system, selectedProvider.identifiers[0].value)];
-    }
-    return provider;
+  private createListOfIdentifiers(providers: ConsentProvider[]) {
+    let listOfIdentifiers:ListOfIdentifiers = new ListOfIdentifiers([new Identifier(null, null)]);
+    let identifies: Identifier[] = [];
+    providers.forEach(provider=>{
+      identifies.push(new Identifier(provider.identifiers[0].system, provider.identifiers[0].value));
+    });
+    listOfIdentifiers.identifiers = identifies;
+    return listOfIdentifiers;
   }
 }

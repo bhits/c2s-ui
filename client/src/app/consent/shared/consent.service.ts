@@ -16,6 +16,8 @@ import {ConsentRevocation} from "./consent-revocation.model";
 import {BinaryFile} from "./binary-file.model";
 import {NotificationService} from "../../core/notification.service";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
+import {ListOfIdentifiers} from "src/app/shared/list-of-identifiers.model";
+import {Identifier} from "../../shared/identifier.model";
 
 
 @Injectable()
@@ -57,13 +59,37 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getProviderByNPI(providers: ConsentProvider[], npi: string): ConsentProvider {
-    for (let provider of providers) {
-      if (provider.identifiers[0].value === npi) {
-        return provider;
+  getProvidersByIdentifier(providers: ConsentProvider[], selectedProvidersIdentifier: ListOfIdentifiers): ConsentProvider[] {
+    let selectedProvider:ConsentProvider[] = [];
+    selectedProvidersIdentifier.identifiers.forEach(identifier =>{
+      providers.forEach(provider =>{
+        provider.identifiers.forEach(entry =>{
+          if(entry.value === identifier.value){
+            selectedProvider.push(provider);
+          }
+        });
+      });
+    });
+    return selectedProvider;
+  }
+
+  isSelected(identifiers: Identifier[], npi: string): boolean {
+    identifiers.forEach(entry =>{
+      if(entry.value === npi){
+        return true;
       }
-    }
-    return null;
+    });
+    return false;
+  }
+
+  getSelectedProvidersByNpi(providers: ConsentProvider[]): ConsentProvider[] {
+    let selectedProvider:ConsentProvider[] = [];
+    providers.forEach(provider =>{
+      if(provider['selected']){
+        selectedProvider.push(provider);
+      };
+    })
+    return selectedProvider;
   }
 
   createConsent(consent: Consent): Observable<void> {

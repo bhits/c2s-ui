@@ -4,7 +4,11 @@
     <md-card-title>{{title}}</md-card-title>
   </md-card-header>
   <md-card-content>
-     <h4>{{ selectedProvider | consentProvider : 'name'}}</h4>
+    <md-list>
+      <md-list-item *ngFor="let provider of newlySelectedProviders">
+        <strong>{{ provider | consentProvider : 'name'}}</strong>
+      </md-list-item>
+    </md-list>
   </md-card-content>
 </md-card>
 
@@ -16,31 +20,38 @@
       {{ 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DESCRIPTION' | translate }}
     </md-card-title>
     <md-card-content class="p-l-sm p-r-sm p-b-md">
+
       <h3>{{ 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.IND_PROVIDER_LABEL' | translate }}</h3>
-      <md-radio-group  [(ngModel)]="selectedProviderNpi">
-          <div *ngFor="let provider of providers">
-            <md-radio-button class="p-b-xs" *ngIf="provider.providerType === 'PRACTITIONER'"
-                             [value]="provider?.identifiers[0]?.value"
-                             [disabled]="isSelected(provider?.identifiers[0]?.value)">
-              {{provider | consentProvider : 'name'}}
-            </md-radio-button>
-          </div>
-      <h3>{{ 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.ORG_PROVIDER_LABEL' | translate }}</h3>
-        <div *ngFor="let provider of providers">
-          <md-radio-button *ngIf="provider.providerType === 'ORGANIZATION'"
-                           [value]="provider?.identifiers[0]?.value"
-                           [disabled]="isSelected(provider?.identifiers[0]?.value)">
-            {{provider | consentProvider  : 'name'}}
-          </md-radio-button>
+
+      <md-selection-list #newSelectedProviders >
+        <div *ngFor="let provider of providers" >
+          <md-list-option [checkboxPosition]="before"
+                          *ngIf="provider.providerType === 'PRACTITIONER'"
+                          [value]="provider"
+                          [disabled]="isSelected(provider?.identifiers[0]?.value)">
+            {{provider | consentProvider : 'name'}}
+          </md-list-option>
         </div>
-      </md-radio-group>
+
+      <h3>{{ 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.ORG_PROVIDER_LABEL' | translate }}</h3>
+
+        <div *ngFor="let provider of providers" >
+          <md-list-option [checkboxPosition]="before"
+                          *ngIf="provider.providerType === 'ORGANIZATION'"
+                          [value]="provider"
+                          [disabled]="isSelected(provider?.identifiers[0]?.value)">
+            {{provider | consentProvider : 'name'}}
+          </md-list-option>
+        </div>
+      </md-selection-list>
     </md-card-content>
   </md-card>
   <md2-dialog-footer>
     <button type="button" md-raised-button (click)="closeDialog(selectProviderDialog)">
       {{ 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.CANCEL_BTN' | translate }}
     </button>
-    <button type="button" md-raised-button color="primary" (click)="onAddSelectedProviders(selectProviderDialog)" >
+    <button type="button" md-raised-button color="primary"
+            (click)="onAddSelectedProviders(newSelectedProviders.selectedOptions.selected, selectProviderDialog)" >
       {{ 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.ADD_BTN' | translate }}
     </button>
   </md2-dialog-footer>
