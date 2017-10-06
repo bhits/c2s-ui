@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {MaterialModule} from "@angular/material";
 import {HeaderUserProfileComponent} from "./header-user-profile/header-user-profile.component";
 import {LogoComponent} from "./logo/logo.component";
 import {MenuComponent} from "./menu/menu.component";
@@ -33,7 +32,6 @@ import {MultiLanguageComponent} from "./multi-language/multi-language.component"
     UnsecuredHeaderComponent,
     FooterComponent,
     PageContentComponent,
-    MaterialModule
   ],
   providers: [AuthenticationService]
 })
