@@ -16,7 +16,6 @@ export class SelectProvidersComponent implements OnInit {
   toProviders: ListOfIdentifiers;
   consent: Consent;
   @Input() completeSelectedProviders: ConsentProvider[] = [];
-  selectedProvidersNpi: any = {authorize: [], disclosure: []};
 
   constructor(private consentService: ConsentService) {
     this.consentService.getConsentEmitter().subscribe((consent) => {

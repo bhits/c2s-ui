@@ -18,8 +18,8 @@ export class SelectProviderComponent implements OnInit {
   @Input() title: string;
   @Input() dialogTitle: string;
   @Input() isAuthorizedProviders: boolean;
-  @Input() selectedProviders: ConsentProvider[] = null;
-  @Input() localeProviders: ConsentProvider[] = null;
+  selectedProviders: ConsentProvider[];
+  localeProviders: ConsentProvider[];
 
   consent: Consent;
 
