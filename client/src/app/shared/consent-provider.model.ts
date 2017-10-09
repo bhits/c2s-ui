@@ -1,5 +1,6 @@
 import {Identifier} from "./identifier.model";
 import {Address} from "./address.model";
+
 export class ConsentProvider {
   id: number;
   npi?: string;
@@ -12,5 +13,6 @@ export class ConsentProvider {
   name?: string;
   phoneNumber?: string;
   deletable: boolean;
+  selected?: boolean = false;
 }
 export const FHIR_US_NPI_SYSTEM = "http://hl7.org/fhir/sid/us-npi";
