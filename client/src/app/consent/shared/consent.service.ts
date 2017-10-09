@@ -73,13 +73,30 @@ export class ConsentService {
     return selectedProvider;
   }
 
-  isSelected(identifiers: Identifier[], npi: string): boolean {
-    identifiers.forEach(entry =>{
-      if(entry.value === npi){
-        return true;
-      }
+  markSelectedProvidersAsChecked(providers:ConsentProvider[], selectedIdentifiers: Identifier[]){
+    providers.forEach(provider => {
+      let tempProvider = provider;
+      provider.identifiers.forEach(identifier=>{
+        selectedIdentifiers.forEach(selectedIdentifier => {
+          if(selectedIdentifier.value ===identifier.value){
+            provider.selected = true;
+          }
+        });
+      });
     });
-    return false;
+  }
+
+
+  isInList(currentIdentifiers: Identifier[], selectedIdentifiers: Identifier[]): boolean {
+    let selected = false;
+    selectedIdentifiers.forEach(selectedIdentifier=>{
+      currentIdentifiers.forEach(currentIdentifier =>{
+        if(currentIdentifier.value === selectedIdentifier.value){
+          selected =  true;
+        }
+      });
+    });
+    return selected;
   }
 
   getSelectedProvidersByNpi(providers: ConsentProvider[]): ConsentProvider[] {
@@ -222,5 +239,28 @@ export class ConsentService {
     return this.http.get(url, {search: params})
       .map((resp: Response) => <BinaryFile>(resp.json()))
       .catch(this.exceptionService.handleError);
+  }
+
+   createListOfIdentifiers(providers: ConsentProvider[]) {
+    let listOfIdentifiers:ListOfIdentifiers = new ListOfIdentifiers([new Identifier(null, null)]);
+    let identifies: Identifier[] = [];
+    providers.forEach(provider=>{
+      if(provider['selected']){
+        identifies.push(new Identifier(provider.identifiers[0].system, provider.identifiers[0].value));
+      }
+    });
+    listOfIdentifiers.identifiers = identifies;
+    return listOfIdentifiers;
+  }
+
+  getSelectedProviders(newlSelectedProviders:ConsentProvider[]):ConsentProvider[]{
+    let providers:ConsentProvider[] = [];
+    newlSelectedProviders.forEach(provider =>{
+      if(provider['selected']){
+        providers.push(provider)
+      }
+
+    });
+    return providers;
   }
 }
