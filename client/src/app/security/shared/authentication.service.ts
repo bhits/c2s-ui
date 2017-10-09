@@ -5,7 +5,7 @@ import {TokenService} from "./token.service";
 import {LimitedProfileService} from "./limited-profile.service";
 import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {Observable} from "rxjs/Observable";
 import {AuthorizationResponse} from "./authorization-response.model";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";

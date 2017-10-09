@@ -4,7 +4,7 @@ import {userProfileRoutedComponents, UserProfileRoutingModule} from "./user-prof
 import {SharedModule} from "../shared/shared.module";
 import {LayoutModule} from "../layout/layout.module";
 import {ProfileFieldsLookupService} from "./shared/profile-fields-lookup.service";
-import {FullProfileService} from "../shared/full-profile.service";
+import {FullProfileService} from "./shared/full-profile.service";
 
 @NgModule({
   imports: [

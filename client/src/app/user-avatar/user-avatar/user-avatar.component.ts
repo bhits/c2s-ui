@@ -5,7 +5,7 @@ import {FileValidator} from "../../shared/file-validator.directive";
 import {UserAvatarService} from "../shared/user-avatar.service";
 import {NotificationService} from "../../core/notification.service";
 import {Router} from "@angular/router";
-import {UserAvatarMonitoringService} from "../../shared/user-avatar-monitoring.service";
+import {UserAvatarMonitoringService} from "../shared/user-avatar-monitoring.service";
 import {AvatarImage} from "../shared/avatar-image.model";
 import {isNullOrUndefined} from "util";
 

@@ -1,5 +1,3 @@
-import {UtilityService} from "../shared/utility.service";
-import {BrowserService} from "../core/browser.service";
 import {DatePipe, Location} from "@angular/common";
 import {Router} from "@angular/router";
 import {ConsentProvider, FHIR_US_NPI_SYSTEM} from "./consent-provider.model";
@@ -9,11 +7,9 @@ import {Address} from "./address.model";
 
 describe(' ConsentProviderPipe', () => {
   let pipe;
-  let utilityService: UtilityService;
   let location: Location;
   let router: Router;
   let datePipe: DatePipe;
-  let browserService: BrowserService;
   let testConsentProvider: ConsentProvider;
   let testIdentifier1, testIdentifier2: Identifier;
   let testIdentifierArray: Identifier[];
@@ -21,8 +17,7 @@ describe(' ConsentProviderPipe', () => {
   let system: string;
 
   beforeEach(() => {
-    utilityService = new UtilityService(location, router, datePipe, browserService);
-    pipe = new ConsentProviderPipe(utilityService);
+    pipe = new ConsentProviderPipe();
     testConsentProvider = new ConsentProvider();
   });
 

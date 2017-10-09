@@ -8,17 +8,14 @@ import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 import {TranslateModule} from "@ngx-translate/core";
 import {UsPhoneNumberPipe} from "./us-phone-number.pipe";
-import {UtilityService} from "./utility.service";
-import {DataService} from "./data.service";
 import {PageTitleComponent} from "./page-title/page-title.component";
 import {ValidationService} from "./validation.service";
 import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
-import {ConsentProviderPipe} from "./consent-provider.pipe";
 import {ShowHidePasswordComponent} from "./show-hide-password/show-hide-password.component";
 import {FileValueAccessor} from "./file-value-accessor.directive";
 import {FileValidator} from "./file-validator.directive";
-import {UserAvatarDisplayComponent} from "./user-avatar-display/user-avatar-display.component";
 import {ControlValidationErrorMessageComponent} from "./control-validation-error-message/control-validation-error-message.component";
+import {ConsentProviderPipe} from "./consent-provider.pipe";
 
 @NgModule({
   imports: [
@@ -31,11 +28,10 @@ import {ControlValidationErrorMessageComponent} from "./control-validation-error
     UsPhoneNumberPipe,
     PageTitleComponent,
     ControlValidationErrorMessageComponent,
-    ConsentProviderPipe,
     ShowHidePasswordComponent,
     FileValueAccessor,
     FileValidator,
-    UserAvatarDisplayComponent
+    ConsentProviderPipe
   ],
   exports: [
     CommonModule,
@@ -52,13 +48,10 @@ import {ControlValidationErrorMessageComponent} from "./control-validation-error
     PageTitleComponent,
     ControlValidationErrorMessageComponent,
     ShowHidePasswordComponent,
-    FileValueAccessor,
-    UserAvatarDisplayComponent
+    FileValueAccessor
   ],
   providers: [
     C2sUiApiUrlService,
-    DataService,
-    UtilityService,
     DatePipe,
     ValidationService,
     FileValidator

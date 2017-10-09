@@ -4,7 +4,7 @@ import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterSta
 import {AuthenticationService} from "./authentication.service";
 import {TokenService} from "./token.service";
 import {NotificationService} from "../../core/notification.service";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {PlatformLocation} from "@angular/common";
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";

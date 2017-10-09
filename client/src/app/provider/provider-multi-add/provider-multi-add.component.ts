@@ -3,7 +3,7 @@ import {ProviderService} from "../shared/provider.service";
 import {NotificationService} from "../../core/notification.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 
 @Component({
   selector: 'c2s-provider-multi-add',

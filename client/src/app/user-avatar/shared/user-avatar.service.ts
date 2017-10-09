@@ -3,10 +3,10 @@ import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {ExceptionService} from "../../core/exception.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {UserAvatarMonitoringService} from "../../shared/user-avatar-monitoring.service";
-import {UtilityService} from "../../shared/utility.service";
+import {UserAvatarMonitoringService} from "./user-avatar-monitoring.service";
+import {UtilityService} from "../../core/utility.service";
 import {AvatarFileUploadRequest} from "./avatar-file-upload-request.model";
-import {FullProfileService} from "../../shared/full-profile.service";
+import {FullProfileService} from "../../user-profile/shared/full-profile.service";
 import {AvatarImage} from "./avatar-image.model";
 
 @Injectable()

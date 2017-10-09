@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
 
 @Pipe({

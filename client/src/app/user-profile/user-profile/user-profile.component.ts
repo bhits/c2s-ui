@@ -7,7 +7,7 @@ import {ProfileFieldsLookupInfo} from "../shared/profile-fields-lookup-info.mode
 import {NotificationService} from "../../core/notification.service";
 import {UmsFullProfileView} from "../shared/ums-full-profile-view.model";
 import {UmsFullProfileUpdate} from "../shared/ums-full-profile-update.model";
-import {FullProfileService} from "../../shared/full-profile.service";
+import {FullProfileService} from "../shared/full-profile.service";
 import {UmsProfileAddress} from "../../shared/ums-profile-address.model";
 
 @Component({

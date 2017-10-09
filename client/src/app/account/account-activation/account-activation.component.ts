@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountVerificationService} from "../shared/account-verification.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {AccountActivationRequest} from "../shared/account-activation-request.model";
 import {ValidationRules} from "../../shared/validation-rules.model";
 import {AccountService} from "../shared/account.service";

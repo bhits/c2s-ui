@@ -1,5 +1,5 @@
 import {ProviderAddressPipe} from "./provider-address.pipe";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {DatePipe, Location} from "@angular/common";
 import {Router} from "@angular/router";
 import {BrowserService} from "../../core/browser.service";

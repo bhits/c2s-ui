@@ -1,10 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Http, Response, URLSearchParams} from "@angular/http";
-import {ExceptionService} from "../core/exception.service";
+import {ExceptionService} from "./exception.service";
 import {Observable} from "rxjs";
-import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
+import {C2sUiApiUrlService} from "../shared/c2s-ui-api-url.service";
 import {ConsentList} from "../consent/shared/consent-list.model";
-import {ConsentProvider} from "./consent-provider.model";
+import {ConsentProvider} from "../shared/consent-provider.model";
 import {LimitedProfileService} from "../security/shared/limited-profile.service";
 
 @Injectable()

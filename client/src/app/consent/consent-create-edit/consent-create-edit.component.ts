@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ConsentService} from "../shared/consent.service";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {Consent} from "../shared/consent.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {NotificationService} from "../../core/notification.service";

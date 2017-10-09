@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {TranslateService} from "@ngx-translate/core";
 import {AccountVerificationService} from "../shared/account-verification.service";
 @Component({

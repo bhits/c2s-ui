@@ -9,7 +9,7 @@ import {Consent} from "./consent.model";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {SharePurpose} from "./share-purpose.model";
 import {ConsentProvider} from "../../shared/consent-provider.model";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {DetailedConsent} from "./detailed-consent.model";
 import {ConsentTerms} from "./consent-terms.model";
 import {ConsentRevocation} from "./consent-revocation.model";

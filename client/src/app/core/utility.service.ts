@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {DatePipe, Location} from "@angular/common";
 import {Router} from "@angular/router";
-import {Identifier} from "./identifier.model";
-import {BrowserService} from "../core/browser.service";
+import {Identifier} from "../shared/identifier.model";
+import {BrowserService} from "./browser.service";
 
 @Injectable()
 export class UtilityService {

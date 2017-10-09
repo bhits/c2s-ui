@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {Http, XHRBackend, RequestOptions} from "@angular/http";
-import {SlimLoadingBarService, SlimLoadingBarModule} from "ng2-slim-loading-bar";
+import {Http, RequestOptions, XHRBackend} from "@angular/http";
+import {SlimLoadingBarModule, SlimLoadingBarService} from "ng2-slim-loading-bar";
 import {httpInterceptorServiceFactory} from "./http-interceptor.service";
 import {NotificationService} from "./notification.service";
 import {ExceptionService} from "./exception.service";
@@ -12,6 +12,8 @@ import {BrowserService} from "./browser.service";
 import {CustomTranslateService} from "./custom-translate.service";
 import {SessionStorageService} from "../security/shared/session-storage.service";
 import {ConfigService} from "./config.service";
+import {UtilityService} from "./utility.service";
+import {DataService} from "./data.service";
 
 @NgModule({
   imports: [
@@ -27,6 +29,8 @@ import {ConfigService} from "./config.service";
     NotificationService,
     GlobalEventManagerService,
     CustomTranslateService,
+    UtilityService,
+    DataService,
     {
       provide: Http,
       useFactory: httpInterceptorServiceFactory,

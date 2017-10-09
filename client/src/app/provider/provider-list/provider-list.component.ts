@@ -6,7 +6,7 @@ import {NotificationService} from "../../core/notification.service";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {TokenService} from "../../security/shared/token.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 
 @Component({
   selector: 'c2s-provider-list',

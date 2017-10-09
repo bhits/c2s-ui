@@ -6,7 +6,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CustomTranslateService} from "../../core/custom-translate.service";
 import {LimitedProfileService} from "../shared/limited-profile.service";
 import {UmsLimitedProfile} from "../shared/ums-limited-profile.model";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 
 @Component({
   selector: 'c2s-login',

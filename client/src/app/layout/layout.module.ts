@@ -12,12 +12,14 @@ import {RouterModule} from "@angular/router";
 import {AuthenticationService} from "../security/shared/authentication.service";
 import {UnsecuredHeaderComponent} from "./unsecured-header/unsecured-header.component";
 import {MultiLanguageComponent} from "./multi-language/multi-language.component";
+import {UserAvatarModule} from "../user-avatar/user-avatar.module";
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    UserAvatarModule
   ],
   declarations: [
     HeaderUserProfileComponent,
