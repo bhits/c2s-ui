@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
   providerMapping: any;
   warningCheck: boolean = false;
   demoDisclaimerDisabled: string = 'demoDisclaimerDisabled';
+  disabled: boolean;
+
   @ViewChild('warningDialog')
   warningDialog: Md2Dialog;
   //warningDialogConfig : Md2DialogConfig = ;
