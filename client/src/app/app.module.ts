@@ -23,7 +23,6 @@ import {UserAvatarMonitoringService} from "./shared/user-avatar-monitoring.servi
 import {ActivityModule} from "./activity/activity.module";
 import {HealthInformationModule} from "./health-information/health-information.module";
 
-
 @NgModule({
   declarations: [
     AppComponent
