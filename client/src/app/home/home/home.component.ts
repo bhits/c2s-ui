@@ -11,7 +11,6 @@ import {ConfigService} from "../../core/config.service";
 import {Md2Dialog, Md2DialogConfig} from "md2/dialog/dialog";
 import {SessionStorageService} from "../../security/shared/session-storage.service";
 
-
 @Component({
   selector: 'c2s-home',
   templateUrl: './home.component.html',
@@ -28,13 +27,12 @@ export class HomeComponent implements OnInit {
   isDisabled: boolean = false;
   consentMapping: any;
   providerMapping: any;
-  warningCheck: boolean = false;
   demoDisclaimerDisabled: string = 'demoDisclaimerDisabled';
   disabled: boolean;
 
   @ViewChild('warningDialog')
   warningDialog: Md2Dialog;
-  //warningDialogConfig : Md2DialogConfig = ;
+
 
 
   constructor(private utilityService: UtilityService,
@@ -47,11 +45,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.configService.getConfigInSessionStorage().features.healthInformationEnabled);
-    console.log(this.configService.getConfigInSessionStorage().features.demoDisclaimerEnabled);
     if(this.configService.getConfigInSessionStorage().features.demoDisclaimerEnabled){
       if(!this.sessionStorageService.getItemFromSessionStorage(this.DEMO_DISCLAIMER_DISABLED)){
-        this.warningDialog.open();
+        let config = new Md2DialogConfig();
+        config.disableClose = true;
+        this.warningDialog.open(config);
       }
     }
     this.isHealthInformationEnabled = this.configService.getConfigInSessionStorage().features.healthInformationEnabled;
@@ -92,12 +90,10 @@ export class HomeComponent implements OnInit {
   }
 
   public continue(dialog: any): void {
-
     dialog.close();
     this.sessionStorageService.setItemInSessionStorage(this.demoDisclaimerDisabled,true);
-
-    console.log(this.sessionStorageService.getItemFromSessionStorage(this.demoDisclaimerDisabled ));
   }
+
   public logout(dialog: any): void{
     // log out
     dialog.close();
