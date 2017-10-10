@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component,ViewChild, OnInit} from "@angular/core";
 import {UtilityService} from "../../shared/utility.service";
 import {ActivatedRoute} from "@angular/router";
 import {ConsentProvider} from "../../shared/consent-provider.model";
@@ -7,6 +7,7 @@ import {ConsentList} from "../../consent/shared/consent-list.model";
 import {TokenService} from "../../security/shared/token.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {ConfigService} from "../../core/config.service";
+import {Md2Dialog, Md2DialogConfig} from "md2/dialog/dialog";
 
 @Component({
   selector: 'c2s-home',
@@ -22,6 +23,12 @@ export class HomeComponent implements OnInit {
   isDisabled: boolean = false;
   consentMapping: any;
   providerMapping: any;
+  warningCheck: boolean = false;
+
+  @ViewChild('warningDialog')
+  warningDialog: Md2Dialog;
+  //warningDialogConfig : Md2DialogConfig = ;
+
 
   constructor(private utilityService: UtilityService,
               private apiUrlService: C2sUiApiUrlService,
@@ -31,6 +38,15 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.warningCheck);
+    if(this.warningCheck){
+
+    } else {
+      //this.warningCheck = false;
+      this.warningDialog.open();
+    }
+
+
     this.isHealthInformationEnabled = this.configService.getConfigInSessionStorage().features.healthInformationEnabled;
     this.consentMapping = {
       '=0': 'HOME.CONSENTS.ZERO',
@@ -53,6 +69,7 @@ export class HomeComponent implements OnInit {
       this.totalConsents = this.consentList.totalElements;
       this.isDisabled = this.totalProviders <= 1 ? true : false;
     }
+
   }
 
   public navigateToProviderList(): void {
@@ -66,4 +83,15 @@ export class HomeComponent implements OnInit {
       this.utilityService.navigateTo(this.apiUrlService.getConsentListUrl());
     }
   }
+
+  public continue(dialog: any): void {
+    dialog.close();
+    this.warningCheck = true;
+    console.log(this.warningCheck);
+  }
+  public logout(dialog: any): void{
+    // log out
+    dialog.close();
+  }
+
 }

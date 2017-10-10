@@ -1,4 +1,5 @@
 <div class="p-t-75 p-l-lg p-b-md p-r-lg">
+
   <div class="center-sm-left">
     <h1 class="m-n p-t-sm">{{ 'HOME.WELCOME.TITLE' | translate }}</h1>
     <h2 class="m-t-sm m-t-sm">{{ 'HOME.WELCOME.DESCRIPTION' | translate }}</h2>
@@ -61,5 +62,29 @@
   </div>
   <md2-dialog-footer>
     <button md-raised-button (click)="confirmDialog.close()">{{ 'HOME.ADD_PROVIDER.CLOSE' | translate }}</button>
+  </md2-dialog-footer>
+</md2-dialog>
+
+<md2-dialog #warningDialog >
+  <md2-dialog-title>{{ 'HOME.WARNING_DIALOG.TITLE' | translate }}</md2-dialog-title>
+  <div class="m-t-xs">
+    <div>
+      <span [innerHTML]="'HOME.WARNING_DIALOG.DESCRIPTION' | translate"></span>
+    </div>
+  </div>
+  <div>
+    <br>
+    <md-checkbox [(ngModel)]="disabled">{{ 'HOME.WARNING_DIALOG.CHECKBOX' | translate }}</md-checkbox>
+  </div>
+  <md2-dialog-footer>
+    <button type="button" color="primary" md-raised-button
+            (click)="logout(warningDialog)">
+      {{ 'HOME.WARNING_DIALOG.LOGOUT_BTN' | translate }}
+    </button>
+    <button  type="button" color="primary" md-raised-button
+             [disabled]="!disabled"
+             (click)="continue(warningDialog)">
+      {{ 'HOME.WARNING_DIALOG.CONTINUE_BTN' | translate }}
+    </button>
   </md2-dialog-footer>
 </md2-dialog>
