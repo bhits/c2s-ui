@@ -4,10 +4,12 @@ import {ActivatedRoute} from "@angular/router";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {ConsentList} from "../../consent/shared/consent-list.model";
 
+import {AuthenticationService} from "../../security/shared/authentication.service";
 import {TokenService} from "../../security/shared/token.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {ConfigService} from "../../core/config.service";
 import {Md2Dialog, Md2DialogConfig} from "md2/dialog/dialog";
+import {SessionStorageService} from "../../security/shared/session-storage.service";
 
 @Component({
   selector: 'c2s-home',
@@ -24,7 +26,7 @@ export class HomeComponent implements OnInit {
   consentMapping: any;
   providerMapping: any;
   warningCheck: boolean = false;
-
+  demoDisclaimerDisabled: string = 'demoDisclaimerDisabled';
   @ViewChild('warningDialog')
   warningDialog: Md2Dialog;
   //warningDialogConfig : Md2DialogConfig = ;
@@ -34,18 +36,15 @@ export class HomeComponent implements OnInit {
               private apiUrlService: C2sUiApiUrlService,
               private route: ActivatedRoute,
               private tokenService: TokenService,
-              private configService: ConfigService) {
+              private configService: ConfigService,
+              private authenticationService: AuthenticationService,
+              private sessionStorageService: SessionStorageService) {
   }
 
   ngOnInit() {
-    console.log(this.warningCheck);
-    if(this.warningCheck){
-
-    } else {
-      //this.warningCheck = false;
+    if(!this.sessionStorageService.getItemFromSessionStorage(this.demoDisclaimerDisabled)){
       this.warningDialog.open();
     }
-
 
     this.isHealthInformationEnabled = this.configService.getConfigInSessionStorage().features.healthInformationEnabled;
     this.consentMapping = {
@@ -86,12 +85,14 @@ export class HomeComponent implements OnInit {
 
   public continue(dialog: any): void {
     dialog.close();
-    this.warningCheck = true;
-    console.log(this.warningCheck);
+    this.sessionStorageService.setItemInSessionStorage(this.demoDisclaimerDisabled,true);
+
+    console.log(this.sessionStorageService.getItemFromSessionStorage(this.demoDisclaimerDisabled ));
   }
   public logout(dialog: any): void{
     // log out
     dialog.close();
+    this.authenticationService.logout();
   }
 
 }
