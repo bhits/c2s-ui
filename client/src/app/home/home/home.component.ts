@@ -11,12 +11,15 @@ import {ConfigService} from "../../core/config.service";
 import {Md2Dialog, Md2DialogConfig} from "md2/dialog/dialog";
 import {SessionStorageService} from "../../security/shared/session-storage.service";
 
+
 @Component({
   selector: 'c2s-home',
   templateUrl: './home.component.html',
   styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  private readonly DEMO_DISCLAIMER_DISABLED: string = 'demoDisclaimerDisabled';
+
   public isHealthInformationEnabled: boolean;
   totalProviders: number = 0;
   totalConsents: number = 0;
@@ -44,10 +47,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(!this.sessionStorageService.getItemFromSessionStorage(this.demoDisclaimerDisabled)){
-      this.warningDialog.open();
+    console.log(this.configService.getConfigInSessionStorage().features.healthInformationEnabled);
+    console.log(this.configService.getConfigInSessionStorage().features.demoDisclaimerEnabled);
+    if(this.configService.getConfigInSessionStorage().features.demoDisclaimerEnabled){
+      if(!this.sessionStorageService.getItemFromSessionStorage(this.DEMO_DISCLAIMER_DISABLED)){
+        this.warningDialog.open();
+      }
     }
-
     this.isHealthInformationEnabled = this.configService.getConfigInSessionStorage().features.healthInformationEnabled;
     this.consentMapping = {
       '=0': 'HOME.CONSENTS.ZERO',
@@ -86,6 +92,7 @@ export class HomeComponent implements OnInit {
   }
 
   public continue(dialog: any): void {
+
     dialog.close();
     this.sessionStorageService.setItemInSessionStorage(this.demoDisclaimerDisabled,true);
 
