@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 find_location="../../c2s-ng-shared/c2s-ng-shared/dist"
 find_file_pattern="c2s-ng-shared-*.tgz"
 local_dep_name=$(find $find_location -name $find_file_pattern)
