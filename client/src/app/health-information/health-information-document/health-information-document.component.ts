@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PatientHealthDataDocument} from "src/app/health-information/shared/patient-health-data-document.model";
+import {PatientHealthDataDocument} from "../shared/patient-health-data-document.model";
 
 @Component({
   selector: 'c2s-health-information-document',

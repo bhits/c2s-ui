@@ -1,17 +1,16 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountVerificationService} from "../shared/account-verification.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {UtilityService} from "../../core/utility.service";
 import {AccountActivationRequest} from "../shared/account-activation-request.model";
-import {ValidationRules} from "../../shared/validation-rules.model";
+import {ValidationRules, ValidationService} from "c2s-ng-shared";
 import {AccountService} from "../shared/account.service";
-import {ValidationService} from "../../shared/validation.service";
 import {AccountActivationResponse} from "../shared/account-activation-response.model";
 import {Subject} from "rxjs/Subject";
 import {NotificationService} from "../../core/notification.service";
 
 import {TranslateService} from "@ngx-translate/core";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-account-activation',

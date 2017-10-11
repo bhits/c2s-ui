@@ -1,6 +1,5 @@
 import {Injectable} from "@angular/core";
-import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
-import {Identifier} from "../../shared/identifier.model";
+import {Identifier, ListOfIdentifiers} from "c2s-ng-shared";
 import {SharePurpose} from "../shared/share-purpose.model";
 
 @Injectable()

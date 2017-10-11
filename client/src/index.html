@@ -6,7 +6,7 @@
   <title>C2S-UI</title>
   <script>
     (function() {
-      var baseHref = '/' + window.location.pathname.split('/')[1] ? window.location.pathname.split('/')[1] + '/' : '';
+      var baseHref = '/' + (window.location.pathname.split('/')[1] ? window.location.pathname.split('/')[1] + '/' : '');
       document.write('<base href="' + baseHref + '" />');
     })();
   </script>

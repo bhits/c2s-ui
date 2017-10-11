@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {NgUploaderModule} from "ngx-uploader";
 import {userAvatarRoutedComponents, UserAvatarRoutingModule} from "./user-avatar-routing.module";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from 'c2s-ng-shared';
 
 import {TranslateModule} from "@ngx-translate/core";
 import {ImageCropperModule} from "ng2-image-cropper";

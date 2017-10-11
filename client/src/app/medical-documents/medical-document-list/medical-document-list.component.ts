@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {UploadedDocument} from "../../shared/uploaded-document.model";
+import {UploadedDocument} from "c2s-ng-shared";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
 import {NotificationService} from "../../core/notification.service";
 
@@ -18,7 +18,8 @@ export class MedicalDocumentListComponent implements OnInit {
               private notificationService: NotificationService) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   openConfirmDeleteDialog(dialog: any, document: UploadedDocument) {
     dialog.open();
@@ -27,7 +28,7 @@ export class MedicalDocumentListComponent implements OnInit {
 
   confirmDeleteDocument(dialog: any) {
     dialog.close();
-    if(this.selectedDocument != null) {
+    if (this.selectedDocument != null) {
       this.medicalDocumentsService.deleteUploadedDocumentById(this.selectedDocument.id)
         .subscribe(
           () => {

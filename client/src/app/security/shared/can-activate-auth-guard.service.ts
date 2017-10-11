@@ -5,9 +5,9 @@ import {AuthenticationService} from "./authentication.service";
 import {TokenService} from "./token.service";
 import {NotificationService} from "../../core/notification.service";
 import {UtilityService} from "../../core/utility.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {PlatformLocation} from "@angular/common";
 import {GlobalEventManagerService} from "../../core/global-event-manager.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Injectable()
 export class CanActivateAuthGuardService implements CanActivate, CanActivateChild {
@@ -22,7 +22,7 @@ export class CanActivateAuthGuardService implements CanActivate, CanActivateChil
               private location: PlatformLocation,
               private globalEventManagerService: GlobalEventManagerService) {
     location.onPopState(() => {
-      if(window.location.pathname === this.LOGIN_PATH){
+      if (window.location.pathname === this.LOGIN_PATH) {
         this.globalEventManagerService.setShowHeader(false);
         sessionStorage.clear();
       }

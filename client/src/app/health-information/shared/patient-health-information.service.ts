@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from "@angular/http";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {ExceptionService} from "../../core/exception.service";
 import {PatientHealthData} from "./patient-health-data.model";
 import {Observable} from "rxjs/Observable";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Injectable()
 export class PatientHealthInformationService {

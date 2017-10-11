@@ -1,12 +1,12 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../shared/account.service";
-import {AccountVerificationService, EmailLinkInfoKey} from "../shared/account-verification.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {AccountVerificationService} from "../shared/account-verification.service";
 import {UtilityService} from "../../core/utility.service";
 import {AccountVerificationRequest} from "../shared/account-verification-request.model";
 
 import {TranslateService} from "@ngx-translate/core";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-account-verification',

@@ -3,10 +3,10 @@ import {ProviderService} from "../shared/provider.service";
 import {PaginationInstance} from "ng2-pagination";
 import {ActivatedRoute} from "@angular/router";
 import {NotificationService} from "../../core/notification.service";
-import {ConsentProvider} from "../../shared/consent-provider.model";
+import {ConsentProvider} from "c2s-ng-shared";
 import {TokenService} from "../../security/shared/token.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {UtilityService} from "../../core/utility.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-provider-list',

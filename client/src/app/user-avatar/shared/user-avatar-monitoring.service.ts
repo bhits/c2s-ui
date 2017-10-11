@@ -6,9 +6,9 @@ import {AvatarImage} from "./avatar-image.model";
 import {UmsLimitedProfile} from "../../security/shared/ums-limited-profile.model";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {ExceptionService} from "../../core/exception.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {SessionStorageService} from "../../security/shared/session-storage.service";
 import {isNullOrUndefined} from "util";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Injectable()
 export class UserAvatarMonitoringService {

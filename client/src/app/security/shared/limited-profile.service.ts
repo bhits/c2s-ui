@@ -1,10 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
-
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {Observable} from "rxjs";
 import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {SessionStorageService} from "./session-storage.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Injectable()
 export class LimitedProfileService {

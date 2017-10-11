@@ -1,5 +1,5 @@
 import {SensitivityCategoryPipe} from "./sensitivity-category.pipe";
-import {Identifier} from "../../shared/identifier.model";
+import {Identifier} from "c2s-ng-shared";
 
 describe('SensitivityCategoryPipe', () => {
   let pipe, testShareSensitivityCategory, testIdentifier;

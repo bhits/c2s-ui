@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, Resolve} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import {ActivityService} from "./activity.service";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
-import {PageableData} from "../../shared/pageable-data.model";
+import {PageableData} from "c2s-ng-shared";
 import {ConsentActivity} from "./consent-activity.model";
 
 @Injectable()

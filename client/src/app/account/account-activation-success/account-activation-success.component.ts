@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {UtilityService} from "../../core/utility.service";
 import {AccountVerificationService} from "../shared/account-verification.service";
 
 import {TranslateService} from "@ngx-translate/core";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 
 @Component({
@@ -26,7 +26,7 @@ export class AccountActivationSuccessComponent implements OnInit {
   ngOnInit() {
     //let userFullName = this.accountService.getUserFullName();
     this.fullName = {
-      userFullName: this.accountVerificationService.getUserFullName()+""
+      userFullName: this.accountVerificationService.getUserFullName() + ""
     }
   }
 

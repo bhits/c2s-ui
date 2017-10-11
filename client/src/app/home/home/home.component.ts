@@ -1,12 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import {UtilityService} from "../../core/utility.service";
 import {ActivatedRoute} from "@angular/router";
-import {ConsentProvider} from "../../shared/consent-provider.model";
+import {ConsentProvider} from "c2s-ng-shared";
 import {ConsentList} from "../../consent/shared/consent-list.model";
-
 import {TokenService} from "../../security/shared/token.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {ConfigService} from "../../core/config.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-home',

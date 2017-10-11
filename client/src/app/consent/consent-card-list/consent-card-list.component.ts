@@ -4,8 +4,8 @@ import {ActivatedRoute} from "@angular/router";
 import {ConsentList} from "../shared/consent-list.model";
 import {DetailedConsent} from "../shared/detailed-consent.model";
 import {DataService} from "../../core/data.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {UtilityService} from "../../core/utility.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-consent-card-list',
