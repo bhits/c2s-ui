@@ -1,4 +1,4 @@
-import {Component,ViewChild, OnInit} from "@angular/core";
+import {Component, ViewChild, OnInit} from "@angular/core";
 import {UtilityService} from "../../shared/utility.service";
 import {ActivatedRoute} from "@angular/router";
 import {ConsentProvider} from "../../shared/consent-provider.model";
@@ -18,7 +18,9 @@ import {SessionStorageService} from "../../security/shared/session-storage.servi
 })
 export class HomeComponent implements OnInit {
   private readonly DEMO_DISCLAIMER_DISABLED: string = 'demoDisclaimerDisabled';
-
+  disabled: boolean;
+  @ViewChild('warningDialog')
+  warningDialog: Md2Dialog;
   public isHealthInformationEnabled: boolean;
   totalProviders: number = 0;
   totalConsents: number = 0;
@@ -27,13 +29,6 @@ export class HomeComponent implements OnInit {
   isDisabled: boolean = false;
   consentMapping: any;
   providerMapping: any;
-  demoDisclaimerDisabled: string = 'demoDisclaimerDisabled';
-  disabled: boolean;
-
-  @ViewChild('warningDialog')
-  warningDialog: Md2Dialog;
-
-
 
   constructor(private utilityService: UtilityService,
               private apiUrlService: C2sUiApiUrlService,
@@ -45,8 +40,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.configService.getConfigInSessionStorage().features.demoDisclaimerEnabled){
-      if(!this.sessionStorageService.getItemFromSessionStorage(this.DEMO_DISCLAIMER_DISABLED)){
+    if (this.configService.getConfigInSessionStorage().features.demoDisclaimerEnabled) {
+      if (!this.sessionStorageService.getItemFromSessionStorage(this.DEMO_DISCLAIMER_DISABLED)) {
         let config = new Md2DialogConfig();
         config.disableClose = true;
         this.warningDialog.open(config);
@@ -91,10 +86,10 @@ export class HomeComponent implements OnInit {
 
   public continue(dialog: any): void {
     dialog.close();
-    this.sessionStorageService.setItemInSessionStorage(this.demoDisclaimerDisabled,true);
+    this.sessionStorageService.setItemInSessionStorage(this.DEMO_DISCLAIMER_DISABLED, true);
   }
 
-  public logout(dialog: any): void{
+  public logout(dialog: any): void {
     // log out
     dialog.close();
     this.authenticationService.logout();
