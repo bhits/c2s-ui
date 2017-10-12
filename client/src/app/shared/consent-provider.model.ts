@@ -13,6 +13,6 @@ export class ConsentProvider {
   name?: string;
   phoneNumber?: string;
   deletable: boolean;
-  selected?: boolean = false;
+  selected?: boolean;
 }
 export const FHIR_US_NPI_SYSTEM = "http://hl7.org/fhir/sid/us-npi";

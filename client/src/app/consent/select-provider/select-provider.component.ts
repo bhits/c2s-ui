@@ -71,15 +71,14 @@ export class SelectProviderComponent implements OnInit {
   }
 
   isSelected(provider: ConsentProvider): boolean {
-    let selected = false;
     if ((this.isAuthorizedProviders) && this.consent.toProviders
       && this.consent.toProviders.identifiers && this.consent.toProviders.identifiers[0]) {
-      selected = this.consentService.isInList(this.consent.fromProviders.identifiers, provider.identifiers);
+      return this.consentService.isInList(this.consent.fromProviders.identifiers, provider.identifiers);
     } else if ((!this.isAuthorizedProviders) && this.consent.fromProviders &&
       this.consent.fromProviders.identifiers && this.consent.fromProviders.identifiers[0]) {
-      selected = this.consentService.isInList(this.consent.toProviders.identifiers, provider.identifiers);
+      return  this.consentService.isInList(this.consent.toProviders.identifiers, provider.identifiers);
     }
-    return selected;
+    return false;
   }
 
   isDisabled(provider: ConsentProvider): boolean {

@@ -241,7 +241,7 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-   createListOfIdentifiers(providers: ConsentProvider[]) {
+   createListOfIdentifiers(providers: ConsentProvider[]):ListOfIdentifiers {
     let listOfIdentifiers:ListOfIdentifiers = new ListOfIdentifiers([new Identifier(null, null)]);
     let identifies: Identifier[] = [];
     providers.forEach(provider=>{
