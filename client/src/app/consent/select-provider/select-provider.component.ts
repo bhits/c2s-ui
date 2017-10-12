@@ -70,17 +70,6 @@ export class SelectProviderComponent implements OnInit {
     dialog.close();
   }
 
-  isSelected(provider: ConsentProvider): boolean {
-    if ((this.isAuthorizedProviders) && this.consent.toProviders
-      && this.consent.toProviders.identifiers && this.consent.toProviders.identifiers[0]) {
-      return this.consentService.isInList(this.consent.fromProviders.identifiers, provider.identifiers);
-    } else if ((!this.isAuthorizedProviders) && this.consent.fromProviders &&
-      this.consent.fromProviders.identifiers && this.consent.fromProviders.identifiers[0]) {
-      return  this.consentService.isInList(this.consent.toProviders.identifiers, provider.identifiers);
-    }
-    return false;
-  }
-
   isDisabled(provider: ConsentProvider): boolean {
     if ((this.isAuthorizedProviders) && this.consent.toProviders
       && this.consent.toProviders.identifiers && this.consent.toProviders.identifiers.length >0) {
