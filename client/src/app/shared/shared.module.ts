@@ -18,7 +18,7 @@ import {FileValueAccessor} from "./file-value-accessor.directive";
 import {FileValidator} from "./file-validator.directive";
 import {UserAvatarDisplayComponent} from "./user-avatar-display/user-avatar-display.component";
 import {ControlValidationErrorMessageComponent} from "./control-validation-error-message/control-validation-error-message.component";
-import {MaterialModule} from "src/app/shared/material.module";
+import {MaterialModule} from "./material.module";
 
 @NgModule({
   imports: [
