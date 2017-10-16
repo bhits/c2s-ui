@@ -63,3 +63,27 @@
     <button md-raised-button (click)="confirmDialog.close()">{{ 'HOME.ADD_PROVIDER.CLOSE' | translate }}</button>
   </md2-dialog-footer>
 </md2-dialog>
+
+<md2-dialog #warningDialog>
+  <md2-dialog-title>{{ 'HOME.WARNING_DIALOG.TITLE' | translate }}</md2-dialog-title>
+  <div class="m-t-xs">
+    <div>
+      <span [innerHTML]="'HOME.WARNING_DIALOG.DESCRIPTION' | translate"></span>
+    </div>
+  </div>
+  <br>
+  <div>
+    <md-checkbox [(ngModel)]="disabled">{{ 'HOME.WARNING_DIALOG.CHECKBOX' | translate }}</md-checkbox>
+  </div>
+  <md2-dialog-footer>
+    <button type="button" color="primary" md-raised-button
+            (click)="logout(warningDialog)">
+      {{ 'HOME.WARNING_DIALOG.LOGOUT_BTN' | translate }}
+    </button>
+    <button type="button" color="primary" md-raised-button
+            [disabled]="!disabled"
+            (click)="continue(warningDialog)">
+      {{ 'HOME.WARNING_DIALOG.CONTINUE_BTN' | translate }}
+    </button>
+  </md2-dialog-footer>
+</md2-dialog>
