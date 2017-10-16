@@ -9,23 +9,35 @@
                class="" (click)="toggleDetailsVisible(el)" #el>
             <div fxFlex="1 1 35%">
               <div fxLayout="column">
-                <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.AUTHORIZED_TO_SHARE' | translate }}</div>
-                <div class="font-size12" *ngFor="let fromProvider of consent.fromProviders">
-                  - {{fromProvider |consentProvider: 'name'}}
+                <div class="font-weight600 m-b-xs"><span class="font-size14 m-r-xs">3</span>{{ 'CONSENTS.CARD.AUTHORIZED_TO_SHARE' | translate }}</div>
+  <!----- new ---->
+
+                <div fxLayout="row" *ngFor="let fromProvider of consent.fromProviders">
+                  <div class="fa fa-circle font-size8 ribbon-blue m-r-sm p-t-xs"></div>
+                  <div class="font-size12">
+                    {{fromProvider |consentProvider: 'name'}}
+                  </div>
                 </div>
+
+
               </div>
             </div>
             <div fxFlex="1 1 35%">
               <div fxLAyout="column">
-                <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.SHARING_WITH' | translate }}</div>
-                <div class="font-size12" *ngFor="let toProvider of consent.toProviders">
-                  - {{toProvider | consentProvider:'name'}}
+                <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.SHARING_WITH' | translate }}<span class="maroon font-size14 m-l-xs">10</span></div>
+
+                <div fxLayout="row" class="p-b-xs" *ngFor="let toProvider of consent.toProviders">
+                  <div class="fa fa-minus font-size8 ribbon-blue m-r-sm p-t-xs"></div>
+                  <div class="font-size12">
+                    {{toProvider | consentProvider:'name'}}
+                  </div>
                 </div>
+   <!----- new ---->
               </div>
             </div>
             <div fxFlex="1 auto">
               <div fxLayout="column">
-                <div class="font-weight600">{{ 'CONSENTS.CARD.EFFECTIVE_DATE' | translate }}</div>
+                <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.EFFECTIVE_DATE' | translate }}</div>
                 <div class="font-size12">{{consent.startDate | date}} - {{consent.endDate | date}}</div>
               </div>
             </div>
