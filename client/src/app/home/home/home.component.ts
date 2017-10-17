@@ -1,4 +1,4 @@
-import {Component, ViewChild, OnInit} from "@angular/core";
+import {Component, ViewChild, OnInit, ViewEncapsulation} from "@angular/core";
 import {UtilityService} from "../../shared/utility.service";
 import {ActivatedRoute} from "@angular/router";
 import {ConsentProvider} from "../../shared/consent-provider.model";
@@ -14,7 +14,8 @@ import {SessionStorageService} from "../../security/shared/session-storage.servi
 @Component({
   selector: 'c2s-home',
   templateUrl: './home.component.html',
-  styleUrls: ['home.component.scss']
+  styleUrls: ['home.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
   private readonly DEMO_DISCLAIMER_DISABLED: string = 'demoDisclaimerDisabled';
