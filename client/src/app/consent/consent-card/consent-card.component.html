@@ -9,7 +9,7 @@
                class="" (click)="toggleDetailsVisible(el)" #el>
             <div fxFlex="1 1 35%">
               <div fxLayout="column">
-                <div class="font-weight600 m-b-xs"><span class="font-size14 m-r-xs">3</span>{{ 'CONSENTS.CARD.AUTHORIZED_TO_SHARE' | translate }}</div>
+                <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.AUTHORIZED_TO_SHARE' | translate }}</div>
   <!----- new ---->
 
                 <div fxLayout="row" *ngFor="let fromProvider of consent.fromProviders">
@@ -24,7 +24,7 @@
             </div>
             <div fxFlex="1 1 35%">
               <div fxLAyout="column">
-                <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.SHARING_WITH' | translate }}<span class="maroon font-size14 m-l-xs">10</span></div>
+                <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.SHARING_WITH' | translate }}</span></div>
 
                 <div fxLayout="row" class="p-b-xs" *ngFor="let toProvider of consent.toProviders">
                   <div class="fa fa-minus font-size8 ribbon-blue m-r-sm p-t-xs"></div>
