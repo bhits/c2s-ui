@@ -11,7 +11,7 @@ import {MenuItemKey} from "../shared/menu-item-key";
   templateUrl: './menu.component.html',
   styleUrls: ['menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   private isHealthInformationEnabled: boolean;
 
   public menuItems: MenuItem[];
@@ -21,13 +21,15 @@ export class MenuComponent implements OnInit {
               private configService: ConfigService) {
   }
 
-  ngOnInit() {
+  private getHealtInformationEnabled(): boolean {
+    this.isHealthInformationEnabled = false;
     let config: any = this.configService.getConfigInSessionStorage();
     if (config) {
       this.isHealthInformationEnabled = config.features.healthInformationEnabled;
     } else {
       console.log("Cannot get config from session")
     }
+    return this.isHealthInformationEnabled;
   }
 
   public getEnabledMenuItems(): MenuItem[] {
@@ -37,7 +39,7 @@ export class MenuComponent implements OnInit {
   private isShowInMenu(menuItem: MenuItem): boolean {
     switch (menuItem.key) {
       case MenuItemKey.HEALTH_INFORMATION:
-        return this.isHealthInformationEnabled;
+        return this.getHealtInformationEnabled();
       default:
         return true;
     }

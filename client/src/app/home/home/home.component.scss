@@ -18,7 +18,7 @@
     margin: 0;
     line-height: 4em;
     md-card-title {
-      font-size: 2.6em;
+      font-size: 2.6em !important;
       margin: 0;
     }
   }
@@ -51,3 +51,11 @@
 }
 
 //.width100 {width: 100%;}
+.md2-dialog-header {
+  padding-left: 25px !important;
+}
+div.md2-dialog-body {
+  font-size: 1.7em;
+  font-weight: 300;
+}
+md2-dialog-footer {}
