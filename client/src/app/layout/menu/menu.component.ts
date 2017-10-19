@@ -4,7 +4,7 @@ import {AuthenticationService} from "../../security/shared/authentication.servic
 import {MenuItem} from "../shared/menu-item.model";
 import {MENU_ITEMS} from "../shared/menu-items.model";
 import {ConfigService} from "../../core/config.service";
-import {MenuItemKey} from "../shared/menu-item-key";
+import {MenuItemKey} from "../../core/c2s-constant";
 
 @Component({
   selector: 'c2s-menu',

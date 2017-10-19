@@ -10,6 +10,7 @@ import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {ConfigService} from "../../core/config.service";
 import {Md2Dialog, Md2DialogConfig} from "md2/dialog/dialog";
 import {SessionStorageService} from "../../security/shared/session-storage.service";
+import { SessionStorageKey } from "../../core/c2s-constant";
 
 @Component({
   selector: 'c2s-home',
@@ -18,7 +19,6 @@ import {SessionStorageService} from "../../security/shared/session-storage.servi
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-  private readonly DEMO_DISCLAIMER_DISABLED: string = 'demoDisclaimerDisabled';
   disabled: boolean;
   @ViewChild('warningDialog')
   warningDialog: Md2Dialog;
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if (this.configService.getConfigInSessionStorage().features.demoDisclaimerEnabled) {
-      if (!this.sessionStorageService.getItemFromSessionStorage(this.DEMO_DISCLAIMER_DISABLED)) {
+      if (!this.sessionStorageService.getItemFromSessionStorage(SessionStorageKey.TERMS_OF_USE_AGREEMENT)) {
         let config = new Md2DialogConfig();
         config.disableClose = true;
         this.warningDialog.open(config);
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
 
   public continue(dialog: any): void {
     dialog.close();
-    this.sessionStorageService.setItemInSessionStorage(this.DEMO_DISCLAIMER_DISABLED, true);
+    this.sessionStorageService.setItemInSessionStorage(SessionStorageKey.TERMS_OF_USE_AGREEMENT, true);
   }
 
   public logout(dialog: any): void {
