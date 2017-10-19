@@ -28,7 +28,7 @@
     "@ngx-translate/core": "^6.0.1",
     "@ngx-translate/http-loader": "0.0.3",
     "angular-material-icons": "^0.7.1",
-    "c2s-ng-shared": "0.1.0-a24",
+    "c2s-ng-shared": "0.1.0-b28",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "hammerjs": "^2.0.8",
