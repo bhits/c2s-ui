@@ -1,19 +1,27 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, ViewChild, OnInit, ViewEncapsulation} from "@angular/core";
 import {UtilityService} from "../../shared/utility.service";
 import {ActivatedRoute} from "@angular/router";
 import {ConsentProvider} from "../../shared/consent-provider.model";
 import {ConsentList} from "../../consent/shared/consent-list.model";
 
+import {AuthenticationService} from "../../security/shared/authentication.service";
 import {TokenService} from "../../security/shared/token.service";
 import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {ConfigService} from "../../core/config.service";
+import {Md2Dialog, Md2DialogConfig} from "md2/dialog/dialog";
+import {SessionStorageService} from "../../security/shared/session-storage.service";
+import { SessionStorageKey } from "../../core/c2s-constant";
 
 @Component({
   selector: 'c2s-home',
   templateUrl: './home.component.html',
-  styleUrls: ['home.component.scss']
+  styleUrls: ['home.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
+  disabled: boolean;
+  @ViewChild('warningDialog')
+  warningDialog: Md2Dialog;
   public isHealthInformationEnabled: boolean;
   totalProviders: number = 0;
   totalConsents: number = 0;
@@ -27,10 +35,19 @@ export class HomeComponent implements OnInit {
               private apiUrlService: C2sUiApiUrlService,
               private route: ActivatedRoute,
               private tokenService: TokenService,
-              private configService: ConfigService) {
+              private configService: ConfigService,
+              private authenticationService: AuthenticationService,
+              private sessionStorageService: SessionStorageService) {
   }
 
   ngOnInit() {
+    if (this.configService.getConfigInSessionStorage().features.demoDisclaimerEnabled) {
+      if (!this.sessionStorageService.getItemFromSessionStorage(SessionStorageKey.TERMS_OF_USE_AGREEMENT)) {
+        let config = new Md2DialogConfig();
+        config.disableClose = true;
+        this.warningDialog.open(config);
+      }
+    }
     this.isHealthInformationEnabled = this.configService.getConfigInSessionStorage().features.healthInformationEnabled;
     this.consentMapping = {
       '=0': 'HOME.CONSENTS.ZERO',
@@ -53,6 +70,7 @@ export class HomeComponent implements OnInit {
       this.totalConsents = this.consentList.totalElements;
       this.isDisabled = this.totalProviders <= 1 ? true : false;
     }
+
   }
 
   public navigateToProviderList(): void {
@@ -66,4 +84,16 @@ export class HomeComponent implements OnInit {
       this.utilityService.navigateTo(this.apiUrlService.getConsentListUrl());
     }
   }
+
+  public continue(dialog: any): void {
+    dialog.close();
+    this.sessionStorageService.setItemInSessionStorage(SessionStorageKey.TERMS_OF_USE_AGREEMENT, true);
+  }
+
+  public logout(dialog: any): void {
+    // log out
+    dialog.close();
+    this.authenticationService.logout();
+  }
+
 }
