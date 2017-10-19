@@ -4,18 +4,17 @@ import "rxjs/add/operator/toPromise";
 import {Observable} from "rxjs";
 import {ExceptionService} from "../../core/exception.service";
 import {NotificationService} from "../../core/notification.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
-import {UploadedDocument} from "../../shared/uploaded-document.model";
+import {UploadedDocument, UploadedDocumentTypeCode} from "c2s-ng-shared";
 import {UploadInput} from "ngx-uploader";
 import {TokenService} from "../../security/shared/token.service";
 import {DocumentToUploadMetadata} from "./document-to-upload-metadata.model";
-import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code.model";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Injectable()
 export class MedicalDocumentsService {
-  private  UPLOAD_DOCUMENT_PATIENTS:string = "/uploadedDocuments/patients/";
-  private  UPLOAD_DOCUMENT_TYPE_CODES:string = "/uploadedDocuments/documentTypeCodes";
+  private UPLOAD_DOCUMENT_PATIENTS: string = "/uploadedDocuments/patients/";
+  private UPLOAD_DOCUMENT_TYPE_CODES: string = "/uploadedDocuments/documentTypeCodes";
 
   constructor(private http: Http,
               private tokenService: TokenService,
@@ -25,16 +24,16 @@ export class MedicalDocumentsService {
               private limitedProfileService: LimitedProfileService) {
   }
 
-  private getCurrentUserMrn():string{
+  private getCurrentUserMrn(): string {
     return this.limitedProfileService.getUserMrn();
   }
 
-  private getPhrDocumentUrl():string{
-    const currentUserMrn:string  = this.getCurrentUserMrn();
+  private getPhrDocumentUrl(): string {
+    const currentUserMrn: string = this.getCurrentUserMrn();
     return this.c2sUiApiUrlService.getPhrBaseUrl().concat(this.UPLOAD_DOCUMENT_PATIENTS).concat(currentUserMrn).concat("/documents");
   }
 
-  private getPhrDocumentTypeCodeUrl():string{
+  private getPhrDocumentTypeCodeUrl(): string {
     return this.c2sUiApiUrlService.getPhrBaseUrl().concat(this.UPLOAD_DOCUMENT_TYPE_CODES);
   }
 
@@ -51,8 +50,8 @@ export class MedicalDocumentsService {
   }
 
   deleteUploadedDocumentById(docId: number): Observable<void> {
-    if(docId !== null){
-      if(docId >= 0){
+    if (docId !== null) {
+      if (docId >= 0) {
         const DELETE_DOCUMENT_URL = this.getPhrDocumentUrl().concat("/" + docId);
         return this.http.delete(DELETE_DOCUMENT_URL)
           .catch(this.exceptionService.handleErrorWithErrorCode);
@@ -66,15 +65,15 @@ export class MedicalDocumentsService {
 
     const token = this.tokenService.getAccessToken();
 
-    let formData: {[key: string]: string | Blob };
+    let formData: { [key: string]: string | Blob };
 
-    if(documentToUploadMetadata.description){
+    if (documentToUploadMetadata.description) {
       formData = {
         documentName: documentToUploadMetadata.documentName,
         documentTypeCodeId: documentToUploadMetadata.documentTypeCodeId.toString(),
         description: documentToUploadMetadata.description
       };
-    }else{
+    } else {
       formData = {
         documentName: documentToUploadMetadata.documentName,
         documentTypeCodeId: documentToUploadMetadata.documentTypeCodeId.toString()
@@ -89,7 +88,7 @@ export class MedicalDocumentsService {
       customHeaders = {
         "Authorization": access_token_string
       };
-    }else{
+    } else {
       console.error("Unable to retrieve valid access token from session");
       return null;
     }
@@ -105,8 +104,8 @@ export class MedicalDocumentsService {
     };
   }
 
-  handleShowUploadedDocumentListError(err: string){
-    switch(err){
+  handleShowUploadedDocumentListError(err: string) {
+    switch (err) {
       case "404":
         this.notificationService.i18nShow("MEDICAL_DOCUMENTS.MEDICAL_DOCUMENT_LIST.NO_DOCS_FOUND_ERROR");
         break;
@@ -121,7 +120,7 @@ export class MedicalDocumentsService {
     }
   }
 
-  handleShowDocumentTypeCodesListError(err: string){
+  handleShowDocumentTypeCodesListError(err: string) {
     /* Currently all status codes should show the same error message. If this changes in
        the future, a switch statement can be added here. */
     this.notificationService.i18nShow("MEDICAL_DOCUMENTS.DOCUMENT_TYPE_CODES_LIST_ERROR");

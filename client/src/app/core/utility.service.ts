@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {DatePipe, Location} from "@angular/common";
 import {Router} from "@angular/router";
-import {Identifier} from "./identifier.model";
-import {BrowserService} from "../core/browser.service";
+import {Identifier} from "c2s-ng-shared";
+import {BrowserService} from "./browser.service";
 
 @Injectable()
 export class UtilityService {
@@ -18,15 +18,15 @@ export class UtilityService {
   }
 
   redirectInSameTab(path: string) {
-    let url:string = this.composeUrl().concat(path);
+    let url: string = this.composeUrl().concat(path);
     window.location.replace(url);
   }
 
-  private composeUrl():string{
-    let protocol:string = window.location.protocol;
-    let host:string = window.location.host;
-    let port:string = window.location.port;
-    return protocol.concat("//").concat(host).concat( (!port)? ":".concat(port).concat("/"): "/");
+  private composeUrl(): string {
+    let protocol: string = window.location.protocol;
+    let host: string = window.location.host;
+    let port: string = window.location.port;
+    return protocol.concat("//").concat(host).concat((!port) ? ":".concat(port).concat("/") : "/");
   }
 
   removeAll(entries: any[]) {
@@ -135,16 +135,16 @@ export class UtilityService {
     return identifiers;
   }
 
-  isPastDate(dateStr: Date){
-    if(this.isDefined(dateStr) ){
+  isPastDate(dateStr: Date) {
+    if (this.isDefined(dateStr)) {
       let today = new Date();
-      today.setHours(0,0,0,0); // Reset Time
+      today.setHours(0, 0, 0, 0); // Reset Time
       return ((dateStr).valueOf() < today.valueOf());
     }
   }
 
-  isStarteAfterEndDate(startDate:Date, endDate:Date){
-    if(this.isDefined(startDate) && this.isDefined(endDate)){
+  isStarteAfterEndDate(startDate: Date, endDate: Date) {
+    if (this.isDefined(startDate) && this.isDefined(endDate)) {
       return (startDate.valueOf() >= endDate.valueOf());
     }
   }
@@ -154,9 +154,9 @@ export class UtilityService {
     return this.location.path(includeHash);
   }
 
-  getSupportedLocaleCode(supportedLocales:any){
-    let localeCode:string [] = [];
-    supportedLocales.forEach(locale =>{
+  getSupportedLocaleCode(supportedLocales: any) {
+    let localeCode: string [] = [];
+    supportedLocales.forEach(locale => {
       localeCode.push(locale.code);
     });
     return localeCode;
@@ -167,15 +167,15 @@ export class UtilityService {
     return fileName.substr(indexOfLastDot + 1);
   }
 
-  sortArrayByProperty(entries:any[], property:string, direction:number):any[]{
-    return entries.sort(function(a, b){
-      if(a[property] < b[property]){
+  sortArrayByProperty(entries: any[], property: string, direction: number): any[] {
+    return entries.sort(function (a, b) {
+      if (a[property] < b[property]) {
         return -1 * direction;
       }
-      else if( a[property] > b[property]){
+      else if (a[property] > b[property]) {
         return 1 * direction;
       }
-      else{
+      else {
         return 0;
       }
     });

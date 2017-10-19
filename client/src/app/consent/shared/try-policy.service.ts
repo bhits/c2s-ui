@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, URLSearchParams} from "@angular/http";
 import {ExceptionService} from "../../core/exception.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {Observable} from "rxjs/Observable";
-import {LimitedProfileService} from "src/app/security/shared/limited-profile.service";
-import {TryPolicyResponse} from "src/app/consent/shared/try-policy-response.model";
+import {LimitedProfileService} from "../../security/shared/limited-profile.service";
+import {TryPolicyResponse} from "./try-policy-response.model";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Injectable()
 export class TryPolicyService {

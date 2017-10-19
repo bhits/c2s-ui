@@ -1,6 +1,5 @@
-import {Role} from "../../shared/role.model";
+import {IdentifierSystem, Role} from "c2s-ng-shared";
 import {ProfileFieldsCodesLookup} from "./profile-fields-codes-lookup.model";
-import {IdentifierSystem} from "../../shared/identifier-system.model";
 
 export class ProfileFieldsLookupInfo {
   public roles: Role[];

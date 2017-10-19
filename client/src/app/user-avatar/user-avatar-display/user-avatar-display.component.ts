@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
-import {UtilityService} from "../utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {isNullOrUndefined} from "util";
-import {AvatarImage} from "../../user-avatar/shared/avatar-image.model";
-import {UserAvatarMonitoringService} from "../user-avatar-monitoring.service";
+import {AvatarImage} from "../shared/avatar-image.model";
+import {UserAvatarMonitoringService} from "../shared/user-avatar-monitoring.service";
 
 @Component({
   selector: 'c2s-user-avatar-display',

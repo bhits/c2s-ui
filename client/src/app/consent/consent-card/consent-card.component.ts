@@ -7,10 +7,10 @@ import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
 import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
 import {BinaryFile} from "../shared/binary-file.model";
-import {UploadedDocument} from "../../shared/uploaded-document.model";
+import {UploadedDocument} from "c2s-ng-shared";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TryPolicyService} from "../shared/try-policy.service";
-import {TryPolicyResponse} from "src/app/consent/shared/try-policy-response.model";
+import {TryPolicyResponse} from "../shared/try-policy-response.model";
 import {Md2Dialog} from "md2";
 
 @Component({

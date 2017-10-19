@@ -1,14 +1,13 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ValidationRules} from "../../shared/validation-rules.model";
+import {UmsProfileAddress, ValidationRules} from "c2s-ng-shared";
 import {ProfileFieldsLookupService} from "../shared/profile-fields-lookup.service";
 import {ProfileFieldsLookupInfo} from "../shared/profile-fields-lookup-info.model";
 import {NotificationService} from "../../core/notification.service";
 import {UmsFullProfileView} from "../shared/ums-full-profile-view.model";
 import {UmsFullProfileUpdate} from "../shared/ums-full-profile-update.model";
-import {FullProfileService} from "../../shared/full-profile.service";
-import {UmsProfileAddress} from "../../shared/ums-profile-address.model";
+import {FullProfileService} from "../shared/full-profile.service";
 
 @Component({
   selector: 'c2s-user-profile',

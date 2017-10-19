@@ -1,14 +1,14 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ConsentService} from "../shared/consent.service";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {Consent} from "../shared/consent.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {NotificationService} from "../../core/notification.service";
 import {SharePurpose} from "../shared/share-purpose.model";
-import {ConsentProvider} from "../../shared/consent-provider.model";
+import {ConsentProvider} from "c2s-ng-shared";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 
 @Component({

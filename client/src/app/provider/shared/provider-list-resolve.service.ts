@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, Resolve} from "@angular/router";
 import {Observable} from "rxjs";
-import {DataService} from "../../shared/data.service";
-import {ConsentProvider, FHIR_US_NPI_SYSTEM} from "../../shared/consent-provider.model";
+import {DataService} from "../../core/data.service";
+import {ConsentProvider, FHIR_US_NPI_SYSTEM} from "c2s-ng-shared";
 
 @Injectable()
 export class ProviderListResolveService implements Resolve<any> {

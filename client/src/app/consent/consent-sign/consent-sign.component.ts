@@ -6,9 +6,9 @@ import {ConsentTerms} from "../shared/consent-terms.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
 import {BinaryFile} from "../shared/binary-file.model";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-consent-sign',

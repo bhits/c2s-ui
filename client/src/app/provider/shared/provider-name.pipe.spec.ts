@@ -1,5 +1,5 @@
 import {ProviderNamePipe} from "./provider-name.pipe";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {FlattenedSmallProvider} from "c2s-ng-shared";
 
 describe('ProviderNamePipe', () => {
   let pipe, testFlattenedSmallProvider;
