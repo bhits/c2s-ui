@@ -1,5 +1,5 @@
 import {MenuItem} from "./menu-item.model";
-import {MenuItemKey} from "./menu-item-key";
+import { MenuItemKey} from "../../core/c2s-constant";
 
 export const MENU_ITEMS: MenuItem[] = [
   new MenuItem(MenuItemKey.HOME, 'home', 'HOME.MENU.MENU_ITEM.HOME'),
