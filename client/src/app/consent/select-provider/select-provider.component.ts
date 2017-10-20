@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {ConsentService} from "../shared/consent.service";
 import "rxjs/add/operator/toPromise";
+import {ConsentProvider, Identifier, ListOfIdentifiers} from "c2s-ng-shared";
 import {Consent} from "../shared/consent.model";
-import {ConsentProvider} from "../../shared/consent-provider.model";
-import {UtilityService} from "src/app/shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 
 
 @Component({

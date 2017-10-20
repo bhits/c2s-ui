@@ -1,5 +1,4 @@
-import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
-import {UmsProfileAddress} from "../../shared/ums-profile-address.model";
+import {ListOfIdentifiers, UmsProfileAddress} from "c2s-ng-shared";
 
 export class UmsFullProfileView {
   userId: number;

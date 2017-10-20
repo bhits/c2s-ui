@@ -1,14 +1,16 @@
-import {Component, OnInit, EventEmitter, Output, Input, ViewChild, ElementRef} from "@angular/core";
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UploadOutput, UploadInput, UploadFile, humanizeBytes} from 'ngx-uploader';
+import {humanizeBytes, UploadFile, UploadInput, UploadOutput} from 'ngx-uploader';
 import {NotificationService} from "../../core/notification.service";
-import {ValidationRules} from "../../shared/validation-rules.model";
-import {ValidationService} from "../../shared/validation.service";
+import {
+  FileValidator,
+  UploadedDocument,
+  UploadedDocumentTypeCode,
+  ValidationRules,
+  ValidationService
+} from "c2s-ng-shared";
 import {DocumentToUploadMetadata} from "../shared/document-to-upload-metadata.model";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
-import {UploadedDocument} from "../../shared/uploaded-document.model";
-import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code.model";
-import {FileValidator} from "../../shared/file-validator.directive";
 
 
 @Component({
@@ -55,13 +57,13 @@ export class MedicalDocumentUploadComponent implements OnInit {
       // remove file from array when removed
       this.files = this.files.filter((file: UploadFile) => file !== output.file);
     } else if (output.type === 'done') {
-      if(!output.file.response.hasOwnProperty('error')){
+      if (!output.file.response.hasOwnProperty('error')) {
         let newUploadedDocument: UploadedDocument = output.file.response;
         this.uploadedDocumentAdded.emit(newUploadedDocument);
         this.resetUploadForm();
         this.submitPending = false;
         this.notificationService.i18nShow("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.UPLOAD_SUCCESS");
-      }else{
+      } else {
         this.submitPending = false;
         this.medicalDocumentsService.handleShowUploadedDocumentListError(output.file.response.status.toString());
       }
@@ -71,14 +73,14 @@ export class MedicalDocumentUploadComponent implements OnInit {
   startUpload(): void {
     this.submitPending = true;
 
-    if(this.validationService.isValidForm(this.uploadDocumentForm)) {
+    if (this.validationService.isValidForm(this.uploadDocumentForm)) {
       const formModel = this.uploadDocumentForm.value;
       let documentToUploadMetadata: DocumentToUploadMetadata = new DocumentToUploadMetadata();
 
       documentToUploadMetadata.documentName = formModel.documentName;
       documentToUploadMetadata.documentTypeCodeId = formModel.documentTypeCodeId;
 
-      if(formModel.description){
+      if (formModel.description) {
         documentToUploadMetadata.description = formModel.description;
       }
 
@@ -89,7 +91,7 @@ export class MedicalDocumentUploadComponent implements OnInit {
       } else {
         this.handleUploadError("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.DOC_PREP_ERROR");
       }
-    }else{
+    } else {
       this.handleUploadError("MEDICAL_DOCUMENTS.UPLOAD_MEDICAL_DOCUMENT.UPLOAD_FORM.FORM_INVALID_ERROR");
     }
   }

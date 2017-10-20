@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {ProviderService} from "../shared/provider.service";
 import {NotificationService} from "../../core/notification.service";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {UtilityService} from "../../shared/utility.service";
+import {FlattenedSmallProvider} from "c2s-ng-shared";
+import {UtilityService} from "../../core/utility.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Component({
   selector: 'c2s-provider-multi-add',

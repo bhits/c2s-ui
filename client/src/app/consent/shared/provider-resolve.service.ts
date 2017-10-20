@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
-import {Resolve, ActivatedRouteSnapshot} from "@angular/router";
-import {DataService} from "../../shared/data.service";
-import {ConsentProvider} from "../../shared/consent-provider.model";
+import {ActivatedRouteSnapshot, Resolve} from "@angular/router";
+import {DataService} from "../../core/data.service";
+import {ConsentProvider} from "c2s-ng-shared";
 
 @Injectable()
 export class ProviderResolveService implements Resolve<any> {

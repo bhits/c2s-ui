@@ -6,18 +6,16 @@ import {SensitivityPolicy} from "./sensitivity-policy";
 import {ExceptionService} from "../../core/exception.service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {Consent} from "./consent.model";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {SharePurpose} from "./share-purpose.model";
-import {ConsentProvider} from "../../shared/consent-provider.model";
-import {UtilityService} from "../../shared/utility.service";
+import {ConsentProvider, Identifier, ListOfIdentifiers} from "c2s-ng-shared";
+import {UtilityService} from "../../core/utility.service";
 import {DetailedConsent} from "./detailed-consent.model";
 import {ConsentTerms} from "./consent-terms.model";
 import {ConsentRevocation} from "./consent-revocation.model";
 import {BinaryFile} from "./binary-file.model";
 import {NotificationService} from "../../core/notification.service";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
-import {ListOfIdentifiers} from "src/app/shared/list-of-identifiers.model";
-import {Identifier} from "../../shared/identifier.model";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 
 @Injectable()

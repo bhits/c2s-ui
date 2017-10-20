@@ -1,5 +1,5 @@
 import {SharePurposePipe} from "./share-purpose.pipe";
-import {Identifier} from "../../shared/identifier.model";
+import {Identifier} from "c2s-ng-shared";
 
 describe('SharePurposePipe', () => {
   let pipe, testSharePurpose, testIdentifier;

@@ -1,5 +1,4 @@
-import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
-import {Identifier} from "../../shared/identifier.model";
+import {Identifier, ListOfIdentifiers} from "c2s-ng-shared";
 
 export class Consent {
   id?: string;

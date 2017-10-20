@@ -5,14 +5,14 @@ import {TokenService} from "./token.service";
 import {LimitedProfileService} from "./limited-profile.service";
 import {UmsLimitedProfile} from "./ums-limited-profile.model";
 import {CustomTranslateService} from "../../core/custom-translate.service";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {Observable} from "rxjs/Observable";
 import {AuthorizationResponse} from "./authorization-response.model";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {LoginRequest} from "./login-request.model";
 import {ConfigService} from "../../core/config.service";
 import {Config} from "../../core/config.model";
 import {NotificationService} from "../../core/notification.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 
 @Injectable()

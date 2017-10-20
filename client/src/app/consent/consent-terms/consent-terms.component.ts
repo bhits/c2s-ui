@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {ConsentService} from "../shared/consent.service";
 import {Consent} from "../shared/consent.model";
 

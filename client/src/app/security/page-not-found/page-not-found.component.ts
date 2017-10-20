@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {SessionStorageService} from "src/app/security/shared/session-storage.service";
+import {SessionStorageService} from "../shared/session-storage.service";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({

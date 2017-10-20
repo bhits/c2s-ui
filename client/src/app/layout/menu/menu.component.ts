@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 import {AuthenticationService} from "../../security/shared/authentication.service";
 import {MenuItem} from "../shared/menu-item.model";
 import {MENU_ITEMS} from "../shared/menu-items.model";

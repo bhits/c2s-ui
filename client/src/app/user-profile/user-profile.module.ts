@@ -1,17 +1,19 @@
 import {NgModule} from "@angular/core";
 import {NgUploaderModule} from "ngx-uploader";
 import {userProfileRoutedComponents, UserProfileRoutingModule} from "./user-profile-routing.module";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from 'c2s-ng-shared';
 import {LayoutModule} from "../layout/layout.module";
 import {ProfileFieldsLookupService} from "./shared/profile-fields-lookup.service";
-import {FullProfileService} from "../shared/full-profile.service";
+import {FullProfileService} from "./shared/full-profile.service";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   imports: [
     NgUploaderModule,
     SharedModule,
     LayoutModule,
-    UserProfileRoutingModule
+    UserProfileRoutingModule,
+    TranslateModule
   ],
   declarations: [
     userProfileRoutedComponents

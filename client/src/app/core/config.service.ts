@@ -4,9 +4,9 @@ import {NotificationService} from "./notification.service";
 import {Http, Response} from "@angular/http";
 import {Config} from "./config.model";
 import {Observable} from "rxjs/Observable";
-import {C2sUiApiUrlService} from "../shared/c2s-ui-api-url.service";
 import {SessionStorageService} from "../security/shared/session-storage.service";
 import {TokenService} from "../security/shared/token.service";
+import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
 
 @Injectable()
 export class ConfigService {

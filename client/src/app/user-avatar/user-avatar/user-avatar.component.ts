@@ -1,11 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {CropperSettings, ImageCropperComponent} from "ng2-image-cropper";
-import {FileValidator} from "../../shared/file-validator.directive";
+import {FileValidator} from "c2s-ng-shared";
 import {UserAvatarService} from "../shared/user-avatar.service";
 import {NotificationService} from "../../core/notification.service";
 import {Router} from "@angular/router";
-import {UserAvatarMonitoringService} from "../../shared/user-avatar-monitoring.service";
+import {UserAvatarMonitoringService} from "../shared/user-avatar-monitoring.service";
 import {AvatarImage} from "../shared/avatar-image.model";
 import {isNullOrUndefined} from "util";
 
@@ -150,8 +150,12 @@ export class UserAvatarComponent implements OnInit {
 
   private srcToFile(src, fileName, mimeType): Promise<File> {
     return (fetch(src)
-        .then(function(res){return res.arrayBuffer();})
-        .then(function(buf){return new File([buf], fileName, {type:mimeType});})
+        .then(function (res) {
+          return res.arrayBuffer();
+        })
+        .then(function (buf) {
+          return new File([buf], fileName, {type: mimeType});
+        })
     );
   }
 

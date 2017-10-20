@@ -5,11 +5,9 @@ import {ProviderRequestQuery} from "./provider-request-query.model";
 import {ProviderSearchResponse} from "./provider-search-response.model";
 import {Observable} from "rxjs";
 import {ExceptionService} from "../../core/exception.service";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
-import {Identifier} from "../../shared/identifier.model";
-import {FHIR_US_NPI_SYSTEM} from "../../shared/consent-provider.model";
+import {FHIR_US_NPI_SYSTEM, FlattenedSmallProvider, Identifier} from "c2s-ng-shared";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Injectable()
 export class ProviderService {

@@ -1,10 +1,10 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges} from "@angular/core";
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from "@angular/core";
 import {ProviderService} from "../shared/provider.service";
 import {ProviderSearchResponse} from "../shared/provider-search-response.model";
 import {Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
-import {UtilityService} from "../../shared/utility.service";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {UtilityService} from "../../core/utility.service";
+import {FlattenedSmallProvider} from "c2s-ng-shared";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
