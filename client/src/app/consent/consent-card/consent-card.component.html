@@ -12,8 +12,8 @@
                 <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.AUTHORIZED_TO_SHARE' | translate }}</div>
   <!----- new ---->
 
-                <div fxLayout="row" *ngFor="let fromProvider of consent.fromProviders">
-                  <div class="fa fa-circle font-size8 ribbon-blue m-r-sm p-t-xs"></div>
+                <div fxLayout="row" class="p-b-xs" *ngFor="let fromProvider of consent.fromProviders">
+                  <div class="fa fa-minus font-size8 ribbon-blue m-r-sm p-t-xs"></div>
                   <div class="font-size12">
                     {{fromProvider |consentProvider: 'name'}}
                   </div>
@@ -24,7 +24,7 @@
             </div>
             <div fxFlex="1 1 35%">
               <div fxLAyout="column">
-                <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.SHARING_WITH' | translate }}</span></div>
+                <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.SHARING_WITH' | translate }}</div>
 
                 <div fxLayout="row" class="p-b-xs" *ngFor="let toProvider of consent.toProviders">
                   <div class="fa fa-minus font-size8 ribbon-blue m-r-sm p-t-xs"></div>
