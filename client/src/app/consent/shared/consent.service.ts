@@ -7,7 +7,7 @@ import {ExceptionService} from "../../core/exception.service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {Consent} from "./consent.model";
 import {SharePurpose} from "./share-purpose.model";
-import {ConsentProvider} from "c2s-ng-shared";
+import {ConsentProvider, Identifier, ListOfIdentifiers} from "c2s-ng-shared";
 import {UtilityService} from "../../core/utility.service";
 import {DetailedConsent} from "./detailed-consent.model";
 import {ConsentTerms} from "./consent-terms.model";
@@ -57,13 +57,54 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-  getProviderByNPI(providers: ConsentProvider[], npi: string): ConsentProvider {
-    for (let provider of providers) {
-      if (provider.identifiers[0].value === npi) {
-        return provider;
-      }
-    }
-    return null;
+  getProvidersByIdentifier(providers: ConsentProvider[], selectedProvidersIdentifier: ListOfIdentifiers): ConsentProvider[] {
+    let selectedProvider:ConsentProvider[] = [];
+    selectedProvidersIdentifier.identifiers.forEach(identifier =>{
+      providers.forEach(provider =>{
+        provider.identifiers.forEach(entry =>{
+          if(entry.value === identifier.value){
+            selectedProvider.push(provider);
+          }
+        });
+      });
+    });
+    return selectedProvider;
+  }
+
+  markSelectedProvidersAsChecked(providers:ConsentProvider[], selectedIdentifiers: Identifier[]){
+    providers.forEach(provider => {
+      let tempProvider = provider;
+      provider.identifiers.forEach(identifier=>{
+        selectedIdentifiers.forEach(selectedIdentifier => {
+          if(selectedIdentifier.value ===identifier.value){
+            provider.selected = true;
+          }
+        });
+      });
+    });
+  }
+
+
+  isInList(currentIdentifiers: Identifier[], selectedIdentifiers: Identifier[]): boolean {
+    let selected = false;
+    selectedIdentifiers.forEach(selectedIdentifier=>{
+      currentIdentifiers.forEach(currentIdentifier =>{
+        if(currentIdentifier.value === selectedIdentifier.value){
+          selected =  true;
+        }
+      });
+    });
+    return selected;
+  }
+
+  getSelectedProvidersByNpi(providers: ConsentProvider[]): ConsentProvider[] {
+    let selectedProvider:ConsentProvider[] = [];
+    providers.forEach(provider =>{
+      if(provider['selected']){
+        selectedProvider.push(provider);
+      };
+    })
+    return selectedProvider;
   }
 
   createConsent(consent: Consent): Observable<void> {
@@ -196,5 +237,28 @@ export class ConsentService {
     return this.http.get(url, {search: params})
       .map((resp: Response) => <BinaryFile>(resp.json()))
       .catch(this.exceptionService.handleError);
+  }
+
+   createListOfIdentifiers(providers: ConsentProvider[]):ListOfIdentifiers {
+    let listOfIdentifiers:ListOfIdentifiers = new ListOfIdentifiers([new Identifier(null, null)]);
+    let identifies: Identifier[] = [];
+    providers.forEach(provider=>{
+      if(provider['selected']){
+        identifies.push(new Identifier(provider.identifiers[0].system, provider.identifiers[0].value));
+      }
+    });
+    listOfIdentifiers.identifiers = identifies;
+    return listOfIdentifiers;
+  }
+
+  getSelectedProviders(newlSelectedProviders:ConsentProvider[]):ConsentProvider[]{
+    let providers:ConsentProvider[] = [];
+    newlSelectedProviders.forEach(provider =>{
+      if(provider['selected']){
+        providers.push(provider)
+      }
+
+    });
+    return providers;
   }
 }

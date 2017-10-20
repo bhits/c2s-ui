@@ -11,9 +11,9 @@ export class Consent {
   fromProviders: ListOfIdentifiers;
 
   constructor() {
-    this.fromProviders = new ListOfIdentifiers([new Identifier(null, null)]);
-    this.toProviders = new ListOfIdentifiers([new Identifier(null, null)]);
-    this.shareSensitivityCategories = new ListOfIdentifiers([new Identifier(null, null)]);
+    this.fromProviders = new ListOfIdentifiers([]);
+    this.toProviders = new ListOfIdentifiers([]);
+    this.shareSensitivityCategories = new ListOfIdentifiers([]);
     this.sharePurposes = new ListOfIdentifiers([new Identifier(PURPOSE_OF_USE_SYSTEM, "TREAT")]);
     this.consentReferenceId = null;
     this.startDate = null;

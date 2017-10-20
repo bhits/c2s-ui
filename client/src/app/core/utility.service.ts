@@ -180,4 +180,9 @@ export class UtilityService {
       }
     });
   }
+
+  copyObject(data:any){
+    return  JSON.parse(JSON.stringify(data));
+  }
+
 }

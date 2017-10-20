@@ -3,6 +3,7 @@ import {ConsentService} from "../shared/consent.service";
 import "rxjs/add/operator/toPromise";
 import {ConsentProvider, Identifier, ListOfIdentifiers} from "c2s-ng-shared";
 import {Consent} from "../shared/consent.model";
+import {UtilityService} from "../../core/utility.service";
 
 
 @Component({
@@ -15,13 +16,12 @@ export class SelectProviderComponent implements OnInit {
   @Input() title: string;
   @Input() dialogTitle: string;
   @Input() isAuthorizedProviders: boolean;
-  @Input() selectedProviders: ConsentProvider[] = null;
+  selectedProviders: ConsentProvider[];
+  localeProviders: ConsentProvider[];
 
   consent: Consent;
-  selectedProviderNpi: string;
-  selectedProvider: ConsentProvider;
 
-  constructor(private consentService: ConsentService) {
+  constructor(private consentService: ConsentService, private utilityService: UtilityService) {
     this.consentService.getConsentEmitter().subscribe((consent) => {
       if (consent) {
         this.consent = consent;
@@ -34,14 +34,17 @@ export class SelectProviderComponent implements OnInit {
   }
 
   setSelectedProvider() {
+    this.localeProviders = this.utilityService.copyObject(this.providers);
     if (this.isAuthorizedProviders &&
       (this.consent.fromProviders.identifiers) &&
       (this.consent.fromProviders.identifiers.length > 0)) {
-      this.selectedProvider = this.consentService.getProviderByNPI(this.providers, this.consent.fromProviders.identifiers[0].value);
+      this.consentService.markSelectedProvidersAsChecked(this.localeProviders, this.consent.fromProviders.identifiers);
+      this.selectedProviders = this.utilityService.copyObject(this.localeProviders);
     } else if ((!this.isAuthorizedProviders) &&
       (this.consent.toProviders.identifiers) &&
       (this.consent.toProviders.identifiers.length > 0)) {
-      this.selectedProvider = this.consentService.getProviderByNPI(this.providers, this.consent.toProviders.identifiers[0].value);
+      this.consentService.markSelectedProvidersAsChecked(this.localeProviders, this.consent.toProviders.identifiers);
+      this.selectedProviders = this.utilityService.copyObject(this.localeProviders);
     }
   }
 
@@ -54,33 +57,31 @@ export class SelectProviderComponent implements OnInit {
   }
 
   onAddSelectedProviders(dialog: any) {
-    this.selectedProvider = this.consentService.getProviderByNPI(this.providers, this.selectedProviderNpi);
+    this.selectedProviders = this.utilityService.copyObject(this.localeProviders);
     if (this.isAuthorizedProviders) {
-      this.consent.fromProviders = this.createListOfIdentifiers(this.selectedProvider);
+      this.consent.fromProviders = this.consentService.createListOfIdentifiers(this.localeProviders);
       this.consentService.setConsent(this.consent);
     } else if (!this.isAuthorizedProviders) {
-      this.consent.toProviders = this.createListOfIdentifiers(this.selectedProvider);
+      this.consent.toProviders = this.consentService.createListOfIdentifiers(this.localeProviders);
       this.consentService.setConsent(this.consent);
     }
     dialog.close();
   }
 
-  isSelected(npi: string): boolean {
+  isDisabled(provider: ConsentProvider): boolean {
     if ((this.isAuthorizedProviders) && this.consent.toProviders
-      && this.consent.toProviders.identifiers && this.consent.toProviders.identifiers[0]) {
-      return (this.consent.toProviders.identifiers[0].value === npi);
+      && this.consent.toProviders.identifiers && this.consent.toProviders.identifiers.length >0) {
+      return  this.consentService.isInList(this.consent.toProviders.identifiers, provider.identifiers);
     } else if ((!this.isAuthorizedProviders) && this.consent.fromProviders &&
-      this.consent.fromProviders.identifiers && this.consent.fromProviders.identifiers[0]) {
-      return (this.consent.fromProviders.identifiers[0].value === npi);
+      this.consent.fromProviders.identifiers && this.consent.fromProviders.identifiers.length >0) {
+      return this.consentService.isInList(this.consent.fromProviders.identifiers, provider.identifiers);
     }
     return false;
   }
 
-  private createListOfIdentifiers(selectedProvider: ConsentProvider) {
-    let provider = new ListOfIdentifiers([new Identifier(null, null)]);
-    if (selectedProvider) {
-      provider.identifiers = [new Identifier(selectedProvider.identifiers[0].system, selectedProvider.identifiers[0].value)];
-    }
-    return provider;
+  deselectAll(){
+    this.localeProviders.forEach(provider =>{
+      provider['selected'] = false;
+    })
   }
 }

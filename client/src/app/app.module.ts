@@ -22,6 +22,7 @@ import {UserAvatarModule} from "./user-avatar/user-avatar.module";
 import {UserAvatarMonitoringService} from "./user-avatar/shared/user-avatar-monitoring.service";
 import {ActivityModule} from "./activity/activity.module";
 import {HealthInformationModule} from "./health-information/health-information.module";
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {HealthInformationModule} from "./health-information/health-information.m
     // Angular Modules
     BrowserAnimationsModule,
     BrowserModule,
+    HttpModule,
 
     //3rd Party modules
     TranslateModule.forRoot({
