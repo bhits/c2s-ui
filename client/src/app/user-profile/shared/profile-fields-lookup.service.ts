@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {ProfileFieldsLookupInfo} from "./profile-fields-lookup-info.model";
 import {ExceptionService} from "../../core/exception.service";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Injectable()
 export class ProfileFieldsLookupService {

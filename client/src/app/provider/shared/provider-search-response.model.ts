@@ -1,7 +1,4 @@
-import {Page} from "../../shared/page.model";
-import {Links} from "../../shared/links.model";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
-import {PagedResourcesData} from "../../shared/paged-resources-data.model";
+import {FlattenedSmallProvider, Links, Page, PagedResourcesData} from "c2s-ng-shared";
 
 export class ProviderSearchResponse implements PagedResourcesData<FlattenedSmallProvider> {
   _embedded: Map<string, FlattenedSmallProvider[]>;

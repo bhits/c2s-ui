@@ -1,8 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {UploadedDocument} from "../../shared/uploaded-document.model";
+import {UploadedDocument, UploadedDocumentTypeCode} from "c2s-ng-shared";
 import {MedicalDocumentsService} from "../shared/medical-documents.service";
-import {UploadedDocumentTypeCode} from "../../shared/uploaded-document-type-code.model";
-import {UtilityService} from "../../shared/utility.service";
+import {UtilityService} from "../../core/utility.service";
 
 @Component({
   selector: 'c2s-medical-documents',

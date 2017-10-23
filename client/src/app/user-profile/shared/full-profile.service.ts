@@ -1,10 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
-
-import {C2sUiApiUrlService} from "./c2s-ui-api-url.service";
 import {Observable} from "rxjs";
-import {UmsFullProfileView} from "../user-profile/shared/ums-full-profile-view.model";
-import {UmsFullProfileUpdate} from "../user-profile/shared/ums-full-profile-update.model";
+import {UmsFullProfileView} from "./ums-full-profile-view.model";
+import {UmsFullProfileUpdate} from "./ums-full-profile-update.model";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Injectable()
 export class FullProfileService {

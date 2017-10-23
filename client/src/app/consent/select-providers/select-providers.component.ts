@@ -1,8 +1,7 @@
 import {Component, Input, OnInit, ViewEncapsulation} from "@angular/core";
 import {ConsentService} from "../shared/consent.service";
-import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
+import {ConsentProvider, ListOfIdentifiers} from "c2s-ng-shared";
 import {Consent} from "../shared/consent.model";
-import {ConsentProvider} from "../../shared/consent-provider.model";
 
 @Component({
   selector: 'c2s-select-providers',

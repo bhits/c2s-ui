@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {UtilityService} from "../../shared/utility.service";
-import {FlattenedSmallProvider} from "../../shared/flattened-small-provider.model";
+import {UtilityService} from "../../core/utility.service";
+import {FlattenedSmallProvider} from "c2s-ng-shared";
 
 @Pipe({
   name: 'providerAddress'

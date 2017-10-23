@@ -1,6 +1,6 @@
 import {ShareSensitivityCategory} from "./share-sensitivity-category.model";
 import {SharePurpose} from "./share-purpose.model";
-import {ConsentProvider} from "../../shared/consent-provider.model";
+import {ConsentProvider} from "c2s-ng-shared";
 
 export class DetailedConsent {
   id: number;

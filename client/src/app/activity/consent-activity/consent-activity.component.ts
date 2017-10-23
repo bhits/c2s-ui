@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {ConsentActivity} from "../shared/consent-activity.model";
 import {ActivityService} from "../shared/activity.service";
-import {PageableData} from "src/app/shared/pageable-data.model";
-import {LimitedProfileService} from "src/app/security/shared/limited-profile.service";
+import {PageableData} from "c2s-ng-shared";
+import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 
 @Component({
   selector: 'c2s-consent-activity',

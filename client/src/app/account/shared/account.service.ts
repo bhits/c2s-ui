@@ -1,13 +1,13 @@
 import {Injectable} from "@angular/core";
 import {ExceptionService} from "../../core/exception.service";
 import {Http, Response, URLSearchParams} from "@angular/http";
-import {C2sUiApiUrlService} from "../../shared/c2s-ui-api-url.service";
 import {Observable} from "rxjs/Observable";
 import {AccountVerificationRequest} from "./account-verification-request.model";
 import {AccountVerificationResponse} from "./account-verification-response.model";
-import {AccountActivationRequest} from "src/app/account/shared/account-activation-request.model";
+import {AccountActivationRequest} from "./account-activation-request.model";
 import {AccountActivationResponse} from "./account-activation-response.model";
-import {CheckDuplicateUsernameResponse} from "src/app/account/shared/check-duplicate-username-response.model";
+import {CheckDuplicateUsernameResponse} from "./check-duplicate-username-response.model";
+import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Injectable()
 export class AccountService {

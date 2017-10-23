@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from 'c2s-ng-shared';
 import {PurposeOfUseService} from "./purpose-of-use/purpose-of-use.service";
 import {ConsentTermsComponent} from "./consent-terms/consent-terms.component";
 import {PurposeOfUseComponent} from "./purpose-of-use/purpose-of-use.component";
@@ -16,12 +16,18 @@ import {NotificationService} from "../core/notification.service";
 import {SharePurposePipe} from "./shared/share-purpose.pipe";
 import {SensitivityCategoryPipe} from "./shared/sensitivity-category.pipe";
 import {TryPolicyService} from "./shared/try-policy.service";
+import {Ng2PaginationModule} from "ng2-pagination";
+import {Md2RootModule} from "md2";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
-    ConsentRoutingModule
+    ConsentRoutingModule,
+    Ng2PaginationModule,
+    Md2RootModule,
+    TranslateModule
   ],
   declarations: [
     consentRoutableComponents,
