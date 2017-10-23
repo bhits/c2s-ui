@@ -7,7 +7,7 @@
     <md-list>
 
       <div *ngFor="let provider of selectedProviders">
-        <md-list-item fxLayout="row" fxLayoutAlign="start start" class="p-b-xs" *ngIf="provider.selected">
+        <md-list-item fxLayout="row" fxLayoutAlign="start start" *ngIf="provider.selected">
           <div class="fa fa-minus font-size8 ribbon-blue m-r-sm p-t-xs"></div>
           <div><strong>{{ provider | consentProvider : 'name'}}</strong></div>
         </md-list-item>
