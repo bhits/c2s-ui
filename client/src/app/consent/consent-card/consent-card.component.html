@@ -10,7 +10,7 @@
             <div fxFlex="1 1 35%">
               <div fxLayout="column">
                 <div class="font-weight600 m-b-xs">{{ 'CONSENTS.CARD.AUTHORIZED_TO_SHARE' | translate }}</div>
-  <!----- new ---->
+
 
                 <div fxLayout="row" class="p-b-xs" *ngFor="let fromProvider of consent.fromProviders">
                   <div class="fa fa-minus font-size8 ribbon-blue m-r-sm p-t-xs"></div>
@@ -32,7 +32,7 @@
                     {{toProvider | consentProvider:'name'}}
                   </div>
                 </div>
-   <!----- new ---->
+
               </div>
             </div>
             <div fxFlex="1 auto">
