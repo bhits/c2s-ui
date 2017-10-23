@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnInit, ViewEncapsulation} from "@angular/core";
 import {ConsentService} from "../shared/consent.service";
 import "rxjs/add/operator/toPromise";
 import {ConsentProvider, Identifier, ListOfIdentifiers} from "c2s-ng-shared";
@@ -9,7 +9,8 @@ import {UtilityService} from "../../core/utility.service";
 @Component({
   selector: 'c2s-select-provider',
   templateUrl: './select-provider.component.html',
-  styleUrls: ['select-provider.component.scss']
+  styleUrls: ['select-provider.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SelectProviderComponent implements OnInit {
   @Input() providers: ConsentProvider[];

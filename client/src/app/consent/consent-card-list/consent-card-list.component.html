@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <div class="margin-bottom-55 m-t-md" fxLayout="column" fxLayoutAlign="space-around">
+  <div class="m-t-md" fxLayout="column" fxLayoutAlign="space-around">
     <div fxLayout="column">
       <div class="border-bottom-purple-thin p-b" fxLayoutAlign="center">
         <a md-raised-button class="plus-button" fxFlex="0 1 370px" (click)="navigateToConsentCreate()">
@@ -21,7 +21,7 @@
                          (pageChange)="getPage($event)"
                          *ngIf="totalItems">
     </pagination-controls>
-    <div fxLayoutAlign="center">
+    <div fxLayoutAlign="center" class="m-t-lg">
       <md-spinner *ngIf="loading"></md-spinner>
     </div>
     <c2s-consent-card fxFlexFill

@@ -1,1 +1,14 @@
 
+md-card.selectedProviders {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.selectedProviders {
+  .md-card-title {}
+  .mat-list-item-content {
+    height: inherit !important;
+    align-items: flex-start !important;
+  }
+}

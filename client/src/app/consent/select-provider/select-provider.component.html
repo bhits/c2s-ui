@@ -1,15 +1,18 @@
 
-<md-card class="left-align" (click)="openDialog(selectProviderDialog)">
+<md-card class="selectedProviders left-align" (click)="openDialog(selectProviderDialog)">
   <md-card-header>
-    <md-card-title>{{title}}</md-card-title>
+    <md-card-title class="m-n p-b-xs">{{title}}</md-card-title>
   </md-card-header>
   <md-card-content>
     <md-list>
+
       <div *ngFor="let provider of selectedProviders">
-        <md-list-item *ngIf="provider.selected">
-          <strong>{{ provider | consentProvider : 'name'}}</strong>
+        <md-list-item fxLayout="row" fxLayoutAlign="start start" *ngIf="provider.selected">
+          <div class="fa fa-minus font-size8 ribbon-blue m-r-sm p-t-xs"></div>
+          <div><strong>{{ provider | consentProvider : 'name'}}</strong></div>
         </md-list-item>
       </div>
+
     </md-list>
   </md-card-content>
 </md-card>

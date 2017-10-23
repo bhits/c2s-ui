@@ -1,0 +1,12 @@
+.selectedProvidersContainer {
+  border: solid thin #008b8b;
+  overflow-y: scroll;
+  display: flex;
+  flex-basis: 45%;
+  max-height: 300px;
+    @media (max-width: 959px) {
+    }
+  &:hover {
+    border-color: #efbf78;
+  }
+}

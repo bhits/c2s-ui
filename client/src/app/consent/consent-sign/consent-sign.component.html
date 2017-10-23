@@ -33,6 +33,7 @@
         {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.AUTHORIZE_LABEL' | translate}}:
       </strong>
     </div>
+
     <div fxLayout="row" fxLayoutAlign="start center" fxHide fxHide.gt-xs="false"
          class="m-t p-sm bg-plus-green white">
       <div fxFlex class="font-size15 font-weight500">
@@ -48,43 +49,45 @@
         {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.ADDRESS' | translate}}
       </div>
     </div>
+
     <div fxLayout="column" fxLayout.gt-xs="row" class="stripedRows p-sm p-t p-b"
          *ngFor="let provider of consent.fromProviders">
       <div fxFlex>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
-          <div fxHide.gt-xs="true" class="font-size15">
+        <div class="p-b-xs" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start start">
+          <div fxHide.gt-xs="true" class="font-size15" fxFlex="30%">
             {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NAME' | translate }}
           </div>
           <div class="font-size15 font-weight500">{{provider | consentProvider: 'name'}}</div>
         </div>
       </div>
       <div fxFlex>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
-          <div fxHide.gt-xs="true" class="font-size15">
+        <div class="p-b-xs" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start start">
+          <div fxHide.gt-xs="true" class="font-size15" fxFlex="30%">
             {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NPI' | translate }}
           </div>
           <div class="font-size15 font-weight500">{{provider | consentProvider: 'npi'}}</div>
         </div>
       </div>
       <div fxFlex>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
-          <div fxHide.gt-xs="true" class="font-size15">
+        <div class="p-b-xs" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start start">
+          <div fxHide.gt-xs="true" class="font-size15" fxFlex="30%">
             {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.PHONE' | translate }}
           </div>
           <div class="font-size15 font-weight500">{{provider | consentProvider: 'phone'}}</div>
         </div>
       </div>
       <div fxFlex>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
-          <div fxHide.gt-xs="true" class="font-size15">
+        <div class="p-b-xs" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start start">
+          <div fxHide.gt-xs="true" class="font-size15" fxFlex="30%">
             {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.ADDRESS' | translate }}
           </div>
           <div class="font-size15 font-weight500">{{provider | consentProvider: 'address' | usPhoneNumber}}</div>
         </div>
       </div>
     </div>
+
   </div>
-  <div class="p-b-xs p-l p-r">
+  <div class="p-b-xs p-t p-l p-r">
     <div class="font-size17 m-b-xs current-blue">
       <strong>
         {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.DISCLOSE_LABEL' | translate }}:
@@ -108,32 +111,32 @@
     <div fxLayout="column" fxLayout.gt-xs="row" class="stripedRows p-sm p-t p-b"
          *ngFor="let provider of consent.toProviders">
       <div fxFlex>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
-          <div fxHide.gt-xs="true" class="font-size15">
+        <div class="p-b-xs" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start start">
+          <div fxHide.gt-xs="true" class="font-size15" fxFlex="30%">
             {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NAME' | translate }}
           </div>
           <div class="font-size15 font-weight500">{{provider | consentProvider: 'name'}}</div>
         </div>
       </div>
       <div fxFlex>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
-          <div fxHide.gt-xs="true" class="font-size15">
+        <div class="p-b-xs" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start start">
+          <div fxHide.gt-xs="true" class="font-size15" fxFlex="30%">
             {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NPI' | translate }}
           </div>
           <div class="font-size15 font-weight500">{{provider | consentProvider: 'npi'}}</div>
         </div>
       </div>
       <div fxFlex>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
-          <div fxHide.gt-xs="true" class="font-size15">
+        <div class="p-b-xs" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start start">
+          <div fxHide.gt-xs="true" class="font-size15" fxFlex="30%">
             {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.PHONE' | translate }}
           </div>
           <div class="font-size15 font-weight500">{{provider | consentProvider: 'phone'}}</div>
         </div>
       </div>
       <div fxFlex>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start center">
-          <div fxHide.gt-xs="true" class="font-size15">
+        <div class="p-b-xs" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start start">
+          <div fxHide.gt-xs="true" class="font-size15" fxFlex="30%">
             {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.ADDRESS' | translate }}
           </div>
           <div class="font-size15 font-weight500">{{provider | consentProvider: 'address' | usPhoneNumber}}</div>
