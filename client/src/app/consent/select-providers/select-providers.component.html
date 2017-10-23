@@ -2,26 +2,53 @@
   <md-card-title class="bg-forest-green p-sm white"><i class="material-icons md-36 bottom p-r-xs">account_box</i>
     {{ 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.TITLE' | translate }}
   </md-card-title>
-  <md-card-content class="p-15">
-    <md-grid-list cols="2" rowHeight="130px">
-      <md-grid-tile>
-        <c2s-select-provider [providers]="providers"
-                             [isAuthorizedProviders]="true"
-                             [title]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.AUTHORIZE_TITLE' | translate "
-                             [dialogTitle]=" 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.AUTHORIZE_HEADER' | translate "
+  <md-card-content class="p-15 p-b-lg">
+<!--- Start NEW ---->
+    <div fxLayout="row" fxLayoutAlign="center stretch" fxLayoutAlign.lt-md="start" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="20px">
+      <div class="selectedProvidersContainer bg-white">
+        <div fxLayout="column">
+          <div class="">
+            <c2s-select-provider [providers]="providers"
+                                 [isAuthorizedProviders]="true"
+                                 [title]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.AUTHORIZE_TITLE' | translate "
+                                 [dialogTitle]=" 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.AUTHORIZE_HEADER' | translate ">
+            </c2s-select-provider>
+          </div>
+        </div>
+      </div>
+      <div class="selectedProvidersContainer bg-white">
+        <div fxLayout="column">
+          <div class="">
+            <c2s-select-provider [providers]="providers"
+                                 [isAuthorizedProviders]="false"
+                                 [title]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DISCLOSE_TITLE' | translate"
+                                 [dialogTitle]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DISCLOSE_HEADER' | translate ">
+            </c2s-select-provider>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--- End NEW ---->
 
-          >
-        </c2s-select-provider>
-      </md-grid-tile>
-      <md-grid-tile>
-        <c2s-select-provider [providers]="providers"
-                             [isAuthorizedProviders]="false"
-                             [title]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DISCLOSE_TITLE' | translate"
-                             [dialogTitle]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DISCLOSE_HEADER' | translate "
-        >
-        </c2s-select-provider>
-      </md-grid-tile>
-    </md-grid-list>
+    <!--<md-grid-list cols="2" rowHeight="130px">-->
+      <!--<md-grid-tile>-->
+        <!--<c2s-select-provider [providers]="providers"-->
+                             <!--[isAuthorizedProviders]="true"-->
+                             <!--[title]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.AUTHORIZE_TITLE' | translate "-->
+                             <!--[dialogTitle]=" 'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.AUTHORIZE_HEADER' | translate "-->
+
+          <!--&gt;-->
+        <!--</c2s-select-provider>-->
+      <!--</md-grid-tile>-->
+      <!--<md-grid-tile>-->
+        <!--<c2s-select-provider [providers]="providers"-->
+                             <!--[isAuthorizedProviders]="false"-->
+                             <!--[title]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DISCLOSE_TITLE' | translate"-->
+                             <!--[dialogTitle]="'CONSENT_CREATE_EDIT.SELECT_PROVIDERS.DIALOG.DISCLOSE_HEADER' | translate "-->
+        <!--&gt;-->
+        <!--</c2s-select-provider>-->
+      <!--</md-grid-tile>-->
+    <!--</md-grid-list>-->
   </md-card-content>
 </md-card>
 

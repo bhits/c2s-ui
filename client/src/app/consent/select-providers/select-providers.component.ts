@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input, OnInit, ViewEncapsulation} from "@angular/core";
 import {ConsentService} from "../shared/consent.service";
 import {ListOfIdentifiers} from "../../shared/list-of-identifiers.model";
 import {Consent} from "../shared/consent.model";
@@ -7,7 +7,8 @@ import {ConsentProvider} from "../../shared/consent-provider.model";
 @Component({
   selector: 'c2s-select-providers',
   templateUrl: './select-providers.component.html',
-  styleUrls: ['./select-providers.component.css']
+  styleUrls: ['./select-providers.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SelectProvidersComponent implements OnInit {
 
