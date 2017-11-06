@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {UtilityService} from "../../core/utility.service";
 import {FlattenedSmallProvider} from "c2s-ng-shared";
 import {TranslateService} from "@ngx-translate/core";
+import {ProviderIdentifier} from "c2s-ng-shared/src/app/shared/provider-identifier.model";
 
 @Component({
   selector: 'c2s-provider-search-result',
@@ -13,6 +14,10 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['provider-search-result.component.scss']
 })
 export class ProviderSearchResultComponent implements OnInit, OnChanges {
+  private NPI ="NPI";
+  private TAX ="TAX";
+  private SSN ="SSN";
+
   @Input() providerResult: ProviderSearchResponse;
 
   private providerList: FlattenedSmallProvider[] = [];
@@ -78,5 +83,17 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
 
   canSelectProvider(provider: FlattenedSmallProvider): boolean {
     return !this.isProviderSelected(provider) && !this.isInProviderList(provider);
+  }
+
+  determineIdentifierToDiplayName(identifiers: ProviderIdentifier[]): string {
+    if (identifiers.find(i=>i.display.toUpperCase().includes(this.NPI))!=null) return identifiers.find(i=>i.display.toUpperCase()===this.NPI).display;
+    if (identifiers.find(i=>i.display.toUpperCase().includes(this.TAX))!=null) return identifiers.find(i=>i.display.toUpperCase()===this.TAX).display;;
+    if (identifiers.find(i=>i.display.toUpperCase().includes(this.SSN))!=null) return identifiers.find(i=>i.display.toUpperCase()===this.SSN).display;;
+  }
+
+  determineIdentifierToDiplayValue(identifiers: ProviderIdentifier[]): string {
+    if (identifiers.find(i=>i.display.toUpperCase().includes(this.NPI))!=null) return  identifiers.find(i=>i.display.toUpperCase()===this.NPI).value;
+    if (identifiers.find(i=>i.display.toUpperCase().includes(this.TAX))!=null) return  identifiers.find(i=>i.display.toUpperCase()===this.TAX).value;
+    if (identifiers.find(i=>i.display.toUpperCase().includes(this.SSN))!=null) return  "***-**-".concat(identifiers.find(i=>i.display.toUpperCase()===this.SSN).value.slice(-4));
   }
 }
