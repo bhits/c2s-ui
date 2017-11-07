@@ -14,10 +14,6 @@ import {ProviderIdentifier} from "c2s-ng-shared/src/app/shared/provider-identifi
   styleUrls: ['provider-search-result.component.scss']
 })
 export class ProviderSearchResultComponent implements OnInit, OnChanges {
-  private NPI ="NPI";
-  private TAX ="TAX";
-  private SSN ="SSN";
-
   @Input() providerResult: ProviderSearchResponse;
 
   private providerList: FlattenedSmallProvider[] = [];
@@ -86,14 +82,27 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
   }
 
   determineIdentifierToDiplayName(identifiers: ProviderIdentifier[]): string {
-    if (identifiers.find(i=>i.display.toUpperCase().includes(this.NPI))!=null) return identifiers.find(i=>i.display.toUpperCase()===this.NPI).display;
-    if (identifiers.find(i=>i.display.toUpperCase().includes(this.TAX))!=null) return identifiers.find(i=>i.display.toUpperCase()===this.TAX).display;;
-    if (identifiers.find(i=>i.display.toUpperCase().includes(this.SSN))!=null) return identifiers.find(i=>i.display.toUpperCase()===this.SSN).display;;
+    return this.sortProviderIdentifiers(identifiers)[0].display;
+
   }
 
   determineIdentifierToDiplayValue(identifiers: ProviderIdentifier[]): string {
-    if (identifiers.find(i=>i.display.toUpperCase().includes(this.NPI))!=null) return  identifiers.find(i=>i.display.toUpperCase()===this.NPI).value;
-    if (identifiers.find(i=>i.display.toUpperCase().includes(this.TAX))!=null) return  identifiers.find(i=>i.display.toUpperCase()===this.TAX).value;
-    if (identifiers.find(i=>i.display.toUpperCase().includes(this.SSN))!=null) return  "***-**-".concat(identifiers.find(i=>i.display.toUpperCase()===this.SSN).value.slice(-4));
+     if(this.sortProviderIdentifiers(identifiers)[0].display.toUpperCase().includes("SSN"))
+      return "***-**-".concat(this.sortProviderIdentifiers(identifiers)[0].value.slice(-4));
+    else
+       return this.sortProviderIdentifiers(identifiers)[0].value;
   }
+
+  sortProviderIdentifiers(identifiers: ProviderIdentifier[]):ProviderIdentifier[]{
+    return identifiers.sort((obj1, obj2) => {
+      if (obj1.priority > obj2.priority) {
+        return 1;
+      }
+      if (obj1.priority < obj2.priority) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
 }
