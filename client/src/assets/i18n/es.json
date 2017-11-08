@@ -316,7 +316,7 @@
       "DISCLOSE_LABEL": "Revelar a",
       "PROVIDER": {
         "NAME": "Nombre del proveedor",
-        "NPI": "Número NPI",
+        "IDENTIFIER": "{spanish} Identifier",
         "PHONE": "Teléfono",
         "ADDRESS": "Dirección"
       }
