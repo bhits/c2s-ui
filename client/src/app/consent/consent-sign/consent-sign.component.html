@@ -40,7 +40,7 @@
         {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NAME' | translate }}
       </div>
       <div fxFlex class="font-size15 font-weight500">
-        {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NPI' | translate }}
+        {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.IDENTIFIER' | translate }}
       </div>
       <div fxFlex class="font-size15 font-weight500">
         {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.PHONE' | translate }}
@@ -63,9 +63,9 @@
       <div fxFlex>
         <div class="p-b-xs" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start start">
           <div fxHide.gt-xs="true" class="font-size15" fxFlex="30%">
-            {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NPI' | translate }}
+            {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.IDENTIFIER' | translate }}
           </div>
-          <div class="font-size15 font-weight500">{{provider | consentProvider: 'npi'}}</div>
+          <div class="font-size15 font-weight500">{{provider | consentProvider: 'identifiers' | firstCareTeamMemberIdentifier}}</div>
         </div>
       </div>
       <div fxFlex>
@@ -99,7 +99,7 @@
         {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NAME' | translate }}
       </div>
       <div fxFlex class="font-size15 font-weight500">
-        {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NPI' | translate }}
+        {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.IDENTIFIER' | translate }}
       </div>
       <div fxFlex class="font-size15 font-weight500">
         {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.PHONE' | translate }}
@@ -121,9 +121,9 @@
       <div fxFlex>
         <div class="p-b-xs" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign.xs="start start">
           <div fxHide.gt-xs="true" class="font-size15" fxFlex="30%">
-            {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.NPI' | translate }}
+            {{ 'CONSENT_SIGN.AUTHORIZATION_SECTION.PROVIDER.IDENTIFIER' | translate }}
           </div>
-          <div class="font-size15 font-weight500">{{provider | consentProvider: 'npi'}}</div>
+          <div class="font-size15 font-weight500">{{provider | consentProvider: 'identifiers' | firstCareTeamMemberIdentifier}}</div>
         </div>
       </div>
       <div fxFlex>

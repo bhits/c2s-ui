@@ -34,13 +34,15 @@ export class SelectProvidersComponent implements OnInit {
   getAllSelectedProvidersProperties() {
 
     this.providers.forEach(p1 => {
-      if (this.fromProviders && this.fromProviders.identifiers) {
-        this.fromProviders.identifiers.forEach(identifier => {
-          if (p1.npi === identifier.value) {
-            this.completeSelectedProviders.push(p1);
-          }
-        });
-      }
+      p1.identifiers.forEach(identifier => {
+        if (this.fromProviders && this.fromProviders.identifiers) {
+          this.fromProviders.identifiers.forEach(identifier1 => {
+            if (identifier.value === identifier1.value) {
+              this.completeSelectedProviders.push(p1);
+            }
+          });
+        }
+      });
     });
   }
 }

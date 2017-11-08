@@ -319,7 +319,7 @@
       "DISCLOSE_LABEL": "To disclose to",
       "PROVIDER": {
         "NAME": "Provider Name",
-        "NPI": "NPI Number",
+        "IDENTIFIER": "Identifier",
         "PHONE": "Phone",
         "ADDRESS": "Address"
       }
