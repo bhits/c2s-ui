@@ -5,8 +5,6 @@ import {Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {UtilityService} from "../../core/utility.service";
 import {FlattenedSmallProvider} from "c2s-ng-shared";
-import {TranslateService} from "@ngx-translate/core";
-import {ProviderIdentifier} from "c2s-ng-shared/src/app/shared/provider-identifier.model";
 
 @Component({
   selector: 'c2s-provider-search-result',
@@ -29,8 +27,7 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
 
   constructor(private route: ActivatedRoute,
               private providerService: ProviderService,
-              private utilityService: UtilityService,
-              private translate: TranslateService) {
+              private utilityService: UtilityService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -73,36 +70,11 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
 
   isProviderSelected(provider: FlattenedSmallProvider): boolean {
     if (this.selectedProviders != null) {
-      return this.selectedProviders.filter((p) => provider.npi === p.npi).length > 0;
+      return this.selectedProviders.filter((p) => provider.id === p.id).length > 0;
     }
   }
 
   canSelectProvider(provider: FlattenedSmallProvider): boolean {
     return !this.isProviderSelected(provider) && !this.isInProviderList(provider);
   }
-
-  determineIdentifierToDiplayName(identifiers: ProviderIdentifier[]): string {
-    return this.sortProviderIdentifiers(identifiers)[0].display;
-
-  }
-
-  determineIdentifierToDiplayValue(identifiers: ProviderIdentifier[]): string {
-     if(this.sortProviderIdentifiers(identifiers)[0].display.toUpperCase().includes("SSN"))
-      return "***-**-".concat(this.sortProviderIdentifiers(identifiers)[0].value.slice(-4));
-    else
-       return this.sortProviderIdentifiers(identifiers)[0].value;
-  }
-
-  sortProviderIdentifiers(identifiers: ProviderIdentifier[]):ProviderIdentifier[]{
-    return identifiers.sort((obj1, obj2) => {
-      if (obj1.priority > obj2.priority) {
-        return 1;
-      }
-      if (obj1.priority < obj2.priority) {
-        return -1;
-      }
-      return 0;
-    });
-  }
-
 }

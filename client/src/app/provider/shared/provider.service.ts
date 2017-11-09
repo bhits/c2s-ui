@@ -5,7 +5,7 @@ import {ProviderRequestQuery} from "./provider-request-query.model";
 import {ProviderSearchResponse} from "./provider-search-response.model";
 import {Observable} from "rxjs";
 import {ExceptionService} from "../../core/exception.service";
-import {FHIR_US_NPI_SYSTEM, FlattenedSmallProvider, Identifier} from "c2s-ng-shared";
+import {FlattenedSmallProvider, ProviderId} from "c2s-ng-shared";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
@@ -51,19 +51,19 @@ export class ProviderService {
   addProviders(providers: FlattenedSmallProvider[]): Observable<void> {
     const ADD_PROVIDERS_URL = this.c2sUiApiUrlService.getPcmBaseUrl().concat("/patients/").concat(this.currentUserMrn).concat("/providers");
     if (providers != null) {
-      let identifiers: Identifier[] = [];
+      let providerIds: ProviderId[] = [];
       providers.forEach(
-        provider => identifiers.push(new Identifier(FHIR_US_NPI_SYSTEM, provider.npi))
+        provider => providerIds.push(new ProviderId(provider.id))
       );
       return this.http
-        .post(ADD_PROVIDERS_URL, JSON.stringify({identifiers: identifiers}), {headers: this.headers})
+        .post(ADD_PROVIDERS_URL, providerIds, {headers: this.headers})
         .map(() => null)
         .catch(this.exceptionService.handleError);
     }
   }
 
   isSearchResultInProviderList(provider: FlattenedSmallProvider, providerList: FlattenedSmallProvider[]): boolean {
-    return providerList.filter((p) => provider.npi === p.npi).length > 0;
+    return providerList.filter((p) => provider.id === p.id).length > 0;
   }
 
   private buildRequestParams(requestParams: ProviderRequestQuery): URLSearchParams {
