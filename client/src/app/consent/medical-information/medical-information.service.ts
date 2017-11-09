@@ -1,9 +1,7 @@
 import {Injectable} from "@angular/core";
 
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
-import {ListOfIdentifiers} from "c2s-ng-shared";
-import {Identifier} from "c2s-ng-shared";
-import {Consent} from "../shared/consent.model";
+import {Consent, Identifier, ListOfIdentifiers} from "c2s-ng-shared";
 
 @Injectable()
 export class MedicalInformationService {

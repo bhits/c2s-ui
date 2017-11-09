@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {ConsentList} from "../shared/consent-list.model";
-import {DetailedConsent} from "../shared/detailed-consent.model";
+import {DetailedConsent} from "c2s-ng-shared";
 import {DataService} from "../../core/data.service";
 import {UtilityService} from "../../core/utility.service";
 import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";

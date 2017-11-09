@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from "@angular/core";
 
 import {PurposeOfUseService} from "./purpose-of-use.service";
 import {ConsentService} from "../shared/consent.service";
-import {Consent} from "../shared/consent.model";
+import {Consent} from "c2s-ng-shared";
 import {SharePurpose} from "../shared/share-purpose.model";
 
 @Component({

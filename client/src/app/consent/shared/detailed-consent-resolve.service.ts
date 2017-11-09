@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Resolve, ActivatedRouteSnapshot} from "@angular/router";
-import {DetailedConsent} from "./detailed-consent.model";
+import {DetailedConsent} from "c2s-ng-shared";
 import {ConsentService} from "./consent.service";
 
 @Injectable()

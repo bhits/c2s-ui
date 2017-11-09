@@ -8,7 +8,7 @@ import {NotificationService} from "../../core/notification.service";
 import {BinaryFile} from "../shared/binary-file.model";
 import {UtilityService} from "../../core/utility.service";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
-import {DetailedConsent} from "../shared/detailed-consent.model";
+import {DetailedConsent} from "c2s-ng-shared";
 import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
 @Component({
