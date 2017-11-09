@@ -1,6 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Identifier, ListOfIdentifiers} from "c2s-ng-shared";
-import {SharePurpose} from "../shared/share-purpose.model";
+import {Identifier, ListOfIdentifiers, SharePurpose} from "c2s-ng-shared";
 
 @Injectable()
 export class PurposeOfUseService {

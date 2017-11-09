@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {SharePurpose} from "./share-purpose.model";
+import {SharePurpose} from "c2s-ng-shared";
 
 type ArgType = "display" | "description" | "system" | "value";
 

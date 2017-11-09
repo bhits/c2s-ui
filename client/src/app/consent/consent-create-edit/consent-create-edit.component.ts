@@ -4,8 +4,7 @@ import {ConsentService} from "../shared/consent.service";
 import {UtilityService} from "../../core/utility.service";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {NotificationService} from "../../core/notification.service";
-import {SharePurpose} from "../shared/share-purpose.model";
-import {Consent, ConsentProvider} from "c2s-ng-shared";
+import {Consent, ConsentProvider, SharePurpose} from "c2s-ng-shared";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
