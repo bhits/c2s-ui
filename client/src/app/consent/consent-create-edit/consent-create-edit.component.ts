@@ -2,11 +2,10 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {ConsentService} from "../shared/consent.service";
 import {UtilityService} from "../../core/utility.service";
-import {Consent} from "../shared/consent.model";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {NotificationService} from "../../core/notification.service";
 import {SharePurpose} from "../shared/share-purpose.model";
-import {ConsentProvider} from "c2s-ng-shared";
+import {Consent, ConsentProvider} from "c2s-ng-shared";
 import {LimitedProfileService} from "../../security/shared/limited-profile.service";
 import {C2sUiApiUrlService} from "../../core/c2s-ui-api-url.service";
 
@@ -92,12 +91,12 @@ export class ConsentCreateEditComponent implements OnInit {
 
   canSave(): boolean {
     let result = false;
-    if (!this.utilityService.isDefined(this.consent.fromProviders.identifiers) ||
-      this.consent.fromProviders.identifiers.length == 0) {
+    if (!this.utilityService.isDefined(this.consent.fromProviders) ||
+      this.consent.fromProviders.length == 0) {
       result = true;
     }
-    else if (!this.utilityService.isDefined(this.consent.toProviders.identifiers) ||
-      this.consent.toProviders.identifiers.length == 0) {
+    else if (!this.utilityService.isDefined(this.consent.toProviders) ||
+      this.consent.toProviders.length == 0) {
       result = true;
     }
     else if (!this.utilityService.isDefined(this.consent.shareSensitivityCategories.identifiers) ||

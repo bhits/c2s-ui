@@ -1,13 +1,21 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation} from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation
+} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {DetailedConsent} from "../shared/detailed-consent.model";
+import {DetailedConsent, UploadedDocument} from "c2s-ng-shared";
 import {ConsentStageOption} from "../shared/consent-stage-option.model";
 import {CONSENT_STAGES} from "../shared/consent-stages.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";
 import {ConsentStageOptionKey} from "../shared/consent-stage-option-key.enum";
 import {BinaryFile} from "../shared/binary-file.model";
-import {UploadedDocument} from "c2s-ng-shared";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TryPolicyService} from "../shared/try-policy.service";
 import {TryPolicyResponse} from "../shared/try-policy-response.model";

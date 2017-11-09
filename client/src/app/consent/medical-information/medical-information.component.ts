@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from "@angular/core";
 import {SensitivityPolicy} from "../shared/sensitivity-policy";
 import {MedicalInformationService} from "./medical-information.service";
 import {MedicalInformationCategory} from "../shared/medical-information-category";
-import {Consent} from "../shared/consent.model";
+import {Consent} from "c2s-ng-shared";
 import {ConsentService} from "../shared/consent.service";
 import {Md2DialogConfig} from "md2";
 
@@ -17,7 +17,6 @@ export class MedicalInformationComponent implements OnInit {
   public readonly notShareAllValue: number = 0;
   public readonly shareAllValue: number = 1;
   public selectedSensitivityCategories: string[];
-  public sensitivityCategoryCodes: string[] = [];
   public isShareAll: number;
   public isSelectOneSensitivityCategory: boolean;
   public isInvalidNotShareAll: boolean = false;
@@ -51,7 +50,7 @@ export class MedicalInformationComponent implements OnInit {
   }
 
   public setRadioButton(): void {
-    if (this.selectedSensitivityCategories.length ===0) {
+    if (this.selectedSensitivityCategories.length === 0) {
       this.isShareAll = null;
     } else {
       this.isShareAll = this.selectedSensitivityCategories.length === this.sensitivityPolicies.length ? 1 : 0;
@@ -66,7 +65,7 @@ export class MedicalInformationComponent implements OnInit {
   }
 
   public onSelectDoNotShareAll(dialog: any, value: number) {
-    if (this.isShareAll === null || this.isShareAll === 1){
+    if (this.isShareAll === null || this.isShareAll === 1) {
       // Set all categories Unchecked
       this.isSelectOneSensitivityCategory = false;
       this.medicalInformationService.setSensitivityPoliciesStatusToUnChecked(this.sensitivityPolicies);
