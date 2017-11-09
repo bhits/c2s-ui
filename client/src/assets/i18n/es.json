@@ -80,7 +80,7 @@
         "NEXT": "Siguiente"
       },
       "CARD": {
-        "NPI": "NPI",
+        "IDENTIFIER": "{Spanish} Identifier",
         "ADDRESS": "Dirección",
         "CONTACT": "Número de contacto"
       },

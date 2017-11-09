@@ -45,10 +45,10 @@
             <div class="flexcontainer column" fxLayoutWrap="wrap">
               <div fxFlex="1 1 auto">
                 <div class="font-size12 p-b-xxs">
-                  {{ 'PROVIDER.LIST.CARD.NPI' | translate }}
+                  {{ 'PROVIDER.LIST.CARD.IDENTIFIER' | translate }}
                 </div>
                 <div class="font-size14 font-weight600 m-b-xs">
-                  {{provider | consentProvider: 'npi'}}
+                  {{provider | consentProvider: 'identifiers' | careTeamMemberFirstIdentifier}}
                 </div>
                 <div class="font-size12 p-b-xxs">
                   {{ 'PROVIDER.LIST.CARD.ADDRESS' | translate }}

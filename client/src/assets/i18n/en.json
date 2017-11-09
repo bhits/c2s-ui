@@ -83,7 +83,7 @@
         "NEXT": "Next"
       },
       "CARD": {
-        "NPI": "NPI",
+        "IDENTIFIER": "Identifier",
         "ADDRESS": "Address",
         "CONTACT": "Contact Number"
       },
