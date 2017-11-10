@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {ShareSensitivityCategory} from "./share-sensitivity-category.model";
+import {ShareSensitivityCategory} from "c2s-ng-shared";
 
 type ArgType = "display" | "description" | "system" | "value";
 

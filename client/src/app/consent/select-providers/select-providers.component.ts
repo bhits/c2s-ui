@@ -1,7 +1,6 @@
 import {Component, Input, OnInit, ViewEncapsulation} from "@angular/core";
 import {ConsentService} from "../shared/consent.service";
-import {ConsentProvider, ListOfIdentifiers} from "c2s-ng-shared";
-import {Consent} from "../shared/consent.model";
+import {Consent, ConsentProvider, ProviderId} from "c2s-ng-shared";
 
 @Component({
   selector: 'c2s-select-providers',
@@ -12,8 +11,8 @@ import {Consent} from "../shared/consent.model";
 export class SelectProvidersComponent implements OnInit {
 
   @Input() providers: ConsentProvider[];
-  fromProviders: ListOfIdentifiers;
-  toProviders: ListOfIdentifiers;
+  fromProviders: ProviderId[];
+  toProviders: ProviderId[];
   consent: Consent;
   @Input() completeSelectedProviders: ConsentProvider[] = [];
 
@@ -34,9 +33,9 @@ export class SelectProvidersComponent implements OnInit {
   getAllSelectedProvidersProperties() {
 
     this.providers.forEach(p1 => {
-      if (this.fromProviders && this.fromProviders.identifiers) {
-        this.fromProviders.identifiers.forEach(identifier => {
-          if (p1.npi === identifier.value) {
+      if (this.fromProviders && this.fromProviders) {
+        this.fromProviders.forEach(identifier1 => {
+          if (p1.id === identifier1.id) {
             this.completeSelectedProviders.push(p1);
           }
         });

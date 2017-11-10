@@ -80,7 +80,7 @@
         "NEXT": "Siguiente"
       },
       "CARD": {
-        "NPI": "NPI",
+        "IDENTIFIER": "{Spanish} Identifier",
         "ADDRESS": "Dirección",
         "CONTACT": "Número de contacto"
       },
@@ -158,7 +158,7 @@
         "MULTI_ADD": {
           "TITLE": "Selecciones a añadir",
           "TABLE": {
-            "NPI": "NPI",
+            "IDENTIFIER": "{Spanish} Identifier",
             "NAME_FACILITY": "Nombre / instalación",
             "NO_PROVIDERS": "No hay proveedores seleccionados actualmente."
           },
@@ -316,7 +316,7 @@
       "DISCLOSE_LABEL": "Revelar a",
       "PROVIDER": {
         "NAME": "Nombre del proveedor",
-        "NPI": "Número NPI",
+        "IDENTIFIER": "{spanish} Identifier",
         "PHONE": "Teléfono",
         "ADDRESS": "Dirección"
       }

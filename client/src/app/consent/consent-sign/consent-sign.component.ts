@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {AuthenticationService} from "../../security/shared/authentication.service";
 import {ActivatedRoute} from "@angular/router";
-import {DetailedConsent} from "../shared/detailed-consent.model";
+import {DetailedConsent} from "c2s-ng-shared";
 import {ConsentTerms} from "../shared/consent-terms.model";
 import {ConsentService} from "../shared/consent.service";
 import {NotificationService} from "../../core/notification.service";

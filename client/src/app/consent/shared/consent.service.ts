@@ -5,11 +5,8 @@ import {PurposeOfUseBase} from "./purpose-of-use-base.model";
 import {SensitivityPolicy} from "./sensitivity-policy";
 import {ExceptionService} from "../../core/exception.service";
 import {BehaviorSubject, Observable} from "rxjs";
-import {Consent} from "./consent.model";
-import {SharePurpose} from "./share-purpose.model";
-import {ConsentProvider, Identifier, ListOfIdentifiers} from "c2s-ng-shared";
+import {Consent, ConsentProvider, DetailedConsent, ListOfIdentifiers, ProviderId, SharePurpose} from "c2s-ng-shared";
 import {UtilityService} from "../../core/utility.service";
-import {DetailedConsent} from "./detailed-consent.model";
 import {ConsentTerms} from "./consent-terms.model";
 import {ConsentRevocation} from "./consent-revocation.model";
 import {BinaryFile} from "./binary-file.model";
@@ -58,11 +55,11 @@ export class ConsentService {
   }
 
   getProvidersByIdentifier(providers: ConsentProvider[], selectedProvidersIdentifier: ListOfIdentifiers): ConsentProvider[] {
-    let selectedProvider:ConsentProvider[] = [];
-    selectedProvidersIdentifier.identifiers.forEach(identifier =>{
-      providers.forEach(provider =>{
-        provider.identifiers.forEach(entry =>{
-          if(entry.value === identifier.value){
+    let selectedProvider: ConsentProvider[] = [];
+    selectedProvidersIdentifier.identifiers.forEach(identifier => {
+      providers.forEach(provider => {
+        provider.identifiers.forEach(entry => {
+          if (entry.value === identifier.value) {
             selectedProvider.push(provider);
           }
         });
@@ -71,39 +68,35 @@ export class ConsentService {
     return selectedProvider;
   }
 
-  markSelectedProvidersAsChecked(providers:ConsentProvider[], selectedIdentifiers: Identifier[]){
+  markSelectedProvidersAsChecked(providers: ConsentProvider[], selectedIds: ProviderId[]) {
     providers.forEach(provider => {
       let tempProvider = provider;
-      provider.identifiers.forEach(identifier=>{
-        selectedIdentifiers.forEach(selectedIdentifier => {
-          if(selectedIdentifier.value ===identifier.value){
-            provider.selected = true;
-          }
-        });
+      selectedIds.forEach(selectedId => {
+        if (selectedId.id === provider.id) {
+          provider.selected = true;
+        }
       });
     });
   }
 
 
-  isInList(currentIdentifiers: Identifier[], selectedIdentifiers: Identifier[]): boolean {
+  isInList(currentIds: ProviderId[], selectedProvider: ConsentProvider): boolean {
     let selected = false;
-    selectedIdentifiers.forEach(selectedIdentifier=>{
-      currentIdentifiers.forEach(currentIdentifier =>{
-        if(currentIdentifier.value === selectedIdentifier.value){
-          selected =  true;
-        }
-      });
+    currentIds.forEach(currentProvider => {
+      if (currentProvider.id === selectedProvider.id) {
+        selected = true;
+      }
     });
     return selected;
   }
 
   getSelectedProvidersByNpi(providers: ConsentProvider[]): ConsentProvider[] {
-    let selectedProvider:ConsentProvider[] = [];
-    providers.forEach(provider =>{
-      if(provider['selected']){
+    let selectedProvider: ConsentProvider[] = [];
+    providers.forEach(provider => {
+      if (provider['selected']) {
         selectedProvider.push(provider);
-      };
-    })
+      }
+    });
     return selectedProvider;
   }
 
@@ -239,22 +232,20 @@ export class ConsentService {
       .catch(this.exceptionService.handleError);
   }
 
-   createListOfIdentifiers(providers: ConsentProvider[]):ListOfIdentifiers {
-    let listOfIdentifiers:ListOfIdentifiers = new ListOfIdentifiers([new Identifier(null, null)]);
-    let identifies: Identifier[] = [];
-    providers.forEach(provider=>{
-      if(provider['selected']){
-        identifies.push(new Identifier(provider.identifiers[0].system, provider.identifiers[0].value));
+  createListOfIdentifiers(providers: ConsentProvider[]): ProviderId[] {
+    let ids: ProviderId[] = [];
+    providers.forEach(provider => {
+      if (provider['selected']) {
+        ids.push(new ProviderId(provider.id));
       }
     });
-    listOfIdentifiers.identifiers = identifies;
-    return listOfIdentifiers;
+    return ids;
   }
 
-  getSelectedProviders(newlSelectedProviders:ConsentProvider[]):ConsentProvider[]{
-    let providers:ConsentProvider[] = [];
-    newlSelectedProviders.forEach(provider =>{
-      if(provider['selected']){
+  getSelectedProviders(newlSelectedProviders: ConsentProvider[]): ConsentProvider[] {
+    let providers: ConsentProvider[] = [];
+    newlSelectedProviders.forEach(provider => {
+      if (provider['selected']) {
         providers.push(provider)
       }
 

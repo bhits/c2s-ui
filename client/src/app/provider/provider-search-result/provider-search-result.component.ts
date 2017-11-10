@@ -5,7 +5,6 @@ import {Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {UtilityService} from "../../core/utility.service";
 import {FlattenedSmallProvider} from "c2s-ng-shared";
-import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'c2s-provider-search-result',
@@ -28,8 +27,7 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
 
   constructor(private route: ActivatedRoute,
               private providerService: ProviderService,
-              private utilityService: UtilityService,
-              private translate: TranslateService) {
+              private utilityService: UtilityService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -72,7 +70,7 @@ export class ProviderSearchResultComponent implements OnInit, OnChanges {
 
   isProviderSelected(provider: FlattenedSmallProvider): boolean {
     if (this.selectedProviders != null) {
-      return this.selectedProviders.filter((p) => provider.npi === p.npi).length > 0;
+      return this.selectedProviders.filter((p) => provider.id === p.id).length > 0;
     }
   }
 

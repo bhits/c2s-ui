@@ -83,7 +83,7 @@
         "NEXT": "Next"
       },
       "CARD": {
-        "NPI": "NPI",
+        "IDENTIFIER": "Identifier",
         "ADDRESS": "Address",
         "CONTACT": "Contact Number"
       },
@@ -161,7 +161,7 @@
         "MULTI_ADD": {
           "TITLE": "Selections to add",
           "TABLE": {
-            "NPI": "NPI",
+            "IDENTIFIER": "Identifier",
             "NAME_FACILITY": "Name/Facility",
             "NO_PROVIDERS": " No Providers currently selected."
           },
@@ -319,7 +319,7 @@
       "DISCLOSE_LABEL": "To disclose to",
       "PROVIDER": {
         "NAME": "Provider Name",
-        "NPI": "NPI Number",
+        "IDENTIFIER": "Identifier",
         "PHONE": "Phone",
         "ADDRESS": "Address"
       }

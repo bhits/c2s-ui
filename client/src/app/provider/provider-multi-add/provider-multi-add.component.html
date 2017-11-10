@@ -6,7 +6,8 @@
         <th style="width: 5%">
           <md-icon>mode_edit</md-icon>
         </th>
-        <th style="width: 25%" md2SortBy="npi">{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.TABLE.NPI' | translate }}</th>
+        <th style="width: 25%" md2SortBy="npi">{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.TABLE.IDENTIFIER' | translate }}
+        </th>
         <th style="width: 70%">{{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.TABLE.NAME_FACILITY' | translate }}</th>
       </tr>
       </thead>
@@ -29,7 +30,7 @@
               <md2-dialog-title>
                 {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.DELETE_DIALOG.TITLE' | translate }}
               </md2-dialog-title>
-                      {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.DELETE_DIALOG.CONTENT' | translate }}
+              {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.DELETE_DIALOG.CONTENT' | translate }}
               <md2-dialog-footer>
                 <button md-raised-button (click)="confirm.close()">
                   {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.DELETE_DIALOG.CANCEL_BUTTON' | translate }}
@@ -44,8 +45,8 @@
             </button>
           </div>
         </td>
-        <td>{{provider.npi}}</td>
-        <td>{{provider | providerName}}</td>
+        <td>{{provider | flattenedSmallProvider: 'identifiers' | careTeamMemberFirstIdentifier}}</td>
+        <td>{{provider | flattenedSmallProvider: 'name'}}</td>
       </tr>
       </tbody>
     </table>
@@ -53,9 +54,9 @@
   <div fxLayoutAlign="left" [ngStyle]="{'padding-top': '20px'}">
     <md2-dialog #confirm>
       <md2-dialog-title>
-          {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.TITLE' | translate }}
+        {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.TITLE' | translate }}
       </md2-dialog-title>
-          {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.CONTENT' | translate }}
+      {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.CONTENT' | translate }}
       <md2-dialog-footer>
         <button class="m-r" md-raised-button color="primary" (click)="confirmAddProviders(confirm, providers)">
           {{ 'PROVIDER.SEARCH.SEARCH_RESULTS.MULTI_ADD.ADD_DIALOG.CANCEL_BUTTON' | translate }}
